@@ -10,11 +10,27 @@ import type { MetaFunction } from "remix";
 import styles from "./tailwind.css";
 
 export const meta: MetaFunction = () => {
-    return { title: "Portfolio" };
+    return {
+        title: `Portfolio | Tech with Seth`,
+        description: `A place to showcase Seth Davis' work.`,
+        keywords: `Seth Davis, Seth Davis UX Developer, Seth Davis Portfolio`
+    };
 };
 
 export function links() {
-    return [{ rel: "stylesheet", href: styles }];
+    return [
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        {
+            rel: "preconnect",
+            href: "https://fonts.gstatic.com",
+            crossOriginIsolated: true
+        },
+        {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        },
+        { rel: "stylesheet", href: styles }
+    ];
 }
 
 export default function App() {
