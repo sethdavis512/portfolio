@@ -92,7 +92,7 @@ const NoraRoute: React.FunctionComponent = () => {
                 </a>
             </div>
 
-            <h2 className="mb-4">Contact Info</h2>
+            <h2 className="text-2xl mb-4">Contact Info</h2>
             <div className="card mb-4">
                 <p className="mb-2">Seth</p>
                 <p>
