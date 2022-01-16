@@ -16,7 +16,6 @@ h3 {
 
 @layer components {
     .card {
-        cursor: pointer;
         border: 1px;
         border-style: solid;
         border-radius: theme("borderRadius.lg");
@@ -30,6 +29,7 @@ h3 {
     }
 
     .portfolio .card {
+        cursor: pointer;
         background-color: #2d2d2d;
         border-color: #808080;
     }
