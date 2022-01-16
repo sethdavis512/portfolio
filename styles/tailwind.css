@@ -5,10 +5,7 @@
 body {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-weight: 400;
-}
-
-a {
-    color: theme("colors.green.500");
+    padding: 2rem;
 }
 
 h1,
@@ -17,21 +14,23 @@ h3 {
     font-weight: 700;
 }
 
-.site {
-    background-color: #2d2d2d;
-    color: white;
-    padding: 2rem;
-}
-
 @layer components {
     .card {
         cursor: pointer;
-        background-color: #2d2d2d;
         border: 1px;
-        border-color: #808080;
         border-style: solid;
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.3") theme("spacing.5");
         box-shadow: theme("boxShadow.xl");
+    }
+
+    .nora .card {
+        background-color: theme("colors.white");
+        border-color: theme("colors.gray.500");
+    }
+
+    .portfolio .card {
+        background-color: #2d2d2d;
+        border-color: #808080;
     }
 }

@@ -1,8 +1,12 @@
-// interface NoraRouteProps {}
+import noraStyles from "../nora.css";
 
-const NoraRoute: React.FunctionComponent = () => {
+export function links() {
+    return [{ rel: "stylesheet", href: noraStyles }];
+}
+
+export default function NoraRoute() {
     return (
-        <div className="sm:w-3/4 m-auto max-w-4xl">
+        <div className="nora sm:w-3/4 m-auto max-w-4xl">
             <div className="mb-4">
                 <h1 className="text-4xl mb-4">Nora</h1>
                 <figure
@@ -26,7 +30,10 @@ const NoraRoute: React.FunctionComponent = () => {
                     cyst in Nora's lung had burst and air was leaking into her
                     chest cavity. After emergency surgery, we were informed that
                     Nora was born with a rare form of cancer called{" "}
-                    <a href="https://rarediseases.org/rare-diseases/pleuropulmonary-blastoma/">
+                    <a
+                        className="text-purple-700"
+                        href="https://rarediseases.org/rare-diseases/pleuropulmonary-blastoma/"
+                    >
                         Pleuropulmonary Blastoma
                     </a>
                     . Doctors removed additional cysts in hopes that the cancer
@@ -63,6 +70,16 @@ const NoraRoute: React.FunctionComponent = () => {
                     here is what we need most.
                 </p>
             </div>
+            <div className="mb-4">
+                <h2 className="text-2xl mb-4">Updates</h2>
+                <p>
+                    <strong>1/15/21</strong> - Nora had an infusion this past
+                    Monday. It was difficult for her while in the hospital. She
+                    struggled with eating and some nausea. Thankfully when she
+                    returned home, she bounced back pretty well. We now have 3
+                    chemo treatments left — Wooohoo!
+                </p>
+            </div>
             <h2 className="text-2xl mb-4">Needs</h2>
             <div className="card mb-4">
                 <p>
@@ -78,7 +95,11 @@ const NoraRoute: React.FunctionComponent = () => {
             </p>
             <div className="card mb-4">
                 <strong>PayPal:</strong>{" "}
-                <a href="https://paypal.me/sethdavis512/" target="_blank">
+                <a
+                    className="text-purple-700"
+                    href="https://paypal.me/sethdavis512/"
+                    target="_blank"
+                >
                     sethdavis512
                 </a>
             </div>
@@ -87,7 +108,11 @@ const NoraRoute: React.FunctionComponent = () => {
             </div>
             <div className="card mb-4">
                 <strong>Cash App:</strong>{" "}
-                <a href="https://cash.app/$sethdavis512" target="_blank">
+                <a
+                    className="text-purple-700"
+                    href="https://cash.app/$sethdavis512"
+                    target="_blank"
+                >
                     $sethdavis512
                 </a>
             </div>
@@ -97,7 +122,10 @@ const NoraRoute: React.FunctionComponent = () => {
                 <p className="mb-2">Seth</p>
                 <p>
                     <strong>Email:</strong>{" "}
-                    <a href="mailto:sethdavis512@gmail.com">
+                    <a
+                        className="text-purple-700"
+                        href="mailto:sethdavis512@gmail.com"
+                    >
                         sethdavis512@gmail.com
                     </a>
                 </p>
@@ -106,13 +134,14 @@ const NoraRoute: React.FunctionComponent = () => {
                 <p className="mb-2">Rebekah</p>
                 <p>
                     <strong>Email:</strong>{" "}
-                    <a href="mailto:rebekahdavis0309@gmail.com">
+                    <a
+                        className="text-purple-700"
+                        href="mailto:rebekahdavis0309@gmail.com"
+                    >
                         rebekahdavis0309@gmail.com
                     </a>
                 </p>
             </div>
         </div>
     );
-};
-
-export default NoraRoute;
+}
