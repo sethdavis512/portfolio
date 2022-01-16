@@ -23,7 +23,7 @@ export function links() {
         {
             rel: "preconnect",
             href: "https://fonts.gstatic.com",
-            crossOriginIsolated: true
+            crossoriginisolated: "true"
         },
         {
             rel: "stylesheet",
@@ -50,6 +50,11 @@ export default function App() {
                 <ScrollRestoration />
                 <Scripts />
                 {process.env.NODE_ENV === "development" && <LiveReload />}
+                <script
+                    async
+                    src="https://platform.twitter.com/widgets.js"
+                    charSet="utf-8"
+                ></script>
             </body>
         </html>
     );

@@ -31,19 +31,23 @@ h3 {
     .portfolio .card {
         cursor: pointer;
         background-color: #2d2d2d;
-        border-color: #808080;
-        
+        border-color: theme("colors.green.900");
     }
 
     .portfolio .card:hover {
+        border-color: theme("colors.green.700");
         background-color: theme("colors.green.900");
     }
 
+    .about-item {
+        @apply block;
+    }
+
     .about-item-link, .about-item-text {
-        @apply inline-block py-2 px-4 rounded-full;
+        @apply inline-block py-2 px-4;
     }
 
     .about-item-link:hover {
-        @apply bg-green-900;
+        @apply bg-green-900 rounded-full;
     }
 }
