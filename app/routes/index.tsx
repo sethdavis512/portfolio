@@ -1,10 +1,38 @@
 import portfolioStyles from "../portfolio.css";
+import parse from "html-react-parser";
 
 export function links() {
     return [{ rel: "stylesheet", href: portfolioStyles }];
 }
 
 export default function Index() {
+    const mappedAboutItems = [
+        "Native Austinite",
+        "TXST Alumni",
+        `UX Developer @ 
+    <a
+        href="https://www.indeed.com/"
+        className="text-green-500"
+    >
+        Indeed
+    </a>`,
+        `Creator of
+    <a
+        href="https://www.pseudoreact.com/"
+        className="text-green-500"
+    >
+        PseudoReact
+    </a>
+    ⚛️`,
+        `Electric vehicle enthusiast ⚡️`,
+        `Austin FC fan ⚽️`,
+        `Onewheel rider 🏂`
+    ].map((item) => (
+        <li key={item} className="about-item">
+            <span className="about-item-text">{parse(item)}</span>
+        </li>
+    ));
+
     return (
         <div className="portfolio text-center sm:w-96 m-auto">
             <div className="border-b-2 border-green-900 pb-4 mb-4">
@@ -13,30 +41,7 @@ export default function Index() {
             </div>
             <h3 className="text-2xl mb-4">A little about me</h3>
             <ul className="border-b-2 border-green-900 pb-4 mb-4">
-                <li>Native Austinite</li>
-                <li>TXST Alumni</li>
-                <li>
-                    UX Developer @{" "}
-                    <a
-                        href="https://www.indeed.com/"
-                        className="text-green-500"
-                    >
-                        Indeed
-                    </a>
-                </li>
-                <li>
-                    Creator of{" "}
-                    <a
-                        href="https://www.pseudoreact.com/"
-                        className="text-green-500"
-                    >
-                        PseudoReact
-                    </a>{" "}
-                    ⚛️
-                </li>
-                <li>Electric vehicle enthusiast ⚡️</li>
-                <li>Austin FC fan ⚽️</li>
-                <li>Onewheel rider 🏂</li>
+                {mappedAboutItems}
             </ul>
             <h3 className="text-2xl mb-4">Links</h3>
             <div className="flex flex-col sm:flex-row justify-center">

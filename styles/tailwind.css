@@ -32,5 +32,22 @@ h3 {
         cursor: pointer;
         background-color: #2d2d2d;
         border-color: #808080;
+        
+    }
+
+    .portfolio .card:hover {
+        background-color: theme("colors.green.900");
+    }
+
+    .about-item {
+        @apply py-1
+    }
+
+    .about-item-text {
+        @apply inline-block py-2 px-4 rounded-full;
+    }
+
+    .about-item-text:hover {
+        @apply inline-block py-2 px-4 rounded-full bg-green-900;
     }
 }
