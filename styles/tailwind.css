@@ -39,15 +39,11 @@ h3 {
         background-color: theme("colors.green.900");
     }
 
-    .about-item {
-        @apply py-1
-    }
-
-    .about-item-text {
+    .about-item-link, .about-item-text {
         @apply inline-block py-2 px-4 rounded-full;
     }
 
-    .about-item-text:hover {
-        @apply inline-block py-2 px-4 rounded-full bg-green-900;
+    .about-item-link:hover {
+        @apply bg-green-900;
     }
 }

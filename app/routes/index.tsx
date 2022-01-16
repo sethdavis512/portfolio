@@ -1,35 +1,34 @@
 import portfolioStyles from "../portfolio.css";
 import parse from "html-react-parser";
 
+type AboutItemType = { text: string; isLink?: boolean };
+
 export function links() {
     return [{ rel: "stylesheet", href: portfolioStyles }];
 }
 
 export default function Index() {
     const mappedAboutItems = [
-        "Native Austinite",
-        "TXST Alumni",
-        `UX Developer @ 
-    <a
-        href="https://www.indeed.com/"
-        className="text-green-500"
-    >
-        Indeed
-    </a>`,
-        `Creator of
-    <a
-        href="https://www.pseudoreact.com/"
-        className="text-green-500"
-    >
-        PseudoReact
-    </a>
-    ⚛️`,
-        `Electric vehicle enthusiast ⚡️`,
-        `Austin FC fan ⚽️`,
-        `Onewheel rider 🏂`
-    ].map((item) => (
-        <li key={item} className="about-item">
-            <span className="about-item-text">{parse(item)}</span>
+        { text: "Native Austinite" },
+        { text: "TXST Alumni" },
+        {
+            text: `UX Developer @ <a href="https://www.indeed.com/" className="text-green-500">Indeed</a>`,
+            isLink: true
+        },
+        {
+            text: `Creator of <a href="https://www.pseudoreact.com/" className="text-green-500">PseudoReact</a> ⚛️`,
+            isLink: true
+        },
+        { text: `Electric vehicle enthusiast ⚡️` },
+        { text: `Austin FC fan ⚽️` },
+        { text: `Onewheel rider 🏂` }
+    ].map((item: AboutItemType) => (
+        <li key={item.text}>
+            <span
+                className={item.isLink ? "about-item-link" : "about-item-text"}
+            >
+                {parse(item.text)}
+            </span>
         </li>
     ));
 
