@@ -1,11 +1,6 @@
-import portfolioStyles from "../portfolio.css";
 import parse from "html-react-parser";
 
 type AboutItemType = { text: string; isLink?: boolean };
-
-export function links() {
-    return [{ rel: "stylesheet", href: portfolioStyles }];
-}
 
 export default function Index() {
     const mappedAboutItems = [
