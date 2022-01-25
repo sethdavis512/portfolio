@@ -28,34 +28,40 @@ export default function Index() {
     ));
 
     return (
-        <div className="portfolio text-center sm:w-1/2 m-auto sm:mt-12">
-            <div className="border-b-2 border-green-900 pb-8">
+        <div className="portfolio text-center max-w-3xl m-auto sm:mt-12">
+            <div className="w-full border-b-2 border-green-900 pb-8">
                 <h1 className="text-4xl mb-4">Howdy y'all 🤠</h1>
                 <h2 className="text-2xl">Welcome to Seth Davis' Portfolio</h2>
             </div>
-            <div className="flex flex-col sm:flex-row justify-around border-b-2 border-green-900 py-8">
-                <div className="mr-4">
+            <div className="flex flex-col sm:flex-row justify-evenly border-b-2 border-green-900 py-8">
+                <div className="mr-4 flex-grow-0 flex-shrink-0">
                     <h3 className="text-2xl mb-4">A little about me</h3>
                     <ul className="border-b-2 border-green-900 pb-4 mb-4">
                         {mappedAboutItems}
                     </ul>
                     <h3 className="text-2xl mb-4">Links</h3>
-                    <div className="flex flex-col sm:flex-row justify-center border-b-2 md:border-none border-green-900 pb-4 mb-4">
+                    <div className="flex flex-col justify-center border-b-2 md:border-none border-green-900 pb-4 mb-4">
                         <a
-                            className="card text-green-500 w-full sm:w-auto mb-3 sm:mb-0 mr-2"
+                            className="card text-green-500 w-full mb-3 mr-2"
                             href="https://github.com/sethdavis512"
                         >
                             GitHub
                         </a>
                         <a
-                            className="card text-green-500 w-full sm:w-auto"
+                            className="card text-green-500 w-full mb-3 mr-2"
                             href="https://codepen.io/sethdavis512"
                         >
                             Codepen
                         </a>
+                        <a
+                            className="card text-green-500 w-full"
+                            href="https://www.linkedin.com/in/sethdavis512/"
+                        >
+                            LinkedIn
+                        </a>
                     </div>
                 </div>
-                <div>
+                <div className=" flex-grow-0 flex-shrink-0">
                     <h3 className="text-2xl mb-4">Tweets</h3>
                     <div>
                         <a
