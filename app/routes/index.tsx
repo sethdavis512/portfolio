@@ -2,10 +2,10 @@ import parse from "html-react-parser";
 
 type AboutItemType = { text: string; isLink?: boolean };
 
-export default function Index() {
+export default function IndexRoute() {
     const mappedAboutItems = [
-        { text: "Native Austinite" },
-        { text: "TXST Alumni" },
+        { text: 'Native Austinite' },
+        { text: 'TXST Alumni' },
         {
             text: `UX Developer @ <a href="https://www.indeed.com/" className="text-green-500">Indeed</a>`,
             isLink: true
@@ -20,7 +20,7 @@ export default function Index() {
     ].map((item: AboutItemType) => (
         <li key={item.text} className="about-item">
             <span
-                className={item.isLink ? "about-item-link" : "about-item-text"}
+                className={item.isLink ? 'about-item-link' : 'about-item-text'}
             >
                 {parse(item.text)}
             </span>

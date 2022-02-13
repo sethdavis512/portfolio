@@ -1,0 +1,26 @@
+/* Austin FC Green: #00B140 */
+
+body {
+    background-color: #000000;
+    color: white;
+}
+
+a {
+    color: #00B140;
+}
+
+a:hover {
+    color: #00ff5e;
+}
+
+.verde {
+    background-color: #00B140;
+}
+
+.verde-border-color {
+    border-color: #00B140;
+}
+
+.dark-grey {
+    background-color: #2d2d2d;
+}

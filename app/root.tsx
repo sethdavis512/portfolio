@@ -4,11 +4,12 @@ import {
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration
-} from "remix";
-import type { MetaFunction } from "remix";
-import styles from "./tailwind.css";
-import portfolioStyles from "./portfolio.css";
+    ScrollRestoration,
+    useLocation
+} from 'remix';
+import type { MetaFunction } from 'remix';
+import styles from './tailwind.css';
+import portfolioStyles from './portfolio.css';
 
 export const meta: MetaFunction = () => {
     return {
@@ -20,22 +21,25 @@ export const meta: MetaFunction = () => {
 
 export function links() {
     return [
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
-            rel: "preconnect",
-            href: "https://fonts.gstatic.com",
-            crossoriginisolated: "true"
+            rel: 'preconnect',
+            href: 'https://fonts.gstatic.com',
+            crossoriginisolated: 'true'
         },
         {
-            rel: "stylesheet",
-            href: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+            rel: 'stylesheet',
+            href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'
         },
-        { rel: "stylesheet", href: styles },
-        { rel: "stylesheet", href: portfolioStyles }
+        { rel: 'stylesheet', href: styles },
+        { rel: 'stylesheet', href: portfolioStyles }
     ];
 }
 
 export default function App() {
+    const location = useLocation();
+    const isSoccerSchedule = location.pathname.includes('austin-fc');
+
     return (
         <html lang="en">
             <head>
@@ -49,9 +53,9 @@ export default function App() {
             </head>
             <body>
                 <Outlet />
-                <ScrollRestoration />
+                {!isSoccerSchedule && <ScrollRestoration />}
                 <Scripts />
-                {process.env.NODE_ENV === "development" && <LiveReload />}
+                {process.env.NODE_ENV === 'development' && <LiveReload />}
                 <script
                     async
                     src="https://platform.twitter.com/widgets.js"
