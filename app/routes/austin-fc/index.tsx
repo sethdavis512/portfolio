@@ -98,6 +98,7 @@ const FutureGames: FunctionComponent<{ games: ScheduledGameType[] }> = ({
                 <FutureGameDetails
                     game={game}
                     className={gameIndex === 0 ? 'verde-border-color' : ''}
+                    isNext={gameIndex === 0}
                 />
             );
         }
@@ -109,14 +110,15 @@ const FutureGames: FunctionComponent<{ games: ScheduledGameType[] }> = ({
 const FutureGameDetails: FunctionComponent<{
     game: ScheduledGameType;
     className?: string;
-}> = ({ game, className }) => {
+    isNext: boolean;
+}> = ({ game, className, isNext }) => {
     return (
-        <div key={getGameId(game)} className="mb-4">
+        <div key={getGameId(game)} className="relative mb-4">
             <div
-                className={`px-3 py-4 rounded-md dark-grey border-2 border-transparent ${className}`}
+                className={`px-3 py-4 rounded-bl-md rounded-tr-md rounded-br-md dark-grey border-2 border-transparent ${className}`}
             >
                 <h3 id={getGameId(game)} className={`text-2xl mb-3`}>
-                    <a href={`#${getGameId(game)}`} className="mr-2">
+                    <a href={`#${getGameId(game)}`} className="mr-3">
                         {game.venue === 'Q2 Stadium' ? '🏠' : '✈️'}
                     </a>
                     {game.formattedDate} | {game.startTime}
@@ -134,6 +136,11 @@ const FutureGameDetails: FunctionComponent<{
                     </List>
                 </Details>
             </div>
+            {isNext && (
+                <div className="absolute verde px-3 py-1 -top-8 left-0 rounded-tl-md rounded-tr-md">
+                    <strong>NEXT GAME</strong>
+                </div>
+            )}
         </div>
     );
 };
@@ -165,7 +172,7 @@ export default function AustinFCIndexRoute() {
             <TwitterContact />
             <BackgroundInfo />
             <div>
-                <h3 className="text-4xl mb-3">2022 Schedule</h3>
+                <h3 className="text-4xl mb-12">2022 Schedule</h3>
                 {previousGames.length > 0 && (
                     <PreviousGames games={previousGames} />
                 )}
