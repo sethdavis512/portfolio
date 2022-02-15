@@ -115,7 +115,11 @@ const FutureGameDetails: FunctionComponent<{
     return (
         <div key={getGameId(game)} className="relative mb-4">
             <div
-                className={`px-3 py-4 rounded-bl-md rounded-tr-md rounded-br-md dark-grey border-2 border-transparent ${className}`}
+                className={`px-3 py-4 ${
+                    isNext
+                        ? 'rounded-bl-md rounded-tr-md rounded-br-md'
+                        : 'rounded-md'
+                } dark-grey border-2 border-transparent ${className}`}
             >
                 <h3 id={getGameId(game)} className={`text-2xl mb-3`}>
                     <a href={`#${getGameId(game)}`} className="mr-3">
