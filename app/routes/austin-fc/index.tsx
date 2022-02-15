@@ -146,6 +146,7 @@ const BackgroundInfo: FunctionComponent = () => {
             </p>
             <List>
                 <ListItem>All the scrolling</ListItem>
+                <ListItem>Doesn't highlight the next game</ListItem>
                 <ListItem>No dark mode</ListItem>
                 <ListItem>Too much white space</ListItem>
                 <ListItem>Advertisements</ListItem>

@@ -15,7 +15,9 @@ export default function IndexRoute() {
             isLink: true
         },
         { text: `Electric vehicle enthusiast ⚡️` },
-        { text: `Austin FC fan ⚽️` },
+        {
+            text: `<a href="/austin-fc" className="text-green-500">Austin FC fan</a> ⚽️`
+        },
         { text: `Onewheel rider 🏂` }
     ].map((item: AboutItemType) => (
         <li key={item.text} className="about-item">
@@ -61,12 +63,16 @@ export default function IndexRoute() {
                         </a>
                     </div>
                 </div>
-                <div className=" flex-grow-0 flex-shrink-0">
+                <div
+                    className="flex-grow-0 flex-shrink-0"
+                    style={{ maxWidth: '300px' }}
+                >
                     <h3 className="text-2xl mb-4">Tweets</h3>
                     <div>
                         <a
                             className="twitter-timeline"
-                            data-height="500"
+                            data-width="300"
+                            data-height="550"
                             data-theme="dark"
                             href="https://twitter.com/sethdavis512?ref_src=twsrc%5Etfw"
                         >
