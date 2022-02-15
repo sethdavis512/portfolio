@@ -11,6 +11,7 @@ export interface ScheduledGameType {
     awayTeam: string;
     venue: string;
     broadcasters: string[];
+    startTime: string;
 }
 
 export const loader: LoaderFunction = async () => {
@@ -111,15 +112,15 @@ const FutureGameDetails: FunctionComponent<{
 }> = ({ game, className }) => {
     return (
         <div key={getGameId(game)} className="mb-4">
-            <h3 id={getGameId(game)} className={`text-2xl mb-3`}>
-                <a href={`#${getGameId(game)}`} className="mr-2">
-                    {game.venue === 'Q2 Stadium' ? '🏠' : '✈️'}
-                </a>
-                {game.formattedDate}
-            </h3>
             <div
                 className={`px-3 py-4 rounded-md dark-grey border-2 border-transparent ${className}`}
             >
+                <h3 id={getGameId(game)} className={`text-2xl mb-3`}>
+                    <a href={`#${getGameId(game)}`} className="mr-2">
+                        {game.venue === 'Q2 Stadium' ? '🏠' : '✈️'}
+                    </a>
+                    {game.formattedDate} | {game.startTime}
+                </h3>
                 <p>
                     <strong>Game {game.gameNumber}</strong>: {game.homeTeam} vs{' '}
                     {game.awayTeam} @ {game.venue}
