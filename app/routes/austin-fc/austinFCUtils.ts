@@ -4,7 +4,7 @@ import kebabCase from 'lodash/kebabCase';
 import { ScheduledGameType } from '../austin-fc/index';
 
 export const getDistributedGames = (scheduleJson: ScheduledGameType[]) => {
-    const today = new Date('5/5/22');
+    const today = new Date();
 
     return scheduleJson.reduce(
         (

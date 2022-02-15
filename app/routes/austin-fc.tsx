@@ -7,19 +7,6 @@ export function links() {
     return [{ rel: 'stylesheet', href: austinFCStyles }];
 }
 
-// export const meta = () => {
-//    return [{ rel: "stylesheet", href: '' }];
-// };
-
-// export const loader: LoaderFunction = async () => {
-//    return { ok: true };
-// };
-
-// export const action: ActionFunction = async ({ request }) => {
-//     console.log(request);
-//     return null;
-// };
-
 export default function AustinFCRoute() {
     return (
         <div className="sm:w-3/4 m-auto max-w-xl">

@@ -1,7 +1,7 @@
 import { LoaderFunction, useLoaderData } from 'remix';
 
 import { getDistributedGames, getGameId } from './austinFCUtils';
-import scheduleJson from './2022-austin-fc-schedule.json';
+import scheduleJson from '../../data/2022-austin-fc-schedule.json';
 import { FunctionComponent } from 'react';
 
 export interface ScheduledGameType {
