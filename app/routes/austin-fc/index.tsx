@@ -3,6 +3,7 @@ import { LoaderFunction, useLoaderData } from 'remix';
 import { getDistributedGames, getGameId } from './austinFCUtils';
 import scheduleJson from '../../data/2022-austin-fc-schedule.json';
 import { FunctionComponent } from 'react';
+import { isSameDay, isToday } from 'date-fns';
 
 export interface ScheduledGameType {
     formattedDate: string;
@@ -78,7 +79,7 @@ const PreviousGames: FunctionComponent<{
     games: ScheduledGameType[];
 }> = ({ games }) => {
     return (
-        <Details>
+        <Details className="mb-14">
             <Summary>Previous games</Summary>
             <List className="py-4">
                 {games.map((game: ScheduledGameType) => (
@@ -94,11 +95,14 @@ const FutureGames: FunctionComponent<{ games: ScheduledGameType[] }> = ({
 }) => {
     const mappedGames = games.map(
         (game: ScheduledGameType, gameIndex: number) => {
+            const gameIsToday = isToday(new Date(game.formattedDate));
+
             return (
                 <FutureGameDetails
                     game={game}
                     className={gameIndex === 0 ? 'verde-border-color' : ''}
                     isNext={gameIndex === 0}
+                    isToday={gameIsToday}
                 />
             );
         }
@@ -111,7 +115,8 @@ const FutureGameDetails: FunctionComponent<{
     game: ScheduledGameType;
     className?: string;
     isNext: boolean;
-}> = ({ game, className, isNext }) => {
+    isToday: boolean;
+}> = ({ game, className, isNext, isToday }) => {
     return (
         <div key={getGameId(game)} className="relative mb-4">
             <div
@@ -142,7 +147,7 @@ const FutureGameDetails: FunctionComponent<{
             </div>
             {isNext && (
                 <div className="absolute verde px-3 py-1 -top-8 left-0 rounded-tl-md rounded-tr-md">
-                    <strong>NEXT GAME</strong>
+                    <strong>{isToday ? "TODAY'S GAME" : 'NEXT GAME'}</strong>
                 </div>
             )}
         </div>
@@ -169,6 +174,8 @@ const BackgroundInfo: FunctionComponent = () => {
 
 export default function AustinFCIndexRoute() {
     const { previousGames, futureGames } = useLoaderData();
+    const hasPreviousGames = previousGames.length > 0;
+    const hasFutureGames = futureGames.length > 0;
 
     return (
         <div>
@@ -176,11 +183,15 @@ export default function AustinFCIndexRoute() {
             <TwitterContact />
             <BackgroundInfo />
             <div>
-                <h3 className="text-4xl mb-12">2022 Schedule</h3>
-                {previousGames.length > 0 && (
-                    <PreviousGames games={previousGames} />
-                )}
-                {futureGames.length > 0 ? (
+                <h3
+                    className={`text-4xl ${
+                        hasPreviousGames ? 'mb-4' : 'mb-14'
+                    }`}
+                >
+                    2022 Schedule
+                </h3>
+                {hasPreviousGames && <PreviousGames games={previousGames} />}
+                {hasFutureGames ? (
                     <FutureGames games={futureGames} />
                 ) : (
                     <p className="text-2xl">Season is over. No more games 😑</p>
