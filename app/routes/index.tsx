@@ -42,7 +42,7 @@ export default function IndexRoute() {
                         {mappedAboutItems}
                     </ul>
                     <h3 className="text-2xl mb-4">Links</h3>
-                    <div className="flex flex-col justify-center border-b-2 md:border-none border-green-900 pb-4 mb-4">
+                    <div className="flex flex-col justify-center border-b-2 sm:border-none border-green-900 pb-4 mb-4">
                         <a
                             className="card text-green-500 w-full mb-3 mr-2"
                             href="https://github.com/sethdavis512"
@@ -63,10 +63,7 @@ export default function IndexRoute() {
                         </a>
                     </div>
                 </div>
-                <div
-                    className="flex-grow-0 flex-shrink-0"
-                    style={{ maxWidth: '300px' }}
-                >
+                <div className="flex-grow-1 sm:flex-grow-0 flex-shrink-0">
                     <h3 className="text-2xl mb-4">Tweets</h3>
                     <div>
                         <a
