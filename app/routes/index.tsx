@@ -1,32 +1,12 @@
-import parse from "html-react-parser";
+import InterestItem from '~/components/InterestItem';
+import SocialButton from '~/components/SocialButton';
+import interests from '../data/interests';
 
-type AboutItemType = { text: string; isLink?: boolean };
+export type AboutItemType = { text: string; isLink?: boolean };
 
 export default function IndexRoute() {
-    const mappedAboutItems = [
-        { text: 'Native Austinite' },
-        { text: 'TXST Alumni' },
-        {
-            text: `UX Developer @ <a href="https://www.indeed.com/" className="text-green-500">Indeed</a>`,
-            isLink: true
-        },
-        {
-            text: `Creator of <a href="https://www.pseudoreact.com/" className="text-green-500">PseudoReact</a> ⚛️`,
-            isLink: true
-        },
-        { text: `Electric vehicle enthusiast ⚡️` },
-        {
-            text: `<a href="/austin-fc" className="text-green-500">Austin FC fan</a> ⚽️`
-        },
-        { text: `Onewheel rider 🏂` }
-    ].map((item: AboutItemType) => (
-        <li key={item.text} className="about-item">
-            <span
-                className={item.isLink ? 'about-item-link' : 'about-item-text'}
-            >
-                {parse(item.text)}
-            </span>
-        </li>
+    const mappedAboutItems = interests.map((item: AboutItemType) => (
+        <InterestItem item={item} key={item.text} />
     ));
 
     return (
@@ -43,24 +23,21 @@ export default function IndexRoute() {
                     </ul>
                     <h3 className="text-2xl mb-4">Links</h3>
                     <div className="flex flex-col justify-center border-b-2 sm:border-none border-green-900 pb-4 mb-4">
-                        <a
-                            className="card text-green-500 w-full mb-3 mr-2"
+                        <SocialButton
+                            className="mr-2"
                             href="https://github.com/sethdavis512"
                         >
                             GitHub
-                        </a>
-                        <a
-                            className="card text-green-500 w-full mb-3 mr-2"
+                        </SocialButton>
+                        <SocialButton
+                            className="mr-2"
                             href="https://codepen.io/sethdavis512"
                         >
                             Codepen
-                        </a>
-                        <a
-                            className="card text-green-500 w-full"
-                            href="https://www.linkedin.com/in/sethdavis512/"
-                        >
+                        </SocialButton>
+                        <SocialButton href="https://www.linkedin.com/in/sethdavis512/">
                             LinkedIn
-                        </a>
+                        </SocialButton>
                     </div>
                 </div>
                 <div className="flex-grow-1 sm:flex-grow-0 flex-shrink-0">
