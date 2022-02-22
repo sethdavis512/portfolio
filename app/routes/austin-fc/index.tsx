@@ -3,7 +3,7 @@ import { LoaderFunction, useLoaderData } from 'remix';
 import { getDistributedGames, getGameId } from './austinFCUtils';
 import scheduleJson from '../../data/2022-austin-fc-schedule.json';
 import { FunctionComponent } from 'react';
-import { isSameDay, isToday } from 'date-fns';
+import { differenceInCalendarDays, isSameDay, isToday } from 'date-fns';
 
 export interface ScheduledGameType {
     formattedDate: string;
@@ -81,7 +81,7 @@ const PreviousGames: FunctionComponent<{
     return (
         <Details className="mb-14">
             <Summary>Previous games</Summary>
-            <List className="py-4">
+            <List className="pt-4">
                 {games.map((game: ScheduledGameType) => (
                     <PreviousGameDetails game={game} />
                 ))}
@@ -96,6 +96,10 @@ const FutureGames: FunctionComponent<{ games: ScheduledGameType[] }> = ({
     const mappedGames = games.map(
         (game: ScheduledGameType, gameIndex: number) => {
             const gameIsToday = isToday(new Date(game.formattedDate));
+            const daysUntil = differenceInCalendarDays(
+                new Date(game.formattedDate),
+                new Date()
+            );
 
             return (
                 <FutureGameDetails
@@ -103,6 +107,7 @@ const FutureGames: FunctionComponent<{ games: ScheduledGameType[] }> = ({
                     className={gameIndex === 0 ? 'verde-border-color' : ''}
                     isNext={gameIndex === 0}
                     isToday={gameIsToday}
+                    daysUntil={daysUntil}
                 />
             );
         }
@@ -116,7 +121,13 @@ const FutureGameDetails: FunctionComponent<{
     className?: string;
     isNext: boolean;
     isToday: boolean;
-}> = ({ game, className, isNext, isToday }) => {
+    daysUntil: number;
+}> = ({ game, className, isNext, isToday, daysUntil }) => {
+    const laterDateLabel =
+        daysUntil === 1
+            ? "TOMORROW'S GAME"
+            : `${daysUntil} DAYS UNTIL NEXT GAME`;
+
     return (
         <div key={getGameId(game)} className="relative mb-4">
             <div
@@ -147,7 +158,7 @@ const FutureGameDetails: FunctionComponent<{
             </div>
             {isNext && (
                 <div className="absolute verde px-3 py-1 -top-8 left-0 rounded-tl-md rounded-tr-md">
-                    <strong>{isToday ? "TODAY'S GAME" : 'NEXT GAME'}</strong>
+                    <strong>{isToday ? "TODAY'S GAME" : laterDateLabel}</strong>
                 </div>
             )}
         </div>
