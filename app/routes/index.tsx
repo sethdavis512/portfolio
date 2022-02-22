@@ -1,8 +1,13 @@
 import InterestItem from '~/components/InterestItem';
 import SocialButton from '~/components/SocialButton';
 import interests from '../data/interests';
+import portfolioStyles from '../portfolio.css';
 
 export type AboutItemType = { text: string; isLink?: boolean };
+
+export function links() {
+    return [{ rel: 'stylesheet', href: portfolioStyles }];
+}
 
 export default function IndexRoute() {
     const mappedAboutItems = interests.map((item: AboutItemType) => (
