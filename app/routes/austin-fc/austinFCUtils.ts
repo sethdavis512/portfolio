@@ -11,6 +11,9 @@ export const getDistributedGames = (scheduleJson: ScheduledGameType[]) => {
     return scheduleJson.reduce(
         (
             distributed: {
+                wins: number;
+                losses: number;
+                ties: number;
                 previousGames: ScheduledGameType[];
                 futureGames: ScheduledGameType[];
             },
@@ -25,9 +28,32 @@ export const getDistributedGames = (scheduleJson: ScheduledGameType[]) => {
                 distributed.previousGames.push(currentGame);
             }
 
+            const hasGameScore = !!currentGame.score;
+            const homeTeamIsAustin = currentGame.homeTeam === 'Austin';
+
+            if (hasGameScore) {
+                const score = currentGame.score?.split(':');
+
+                if (score) {
+                    const homeTeamScore = parseFloat(score[0]);
+                    const awayTeamScore = parseFloat(score[1]);
+
+                    if (homeTeamScore === awayTeamScore) {
+                        distributed.ties = distributed.ties + 1;
+                    } else if (
+                        homeTeamIsAustin &&
+                        homeTeamScore > awayTeamScore
+                    ) {
+                        distributed.wins = distributed.wins + 1;
+                    } else {
+                        distributed.losses = distributed.losses + 1;
+                    }
+                }
+            }
+
             return distributed;
         },
-        { previousGames: [], futureGames: [] }
+        { wins: 0, losses: 0, ties: 0, previousGames: [], futureGames: [] }
     );
 };
 

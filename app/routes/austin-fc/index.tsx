@@ -126,10 +126,23 @@ const FutureGameDetails: FunctionComponent<{
     isToday: boolean;
     daysUntil: number;
 }> = ({ game, className, isNext, isToday, daysUntil }) => {
+    const hashtags = '#Verde #Listos';
+    const opponent = game.homeTeam === 'Austin' ? game.awayTeam : game.homeTeam;
     const laterDateLabel =
         daysUntil === 1
             ? "TOMORROW'S GAME"
             : `${daysUntil} DAYS UNTIL NEXT GAME`;
+
+    const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue}
+${hashtags}`;
+    const futureGameTweet = `⚽️ ${daysUntil} more days until #AustinFC plays ${opponent}
+${game.startTime} @ ${game.venue}
+${hashtags}`;
+
+    const tweetText = isToday ? gameDayTweet : futureGameTweet;
+    const tweetLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        tweetText
+    )}`;
 
     return (
         <div key={getGameId(game)} className="relative mb-4">
@@ -146,6 +159,12 @@ const FutureGameDetails: FunctionComponent<{
                     </a>
                     {game.formattedDate} | {game.startTime}
                 </h3>
+                <a
+                    className="absolute top-2 right-2 border hover:bg-green-900 verde-border-color rounded-md py-1 px-2"
+                    href={tweetLink}
+                >
+                    📣 Tweet
+                </a>
                 <p>
                     <strong>Game {game.gameNumber}</strong>: {game.homeTeam} vs{' '}
                     {game.awayTeam} @ {game.venue}
@@ -187,15 +206,15 @@ const BackgroundInfo: FunctionComponent = () => {
 };
 
 export default function AustinFCIndexRoute() {
-    const { previousGames, futureGames } = useLoaderData();
+    const { previousGames, futureGames, wins, losses, ties } = useLoaderData();
     const hasPreviousGames = previousGames.length > 0;
     const hasFutureGames = futureGames.length > 0;
 
     return (
         <div>
             <Disclaimer />
-            <TwitterContact />
             <BackgroundInfo />
+            <TwitterContact />
             <div>
                 <h3
                     className={`text-4xl ${
@@ -204,6 +223,9 @@ export default function AustinFCIndexRoute() {
                 >
                     2022 Schedule
                 </h3>
+                <p className={`mb-4`}>
+                    Record: {wins} - {ties} - {losses}
+                </p>
                 {hasPreviousGames && <PreviousGames games={previousGames} />}
                 {hasFutureGames ? (
                     <FutureGames games={futureGames} />
