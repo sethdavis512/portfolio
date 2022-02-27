@@ -3,7 +3,7 @@ import { LoaderFunction, useLoaderData } from 'remix';
 import { getDistributedGames, getGameId } from './austinFCUtils';
 import scheduleJson from '../../data/2022-austin-fc-schedule.json';
 import { FunctionComponent } from 'react';
-import { differenceInCalendarDays, isSameDay, isToday } from 'date-fns';
+import { differenceInCalendarDays, isToday } from 'date-fns';
 
 export interface ScheduledGameType {
     formattedDate: string;
@@ -12,7 +12,8 @@ export interface ScheduledGameType {
     awayTeam: string;
     venue: string;
     broadcasters: string[];
-    startTime: string;
+    startTime: string | null;
+    score: string | null;
 }
 
 export const loader: LoaderFunction = async () => {
@@ -69,8 +70,10 @@ const PreviousGameDetails: FunctionComponent<{ game: ScheduledGameType }> = ({
 }) => {
     return (
         <ListItem>
-            <strong>Game {game.gameNumber}</strong>: {game.homeTeam} vs{' '}
-            {game.awayTeam} @ {game.venue} ({game.formattedDate})
+            <strong>Game {game.gameNumber}</strong>:
+            {game.score ? ` [${game.score.replace(':', '-')}]` : null}{' '}
+            {game.homeTeam} vs {game.awayTeam} @ {game.venue} (
+            {game.formattedDate})
         </ListItem>
     );
 };
