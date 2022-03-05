@@ -134,24 +134,6 @@ const FutureGameDetails: FunctionComponent<{
     const hashtags = '#Verde #Listos';
     const opponent = game.homeTeam === 'Austin' ? game.awayTeam : game.homeTeam;
     const isDayBefore = daysUntil === 1;
-    const laterDateLabel = isDayBefore
-        ? "TOMORROW'S GAME"
-        : `${daysUntil} DAYS UNTIL NEXT GAME`;
-
-    const scheduleUrl = 'https://www.techwithseth.com/austin-fc';
-    const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue} ${hashtags}
-${scheduleUrl}`;
-    const futureGameTweet = `⚽️ ${daysUntil} more day${
-        isDayBefore ? '' : 's'
-    } until #AustinFC plays ${opponent}
-${game.startTime} @ ${game.venue} ${hashtags}
-${scheduleUrl}`;
-
-    const tweetText = isToday ? gameDayTweet : futureGameTweet;
-    const tweetLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        tweetText
-    )}`;
-
     const dotwMap = {
         0: 'Sunday',
         1: 'Monday',
@@ -161,9 +143,27 @@ ${scheduleUrl}`;
         5: 'Friday',
         6: 'Saturday'
     };
-
     const dotw = getDay(new Date(game.formattedDate));
     const spelledOutDate = format(new Date(game.formattedDate), 'MMMM d, yyyy');
+
+    const laterDateLabel = isDayBefore
+        ? "TOMORROW'S GAME"
+        : `${daysUntil} DAYS UNTIL NEXT GAME`;
+
+    const scheduleUrl = 'https://www.techwithseth.com/austin-fc';
+    const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue} ${hashtags}
+${scheduleUrl}`;
+    const futureGameTweet = `⚽️ ${daysUntil} more day${
+        isDayBefore ? '' : 's'
+    }! #AustinFC plays ${opponent} @ ${game.venue} ${game.startTime} ${
+        dotwMap[dotw]
+    } ${spelledOutDate} ${hashtags}
+${scheduleUrl}`;
+
+    const tweetText = isToday ? gameDayTweet : futureGameTweet;
+    const tweetLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        tweetText
+    )}`;
 
     return (
         <article key={getGameId(game)} className="relative mb-4">
