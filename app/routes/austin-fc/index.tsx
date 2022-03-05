@@ -4,6 +4,7 @@ import { getDistributedGames, getGameId } from './austinFCUtils';
 import scheduleJson from '../../data/2022-austin-fc-schedule.json';
 import { FunctionComponent } from 'react';
 import { differenceInCalendarDays, isToday } from 'date-fns';
+import twitterBird from '../../images/twitter-logo.svg';
 
 export interface ScheduledGameType {
     formattedDate: string;
@@ -133,11 +134,11 @@ const FutureGameDetails: FunctionComponent<{
             ? "TOMORROW'S GAME"
             : `${daysUntil} DAYS UNTIL NEXT GAME`;
 
-    const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue}
-${hashtags}`;
-    const futureGameTweet = `⚽️ ${daysUntil} more days until #AustinFC plays ${opponent}
-${game.startTime} @ ${game.venue}
-${hashtags}`;
+    const scheduleUrl = 'https://www.techwithseth.com/austin-fc';
+    const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue} ${hashtags}
+${scheduleUrl}`;
+    const futureGameTweet = `⚽️ ${daysUntil} more days until #AustinFC plays ${opponent} — ${game.startTime} @ ${game.venue} ${hashtags}
+${scheduleUrl}`;
 
     const tweetText = isToday ? gameDayTweet : futureGameTweet;
     const tweetLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
@@ -160,10 +161,10 @@ ${hashtags}`;
                     {game.formattedDate} | {game.startTime}
                 </h3>
                 <a
-                    className="absolute top-2 right-2 border hover:bg-green-900 verde-border-color rounded-md py-1 px-2"
+                    className="absolute top-2 right-2 border hover:bg-green-900 verde-border-color rounded-md p-2"
                     href={tweetLink}
                 >
-                    📣 Tweet
+                    <img src={twitterBird} width="20" />
                 </a>
                 <p>
                     <strong>Game {game.gameNumber}</strong>: {game.homeTeam} vs{' '}
