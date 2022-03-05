@@ -133,15 +133,17 @@ const FutureGameDetails: FunctionComponent<{
 }> = ({ game, className, isNext, isToday, daysUntil }) => {
     const hashtags = '#Verde #Listos';
     const opponent = game.homeTeam === 'Austin' ? game.awayTeam : game.homeTeam;
-    const laterDateLabel =
-        daysUntil === 1
-            ? "TOMORROW'S GAME"
-            : `${daysUntil} DAYS UNTIL NEXT GAME`;
+    const isDayBefore = daysUntil === 1;
+    const laterDateLabel = isDayBefore
+        ? "TOMORROW'S GAME"
+        : `${daysUntil} DAYS UNTIL NEXT GAME`;
 
     const scheduleUrl = 'https://www.techwithseth.com/austin-fc';
     const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue} ${hashtags}
 ${scheduleUrl}`;
-    const futureGameTweet = `⚽️ ${daysUntil} more days until #AustinFC plays ${opponent}
+    const futureGameTweet = `⚽️ ${daysUntil} more day${
+        isDayBefore ? '' : 's'
+    } until #AustinFC plays ${opponent}
 ${game.startTime} @ ${game.venue} ${hashtags}
 ${scheduleUrl}`;
 
