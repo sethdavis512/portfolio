@@ -6,6 +6,7 @@ import { FunctionComponent } from 'react';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import isToday from 'date-fns/isToday';
 import getDay from 'date-fns/getDay';
+import format from 'date-fns/format';
 import twitterBird from '../../images/twitter-logo.svg';
 
 export interface ScheduledGameType {
@@ -140,7 +141,8 @@ const FutureGameDetails: FunctionComponent<{
     const scheduleUrl = 'https://www.techwithseth.com/austin-fc';
     const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue} ${hashtags}
 ${scheduleUrl}`;
-    const futureGameTweet = `⚽️ ${daysUntil} more days until #AustinFC plays ${opponent} — ${game.startTime} @ ${game.venue} ${hashtags}
+    const futureGameTweet = `⚽️ ${daysUntil} more days until #AustinFC plays ${opponent}
+${game.startTime} @ ${game.venue} ${hashtags}
 ${scheduleUrl}`;
 
     const tweetText = isToday ? gameDayTweet : futureGameTweet;
@@ -159,6 +161,7 @@ ${scheduleUrl}`;
     };
 
     const dotw = getDay(new Date(game.formattedDate));
+    const spelledOutDate = format(new Date(game.formattedDate), 'MMMM d, yyyy');
 
     return (
         <article key={getGameId(game)} className="relative mb-4">
@@ -194,7 +197,7 @@ ${scheduleUrl}`;
                         {game.homeTeam} vs {game.awayTeam} @ {game.venue}
                     </h2>
                     <h3 className="text-lg font-normal">
-                        {dotwMap[dotw]} {game.formattedDate} {game.startTime}
+                        {game.startTime} {dotwMap[dotw]} • {spelledOutDate}
                     </h3>
                 </div>
                 <Details className={`mt-2 mb-0`}>
