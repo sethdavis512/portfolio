@@ -3,7 +3,9 @@ import { LoaderFunction, useLoaderData } from 'remix';
 import { getDistributedGames, getGameId } from './austinFCUtils';
 import scheduleJson from '../../data/2022-austin-fc-schedule.json';
 import { FunctionComponent } from 'react';
-import { differenceInCalendarDays, isToday } from 'date-fns';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
+import isToday from 'date-fns/isToday';
+import getDay from 'date-fns/getDay';
 import twitterBird from '../../images/twitter-logo.svg';
 
 export interface ScheduledGameType {
@@ -87,7 +89,7 @@ const PreviousGames: FunctionComponent<{
             <Summary>Previous games</Summary>
             <List className="pt-4">
                 {games.map((game: ScheduledGameType) => (
-                    <PreviousGameDetails game={game} />
+                    <PreviousGameDetails key={getGameId(game)} game={game} />
                 ))}
             </List>
         </Details>
@@ -107,6 +109,7 @@ const FutureGames: FunctionComponent<{ games: ScheduledGameType[] }> = ({
 
             return (
                 <FutureGameDetails
+                    key={getGameId(game)}
                     game={game}
                     className={gameIndex === 0 ? 'verde-border-color' : ''}
                     isNext={gameIndex === 0}
@@ -145,8 +148,20 @@ ${scheduleUrl}`;
         tweetText
     )}`;
 
+    const dotwMap = {
+        0: 'Sunday',
+        1: 'Monday',
+        2: 'Tuesday',
+        3: 'Wednesday',
+        4: 'Thursday',
+        5: 'Friday',
+        6: 'Saturday'
+    };
+
+    const dotw = getDay(new Date(game.formattedDate));
+
     return (
-        <div key={getGameId(game)} className="relative mb-4">
+        <article key={getGameId(game)} className="relative mb-4">
             <div
                 className={`px-3 py-4 ${
                     isNext
@@ -154,22 +169,34 @@ ${scheduleUrl}`;
                         : 'rounded-md'
                 } dark-grey border-2 border-transparent ${className}`}
             >
-                <h3 id={getGameId(game)} className={`text-2xl mb-3`}>
-                    <a href={`#${getGameId(game)}`} className="mr-3">
-                        {game.venue === 'Q2 Stadium' ? '🏠' : '✈️'}
-                    </a>
-                    {game.formattedDate} | {game.startTime}
-                </h3>
-                <a
-                    className="absolute top-2 right-2 border hover:bg-green-900 verde-border-color rounded-md p-2"
-                    href={tweetLink}
+                <div
+                    id={getGameId(game)}
+                    className="flex items-center justify-between mb-3"
                 >
-                    <img src={twitterBird} width="20" />
-                </a>
-                <p>
-                    <strong>Game {game.gameNumber}</strong>: {game.homeTeam} vs{' '}
-                    {game.awayTeam} @ {game.venue}
-                </p>
+                    <div className="block darker-grey hover:bg-green-900 rounded-md px-2 py-1">
+                        <a
+                            href={`#${getGameId(game)}`}
+                            className="text-white hover:text-white inline-block"
+                        >
+                            {game.venue === 'Q2 Stadium' ? '🏠' : '✈️'}
+                            <span className="pl-2">Game {game.gameNumber}</span>
+                        </a>
+                    </div>
+                    <a
+                        className="inline-block hover:bg-green-900 darker-grey rounded-md p-2"
+                        href={tweetLink}
+                    >
+                        <img src={twitterBird} width="20" />
+                    </a>
+                </div>
+                <div className="mb-3">
+                    <h2 className="text-2xl font-bold">
+                        {game.homeTeam} vs {game.awayTeam} @ {game.venue}
+                    </h2>
+                    <h3 className="text-lg font-normal">
+                        {dotwMap[dotw]} {game.formattedDate} {game.startTime}
+                    </h3>
+                </div>
                 <Details className={`mt-2 mb-0`}>
                     <Summary>📺 Where to watch</Summary>
                     <List className="mt-2">
@@ -184,7 +211,7 @@ ${scheduleUrl}`;
                     <strong>{isToday ? "TODAY'S GAME" : laterDateLabel}</strong>
                 </div>
             )}
-        </div>
+        </article>
     );
 };
 
