@@ -3,7 +3,16 @@ import isToday from 'date-fns/isToday';
 import isAfter from 'date-fns/isAfter';
 import kebabCase from 'lodash/kebabCase';
 
-import { ScheduledGameType } from '../austin-fc/index';
+export interface ScheduledGameType {
+    formattedDate: string;
+    gameNumber: number;
+    homeTeam: string;
+    awayTeam: string;
+    venue: string;
+    broadcasters: string[];
+    startTime: string | null;
+    score: string | null;
+}
 
 export const getDistributedGames = (scheduleJson: ScheduledGameType[]) => {
     const today = new Date();
@@ -34,7 +43,7 @@ export const getDistributedGames = (scheduleJson: ScheduledGameType[]) => {
             if (hasGameScore) {
                 const score = currentGame.score?.split(':');
 
-                if (score) {
+                if (score?.length) {
                     const homeTeamScore = parseFloat(score[0]);
                     const awayTeamScore = parseFloat(score[1]);
 
