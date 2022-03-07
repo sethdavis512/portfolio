@@ -1,11 +1,17 @@
-// import type { ActionFunction, LoaderFunction } from "remix";
-import { Outlet } from 'remix';
+import { MetaFunction, Outlet } from 'remix';
 import austinFCStyles from '../austin-fc.css';
 import logo from '../images/austin-fc-logo.svg';
 
 export function links() {
     return [{ rel: 'stylesheet', href: austinFCStyles }];
 }
+
+export const meta: MetaFunction = () => {
+    return {
+        title: 'Austin FC Schedule',
+        description: 'Austin FC soccer team schedule'
+    };
+};
 
 export default function AustinFCRoute() {
     return (

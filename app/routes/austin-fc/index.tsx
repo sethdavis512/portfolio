@@ -1,4 +1,4 @@
-import { LoaderFunction, MetaFunction, useLoaderData } from 'remix';
+import { LoaderFunction, useLoaderData } from 'remix';
 import { getDistributedGames } from './austinFCUtils';
 import scheduleJson from '../../data/2022-austin-fc-schedule.json';
 import BackgroundInfo from '~/components/BackgroundInfo';
@@ -9,13 +9,6 @@ import FutureGames from '~/components/FutureGames';
 
 export const loader: LoaderFunction = async () => {
     return getDistributedGames(scheduleJson);
-};
-
-export const meta: MetaFunction = () => {
-    return {
-        title: 'Austin FC Schedule',
-        description: 'Austin FC soccer team schedule'
-    };
 };
 
 export default function AustinFCIndexRoute() {
