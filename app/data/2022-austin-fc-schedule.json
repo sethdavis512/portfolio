@@ -35,19 +35,9 @@
         "homeTeam": "Portland",
         "awayTeam": "Austin",
         "venue": "Providence Park",
-        "broadcasters": [
-            "MLS LIVE on ESPN+",
-            "The CW Austin",
-            "UniMás Austin",
-            "AustinFC.com",
-            "Austin FC App",
-            "UnivisionAustin.com",
-            "Univision Austin App",
-            "KASE-FM (Alt 97.5)",
-            "KLQB-FM (104.3-HD2)"
-        ],
-        "startTime": "9:00pm",
-        "score": null
+        "broadcasters": [],
+        "startTime": null,
+        "score": "1:0"
     },
     {
         "gameNumber": 5,
@@ -506,7 +496,7 @@
         "formattedDate": "9/3/2022",
         "homeTeam": "Nashville",
         "awayTeam": "Austin",
-        "venue": "Nashville SC Stadium",
+        "venue": "GEODIS Park",
         "broadcasters": [
             "MLS LIVE on ESPN+",
             "The CW Austin",
