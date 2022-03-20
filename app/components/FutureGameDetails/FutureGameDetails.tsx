@@ -40,18 +40,11 @@ const FutureGameDetails = ({
         : `${daysUntil} DAYS UNTIL NEXT GAME`;
 
     const scheduleUrl = 'https://www.techwithseth.com/austin-fc';
-    const gameDayTweet = `⚽️ #AustinFC plays ${opponent} today! ${game.startTime} @ ${game.venue} ${hashtags}
-${scheduleUrl}`;
-    const futureGameTweet = `⚽️ ${daysUntil} more day${
-        isDayBefore ? '' : 's'
-    }! #AustinFC plays ${opponent} @ ${game.venue} ${game.startTime} ${
-        dotwMap[dotw]
-    } ${spelledOutDate} ${hashtags}
+    const gameTweet = `⚽️ #AustinFC plays ${opponent} @ ${game.venue} ${game.startTime} ${dotwMap[dotw]} ${spelledOutDate} ${hashtags}
 ${scheduleUrl}`;
 
-    const tweetText = isToday ? gameDayTweet : futureGameTweet;
     const tweetLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        tweetText
+        gameTweet
     )}`;
 
     return (
