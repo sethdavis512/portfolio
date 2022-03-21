@@ -45,14 +45,9 @@
         "homeTeam": "Austin",
         "awayTeam": "Seattle",
         "venue": "Q2 Stadium",
-        "broadcasters": [
-            "FS1",
-            "FOX Deportes",
-            "KASE-FM (Alt 97.5)",
-            "KLQB-FM (104.3-HD2)"
-        ],
-        "startTime": "3:30pm",
-        "score": null
+        "broadcasters": [],
+        "startTime": null,
+        "score": "1:1"
     },
     {
         "gameNumber": 6,
