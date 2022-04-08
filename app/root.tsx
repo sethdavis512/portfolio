@@ -10,6 +10,14 @@ import {
 import type { MetaFunction } from 'remix';
 import styles from './tailwind.css';
 
+import appleTouch from './images/favicon/apple-touch-icon.png';
+import favicon32 from './images/favicon/favicon-32x32.png';
+import favicon16 from './images/favicon/favicon-16x16.png';
+import androidChrome192 from './images/favicon/android-chrome-192x192.png';
+import androidChrome512 from './images/favicon/android-chrome-512x512.png';
+// @ts-ignore
+// import favicon from './images/favicon/favicon.ico';
+
 export const meta: MetaFunction = () => {
     return {
         title: `Portfolio | Tech with Seth`,
@@ -30,7 +38,23 @@ export function links() {
             rel: 'stylesheet',
             href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'
         },
-        { rel: 'stylesheet', href: styles }
+        { rel: 'stylesheet', href: styles },
+        { rel: 'apple-touch-icon', href: appleTouch, sizes: '180x180' },
+        // { rel: 'icon', href: favicon },
+        { rel: 'icon', type: 'image/png', href: favicon32, sizes: '32x32' },
+        { rel: 'icon', type: 'image/png', href: favicon16, sizes: '16x16' },
+        {
+            rel: 'icon',
+            type: 'image/png',
+            href: androidChrome192,
+            sizes: '192x192'
+        },
+        {
+            rel: 'icon',
+            type: 'image/png',
+            href: androidChrome512,
+            sizes: '512x512'
+        }
     ];
 }
 
