@@ -91,7 +91,7 @@ export default function App() {
                                     window.dataLayer = window.dataLayer || [];
                                     function gtag(){dataLayer.push(arguments);}
                                     gtag('js', new Date());
-                                    gtag('config', ${gtag.GA_TRACKING_ID}, {
+                                    gtag('config', 'G-KFX804DDP4', {
                                         page_path: window.location.pathname,
                                     });
                                 `
