@@ -14,6 +14,12 @@ export default function IndexRoute() {
         <InterestItem item={item} key={item.text} />
     ));
 
+    // gtag.event({
+    //     action: "submit_form",
+    //     category: "Contact",
+    //     label: target.message.value,
+    // });
+
     return (
         <div className="portfolio text-center max-w-3xl m-auto sm:mt-12">
             <div className="w-full border-b-2 border-green-900 pb-8">

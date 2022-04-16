@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
     Links,
     LiveReload,
@@ -9,6 +10,7 @@ import {
 } from 'remix';
 import type { MetaFunction } from 'remix';
 import styles from './tailwind.css';
+import * as gtag from '~/utils/gtags.client';
 
 import appleTouch from './images/favicon/apple-touch-icon.png';
 import favicon32 from './images/favicon/favicon-32x32.png';
@@ -20,9 +22,11 @@ import androidChrome512 from './images/favicon/android-chrome-512x512.png';
 
 export const meta: MetaFunction = () => {
     return {
+        charset: 'utf-8',
         title: `Portfolio | Tech with Seth`,
         description: `A place to showcase Seth Davis' work.`,
-        keywords: `Seth Davis, Seth Davis UX Developer, Seth Davis Portfolio`
+        keywords: `Seth Davis, Seth Davis UX Developer, Seth Davis Portfolio`,
+        viewport: 'width=device-width,initial-scale=1'
     };
 };
 
@@ -62,18 +66,40 @@ export default function App() {
     const location = useLocation();
     const isSoccerSchedule = location.pathname.includes('austin-fc');
 
+    useEffect(() => {
+        gtag.pageview(location.pathname);
+    }, [location]);
+
     return (
         <html lang="en">
             <head>
-                <meta charSet="utf-8" />
-                <meta
-                    name="viewport"
-                    content="width=device-width,initial-scale=1"
-                />
                 <Meta />
                 <Links />
             </head>
             <body>
+                {process.env.NODE_ENV === 'development' ? null : (
+                    <>
+                        <script
+                            async
+                            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+                        />
+                        <script
+                            async
+                            id="gtag-init"
+                            dangerouslySetInnerHTML={{
+                                __html: `
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', '${gtag.GA_TRACKING_ID}', {
+                                        page_path: window.location.pathname,
+                                    });
+                                `
+                            }}
+                        />
+                    </>
+                )}
+
                 <Outlet />
                 {!isSoccerSchedule && <ScrollRestoration />}
                 <Scripts />
