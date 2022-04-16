@@ -10,7 +10,7 @@ import {
 } from 'remix';
 import type { MetaFunction } from 'remix';
 import styles from './tailwind.css';
-import * as gtag from '~/utils/gtags.client';
+import * as gtag from '~/utils/gtags';
 
 import appleTouch from './images/favicon/apple-touch-icon.png';
 import favicon32 from './images/favicon/favicon-32x32.png';

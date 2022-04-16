@@ -3,7 +3,7 @@ import InterestItem from '~/components/InterestItem';
 import SocialButton from '~/components/SocialButton';
 import interests from '../data/interests';
 import portfolioStyles from '../portfolio.css';
-import * as gtag from '~/utils/gtags.client';
+import * as gtag from '~/utils/gtags';
 
 export type AboutItemType = { text: string; isLink?: boolean };
 
