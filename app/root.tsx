@@ -75,8 +75,6 @@ export default function App() {
             <head>
                 <Meta />
                 <Links />
-            </head>
-            <body>
                 {process.env.NODE_ENV === 'development' ? null : (
                     <>
                         <script
@@ -99,16 +97,17 @@ export default function App() {
                         />
                     </>
                 )}
-
-                <Outlet />
-                {!isSoccerSchedule && <ScrollRestoration />}
-                <Scripts />
-                {process.env.NODE_ENV === 'development' && <LiveReload />}
                 <script
                     async
                     src="https://platform.twitter.com/widgets.js"
                     charSet="utf-8"
                 ></script>
+            </head>
+            <body>
+                <Outlet />
+                {!isSoccerSchedule && <ScrollRestoration />}
+                <Scripts />
+                {process.env.NODE_ENV === 'development' && <LiveReload />}
             </body>
         </html>
     );
