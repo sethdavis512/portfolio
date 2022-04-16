@@ -44,7 +44,6 @@ export function links() {
         },
         { rel: 'stylesheet', href: styles },
         { rel: 'apple-touch-icon', href: appleTouch, sizes: '180x180' },
-        // { rel: 'icon', href: favicon },
         { rel: 'icon', type: 'image/png', href: favicon32, sizes: '32x32' },
         { rel: 'icon', type: 'image/png', href: favicon16, sizes: '16x16' },
         {
@@ -78,9 +77,11 @@ export default function App() {
                 {process.env.NODE_ENV === 'development' ? null : (
                     <>
                         <script
+                            async
                             src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
                         />
                         <script
+                            async
                             id="gtag-init"
                             dangerouslySetInnerHTML={{
                                 __html: `
