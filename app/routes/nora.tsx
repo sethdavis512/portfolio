@@ -77,20 +77,24 @@ export default function NoraRoute() {
             </div>
             <div className="mb-4">
                 <h2 className="text-2xl mb-4">Updates</h2>
-                <p>
-                    <strong>1/15/21</strong> - Nora had an infusion this past
+                <p className="mb-4">
+                    <strong>1/15/22</strong> - Nora had an infusion this past
                     Monday. It was difficult for her while in the hospital. She
                     struggled with eating and some nausea. Thankfully when she
                     returned home, she bounced back pretty well. We now have 3
                     chemo treatments left — Wooohoo!
                 </p>
-            </div>
-            <h2 className="text-2xl mb-4">Needs</h2>
-            <div className="card mb-4">
                 <p>
-                    Most, if not all, of our needs have been taken care of -
-                    thank you so much to our friends and family for the
-                    generosity!
+                    <strong>4/15/22</strong> - DONE! Hey-o, no more chemo! Her
+                    last treatment was on 4/4 and she handled it like a champ.
+                    She is such a strong little girl and we are so proud of
+                    her...Next steps are figuring out what this next season of
+                    life looks like. Probably will try to see more friends and
+                    family. Lastly, the Make-A-Wish foundation reached out to us
+                    and inquired about what Nora would wish for. We told them
+                    Nora would like a splashpad, they have granted our wish and
+                    now we're waiting to hear back about specifics. Hoping it
+                    will be completed before the summer heat gets here!
                 </p>
             </div>
             <h2 className="text-2xl mb-4">Donations</h2>
