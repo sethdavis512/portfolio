@@ -8,7 +8,7 @@ export function links() {
 
 export const meta: MetaFunction = () => {
     return {
-        title: 'Austin FC Schedule',
+        title: 'Austin FC Schedule | Tech with Seth',
         description: 'Austin FC soccer team schedule'
     };
 };

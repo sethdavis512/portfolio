@@ -1,8 +1,13 @@
-import noraStyles from "../nora.css";
+import type { MetaFunction } from 'remix';
+import noraStyles from '../nora.css';
 
 export function links() {
-    return [{ rel: "stylesheet", href: noraStyles }];
+    return [{ rel: 'stylesheet', href: noraStyles }];
 }
+
+export const meta: MetaFunction = () => ({
+    title: `Nora | Tech with Seth`
+});
 
 export default function NoraRoute() {
     return (
@@ -11,11 +16,11 @@ export default function NoraRoute() {
                 <h1 className="text-4xl mb-4">Nora</h1>
                 <figure
                     style={{
-                        float: "left",
-                        width: "220px",
+                        float: 'left',
+                        width: '220px',
                         marginLeft: 0,
-                        marginRight: "1rem",
-                        marginBottom: "0.5rem"
+                        marginRight: '1rem',
+                        marginBottom: '0.5rem'
                     }}
                 >
                     <img
@@ -29,7 +34,7 @@ export default function NoraRoute() {
                     to the hospital to find that she had a collapsed lung. A
                     cyst in Nora's lung had burst and air was leaking into her
                     chest cavity. After emergency surgery, we were informed that
-                    Nora was born with a rare form of cancer called{" "}
+                    Nora was born with a rare form of cancer called{' '}
                     <a
                         className="text-purple-700"
                         href="https://rarediseases.org/rare-diseases/pleuropulmonary-blastoma/"
@@ -94,7 +99,7 @@ export default function NoraRoute() {
                 option for those of you who find it easier to give this way.
             </p>
             <div className="card mb-4">
-                <strong>PayPal:</strong>{" "}
+                <strong>PayPal:</strong>{' '}
                 <a
                     className="text-purple-700"
                     href="https://paypal.me/sethdavis512/"
@@ -107,7 +112,7 @@ export default function NoraRoute() {
                 <strong>Venmo:</strong> @sethdavis512
             </div>
             <div className="card mb-4">
-                <strong>Cash App:</strong>{" "}
+                <strong>Cash App:</strong>{' '}
                 <a
                     className="text-purple-700"
                     href="https://cash.app/$sethdavis512"
@@ -121,7 +126,7 @@ export default function NoraRoute() {
             <div className="card mb-4">
                 <p className="mb-2">Seth</p>
                 <p>
-                    <strong>Email:</strong>{" "}
+                    <strong>Email:</strong>{' '}
                     <a
                         className="text-purple-700"
                         href="mailto:sethdavis512@gmail.com"
@@ -133,7 +138,7 @@ export default function NoraRoute() {
             <div className="card mb-4">
                 <p className="mb-2">Rebekah</p>
                 <p>
-                    <strong>Email:</strong>{" "}
+                    <strong>Email:</strong>{' '}
                     <a
                         className="text-purple-700"
                         href="mailto:rebekahdavis0309@gmail.com"
