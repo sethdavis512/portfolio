@@ -70,17 +70,6 @@ export default function App() {
         gtag.pageview(location.pathname);
     }, [location]);
 
-    const getGoogleAnalyticsScript = (id: string): string => {
-        return `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${id}', {
-                page_path: window.location.pathname,
-            });
-        `;
-    };
-
     return (
         <html lang="en">
             <head>
@@ -98,9 +87,14 @@ export default function App() {
                             async
                             id="gtag-init"
                             dangerouslySetInnerHTML={{
-                                __html: getGoogleAnalyticsScript(
-                                    gtag.GA_TRACKING_ID
-                                )
+                                __html: `
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', ${gtag.GA_TRACKING_ID}, {
+                                        page_path: window.location.pathname,
+                                    });
+                                `
                             }}
                         />
                     </>
