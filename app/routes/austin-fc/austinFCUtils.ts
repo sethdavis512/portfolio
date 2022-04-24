@@ -50,8 +50,8 @@ export const getDistributedGames = (scheduleJson: ScheduledGameType[]) => {
                     if (homeTeamScore === awayTeamScore) {
                         distributed.ties = distributed.ties + 1;
                     } else if (
-                        homeTeamIsAustin &&
-                        homeTeamScore > awayTeamScore
+                        (homeTeamIsAustin && homeTeamScore > awayTeamScore) ||
+                        (!homeTeamIsAustin && awayTeamScore > homeTeamScore)
                     ) {
                         distributed.wins = distributed.wins + 1;
                     } else {
