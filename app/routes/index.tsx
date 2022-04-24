@@ -3,7 +3,6 @@ import InterestItem from '~/components/InterestItem';
 import SocialButton from '~/components/SocialButton';
 import interests from '../data/interests';
 import portfolioStyles from '../portfolio.css';
-import * as gtag from '~/utils/gtags.client';
 
 export type AboutItemType = { text: string; isLink?: boolean };
 
@@ -15,14 +14,6 @@ export default function IndexRoute() {
     const mappedAboutItems = interests.map((item: AboutItemType) => (
         <InterestItem item={item} key={item.text} />
     ));
-
-    useEffect(() => {
-        gtag.event({
-            action: 'test_event',
-            category: 'Test',
-            label: 'test-1'
-        });
-    }, []);
 
     return (
         <div className="portfolio text-center max-w-3xl m-auto sm:mt-12">

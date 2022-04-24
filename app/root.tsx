@@ -10,7 +10,6 @@ import {
 } from 'remix';
 import type { MetaFunction } from 'remix';
 import styles from './tailwind.css';
-import * as gtag from '~/utils/gtags.client';
 
 import appleTouch from './images/favicon/apple-touch-icon.png';
 import favicon32 from './images/favicon/favicon-32x32.png';
@@ -65,37 +64,11 @@ export default function App() {
     const location = useLocation();
     const isSoccerSchedule = location.pathname.includes('austin-fc');
 
-    useEffect(() => {
-        gtag.pageview(location.pathname);
-    }, [location]);
-
     return (
         <html lang="en">
             <head>
                 <Meta />
                 <Links />
-                {process.env.NODE_ENV === 'development' ? null : (
-                    <>
-                        <script
-                            async
-                            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-                        />
-                        <script
-                            async
-                            id="gtag-init"
-                            dangerouslySetInnerHTML={{
-                                __html: `
-                                    window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    gtag('config', '${gtag.GA_TRACKING_ID}', {
-                                        page_path: window.location.pathname,
-                                    });
-                                `
-                            }}
-                        />
-                    </>
-                )}
                 <script
                     async
                     src="https://platform.twitter.com/widgets.js"
