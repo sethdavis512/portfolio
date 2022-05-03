@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import InterestItem from '~/components/InterestItem';
-import SocialButton from '~/components/SocialButton';
-import interests from '../data/interests';
+import { Link } from 'remix';
+import DefaultLayout from '~/components/DefaultLayout';
+import { SocialLinks } from '~/constants';
+import austinFCLogo from '../images/austin-fc-logo.svg';
 import portfolioStyles from '../portfolio.css';
 
 export type AboutItemType = { text: string; isLink?: boolean };
@@ -11,56 +11,40 @@ export function links() {
 }
 
 export default function IndexRoute() {
-    const mappedAboutItems = interests.map((item: AboutItemType) => (
-        <InterestItem item={item} key={item.text} />
-    ));
+    const linkClassNames =
+        'px-4 py-3 rounded-md bg-zinc-800 hover:bg-gradient-to-br from-lime-400 to-emerald-600';
 
     return (
-        <div className="portfolio text-center max-w-3xl m-auto sm:mt-12">
-            <div className="w-full border-b-2 border-green-900 pb-8">
-                <h1 className="text-4xl mb-4">Howdy y'all 🤠</h1>
-                <h2 className="text-2xl">Welcome to Seth Davis' Portfolio</h2>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-evenly border-b-2 border-green-900 py-8">
-                <div className="mr-4 flex-grow-0 flex-shrink-0">
-                    <h3 className="text-2xl mb-4">A little about me</h3>
-                    <ul className="border-b-2 border-green-900 pb-4 mb-4">
-                        {mappedAboutItems}
-                    </ul>
-                    <h3 className="text-2xl mb-4">Links</h3>
-                    <div className="flex flex-col justify-center border-b-2 sm:border-none border-green-900 pb-4 mb-4">
-                        <SocialButton
-                            className="mr-2"
-                            href="https://github.com/sethdavis512"
-                        >
-                            GitHub
-                        </SocialButton>
-                        <SocialButton
-                            className="mr-2"
-                            href="https://codepen.io/sethdavis512"
-                        >
-                            Codepen
-                        </SocialButton>
-                        <SocialButton href="https://www.linkedin.com/in/sethdavis512/">
-                            LinkedIn
-                        </SocialButton>
-                    </div>
+        <DefaultLayout
+            header={
+                <>
+                    <h1 className="text-5xl leading-normal font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-lime-400 to-emerald-600 mb-8">
+                        <span className="block sm:hidden">{'<TWS />'}</span>
+                        <span className="hidden sm:block">
+                            {'<TechWithSeth />'}
+                        </span>
+                    </h1>
+                </>
+            }
+            main={
+                <div className="flex flex-col max-w-xs mx-auto justify-center sm:flex-row text-center gap-6">
+                    <a href={SocialLinks.GITHUB} className={linkClassNames}>
+                        GitHub
+                    </a>
+                    <a href={SocialLinks.CODEPEN} className={linkClassNames}>
+                        Codepen
+                    </a>
+                    <a href={SocialLinks.TWITTER} className={linkClassNames}>
+                        Twitter
+                    </a>
+                    <a href={SocialLinks.LINKEDIN} className={linkClassNames}>
+                        LinkedIn
+                    </a>
+                    <Link to="austin-fc" className={linkClassNames}>
+                        ⚽️
+                    </Link>
                 </div>
-                <div className="flex-grow-1 sm:flex-grow-0 flex-shrink-0">
-                    <h3 className="text-2xl mb-4">Tweets</h3>
-                    <div>
-                        <a
-                            className="twitter-timeline"
-                            data-width="300"
-                            data-height="550"
-                            data-theme="dark"
-                            href="https://twitter.com/sethdavis512?ref_src=twsrc%5Etfw"
-                        >
-                            Tweets by sethdavis512
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            }
+        />
     );
 }

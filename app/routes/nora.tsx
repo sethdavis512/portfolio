@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => ({
 
 export default function NoraRoute() {
     return (
-        <div className="nora sm:w-3/4 m-auto max-w-4xl">
+        <div className="nora sm:w-3/4 m-auto max-w-4xl py-10">
             <div className="mb-4">
                 <h1 className="text-4xl mb-4">Nora</h1>
                 <figure

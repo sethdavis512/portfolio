@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
     Links,
     LiveReload,
@@ -65,17 +64,12 @@ export default function App() {
     const isSoccerSchedule = location.pathname.includes('austin-fc');
 
     return (
-        <html lang="en">
+        <html lang="en" className="h-full">
             <head>
                 <Meta />
                 <Links />
-                <script
-                    async
-                    src="https://platform.twitter.com/widgets.js"
-                    charSet="utf-8"
-                ></script>
             </head>
-            <body>
+            <body className="h-full">
                 <Outlet />
                 {!isSoccerSchedule && <ScrollRestoration />}
                 <Scripts />

@@ -5,7 +5,6 @@
 body {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-weight: 400;
-    padding: 2rem;
 }
 
 h1,
@@ -37,17 +36,5 @@ h3 {
     .portfolio .card:hover {
         border-color: theme("colors.green.700");
         background-color: theme("colors.green.900");
-    }
-
-    .about-item {
-        @apply block;
-    }
-
-    .about-item-link, .about-item-text {
-        @apply inline-block py-2 px-4;
-    }
-
-    .about-item-link:hover {
-        @apply bg-green-900 rounded-full;
     }
 }

@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 export default function AustinFCRoute() {
     return (
-        <div className="sm:w-3/4 m-auto max-w-xl">
+        <div className="sm:w-3/4 m-auto max-w-xl py-10">
             <div className="flex items-center">
                 <div className="mr-2">
                     <img src={logo} width="75" />
