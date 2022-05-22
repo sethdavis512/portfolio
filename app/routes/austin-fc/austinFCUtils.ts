@@ -1,4 +1,6 @@
 import isBefore from 'date-fns/isBefore';
+import isToday from 'date-fns/isToday';
+import isAfter from 'date-fns/isAfter';
 import kebabCase from 'lodash/kebabCase';
 
 export interface ScheduledGameType {
@@ -26,10 +28,13 @@ export const getDistributedGames = (scheduleJson: ScheduledGameType[]) => {
             },
             currentGame: ScheduledGameType
         ) => {
-            if (isBefore(new Date(currentGame.formattedDate), today)) {
-                distributed.previousGames.push(currentGame);
-            } else {
+            if (
+                isToday(new Date(currentGame.formattedDate)) ||
+                isAfter(new Date(currentGame.formattedDate), today)
+            ) {
                 distributed.futureGames.push(currentGame);
+            } else if (isBefore(new Date(currentGame.formattedDate), today)) {
+                distributed.previousGames.push(currentGame);
             }
 
             const hasGameScore = !!currentGame.score;
