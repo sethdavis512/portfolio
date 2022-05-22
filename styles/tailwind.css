@@ -26,15 +26,4 @@ h3 {
         background-color: theme("colors.white");
         border-color: theme("colors.gray.500");
     }
-
-    .portfolio .card {
-        cursor: pointer;
-        background-color: #2d2d2d;
-        border-color: theme("colors.green.900");
-    }
-
-    .portfolio .card:hover {
-        border-color: theme("colors.green.700");
-        background-color: theme("colors.green.900");
-    }
 }
