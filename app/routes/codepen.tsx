@@ -20,26 +20,83 @@
 export default function CodepenRoute() {
     return (
         <div className="">
-            <h1>Codepen</h1>
-            <p
-                className="codepen"
-                data-height="540"
-                data-theme-id="dark"
-                data-default-tab="html,result"
-                data-slug-hash="jYMrEx"
-                data-user="sethdavis512"
-                // style="height: 540px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
-            >
-                <span>
-                    See the Pen{' '}
-                    <a href="https://codepen.io/sethdavis512/pen/jYMrEx">
-                        React.js Wizard Flow
-                    </a>{' '}
-                    by Seth Davis (
-                    <a href="https://codepen.io/sethdavis512">@sethdavis512</a>)
-                    on <a href="https://codepen.io">CodePen</a>.
-                </span>
-            </p>
+            <div className="max-w-5xl mx-auto">
+                <h1 className="text-6xl my-8">Codepen</h1>
+                <p
+                    className="codepen"
+                    data-height="540"
+                    data-theme-id="dark"
+                    data-default-tab="js,result"
+                    data-slug-hash="rNxZmoR"
+                    data-user="sethdavis512"
+                >
+                    <span>
+                        <a href="https://codepen.io/sethdavis512/pen/rNxZmoR">
+                            See the Codepen here.
+                        </a>
+                    </span>
+                </p>
+
+                <p
+                    className="codepen"
+                    data-height="540"
+                    data-theme-id="dark"
+                    data-default-tab="js,result"
+                    data-slug-hash="bGExWZa"
+                    data-user="sethdavis512"
+                >
+                    <span>
+                        <a href="https://codepen.io/sethdavis512/pen/bGExWZa">
+                            See the Codepen here.
+                        </a>
+                    </span>
+                </p>
+
+                <p
+                    className="codepen"
+                    data-height="540"
+                    data-theme-id="dark"
+                    data-default-tab="js,result"
+                    data-slug-hash="YzqxpKN"
+                    data-user="sethdavis512"
+                >
+                    <span>
+                        <a href="https://codepen.io/sethdavis512/pen/YzqxpKN">
+                            See the Codepen here.
+                        </a>
+                    </span>
+                </p>
+
+                <p
+                    className="codepen"
+                    data-height="540"
+                    data-theme-id="dark"
+                    data-default-tab="js,result"
+                    data-slug-hash="gOrXpMm"
+                    data-user="sethdavis512"
+                >
+                    <span>
+                        <a href="https://codepen.io/sethdavis512/pen/gOrXpMm">
+                            See the Codepen here.
+                        </a>
+                    </span>
+                </p>
+
+                <p
+                    className="codepen"
+                    data-height="540"
+                    data-theme-id="dark"
+                    data-default-tab="js,result"
+                    data-slug-hash="KKzyVRv"
+                    data-user="sethdavis512"
+                >
+                    <span>
+                        <a href="https://codepen.io/sethdavis512/pen/KKzyVRv">
+                            See the Codepen here.
+                        </a>
+                    </span>
+                </p>
+            </div>
 
             <script
                 async
