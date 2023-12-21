@@ -41,7 +41,7 @@ export default function Index() {
             </div>
             <ContentContainer>
                 <div className="md:grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
+                    <div className="col-span-6 mb-12 md:mb-0">
                         <SpacedStack>
                             <section>
                                 <h3 className="flex gap-2 items-center text-4xl font-bold mb-4">
