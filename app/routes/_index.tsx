@@ -61,16 +61,26 @@ export default function Index() {
                                         </a>
                                     </li>
                                     <li>
-                                        💿 Huge fan of{' '}
+                                        ⚽️ Supporter of the{' '}
+                                        <a
+                                            className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
+                                            href="https://www.austinfc.com/"
+                                        >
+                                            Austin FC
+                                            <ExternalLink />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        💿 Fanatic of{' '}
                                         <a
                                             className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
                                             href="https://remix.run/"
                                         >
                                             Remix
                                             <ExternalLink />
-                                        </a>{' '}
+                                        </a>
                                     </li>
-                                    <li>⚡️ EV enthusiast</li>
+                                    <li>⚡️ Enthusiast of electric vehicles</li>
                                 </ul>
                             </section>
                             <section>
