@@ -3,7 +3,6 @@ import type { MetaFunction } from '@vercel/remix';
 import type { ReactNode } from 'react';
 import {
     BookIcon,
-    ExternalLink,
     Github,
     InfoIcon,
     Link as LinkIcon,
@@ -15,6 +14,7 @@ import {
 import { Link } from '@remix-run/react';
 import ContentContainer from '~/components/ContentContainer';
 import Layout from '~/components/Layout';
+import ExternalLink from '~/components/ExternalLink';
 
 export const meta: MetaFunction = () => {
     return [
@@ -43,33 +43,21 @@ export default function Index() {
                                     <li>✌🏻 Native Austinite</li>
                                     <li>
                                         🧑🏻‍💻 Senior User Experience Developer at{' '}
-                                        <a
-                                            className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
-                                            href="https://www.indeed.com/"
-                                        >
+                                        <ExternalLink href="https://www.indeed.com/">
                                             Indeed
-                                            <ExternalLink />
-                                        </a>
+                                        </ExternalLink>
                                     </li>
                                     <li>
                                         ⚽️ Supporter of the{' '}
-                                        <a
-                                            className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
-                                            href="https://www.austinfc.com/"
-                                        >
+                                        <ExternalLink href="https://www.austinfc.com/">
                                             Austin FC
-                                            <ExternalLink />
-                                        </a>
+                                        </ExternalLink>
                                     </li>
                                     <li>
                                         💿 Fanatic of{' '}
-                                        <a
-                                            className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
-                                            href="https://remix.run/"
-                                        >
+                                        <ExternalLink href="https://remix.run/">
                                             Remix
-                                            <ExternalLink />
-                                        </a>
+                                        </ExternalLink>
                                     </li>
                                     <li>⚡️ Enthusiast of electric vehicles</li>
                                 </ul>
@@ -80,20 +68,12 @@ export default function Index() {
                                     Observe
                                 </h3>
                                 <div className="flex gap-4">
-                                    <a
-                                        href="https://dev.to/sethdavis512"
-                                        className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
-                                    >
+                                    <ExternalLink href="https://dev.to/sethdavis512">
                                         Blog
-                                        <ExternalLink />
-                                    </a>
-                                    <a
-                                        href="https://github.com/sethdavis512"
-                                        className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
-                                    >
+                                    </ExternalLink>
+                                    <ExternalLink href="https://github.com/sethdavis512">
                                         Code
-                                        <ExternalLink />
-                                    </a>
+                                    </ExternalLink>
                                 </div>
                             </section>
                             <section>
@@ -116,13 +96,9 @@ export default function Index() {
                                     Learn
                                 </h3>
                                 <div>
-                                    <a
-                                        href="https://sethdavis512.github.io/custom-file-generator-guide/"
-                                        className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
-                                    >
+                                    <ExternalLink href="https://sethdavis512.github.io/custom-file-generator-guide/">
                                         Custom file generator
-                                        <ExternalLink />
-                                    </a>
+                                    </ExternalLink>
                                 </div>
                             </section>
                             <section>
