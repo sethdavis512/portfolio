@@ -9,11 +9,11 @@ interface ExternalLinkProps {
 export default function ExternalLink({ children, href }: ExternalLinkProps) {
     return (
         <a
-            className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
+            className="inline-flex items-center gap-2 text-green-500 hover:text-green-300 underline"
             href={href}
         >
             {children}
-            <ExternalLinkIcon />
+            <ExternalLinkIcon className="h-4 w-4" />
         </a>
     );
 }
