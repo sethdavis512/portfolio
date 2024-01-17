@@ -12,7 +12,9 @@ import {
     Search,
     Twitter
 } from 'lucide-react';
-import Logo from '~/components/Logo';
+import { Link } from '@remix-run/react';
+import ContentContainer from '~/components/ContentContainer';
+import Layout from '~/components/Layout';
 
 export const meta: MetaFunction = () => {
     return [
@@ -25,27 +27,16 @@ function SpacedStack({ children }: { children: ReactNode }) {
     return <div className="space-y-12">{children}</div>;
 }
 
-function ContentContainer({ children }: { children: ReactNode }) {
-    return <div className="max-w-4xl p-8 sm:p-12 mx-auto">{children}</div>;
-}
-
 export default function Index() {
     return (
-        <>
-            <div className="bg-[url('https://res.cloudinary.com/setholito/image/upload/v1486354320/portfolio/geometry-hero.jpg')] text-white">
-                <ContentContainer>
-                    <div className="w-12 h-12">
-                        <Logo fill="#fff" />
-                    </div>
-                </ContentContainer>
-            </div>
+        <Layout>
             <ContentContainer>
                 <div className="md:grid grid-cols-12 gap-4">
                     <div className="col-span-6 mb-12 md:mb-0">
                         <SpacedStack>
                             <section>
-                                <h3 className="flex gap-2 items-center text-4xl font-bold mb-4">
-                                    <InfoIcon className="w-8 h-8" />
+                                <h3 className="flex gap-2 items-center text-2xl font-bold mb-4">
+                                    <InfoIcon className="w-5 h-5" />
                                     About me
                                 </h3>
                                 <ul className="flex flex-col gap-2 flex-wrap">
@@ -84,8 +75,8 @@ export default function Index() {
                                 </ul>
                             </section>
                             <section>
-                                <h3 className="flex gap-2 items-center text-4xl mb-4 font-bold">
-                                    <Search className="w-8 h-8" />
+                                <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
+                                    <Search className="w-5 h-5" />
                                     Observe
                                 </h3>
                                 <div className="flex gap-4">
@@ -106,8 +97,22 @@ export default function Index() {
                                 </div>
                             </section>
                             <section>
-                                <h3 className="flex gap-2 items-center text-4xl mb-4 font-bold">
-                                    <BookIcon className="w-8 h-8" />
+                                <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
+                                    <BookIcon className="w-5 h-5" />
+                                    Resources
+                                </h3>
+                                <div>
+                                    <Link
+                                        to="/tailwind-resources"
+                                        className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
+                                    >
+                                        Tailwind
+                                    </Link>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
+                                    <BookIcon className="w-5 h-5" />
                                     Learn
                                 </h3>
                                 <div>
@@ -121,8 +126,8 @@ export default function Index() {
                                 </div>
                             </section>
                             <section>
-                                <h3 className="flex gap-2 items-center text-4xl mb-4 font-bold">
-                                    <LinkIcon className="w-8 h-8" />
+                                <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
+                                    <LinkIcon className="w-5 h-5" />
                                     Connect
                                 </h3>
                                 <div className="flex gap-4">
@@ -149,8 +154,8 @@ export default function Index() {
                         </SpacedStack>
                     </div>
                     <div className="col-span-6">
-                        <h3 className="flex gap-2 items-center text-4xl mb-4 font-bold">
-                            <MessageCircle className="w-8 h-8" />
+                        <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
+                            <MessageCircle className="w-5 h-5" />
                             Inspirational quotes
                         </h3>
                         <SpacedStack>
@@ -189,6 +194,6 @@ export default function Index() {
                     </div>
                 </div>
             </ContentContainer>
-        </>
+        </Layout>
     );
 }
