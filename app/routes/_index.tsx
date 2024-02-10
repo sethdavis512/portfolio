@@ -110,7 +110,7 @@ export default function Index() {
                                         </ExternalLink>
                                     </li>
                                     <li>
-                                        <ExternalLink href="https://sethdavis512.github.io/">
+                                        <ExternalLink href="https://github.com/sethdavis512">
                                             Reduce workbook (coming soon)
                                         </ExternalLink>
                                     </li>
