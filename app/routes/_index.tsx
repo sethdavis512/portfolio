@@ -3,18 +3,12 @@ import type { MetaFunction } from '@vercel/remix';
 import type { ReactNode } from 'react';
 import {
     BlocksIcon,
-    BookIcon,
     BookOpen,
-    Brain,
     Github,
     Hammer,
     InfoIcon,
     Link as LinkIcon,
     Linkedin,
-    MessageCircle,
-    Pencil,
-    School,
-    Search,
     Twitter
 } from 'lucide-react';
 import { Link } from '@remix-run/react';
