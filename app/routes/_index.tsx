@@ -2,12 +2,18 @@ import type { MetaFunction } from '@vercel/remix';
 
 import type { ReactNode } from 'react';
 import {
+    BlocksIcon,
     BookIcon,
+    BookOpen,
+    Brain,
     Github,
+    Hammer,
     InfoIcon,
     Link as LinkIcon,
     Linkedin,
     MessageCircle,
+    Pencil,
+    School,
     Search,
     Twitter
 } from 'lucide-react';
@@ -37,9 +43,9 @@ export default function Index() {
                             <section>
                                 <h3 className="flex gap-2 items-center text-2xl font-bold mb-4">
                                     <InfoIcon className="w-5 h-5" />
-                                    About me
+                                    About
                                 </h3>
-                                <ul className="flex flex-col gap-2 flex-wrap">
+                                <ul className="space-y-3">
                                     <li>✌🏻 Native Austinite</li>
                                     <li>
                                         🧑🏻‍💻 Senior User Experience Developer at{' '}
@@ -64,21 +70,29 @@ export default function Index() {
                             </section>
                             <section>
                                 <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
-                                    <Search className="w-5 h-5" />
-                                    Observe
+                                    <Hammer className="w-5 h-5" />
+                                    Work
                                 </h3>
-                                <div className="flex gap-4">
-                                    <ExternalLink href="https://dev.to/sethdavis512">
-                                        Blog
-                                    </ExternalLink>
-                                    <ExternalLink href="https://github.com/sethdavis512">
-                                        Code
-                                    </ExternalLink>
-                                </div>
+                                <ul className="space-y-3">
+                                    <li>
+                                        <ExternalLink href="https://dev.to/sethdavis512">
+                                            Blog
+                                        </ExternalLink>
+                                    </li>
+                                    <li>
+                                        <ExternalLink href="https://github.com/sethdavis512">
+                                            Code
+                                        </ExternalLink>
+                                    </li>
+                                </ul>
                             </section>
+                        </SpacedStack>
+                    </div>
+                    <div className="col-span-6">
+                        <SpacedStack>
                             <section>
                                 <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
-                                    <BookIcon className="w-5 h-5" />
+                                    <BookOpen className="w-5 h-5" />
                                     Resources
                                 </h3>
                                 <div>
@@ -92,14 +106,21 @@ export default function Index() {
                             </section>
                             <section>
                                 <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
-                                    <BookIcon className="w-5 h-5" />
+                                    <BlocksIcon className="w-5 h-5" />
                                     Learn
                                 </h3>
-                                <div>
-                                    <ExternalLink href="https://sethdavis512.github.io/custom-file-generator-guide/">
-                                        Custom file generator
-                                    </ExternalLink>
-                                </div>
+                                <ul className="space-y-3">
+                                    <li>
+                                        <ExternalLink href="https://sethdavis512.github.io/custom-file-generator-guide/">
+                                            Custom file generator
+                                        </ExternalLink>
+                                    </li>
+                                    <li>
+                                        <ExternalLink href="https://sethdavis512.github.io/">
+                                            Reduce workbook (coming soon)
+                                        </ExternalLink>
+                                    </li>
+                                </ul>
                             </section>
                             <section>
                                 <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
@@ -127,45 +148,6 @@ export default function Index() {
                                     </a>
                                 </div>
                             </section>
-                        </SpacedStack>
-                    </div>
-                    <div className="col-span-6">
-                        <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
-                            <MessageCircle className="w-5 h-5" />
-                            Inspirational quotes
-                        </h3>
-                        <SpacedStack>
-                            <blockquote>
-                                "Nothing in the world can take the place of
-                                Persistence. Talent will not; nothing is more
-                                common than unsuccessful men with talent. Genius
-                                will not; unrewarded genius is almost a proverb.
-                                Education will not; the world is full of
-                                educated derelicts. Persistence and
-                                determination alone are omnipotent."
-                                <br />
-                                <br />
-                                <span className="italic">
-                                    — Calvin Coolidge
-                                </span>
-                            </blockquote>
-
-                            <blockquote>
-                                "We are what we repeatedly do. Excellence, then,
-                                is not an act, but a habit."
-                                <br />
-                                <br />
-                                <span className="italic">— Will Durant</span>
-                            </blockquote>
-
-                            <blockquote>
-                                "You don't wait until you're confident enough to
-                                take action. You build your confidence as a
-                                result of taking action."
-                                <br />
-                                <br />
-                                <span className="italic">— Jill Coleman</span>
-                            </blockquote>
                         </SpacedStack>
                     </div>
                 </div>
