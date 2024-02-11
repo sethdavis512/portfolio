@@ -89,7 +89,7 @@ export default function Index() {
                                     <BookOpen className="w-5 h-5" />
                                     Resources
                                 </h3>
-                                <ul>
+                                <ul className="space-y-3">
                                     <li>
                                         <Link
                                             to="/tailwind-resources"
