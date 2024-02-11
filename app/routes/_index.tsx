@@ -89,14 +89,21 @@ export default function Index() {
                                     <BookOpen className="w-5 h-5" />
                                     Resources
                                 </h3>
-                                <div>
-                                    <Link
-                                        to="/tailwind-resources"
-                                        className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
-                                    >
-                                        Tailwind
-                                    </Link>
-                                </div>
+                                <ul>
+                                    <li>
+                                        <Link
+                                            to="/tailwind-resources"
+                                            className="inline-flex gap-2 text-green-500 hover:text-green-300 underline"
+                                        >
+                                            Tailwind
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <ExternalLink href="https://github.com/sethdavis512/tws-prototype-template">
+                                            Remix prototype template
+                                        </ExternalLink>
+                                    </li>
+                                </ul>
                             </section>
                             <section>
                                 <h3 className="flex gap-2 items-center text-2xl mb-4 font-bold">
