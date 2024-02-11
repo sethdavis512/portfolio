@@ -111,7 +111,7 @@ export default function Index() {
                                     </li>
                                     <li>
                                         <ExternalLink href="https://sethdavis512.github.io/reduce-rodeo/">
-                                            Reduce Rodeo
+                                            Reduce Rodeo (in progress)
                                         </ExternalLink>
                                     </li>
                                 </ul>
