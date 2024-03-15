@@ -30,14 +30,17 @@ export default function BachelorPartyRoute() {
                             </ExternalLink>
                         </li>
                         <li>
-                            💸 Fee: $1200 / 5 = ~$240 (pre-tax)
+                            💸 Fee: $900 / 5 = ~$180 (pre-tax)
                             <ul>
-                                <li>100 clays per person</li>
+                                <li>50 clays per person</li>
                                 <li>Shotgun provided</li>
-                                <li>100 Shells provided</li>
+                                <li>50 Shells provided</li>
                                 <li>Ear/eye protection provided</li>
                                 <li>Safety Captain on site</li>
+                                <li>Unlimited axe throwing</li>
+                                <li>Outdoor games</li>
                                 <li>Complimentary snacks</li>
+                                <li>$150 per person</li>
                             </ul>
                         </li>
                     </ul>
