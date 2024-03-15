@@ -66,10 +66,19 @@ export default function BachelorPartyRoute() {
                                 <li>Wifi</li>
                             </ul>
                         </li>
+                        <li>
+                            Activities
+                            <ul>
+                                <li>Drinks</li>
+                                <li>Cigars</li>
+                                <li>Swimming</li>
+                                <li>Xbox</li>
+                                <li>Hot sauce challenge</li>
+                            </ul>
+                        </li>
                     </ul>
                     <hr className="my-8" />
                     <h2>🎈 Let's celebrate Bryson!</h2>
-
                     <img src={BrysonCollage} alt="Bryson collage" />
                 </article>
             </ContentContainer>
