@@ -1,14 +1,17 @@
 import Layout from '../components/Layout';
 import ContentContainer from '../components/ContentContainer';
 import ExternalLink from '~/components/ExternalLink';
+import BrysonCollage from '../images/bachelor-collage.png';
 
 export default function BachelorPartyRoute() {
     return (
         <Layout>
             <ContentContainer>
                 <article className="prose prose-invert">
-                    <h1>Bryson's Bachelor Party</h1>
-                    <h2>The Porch</h2>
+                    <h1>🥳 Bryson's Bachelor Party</h1>
+                    <p>Kickoff: 3/23/24 ~10am</p>
+                    <p>End: 3/24/24 ~4pm</p>
+                    <h2>🔫 The Porch</h2>
                     <ul>
                         <li>
                             <ExternalLink
@@ -38,7 +41,7 @@ export default function BachelorPartyRoute() {
                             </ul>
                         </li>
                     </ul>
-                    <h2>AirBnb</h2>
+                    <h2>🛏️ AirBnb</h2>
                     <ul>
                         <li>
                             <ExternalLink
@@ -61,6 +64,10 @@ export default function BachelorPartyRoute() {
                             </ul>
                         </li>
                     </ul>
+                    <hr className="my-8" />
+                    <h2>🎈 Let's celebrate Bryson!</h2>
+
+                    <img src={BrysonCollage} alt="Bryson collage" />
                 </article>
             </ContentContainer>
         </Layout>
