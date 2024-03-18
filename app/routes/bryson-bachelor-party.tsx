@@ -9,9 +9,18 @@ export default function BachelorPartyRoute() {
             <ContentContainer>
                 <article className="prose prose-invert">
                     <h1>🥳 Bryson's Bachelor Party</h1>
-                    <p>Kickoff: 3/23/24 ~10am</p>
-                    <p>End: 3/24/24 ~4pm</p>
+                    <h2>👟 Meetup</h2>
+                    <p>Saturday, March 23 - 10am</p>
+                    <p>Location: TBD</p>
                     <h2>🔫 The Porch</h2>
+                    <h3>
+                        <a
+                            href="https://theporchvenue.com/pages/waiver"
+                            className="font-bold text-4xl no-underline py-4 px-6 bg-green-500 rounded-md inline-block mb-4"
+                        >
+                            SIGN THE WAIVER
+                        </a>
+                    </h3>
                     <ul>
                         <li>
                             <ExternalLink
@@ -49,23 +58,12 @@ export default function BachelorPartyRoute() {
                         <li>
                             <ExternalLink
                                 className="m-0"
-                                href="https://www.airbnb.com/rooms/1031215802724612092?adults=6&check_in=2024-03-23&check_out=2024-03-24"
+                                href="https://www.airbnb.com/rooms/790409421506981579"
                             >
-                                Rental listing (Dallas, Texas)
+                                Rental listing (Grand Prairie, Texas)
                             </ExternalLink>
                         </li>
-                        <li>
-                            💸 Fee: $325 / 5 = ~$65 (pre-tax)
-                            <ul>
-                                <li>16+ guests</li>
-                                <li>3 bedrooms</li>
-                                <li>8 beds</li>
-                                <li>1 bath</li>
-                                <li>Pool</li>
-                                <li>1 free parking spot</li>
-                                <li>Wifi</li>
-                            </ul>
-                        </li>
+                        <li>💸 Fee: $325 / 5 = ~$65 (pre-tax)</li>
                         <li>
                             Activities
                             <ul>
@@ -77,7 +75,11 @@ export default function BachelorPartyRoute() {
                             </ul>
                         </li>
                     </ul>
+                    <h2>🏁 Finish</h2>
+                    <p>End: 3/24/24 ~4pm</p>
+
                     <hr className="my-8" />
+
                     <h2>🎈 Let's celebrate Bryson!</h2>
                     <img src={BrysonCollage} alt="Bryson collage" />
                 </article>
