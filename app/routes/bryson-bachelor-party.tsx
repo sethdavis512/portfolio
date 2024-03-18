@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import ContentContainer from '../components/ContentContainer';
 import ExternalLink from '~/components/ExternalLink';
 import BrysonCollage from '../images/bachelor-collage.png';
+import waiverQRCode from '../images/the-porch-qr-code-waiver.png';
 
 export default function BachelorPartyRoute() {
     return (
@@ -13,12 +14,19 @@ export default function BachelorPartyRoute() {
                     <p>Saturday, March 23 - 10am</p>
                     <p>Location: TBD</p>
                     <h2>🔫 The Porch</h2>
+                    <h3>Scan QR code</h3>
+                    <img
+                        src={waiverQRCode}
+                        alt="Waiver QR Code"
+                        className="max-w-xs"
+                    />
+                    <p>—— OR ——</p>
                     <h3>
                         <a
                             href="https://theporchvenue.com/pages/waiver"
-                            className="font-bold text-4xl no-underline py-4 px-6 bg-green-500 rounded-md inline-block mb-4"
+                            className="font-bold no-underline py-3 px-5 bg-green-500 rounded-md inline-block mb-4"
                         >
-                            SIGN THE WAIVER
+                            Click here
                         </a>
                     </h3>
                     <ul>
@@ -77,9 +85,7 @@ export default function BachelorPartyRoute() {
                     </ul>
                     <h2>🏁 Finish</h2>
                     <p>End: 3/24/24 ~4pm</p>
-
                     <hr className="my-8" />
-
                     <h2>🎈 Let's celebrate Bryson!</h2>
                     <img src={BrysonCollage} alt="Bryson collage" />
                 </article>
