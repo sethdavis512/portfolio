@@ -71,12 +71,13 @@ export default function BachelorPartyRoute() {
                                 Rental listing (Grand Prairie, Texas)
                             </ExternalLink>
                         </li>
-                        <li>💸 Fee: $325 / 5 = ~$65 (pre-tax)</li>
+                        <li>💸 Fee: $515 / 5 = ~$65 (pre-tax)</li>
+                        <li>Check in: Saturday at 3 pm</li>
+                        <li>Check out: Sunday by 10 am</li>
                         <li>
                             Activities
                             <ul>
                                 <li>Drinks</li>
-                                <li>Cigars</li>
                                 <li>Swimming</li>
                                 <li>Xbox</li>
                                 <li>Hot sauce challenge</li>
