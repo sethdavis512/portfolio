@@ -23,7 +23,7 @@ export default function BachelorPartyRoute() {
                     <p>—— OR ——</p>
                     <h3>
                         <a
-                            href="https://theporchvenue.com/pages/waiver"
+                            href="https://www.jotform.com/sign/232333115610037/invite/01h8ekvvtvdaaeeb42bf19fa20"
                             className="font-bold no-underline py-3 px-5 bg-green-500 rounded-md inline-block mb-4"
                         >
                             Click here
