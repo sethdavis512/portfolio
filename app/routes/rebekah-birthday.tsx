@@ -7,7 +7,7 @@ export default function RebekahBirthdayRoute() {
                 <div className="block w-16 h-16 text-[64px] md:text-[64px]">
                     🎉
                 </div>
-                <h1 className="font-bold text-4xl">{`Rebekah 35th birthday`}</h1>
+                <h1 className="font-bold text-4xl">{`Rebekah's 35th birthday`}</h1>
                 <p>{`Come celebrate with us!`}</p>
                 <h3>
                     📅 <strong>When:</strong> Saturday May 18th
