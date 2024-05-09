@@ -1,5 +1,3 @@
-import type { MetaFunction } from '@vercel/remix';
-
 import type { ReactNode } from 'react';
 import {
     BlocksIcon,
@@ -11,7 +9,7 @@ import {
     Linkedin,
     Twitter
 } from 'lucide-react';
-import { Link } from '@remix-run/react';
+import { Link, MetaFunction } from '@remix-run/react';
 import ContentContainer from '~/components/ContentContainer';
 import Layout from '~/components/Layout';
 import ExternalLink from '~/components/ExternalLink';

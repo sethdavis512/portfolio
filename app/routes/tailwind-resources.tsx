@@ -1,7 +1,8 @@
-import Layout from '../components/Layout';
-import ContentContainer from '../components/ContentContainer';
-import ExternalLink from '~/components/ExternalLink';
 import { BookOpen } from 'lucide-react';
+
+import Layout from '~/components/Layout';
+import ContentContainer from '~/components/ContentContainer';
+import ExternalLink from '~/components/ExternalLink';
 
 export default function TailwindResourcesRoute() {
     return (
