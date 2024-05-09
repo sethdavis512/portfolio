@@ -1,55 +1,32 @@
-import Rebekah from '../images/rebekah.jpg';
-
 export default function RebekahBirthdayRoute() {
     return (
         <div
             className={`fixed top-0 left-0 right-0 bottom-0 overflow-y-auto p-12 bg-emerald-100 text-emerald-800 text-xl`}
         >
-            <div className="relative max-w-2xl mx-auto space-y-8">
-                <div className="flex items-center justify-around">
-                    <div>
-                        <span className="block text-[75px] md:text-[125px] scale-x-[-1]">
-                            🎉
-                        </span>
-                    </div>
-                    <div>
-                        <figure className="flex justify-center">
-                            <img
-                                src={Rebekah}
-                                alt="Beautiful Rebekah Davis"
-                                className="border-4 border-spacing-4 border-emerald-800 rounded-full max-w-60"
-                            />
-                        </figure>
-                    </div>
-                    <div>
-                        <span className="text-[75px] md:text-[125px]">🎉</span>
-                    </div>
+            <div className="relative max-w-2xl mx-auto space-y-4">
+                <div className="block w-16 h-16 text-[64px] md:text-[64px]">
+                    🎉
                 </div>
-                <h1 className="font-bold text-4xl text-center">{`Let's celebrate Rebekah!`}</h1>
-                <p>
-                    {`Come join the festivities as we celebrate the wonderful
-                    Rebekah on her special day! With her warmth, laughter, and
-                    boundless love, she has enriched our lives in countless
-                    ways. Let's gather to honor her remarkable spirit and create
-                    new memories together. Join us for a backyard birthday
-                    celebration dedicated to Rebekah!`}
-                </p>
-                <h2>
+                <h1 className="font-bold text-4xl">{`Rebekah 35th birthday`}</h1>
+                <p>{`Come celebrate with us!`}</p>
+                <h3>
                     📅 <strong>When:</strong> Saturday May 18th
-                </h2>
-                <h2>
-                    ⏰ <strong>Time:</strong> 2-4p
-                </h2>
-                <h2>
+                </h3>
+                <h3>
+                    ⏰ <strong>Time:</strong> 4-8p
+                </h3>
+                <h3>
                     📋 <strong>Food:</strong> TBD
-                </h2>
-                <h2>
+                </h3>
+                <h3>
                     👟 <strong>Activities:</strong> TBD
-                </h2>
-                <h2>
+                </h3>
+                <h3>
                     🏡 <strong>Where:</strong> 1109 Oakwood Drive, Leander,
                     Texas 78641
-                </h2>
+                </h3>
+                <h3>🐣 Kids welcome</h3>
+                <h3>🥳 Gifts not required</h3>
                 <details className="border-4 border-emerald-800 rounded-lg p-4">
                     <summary>🗺️ Need a map?</summary>
                     <iframe
