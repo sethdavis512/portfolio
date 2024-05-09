@@ -1,3 +1,12 @@
+import { MetaFunction } from '@remix-run/node';
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: `Rebekah's 35th birthday!` },
+        { name: 'description', content: 'Come celebrate with us!' }
+    ];
+};
+
 export default function RebekahBirthdayRoute() {
     return (
         <div
