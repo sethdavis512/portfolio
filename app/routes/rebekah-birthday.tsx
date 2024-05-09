@@ -1,9 +1,19 @@
-import { MetaFunction } from '@remix-run/node';
+import { LinksFunction, MetaFunction } from '@remix-run/node';
 
 export const meta: MetaFunction = () => {
     return [
         { title: `Rebekah's 35th birthday!` },
         { name: 'description', content: 'Come celebrate with us!' }
+    ];
+};
+
+export const links: LinksFunction = () => {
+    return [
+        {
+            rel: 'icon',
+            type: 'image/svg+xml',
+            href: '/favicon-bday.svg'
+        }
     ];
 };
 

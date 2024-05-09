@@ -13,11 +13,22 @@ import { Link, MetaFunction } from '@remix-run/react';
 import ContentContainer from '~/components/ContentContainer';
 import Layout from '~/components/Layout';
 import ExternalLink from '~/components/ExternalLink';
+import { LinksFunction } from '@remix-run/node';
 
 export const meta: MetaFunction = () => {
     return [
         { title: 'Seth Davis Portfolio' },
         { name: 'description', content: "Welcome to Seth Davis' portfolio" }
+    ];
+};
+
+export const links: LinksFunction = () => {
+    return [
+        {
+            rel: 'icon',
+            type: 'image/svg+xml',
+            href: '/favicon.svg'
+        }
     ];
 };
 
