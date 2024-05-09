@@ -1,9 +1,9 @@
 export default function RebekahBirthdayRoute() {
     return (
         <div
-            className={`fixed top-0 left-0 right-0 bottom-0 overflow-y-auto p-12 bg-emerald-100 text-emerald-800 text-xl`}
+            className={`fixed top-0 left-0 right-0 bottom-0 overflow-y-auto flex items-center justify-center bg-gradient-to-tr from-emerald-100 to-emerald-400 text-emerald-800 text-xl`}
         >
-            <div className="relative max-w-2xl mx-auto space-y-4">
+            <div className="bg-white relative max-w-2xl mx-auto space-y-4 border-4 border-emerald-800 p-12 rounded-xl shadow-xl">
                 <div className="block w-16 h-16 text-[64px] md:text-[64px]">
                     🎉
                 </div>
