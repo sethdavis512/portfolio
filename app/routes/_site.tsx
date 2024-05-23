@@ -26,7 +26,9 @@ export function Header({ theme }: HeaderProps) {
             <Flex className="justify-between">
                 <Flex className="gap-4">
                     <div className="h-16">
-                        <Logo className="fill-zinc-600 dark:fill-white" />
+                        <Link to="/" className="outline-primary">
+                            <Logo className="fill-zinc-600 dark:fill-white" />
+                        </Link>
                     </div>
                     {!isHome && (
                         <Button asChild variant="transparent">
