@@ -17,7 +17,7 @@ export default function ExternalLink({
     return (
         <a
             className={cn(
-                `inline-flex items-center gap-2 text-green-700 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300 underline`,
+                `inline-flex items-center gap-2 text-primary-500 hover:text-primary-400 dark:text-primary-400 dark:hover:text-primary-300 underline`,
                 className
             )}
             href={to}

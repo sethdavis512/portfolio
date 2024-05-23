@@ -24,8 +24,8 @@ export function Header({ theme }: HeaderProps) {
     return (
         <div className="py-4 md:py-6">
             <Flex className="justify-between">
-                <Flex>
-                    <div className="w-20 h-20">
+                <Flex className="gap-4">
+                    <div className="h-16">
                         <Logo className="fill-zinc-600 dark:fill-white" />
                     </div>
                     {!isHome && (
