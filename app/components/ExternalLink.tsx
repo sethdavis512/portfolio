@@ -1,26 +1,31 @@
 import { type ReactNode } from 'react';
 import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
 
+import { cn } from '~/utils/css';
+
 interface ExternalLinkProps {
     children: ReactNode;
-    href: string;
+    to: string;
     className?: string;
 }
 
 export default function ExternalLink({
     className,
     children,
-    href
+    to
 }: ExternalLinkProps) {
     return (
         <a
-            className={`inline-flex items-center gap-2 text-green-500 hover:text-green-300 underline ${className}`}
-            href={href}
+            className={cn(
+                `inline-flex items-center gap-2 text-green-700 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300 underline`,
+                className
+            )}
+            href={to}
             target="_blank"
             rel="noreferrer"
         >
             {children}
-            <ExternalLinkIcon className="h-4 w-4" />
+            <ExternalLinkIcon />
         </a>
     );
 }

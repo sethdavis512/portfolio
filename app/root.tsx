@@ -3,18 +3,34 @@ import {
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration
+    ScrollRestoration,
+    json,
+    useLoaderData
 } from '@remix-run/react';
-import type { LinksFunction } from '@remix-run/node';
+import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
+
+import { getThemeSession } from './utils/theme.server';
+
 import stylesheet from '~/tailwind.css?url';
+import { Theme } from './utils/theme';
 
 export const links: LinksFunction = () => [
     { rel: 'stylesheet', href: stylesheet }
 ];
 
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+    const themeSession = await getThemeSession(request);
+
+    return json({
+        theme: themeSession.getTheme()
+    });
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
+    const { theme } = useLoaderData<typeof loader>();
+
     return (
-        <html lang="en">
+        <html lang="en" className={theme ?? Theme.LIGHT}>
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -24,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Meta />
                 <Links />
             </head>
-            <body className="bg-neutral-800 text-white">
+            <body>
                 {children}
                 <ScrollRestoration />
                 <Scripts />
