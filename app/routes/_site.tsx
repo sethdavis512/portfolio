@@ -20,6 +20,7 @@ export function Header({ theme }: HeaderProps) {
     const themeFetcher = useFetcher();
     const location = useLocation();
     const isHome = location.pathname === '/';
+    const isDarkTheme = theme === Theme.DARK;
 
     return (
         <div className="py-4 md:py-6">
@@ -48,13 +49,13 @@ export function Header({ theme }: HeaderProps) {
                         variant="transparent"
                         type="submit"
                         name="themeSelection"
-                        value={theme === Theme.DARK ? Theme.LIGHT : Theme.DARK}
+                        value={isDarkTheme ? Theme.LIGHT : Theme.DARK}
                         className="p-4"
                     >
                         <span className="sr-only">
                             Toggle light and dark theme
                         </span>
-                        {theme === Theme.DARK ? <Sun /> : <Moon />}
+                        {isDarkTheme ? <Sun /> : <Moon />}
                     </Button>
                 </themeFetcher.Form>
             </Flex>
