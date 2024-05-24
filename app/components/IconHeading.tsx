@@ -12,10 +12,10 @@ interface IconHeadingProps {
 export default function IconHeading({
     className,
     icon,
-    heading
+    heading,
 }: IconHeadingProps) {
     return (
-        <Flex className={cn('gap-3 mb-8', className)}>
+        <Flex className={cn('mb-8 gap-3', className)}>
             {icon}
             <Heading size="3">{heading}</Heading>
         </Flex>

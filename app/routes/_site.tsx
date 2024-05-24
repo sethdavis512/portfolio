@@ -4,7 +4,7 @@ import {
     Outlet,
     useFetcher,
     useLocation,
-    useRouteLoaderData
+    useRouteLoaderData,
 } from '@remix-run/react';
 import { ArrowLeft, Moon, Sun } from 'lucide-react';
 import Flex from '~/components/Flex';
@@ -67,7 +67,7 @@ export default function SiteLayout() {
     const { theme } = useRouteLoaderData('root') as { theme: Theme };
 
     return (
-        <div className="max-w-4xl p-6 md:p-8 mx-auto mb-20">
+        <div className="mx-auto mb-20 max-w-4xl p-6 md:p-8">
             <Header theme={theme} />
             <Outlet />
         </div>

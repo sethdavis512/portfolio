@@ -14,7 +14,7 @@ export default function JobItem({
     company,
     dates,
     location = 'Austin, TX',
-    title
+    title,
 }: JobItemProps) {
     return (
         <ul className="space-y-4">

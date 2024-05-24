@@ -12,12 +12,12 @@ interface ExternalLinkProps {
 export default function ExternalLink({
     className,
     children,
-    to
+    to,
 }: ExternalLinkProps) {
     return (
         <a
             className={cn(
-                `inline-flex items-center gap-2 text-primary-500 hover:text-primary-400 dark:text-primary-400 dark:hover:text-primary-300 underline`,
+                `inline-flex items-center gap-2 text-primary-500 underline hover:text-primary-400 dark:text-primary-400 dark:hover:text-primary-300`,
                 className
             )}
             href={to}

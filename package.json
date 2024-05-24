@@ -9,7 +9,8 @@
         "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
         "start": "remix-serve ./build/server/index.js",
         "typecheck": "tsc",
-        "deploy": "fly deploy"
+        "deploy": "fly deploy",
+        "format": "prettier --write ."
     },
     "dependencies": {
         "@lemonsqueezy/wedges": "^1.3.0",
@@ -21,6 +22,8 @@
         "clsx": "^2.1.1",
         "isbot": "^4.1.0",
         "lucide-react": "^0.377.0",
+        "prettier": "^3.2.5",
+        "prettier-plugin-tailwindcss": "^0.5.14",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "tailwind-merge": "^2.3.0",
@@ -48,5 +51,14 @@
     },
     "engines": {
         "node": ">=18.0.0"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "plugins": [
+            "prettier-plugin-tailwindcss"
+        ]
     }
 }

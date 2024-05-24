@@ -16,7 +16,7 @@ export default function Panel({
     className,
     flexWrapperClassName,
     heading,
-    icon
+    icon,
 }: PanelProps) {
     return (
         <div className={cn('py-4 md:py-6', className)}>

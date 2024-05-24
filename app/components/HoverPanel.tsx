@@ -27,7 +27,7 @@ export default function HoverPanel({
     external,
     isNavLink,
     text,
-    to
+    to,
 }: HoverPanelProps) {
     const internal = !external;
 

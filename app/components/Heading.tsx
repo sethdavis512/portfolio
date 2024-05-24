@@ -18,12 +18,12 @@ const headingVariants = cva('font-bold', {
             '3': 'text-2xl md:text-4xl',
             '4': 'text-xl md:text-2xl',
             '5': 'text-md md:text-xl',
-            '6': 'text-sm md:text-md'
-        }
+            '6': 'text-sm md:text-md',
+        },
     },
     defaultVariants: {
-        size: '2'
-    }
+        size: '2',
+    },
 });
 
 export default function Heading({
@@ -31,7 +31,7 @@ export default function Heading({
     children,
     className,
     id,
-    size = '2'
+    size = '2',
 }: HeadingProps) {
     const Component = as;
 

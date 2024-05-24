@@ -10,12 +10,12 @@ export default function TailwindResourcesRoute() {
             heading="Tailwind"
             className="border-t border-t-zinc-700"
         >
-            <div className="md:grid md:grid-cols-12 gap-4">
+            <div className="gap-4 md:grid md:grid-cols-12">
                 <div className="col-span-6">
                     <Heading as="h3" size="4" className="mb-4">
                         UI Libraries
                     </Heading>
-                    <ul className="space-y-4 mb-4">
+                    <ul className="mb-4 space-y-4">
                         <li>
                             <ExternalLink to="https://ui.shadcn.com/">
                                 shadcn/ui

@@ -20,7 +20,7 @@ export default function ResumeRoute() {
                 <Heading as="h3" size="3">
                     Frontend Engineer Skills
                 </Heading>
-                <div className="flex gap-2 items-center flex-wrap">
+                <div className="flex flex-wrap items-center gap-2">
                     <SkillTag>Typescript</SkillTag>
                     <SkillTag>React</SkillTag>
                     <SkillTag>Node</SkillTag>

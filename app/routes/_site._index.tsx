@@ -12,7 +12,7 @@ import {
     NotebookPenIcon,
     ScrollText,
     Share,
-    Twitter
+    Twitter,
 } from 'lucide-react';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
@@ -21,7 +21,7 @@ import { largeIconProps } from '~/constants';
 export const meta: MetaFunction = () => {
     return [
         { title: 'Seth Davis Portfolio' },
-        { name: 'description', content: "Welcome to Seth Davis' portfolio" }
+        { name: 'description', content: "Welcome to Seth Davis' portfolio" },
     ];
 };
 
@@ -30,8 +30,8 @@ export const links: LinksFunction = () => {
         {
             rel: 'icon',
             type: 'image/x-icon',
-            href: '/favicon.ico'
-        }
+            href: '/favicon.ico',
+        },
     ];
 };
 
