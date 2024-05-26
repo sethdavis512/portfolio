@@ -1,12 +1,19 @@
 import { type ReactNode } from 'react';
+import { cn } from '~/utils/css';
 
 interface JobItemListProps {
     children: ReactNode;
+    className?: string;
 }
 
-export default function JobItemList({ children }: JobItemListProps) {
+export default function JobItemList({ children, className }: JobItemListProps) {
     return (
-        <ul className="m-0 ml-4 list-outside list-disc space-y-4 pl-4">
+        <ul
+            className={cn(
+                'm-0 ml-4 list-outside list-disc space-y-2 pl-4',
+                className
+            )}
+        >
             {children}
         </ul>
     );

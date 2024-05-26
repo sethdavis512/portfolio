@@ -4,7 +4,7 @@ import {
     BookHeartIcon,
     BookOpen,
     CircleUser,
-    Code2Icon,
+    CodepenIcon,
     Github,
     HandIcon,
     HandshakeIcon,
@@ -39,10 +39,18 @@ export default function Index() {
     return (
         <>
             <Panel heading="Welcome" icon={<HandIcon {...largeIconProps} />}>
-                <HoverPanel icon={<ScrollText />} text="Resume" to="/resume" />
-                <HoverPanel icon={<CircleUser />} text="About" to="/about" />
                 <HoverPanel
-                    icon={<BookOpen />}
+                    icon={<ScrollText className="stroke-green-500" />}
+                    text="Resume"
+                    to="/resume"
+                />
+                <HoverPanel
+                    icon={<CircleUser className="stroke-green-500" />}
+                    text="About"
+                    to="/about"
+                />
+                <HoverPanel
+                    icon={<BookOpen className="stroke-green-500" />}
                     text="Resources"
                     to="/resources"
                 />
@@ -50,13 +58,13 @@ export default function Index() {
             <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
                 <HoverPanel
                     external
-                    icon={<NotebookPenIcon />}
+                    icon={<NotebookPenIcon className="stroke-sky-500" />}
                     text="Blog"
                     to="https://dev.to/sethdavis512"
                 />
                 <HoverPanel
                     external
-                    icon={<BookHeartIcon />}
+                    icon={<BookHeartIcon className="stroke-sky-500" />}
                     text="CFG"
                     to="https://sethdavis512.github.io/custom-file-generator-guide/"
                 />
@@ -68,25 +76,25 @@ export default function Index() {
             >
                 <HoverPanel
                     external
-                    icon={<Github />}
+                    icon={<Github className="stroke-sky-500" />}
                     text="GitHub"
                     to="https://github.com/sethdavis512"
                 />
                 <HoverPanel
                     external
-                    icon={<Code2Icon />}
+                    icon={<CodepenIcon className="stroke-sky-500" />}
                     text="Codepen"
                     to="https://codepen.com/sethdavis512"
                 />
                 <HoverPanel
                     external
-                    icon={<Twitter />}
+                    icon={<Twitter className="stroke-sky-500" />}
                     text="Twitter"
                     to="https://twitter.com/sethdavis512"
                 />
                 <HoverPanel
                     external
-                    icon={<Linkedin />}
+                    icon={<Linkedin className="stroke-sky-500" />}
                     to="https://www.linkedin.com/in/sethdavis512/"
                     text="LinkedIn"
                 />

@@ -9,13 +9,13 @@ export default function ResourcesRoute() {
             <div className="mb-8">
                 <Panel heading="Resources" icon={<BookOpen />}>
                     <HoverPanel
-                        icon={<PlaneIcon />}
+                        icon={<PlaneIcon className="stroke-green-500" />}
                         to="tailwind"
                         text="Tailwind"
                     />
                     <HoverPanel
                         external
-                        icon={<GithubIcon />}
+                        icon={<GithubIcon className="stroke-sky-500" />}
                         to="https://gist.github.com/sethdavis512"
                         text="Gists"
                     />

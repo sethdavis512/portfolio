@@ -30,7 +30,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     const { theme } = useLoaderData<typeof loader>();
 
     return (
-        <html lang="en" className={theme ?? Theme.LIGHT}>
+        <html lang="en" className={`h-full ${theme ?? Theme.LIGHT}`}>
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -40,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Meta />
                 <Links />
             </head>
-            <body>
+            <body className="h-full">
                 {children}
                 <ScrollRestoration />
                 <Scripts />

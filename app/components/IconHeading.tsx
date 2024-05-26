@@ -17,7 +17,7 @@ export default function IconHeading({
     return (
         <Flex className={cn('mb-8 gap-3', className)}>
             {icon}
-            <Heading size="3">{heading}</Heading>
+            <Heading size="2">{heading}</Heading>
         </Flex>
     );
 }

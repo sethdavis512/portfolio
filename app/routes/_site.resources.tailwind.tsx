@@ -2,14 +2,11 @@ import { PlaneIcon } from 'lucide-react';
 import ExternalLink from '~/components/ExternalLink';
 import Heading from '~/components/Heading';
 import Panel from '~/components/Panel';
+import { BORDER_TOP } from '~/constants';
 
 export default function TailwindResourcesRoute() {
     return (
-        <Panel
-            icon={<PlaneIcon />}
-            heading="Tailwind"
-            className="border-t border-t-zinc-700"
-        >
+        <Panel icon={<PlaneIcon />} heading="Tailwind" className={BORDER_TOP}>
             <div className="gap-4 md:grid md:grid-cols-12">
                 <div className="col-span-6">
                     <Heading as="h3" size="4" className="mb-4">
