@@ -12,7 +12,7 @@ import { largeIconProps } from '~/constants';
 export default function ResumeRoute() {
     return (
         <>
-            <Alert color="info" title="Looking for a PDF version?">
+            <Alert color="success" title="Looking for a PDF version?">
                 <ExternalLink to="https://www.dropbox.com/scl/fi/1mobb9qfh58hc8msguivt/20240514-seth-davis-resume.pdf?rlkey=837povd4hh923v7he4ahjwf50&dl=0">
                     Download it here
                 </ExternalLink>
@@ -200,7 +200,7 @@ export default function ResumeRoute() {
                         </li>
                     </JobItemList>
                     <Alert
-                        color="info"
+                        color="success"
                         title="Interested in learning more about me?"
                     >
                         <Link
