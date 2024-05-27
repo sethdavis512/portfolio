@@ -60,7 +60,7 @@ export default function Index() {
                     </HoverPanel>
                 </Flex>
             </Panel>
-            <Panel heading="Projects" icon={<HammerIcon {...largeIconProps} />}>
+            {/* <Panel heading="Projects" icon={<HammerIcon {...largeIconProps} />}>
                 <HoverPanel to="/crm">
                     <Flex>
                         <div>
@@ -69,7 +69,7 @@ export default function Index() {
                         <div>Customer Relations Manager</div>
                     </Flex>
                 </HoverPanel>
-            </Panel>
+            </Panel> */}
             <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
                 <Flex className="gap-4">
                     <HoverPanel external to="https://dev.to/sethdavis512">

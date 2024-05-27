@@ -21,13 +21,13 @@ export default function ResumeRoute() {
                 <div className="space-y-6">
                     <p>
                         With 8+ years in web development focused on user
-                        experiences, I am seeking a Senior Frontend Engineer
+                        experiences, I am seeking a Senior Front-End Engineer
                         role on an innovative team to tackle challenges,
                         contribute to design, and advance my skills and
                         professional growth.
                     </p>
                     <Heading as="h3" size="3" borderBottom>
-                        Frontend Engineer Skills
+                        Front-End Engineer Skills
                     </Heading>
                     <div className="flex flex-wrap items-center gap-2">
                         <SkillTag>Typescript</SkillTag>
@@ -53,7 +53,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2023–May 2024 (1 yr 5 mos)"
-                        title="Senior Frontend Engineer"
+                        title="Senior Front-End Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -87,7 +87,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2020–Jan 2023 (3 yrs 1 mo)"
-                        title="Frontend Engineer"
+                        title="Front-End Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -111,7 +111,7 @@ export default function ResumeRoute() {
                                 satisfaction
                             </li>
                             <li>
-                                Established Indeed’s frontend pattern library
+                                Established Indeed’s Front-End pattern library
                                 and helped launch a volunteer guild that enabled
                                 contributions from teams across the company
                             </li>
@@ -120,7 +120,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Feb 2019–Jan 2020 (11 mos)"
-                        title="Associate Frontend Engineer"
+                        title="Associate Front-End Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -143,7 +143,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="NIC Inc."
                         dates="Jan 2018–Feb 2019 (1 yr 2 mos)"
-                        title="Frontend Engineer"
+                        title="Front-End Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -163,7 +163,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Texas NIC"
                         dates="Apr 2017–Dec 2017 (9 mos)"
-                        title="Frontend Engineer"
+                        title="Front-End Engineer"
                     >
                         <JobItemList>
                             <li>
