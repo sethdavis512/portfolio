@@ -4,7 +4,9 @@ import {
     BookHeartIcon,
     CircleUser,
     CodepenIcon,
+    ContactIcon,
     Github,
+    HammerIcon,
     HandIcon,
     HandshakeIcon,
     Linkedin,
@@ -48,11 +50,13 @@ export default function Index() {
                     text="About"
                     to="/about"
                 />
-                {/* <HoverPanel
-                    icon={<BookOpen className="stroke-green-500" />}
-                    text="Resources"
-                    to="/resources"
-                /> */}
+            </Panel>
+            <Panel heading="Projects" icon={<HammerIcon {...largeIconProps} />}>
+                <HoverPanel
+                    icon={<ContactIcon className="stroke-green-500" />}
+                    text="Customer Relations Manager"
+                    to="/crm"
+                />
             </Panel>
             <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
                 <HoverPanel
