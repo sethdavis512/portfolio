@@ -31,21 +31,21 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            ⚽️ Supporter of the{' '}
-                            <ExternalLink to="https://www.austinfc.com/">
-                                Austin FC
-                            </ExternalLink>
+                            ⚽️ Supporter of the Austin FC
                         </Heading>
-                        <Blurb>{`Verde hasta la muerte`}</Blurb>
+                        <Blurb>
+                            <ExternalLink to="https://www.austinfc.com/">{`Verde hasta la muerte`}</ExternalLink>
+                        </Blurb>
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            💿 Fanatic of{' '}
-                            <ExternalLink to="https://remix.run/">
-                                Remix
-                            </ExternalLink>
+                            💿 Fanatic of Remix
                         </Heading>
-                        <Blurb>{`Build better websites`}</Blurb>
+                        <Blurb>
+                            <ExternalLink to="https://remix.run/">
+                                {`Build better websites`}
+                            </ExternalLink>
+                        </Blurb>
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
@@ -64,6 +64,20 @@ export default function AboutRoute() {
                             🪑 Woodworking
                         </Heading>
                         <Blurb>{`I've built a shed, entertainment center, entry table`}</Blurb>
+                    </li>
+                    <li>
+                        <Heading size="3" className="mb-2">
+                            📅 Meetups
+                        </Heading>
+                        <Blurb>
+                            <ExternalLink to="https://www.meetup.com/remix-austin/">
+                                Remix Austin
+                            </ExternalLink>
+                            {` / `}
+                            <ExternalLink to="https://www.meetup.com/austin-code-mentorship/">
+                                Austin Code Mentorship
+                            </ExternalLink>
+                        </Blurb>
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">

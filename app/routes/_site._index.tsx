@@ -64,7 +64,7 @@ export default function Index() {
                 <HoverPanel
                     external
                     icon={<BookHeartIcon className="stroke-sky-500" />}
-                    text="CFG"
+                    text="Custom File Generator (Guide)"
                     to="https://sethdavis512.github.io/custom-file-generator-guide/"
                 />
             </Panel>
