@@ -53,7 +53,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2023–May 2024 (1 yr 5 mos)"
-                        title="Senior User Experience Developer"
+                        title="Senior Frontend Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -87,7 +87,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2020–Jan 2023 (3 yrs 1 mo)"
-                        title="User Experience Developer"
+                        title="Frontend Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -120,7 +120,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Feb 2019–Jan 2020 (11 mos)"
-                        title="Associate User Experience Developer"
+                        title="Associate Frontend Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -143,7 +143,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="NIC Inc."
                         dates="Jan 2018–Feb 2019 (1 yr 2 mos)"
-                        title="User Experience Developer"
+                        title="Frontend Engineer"
                     >
                         <JobItemList>
                             <li>
@@ -163,7 +163,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Texas NIC"
                         dates="Apr 2017–Dec 2017 (9 mos)"
-                        title="User Experience Developer"
+                        title="Frontend Engineer"
                     >
                         <JobItemList>
                             <li>
