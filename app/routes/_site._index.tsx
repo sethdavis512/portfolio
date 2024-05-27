@@ -2,7 +2,6 @@ import { LinksFunction } from '@remix-run/node';
 import { MetaFunction } from '@remix-run/react';
 import {
     BookHeartIcon,
-    BookOpen,
     CircleUser,
     CodepenIcon,
     Github,
@@ -49,11 +48,11 @@ export default function Index() {
                     text="About"
                     to="/about"
                 />
-                <HoverPanel
+                {/* <HoverPanel
                     icon={<BookOpen className="stroke-green-500" />}
                     text="Resources"
                     to="/resources"
-                />
+                /> */}
             </Panel>
             <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
                 <HoverPanel
@@ -82,6 +81,12 @@ export default function Index() {
                 />
                 <HoverPanel
                     external
+                    icon={<Linkedin className="stroke-sky-500" />}
+                    to="https://www.linkedin.com/in/sethdavis512/"
+                    text="LinkedIn"
+                />
+                <HoverPanel
+                    external
                     icon={<CodepenIcon className="stroke-sky-500" />}
                     text="Codepen"
                     to="https://codepen.com/sethdavis512"
@@ -91,12 +96,6 @@ export default function Index() {
                     icon={<Twitter className="stroke-sky-500" />}
                     text="Twitter"
                     to="https://twitter.com/sethdavis512"
-                />
-                <HoverPanel
-                    external
-                    icon={<Linkedin className="stroke-sky-500" />}
-                    to="https://www.linkedin.com/in/sethdavis512/"
-                    text="LinkedIn"
                 />
             </Panel>
         </>
