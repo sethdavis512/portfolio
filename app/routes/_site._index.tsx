@@ -18,6 +18,7 @@ import {
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import { largeIconProps } from '~/constants';
+import Flex from '~/components/Flex';
 
 export const meta: MetaFunction = () => {
     return [
@@ -40,67 +41,99 @@ export default function Index() {
     return (
         <>
             <Panel heading="Welcome" icon={<HandIcon {...largeIconProps} />}>
-                <HoverPanel
-                    icon={<ScrollText className="stroke-green-500" />}
-                    text="Resume"
-                    to="/resume"
-                />
-                <HoverPanel
-                    icon={<CircleUser className="stroke-green-500" />}
-                    text="About"
-                    to="/about"
-                />
+                <Flex className="gap-4">
+                    <HoverPanel to="/resume">
+                        <Flex>
+                            <div>
+                                <ScrollText className="stroke-green-500" />
+                            </div>
+                            <div>Resume</div>
+                        </Flex>
+                    </HoverPanel>
+                    <HoverPanel to="/about">
+                        <Flex>
+                            <div>
+                                <CircleUser className="stroke-green-500" />
+                            </div>
+                            <div>About</div>
+                        </Flex>
+                    </HoverPanel>
+                </Flex>
             </Panel>
             <Panel heading="Projects" icon={<HammerIcon {...largeIconProps} />}>
-                <HoverPanel
-                    icon={<ContactIcon className="stroke-green-500" />}
-                    text="Customer Relations Manager"
-                    to="/crm"
-                />
+                <HoverPanel to="/crm">
+                    <Flex>
+                        <div>
+                            <ContactIcon className="stroke-green-500" />
+                        </div>
+                        <div>Customer Relations Manager</div>
+                    </Flex>
+                </HoverPanel>
             </Panel>
             <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
-                <HoverPanel
-                    external
-                    icon={<NotebookPenIcon className="stroke-sky-500" />}
-                    text="Blog"
-                    to="https://dev.to/sethdavis512"
-                />
-                <HoverPanel
-                    external
-                    icon={<BookHeartIcon className="stroke-sky-500" />}
-                    text="Custom File Generator (Guide)"
-                    to="https://sethdavis512.github.io/custom-file-generator-guide/"
-                />
+                <Flex className="gap-4">
+                    <HoverPanel external to="https://dev.to/sethdavis512">
+                        <Flex>
+                            <div>
+                                <NotebookPenIcon className="stroke-sky-500" />
+                            </div>
+                            <div>Blog</div>
+                        </Flex>
+                    </HoverPanel>
+                    <HoverPanel
+                        external
+                        to="https://sethdavis512.github.io/custom-file-generator-guide/"
+                    >
+                        <Flex>
+                            <div>
+                                <BookHeartIcon className="stroke-sky-500" />
+                            </div>
+                            <div>Custom File Generator (Guide)</div>
+                        </Flex>
+                    </HoverPanel>
+                </Flex>
             </Panel>
             <Panel
                 heading="Socials"
                 icon={<HandshakeIcon {...largeIconProps} />}
-                flexWrapperClassName="flex-wrap"
             >
-                <HoverPanel
-                    external
-                    icon={<Github className="stroke-sky-500" />}
-                    text="GitHub"
-                    to="https://github.com/sethdavis512"
-                />
-                <HoverPanel
-                    external
-                    icon={<Linkedin className="stroke-sky-500" />}
-                    to="https://www.linkedin.com/in/sethdavis512/"
-                    text="LinkedIn"
-                />
-                <HoverPanel
-                    external
-                    icon={<CodepenIcon className="stroke-sky-500" />}
-                    text="Codepen"
-                    to="https://codepen.com/sethdavis512"
-                />
-                <HoverPanel
-                    external
-                    icon={<Twitter className="stroke-sky-500" />}
-                    text="Twitter"
-                    to="https://twitter.com/sethdavis512"
-                />
+                <Flex className="gap-4">
+                    <HoverPanel external to="https://github.com/sethdavis512">
+                        <Flex>
+                            <div>
+                                <Github className="stroke-sky-500" />
+                            </div>
+                            <div>GitHub</div>
+                        </Flex>
+                    </HoverPanel>
+                    <HoverPanel
+                        external
+                        to="https://www.linkedin.com/in/sethdavis512/"
+                    >
+                        <Flex>
+                            <div>
+                                <Linkedin className="stroke-sky-500" />
+                            </div>
+                            <div>LinkedIn</div>
+                        </Flex>
+                    </HoverPanel>
+                    <HoverPanel external to="https://codepen.com/sethdavis512">
+                        <Flex>
+                            <div>
+                                <CodepenIcon className="stroke-sky-500" />
+                            </div>
+                            <div>Codepen</div>
+                        </Flex>
+                    </HoverPanel>
+                    <HoverPanel external to="https://twitter.com/sethdavis512">
+                        <Flex>
+                            <div>
+                                <Twitter className="stroke-sky-500" />
+                            </div>
+                            <div>Twitter</div>
+                        </Flex>
+                    </HoverPanel>
+                </Flex>
             </Panel>
         </>
     );
