@@ -4,9 +4,9 @@ import {
     BookHeartIcon,
     CircleUser,
     CodepenIcon,
-    ContactIcon,
+    // ContactIcon,
     Github,
-    HammerIcon,
+    // HammerIcon,
     HandIcon,
     HandshakeIcon,
     Linkedin,
@@ -41,7 +41,7 @@ export default function Index() {
     return (
         <>
             <Panel heading="Welcome" icon={<HandIcon {...largeIconProps} />}>
-                <Flex className="gap-4">
+                <Flex className="flex-wrap gap-4">
                     <HoverPanel to="/resume">
                         <Flex>
                             <div>
@@ -71,7 +71,7 @@ export default function Index() {
                 </HoverPanel>
             </Panel> */}
             <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
-                <Flex className="gap-4">
+                <Flex className="flex-wrap gap-4">
                     <HoverPanel external to="https://dev.to/sethdavis512">
                         <Flex>
                             <div>
@@ -97,7 +97,7 @@ export default function Index() {
                 heading="Socials"
                 icon={<HandshakeIcon {...largeIconProps} />}
             >
-                <Flex className="gap-4">
+                <Flex className="flex-wrap gap-4">
                     <HoverPanel external to="https://github.com/sethdavis512">
                         <Flex>
                             <div>

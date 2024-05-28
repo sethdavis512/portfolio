@@ -38,14 +38,15 @@ export default function ResumeRoute() {
                         <SkillTag>GraphQL</SkillTag>
                         <SkillTag>Remix</SkillTag>
                         <SkillTag>Tailwind</SkillTag>
-                        <SkillTag>a11y</SkillTag>
+                        <SkillTag>Accessibility</SkillTag>
                         <SkillTag>JIRA</SkillTag>
                         <SkillTag>Agile</SkillTag>
                         <SkillTag>REST</SkillTag>
                         <SkillTag>Git</SkillTag>
-                        <SkillTag>Javascript</SkillTag>
+                        <SkillTag>CSS-in-JS</SkillTag>
                         <SkillTag>HTML</SkillTag>
                         <SkillTag>CSS</SkillTag>
+                        <SkillTag>JS</SkillTag>
                     </div>
                     <Heading as="h3" size="3" borderBottom>
                         Experience
