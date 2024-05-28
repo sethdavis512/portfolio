@@ -9,13 +9,14 @@ import Panel from '~/components/Panel';
 import SkillTag from '~/components/SkillTag';
 import { largeIconProps } from '~/constants';
 
+const RESUME_URL =
+    'https://www.dropbox.com/scl/fi/6n9sbvmzr3h138p850t6l/20240528-seth-davis-resume.pdf?rlkey=adv2zflzdhth27hnly64qop9s&dl=0';
+
 export default function ResumeRoute() {
     return (
         <>
             <Alert color="success" title="Looking for a PDF version?">
-                <ExternalLink to="https://www.dropbox.com/scl/fi/1mobb9qfh58hc8msguivt/20240514-seth-davis-resume.pdf?rlkey=837povd4hh923v7he4ahjwf50&dl=0">
-                    Download it here
-                </ExternalLink>
+                <ExternalLink to={RESUME_URL}>Download it here</ExternalLink>
             </Alert>
             <Panel heading="Resume" icon={<ScrollText {...largeIconProps} />}>
                 <div className="space-y-6">
@@ -58,11 +59,11 @@ export default function ResumeRoute() {
                     >
                         <JobItemList>
                             <li>
-                                Created an interface to give developers the
-                                ability to dynamically add prefabricated tools
-                                and customize them to allow for easier discovery
-                                of product variations. Led workshops to onboard
-                                developers and project managers.
+                                Created an interface enabling developers to
+                                dynamically add prefabricated tools and
+                                customizable mock data, saving internal users
+                                over 100+ hours weekly. Conducted workshops to
+                                onboard developers and project managers
                             </li>
                             <li>
                                 Developed a module discovery app that enabled
@@ -72,16 +73,18 @@ export default function ResumeRoute() {
                                 awareness and reuse
                             </li>
                             <li>
-                                Improved the interface for a user experience
-                                application, empowering teams to diagnose
-                                trouble areas access linter and accessibility
-                                metrics for evaluating code quality
+                                Improved the interface for a reporting
+                                application that empowered teams to diagnose
+                                issues, view coding infractions and
+                                accessibility issues, leading to the resolution
+                                of 30% of accessibility violations
                             </li>
                             <li>
                                 Upgraded theming tool to help teams identify
                                 incorrectly applied styles within components as
                                 well as enabling developers to add custom theme
                                 values and iterate towards better site designs
+                                saving developers time
                             </li>
                         </JobItemList>
                     </JobItem>
@@ -95,14 +98,14 @@ export default function ResumeRoute() {
                                 Streamlined Employer navigation by incorporating
                                 cross-organization feedback, optimizing link
                                 hierarchy, and adding sub-navigation, which
-                                improved the customer’s experience and
-                                repetitious task completion efficiency
+                                improved repetitious task efficiency in addition
+                                to the overall customer experience
                             </li>
                             <li>
-                                Enhanced customer awareness and comprehension by
-                                incorporating key UI elements to indicate job
-                                posting status, which reduced user confusion and
-                                increased the clarity of job postings
+                                Enhanced customer awareness of job statuses by
+                                incorporating key UI elements to indicate
+                                posting condition, which reduced user confusion
+                                and prompted employers to resolve posting errors
                             </li>
                             <li>
                                 Developed a module linking third-party chat to
@@ -112,9 +115,10 @@ export default function ResumeRoute() {
                                 satisfaction
                             </li>
                             <li>
-                                Established Indeed’s Front-End pattern library
-                                and helped launch a volunteer guild that enabled
-                                contributions from teams across the company
+                                Established Indeed’s front-end pattern library,
+                                contributed 3 components and helped launch a
+                                volunteer guild that enabled contributions from
+                                teams across the company
                             </li>
                         </JobItemList>
                     </JobItem>
@@ -126,18 +130,18 @@ export default function ResumeRoute() {
                         <JobItemList>
                             <li>
                                 Active participant in week-long design sprint,
-                                enhancing Employer verification workflows with
+                                enhancing employer verification workflows with
                                 valuable contributions
                             </li>
                             <li>
                                 Influenced and built portions of the design
-                                documentation for Employer verification using
+                                documentation for employer validation using
                                 InVision
                             </li>
                             <li>
-                                Rebuilt in-house Employer verification plugin
-                                using shared Indeed Component Library to display
-                                verification steps
+                                Rebuilt employer verification plugin to decrease
+                                imposter account creation and increase overall
+                                employer quality
                             </li>
                         </JobItemList>
                     </JobItem>

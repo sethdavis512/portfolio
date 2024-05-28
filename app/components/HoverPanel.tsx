@@ -13,7 +13,7 @@ interface HoverPanelProps {
 }
 
 const hoverPanelVariants = cva(
-    'dark:bg-gradient-to-t dark:from-zinc-900 px-5 py-4 md:px-6 md:py-4 dark:bg-zinc-800 border-2 transition-colors duration-300 rounded-xl outline-2',
+    'dark:bg-gradient-to-t dark:from-zinc-900 px-5 py-4 md:px-6 md:py-4 dark:bg-zinc-800 border-2 transition-colors duration-300 rounded-xl outline-2 cursor-pointer',
     {
         variants: {
             internal: {

@@ -1,9 +1,14 @@
-import { CircleUser, QuoteIcon } from 'lucide-react';
+import { QuoteIcon } from 'lucide-react';
 import { ReactNode } from 'react';
-import ExternalLink from '~/components/ExternalLink';
+import ExternalLink, {
+    EXTERNAL_LINK_CLASS_NAME,
+} from '~/components/ExternalLink';
 import Heading from '~/components/Heading';
 import Panel from '~/components/Panel';
-import { largeIconProps } from '~/constants';
+import { BORDER_COLOR, largeIconProps } from '~/constants';
+import profilePhoto from '../images/austfin-fc-profile.jpg';
+import { Link } from '@remix-run/react';
+import { Alert } from '@lemonsqueezy/wedges';
 
 const Blurb = ({ children }: { children: ReactNode }) => (
     <p className="ml-8 md:ml-10">{children}</p>
@@ -21,7 +26,16 @@ const Quote = ({ quote, author }: { quote: string; author: string }) => (
 export default function AboutRoute() {
     return (
         <>
-            <Panel icon={<CircleUser {...largeIconProps} />} heading="About">
+            <Panel
+                icon={
+                    <img
+                        className={`h-24 w-24 rounded-full ${BORDER_COLOR}`}
+                        src={profilePhoto}
+                        alt="Seth Davis wearing an Austin FC hat in front of the Austin FC stadium"
+                    />
+                }
+                heading="About me"
+            >
                 <ul className="space-y-8">
                     <li>
                         <Heading size="3" className="mb-2">
@@ -31,7 +45,7 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            ⚽️ Supporter of the Austin FC
+                            ⚽️ Austin FC supporter
                         </Heading>
                         <Blurb>
                             <ExternalLink to="https://www.austinfc.com/">{`Verde hasta la muerte`}</ExternalLink>
@@ -39,7 +53,7 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            💿 Fanatic of Remix
+                            💿 Remix fanatic
                         </Heading>
                         <Blurb>
                             <ExternalLink to="https://remix.run/">
@@ -49,7 +63,7 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            ⚡️ Enthusiast of electric vehicles
+                            ⚡️ Electric vehicle enthusiast
                         </Heading>
                         <Blurb>{`I'm a Rivian fan`}</Blurb>
                     </li>
@@ -61,13 +75,13 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            🪑 Woodworking
+                            🪑 Woodworker
                         </Heading>
                         <Blurb>{`I've built a shed, entertainment center, entry table`}</Blurb>
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            📅 Meetups
+                            📅 Meetup goer
                         </Heading>
                         <Blurb>
                             <ExternalLink to="https://www.meetup.com/remix-austin/">
@@ -81,12 +95,17 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            🎮 Gaming
+                            🎮 Gamer
                         </Heading>
                         <Blurb>{`Rocket League. No Man's Sky. MW3.`}</Blurb>
                     </li>
                 </ul>
             </Panel>
+            <Alert color="success" title="Looking for my resume?">
+                <Link to="/resume" className={EXTERNAL_LINK_CLASS_NAME}>
+                    See my work experience
+                </Link>
+            </Alert>
             <Panel
                 icon={<QuoteIcon {...largeIconProps} />}
                 heading="Motivation"
