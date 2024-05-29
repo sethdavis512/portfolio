@@ -63,6 +63,12 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
+                            💻 Learning
+                        </Heading>
+                        <Blurb>Prisma / Docker / SQLite / Postgres</Blurb>
+                    </li>
+                    <li>
+                        <Heading size="3" className="mb-2">
                             ⚡️ Electric vehicle enthusiast
                         </Heading>
                         <Blurb>{`I'm a Rivian fan`}</Blurb>
