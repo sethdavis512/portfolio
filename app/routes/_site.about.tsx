@@ -63,7 +63,7 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Heading size="3" className="mb-2">
-                            💻 Learning
+                            💻 Learner
                         </Heading>
                         <Blurb>Prisma / Docker / SQLite / Postgres</Blurb>
                     </li>
