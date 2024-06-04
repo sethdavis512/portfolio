@@ -13,7 +13,7 @@ import twsCrmScreenshotDark from '../images/20240604-tws-crm-dark.png';
 import Heading from '~/components/Heading';
 
 export default function CRMRoute() {
-    const logoProps = { className: 'h-10 w-10' };
+    const logoProps = { className: 'h-6 w-6' };
 
     return (
         <Panel
@@ -21,8 +21,10 @@ export default function CRMRoute() {
             heading="Customer Relations Manager"
             className="space-y-6"
         >
-            <p>Stack:</p>
             <Flex className="gap-4">
+                <div>
+                    <p>Stack:</p>
+                </div>
                 <ReactLogo {...logoProps} />
                 <RemixLogo {...logoProps} />
                 <WedgesLogo {...logoProps} />

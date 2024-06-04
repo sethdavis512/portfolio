@@ -5,12 +5,12 @@
     "type": "module",
     "scripts": {
         "build": "remix vite:build",
+        "deploy": "fly deploy",
         "dev": "remix vite:dev",
+        "format": "prettier --write .",
         "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
         "start": "remix-serve ./build/server/index.js",
-        "typecheck": "tsc",
-        "deploy": "fly deploy",
-        "format": "prettier --write ."
+        "typecheck": "tsc"
     },
     "dependencies": {
         "@lemonsqueezy/wedges": "^1.3.0",
