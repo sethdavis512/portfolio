@@ -4,9 +4,9 @@ import {
     BookHeartIcon,
     CircleUser,
     CodepenIcon,
-    // ContactIcon,
+    ContactIcon,
     Github,
-    // HammerIcon,
+    HammerIcon,
     HandIcon,
     HandshakeIcon,
     Linkedin,
@@ -38,6 +38,14 @@ export const links: LinksFunction = () => {
 };
 
 export default function Index() {
+    const internalIconProps = {
+        className: 'stroke-green-500',
+    };
+
+    const externalIconProps = {
+        className: 'stroke-sky-500',
+    };
+
     return (
         <>
             <Panel heading="Welcome" icon={<HandIcon {...largeIconProps} />}>
@@ -45,7 +53,7 @@ export default function Index() {
                     <HoverPanel to="/resume">
                         <Flex>
                             <div>
-                                <ScrollText className="stroke-green-500" />
+                                <ScrollText {...internalIconProps} />
                             </div>
                             <div>Resume</div>
                         </Flex>
@@ -53,29 +61,31 @@ export default function Index() {
                     <HoverPanel to="/about">
                         <Flex>
                             <div>
-                                <CircleUser className="stroke-green-500" />
+                                <CircleUser {...internalIconProps} />
                             </div>
                             <div>About</div>
                         </Flex>
                     </HoverPanel>
                 </Flex>
             </Panel>
-            {/* <Panel heading="Projects" icon={<HammerIcon {...largeIconProps} />}>
-                <HoverPanel to="/crm">
-                    <Flex>
-                        <div>
-                            <ContactIcon className="stroke-green-500" />
-                        </div>
-                        <div>Customer Relations Manager</div>
-                    </Flex>
-                </HoverPanel>
-            </Panel> */}
+            <Panel heading="Projects" icon={<HammerIcon {...largeIconProps} />}>
+                <Flex className="flex-wrap gap-4">
+                    <HoverPanel to="crm">
+                        <Flex>
+                            <div>
+                                <ContactIcon {...internalIconProps} />
+                            </div>
+                            <div>Customer Relations Manager</div>
+                        </Flex>
+                    </HoverPanel>
+                </Flex>
+            </Panel>
             <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel external to="https://dev.to/sethdavis512">
                         <Flex>
                             <div>
-                                <NotebookPenIcon className="stroke-sky-500" />
+                                <NotebookPenIcon {...externalIconProps} />
                             </div>
                             <div>Blog</div>
                         </Flex>
@@ -86,7 +96,7 @@ export default function Index() {
                     >
                         <Flex>
                             <div>
-                                <BookHeartIcon className="stroke-sky-500" />
+                                <BookHeartIcon {...externalIconProps} />
                             </div>
                             <div>Custom File Generator (Guide)</div>
                         </Flex>
@@ -101,7 +111,7 @@ export default function Index() {
                     <HoverPanel external to="https://github.com/sethdavis512">
                         <Flex>
                             <div>
-                                <Github className="stroke-sky-500" />
+                                <Github {...externalIconProps} />
                             </div>
                             <div>GitHub</div>
                         </Flex>
@@ -112,7 +122,7 @@ export default function Index() {
                     >
                         <Flex>
                             <div>
-                                <Linkedin className="stroke-sky-500" />
+                                <Linkedin {...externalIconProps} />
                             </div>
                             <div>LinkedIn</div>
                         </Flex>
@@ -120,7 +130,7 @@ export default function Index() {
                     <HoverPanel external to="https://codepen.com/sethdavis512">
                         <Flex>
                             <div>
-                                <CodepenIcon className="stroke-sky-500" />
+                                <CodepenIcon {...externalIconProps} />
                             </div>
                             <div>Codepen</div>
                         </Flex>
@@ -128,7 +138,7 @@ export default function Index() {
                     <HoverPanel external to="https://twitter.com/sethdavis512">
                         <Flex>
                             <div>
-                                <Twitter className="stroke-sky-500" />
+                                <Twitter {...externalIconProps} />
                             </div>
                             <div>Twitter</div>
                         </Flex>
