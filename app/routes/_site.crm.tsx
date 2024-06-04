@@ -58,7 +58,7 @@ export default function CRMRoute() {
                 <li>Deals listing (Coming soon)</li>
                 <li>Leads listing (Coming soon)</li>
             </ul>
-            <ExternalLink to="https://tws-crm.fly.dev/">
+            <ExternalLink to="https://github.com/sethdavis512/tws-crm">
                 View the code
             </ExternalLink>
             <ExternalLink to="https://tws-crm.fly.dev/">
