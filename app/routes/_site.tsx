@@ -29,7 +29,11 @@ export function Header({ theme }: HeaderProps) {
             <Flex className="justify-between">
                 <Flex className="gap-4">
                     <div className="h-16">
-                        <Link to="/" className="outline-primary">
+                        <Link
+                            to="/"
+                            className="outline-primary"
+                            aria-label="Return to home page"
+                        >
                             <Logo className="fill-zinc-600 dark:fill-white" />
                         </Link>
                     </div>
