@@ -10,7 +10,6 @@ import WedgesLogo from '~/components/WedgesLogo';
 import { BORDER_COLOR, largeIconProps } from '~/constants';
 import twsCrmScreenshotLight from '../images/20240604-tws-crm-light.png';
 import twsCrmScreenshotDark from '../images/20240604-tws-crm-dark.png';
-import Divider from '~/components/Divider';
 import Heading from '~/components/Heading';
 
 export default function CRMRoute() {
