@@ -12,7 +12,6 @@ import twsCrmScreenshotLight from '../images/20240604-tws-crm-light.png';
 import twsCrmScreenshotDark from '../images/20240604-tws-crm-dark.png';
 import Heading from '~/components/Heading';
 import { Tooltip } from '@lemonsqueezy/wedges';
-import { Link } from '@remix-run/react';
 
 export default function CRMRoute() {
     const logoProps = { className: 'h-6 w-6' };
