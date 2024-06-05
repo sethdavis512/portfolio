@@ -11,6 +11,8 @@ import { BORDER_COLOR, largeIconProps } from '~/constants';
 import twsCrmScreenshotLight from '../images/20240604-tws-crm-light.png';
 import twsCrmScreenshotDark from '../images/20240604-tws-crm-dark.png';
 import Heading from '~/components/Heading';
+import { Tooltip } from '@lemonsqueezy/wedges';
+import { Link } from '@remix-run/react';
 
 export default function CRMRoute() {
     const logoProps = { className: 'h-6 w-6' };
@@ -25,10 +27,42 @@ export default function CRMRoute() {
                 <div>
                     <p>Stack:</p>
                 </div>
-                <ReactLogo {...logoProps} />
-                <RemixLogo {...logoProps} />
-                <WedgesLogo {...logoProps} />
-                <SupabaseLogo {...logoProps} />
+                <Tooltip content="React">
+                    <a
+                        href="https://react.dev/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <ReactLogo {...logoProps} />
+                    </a>
+                </Tooltip>
+                <Tooltip content="Remix">
+                    <a
+                        href="https://remix.run/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <RemixLogo {...logoProps} />
+                    </a>
+                </Tooltip>
+                <Tooltip content="Wedges UI">
+                    <a
+                        href="https://www.lemonsqueezy.com/wedges"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <WedgesLogo {...logoProps} />
+                    </a>
+                </Tooltip>
+                <Tooltip content="Supabase">
+                    <a
+                        href="https://supabase.com/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <SupabaseLogo {...logoProps} />
+                    </a>
+                </Tooltip>
             </Flex>
             <img
                 className={`w-full ${BORDER_COLOR} rounded-lg dark:hidden`}
