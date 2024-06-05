@@ -103,7 +103,12 @@ export default function AboutRoute() {
                         <Heading size="3" className="mb-2">
                             🎮 Gamer
                         </Heading>
-                        <Blurb>{`Rocket League. No Man's Sky. MW3.`}</Blurb>
+                        <Blurb>
+                            {`Rocket League. No Man's Sky. MW3. `}
+                            <ExternalLink to="https://www.xbox.com/en-US/games/store/boomerang-fu/9PJDVRGGFPPH">
+                                Boomerang Fu
+                            </ExternalLink>
+                        </Blurb>
                     </li>
                 </ul>
             </Panel>
