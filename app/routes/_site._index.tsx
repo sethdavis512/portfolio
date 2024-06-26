@@ -2,28 +2,32 @@ import { LinksFunction } from '@remix-run/node';
 import { MetaFunction } from '@remix-run/react';
 import {
     BookHeartIcon,
-    CircleUser,
+    BookUserIcon,
     CodepenIcon,
     ContactIcon,
     Github,
     HammerIcon,
-    HandIcon,
     HandshakeIcon,
+    LaughIcon,
     Linkedin,
-    NotebookPenIcon,
     ScrollText,
-    Share,
     Twitter,
 } from 'lucide-react';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import { largeIconProps } from '~/constants';
 import Flex from '~/components/Flex';
+import Heading from '~/components/Heading';
+import ExternalLink from '~/components/ExternalLink';
 
 export const meta: MetaFunction = () => {
     return [
-        { title: 'Seth Davis Portfolio' },
-        { name: 'description', content: "Welcome to Seth Davis' portfolio" },
+        { title: `Seth Davis' Portfolio` },
+        {
+            name: 'description',
+            content:
+                "Welcome to Seth Davis' portfolio. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of frontend technologies, I'm most passionate about Remix and writing fullstack web applications.",
+        },
     ];
 };
 
@@ -48,7 +52,21 @@ export default function Index() {
 
     return (
         <>
-            <Panel heading="Welcome" icon={<HandIcon {...largeIconProps} />}>
+            <Heading as="h1" size="1" className="mb-4">
+                Welcome
+            </Heading>
+            <div className="space-y-2">
+                <p className="text-lg">
+                    {[
+                        `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of frontend technologies, I'm most passionate about `,
+                        <ExternalLink to="https://remix.run" key={`remix-link`}>
+                            Remix
+                        </ExternalLink>,
+                        ` and writing fullstack web applications.`,
+                    ]}
+                </p>
+            </div>
+            <Panel heading="About me" icon={<LaughIcon {...largeIconProps} />}>
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel to="/resume">
                         <Flex>
@@ -61,9 +79,9 @@ export default function Index() {
                     <HoverPanel to="/about">
                         <Flex>
                             <div>
-                                <CircleUser {...internalIconProps} />
+                                <BookUserIcon {...internalIconProps} />
                             </div>
-                            <div>About</div>
+                            <div>The fun stuff</div>
                         </Flex>
                     </HoverPanel>
                 </Flex>
@@ -78,18 +96,14 @@ export default function Index() {
                             <div>Customer Relations Manager</div>
                         </Flex>
                     </HoverPanel>
-                </Flex>
-            </Panel>
-            <Panel heading="Shareables" icon={<Share {...largeIconProps} />}>
-                <Flex className="flex-wrap gap-4">
-                    <HoverPanel external to="https://dev.to/sethdavis512">
+                    {/* <HoverPanel external to="https://dev.to/sethdavis512">
                         <Flex>
                             <div>
                                 <NotebookPenIcon {...externalIconProps} />
                             </div>
                             <div>Blog</div>
                         </Flex>
-                    </HoverPanel>
+                    </HoverPanel> */}
                     <HoverPanel
                         external
                         to="https://sethdavis512.github.io/custom-file-generator-guide/"
