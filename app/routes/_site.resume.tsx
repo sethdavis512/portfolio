@@ -38,6 +38,8 @@ export default function ResumeRoute() {
                         <SkillTag>Federated Modules</SkillTag>
                         <SkillTag>GraphQL</SkillTag>
                         <SkillTag>Remix</SkillTag>
+                        <SkillTag>Prisma</SkillTag>
+                        <SkillTag>Postgres</SkillTag>
                         <SkillTag>Tailwind</SkillTag>
                         <SkillTag>Accessibility</SkillTag>
                         <SkillTag>JIRA</SkillTag>
