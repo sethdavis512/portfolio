@@ -25,7 +25,7 @@ export function Header({ theme }: HeaderProps) {
     const isDarkTheme = theme === Theme.DARK;
 
     return (
-        <div className="py-4 md:py-6">
+        <div className="py-8 md:py-12">
             <Flex className="justify-between">
                 <Flex className="gap-4">
                     <div className="h-16">
