@@ -55,17 +55,15 @@ export default function Index() {
             <Heading as="h1" size="1" className="mb-4">
                 Welcome
             </Heading>
-            <div className="space-y-2">
-                <p className="text-lg">
-                    {[
-                        `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of frontend technologies, I'm most passionate about `,
-                        <ExternalLink to="https://remix.run" key={`remix-link`}>
-                            Remix
-                        </ExternalLink>,
-                        ` and writing fullstack web applications.`,
-                    ]}
-                </p>
-            </div>
+            <p className="pb-4 text-lg md:pb-6">
+                {[
+                    `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of frontend technologies, I'm most passionate about `,
+                    <ExternalLink to="https://remix.run" key={`remix-link`}>
+                        Remix
+                    </ExternalLink>,
+                    ` and writing fullstack web applications.`,
+                ]}
+            </p>
             <Panel heading="About me" icon={<LaughIcon {...largeIconProps} />}>
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel to="/resume">
