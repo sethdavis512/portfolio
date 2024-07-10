@@ -11,6 +11,7 @@ import {
     LaughIcon,
     Linkedin,
     ScrollText,
+    Share2Icon,
     Twitter,
 } from 'lucide-react';
 import Panel from '~/components/Panel';
@@ -19,6 +20,7 @@ import { largeIconProps } from '~/constants';
 import Flex from '~/components/Flex';
 import Heading from '~/components/Heading';
 import ExternalLink from '~/components/ExternalLink';
+import TimeWeaverLogo from '~/components/TimeWeaverLogo';
 
 export const meta: MetaFunction = () => {
     return [
@@ -84,7 +86,10 @@ export default function Index() {
                     </HoverPanel>
                 </Flex>
             </Panel>
-            <Panel heading="Projects" icon={<HammerIcon {...largeIconProps} />}>
+            <Panel
+                heading="Fullstack projects"
+                icon={<HammerIcon {...largeIconProps} />}
+            >
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel to="crm">
                         <Flex>
@@ -92,6 +97,14 @@ export default function Index() {
                                 <ContactIcon {...internalIconProps} />
                             </div>
                             <div>Customer Relations Manager</div>
+                        </Flex>
+                    </HoverPanel>
+                    <HoverPanel to="time-weaver">
+                        <Flex>
+                            <div className="h-6 w-6">
+                                <TimeWeaverLogo className="fill-green-500" />
+                            </div>
+                            <div>TimeWeaver</div>
                         </Flex>
                     </HoverPanel>
                     {/* <HoverPanel external to="https://dev.to/sethdavis512">
@@ -102,6 +115,13 @@ export default function Index() {
                             <div>Blog</div>
                         </Flex>
                     </HoverPanel> */}
+                </Flex>
+            </Panel>
+            <Panel
+                heading="Shareables"
+                icon={<Share2Icon {...largeIconProps} />}
+            >
+                <Flex className="flex-wrap gap-4">
                     <HoverPanel
                         external
                         to="https://sethdavis512.github.io/custom-file-generator-guide/"
