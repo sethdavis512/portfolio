@@ -170,6 +170,12 @@ export default function AboutRoute() {
                             author="Wilfred Nancy"
                         />
                     </li>
+                    <li>
+                        <Quote
+                            quote="I get knocked down, but I get up again...You are never gonna keep me down..."
+                            author="Chumbawamba"
+                        />
+                    </li>
                 </ul>
             </Panel>
         </>
