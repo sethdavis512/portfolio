@@ -102,7 +102,7 @@ export default function Index() {
                     <HoverPanel to="time-weaver">
                         <Flex>
                             <div className="h-6 w-6">
-                                <TimeWeaverLogo className="fill-green-500" />
+                                <TimeWeaverLogo className="fill-green-500 dark:fill-green-500" />
                             </div>
                             <div>TimeWeaver</div>
                         </Flex>
