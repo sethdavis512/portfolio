@@ -4,9 +4,9 @@ import {
     BookHeartIcon,
     BookUserIcon,
     CodepenIcon,
-    ContactIcon,
+    // ContactIcon,
     Github,
-    HammerIcon,
+    // HammerIcon,
     HandshakeIcon,
     LaughIcon,
     Linkedin,
@@ -20,7 +20,7 @@ import { largeIconProps } from '~/constants';
 import Flex from '~/components/Flex';
 import Heading from '~/components/Heading';
 import ExternalLink from '~/components/ExternalLink';
-import TimeWeaverLogo from '~/components/TimeWeaverLogo';
+// import TimeWeaverLogo from '~/components/TimeWeaverLogo';
 
 export const meta: MetaFunction = () => {
     return [
@@ -28,7 +28,7 @@ export const meta: MetaFunction = () => {
         {
             name: 'description',
             content:
-                "Welcome to Seth Davis' portfolio. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of frontend technologies, I'm most passionate about Remix and writing full stack web applications.",
+                "Welcome to Seth Davis' portfolio. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of front-end technologies, I'm most passionate about Remix and writing full stack web applications.",
         },
     ];
 };
@@ -59,7 +59,7 @@ export default function Index() {
             </Heading>
             <p className="pb-4 text-lg md:pb-6">
                 {[
-                    `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of frontend technologies, I'm most passionate about `,
+                    `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of front-end technologies, I'm most passionate about `,
                     <ExternalLink to="https://remix.run" key={`remix-link`}>
                         Remix
                     </ExternalLink>,

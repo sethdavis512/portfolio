@@ -31,7 +31,7 @@ export default function AboutRoute() {
                     <img
                         className={`h-24 w-24 rounded-full ${BORDER_COLOR}`}
                         src={profilePhoto}
-                        alt="Seth Davis wearing an Austin FC hat in front of the Austin FC stadium"
+                        alt="Seth Davis wearing an Austin FC hat in front of the Austin FC soccer stadium"
                     />
                 }
                 heading="About me"
