@@ -66,7 +66,7 @@ export default function Index() {
                     ` and writing full stack web applications.`,
                 ]}
             </p>
-            <Panel
+            {/* <Panel
                 heading="Full stack projects"
                 icon={<HammerIcon {...largeIconProps} />}
             >
@@ -87,16 +87,16 @@ export default function Index() {
                             <div>TimeWeaver</div>
                         </Flex>
                     </HoverPanel>
-                    {/* <HoverPanel external to="https://dev.to/sethdavis512">
+                    <HoverPanel external to="https://dev.to/sethdavis512">
                         <Flex>
                             <div>
                                 <NotebookPenIcon {...externalIconProps} />
                             </div>
                             <div>Blog</div>
                         </Flex>
-                    </HoverPanel> */}
+                    </HoverPanel>
                 </Flex>
-            </Panel>
+            </Panel> */}
             <Panel heading="About me" icon={<LaughIcon {...largeIconProps} />}>
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel to="/resume">
