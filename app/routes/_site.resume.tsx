@@ -55,6 +55,15 @@ export default function ResumeRoute() {
                         Experience
                     </Heading>
                     <JobItem
+                        company="Gartner"
+                        dates="Aug 2024–Present"
+                        title="Senior Front-End Engineer"
+                    >
+                        <JobItemList>
+                            <li>Building an internal analytics platform</li>
+                        </JobItemList>
+                    </JobItem>
+                    <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2023–May 2024 (1 yr 5 mos)"
                         title="Senior Front-End Engineer"
