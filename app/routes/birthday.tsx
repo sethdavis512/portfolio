@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { Form, useLoaderData } from '@remix-run/react';
 
 export async function loader() {
     return json({ age: 36 });
@@ -16,7 +16,6 @@ export default function BirthdayRoute() {
                         Seth is turning {age} 🥳
                     </h1>
                     <div className="space-y-4">
-                        <h2 className="text-3xl font-bold">Details</h2>
                         <h3 className="text-xl">{`🔥 We're celebrating with a bonfire hangout 🍻`}</h3>
                         <p>
                             <strong>Date:</strong> Friday, October 11
@@ -27,7 +26,7 @@ export default function BirthdayRoute() {
                         <p>
                             <strong>Where:</strong>{' '}
                             <a
-                                className="text-green-500 underline"
+                                className="text-green-600 underline hover:text-green-500"
                                 href="https://maps.app.goo.gl/WaqhCa2LSKL6geaa9"
                             >
                                 1109 Oakwood Drive Leander, TX 78641
@@ -42,6 +41,19 @@ export default function BirthdayRoute() {
                             & enjoy some tasty food and smores. Beer will be
                             provided.
                         </p>
+                        <Form method="POST" action="/api/ics" reloadDocument>
+                            <input
+                                type="hidden"
+                                name="title"
+                                value="Seth's 36th birthday"
+                            />
+                            <button
+                                type="submit"
+                                className="rounded-lg border-2 border-green-900 bg-green-700 px-4 py-2 text-white hover:bg-green-600"
+                            >
+                                📅 Add to Calendar (.ics)
+                            </button>
+                        </Form>
                     </div>
                 </div>
                 <div className="flex-1">
