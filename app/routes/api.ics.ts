@@ -7,21 +7,44 @@ export async function action({ request }: ActionFunctionArgs) {
         const form = await request.formData();
         const title = String(form.get('title'));
 
+        const year = 2024;
+        const month = 10;
+        const day = 11;
+        const hour = 18;
+        const minute = 0;
+        const start: [number, number, number, number, number] = [
+            year,
+            month,
+            day,
+            hour,
+            minute,
+        ];
+
+        const durationHours = 3;
+        const durationMinutes = 3;
+        const duration = { hours: durationHours, minutes: durationMinutes };
+
+        const description = 'Bonfire at the Davis house';
+        const location = '1109 Oakwood Drive Leander TX 78641';
+        const url = 'https://sethdavis.io/birthday';
+
+        const organizer = {
+            name: 'Seth Davis',
+            email: 'sethdavis512@gmail.com',
+        };
+
         const { value } = ics.createEvent({
-            start: [2024, 10, 11, 18, 0],
-            duration: { hours: 3, minutes: 0 },
+            start,
+            duration,
             title,
-            description: 'Bonfire at the Davis house',
-            location: '1109 Oakwood Drive Leander TX 78641',
-            // url: 'http://www.bolderboulder.com/',
+            description,
+            location,
+            url,
             // geo: { lat: 40.0095, lon: 105.2669 },
             // categories: ['10k races', 'Memorial Day Weekend', 'Boulder CO'],
             // status: 'CONFIRMED',
             // busyStatus: 'BUSY',
-            organizer: {
-                name: 'Seth Davis',
-                email: 'sethdavis512@gmail.com',
-            },
+            organizer,
             // attendees: [
             //     {
             //         name: 'Adam Gibbons',
