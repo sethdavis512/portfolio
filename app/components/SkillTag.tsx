@@ -1,10 +1,6 @@
-import { Tag } from '@lemonsqueezy/wedges';
+import { Badge } from '@radix-ui/themes';
 import { ReactNode } from 'react';
 
 export default function SkillTag({ children }: { children: ReactNode }) {
-    return (
-        <Tag color="green" shape="pill" stroke>
-            {children}
-        </Tag>
-    );
+    return <Badge color="green">{children}</Badge>;
 }

@@ -16,7 +16,7 @@ export default function Panel({
     icon,
 }: PanelProps) {
     return (
-        <div className={cn('py-4 md:py-6', className)}>
+        <div className={cn('py-4', className)}>
             <IconHeading icon={icon} heading={heading} />
             {children}
         </div>

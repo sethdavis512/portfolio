@@ -1,36 +1,19 @@
+import { PropsWithChildren } from 'react';
 import {
     Links,
     Meta,
     Outlet,
     Scripts,
     ScrollRestoration,
-    json,
-    useLoaderData,
 } from '@remix-run/react';
-import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
+import { Theme } from '@radix-ui/themes';
 
-import { getThemeSession } from './utils/theme.server';
+import '@radix-ui/themes/styles.css';
+import '~/tailwind.css';
 
-import stylesheet from '~/tailwind.css?url';
-import { Theme } from './utils/theme';
-
-export const links: LinksFunction = () => [
-    { rel: 'stylesheet', href: stylesheet },
-];
-
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-    const themeSession = await getThemeSession(request);
-
-    return json({
-        theme: themeSession.getTheme(),
-    });
-};
-
-export function Layout({ children }: { children: React.ReactNode }) {
-    const { theme } = useLoaderData<typeof loader>();
-
+export function Layout({ children }: PropsWithChildren) {
     return (
-        <html lang="en" className={`h-full ${theme ?? Theme.LIGHT}`}>
+        <html lang="en" className="h-full">
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -40,11 +23,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Meta />
                 <Links />
             </head>
-            <body className="h-full">
-                {children}
-                <ScrollRestoration />
-                <Scripts />
-            </body>
+            <Theme asChild accentColor="green" appearance="dark">
+                <body className="h-full">
+                    {children}
+                    <ScrollRestoration />
+                    <Scripts />
+                </body>
+            </Theme>
         </html>
     );
 }

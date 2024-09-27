@@ -1,12 +1,14 @@
-import { type ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { BORDER_COLOR, BORDER_BOTTOM } from '~/constants';
 
 interface CodeProps {
-    children: ReactNode;
     heading: string;
 }
 
-export default function Code({ children, heading }: CodeProps) {
+export default function Code({
+    children,
+    heading,
+}: PropsWithChildren<CodeProps>) {
     return (
         <div className="prose w-full">
             <pre

@@ -4,9 +4,7 @@ import {
     BookHeartIcon,
     BookUserIcon,
     CodepenIcon,
-    // ContactIcon,
     Github,
-    // HammerIcon,
     HandshakeIcon,
     LaughIcon,
     Linkedin,
@@ -14,13 +12,12 @@ import {
     Share2Icon,
     Twitter,
 } from 'lucide-react';
+import { Heading } from '@radix-ui/themes';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import { largeIconProps } from '~/constants';
 import Flex from '~/components/Flex';
-import Heading from '~/components/Heading';
 import ExternalLink from '~/components/ExternalLink';
-// import TimeWeaverLogo from '~/components/TimeWeaverLogo';
 
 export const meta: MetaFunction = () => {
     return [
@@ -44,20 +41,12 @@ export const links: LinksFunction = () => {
 };
 
 export default function Index() {
-    const internalIconProps = {
-        className: 'stroke-green-500',
-    };
-
-    const externalIconProps = {
-        className: 'stroke-sky-500',
-    };
-
     return (
         <>
-            <Heading as="h1" size="1" className="mb-4">
+            <Heading as="h1" size="6" className="mb-4">
                 Welcome
             </Heading>
-            <p className="pb-4 text-lg md:pb-6">
+            <p className="pb-4 md:pb-6">
                 {[
                     `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of front-end technologies, I'm most passionate about `,
                     <ExternalLink to="https://remix.run" key={`remix-link`}>
@@ -66,52 +55,17 @@ export default function Index() {
                     ` and writing full stack web applications.`,
                 ]}
             </p>
-            {/* <Panel
-                heading="Full stack projects"
-                icon={<HammerIcon {...largeIconProps} />}
-            >
-                <Flex className="flex-wrap gap-4">
-                    <HoverPanel to="crm">
-                        <Flex>
-                            <div>
-                                <ContactIcon {...internalIconProps} />
-                            </div>
-                            <div>Customer Relations Manager</div>
-                        </Flex>
-                    </HoverPanel>
-                    <HoverPanel to="time-weaver">
-                        <Flex>
-                            <div className="h-6 w-6">
-                                <TimeWeaverLogo className="fill-green-500 dark:fill-green-500" />
-                            </div>
-                            <div>TimeWeaver</div>
-                        </Flex>
-                    </HoverPanel>
-                    <HoverPanel external to="https://dev.to/sethdavis512">
-                        <Flex>
-                            <div>
-                                <NotebookPenIcon {...externalIconProps} />
-                            </div>
-                            <div>Blog</div>
-                        </Flex>
-                    </HoverPanel>
-                </Flex>
-            </Panel> */}
             <Panel heading="About me" icon={<LaughIcon {...largeIconProps} />}>
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel to="/resume">
                         <Flex>
-                            <div>
-                                <ScrollText {...internalIconProps} />
-                            </div>
+                            <ScrollText />
                             <div>Resume</div>
                         </Flex>
                     </HoverPanel>
                     <HoverPanel to="/about">
                         <Flex>
-                            <div>
-                                <BookUserIcon {...internalIconProps} />
-                            </div>
+                            <BookUserIcon />
                             <div>Fun facts</div>
                         </Flex>
                     </HoverPanel>
@@ -127,9 +81,7 @@ export default function Index() {
                         to="https://sethdavis512.github.io/custom-file-generator-guide/"
                     >
                         <Flex>
-                            <div>
-                                <BookHeartIcon {...externalIconProps} />
-                            </div>
+                            <BookHeartIcon />
                             <div>Custom File Generator (Guide)</div>
                         </Flex>
                     </HoverPanel>
@@ -142,9 +94,7 @@ export default function Index() {
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel external to="https://github.com/sethdavis512">
                         <Flex>
-                            <div>
-                                <Github {...externalIconProps} />
-                            </div>
+                            <Github />
                             <div>GitHub</div>
                         </Flex>
                     </HoverPanel>
@@ -153,25 +103,19 @@ export default function Index() {
                         to="https://www.linkedin.com/in/sethdavis512/"
                     >
                         <Flex>
-                            <div>
-                                <Linkedin {...externalIconProps} />
-                            </div>
+                            <Linkedin />
                             <div>LinkedIn</div>
                         </Flex>
                     </HoverPanel>
                     <HoverPanel external to="https://codepen.com/sethdavis512">
                         <Flex>
-                            <div>
-                                <CodepenIcon {...externalIconProps} />
-                            </div>
+                            <CodepenIcon />
                             <div>Codepen</div>
                         </Flex>
                     </HoverPanel>
                     <HoverPanel external to="https://twitter.com/sethdavis512">
                         <Flex>
-                            <div>
-                                <Twitter {...externalIconProps} />
-                            </div>
+                            <Twitter />
                             <div>Twitter</div>
                         </Flex>
                     </HoverPanel>

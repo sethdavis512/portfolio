@@ -1,37 +1,10 @@
 import type { Config } from 'tailwindcss';
-import colors from 'tailwindcss/colors';
-import { wedgesTW } from '@lemonsqueezy/wedges';
 
 export default {
-    content: [
-        './app/**/*.{js,jsx,ts,tsx}',
-        'node_modules/@lemonsqueezy/wedges/dist/**/*.{js,ts,jsx,tsx}',
-    ],
+    content: ['./app/**/*.{js,jsx,ts,tsx}'],
     darkMode: 'class',
     theme: {
         extend: {},
     },
-    plugins: [
-        require('@tailwindcss/typography'),
-        wedgesTW({
-            themes: {
-                dark: {
-                    colors: {
-                        primary: {
-                            ...colors.green,
-                            DEFAULT: colors.green['500'],
-                        },
-                    },
-                },
-                light: {
-                    colors: {
-                        primary: {
-                            ...colors.green,
-                            DEFAULT: colors.green['500'],
-                        },
-                    },
-                },
-            },
-        }),
-    ],
+    plugins: [require('@tailwindcss/typography')],
 } satisfies Config;

@@ -1,10 +1,10 @@
-import { type ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
+import { Link as RadixLink } from '@radix-ui/themes';
 
 import { cn } from '~/utils/css';
 
 interface ExternalLinkProps {
-    children: ReactNode;
     to: string;
     className?: string;
 }
@@ -15,9 +15,9 @@ export default function ExternalLink({
     className,
     children,
     to,
-}: ExternalLinkProps) {
+}: PropsWithChildren<ExternalLinkProps>) {
     return (
-        <a
+        <RadixLink
             className={cn(
                 `inline-flex items-center gap-2 ${EXTERNAL_LINK_CLASS_NAME}`,
                 className
@@ -28,6 +28,6 @@ export default function ExternalLink({
         >
             {children}
             <ExternalLinkIcon />
-        </a>
+        </RadixLink>
     );
 }

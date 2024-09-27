@@ -1,8 +1,6 @@
-import { Alert } from '@lemonsqueezy/wedges';
+import { Callout, Heading, Link as RadixLink } from '@radix-ui/themes';
 import { Link } from '@remix-run/react';
-import { ScrollText } from 'lucide-react';
-import ExternalLink from '~/components/ExternalLink';
-import Heading from '~/components/Heading';
+import { InfoIcon, ScrollText } from 'lucide-react';
 import JobItem from '~/components/JobItem';
 import JobItemList from '~/components/JobItemList';
 import Panel from '~/components/Panel';
@@ -15,9 +13,15 @@ const RESUME_URL =
 export default function ResumeRoute() {
     return (
         <>
-            <Alert color="success" title="Looking for a PDF version?">
-                <ExternalLink to={RESUME_URL}>Download it here</ExternalLink>
-            </Alert>
+            <Callout.Root className="mb-4">
+                <Callout.Icon>
+                    <InfoIcon />
+                </Callout.Icon>
+                <Callout.Text>
+                    Looking for a PDF version?{' '}
+                    <RadixLink href={RESUME_URL}>Download it here</RadixLink>
+                </Callout.Text>
+            </Callout.Root>
             <Panel heading="Resume" icon={<ScrollText {...largeIconProps} />}>
                 <div className="space-y-6">
                     <p>
@@ -27,7 +31,7 @@ export default function ResumeRoute() {
                         contribute to design, and advance my skills and
                         professional growth.
                     </p>
-                    <Heading as="h3" size="3" borderBottom>
+                    <Heading as="h3" size="4">
                         Front-End Engineer Skills
                     </Heading>
                     <div className="flex flex-wrap items-center gap-2">
@@ -51,7 +55,7 @@ export default function ResumeRoute() {
                         <SkillTag>CSS</SkillTag>
                         <SkillTag>JS</SkillTag>
                     </div>
-                    <Heading as="h3" size="3" borderBottom>
+                    <Heading as="h3" size="4">
                         Experience
                     </Heading>
                     <JobItem
@@ -197,7 +201,7 @@ export default function ResumeRoute() {
                             </li>
                         </JobItemList>
                     </JobItem>
-                    <Heading as="h3" size="3" borderBottom>
+                    <Heading as="h3" size="4">
                         Education
                     </Heading>
                     <JobItemList>
@@ -215,17 +219,17 @@ export default function ResumeRoute() {
                             Communication Design (2012) - San Marcos, Texas
                         </li>
                     </JobItemList>
-                    <Alert
-                        color="success"
-                        title="Interested in learning more about me?"
-                    >
-                        <Link
-                            to="/about"
-                            className="text-primary-500 underline"
-                        >
-                            See my about page
-                        </Link>
-                    </Alert>
+                    <Callout.Root color="green">
+                        <Callout.Icon>
+                            <InfoIcon />
+                        </Callout.Icon>
+                        <Callout.Text>
+                            Interested in learning more about me?{' '}
+                            <RadixLink asChild>
+                                <Link to="/about">See my about page</Link>
+                            </RadixLink>
+                        </Callout.Text>
+                    </Callout.Root>
                 </div>
             </Panel>
         </>
