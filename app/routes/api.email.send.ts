@@ -3,32 +3,55 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const buildEmail = (record: { name: string; url: string; code: string }) => {
+    return `<div>
+<p>Hey ${record.name} 👋🏻</p>
+<p>
+    I'd like to formally invite you to my
+    birthday party!
+</p>
+<p>
+    If you could RSVP as soon as possible that
+    would be most helpful.
+</p>
+<ul
+    style={{
+        listStyleType: 'disc',
+        listStylePosition: 'inside',
+    }}
+>
+    <li>
+        Follow this link: <a href="${record.url}">${record.url}</a>
+    </li>
+    <li>Enter the passcode: ${record.code}</li>
+    <li>Fill out the form</li>
+    <li>Click "Send"</li>
+</ul>
+<p>Hope to see you there 🎈</p>
+</div>`;
+};
+
 export async function action({ request }: ActionFunctionArgs) {
     if (request.method === 'POST') {
-        const form = await request.formData();
-        form;
+        // const form = await request.formData();
+
+        const from = 'Seth Davis <hey@sethdavis.io>';
+        // const to = JSON.parse(String(form.get('to')))
+        const to = ['me@brysonreynolds.com'];
+        const subject = `Invitation to Seth's birthday party`;
+        const record = {
+            name: 'Bryson Reynolds',
+            url: 'https://www.sethdavis.io/birthday/rsvp/me@brysonreynolds.com',
+            code: 'ZTK0',
+        };
+        const html = buildEmail(record);
 
         const { data, error } = await resend.emails.send({
-            from: 'Seth Davis <hey@sethdavis.io>',
-            to: ['sethdavis512@gmail.com'],
-            subject: 'Hello world',
-            html: '<p>Is this mic on? Testing 1 2 3...</p>',
+            from,
+            to,
+            subject,
+            html,
         });
-
-        // await resend.batch.send([
-        //     {
-        //       from: 'Acme <onboarding@resend.dev>',
-        //       to: ['foo@gmail.com'],
-        //       subject: 'hello world',
-        //       html: '<h1>it works!</h1>',
-        //     },
-        //     {
-        //       from: 'Acme <onboarding@resend.dev>',
-        //       to: ['bar@outlook.com'],
-        //       subject: 'world hello',
-        //       html: '<p>it works!</p>',
-        //     },
-        //   ]);
 
         if (error) {
             return json({ error }, 400);
