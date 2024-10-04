@@ -1,6 +1,6 @@
 import { Badge } from '@radix-ui/themes';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
-export default function SkillTag({ children }: { children: ReactNode }) {
+export default function SkillTag({ children }: PropsWithChildren) {
     return <Badge color="green">{children}</Badge>;
 }

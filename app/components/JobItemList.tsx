@@ -1,12 +1,14 @@
-import { type ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { cn } from '~/utils/css';
 
 interface JobItemListProps {
-    children: ReactNode;
     className?: string;
 }
 
-export default function JobItemList({ children, className }: JobItemListProps) {
+export default function JobItemList({
+    children,
+    className,
+}: PropsWithChildren<JobItemListProps>) {
     return (
         <ul
             className={cn(

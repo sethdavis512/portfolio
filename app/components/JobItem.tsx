@@ -1,8 +1,7 @@
-import { type ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { Heading } from '@radix-ui/themes';
 
 interface JobItemProps {
-    children: ReactNode;
     company: string;
     dates: string;
     title: string;
@@ -15,7 +14,7 @@ export default function JobItem({
     dates,
     location = 'Austin, TX',
     title,
-}: JobItemProps) {
+}: PropsWithChildren<JobItemProps>) {
     return (
         <ul className="space-y-4">
             <li className="block md:flex md:justify-between">

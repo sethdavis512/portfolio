@@ -1,9 +1,8 @@
-import { type ReactNode } from 'react';
+import { PropsWithChildren, type ReactNode } from 'react';
 import { cn } from '~/utils/css';
 import IconHeading from './IconHeading';
 
 interface PanelProps {
-    children: ReactNode;
     heading: string;
     icon: ReactNode;
     className?: string;
@@ -14,7 +13,7 @@ export default function Panel({
     className,
     heading,
     icon,
-}: PanelProps) {
+}: PropsWithChildren<PanelProps>) {
     return (
         <div className={cn('py-4', className)}>
             <IconHeading icon={icon} heading={heading} />
