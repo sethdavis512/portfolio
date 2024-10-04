@@ -7,12 +7,14 @@ const buildEmail = (record: { name: string; url: string; code: string }) => {
     return `<div>
 <p>Hey ${record.name} 👋🏻</p>
 <p>
-    I'd like to formally invite you to my
-    birthday party!
+    I'd like to invite you to my backyard birthday party. We'll be celebrating with a bonfire and some tasty food.
 </p>
 <p>
     If you could RSVP as soon as possible that
-    would be most helpful.
+    would be most helpful. (Significant others and kids welcome)
+</p>
+<p>
+    Instructions:
 </p>
 <ul
     style={{
@@ -33,25 +35,23 @@ const buildEmail = (record: { name: string; url: string; code: string }) => {
 
 export async function action({ request }: ActionFunctionArgs) {
     if (request.method === 'POST') {
-        // const form = await request.formData();
+        const form = await request.formData();
 
         const from = 'Seth Davis <hey@sethdavis.io>';
-        // const to = JSON.parse(String(form.get('to')))
-        const to = ['me@brysonreynolds.com'];
+        const to = JSON.parse(String(form.get('to')));
         const subject = `Invitation to Seth's birthday party`;
-        const record = {
-            name: 'Bryson Reynolds',
-            url: 'https://www.sethdavis.io/birthday/rsvp/me@brysonreynolds.com',
-            code: 'ZTK0',
-        };
+        const record = JSON.parse(String(form.get('record')));
         const html = buildEmail(record);
-
-        const { data, error } = await resend.emails.send({
+        const payload = {
             from,
             to,
             subject,
             html,
-        });
+        };
+
+        console.log({ payload });
+
+        const { data, error } = await resend.emails.send(payload);
 
         if (error) {
             return json({ error }, 400);

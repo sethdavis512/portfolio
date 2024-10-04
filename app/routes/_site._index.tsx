@@ -43,7 +43,7 @@ export const links: LinksFunction = () => {
 export default function Index() {
     return (
         <>
-            <Heading as="h1" size="6" className="mb-4">
+            <Heading as="h1" size="8" className="mb-4">
                 Welcome
             </Heading>
             <p className="pb-4 md:pb-6">
