@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Card } from '@radix-ui/themes';
+import { Card, Link as RadixLink } from '@radix-ui/themes';
 import { Link, NavLink } from '@remix-run/react';
 
 interface HoverPanelProps {
@@ -17,15 +17,15 @@ export default function HoverPanel({
 }: PropsWithChildren<HoverPanelProps>) {
     if (external) {
         return (
-            <Card className="p-0">
-                <a
+            <Card className="p-0 focus:outline-sky-400" tabIndex={0}>
+                <RadixLink
+                    tabIndex={-1}
                     className="inline-block p-4 text-sky-600 hover:text-sky-400"
                     href={to}
                     target="_blank"
-                    rel="noreferrer"
                 >
                     {children}
-                </a>
+                </RadixLink>
             </Card>
         );
     }
