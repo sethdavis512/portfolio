@@ -54,10 +54,12 @@ export default function AboutRoute() {
                         <li>
                             <Card>
                                 <Heading as="h3" size="4" className="mb-2">
-                                    💿 Remix fanatic
+                                    💿{' '}
+                                    <span className="line-through">Remix</span>{' '}
+                                    React Router fanatic
                                 </Heading>
                                 <p>
-                                    <ExternalLink to="https://remix.run/">
+                                    <ExternalLink to="https://reactrouter.com/dev/guides">
                                         {`Build better websites`}
                                     </ExternalLink>
                                 </p>
