@@ -47,7 +47,7 @@ export default function BirthdayRoute() {
                                 fire & enjoy some tasty food and smores. Beer
                                 will be provided.
                             </p>
-                            <Form
+                            {/* <Form
                                 method="POST"
                                 action="/api/ics"
                                 reloadDocument
@@ -60,7 +60,7 @@ export default function BirthdayRoute() {
                                 <Button type="submit" variant="soft">
                                     📅 Add to Calendar (.ics)
                                 </Button>
-                            </Form>
+                            </Form> */}
                             <Outlet />
                         </div>
                     </div>
