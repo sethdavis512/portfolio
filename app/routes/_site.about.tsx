@@ -59,7 +59,7 @@ export default function AboutRoute() {
                                     React Router fanatic
                                 </Heading>
                                 <p>
-                                    <ExternalLink to="https://reactrouter.com/dev/guides">
+                                    <ExternalLink to="https://reactrouter.com/">
                                         {`Build better websites`}
                                     </ExternalLink>
                                 </p>

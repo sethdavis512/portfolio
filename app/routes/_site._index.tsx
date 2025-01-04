@@ -25,7 +25,7 @@ export const meta: MetaFunction = () => {
         {
             name: 'description',
             content:
-                "Welcome to Seth Davis' portfolio. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of front-end technologies, I'm most passionate about Remix and writing full stack web applications.",
+                "Welcome to Seth Davis' portfolio. I am a Senior Front-End Engineer living in Austin, Texas. While I do enjoy all varieties of front-end technologies, I'm most passionate about React Router based full stack web applications.",
         },
     ];
 };
@@ -48,11 +48,14 @@ export default function Index() {
             </Heading>
             <p className="pb-4 md:pb-6">
                 {[
-                    `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas, and I am currently looking for a new position. While I do enjoy all varieties of front-end technologies, I'm most passionate about `,
-                    <ExternalLink to="https://remix.run" key={`remix-link`}>
-                        Remix
+                    `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas. While I do enjoy all varieties of front-end technologies, I'm most passionate about `,
+                    <ExternalLink
+                        to="https://reactrouter.com/"
+                        key={`react-router-link`}
+                    >
+                        React Router
                     </ExternalLink>,
-                    ` and writing full stack web applications.`,
+                    `based full stack web applications.`,
                 ]}
             </p>
             <Panel heading="About me" icon={<LaughIcon {...largeIconProps} />}>

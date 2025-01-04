@@ -19,7 +19,7 @@ export default function ExternalLink({
     return (
         <RadixLink
             className={cn(
-                `inline-flex items-center gap-2 ${EXTERNAL_LINK_CLASS_NAME}`,
+                `inline-flex items-center gap-1.5 ${EXTERNAL_LINK_CLASS_NAME}`,
                 className
             )}
             href={to}
@@ -27,7 +27,7 @@ export default function ExternalLink({
             rel="noreferrer"
         >
             {children}
-            <ExternalLinkIcon />
+            <ExternalLinkIcon className="mr-1.5 h-4 w-4" />
         </RadixLink>
     );
 }
