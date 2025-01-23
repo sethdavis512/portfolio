@@ -65,7 +65,12 @@ export default function Index() {
                 <WaypointsIcon {...largeIconProps} />
                 <Heading as="h2">Connect</Heading>
             </Flex>
-            <a href="https://tidycal.com/sethdavis512" className="mb-4 block">
+            <a
+                href="https://tidycal.com/sethdavis512"
+                className="mb-4 block"
+                target="_blank"
+                rel="noreferrer"
+            >
                 <Card
                     size="3"
                     className="border-2 border-sky-500 bg-gradient-to-r from-blue-700 to-teal-700"
