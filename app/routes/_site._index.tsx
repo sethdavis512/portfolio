@@ -8,11 +8,14 @@ import {
     HandshakeIcon,
     LaughIcon,
     Linkedin,
+    PencilIcon,
+    PlugIcon,
     ScrollText,
     Share2Icon,
     Twitter,
+    WaypointsIcon,
 } from 'lucide-react';
-import { Heading } from '@radix-ui/themes';
+import { Card, Heading } from '@radix-ui/themes';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import { largeIconProps } from '~/constants';
@@ -58,6 +61,23 @@ export default function Index() {
                     `based full stack web applications.`,
                 ]}
             </p>
+            <Flex className="mb-4">
+                <WaypointsIcon {...largeIconProps} />
+                <Heading as="h2">Connect</Heading>
+            </Flex>
+            <a href="https://tidycal.com/sethdavis512" className="mb-4 block">
+                <Card
+                    size="3"
+                    className="border-2 border-sky-500 bg-gradient-to-r from-blue-700 to-teal-700"
+                >
+                    <p className="text-xl">
+                        Interested in talking about a project?{' '}
+                        <strong>
+                            Click here to schedule a time to meet with me!
+                        </strong>
+                    </p>
+                </Card>
+            </a>
             <Panel heading="About me" icon={<LaughIcon {...largeIconProps} />}>
                 <Flex className="flex-wrap gap-4">
                     <HoverPanel to="/resume">
