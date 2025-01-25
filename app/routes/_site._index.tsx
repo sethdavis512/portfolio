@@ -8,8 +8,6 @@ import {
     HandshakeIcon,
     LaughIcon,
     Linkedin,
-    PencilIcon,
-    PlugIcon,
     ScrollText,
     Share2Icon,
     Twitter,
