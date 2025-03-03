@@ -12,16 +12,12 @@ export default function SiteLayout() {
     const isHome = location.pathname === '/';
 
     return (
-        <div className="mx-auto mb-20 grid h-full max-w-4xl grid-rows-[auto_1fr_auto] px-6 md:px-8">
+        <div className="mx-auto mb-20 grid h-full max-w-5xl grid-rows-[auto_1fr_auto] px-6 md:px-8">
             <div className="py-8 md:py-12">
                 <Flex className="justify-between">
                     <Flex className="gap-4">
                         <div className="h-16">
-                            <Link
-                                to="/"
-                                className="outline-primary"
-                                aria-label="Return to home page"
-                            >
+                            <Link to="/" aria-label="Return to home page">
                                 <Logo className="fill-zinc-600 dark:fill-white" />
                             </Link>
                         </div>

@@ -1,8 +1,8 @@
 import { Callout, Heading, Link as RadixLink } from '@radix-ui/themes';
-import { Link } from '@remix-run/react';
 import { InfoIcon, ScrollText } from 'lucide-react';
 import JobItem from '~/components/JobItem';
 import JobItemList from '~/components/JobItemList';
+import Linky from '~/components/Linky';
 import Panel from '~/components/Panel';
 import SkillTag from '~/components/SkillTag';
 import { largeIconProps } from '~/constants';
@@ -38,7 +38,6 @@ export default function ResumeRoute() {
                         <SkillTag>Typescript</SkillTag>
                         <SkillTag>React</SkillTag>
                         <SkillTag>Node</SkillTag>
-                        <SkillTag>Webpack</SkillTag>
                         <SkillTag>Federated Modules</SkillTag>
                         <SkillTag>GraphQL</SkillTag>
                         <SkillTag>Remix</SkillTag>
@@ -225,9 +224,7 @@ export default function ResumeRoute() {
                         </Callout.Icon>
                         <Callout.Text>
                             Interested in learning more about me?{' '}
-                            <RadixLink asChild>
-                                <Link to="/about">See my about page</Link>
-                            </RadixLink>
+                            <Linky to="/about">See my about page</Linky>
                         </Callout.Text>
                     </Callout.Root>
                 </div>

@@ -3,11 +3,12 @@ import { useLoaderData } from '@remix-run/react';
 import { Card, Heading, Inset, Link as RadixLink } from '@radix-ui/themes';
 import { formatToUSD, getUniqueId } from '~/utils/main';
 
-import truck1 from '../images/truck-1.jpg';
-import truck2 from '../images/truck-2-768x404.jpg';
-import floorMats from '../images/f150-floor-mats.jpg';
-import antenna from '../images/antenna.jpg';
 import Divider from '~/components/Divider';
+
+import truck1 from '~/images/truck-1.jpg';
+import truck2 from '~/images/truck-2-768x404.jpg';
+import floorMats from '~/images/f150-floor-mats.jpg';
+import antenna from '~/images/antenna.jpg';
 
 export async function loader() {
     return json({
@@ -37,15 +38,19 @@ export async function loader() {
     });
 }
 
-export default function Route() {
+export default function TruckRoute() {
     const { upgrades } = useLoaderData<typeof loader>();
 
     return (
         <>
-            <Heading as="h2" className="mb-4">
-                My 2023 F-150 XLT V6 2.7L (302A)
+            <Heading as="h1" className="mb-4">
+                Truck stuff
             </Heading>
-            <p className="mb-4 block">
+            <p className="mb-4">{`I like trucks, plain and simple. No drama, no brand wars—just good ol’ horsepower and hauling. Wanna roll in a Chevy? Go for it. Prefer a Dodge? Have at it. Me? I like Ford, so that’s what I drive 😎`}</p>
+            <Heading as="h2" className="mb-4">
+                2023 Ford F-150 XLT SuperCrew 2.7L V6 EcoBoost Sport (302A)
+            </Heading>
+            <p className="mb-4">
                 Trailer Tow Package • Interior Work Surface • Pro Power Onboard
                 (2.7kw)
                 <br />

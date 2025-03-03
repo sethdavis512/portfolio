@@ -1,12 +1,10 @@
 import { InfoIcon, QuoteIcon } from 'lucide-react';
 import { Callout, Card, Heading } from '@radix-ui/themes';
-import ExternalLink, {
-    EXTERNAL_LINK_CLASS_NAME,
-} from '~/components/ExternalLink';
-import Panel from '~/components/Panel';
+
 import { BORDER_COLOR, largeIconProps } from '~/constants';
-import profilePhoto from '../images/austfin-fc-profile.jpg';
-import { Link } from '@remix-run/react';
+import Panel from '~/components/Panel';
+import profilePhoto from '~/images/austfin-fc-profile.jpg';
+import Linky from '~/components/Linky';
 
 const Quote = ({ quote, author }: { quote: string; author: string }) => (
     <blockquote className="border-l-4 pl-6">
@@ -47,7 +45,10 @@ export default function AboutRoute() {
                                     ⚽️ Austin FC supporter
                                 </Heading>
                                 <p>
-                                    <ExternalLink to="https://www.austinfc.com/">{`Verde hasta la muerte`}</ExternalLink>
+                                    <Linky
+                                        external
+                                        to="https://www.austinfc.com/"
+                                    >{`Verde hasta la muerte`}</Linky>
                                 </p>
                             </Card>
                         </li>
@@ -59,9 +60,12 @@ export default function AboutRoute() {
                                     React Router fanatic
                                 </Heading>
                                 <p>
-                                    <ExternalLink to="https://reactrouter.com/">
+                                    <Linky
+                                        external
+                                        to="https://reactrouter.com/"
+                                    >
                                         {`Build better websites`}
-                                    </ExternalLink>
+                                    </Linky>
                                 </p>
                             </Card>
                         </li>
@@ -105,13 +109,19 @@ export default function AboutRoute() {
                                     📅 Meetup goer
                                 </Heading>
                                 <p>
-                                    <ExternalLink to="https://www.meetup.com/remix-austin/">
+                                    <Linky
+                                        external
+                                        to="https://www.meetup.com/remix-austin/"
+                                    >
                                         Remix Austin
-                                    </ExternalLink>
+                                    </Linky>
                                     {` / `}
-                                    <ExternalLink to="https://www.meetup.com/austin-code-mentorship/">
+                                    <Linky
+                                        external
+                                        to="https://www.meetup.com/austin-code-mentorship/"
+                                    >
                                         Austin Code Mentorship
-                                    </ExternalLink>
+                                    </Linky>
                                 </p>
                             </Card>
                         </li>
@@ -121,10 +131,23 @@ export default function AboutRoute() {
                                     🎮 Gamer
                                 </Heading>
                                 <p>
-                                    {`Rocket League. No Man's Sky. MW3. `}
-                                    <ExternalLink to="https://www.xbox.com/en-US/games/store/boomerang-fu/9PJDVRGGFPPH">
+                                    {`Rocket League. No Man's Sky. `}
+                                    <Linky
+                                        external
+                                        to="https://www.xbox.com/en-US/games/store/boomerang-fu/9PJDVRGGFPPH"
+                                    >
                                         Boomerang Fu
-                                    </ExternalLink>
+                                    </Linky>
+                                </p>
+                            </Card>
+                        </li>
+                        <li>
+                            <Card>
+                                <Heading as="h3" size="4" className="mb-2">
+                                    🛻 Truck enthusiast
+                                </Heading>
+                                <p>
+                                    <Linky to="/truck">I like trucks</Linky>
                                 </p>
                             </Card>
                         </li>
@@ -136,9 +159,7 @@ export default function AboutRoute() {
                     <InfoIcon />
                 </Callout.Icon>
                 <Callout.Text>
-                    <Link to="/resume" className={EXTERNAL_LINK_CLASS_NAME}>
-                        See my work experience
-                    </Link>
+                    <Linky to="/resume">See my work experience</Linky>
                 </Callout.Text>
             </Callout.Root>
             <Panel
