@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react';
-import { cn } from '~/utils/css';
+import type { PropsWithChildren } from 'react';
+import { cx } from 'cva.config';
 
 interface JobItemListProps {
     className?: string;
@@ -7,11 +7,11 @@ interface JobItemListProps {
 
 export default function JobItemList({
     children,
-    className,
+    className
 }: PropsWithChildren<JobItemListProps>) {
     return (
         <ul
-            className={cn(
+            className={cx(
                 'm-0 ml-4 list-outside list-disc space-y-2 pl-4',
                 className
             )}

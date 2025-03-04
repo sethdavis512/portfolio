@@ -1,4 +1,4 @@
-import { cn } from '~/utils/css';
+import { cx } from 'cva.config';
 
 interface LogoProps {
     className?: string;
@@ -7,7 +7,7 @@ interface LogoProps {
 export default function Logo({ className }: LogoProps) {
     return (
         <svg
-            className={cn(className)}
+            className={cx(className)}
             height="100%"
             viewBox="0 0 196 400"
             version="1.1"

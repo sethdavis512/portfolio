@@ -1,6 +1,18 @@
-import { Badge } from '@radix-ui/themes';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import { cx } from 'cva.config';
+import { Tag } from './Tag';
 
-export default function SkillTag({ children }: PropsWithChildren) {
-    return <Badge color="green">{children}</Badge>;
+interface SkillTagProps {
+    className?: string;
+}
+
+export default function SkillTag({
+    className,
+    children
+}: PropsWithChildren<SkillTagProps>) {
+    return (
+        <Tag variant="secondary" className={cx('text-sm py-1 px-2', className)}>
+            {children}
+        </Tag>
+    );
 }

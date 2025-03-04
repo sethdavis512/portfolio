@@ -1,8 +1,8 @@
-import { type ReactNode } from 'react';
-import { Heading } from '@radix-ui/themes';
+import type { ReactNode } from 'react';
 
+import { cx } from 'cva.config';
 import Flex from './Flex';
-import { cn } from '~/utils/css';
+import Heading from './Heading';
 
 interface IconHeadingProps {
     className?: string;
@@ -16,7 +16,7 @@ export default function IconHeading({
     heading,
 }: IconHeadingProps) {
     return (
-        <Flex className={cn('mb-8 gap-3', className)}>
+        <Flex className={cx('mb-8 gap-3', className)}>
             {icon}
             <Heading as="h2">{heading}</Heading>
         </Flex>

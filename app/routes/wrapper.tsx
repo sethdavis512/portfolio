@@ -1,13 +1,14 @@
-import { Button } from '@radix-ui/themes';
-import { Link, Outlet, useLocation } from '@remix-run/react';
 import { ArrowLeft } from 'lucide-react';
+import { Link, Outlet, useLocation } from 'react-router';
+import { Button } from '~/components/Button';
+import { ButtonLink } from '~/components/ButtonLink';
 import Flex from '~/components/Flex';
-
+import HoverPanel from '~/components/HoverPanel';
 import Logo from '~/components/Logo';
-import texasFlag from '../images/flag-of-texas-small.svg';
 import { BORDER_BOTTOM } from '~/constants';
+import texasFlag from '~/images/flag-of-texas-small.svg';
 
-export default function SiteLayout() {
+export default function WrapperRoute() {
     const location = useLocation();
     const isHome = location.pathname === '/';
 
@@ -22,12 +23,10 @@ export default function SiteLayout() {
                             </Link>
                         </div>
                         {!isHome && (
-                            <Button asChild variant="soft">
-                                <Link to="/" className="flex gap-2">
-                                    <ArrowLeft />
-                                    <span>Back to home</span>
-                                </Link>
-                            </Button>
+                            <HoverPanel to="/" className="px-3 py-2">
+                                <ArrowLeft />
+                                Back to home
+                            </HoverPanel>
                         )}
                     </Flex>
                 </Flex>

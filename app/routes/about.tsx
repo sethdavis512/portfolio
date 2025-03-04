@@ -1,10 +1,11 @@
 import { InfoIcon, QuoteIcon } from 'lucide-react';
-import { Callout, Card, Heading } from '@radix-ui/themes';
 
 import { BORDER_COLOR, largeIconProps } from '~/constants';
 import Panel from '~/components/Panel';
 import profilePhoto from '~/images/austfin-fc-profile.jpg';
 import Linky from '~/components/Linky';
+import Card from '~/components/Card';
+import Heading from '~/components/Heading';
 
 const Quote = ({ quote, author }: { quote: string; author: string }) => (
     <blockquote className="border-l-4 pl-6">
@@ -154,14 +155,14 @@ export default function AboutRoute() {
                     </ul>
                 </div>
             </Panel>
-            <Callout.Root color="green" className="mb-4">
+            {/* <Callout.Root color="green" className="mb-4">
                 <Callout.Icon>
                     <InfoIcon />
                 </Callout.Icon>
                 <Callout.Text>
                     <Linky to="/resume">See my work experience</Linky>
                 </Callout.Text>
-            </Callout.Root>
+            </Callout.Root> */}
             <Panel
                 icon={<QuoteIcon {...largeIconProps} />}
                 heading="Motivation"

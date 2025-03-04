@@ -1,8 +1,8 @@
-import { PropsWithChildren } from 'react';
-import { Card } from '@radix-ui/themes';
+import type { PropsWithChildren } from 'react';
 
+import { cx } from 'cva.config';
+import Card from './Card';
 import Linky from './Linky';
-import { cn } from '~/utils/css';
 
 interface HoverPanelProps {
     to: string;
@@ -20,11 +20,9 @@ export default function HoverPanel({
 }: PropsWithChildren<HoverPanelProps>) {
     return (
         <Card
-            className={cn(
-                `border border-transparent p-0`,
-                external
-                    ? `hover:border-sky-500 hover:dark:border-sky-500 focus:dark:outline-sky-500`
-                    : `hover:border-green-300 hover:dark:border-green-800 focus:dark:outline-green-500`,
+            className={cx(
+                `border border-transparent p-0 dark:focus:outline-none focus:outline-none focus:ring-2 dark:focus:ring-2`,
+                `hover:border-secondary-500 hover:dark:border-secondary-800 focus:ring-secondary-500 focus:dark:ring-secondary-500`,
                 disabled && `pointer-events-none opacity-50`
             )}
             tabIndex={0}

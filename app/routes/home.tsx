@@ -1,5 +1,7 @@
-import { LinksFunction } from '@remix-run/node';
-import { MetaFunction } from '@remix-run/react';
+import Heading from '~/components/Heading';
+import type { Route } from './+types/home';
+import Linky from '~/components/Linky';
+import Flex from '~/components/Flex';
 import {
     BookHeartIcon,
     BookUserIcon,
@@ -16,40 +18,25 @@ import {
     Share2Icon,
     Twitter,
     UserSearchIcon,
-    WaypointsIcon,
+    WaypointsIcon
 } from 'lucide-react';
-import { Card, Heading } from '@radix-ui/themes';
+import { largeIconProps } from '~/constants';
+import Card from '~/components/Card';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
-import { largeIconProps } from '~/constants';
-import Flex from '~/components/Flex';
-import Linky from '~/components/Linky';
+import Divider from '~/components/Divider';
 
-export const meta: MetaFunction = () => {
+export function meta({}: Route.MetaArgs) {
     return [
         { title: `Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content:
-                "Welcome to Seth Davis' portfolio. I am a Senior Front-End Engineer living in Austin, Texas. While I do enjoy all varieties of front-end technologies, I'm most passionate about React Router based full stack web applications.",
-        },
+        { name: 'description', content: `Welcome to Seth Davis' Portfolio` }
     ];
-};
+}
 
-export const links: LinksFunction = () => {
-    return [
-        {
-            rel: 'icon',
-            type: 'image/x-icon',
-            href: '/favicon.ico',
-        },
-    ];
-};
-
-export default function Index() {
+export default function Home() {
     return (
         <>
-            <Heading as="h1" size="8" className="mb-4">
+            <Heading as="h1" size="1" className="mb-4">
                 Welcome
             </Heading>
             <p className="pb-4 md:pb-6">
@@ -62,32 +49,24 @@ export default function Index() {
                     >
                         React Router
                     </Linky>,
-                    ` based full stack web applications.`,
+                    ` based full stack web applications.`
                 ]}
             </p>
             <Flex className="mb-4">
                 <WaypointsIcon {...largeIconProps} />
                 <Heading as="h2">Connect</Heading>
             </Flex>
-            <Linky
-                to="https://tidycal.com/sethdavis512"
-                className="mb-4 block hover:no-underline"
-            >
-                <Card
-                    size="3"
-                    className="border-2 border-sky-500 bg-gradient-to-r from-blue-700 to-teal-700"
-                >
-                    <p className="text-xl text-white">
-                        Interested in talking about a project?{' '}
-                        <strong>
-                            Click here to schedule a time to meet with me!
-                        </strong>
-                    </p>
-                </Card>
-            </Linky>
-            <div className="flex flex-col items-start md:flex-row md:gap-4">
-                <div className="flex-1">
+            <p className="mb-4">
+                Interested in talking about a project?{' '}
+                <Linky to="https://tidycal.com/sethdavis512">
+                    Click here to schedule a time to meet with me!
+                </Linky>
+            </p>
+            <Divider className="my-8" />
+            <div className="flex flex-col gap-4">
+                <div className="flex flex-col md:flex-row gap-4 flex-1">
                     <Panel
+                        className="flex-1"
                         heading="Projects"
                         icon={<HammerIcon {...largeIconProps} />}
                     >
@@ -107,6 +86,7 @@ export default function Index() {
                         </Flex>
                     </Panel>
                     <Panel
+                        className="flex-1"
                         heading="Shareables"
                         icon={<Share2Icon {...largeIconProps} />}
                     >
@@ -123,8 +103,9 @@ export default function Index() {
                         </Flex>
                     </Panel>
                 </div>
-                <div className="flex-1">
+                <div className="flex flex-col md:flex-row gap-4 flex-1">
                     <Panel
+                        className="flex-1"
                         heading="About me"
                         icon={<LaughIcon {...largeIconProps} />}
                     >
@@ -156,6 +137,7 @@ export default function Index() {
                         </Flex>
                     </Panel>
                     <Panel
+                        className="flex-1"
                         heading="Socials"
                         icon={<HandshakeIcon {...largeIconProps} />}
                     >

@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react';
-import { Heading } from '@radix-ui/themes';
+import type { PropsWithChildren } from 'react';
+import Heading from './Heading';
 
 interface JobItemProps {
     company: string;
@@ -13,7 +13,7 @@ export default function JobItem({
     company,
     dates,
     location = 'Austin, TX',
-    title,
+    title
 }: PropsWithChildren<JobItemProps>) {
     return (
         <ul className="space-y-4">

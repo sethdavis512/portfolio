@@ -1,5 +1,6 @@
-import { PropsWithChildren } from 'react';
-import { cn } from '~/utils/css';
+import type { PropsWithChildren } from 'react';
+
+import { cx } from 'cva.config';
 
 interface FlexProps {
     className?: string;
@@ -10,7 +11,7 @@ export default function Flex({
     className,
 }: PropsWithChildren<FlexProps>) {
     return (
-        <div className={cn('flex items-center gap-2', className)}>
+        <div className={cx('flex items-center gap-2', className)}>
             {children}
         </div>
     );

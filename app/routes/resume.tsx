@@ -1,5 +1,8 @@
-import { Callout, Heading, Link as RadixLink } from '@radix-ui/themes';
 import { InfoIcon, ScrollText } from 'lucide-react';
+import { Banner } from '~/components/Banner';
+import Card from '~/components/Card';
+import Flex from '~/components/Flex';
+import Heading from '~/components/Heading';
 import JobItem from '~/components/JobItem';
 import JobItemList from '~/components/JobItemList';
 import Linky from '~/components/Linky';
@@ -13,15 +16,15 @@ const RESUME_URL =
 export default function ResumeRoute() {
     return (
         <>
-            <Callout.Root className="mb-4">
-                <Callout.Icon>
+            <Banner className="mb-4">
+                <Flex>
                     <InfoIcon />
-                </Callout.Icon>
-                <Callout.Text>
                     Looking for a PDF version?{' '}
-                    <RadixLink href={RESUME_URL}>Download it here</RadixLink>
-                </Callout.Text>
-            </Callout.Root>
+                    <Linky external to={RESUME_URL}>
+                        Download it here
+                    </Linky>
+                </Flex>
+            </Banner>
             <Panel heading="Resume" icon={<ScrollText {...largeIconProps} />}>
                 <div className="space-y-6">
                     <p>
@@ -203,7 +206,7 @@ export default function ResumeRoute() {
                     <Heading as="h3" size="4">
                         Education
                     </Heading>
-                    <JobItemList>
+                    <JobItemList className="mb-12">
                         <li>
                             Austin Coding Academy - Austin, Texas
                             <ul className="m-0 ml-4 mt-2 list-outside list-disc space-y-2 pl-4">
@@ -218,15 +221,10 @@ export default function ResumeRoute() {
                             Communication Design (2012) - San Marcos, Texas
                         </li>
                     </JobItemList>
-                    <Callout.Root color="green">
-                        <Callout.Icon>
-                            <InfoIcon />
-                        </Callout.Icon>
-                        <Callout.Text>
-                            Interested in learning more about me?{' '}
-                            <Linky to="/about">See my about page</Linky>
-                        </Callout.Text>
-                    </Callout.Root>
+                    <Banner variant="secondary">
+                        Interested in learning more about me?{' '}
+                        <Linky to="/about">See my about page</Linky>
+                    </Banner>
                 </div>
             </Panel>
         </>

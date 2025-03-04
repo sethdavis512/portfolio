@@ -1,4 +1,4 @@
-import { cn } from '~/utils/css';
+import { cx } from 'cva.config';
 
 interface RemixLogoProps {
     className: string;
@@ -7,7 +7,7 @@ interface RemixLogoProps {
 export default function RemixLogo({ className }: RemixLogoProps) {
     return (
         <svg
-            className={cn('fill-zinc-700 dark:fill-white', className)}
+            className={cx('fill-zinc-700 dark:fill-white', className)}
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
