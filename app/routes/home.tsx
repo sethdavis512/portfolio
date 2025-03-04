@@ -24,6 +24,7 @@ import { largeIconProps } from '~/constants';
 import Card from '~/components/Card';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
+import Divider from '~/components/Divider';
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -55,22 +56,17 @@ export default function Home() {
                 <WaypointsIcon {...largeIconProps} />
                 <Heading as="h2">Connect</Heading>
             </Flex>
-            <Linky
-                to="https://tidycal.com/sethdavis512"
-                className="mb-4 block hover:no-underline"
-            >
-                <Card className="border-2 border-sky-500 dark:border-sky-500 bg-gradient-to-r from-blue-700 to-teal-700">
-                    <p className="text-xl text-white">
-                        Interested in talking about a project?{' '}
-                        <strong>
-                            Click here to schedule a time to meet with me!
-                        </strong>
-                    </p>
-                </Card>
-            </Linky>
-            <div className="flex flex-col items-start md:flex-row md:gap-4">
-                <div className="flex-1">
+            <p className="mb-4">
+                Interested in talking about a project?{' '}
+                <Linky to="https://tidycal.com/sethdavis512">
+                    Click here to schedule a time to meet with me!
+                </Linky>
+            </p>
+            <Divider className="my-8" />
+            <div className="flex flex-col gap-4">
+                <div className="flex flex-col md:flex-row gap-4 flex-1">
                     <Panel
+                        className="flex-1"
                         heading="Projects"
                         icon={<HammerIcon {...largeIconProps} />}
                     >
@@ -90,6 +86,7 @@ export default function Home() {
                         </Flex>
                     </Panel>
                     <Panel
+                        className="flex-1"
                         heading="Shareables"
                         icon={<Share2Icon {...largeIconProps} />}
                     >
@@ -106,8 +103,9 @@ export default function Home() {
                         </Flex>
                     </Panel>
                 </div>
-                <div className="flex-1">
+                <div className="flex flex-col md:flex-row gap-4 flex-1">
                     <Panel
+                        className="flex-1"
                         heading="About me"
                         icon={<LaughIcon {...largeIconProps} />}
                     >
@@ -139,6 +137,7 @@ export default function Home() {
                         </Flex>
                     </Panel>
                     <Panel
+                        className="flex-1"
                         heading="Socials"
                         icon={<HandshakeIcon {...largeIconProps} />}
                     >

@@ -63,7 +63,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                 </div>
                 {loaderData.upgrades.map((upgrade) => (
                     <div key={upgrade.id} className="col-span-1 md:col-span-4">
-                        <a href={upgrade.url}>
+                        <a href={upgrade.url} target="_blank" rel="noreferrer">
                             <Card className="flex flex-col border border-transparent hover:border hover:border-green-500 overflow-hidden">
                                 <div className="-mx-4 -mt-4 mb-4">
                                     <img
