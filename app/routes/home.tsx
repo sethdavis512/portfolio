@@ -21,7 +21,6 @@ import {
     WaypointsIcon
 } from 'lucide-react';
 import { largeIconProps } from '~/constants';
-import Card from '~/components/Card';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import Divider from '~/components/Divider';
@@ -71,13 +70,16 @@ export default function Home() {
                         icon={<HammerIcon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
-                            <HoverPanel to="/crm" disabled>
+                            <HoverPanel
+                                external
+                                to="https://crm.sethdavis.tech/"
+                            >
                                 <Flex>
                                     <UserSearchIcon />
-                                    <div>CRM (In progress)</div>
+                                    <div>CRM (WIP)</div>
                                 </Flex>
                             </HoverPanel>
-                            <HoverPanel to="/crm" disabled>
+                            <HoverPanel to="ai.sethdavis.tech" disabled>
                                 <Flex>
                                     <BotIcon />
                                     <div>AI Agents (In progress)</div>
