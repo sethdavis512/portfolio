@@ -8,6 +8,7 @@ import {
     BotIcon,
     CableIcon,
     CodepenIcon,
+    ExternalLinkIcon,
     Github,
     HammerIcon,
     HandshakeIcon,
@@ -77,6 +78,7 @@ export default function Home() {
                                 <Flex>
                                     <UserSearchIcon />
                                     <div>CRM (WIP)</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                             <HoverPanel
@@ -87,6 +89,7 @@ export default function Home() {
                                 <Flex>
                                     <BotIcon />
                                     <div>AI Agents (WIP)</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                         </Flex>
@@ -104,6 +107,7 @@ export default function Home() {
                                 <Flex>
                                     <BookHeartIcon />
                                     <div>Custom Plop.js (Guide)</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                         </Flex>
