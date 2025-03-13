@@ -75,7 +75,10 @@ export default function AboutRoute() {
                                 <Heading as="h3" size="4" className="mb-2">
                                     💻 Learner
                                 </Heading>
-                                <p>Prisma / Docker / SQLite / Postgres</p>
+                                <p>
+                                    All things AI / Prisma / Postgres / SQLite /
+                                    Docker
+                                </p>
                             </Card>
                         </li>
                         <li>
@@ -93,7 +96,7 @@ export default function AboutRoute() {
                                 <Heading as="h3" size="4" className="mb-2">
                                     💪🏻 CrossFit member
                                 </Heading>
-                                <p>{`Lifting for almost 2 years`}</p>
+                                <p>{`Lifting for almost 2.5 years`}</p>
                             </Card>
                         </li>
                         <li>
@@ -101,7 +104,7 @@ export default function AboutRoute() {
                                 <Heading as="h3" size="4" className="mb-2">
                                     🪑 Woodworker
                                 </Heading>
-                                <p>{`I've built a shed, entertainment center, entry table`}</p>
+                                <p>{`Built: Shed / Entertainment center / Entry table`}</p>
                             </Card>
                         </li>
                         <li>
@@ -132,7 +135,7 @@ export default function AboutRoute() {
                                     🎮 Gamer
                                 </Heading>
                                 <p>
-                                    {`Rocket League. No Man's Sky. `}
+                                    {`Rocket League / No Man's Sky / `}
                                     <Linky
                                         external
                                         to="https://www.xbox.com/en-US/games/store/boomerang-fu/9PJDVRGGFPPH"
