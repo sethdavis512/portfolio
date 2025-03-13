@@ -47,6 +47,7 @@ export default function ResumeRoute() {
                         <SkillTag>Prisma</SkillTag>
                         <SkillTag>Postgres</SkillTag>
                         <SkillTag>Tailwind</SkillTag>
+                        <SkillTag>GitHub Actions</SkillTag>
                         <SkillTag>Accessibility</SkillTag>
                         <SkillTag>JIRA</SkillTag>
                         <SkillTag>Agile</SkillTag>
