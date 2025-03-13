@@ -79,10 +79,14 @@ export default function Home() {
                                     <div>CRM (WIP)</div>
                                 </Flex>
                             </HoverPanel>
-                            <HoverPanel to="ai.sethdavis.tech" disabled>
+                            <HoverPanel
+                                external
+                                to="https://ai.sethdavis.tech"
+                                disabled
+                            >
                                 <Flex>
                                     <BotIcon />
-                                    <div>AI Agents (In progress)</div>
+                                    <div>AI Agents (WIP)</div>
                                 </Flex>
                             </HoverPanel>
                         </Flex>
