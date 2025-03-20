@@ -9,6 +9,7 @@ import {
     CableIcon,
     CodepenIcon,
     ExternalLinkIcon,
+    FileChartLineIcon,
     Github,
     HammerIcon,
     HandshakeIcon,
@@ -19,7 +20,9 @@ import {
     Share2Icon,
     Twitter,
     UserSearchIcon,
-    WaypointsIcon
+    WaypointsIcon,
+    YoutubeIcon,
+    Zap
 } from 'lucide-react';
 import { largeIconProps } from '~/constants';
 import Panel from '~/components/Panel';
@@ -71,6 +74,16 @@ export default function Home() {
                         icon={<HammerIcon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
+                            <HoverPanel
+                                external
+                                to="https://github.com/tech-with-seth/tws-starter"
+                            >
+                                <Flex>
+                                    <Zap />
+                                    <div>Starter (WIP)</div>
+                                    <ExternalLinkIcon />
+                                </Flex>
+                            </HoverPanel>
                             <HoverPanel
                                 external
                                 to="https://crm.sethdavis.tech/"
@@ -154,20 +167,29 @@ export default function Home() {
                         <Flex className="flex-wrap gap-4">
                             <HoverPanel
                                 external
-                                to="https://github.com/sethdavis512"
-                            >
-                                <Flex>
-                                    <Github />
-                                    <div>GitHub</div>
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel
-                                external
                                 to="https://www.linkedin.com/in/sethdavis512/"
                             >
                                 <Flex>
                                     <Linkedin />
                                     <div>LinkedIn</div>
+                                </Flex>
+                            </HoverPanel>
+                            <HoverPanel
+                                external
+                                to="https://twitter.com/sethdavis512"
+                            >
+                                <Flex>
+                                    <Twitter />
+                                    <div>Twitter</div>
+                                </Flex>
+                            </HoverPanel>
+                            <HoverPanel
+                                external
+                                to="https://github.com/sethdavis512"
+                            >
+                                <Flex>
+                                    <Github />
+                                    <div>GitHub</div>
                                 </Flex>
                             </HoverPanel>
                             <HoverPanel
@@ -181,11 +203,11 @@ export default function Home() {
                             </HoverPanel>
                             <HoverPanel
                                 external
-                                to="https://twitter.com/sethdavis512"
+                                to="https://www.youtube.com/@techwithseth"
                             >
                                 <Flex>
-                                    <Twitter />
-                                    <div>Twitter</div>
+                                    <YoutubeIcon />
+                                    <div>Youtube</div>
                                 </Flex>
                             </HoverPanel>
                         </Flex>
