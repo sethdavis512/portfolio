@@ -87,6 +87,7 @@ export default function Home() {
                             <HoverPanel
                                 external
                                 to="https://crm.sethdavis.tech/"
+                                disabled
                             >
                                 <Flex>
                                     <UserSearchIcon />
