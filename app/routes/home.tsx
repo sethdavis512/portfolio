@@ -80,7 +80,7 @@ export default function Home() {
                             >
                                 <Flex>
                                     <Zap />
-                                    <div>Starter (WIP)</div>
+                                    <div>Starter</div>
                                     <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
