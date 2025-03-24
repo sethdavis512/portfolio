@@ -1,6 +1,5 @@
 import { InfoIcon, ScrollText } from 'lucide-react';
 import { Banner } from '~/components/Banner';
-import Card from '~/components/Card';
 import Flex from '~/components/Flex';
 import Heading from '~/components/Heading';
 import JobItem from '~/components/JobItem';
@@ -222,7 +221,7 @@ export default function ResumeRoute() {
                             Communication Design (2012) - San Marcos, Texas
                         </li>
                     </JobItemList>
-                    <Banner variant="secondary">
+                    <Banner>
                         Interested in learning more about me?{' '}
                         <Linky to="/about">See my about page</Linky>
                     </Banner>

@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link, Outlet, useLocation } from 'react-router';
-import { Button } from '~/components/Button';
-import { ButtonLink } from '~/components/ButtonLink';
+import { Banner } from '~/components/Banner';
+import Divider from '~/components/Divider';
 import Flex from '~/components/Flex';
 import HoverPanel from '~/components/HoverPanel';
 import Logo from '~/components/Logo';
@@ -31,10 +31,10 @@ export default function WrapperRoute() {
                     </Flex>
                 </Flex>
             </div>
-            <div>
+            <main>
                 <Outlet />
-            </div>
-            <footer className="flex items-center justify-between pb-8 pt-16">
+            </main>
+            <footer className="flex items-center justify-between pb-8 pt-8">
                 <div className={`flex-grow ${BORDER_BOTTOM}`} />
                 <Flex className="px-4 text-center">
                     <p className="inline-block">✌🏻 Made in Austin, TX </p>

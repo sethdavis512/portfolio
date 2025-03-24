@@ -22,7 +22,7 @@ export default function Linky({
     const linkClassName = useMemo(() => {
         return cx(
             'inline-flex cursor-pointer items-center gap-1.5 focus:outline-none',
-            'text-secondary-600 hover:text-secondary-500 dark:text-secondary-400 dark:hover:text-secondary-300',
+            'text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300',
             pad && 'p-4',
             className
         );

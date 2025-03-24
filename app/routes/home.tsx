@@ -28,6 +28,7 @@ import { largeIconProps } from '~/constants';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import Divider from '~/components/Divider';
+import { Banner } from '~/components/Banner';
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -215,6 +216,16 @@ export default function Home() {
                     </Panel>
                 </div>
             </div>
+            <Divider className="my-8" />
+            <a href="https://railway.com?referralCode=YZe1VE">
+                <Banner variant="tertiary">
+                    <span className="mr-2">Site hosted on Railway 🚂</span>
+                    <span className="underline">
+                        Sign up and I'll get $5
+                    </span>{' '}
+                    🤑
+                </Banner>
+            </a>
         </>
     );
 }

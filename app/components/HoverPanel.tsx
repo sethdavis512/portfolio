@@ -22,7 +22,7 @@ export default function HoverPanel({
         <Card
             className={cx(
                 `border border-transparent p-0 dark:focus:outline-none focus:outline-none focus:ring-2 dark:focus:ring-2`,
-                `hover:border-secondary-500 hover:dark:border-secondary-800 focus:ring-secondary-500 focus:dark:ring-secondary-500`,
+                `hover:border-primary-500 hover:dark:border-primary-800 focus:ring-primary-500 focus:dark:ring-primary-500`,
                 disabled && `pointer-events-none opacity-50`
             )}
             tabIndex={0}
