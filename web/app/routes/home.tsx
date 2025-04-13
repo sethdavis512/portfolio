@@ -3,6 +3,7 @@ import type { Route } from './+types/home';
 import Linky from '~/components/Linky';
 import Flex from '~/components/Flex';
 import {
+    AxeIcon,
     BookHeartIcon,
     BookUserIcon,
     BotIcon,
@@ -16,8 +17,10 @@ import {
     KeySquareIcon,
     LaughIcon,
     Linkedin,
+    PaperclipIcon,
     ScrollText,
     Share2Icon,
+    TvIcon,
     Twitter,
     UserSearchIcon,
     WaypointsIcon,
@@ -85,7 +88,7 @@ export default function Home() {
                                     <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
-                            <HoverPanel
+                            {/* <HoverPanel
                                 external
                                 to="https://crm.sethdavis.tech/"
                                 disabled
@@ -95,8 +98,8 @@ export default function Home() {
                                     <div>CRM (WIP)</div>
                                     <ExternalLinkIcon />
                                 </Flex>
-                            </HoverPanel>
-                            <HoverPanel
+                            </HoverPanel> */}
+                            {/* <HoverPanel
                                 external
                                 to="https://ai.sethdavis.tech"
                                 disabled
@@ -106,13 +109,13 @@ export default function Home() {
                                     <div>AI Agents (WIP)</div>
                                     <ExternalLinkIcon />
                                 </Flex>
-                            </HoverPanel>
+                            </HoverPanel> */}
                         </Flex>
                     </Panel>
                     <Panel
                         className="flex-1"
-                        heading="Shareables"
-                        icon={<Share2Icon {...largeIconProps} />}
+                        heading="Showcase"
+                        icon={<TvIcon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
                             <HoverPanel
@@ -125,6 +128,14 @@ export default function Home() {
                                     <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
+                            {/* <HoverPanel to="#" disabled>
+                                <Flex>
+                                    <AxeIcon />
+                                    <div>
+                                        Woodworker Management System (WIP)
+                                    </div>
+                                </Flex>
+                            </HoverPanel> */}
                         </Flex>
                     </Panel>
                 </div>
@@ -157,6 +168,12 @@ export default function Home() {
                                 <Flex>
                                     <CableIcon />
                                     <div>My setup</div>
+                                </Flex>
+                            </HoverPanel>
+                            <HoverPanel to="/blog">
+                                <Flex>
+                                    <PaperclipIcon />
+                                    <div>Blog</div>
                                 </Flex>
                             </HoverPanel>
                         </Flex>
@@ -203,15 +220,16 @@ export default function Home() {
                                     <div>Codepen</div>
                                 </Flex>
                             </HoverPanel>
-                            <HoverPanel
+                            {/* <HoverPanel
                                 external
                                 to="https://www.youtube.com/@techwithseth"
+                                disabled
                             >
                                 <Flex>
                                     <YoutubeIcon />
                                     <div>Youtube</div>
                                 </Flex>
-                            </HoverPanel>
+                            </HoverPanel> */}
                         </Flex>
                     </Panel>
                 </div>
