@@ -14,6 +14,8 @@ export default [
         route('resume', 'routes/resume.tsx'),
         route('setup', 'routes/setup.tsx'),
         route('socialize', 'routes/socialize.tsx'),
-        route('truck', 'routes/truck.tsx')
+        route('truck', 'routes/truck.tsx'),
+        route('blog', 'routes/blog.tsx'),
+        route('blog/:id', 'routes/blog-detail.tsx')
     ])
 ] satisfies RouteConfig;

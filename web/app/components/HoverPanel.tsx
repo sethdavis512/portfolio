@@ -5,7 +5,7 @@ import Card from './Card';
 import Linky from './Linky';
 
 interface HoverPanelProps {
-    to: string;
+    to: string | number;
     className?: string;
     disabled?: boolean;
     external?: boolean;
