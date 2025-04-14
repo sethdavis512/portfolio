@@ -359,6 +359,7 @@ export type Post = {
   author?: Maybe<User>;
   content?: Maybe<Post_Content_Document>;
   id: Scalars['ID']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
   tags?: Maybe<Array<Tag>>;
   tagsCount?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -381,6 +382,7 @@ export type PostTagsCountArgs = {
 export type PostCreateInput = {
   author?: InputMaybe<UserRelateToOneForCreateInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<TagRelateToManyForCreateInput>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -393,6 +395,7 @@ export type PostManyRelationFilter = {
 
 export type PostOrderByInput = {
   id?: InputMaybe<OrderDirection>;
+  slug?: InputMaybe<OrderDirection>;
   title?: InputMaybe<OrderDirection>;
 };
 
@@ -416,6 +419,7 @@ export type PostUpdateArgs = {
 export type PostUpdateInput = {
   author?: InputMaybe<UserRelateToOneForUpdateInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<TagRelateToManyForUpdateInput>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -426,12 +430,14 @@ export type PostWhereInput = {
   OR?: InputMaybe<Array<PostWhereInput>>;
   author?: InputMaybe<UserWhereInput>;
   id?: InputMaybe<IdFilter>;
+  slug?: InputMaybe<StringFilter>;
   tags?: InputMaybe<TagManyRelationFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
 export type PostWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Post_Content_Document = {
@@ -530,6 +536,7 @@ export type StringFilter = {
   in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
+  mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringFilter>;
   notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;

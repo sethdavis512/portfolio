@@ -1,6 +1,7 @@
 query GetPost($where: PostWhereUniqueInput!) {
     post(where: $where) {
         id
+        slug
         title
         content {
             document
