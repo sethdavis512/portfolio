@@ -21,5 +21,9 @@ interface BlogArticleProps {
 }
 
 export function BlogArticle({ document }: BlogArticleProps) {
-    return <DocumentRenderer document={document} renderers={renderers} />;
+    return (
+        <div className="prose prose-lg text-white">
+            <DocumentRenderer document={document} renderers={renderers} />
+        </div>
+    );
 }
