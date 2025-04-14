@@ -4,7 +4,6 @@ import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog';
 import Card from '~/components/Card';
 import Linky from '~/components/Linky';
-import Divider from '~/components/Divider';
 
 export async function loader() {
     try {
