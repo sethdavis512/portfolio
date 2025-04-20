@@ -69,7 +69,21 @@ export const lists = {
 
         // this is the fields for our Post list
         fields: {
+            status: select({
+                options: [
+                    { label: 'Draft', value: 'DRAFT' },
+                    { label: 'Published', value: 'PUBLISHED' },
+                    { label: 'Archived', value: 'ARCHIVED' }
+                ],
+                defaultValue: 'DRAFT',
+                validation: { isRequired: true },
+                ui: {
+                    displayMode: 'segmented-control'
+                }
+            }),
+
             title: text({ validation: { isRequired: true } }),
+
             slug: text({
                 isIndexed: 'unique',
                 isFilterable: true,

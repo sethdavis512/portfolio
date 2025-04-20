@@ -1,10 +1,8 @@
 import type { Config } from '@react-router/dev/config';
 
 export default {
-    // Config options...
-    // Server-side render by default, to enable SPA mode set this to `false`
     ssr: true,
     async prerender() {
-        return [`/`, `/about`, `/resume`, `/setup`, `/truck`];
+        return [`/`, `/about`, `/resume`, `/setup`, `/truck`, `/blog`];
     }
 } satisfies Config;

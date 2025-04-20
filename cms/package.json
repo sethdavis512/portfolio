@@ -3,15 +3,17 @@
     "version": "1.0.3",
     "private": true,
     "scripts": {
-        "dev": "keystone dev",
+        "dev": "NODE_ENV=development keystone dev",
         "prestart": "keystone prisma migrate deploy",
-        "start": "keystone start",
-        "build": "keystone build"
+        "start": "NODE_ENV=production keystone start",
+        "build": "keystone build",
+        "seed": "npx tsx seed.ts"
     },
     "dependencies": {
         "@keystone-6/auth": "^8.0.0",
         "@keystone-6/core": "^6.0.0",
         "@keystone-6/fields-document": "^9.0.0",
+        "bcryptjs": "^3.0.2",
         "dotenv": "^16.5.0",
         "typescript": "^5.5.0"
     }

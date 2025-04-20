@@ -142,6 +142,7 @@ input PostRelateToManyForCreateInput {
 
 type Post {
   id: ID!
+  status: String
   title: String
   slug: String
   content: Post_content_Document
@@ -164,6 +165,7 @@ input PostWhereInput {
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
   id: IDFilter
+  status: StringFilter
   title: StringFilter
   slug: StringFilter
   author: UserWhereInput
@@ -178,11 +180,13 @@ input TagManyRelationFilter {
 
 input PostOrderByInput {
   id: OrderDirection
+  status: OrderDirection
   title: OrderDirection
   slug: OrderDirection
 }
 
 input PostUpdateInput {
+  status: String
   title: String
   slug: String
   content: JSON
@@ -209,6 +213,7 @@ input PostUpdateArgs {
 }
 
 input PostCreateInput {
+  status: String
   title: String
   slug: String
   content: JSON

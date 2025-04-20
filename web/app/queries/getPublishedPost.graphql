@@ -1,0 +1,14 @@
+query GetPublishedPosts {
+    posts(where: { status: { equals: "PUBLISHED" } }) {
+        id
+        slug
+        title
+        content {
+            document
+        }
+        author {
+            name
+            id
+        }
+    }
+}

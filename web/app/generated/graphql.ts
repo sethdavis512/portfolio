@@ -360,6 +360,7 @@ export type Post = {
   content?: Maybe<Post_Content_Document>;
   id: Scalars['ID']['output'];
   slug?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
   tags?: Maybe<Array<Tag>>;
   tagsCount?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -383,6 +384,7 @@ export type PostCreateInput = {
   author?: InputMaybe<UserRelateToOneForCreateInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<TagRelateToManyForCreateInput>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -396,6 +398,7 @@ export type PostManyRelationFilter = {
 export type PostOrderByInput = {
   id?: InputMaybe<OrderDirection>;
   slug?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
   title?: InputMaybe<OrderDirection>;
 };
 
@@ -420,6 +423,7 @@ export type PostUpdateInput = {
   author?: InputMaybe<UserRelateToOneForUpdateInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<TagRelateToManyForUpdateInput>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -431,6 +435,7 @@ export type PostWhereInput = {
   author?: InputMaybe<UserWhereInput>;
   id?: InputMaybe<IdFilter>;
   slug?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
   tags?: InputMaybe<TagManyRelationFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -720,6 +725,11 @@ export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title?: string | null }> | null };
 
+export type GetPublishedPostsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPublishedPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null }> | null };
+
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -757,6 +767,26 @@ export const GetPostsDocument = gql`
 
 export function useGetPostsQuery(options?: Omit<Urql.UseQueryArgs<GetPostsQueryVariables>, 'query'>) {
   return Urql.useQuery<GetPostsQuery, GetPostsQueryVariables>({ query: GetPostsDocument, ...options });
+};
+export const GetPublishedPostsDocument = gql`
+    query GetPublishedPosts {
+  posts(where: {status: {equals: "PUBLISHED"}}) {
+    id
+    slug
+    title
+    content {
+      document
+    }
+    author {
+      name
+      id
+    }
+  }
+}
+    `;
+
+export function useGetPublishedPostsQuery(options?: Omit<Urql.UseQueryArgs<GetPublishedPostsQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetPublishedPostsQuery, GetPublishedPostsQueryVariables>({ query: GetPublishedPostsDocument, ...options });
 };
 export const GetUsersDocument = gql`
     query GetUsers {

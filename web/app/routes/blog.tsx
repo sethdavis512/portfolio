@@ -1,5 +1,8 @@
 import Heading from '~/components/Heading';
-import { GetPostsDocument, type GetPostsQuery } from '~/generated/graphql';
+import {
+    GetPublishedPostsDocument,
+    type GetPublishedPostsQuery
+} from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog';
 import Card from '~/components/Card';
@@ -7,7 +10,9 @@ import Linky from '~/components/Linky';
 
 export async function loader() {
     try {
-        const { posts } = await client.request<GetPostsQuery>(GetPostsDocument);
+        const { posts } = await client.request<GetPublishedPostsQuery>(
+            GetPublishedPostsDocument
+        );
 
         return {
             posts
