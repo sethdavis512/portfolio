@@ -22,7 +22,7 @@ interface BlogArticleProps {
 
 export function BlogArticle({ document }: BlogArticleProps) {
     return (
-        <div className="prose prose-lg text-white">
+        <div className="prose prose-lg max-w-none dark:prose-invert">
             <DocumentRenderer document={document} renderers={renderers} />
         </div>
     );

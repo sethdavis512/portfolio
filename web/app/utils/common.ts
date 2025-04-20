@@ -19,3 +19,14 @@ export function formatToUSD(number: number) {
         currency: 'USD'
     }).format(number);
 }
+
+export function formatToDate(date: Date) {
+    if (isNaN(date.getTime())) {
+        throw new Error('Invalid date value');
+    }
+    return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: '2-digit'
+    }).format(date);
+}

@@ -5,8 +5,9 @@
 // If you want to learn more about how lists are configured, please read
 // - https://keystonejs.com/docs/config/lists
 
-import { list } from '@keystone-6/core';
+import { graphql, list } from '@keystone-6/core';
 import { allowAll } from '@keystone-6/core/access';
+import { Node as SlateNode } from 'slate';
 
 // see https://keystonejs.com/docs/fields/overview for the full list of fields
 //   this is a few common fields for an example
@@ -15,7 +16,8 @@ import {
     relationship,
     password,
     timestamp,
-    select
+    select,
+    virtual
 } from '@keystone-6/core/fields';
 
 // the document field is a more complicated field, so it has it's own package
@@ -69,6 +71,27 @@ export const lists = {
 
         // this is the fields for our Post list
         fields: {
+            createdAt: timestamp({
+                defaultValue: { kind: 'now' },
+                ui: {
+                    createView: { fieldMode: 'hidden' },
+                    listView: { fieldMode: 'read' },
+                    itemView: { fieldMode: 'read' }
+                }
+            }),
+
+            updatedAt: timestamp({
+                defaultValue: { kind: 'now' },
+                db: {
+                    updatedAt: true
+                },
+                ui: {
+                    createView: { fieldMode: 'hidden' },
+                    listView: { fieldMode: 'read' },
+                    itemView: { fieldMode: 'read' }
+                }
+            }),
+
             status: select({
                 options: [
                     { label: 'Draft', value: 'DRAFT' },
@@ -82,12 +105,41 @@ export const lists = {
                 }
             }),
 
-            title: text({ validation: { isRequired: true } }),
+            title: text({
+                validation: { isRequired: true },
+                isIndexed: 'unique'
+            }),
 
             slug: text({
+                validation: { isRequired: true },
                 isIndexed: 'unique',
-                isFilterable: true,
-                validation: { isRequired: true }
+                isFilterable: true
+            }),
+
+            excerpt: virtual({
+                field: graphql.field({
+                    type: graphql.String,
+                    args: {
+                        length: graphql.arg({
+                            type: graphql.nonNull(graphql.Int),
+                            defaultValue: 250
+                        })
+                    },
+                    resolve(item, { length }) {
+                        if (
+                            item &&
+                            item.content &&
+                            Array.isArray(item.content)
+                        ) {
+                            return item.content
+                                .filter(Boolean)
+                                .map((n) => SlateNode.string(n as any))
+                                .join('\n')
+                                .slice(0, length);
+                        }
+                    }
+                }),
+                ui: { query: '(length: 250)' }
             }),
 
             // the document field can be used for making rich editable content

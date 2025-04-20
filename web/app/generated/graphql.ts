@@ -358,12 +358,20 @@ export type Post = {
   __typename?: 'Post';
   author?: Maybe<User>;
   content?: Maybe<Post_Content_Document>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  excerpt?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
   tags?: Maybe<Array<Tag>>;
   tagsCount?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PostExcerptArgs = {
+  length?: Scalars['Int']['input'];
 };
 
 
@@ -383,10 +391,12 @@ export type PostTagsCountArgs = {
 export type PostCreateInput = {
   author?: InputMaybe<UserRelateToOneForCreateInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<TagRelateToManyForCreateInput>;
   title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PostManyRelationFilter = {
@@ -396,10 +406,12 @@ export type PostManyRelationFilter = {
 };
 
 export type PostOrderByInput = {
+  createdAt?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
   slug?: InputMaybe<OrderDirection>;
   status?: InputMaybe<OrderDirection>;
   title?: InputMaybe<OrderDirection>;
+  updatedAt?: InputMaybe<OrderDirection>;
 };
 
 export type PostRelateToManyForCreateInput = {
@@ -422,10 +434,12 @@ export type PostUpdateArgs = {
 export type PostUpdateInput = {
   author?: InputMaybe<UserRelateToOneForUpdateInput>;
   content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<TagRelateToManyForUpdateInput>;
   title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PostWhereInput = {
@@ -433,16 +447,19 @@ export type PostWhereInput = {
   NOT?: InputMaybe<Array<PostWhereInput>>;
   OR?: InputMaybe<Array<PostWhereInput>>;
   author?: InputMaybe<UserWhereInput>;
+  createdAt?: InputMaybe<DateTimeNullableFilter>;
   id?: InputMaybe<IdFilter>;
   slug?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringFilter>;
   tags?: InputMaybe<TagManyRelationFilter>;
   title?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeNullableFilter>;
 };
 
 export type PostWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Post_Content_Document = {
@@ -713,22 +730,22 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type GetPostQueryVariables = Exact<{
-  where: PostWhereUniqueInput;
+export type GetPostBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
 }>;
 
 
-export type GetPostQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, slug?: string | null, title?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null } | null };
+export type GetPostBySlugQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, slug?: string | null, title?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null } | null };
 
 export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title?: string | null }> | null };
+export type GetPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null }> | null };
 
 export type GetPublishedPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPublishedPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null }> | null };
+export type GetPublishedPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, createdAt?: any | null, updatedAt?: any | null, slug?: string | null, title?: string | null, excerpt?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null }> | null };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -736,9 +753,9 @@ export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetUsersQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: string, name?: string | null }> | null };
 
 
-export const GetPostDocument = gql`
-    query GetPost($where: PostWhereUniqueInput!) {
-  post(where: $where) {
+export const GetPostBySlugDocument = gql`
+    query GetPostBySlug($slug: String!) {
+  post(where: {slug: $slug}) {
     id
     slug
     title
@@ -753,13 +770,14 @@ export const GetPostDocument = gql`
 }
     `;
 
-export function useGetPostQuery(options: Omit<Urql.UseQueryArgs<GetPostQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetPostQuery, GetPostQueryVariables>({ query: GetPostDocument, ...options });
+export function useGetPostBySlugQuery(options: Omit<Urql.UseQueryArgs<GetPostBySlugQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetPostBySlugQuery, GetPostBySlugQueryVariables>({ query: GetPostBySlugDocument, ...options });
 };
 export const GetPostsDocument = gql`
     query GetPosts {
   posts {
     id
+    slug
     title
   }
 }
@@ -772,8 +790,11 @@ export const GetPublishedPostsDocument = gql`
     query GetPublishedPosts {
   posts(where: {status: {equals: "PUBLISHED"}}) {
     id
+    createdAt
+    updatedAt
     slug
     title
+    excerpt
     content {
       document
     }

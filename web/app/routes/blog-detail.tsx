@@ -1,15 +1,19 @@
-import { GetPostDocument, type GetPostQuery } from '~/generated/graphql';
+import {
+    GetPostBySlugDocument,
+    type GetPostBySlugQuery
+} from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog-detail';
 import Heading from '~/components/Heading';
 import { BlogArticle } from '~/components/BlogArticle';
 
 export async function loader({ params }: Route.LoaderArgs) {
-    const { post } = await client.request<GetPostQuery>(GetPostDocument, {
-        where: {
-            id: params.id
+    const { post } = await client.request<GetPostBySlugQuery>(
+        GetPostBySlugDocument,
+        {
+            slug: params.slug
         }
-    });
+    );
 
     return {
         post

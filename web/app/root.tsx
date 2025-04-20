@@ -31,7 +31,7 @@ function PosthogInit() {
 
 export function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className="h-full">
+        <html lang="en" className="dark h-full">
             <head>
                 <meta charSet="utf-8" />
                 <meta

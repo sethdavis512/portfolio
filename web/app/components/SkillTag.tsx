@@ -11,7 +11,7 @@ export default function SkillTag({
     children
 }: PropsWithChildren<SkillTagProps>) {
     return (
-        <Tag variant="secondary" className={cx('text-sm py-1 px-2', className)}>
+        <Tag variant="primary" className={cx('', className)}>
             {children}
         </Tag>
     );

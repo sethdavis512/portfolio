@@ -1,6 +1,7 @@
 query GetPosts {
     posts {
         id
+        slug
         title
     }
 }

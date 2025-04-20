@@ -1,5 +1,5 @@
-query GetPost($where: PostWhereUniqueInput!) {
-    post(where: $where) {
+query GetPostBySlug($slug: String!) {
+    post(where: { slug: $slug }) {
         id
         slug
         title

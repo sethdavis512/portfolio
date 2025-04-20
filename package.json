@@ -1,0 +1,26 @@
+{
+    "name": "portfolio",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "concurrently \"npm run dev:cms\" \"npm run dev:web\"",
+        "dev:web": "npm run dev --prefix web",
+        "dev:cms": "npm run dev --prefix cms"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sethdavis512/portfolio.git"
+    },
+    "keywords": [],
+    "author": "Seth Davis <sethdavis512@gmail.com> (https://sethdavis.tech/)",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/sethdavis512/portfolio/issues"
+    },
+    "homepage": "https://github.com/sethdavis512/portfolio#readme",
+    "dependencies": {
+        "concurrently": "^9.1.2"
+    }
+}

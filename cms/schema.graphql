@@ -142,9 +142,12 @@ input PostRelateToManyForCreateInput {
 
 type Post {
   id: ID!
+  createdAt: DateTime
+  updatedAt: DateTime
   status: String
   title: String
   slug: String
+  excerpt(length: Int! = 250): String
   content: Post_content_Document
   author: User
   tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
@@ -157,6 +160,7 @@ type Post_content_Document {
 
 input PostWhereUniqueInput {
   id: ID
+  title: String
   slug: String
 }
 
@@ -165,6 +169,8 @@ input PostWhereInput {
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
   id: IDFilter
+  createdAt: DateTimeNullableFilter
+  updatedAt: DateTimeNullableFilter
   status: StringFilter
   title: StringFilter
   slug: StringFilter
@@ -180,12 +186,16 @@ input TagManyRelationFilter {
 
 input PostOrderByInput {
   id: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
   status: OrderDirection
   title: OrderDirection
   slug: OrderDirection
 }
 
 input PostUpdateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
   status: String
   title: String
   slug: String
@@ -213,6 +223,8 @@ input PostUpdateArgs {
 }
 
 input PostCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
   status: String
   title: String
   slug: String

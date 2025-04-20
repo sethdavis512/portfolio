@@ -21,14 +21,16 @@ model User {
 }
 
 model Post {
-  id       String  @id @default(cuid())
-  status   String  @default("DRAFT")
-  title    String  @default("")
-  slug     String  @unique @default("")
-  content  Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  author   User?   @relation("Post_author", fields: [authorId], references: [id])
-  authorId String? @map("author")
-  tags     Tag[]   @relation("Post_tags")
+  id        String    @id @default(cuid())
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
+  status    String    @default("DRAFT")
+  title     String    @unique @default("")
+  slug      String    @unique @default("")
+  content   Json      @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  author    User?     @relation("Post_author", fields: [authorId], references: [id])
+  authorId  String?   @map("author")
+  tags      Tag[]     @relation("Post_tags")
 
   @@index([authorId])
 }

@@ -7,6 +7,8 @@ import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog';
 import Card from '~/components/Card';
 import Linky from '~/components/Linky';
+import { formatToDate } from '~/utils/common';
+import { Tag } from '~/components/Tag';
 
 export async function loader() {
     try {
@@ -32,12 +34,31 @@ export default function BlogRoute({ loaderData }: Route.ComponentProps) {
                 <div className="flex flex-col gap-4">
                     {loaderData.posts.map((post) => (
                         <Linky
-                            to={`/blog/${post.id}`}
+                            to={`/blog/${post.slug}`}
                             className="w-full"
                             key={post.id}
                         >
                             <Card className="w-full">
-                                📝 <span className="pl-1.5">{post.title}</span>
+                                <div className="flex gap-2 items-start mb-2">
+                                    <div>
+                                        <span className="text-xl">📝</span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="flex justify-between">
+                                            <Heading size="4">
+                                                {post.title}
+                                            </Heading>
+                                            <Tag variant="muted">
+                                                {formatToDate(
+                                                    new Date(post.createdAt)
+                                                )}
+                                            </Tag>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-zinc-300">
+                                    {post.excerpt}
+                                </p>
                             </Card>
                         </Linky>
                     ))}

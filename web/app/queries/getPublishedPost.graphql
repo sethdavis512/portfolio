@@ -1,8 +1,11 @@
 query GetPublishedPosts {
     posts(where: { status: { equals: "PUBLISHED" } }) {
         id
+        createdAt
+        updatedAt
         slug
         title
+        excerpt
         content {
             document
         }
