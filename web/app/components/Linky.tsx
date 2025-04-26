@@ -4,8 +4,23 @@ import { Link } from 'react-router';
 
 import { cx } from 'cva.config';
 
+interface Path {
+    /**
+     * A URL pathname, beginning with a /.
+     */
+    pathname: string;
+    /**
+     * A URL search string, beginning with a ?.
+     */
+    search: string;
+    /**
+     * A URL fragment identifier, beginning with a #.
+     */
+    hash: string;
+}
+
 interface LinkyProps extends HTMLAttributes<HTMLAnchorElement> {
-    to: string;
+    to: string | Partial<Path>;
     className?: string;
     external?: boolean;
     pad?: boolean;

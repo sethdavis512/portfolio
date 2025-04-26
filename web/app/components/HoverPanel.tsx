@@ -1,11 +1,11 @@
 import type { PropsWithChildren } from 'react';
+import type { LinkProps } from 'react-router';
 
 import { cx } from 'cva.config';
 import Card from './Card';
 import Linky from './Linky';
 
-interface HoverPanelProps {
-    to: string | number;
+interface HoverPanelProps extends LinkProps {
     className?: string;
     disabled?: boolean;
     external?: boolean;

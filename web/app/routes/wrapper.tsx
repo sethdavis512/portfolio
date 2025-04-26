@@ -22,7 +22,10 @@ export default function WrapperRoute() {
                             </Link>
                         </div>
                         {!isHome && (
-                            <HoverPanel to={-1} className="px-3 py-2">
+                            <HoverPanel
+                                to={isInArticle ? '/blog' : '/'}
+                                className="px-3 py-2"
+                            >
                                 <ArrowLeft />
                                 Back to {isInArticle ? 'blog' : 'home'}
                             </HoverPanel>
