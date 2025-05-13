@@ -8,6 +8,7 @@ import {
     CableIcon,
     CodepenIcon,
     ExternalLinkIcon,
+    FileStackIcon,
     Github,
     HammerIcon,
     HandshakeIcon,
@@ -76,6 +77,12 @@ export default function Home() {
                                 <Flex>
                                     <Zap />
                                     <div>TWS Starter</div>
+                                </Flex>
+                            </HoverPanel>
+                            <HoverPanel to="/projects/tws-cms">
+                                <Flex>
+                                    <FileStackIcon />
+                                    <div>TWS CMS</div>
                                 </Flex>
                             </HoverPanel>
                             {/* <HoverPanel

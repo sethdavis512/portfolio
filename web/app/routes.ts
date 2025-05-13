@@ -18,6 +18,9 @@ export default [
         route('truck', 'routes/truck.tsx'),
         route('blog', 'routes/blog.tsx'),
         route(':slug', 'routes/blog-detail.tsx'),
-        ...prefix('projects', [route('tws-starter', 'routes/tws-starter.tsx')])
+        ...prefix('projects', [
+            route('tws-starter', 'routes/tws-starter.tsx'),
+            route('tws-cms', 'routes/tws-cms.tsx')
+        ])
     ])
 ] satisfies RouteConfig;
