@@ -75,7 +75,7 @@ export default function Home() {
                             <HoverPanel to="/projects/tws-starter">
                                 <Flex>
                                     <Zap />
-                                    <div>Starter</div>
+                                    <div>TWS Starter</div>
                                 </Flex>
                             </HoverPanel>
                             {/* <HoverPanel
