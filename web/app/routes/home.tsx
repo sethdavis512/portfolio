@@ -3,14 +3,11 @@ import type { Route } from './+types/home';
 import Linky from '~/components/Linky';
 import Flex from '~/components/Flex';
 import {
-    AxeIcon,
     BookHeartIcon,
     BookUserIcon,
-    BotIcon,
     CableIcon,
     CodepenIcon,
     ExternalLinkIcon,
-    FileChartLineIcon,
     Github,
     HammerIcon,
     HandshakeIcon,
@@ -19,15 +16,12 @@ import {
     Linkedin,
     PaperclipIcon,
     ScrollText,
-    Share2Icon,
     TvIcon,
     Twitter,
-    UserSearchIcon,
     WaypointsIcon,
-    YoutubeIcon,
     Zap
 } from 'lucide-react';
-import { largeIconProps } from '~/constants';
+import { CURRENT_JOB_TITLE, FRONTEND, largeIconProps } from '~/constants';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import Divider from '~/components/Divider';
@@ -48,7 +42,7 @@ export default function Home() {
             </Heading>
             <p className="pb-4 md:pb-6">
                 {[
-                    `My name is Seth Davis. I am a Senior Front-End Engineer living in Austin, Texas. While I do enjoy all varieties of front-end technologies, I'm most passionate about `,
+                    `My name is Seth Davis. I am a ${CURRENT_JOB_TITLE} living in Austin, Texas. While I do enjoy all varieties of ${FRONTEND.toLowerCase()} technologies, I'm most passionate about `,
                     <Linky
                         external
                         to="https://reactrouter.com/"
@@ -78,14 +72,10 @@ export default function Home() {
                         icon={<HammerIcon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
-                            <HoverPanel
-                                external
-                                to="https://github.com/tech-with-seth/tws-starter"
-                            >
+                            <HoverPanel to="/projects/tws-starter">
                                 <Flex>
                                     <Zap />
                                     <div>Starter</div>
-                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                             {/* <HoverPanel

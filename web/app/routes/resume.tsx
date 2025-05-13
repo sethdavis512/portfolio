@@ -7,12 +7,14 @@ import JobItemList from '~/components/JobItemList';
 import Linky from '~/components/Linky';
 import Panel from '~/components/Panel';
 import SkillTag from '~/components/SkillTag';
-import { largeIconProps } from '~/constants';
+import { CURRENT_JOB_TITLE, FRONTEND, largeIconProps } from '~/constants';
 
 const RESUME_URL =
     'https://www.dropbox.com/scl/fi/6n9sbvmzr3h138p850t6l/20240528-seth-davis-resume.pdf?rlkey=adv2zflzdhth27hnly64qop9s&dl=0';
 
 export default function ResumeRoute() {
+    const yearsAsDeveloper = new Date().getFullYear() - 2016;
+
     return (
         <>
             <Banner className="mb-4">
@@ -27,14 +29,14 @@ export default function ResumeRoute() {
             <Panel heading="Resume" icon={<ScrollText {...largeIconProps} />}>
                 <div className="space-y-6">
                     <p>
-                        With 8+ years in web development focused on user
-                        experiences, I am seeking a Senior Front-End Engineer
+                        {`With ${yearsAsDeveloper}+ years in web development focused on user
+                        experiences, I am seeking a ${CURRENT_JOB_TITLE}
                         role on an innovative team to tackle challenges,
                         contribute to design, and advance my skills and
-                        professional growth.
+                        professional growth.`}
                     </p>
                     <Heading as="h3" size="4">
-                        Front-End Engineer Skills
+                        {`${FRONTEND} Engineer Skills`}
                     </Heading>
                     <div className="flex flex-wrap items-center gap-2">
                         <SkillTag>Typescript</SkillTag>
@@ -42,7 +44,7 @@ export default function ResumeRoute() {
                         <SkillTag>Node</SkillTag>
                         <SkillTag>Federated Modules</SkillTag>
                         <SkillTag>GraphQL</SkillTag>
-                        <SkillTag>Remix</SkillTag>
+                        <SkillTag>React Router 7</SkillTag>
                         <SkillTag>Prisma</SkillTag>
                         <SkillTag>Postgres</SkillTag>
                         <SkillTag>Tailwind</SkillTag>
@@ -63,16 +65,21 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Gartner"
                         dates="Aug 2024–Present"
-                        title="Senior Front-End Engineer"
+                        title={CURRENT_JOB_TITLE}
                     >
                         <JobItemList>
-                            <li>Building an internal analytics platform</li>
+                            <li>
+                                Developed and maintained a company-wide npm
+                                package for logging site data utilizing Snowplow
+                                Analytics, ensuring consistent and reliable data
+                                tracking across platforms
+                            </li>
                         </JobItemList>
                     </JobItem>
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2023–May 2024 (1 yr 5 mos)"
-                        title="Senior Front-End Engineer"
+                        title={CURRENT_JOB_TITLE}
                     >
                         <JobItemList>
                             <li>
@@ -108,7 +115,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2020–Jan 2023 (3 yrs 1 mo)"
-                        title="Front-End Engineer"
+                        title={`${FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>
@@ -132,17 +139,17 @@ export default function ResumeRoute() {
                                 satisfaction
                             </li>
                             <li>
-                                Established Indeed’s front-end pattern library,
+                                {`Established Indeed’s ${FRONTEND.toLowerCase()} pattern library,
                                 contributed 3 components and helped launch a
                                 volunteer guild that enabled contributions from
-                                teams across the company
+                                teams across the company`}
                             </li>
                         </JobItemList>
                     </JobItem>
                     <JobItem
                         company="Indeed, Inc"
                         dates="Feb 2019–Jan 2020 (11 mos)"
-                        title="Associate Front-End Engineer"
+                        title={`Associate ${FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>
@@ -165,7 +172,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="NIC Inc."
                         dates="Jan 2018–Feb 2019 (1 yr 2 mos)"
-                        title="Front-End Engineer"
+                        title={`${FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>
@@ -185,7 +192,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Texas NIC"
                         dates="Apr 2017–Dec 2017 (9 mos)"
-                        title="Front-End Engineer"
+                        title={`${FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>
