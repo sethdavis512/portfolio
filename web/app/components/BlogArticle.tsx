@@ -8,7 +8,7 @@ const renderers: DocumentRendererProps['renderers'] = {
     block: {
         code: ({ children }) => {
             return (
-                <pre className="overflow-x-auto whitespace-pre-wrap break-words bg-zinc-800 p-4 rounded-lg border border-zinc-700 my-3">
+                <pre>
                     <code className="text-zinc-100">{children}</code>
                 </pre>
             );
@@ -22,7 +22,7 @@ interface BlogArticleProps {
 
 export function BlogArticle({ document }: BlogArticleProps) {
     return (
-        <div className="prose prose-lg max-w-none dark:prose-invert">
+        <div className="prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-code:bg-zinc-700 prose-code:p-4 prose-code:rounded-lg prose-code:border prose-code:border-zinc-500 prose-code:block prose-code:whitespace-pre-wrap prose-code:break-words prose-headings:my-4 mb-8">
             <DocumentRenderer document={document} renderers={renderers} />
         </div>
     );

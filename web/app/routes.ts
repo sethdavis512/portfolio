@@ -17,7 +17,7 @@ export default [
         route('socialize', 'routes/socialize.tsx'),
         route('truck', 'routes/truck.tsx'),
         route('blog', 'routes/blog.tsx'),
-        route(':slug', 'routes/blog-detail.tsx'),
+        route('blog/:slug', 'routes/blog-detail.tsx'),
         ...prefix('projects', [
             route('tws-starter', 'routes/tws-starter.tsx'),
             route('tws-cms', 'routes/tws-cms.tsx')

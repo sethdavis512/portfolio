@@ -21,6 +21,8 @@
     },
     "homepage": "https://github.com/sethdavis512/portfolio#readme",
     "dependencies": {
-        "concurrently": "^9.1.2"
+        "@types/lodash": "^4.17.16",
+        "concurrently": "^9.1.2",
+        "lodash": "^4.17.21"
     }
 }
