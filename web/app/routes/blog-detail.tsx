@@ -1,19 +1,18 @@
 import {
     GetPostBySlugDocument,
-    type GetPostBySlugQuery
+    type GetPostBySlugQuery,
+    type Post
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog-detail';
 import Heading from '~/components/Heading';
 import { BlogArticle } from '~/components/BlogArticle';
-import Card from '~/components/Card';
 import Divider from '~/components/Divider';
 import chunk from 'lodash/chunk';
-import { Link } from 'react-router';
 import Linky from '~/components/Linky';
 
 export async function loader({ params }: Route.LoaderArgs) {
-    const { post } = await client.request<GetPostBySlugQuery>(
+    const { post, relatedPosts } = await client.request<GetPostBySlugQuery>(
         GetPostBySlugDocument,
         {
             slug: params.slug
@@ -22,41 +21,7 @@ export async function loader({ params }: Route.LoaderArgs) {
 
     return {
         post,
-        additionalPosts: chunk(
-            [
-                {
-                    id: '1',
-                    title: 'Additional Post 1',
-                    slug: 'additional-post-1'
-                },
-                {
-                    id: '2',
-                    title: 'Additional Post 2',
-                    slug: 'additional-post-2'
-                },
-                {
-                    id: '3',
-                    title: 'Additional Post 3',
-                    slug: 'additional-post-3'
-                },
-                {
-                    id: '4',
-                    title: 'Additional Post 4',
-                    slug: 'additional-post-4'
-                },
-                {
-                    id: '5',
-                    title: 'Additional Post 5',
-                    slug: 'additional-post-5'
-                },
-                {
-                    id: '6',
-                    title: 'Additional Post 6',
-                    slug: 'additional-post-6'
-                }
-            ],
-            3
-        )
+        relatedPosts
     };
 }
 
@@ -75,25 +40,27 @@ export default function BlogDetailRoute({ loaderData }: Route.ComponentProps) {
                 share it on social media to help others discover it. Stay tuned
                 for more updates and insights!
             </p>
-            <Divider className="my-8" />
-            <Heading as="h4" size="4" className="mb-4">
-                Additional articles
-            </Heading>
-            <ul className="grid grid-cols-3 gap-4 mb-8">
-                {loaderData.additionalPosts.map((chunk, index) => (
-                    <li key={index} className="flex flex-col gap-4">
-                        {chunk.map((post) => (
-                            <Linky
-                                className="py-2"
-                                key={post.id}
-                                to={`/blog/${post.slug}`}
-                            >
-                                {post.title}
-                            </Linky>
+            {loaderData.relatedPosts && loaderData.relatedPosts.length > 2 && (
+                <>
+                    <Divider className="my-8" />
+                    <Heading as="h4" size="4" className="mb-4">
+                        Additional articles
+                    </Heading>
+                    <ul className="flex flex-col gap-2 mb-8">
+                        {loaderData.relatedPosts.map((post, index) => (
+                            <li key={index} className="flex flex-col gap-4">
+                                <Linky
+                                    className="py-2"
+                                    key={post.id}
+                                    to={`/blog/${post.slug}`}
+                                >
+                                    {post.title}
+                                </Linky>
+                            </li>
                         ))}
-                    </li>
-                ))}
-            </ul>
+                    </ul>
+                </>
+            )}
         </>
     );
 }

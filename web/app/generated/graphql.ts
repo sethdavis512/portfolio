@@ -735,7 +735,7 @@ export type GetPostBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetPostBySlugQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, slug?: string | null, title?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null } | null };
+export type GetPostBySlugQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, slug?: string | null, title?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null } | null, relatedPosts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null }> | null };
 
 export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -766,6 +766,11 @@ export const GetPostBySlugDocument = gql`
       name
       id
     }
+  }
+  relatedPosts: posts(where: {slug: {not: {contains: $slug}}}, take: 3) {
+    id
+    slug
+    title
   }
 }
     `;

@@ -11,4 +11,12 @@ query GetPostBySlug($slug: String!) {
             id
         }
     }
+    relatedPosts: posts(
+        where: { slug: { not: { contains: $slug } } }
+        take: 3
+    ) {
+        id
+        slug
+        title
+    }
 }
