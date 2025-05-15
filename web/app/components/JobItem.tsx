@@ -19,7 +19,7 @@ export default function JobItem({
         <ul className="space-y-4">
             <li className="block md:flex md:justify-between">
                 <div className="mb-4 md:mb-0">
-                    <Heading as="h4" size="3">
+                    <Heading as="h4" size="4">
                         {title}
                     </Heading>
                     <span className="inline-block">{`${company} - ${location}`}</span>

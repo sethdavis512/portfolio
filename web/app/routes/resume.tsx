@@ -59,7 +59,7 @@ export default function ResumeRoute() {
                         <SkillTag>CSS</SkillTag>
                         <SkillTag>JS</SkillTag>
                     </div>
-                    <Heading as="h3" size="4">
+                    <Heading as="h3" size="3">
                         Experience
                     </Heading>
                     <JobItem
@@ -73,6 +73,18 @@ export default function ResumeRoute() {
                                 package for logging site data utilizing Snowplow
                                 Analytics, ensuring consistent and reliable data
                                 tracking across platforms
+                            </li>
+                            <li>
+                                Designed and implemented a custom CLI tool to
+                                streamline the creation, versioning, and
+                                synchronization of Snowplow schemas, enhancing
+                                data consistency and developer efficiency
+                            </li>
+                            <li>
+                                Collaborated with cross-functional teams to
+                                integrate Snowplow data into various
+                                applications and platforms, enabling data-driven
+                                decision making
                             </li>
                         </JobItemList>
                     </JobItem>
@@ -210,7 +222,7 @@ export default function ResumeRoute() {
                             </li>
                         </JobItemList>
                     </JobItem>
-                    <Heading as="h3" size="4">
+                    <Heading as="h3" size="3">
                         Education
                     </Heading>
                     <JobItemList className="mb-12">
