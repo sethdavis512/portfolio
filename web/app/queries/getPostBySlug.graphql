@@ -12,7 +12,10 @@ query GetPostBySlug($slug: String!) {
         }
     }
     relatedPosts: posts(
-        where: { slug: { not: { contains: $slug } } }
+        where: {
+            slug: { not: { contains: $slug } }
+            status: { equals: "PUBLISHED" }
+        }
         take: 3
     ) {
         id

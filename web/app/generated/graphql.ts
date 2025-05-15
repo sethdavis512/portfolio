@@ -747,6 +747,13 @@ export type GetPublishedPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetPublishedPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, createdAt?: any | null, updatedAt?: any | null, slug?: string | null, title?: string | null, excerpt?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, author?: { __typename?: 'User', name?: string | null, id: string } | null }> | null };
 
+export type GetPublishedRelatedPostsQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetPublishedRelatedPostsQuery = { __typename?: 'Query', relatedPublishedPosts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null, excerpt?: string | null, createdAt?: any | null, author?: { __typename?: 'User', name?: string | null, id: string } | null }> | null };
+
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -767,7 +774,10 @@ export const GetPostBySlugDocument = gql`
       id
     }
   }
-  relatedPosts: posts(where: {slug: {not: {contains: $slug}}}, take: 3) {
+  relatedPosts: posts(
+    where: {slug: {not: {contains: $slug}}, status: {equals: "PUBLISHED"}}
+    take: 3
+  ) {
     id
     slug
     title
@@ -813,6 +823,28 @@ export const GetPublishedPostsDocument = gql`
 
 export function useGetPublishedPostsQuery(options?: Omit<Urql.UseQueryArgs<GetPublishedPostsQueryVariables>, 'query'>) {
   return Urql.useQuery<GetPublishedPostsQuery, GetPublishedPostsQueryVariables>({ query: GetPublishedPostsDocument, ...options });
+};
+export const GetPublishedRelatedPostsDocument = gql`
+    query GetPublishedRelatedPosts($slug: String!) {
+  relatedPublishedPosts: posts(
+    where: {slug: {not: {contains: $slug}}, status: {equals: "PUBLISHED"}}
+    take: 3
+  ) {
+    id
+    slug
+    title
+    excerpt
+    createdAt
+    author {
+      name
+      id
+    }
+  }
+}
+    `;
+
+export function useGetPublishedRelatedPostsQuery(options: Omit<Urql.UseQueryArgs<GetPublishedRelatedPostsQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetPublishedRelatedPostsQuery, GetPublishedRelatedPostsQueryVariables>({ query: GetPublishedRelatedPostsDocument, ...options });
 };
 export const GetUsersDocument = gql`
     query GetUsers {

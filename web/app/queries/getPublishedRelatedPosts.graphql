@@ -1,0 +1,19 @@
+query GetPublishedRelatedPosts($slug: String!) {
+    relatedPublishedPosts: posts(
+        where: {
+            slug: { not: { contains: $slug } }
+            status: { equals: "PUBLISHED" }
+        }
+        take: 3
+    ) {
+        id
+        slug
+        title
+        excerpt
+        createdAt
+        author {
+            name
+            id
+        }
+    }
+}

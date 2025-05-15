@@ -1,14 +1,12 @@
 import {
     GetPostBySlugDocument,
-    type GetPostBySlugQuery,
-    type Post
+    type GetPostBySlugQuery
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog-detail';
 import Heading from '~/components/Heading';
 import { BlogArticle } from '~/components/BlogArticle';
 import Divider from '~/components/Divider';
-import chunk from 'lodash/chunk';
 import Linky from '~/components/Linky';
 
 export async function loader({ params }: Route.LoaderArgs) {
