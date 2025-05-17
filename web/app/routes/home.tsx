@@ -5,6 +5,7 @@ import Flex from '~/components/Flex';
 import {
     BookHeartIcon,
     BookUserIcon,
+    BoxIcon,
     CableIcon,
     Code2Icon,
     CodepenIcon,
@@ -82,6 +83,15 @@ export default function Home() {
                                 <Flex>
                                     <FileStackIcon />
                                     <div>TWS CMS</div>
+                                </Flex>
+                            </HoverPanel>
+                            <HoverPanel
+                                external
+                                to="https://github.com/orgs/tech-with-seth/repositories"
+                            >
+                                <Flex>
+                                    <BoxIcon />
+                                    <div>Repos</div>
                                 </Flex>
                             </HoverPanel>
                             {/* <HoverPanel
