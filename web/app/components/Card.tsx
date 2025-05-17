@@ -13,7 +13,7 @@ export default function Card({
     return (
         <div
             className={cx(
-                'p-4 rounded-lg border border-zinc-400 dark:border-zinc-700',
+                'p-4 rounded-lg border border-zinc-300 dark:border-zinc-700',
                 className
             )}
             {...rest}

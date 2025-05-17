@@ -66,7 +66,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
             <img
                 src={truck1}
                 alt="Black 2023 Ford F-150"
-                className="rounded-lg border border-zinc-400 dark:border-zinc-700"
+                className="rounded-lg border border-zinc-300 dark:border-zinc-700"
             />
             <Divider className="my-8" />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-12">

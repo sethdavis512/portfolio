@@ -21,7 +21,7 @@ export default function HoverPanel({
     return (
         <Card
             className={cx(
-                `border border-transparent p-0 dark:focus:outline-none focus:outline-none focus:ring-2 dark:focus:ring-2`,
+                `border border-zinc-300 p-0 dark:focus:outline-none focus:outline-none focus:ring-2 dark:focus:ring-2`,
                 `hover:border-primary-500 hover:dark:border-primary-800 focus:ring-primary-500 focus:dark:ring-primary-500`,
                 disabled && `pointer-events-none opacity-50`
             )}

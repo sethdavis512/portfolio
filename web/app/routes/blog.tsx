@@ -56,7 +56,7 @@ export default function BlogRoute({ loaderData }: Route.ComponentProps) {
                                         </div>
                                     </div>
                                 </div>
-                                <p className="text-sm text-zinc-300">
+                                <p className="text-sm text-zinc-700 dark:text-zinc-300">
                                     {post.excerpt}
                                 </p>
                             </Card>

@@ -11,7 +11,7 @@ export const tagVariants = cva({
                 'dark:bg-primary-700/35 dark:border-primary-500 bg-primary-400/35 border-primary-500',
             secondary:
                 'dark:bg-secondary-700/35 dark:border-secondary-500 bg-secondary-400/35 border-secondary-500',
-            muted: 'dark:bg-zinc-700/35 dark:border-zinc-500 bg-zinc-400/35 border-zinc-500 text-zinc-300'
+            muted: 'dark:bg-zinc-700/35 dark:border-zinc-700 bg-zinc-300 border-zinc-700 text-white'
         }
     },
     defaultVariants: {

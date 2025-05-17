@@ -3,17 +3,17 @@ import { RailwayLogo } from '~/components/RailwayLogo';
 import { ReactRouterLogo } from '~/components/ReactRouterLogo';
 import Heading from '~/components/Heading';
 import ReactLogo from '~/components/ReactLogo';
-import { ButtonLink } from '~/components/ButtonLink';
 import Linky from '~/components/Linky';
 
 import heroImage from '~/images/tws-cms-hero.png';
 import { KeystoneLogo } from '~/components/KeystoneLogo';
 import Card from '~/components/Card';
 import { ExternalLinkIcon } from 'lucide-react';
+import { TechStack } from '~/components/TechStack';
 
 export default function TWSCMSRoute() {
     const logoClassName =
-        'w-10 h-10 hover:fill-primary-500 dark:hover:fill-primary-400';
+        'w-10 h-10 fill-zinc-700 dark:fill-white hover:fill-primary-500 dark:hover:fill-primary-400';
     return (
         <>
             <img
@@ -49,33 +49,15 @@ export default function TWSCMSRoute() {
                     <Heading as="h3" size="3" className="mb-6">
                         Technologies
                     </Heading>
-                    <div className="flex gap-4 mb-8">
-                        <div>
-                            <Linky external to="https://keystonejs.com/">
-                                <KeystoneLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky external to="https://react.dev/">
-                                <ReactLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky external to="https://reactrouter.com/home">
-                                <ReactRouterLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky external to="https://www.postgresql.org/">
-                                <PostgresLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky to="https://railway.com/">
-                                <RailwayLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                    </div>
+                    <TechStack
+                        icons={[
+                            'keystone',
+                            'react',
+                            'react-router',
+                            'postgres',
+                            'railway'
+                        ]}
+                    />
                     <div className="flex flex-col gap-4">
                         {/* <Linky
                             external

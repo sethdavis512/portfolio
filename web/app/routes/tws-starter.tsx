@@ -10,10 +10,11 @@ import Linky from '~/components/Linky';
 import heroImage from '~/images/tws-starter-hero.png';
 import { ExternalLinkIcon } from 'lucide-react';
 import Card from '~/components/Card';
+import { TechStack } from '~/components/TechStack';
 
 export default function TWSStarterRoute() {
     const logoClassName =
-        'w-10 h-10 hover:fill-primary-500 dark:hover:fill-primary-400';
+        'w-10 h-10 fill-zinc-700 dark:fill-white hover:fill-primary-500 dark:hover:fill-primary-400';
     return (
         <>
             <img
@@ -43,33 +44,15 @@ export default function TWSStarterRoute() {
                     <Heading as="h3" size="3" className="mb-6">
                         Technologies
                     </Heading>
-                    <div className="flex gap-4 mb-8">
-                        <div>
-                            <Linky external to="https://react.dev/">
-                                <ReactLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky external to="https://reactrouter.com/home">
-                                <ReactRouterLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky external to="https://www.prisma.io/">
-                                <PrismaLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky external to="https://www.postgresql.org/">
-                                <PostgresLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                        <div>
-                            <Linky to="https://railway.com/">
-                                <RailwayLogo className={logoClassName} />
-                            </Linky>
-                        </div>
-                    </div>
+                    <TechStack
+                        icons={[
+                            'react',
+                            'react-router',
+                            'prisma',
+                            'postgres',
+                            'railway'
+                        ]}
+                    />
                     <div className="flex flex-col gap-4">
                         <Linky
                             external

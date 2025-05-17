@@ -18,7 +18,7 @@ export default function WrapperRoute() {
                     <Flex className="gap-6">
                         <div className="h-16">
                             <Link to="/" aria-label="Return to home page">
-                                <Logo className="fill-zinc-600 dark:fill-white" />
+                                <Logo className="fill-zinc-700 dark:fill-white" />
                             </Link>
                         </div>
                         {!isHome && (
@@ -36,7 +36,7 @@ export default function WrapperRoute() {
             <main>
                 <Outlet />
             </main>
-            <footer className="flex items-center justify-between pb-8 pt-8">
+            <footer className="flex items-center justify-between py-12">
                 <div className={`flex-grow ${BORDER_BOTTOM}`} />
                 <Flex className="px-4 text-center">
                     <p className="inline-block">✌🏻 Made in Austin, TX </p>
