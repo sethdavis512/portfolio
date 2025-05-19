@@ -7,7 +7,7 @@ import JobItemList from '~/components/JobItemList';
 import Linky from '~/components/Linky';
 import Panel from '~/components/Panel';
 import SkillTag from '~/components/SkillTag';
-import { CURRENT_JOB_TITLE, FRONTEND, largeIconProps } from '~/constants';
+import { ContentStyles, largeIconProps } from '~/constants';
 
 const RESUME_URL =
     'https://www.dropbox.com/scl/fi/6n9sbvmzr3h138p850t6l/20240528-seth-davis-resume.pdf?rlkey=adv2zflzdhth27hnly64qop9s&dl=0';
@@ -30,13 +30,13 @@ export default function ResumeRoute() {
                 <div className="space-y-6">
                     <p>
                         {`With ${yearsAsDeveloper}+ years in web development focused on user
-                        experiences, I am seeking a ${CURRENT_JOB_TITLE}
+                        experiences, I am seeking a ${ContentStyles.CURRENT_JOB_TITLE}
                         role on an innovative team to tackle challenges,
                         contribute to design, and advance my skills and
                         professional growth.`}
                     </p>
                     <Heading as="h3" size="4">
-                        {`${FRONTEND} Engineer Skills`}
+                        {`${ContentStyles.FRONTEND} Engineer Skills`}
                     </Heading>
                     <div className="flex flex-wrap items-center gap-2">
                         <SkillTag>Typescript</SkillTag>
@@ -65,7 +65,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Gartner"
                         dates="Aug 2024–Present"
-                        title={CURRENT_JOB_TITLE}
+                        title={ContentStyles.CURRENT_JOB_TITLE}
                     >
                         <JobItemList>
                             <li>
@@ -91,7 +91,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2023–May 2024 (1 yr 5 mos)"
-                        title={CURRENT_JOB_TITLE}
+                        title={ContentStyles.CURRENT_JOB_TITLE}
                     >
                         <JobItemList>
                             <li>
@@ -127,7 +127,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Jan 2020–Jan 2023 (3 yrs 1 mo)"
-                        title={`${FRONTEND} Engineer`}
+                        title={`${ContentStyles.FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>
@@ -151,7 +151,7 @@ export default function ResumeRoute() {
                                 satisfaction
                             </li>
                             <li>
-                                {`Established Indeed’s ${FRONTEND.toLowerCase()} pattern library,
+                                {`Established Indeed’s ${ContentStyles.FRONTEND.toLowerCase()} pattern library,
                                 contributed 3 components and helped launch a
                                 volunteer guild that enabled contributions from
                                 teams across the company`}
@@ -161,7 +161,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Indeed, Inc"
                         dates="Feb 2019–Jan 2020 (11 mos)"
-                        title={`Associate ${FRONTEND} Engineer`}
+                        title={`Associate ${ContentStyles.FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>
@@ -184,7 +184,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="NIC Inc."
                         dates="Jan 2018–Feb 2019 (1 yr 2 mos)"
-                        title={`${FRONTEND} Engineer`}
+                        title={`${ContentStyles.FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>
@@ -204,7 +204,7 @@ export default function ResumeRoute() {
                     <JobItem
                         company="Texas NIC"
                         dates="Apr 2017–Dec 2017 (9 mos)"
-                        title={`${FRONTEND} Engineer`}
+                        title={`${ContentStyles.FRONTEND} Engineer`}
                     >
                         <JobItemList>
                             <li>

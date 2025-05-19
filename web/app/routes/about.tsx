@@ -1,6 +1,6 @@
-import { InfoIcon, QuoteIcon } from 'lucide-react';
+import { QuoteIcon } from 'lucide-react';
 
-import { BORDER_COLOR, largeIconProps } from '~/constants';
+import { BorderStyles, largeIconProps } from '~/constants';
 import Panel from '~/components/Panel';
 import profilePhoto from '~/images/austfin-fc-profile.jpg';
 import Linky from '~/components/Linky';
@@ -22,7 +22,7 @@ export default function AboutRoute() {
             <Panel
                 icon={
                     <img
-                        className={`h-24 w-24 rounded-full ${BORDER_COLOR}`}
+                        className={`h-24 w-24 rounded-full ${BorderStyles.DEFAULT}`}
                         src={profilePhoto}
                         alt="Seth Davis wearing an Austin FC hat in front of the Austin FC soccer stadium"
                     />
