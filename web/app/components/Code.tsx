@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { BORDER_COLOR, BORDER_BOTTOM } from '~/constants';
+import { BorderStyles } from '~/constants';
 
 interface CodeProps {
     heading: string;
@@ -12,9 +12,9 @@ export default function Code({
     return (
         <div className="prose w-full">
             <pre
-                className={`dark:bg-zinc-700 block rounded-lg border ${BORDER_COLOR} bg-zinc-700 p-0`}
+                className={`dark:bg-zinc-700 block rounded-lg ${BorderStyles.DEFAULT} bg-zinc-700 p-0`}
             >
-                <header className={`px-4 py-3 ${BORDER_BOTTOM}`}>
+                <header className={`px-4 py-3 ${BorderStyles.BOTTOM}`}>
                     <span className="text-gray-400">{heading}</span>
                 </header>
                 <code className="block overflow-x-auto p-4">{children}</code>

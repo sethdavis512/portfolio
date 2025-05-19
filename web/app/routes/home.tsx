@@ -23,7 +23,7 @@ import {
     WaypointsIcon,
     Zap
 } from 'lucide-react';
-import { CURRENT_JOB_TITLE, FRONTEND, largeIconProps } from '~/constants';
+import { ContentStyles, largeIconProps } from '~/constants';
 import Panel from '~/components/Panel';
 import HoverPanel from '~/components/HoverPanel';
 import Divider from '~/components/Divider';
@@ -43,7 +43,9 @@ export default function Home() {
             </Heading>
             <p className="pb-4 md:pb-6">
                 {[
-                    `My name is Seth Davis. I am a ${CURRENT_JOB_TITLE} living in Austin, Texas. While I do enjoy all varieties of ${FRONTEND.toLowerCase()} technologies, I'm most passionate about `,
+                    `My name is Seth Davis. I am a ${
+                        ContentStyles.CURRENT_JOB_TITLE
+                    } living in Austin, Texas. While I do enjoy all varieties of ${ContentStyles.FRONTEND.toLowerCase()} technologies, I'm most passionate about `,
                     <Linky
                         external
                         to="https://reactrouter.com/"
@@ -92,6 +94,7 @@ export default function Home() {
                                 <Flex>
                                     <BoxIcon />
                                     <div>Repos</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                             {/* <HoverPanel
@@ -197,6 +200,7 @@ export default function Home() {
                                 <Flex>
                                     <Linkedin />
                                     <div>LinkedIn</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                             <HoverPanel
@@ -206,6 +210,7 @@ export default function Home() {
                                 <Flex>
                                     <Twitter />
                                     <div>Twitter</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                             <HoverPanel
@@ -215,6 +220,7 @@ export default function Home() {
                                 <Flex>
                                     <Github />
                                     <div>GitHub</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                             <HoverPanel
@@ -224,6 +230,7 @@ export default function Home() {
                                 <Flex>
                                     <CodepenIcon />
                                     <div>Codepen</div>
+                                    <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
                             {/* <HoverPanel

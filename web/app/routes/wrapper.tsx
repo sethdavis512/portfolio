@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from 'react-router';
 import Flex from '~/components/Flex';
 import HoverPanel from '~/components/HoverPanel';
 import Logo from '~/components/Logo';
-import { BORDER_BOTTOM } from '~/constants';
+import { BorderStyles } from '~/constants';
 import texasFlag from '~/images/flag-of-texas-small.svg';
 
 export default function WrapperRoute() {
@@ -37,12 +37,12 @@ export default function WrapperRoute() {
                 <Outlet />
             </main>
             <footer className="flex items-center justify-between py-12">
-                <div className={`flex-grow ${BORDER_BOTTOM}`} />
+                <div className={`flex-grow ${BorderStyles.BOTTOM}`} />
                 <Flex className="px-4 text-center">
                     <p className="inline-block">✌🏻 Made in Austin, TX </p>
                     <img className="h-5 w-5" src={texasFlag} alt="Texas flag" />
                 </Flex>
-                <div className={`flex-grow ${BORDER_BOTTOM}`} />
+                <div className={`flex-grow ${BorderStyles.BOTTOM}`} />
             </footer>
         </div>
     );
