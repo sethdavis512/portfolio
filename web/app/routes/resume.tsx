@@ -41,23 +41,17 @@ export default function ResumeRoute() {
                     <div className="flex flex-wrap items-center gap-2">
                         <SkillTag>Typescript</SkillTag>
                         <SkillTag>React</SkillTag>
-                        <SkillTag>Node</SkillTag>
-                        <SkillTag>Federated Modules</SkillTag>
-                        <SkillTag>GraphQL</SkillTag>
                         <SkillTag>React Router 7</SkillTag>
+                        <SkillTag>Node</SkillTag>
                         <SkillTag>Prisma</SkillTag>
                         <SkillTag>Postgres</SkillTag>
-                        <SkillTag>Tailwind</SkillTag>
-                        <SkillTag>GitHub Actions</SkillTag>
-                        <SkillTag>Accessibility</SkillTag>
-                        <SkillTag>JIRA</SkillTag>
-                        <SkillTag>Agile</SkillTag>
-                        <SkillTag>REST</SkillTag>
-                        <SkillTag>Git</SkillTag>
+                        <SkillTag>GraphQL</SkillTag>
                         <SkillTag>CSS-in-JS</SkillTag>
                         <SkillTag>HTML</SkillTag>
                         <SkillTag>CSS</SkillTag>
                         <SkillTag>JS</SkillTag>
+                        <SkillTag>Accessibility</SkillTag>
+                        <SkillTag>Git</SkillTag>
                     </div>
                     <Heading as="h3" size="3">
                         Experience
