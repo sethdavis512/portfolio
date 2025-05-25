@@ -42,7 +42,6 @@ export default function ResumeRoute() {
                         <SkillTag>Typescript</SkillTag>
                         <SkillTag>React</SkillTag>
                         <SkillTag>React Router 7</SkillTag>
-                        <SkillTag>Node</SkillTag>
                         <SkillTag>Prisma</SkillTag>
                         <SkillTag>Postgres</SkillTag>
                         <SkillTag>GraphQL</SkillTag>
