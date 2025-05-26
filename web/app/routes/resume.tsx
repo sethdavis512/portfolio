@@ -10,7 +10,7 @@ import SkillTag from '~/components/SkillTag';
 import { ContentStyles, largeIconProps } from '~/constants';
 
 const RESUME_URL =
-    'https://www.dropbox.com/scl/fi/6n9sbvmzr3h138p850t6l/20240528-seth-davis-resume.pdf?rlkey=adv2zflzdhth27hnly64qop9s&dl=0';
+    'https://www.dropbox.com/scl/fi/nxqjs1dv1bqloyxgdwq8s/20250525-seth-davis-resume.pdf?rlkey=48e9y025kt90uzxbsrrxz02eh&dl=0';
 
 export default function ResumeRoute() {
     const yearsAsDeveloper = new Date().getFullYear() - 2016;
