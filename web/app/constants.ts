@@ -14,6 +14,6 @@ export enum BorderStyles {
 }
 
 export enum ContentStyles {
-    FRONTEND = `Front-end`,
+    FRONTEND = `Front-End`,
     CURRENT_JOB_TITLE = `Senior ${FRONTEND} Engineer`
 }
