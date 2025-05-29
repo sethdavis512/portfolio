@@ -21,7 +21,7 @@ interface BlogArticleProps {
 
 export function BlogArticle({ document }: BlogArticleProps) {
     return (
-        <div className="prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-code:bg-zinc-700 prose-code:p-4 prose-code:rounded-lg prose-code:border prose-code:border-zinc-700 prose-code:block prose-code:whitespace-pre-wrap prose-code:break-words prose-headings:my-4 mb-8 prose-pre:p-0 prose-pre:bg-none">
+        <div className="prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-code:bg-zinc-700 prose-code:p-4 prose-code:rounded-lg prose-code:border prose-code:border-zinc-700 prose-code:block prose-code:whitespace-pre-wrap prose-code:break-words prose-headings:my-4 mb-8 prose-pre:p-0 prose-pre:bg-none prose-p:text-white">
             <DocumentRenderer document={document} renderers={renderers} />
         </div>
     );
