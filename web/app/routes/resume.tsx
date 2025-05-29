@@ -29,9 +29,7 @@ export default function ResumeRoute() {
             <Panel heading="Resume" icon={<ScrollText {...largeIconProps} />}>
                 <div className="space-y-6">
                     <p>
-                        {`With ${yearsAsDeveloper}+ years in web development focused on user
-                        experiences, I am seeking a ${ContentStyles.CURRENT_JOB_TITLE}
-                        role on a software-as-a-service team leveraging React Router 7 `}
+                        {`User-centric ${ContentStyles.FRONTEND} specialist boasting ${yearsAsDeveloper}+ years in the React ecosystem. Enthusiastic about crafting accessible, intuitive UIs that drive higher user satisfaction and enhance engineering efficiency. Keen to leverage this expertise as a Senior Front-End Engineer on a SaaS team, delivering scalable, user-first applications.`}
                     </p>
                     <Heading as="h3" size="4">
                         {`${ContentStyles.FRONTEND} Engineer Skills`}
