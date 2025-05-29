@@ -31,9 +31,7 @@ export default function ResumeRoute() {
                     <p>
                         {`With ${yearsAsDeveloper}+ years in web development focused on user
                         experiences, I am seeking a ${ContentStyles.CURRENT_JOB_TITLE}
-                        role on an innovative team to tackle challenges,
-                        contribute to design, and advance my skills and
-                        professional growth.`}
+                        role on a software-as-a-service team leveraging React Router 7 `}
                     </p>
                     <Heading as="h3" size="4">
                         {`${ContentStyles.FRONTEND} Engineer Skills`}

@@ -1,7 +1,3 @@
-import Heading from '~/components/Heading';
-import type { Route } from './+types/home';
-import Linky from '~/components/Linky';
-import Flex from '~/components/Flex';
 import {
     BookHeartIcon,
     BookUserIcon,
@@ -23,10 +19,15 @@ import {
     WaypointsIcon,
     Zap
 } from 'lucide-react';
+
 import { ContentStyles, largeIconProps } from '~/constants';
-import Panel from '~/components/Panel';
-import HoverPanel from '~/components/HoverPanel';
 import Divider from '~/components/Divider';
+import Flex from '~/components/Flex';
+import Heading from '~/components/Heading';
+import HoverPanel from '~/components/HoverPanel';
+import Linky from '~/components/Linky';
+import Panel from '~/components/Panel';
+import type { Route } from './+types/home';
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -72,6 +73,7 @@ export default function Home() {
                     <Panel
                         className="flex-1"
                         heading="Tech with Seth"
+                        description="A collection of my open source projects and resources"
                         icon={<Code2Icon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
@@ -123,7 +125,8 @@ export default function Home() {
                     </Panel>
                     <Panel
                         className="flex-1"
-                        heading="Showcase"
+                        heading="Tutorials"
+                        description="Sharing what I've learned"
                         icon={<TvIcon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
@@ -137,14 +140,6 @@ export default function Home() {
                                     <ExternalLinkIcon />
                                 </Flex>
                             </HoverPanel>
-                            {/* <HoverPanel to="#" disabled>
-                                <Flex>
-                                    <AxeIcon />
-                                    <div>
-                                        Woodworker Management System (WIP)
-                                    </div>
-                                </Flex>
-                            </HoverPanel> */}
                         </Flex>
                     </Panel>
                 </div>
@@ -152,6 +147,7 @@ export default function Home() {
                     <Panel
                         className="flex-1"
                         heading="About me"
+                        description={`I'm a Texan through and through`}
                         icon={<LaughIcon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
@@ -190,6 +186,7 @@ export default function Home() {
                     <Panel
                         className="flex-1"
                         heading="Socials"
+                        description={`Here's where you can find me online`}
                         icon={<HandshakeIcon {...largeIconProps} />}
                     >
                         <Flex className="flex-wrap gap-4">
