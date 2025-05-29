@@ -58,10 +58,10 @@ export default function ResumeRoute() {
                     >
                         <JobItemList>
                             <li>
-                                Developed and maintained a company-wide npm
-                                package for logging site data utilizing Snowplow
-                                Analytics, ensuring consistent and reliable data
-                                tracking across platforms
+                                Built and maintained a company-wide Javascript
+                                package using Snowplow Analytics to track key
+                                site metrics—over 90 million events logged
+                                across three sites since December 2024
                             </li>
                             <li>
                                 Designed and implemented a custom CLI tool to
