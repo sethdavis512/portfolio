@@ -29,7 +29,7 @@ export default function ResumeRoute() {
             <Panel heading="Resume" icon={<ScrollText {...largeIconProps} />}>
                 <div className="space-y-6">
                     <p>
-                        {`User-centric ${ContentStyles.FRONTEND} specialist boasting ${yearsAsDeveloper}+ years in the React ecosystem. Enthusiastic about crafting accessible, intuitive UIs that drive higher user satisfaction and enhance engineering efficiency. Keen to leverage this expertise as a Senior Front-End Engineer on a SaaS team, delivering scalable, user-first applications.`}
+                        {`${ContentStyles.FRONTEND} engineer with ${yearsAsDeveloper}+ years in React, architecting accessible, user-focused UIs for scalable web platforms that boost satisfaction and optimize team throughput; motivated to excel on a dynamic, product-driven team`}
                     </p>
                     <Heading as="h3" size="4">
                         {`${ContentStyles.FRONTEND} Engineer Skills`}
