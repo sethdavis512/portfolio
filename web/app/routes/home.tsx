@@ -78,11 +78,11 @@ export default function Home() {
                     Click here to schedule a time to meet with me!
                 </Linky>
             </p>
-            <Divider className="my-8" />
+            {/* <Divider className="my-8" /> */}
             <div className="space-y-4">
                 <Panel
                     heading="Tech with Seth"
-                    className="bg-zinc-900/50 hover:bg-zinc-900 p-8 rounded-lg"
+                    className="bg-zinc-900/50 p-8 rounded-lg"
                     description="A collection of my open source projects and resources"
                     icon={<Code2Icon {...largeIconProps} />}
                 >
@@ -153,7 +153,7 @@ export default function Home() {
                 </Flex>
             </Panel> */}
                 <Panel
-                    className="bg-zinc-900/50 hover:bg-zinc-900 p-8 rounded-lg"
+                    className="bg-zinc-900/50 p-8 rounded-lg"
                     heading="About me"
                     description={`I'm a Texan through and through`}
                     icon={<LaughIcon {...largeIconProps} />}
@@ -186,7 +186,7 @@ export default function Home() {
                     </Flex>
                 </Panel>
                 <Panel
-                    className="bg-zinc-900/50 hover:bg-zinc-900 p-8 rounded-lg"
+                    className="bg-zinc-900/50 p-8 rounded-lg"
                     heading="Socials"
                     description={`Here's where you can find me online`}
                     icon={<HandshakeIcon {...largeIconProps} />}
