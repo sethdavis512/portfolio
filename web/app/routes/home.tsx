@@ -13,6 +13,7 @@ import {
     LaughIcon,
     Linkedin,
     PaperclipIcon,
+    PencilIcon,
     ScrollText,
     TvIcon,
     Twitter,
@@ -28,6 +29,11 @@ import HoverPanel from '~/components/HoverPanel';
 import Linky from '~/components/Linky';
 import Panel from '~/components/Panel';
 import type { Route } from './+types/home';
+import {
+    GetPublishedPostsDocument,
+    type GetPublishedPostsQuery
+} from '~/generated/graphql';
+import { client } from '~/utils/graphql.server';
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -36,7 +42,23 @@ export function meta({}: Route.MetaArgs) {
     ];
 }
 
-export default function Home() {
+export async function loader() {
+    try {
+        const { posts } = await client.request<GetPublishedPostsQuery>(
+            GetPublishedPostsDocument
+        );
+
+        return {
+            lastThreePosts: posts?.slice(0, 3) || []
+        };
+    } catch (error) {
+        console.error('Error in loader:', error);
+
+        return { status: 'ERROR' };
+    }
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
     return (
         <>
             <Heading as="h1" size="1" className="mb-4">
@@ -109,6 +131,16 @@ export default function Home() {
                                 <ExternalLinkIcon />
                             </Flex>
                         </HoverPanel>
+                        <HoverPanel
+                            external
+                            to="https://sethdavis512.github.io/custom-file-generator-guide/"
+                        >
+                            <Flex>
+                                <BookHeartIcon />
+                                <div>Custom Plop.js (Guide)</div>
+                                <ExternalLinkIcon />
+                            </Flex>
+                        </HoverPanel>
                         {/* <HoverPanel
                         external
                         to="https://crm.sethdavis.tech/"
@@ -154,6 +186,26 @@ export default function Home() {
             </Panel> */}
                 <Panel
                     className="bg-zinc-900/50 p-8 rounded-lg"
+                    heading="Blog"
+                    description={`I want to write and share more`}
+                    icon={<PaperclipIcon {...largeIconProps} />}
+                >
+                    <Flex>
+                        {loaderData.lastThreePosts?.map((post) => (
+                            <HoverPanel
+                                key={post?.slug}
+                                to={`/blog/${post?.slug}`}
+                            >
+                                <Flex>
+                                    <PencilIcon />
+                                    <div>{post?.title}</div>
+                                </Flex>
+                            </HoverPanel>
+                        ))}
+                    </Flex>
+                </Panel>
+                <Panel
+                    className="bg-zinc-900/50 p-8 rounded-lg"
                     heading="About me"
                     description={`I'm a Texan through and through`}
                     icon={<LaughIcon {...largeIconProps} />}
@@ -175,12 +227,6 @@ export default function Home() {
                             <Flex>
                                 <CableIcon />
                                 <div>My setup</div>
-                            </Flex>
-                        </HoverPanel>
-                        <HoverPanel to="/blog">
-                            <Flex>
-                                <PaperclipIcon />
-                                <div>Blog</div>
                             </Flex>
                         </HoverPanel>
                     </Flex>
