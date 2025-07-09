@@ -47,6 +47,7 @@ export default function ResumeRoute() {
                         <SkillTag>JS</SkillTag>
                         <SkillTag>Accessibility</SkillTag>
                         <SkillTag>Git</SkillTag>
+                        <SkillTag>GitHub Copilot</SkillTag>
                     </div>
                     <Heading as="h3" size="3">
                         Experience

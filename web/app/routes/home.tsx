@@ -58,179 +58,181 @@ export default function Home() {
                 ]}
             </p>
             <Flex className="mb-4">
+                <ScrollText {...largeIconProps} />
+                <Heading as="h2">Resume</Heading>
+            </Flex>
+            <p className="mb-6">
+                I’m currently exploring new opportunities in frontend
+                development in the Austin area. I’d love to connect and discuss
+                how my experience and skill set could support your team’s goals.{' '}
+                <Linky to="/resume">View my resume</Linky> to learn more about
+                my work.
+            </p>
+            <Flex className="mb-4">
                 <WaypointsIcon {...largeIconProps} />
                 <Heading as="h2">Connect</Heading>
             </Flex>
-            <p className="mb-4">
+            <p className="mb-6">
                 Interested in talking about a project?{' '}
                 <Linky to="https://tidycal.com/sethdavis512">
                     Click here to schedule a time to meet with me!
                 </Linky>
             </p>
             <Divider className="my-8" />
-            <div className="flex flex-col gap-4">
-                <div className="flex flex-col md:flex-row gap-4 flex-1">
-                    <Panel
-                        className="flex-1"
-                        heading="Tech with Seth"
-                        description="A collection of my open source projects and resources"
-                        icon={<Code2Icon {...largeIconProps} />}
+            <div className="space-y-4">
+                <Panel
+                    heading="Tech with Seth"
+                    className="bg-zinc-900/50 hover:bg-zinc-900 p-8 rounded-lg"
+                    description="A collection of my open source projects and resources"
+                    icon={<Code2Icon {...largeIconProps} />}
+                >
+                    <Flex className="flex-wrap gap-4">
+                        <HoverPanel to="/projects/tws-starter">
+                            <Flex>
+                                <Zap />
+                                <div>TWS Starter</div>
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel to="/projects/tws-cms">
+                            <Flex>
+                                <FileStackIcon />
+                                <div>TWS CMS</div>
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel
+                            external
+                            to="https://github.com/orgs/tech-with-seth/repositories"
+                        >
+                            <Flex>
+                                <BoxIcon />
+                                <div>Repos</div>
+                                <ExternalLinkIcon />
+                            </Flex>
+                        </HoverPanel>
+                        {/* <HoverPanel
+                        external
+                        to="https://crm.sethdavis.tech/"
+                        disabled
                     >
-                        <Flex className="flex-wrap gap-4">
-                            <HoverPanel to="/projects/tws-starter">
-                                <Flex>
-                                    <Zap />
-                                    <div>TWS Starter</div>
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel to="/projects/tws-cms">
-                                <Flex>
-                                    <FileStackIcon />
-                                    <div>TWS CMS</div>
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel
-                                external
-                                to="https://github.com/orgs/tech-with-seth/repositories"
-                            >
-                                <Flex>
-                                    <BoxIcon />
-                                    <div>Repos</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel>
-                            {/* <HoverPanel
-                                external
-                                to="https://crm.sethdavis.tech/"
-                                disabled
-                            >
-                                <Flex>
-                                    <UserSearchIcon />
-                                    <div>CRM (WIP)</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel> */}
-                            {/* <HoverPanel
-                                external
-                                to="https://ai.sethdavis.tech"
-                                disabled
-                            >
-                                <Flex>
-                                    <BotIcon />
-                                    <div>AI Agents (WIP)</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel> */}
+                        <Flex>
+                            <UserSearchIcon />
+                            <div>CRM (WIP)</div>
+                            <ExternalLinkIcon />
                         </Flex>
-                    </Panel>
-                    <Panel
-                        className="flex-1"
-                        heading="Tutorials"
-                        description="Sharing what I've learned"
-                        icon={<TvIcon {...largeIconProps} />}
+                    </HoverPanel> */}
+                        {/* <HoverPanel
+                        external
+                        to="https://ai.sethdavis.tech"
+                        disabled
                     >
-                        <Flex className="flex-wrap gap-4">
-                            <HoverPanel
-                                external
-                                to="https://sethdavis512.github.io/custom-file-generator-guide/"
-                            >
-                                <Flex>
-                                    <BookHeartIcon />
-                                    <div>Custom Plop.js (Guide)</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel>
+                        <Flex>
+                            <BotIcon />
+                            <div>AI Agents (WIP)</div>
+                            <ExternalLinkIcon />
                         </Flex>
-                    </Panel>
-                </div>
-                <div className="flex flex-col md:flex-row gap-4 flex-1">
-                    <Panel
-                        className="flex-1"
-                        heading="About me"
-                        description={`I'm a Texan through and through`}
-                        icon={<LaughIcon {...largeIconProps} />}
+                    </HoverPanel> */}
+                    </Flex>
+                </Panel>
+                {/* <Panel
+                className="flex-1"
+                heading="Tutorials"
+                description="Sharing what I've learned"
+                icon={<TvIcon {...largeIconProps} />}
+            >
+                <Flex className="flex-wrap gap-4">
+                    <HoverPanel
+                        external
+                        to="https://sethdavis512.github.io/custom-file-generator-guide/"
                     >
-                        <Flex className="flex-wrap gap-4">
-                            <HoverPanel to="/resume">
-                                <Flex>
-                                    <ScrollText />
-                                    <div>Resume</div>
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel to="/about">
-                                <Flex>
-                                    <BookUserIcon />
-                                    <div>Fun facts</div>
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel to="/truck">
-                                <Flex>
-                                    <KeySquareIcon />
-                                    <div>Truck stuff</div>
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel to="/setup">
-                                <Flex>
-                                    <CableIcon />
-                                    <div>My setup</div>
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel to="/blog">
-                                <Flex>
-                                    <PaperclipIcon />
-                                    <div>Blog</div>
-                                </Flex>
-                            </HoverPanel>
+                        <Flex>
+                            <BookHeartIcon />
+                            <div>Custom Plop.js (Guide)</div>
+                            <ExternalLinkIcon />
                         </Flex>
-                    </Panel>
-                    <Panel
-                        className="flex-1"
-                        heading="Socials"
-                        description={`Here's where you can find me online`}
-                        icon={<HandshakeIcon {...largeIconProps} />}
-                    >
-                        <Flex className="flex-wrap gap-4">
-                            <HoverPanel
-                                external
-                                to="https://www.linkedin.com/in/sethdavis512/"
-                            >
-                                <Flex>
-                                    <Linkedin />
-                                    <div>LinkedIn</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel
-                                external
-                                to="https://twitter.com/sethdavis512"
-                            >
-                                <Flex>
-                                    <Twitter />
-                                    <div>Twitter</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel
-                                external
-                                to="https://github.com/sethdavis512"
-                            >
-                                <Flex>
-                                    <Github />
-                                    <div>GitHub</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel>
-                            <HoverPanel
-                                external
-                                to="https://codepen.com/sethdavis512"
-                            >
-                                <Flex>
-                                    <CodepenIcon />
-                                    <div>Codepen</div>
-                                    <ExternalLinkIcon />
-                                </Flex>
-                            </HoverPanel>
-                            {/* <HoverPanel
+                    </HoverPanel>
+                </Flex>
+            </Panel> */}
+                <Panel
+                    className="bg-zinc-900/50 hover:bg-zinc-900 p-8 rounded-lg"
+                    heading="About me"
+                    description={`I'm a Texan through and through`}
+                    icon={<LaughIcon {...largeIconProps} />}
+                >
+                    <Flex>
+                        <HoverPanel to="/about">
+                            <Flex>
+                                <BookUserIcon />
+                                <div>Fun facts</div>
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel to="/truck">
+                            <Flex>
+                                <KeySquareIcon />
+                                <div>Truck stuff</div>
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel to="/setup">
+                            <Flex>
+                                <CableIcon />
+                                <div>My setup</div>
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel to="/blog">
+                            <Flex>
+                                <PaperclipIcon />
+                                <div>Blog</div>
+                            </Flex>
+                        </HoverPanel>
+                    </Flex>
+                </Panel>
+                <Panel
+                    className="bg-zinc-900/50 hover:bg-zinc-900 p-8 rounded-lg"
+                    heading="Socials"
+                    description={`Here's where you can find me online`}
+                    icon={<HandshakeIcon {...largeIconProps} />}
+                >
+                    <Flex>
+                        <HoverPanel
+                            external
+                            to="https://www.linkedin.com/in/sethdavis512/"
+                        >
+                            <Flex>
+                                <Linkedin />
+                                <div>LinkedIn</div>
+                                <ExternalLinkIcon />
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel
+                            external
+                            to="https://twitter.com/sethdavis512"
+                        >
+                            <Flex>
+                                <Twitter />
+                                <div>Twitter</div>
+                                <ExternalLinkIcon />
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel
+                            external
+                            to="https://github.com/sethdavis512"
+                        >
+                            <Flex>
+                                <Github />
+                                <div>GitHub</div>
+                                <ExternalLinkIcon />
+                            </Flex>
+                        </HoverPanel>
+                        <HoverPanel
+                            external
+                            to="https://codepen.com/sethdavis512"
+                        >
+                            <Flex>
+                                <CodepenIcon />
+                                <div>Codepen</div>
+                                <ExternalLinkIcon />
+                            </Flex>
+                        </HoverPanel>
+                        {/* <HoverPanel
                                 external
                                 to="https://www.youtube.com/@techwithseth"
                                 disabled
@@ -240,9 +242,8 @@ export default function Home() {
                                     <div>Youtube</div>
                                 </Flex>
                             </HoverPanel> */}
-                        </Flex>
-                    </Panel>
-                </div>
+                    </Flex>
+                </Panel>
             </div>
         </>
     );
