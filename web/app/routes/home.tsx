@@ -15,14 +15,12 @@ import {
     PaperclipIcon,
     PencilIcon,
     ScrollText,
-    TvIcon,
     Twitter,
     WaypointsIcon,
     Zap
 } from 'lucide-react';
 
 import { ContentStyles, largeIconProps } from '~/constants';
-import Divider from '~/components/Divider';
 import Flex from '~/components/Flex';
 import Heading from '~/components/Heading';
 import HoverPanel from '~/components/HoverPanel';
@@ -184,26 +182,28 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </HoverPanel>
                 </Flex>
             </Panel> */}
-                <Panel
-                    className="bg-zinc-900/50 p-8 rounded-lg"
-                    heading="Blog"
-                    description={`I want to write and share more`}
-                    icon={<PaperclipIcon {...largeIconProps} />}
-                >
-                    <Flex>
-                        {loaderData.lastThreePosts?.map((post) => (
-                            <HoverPanel
-                                key={post?.slug}
-                                to={`/blog/${post?.slug}`}
-                            >
-                                <Flex>
-                                    <PencilIcon />
-                                    <div>{post?.title}</div>
-                                </Flex>
-                            </HoverPanel>
-                        ))}
-                    </Flex>
-                </Panel>
+                {loaderData.lastThreePosts && (
+                    <Panel
+                        className="bg-zinc-900/50 p-8 rounded-lg"
+                        heading="Blog"
+                        description={`I want to write and share more`}
+                        icon={<PaperclipIcon {...largeIconProps} />}
+                    >
+                        <Flex>
+                            {loaderData.lastThreePosts?.map((post) => (
+                                <HoverPanel
+                                    key={post?.slug}
+                                    to={`/blog/${post?.slug}`}
+                                >
+                                    <Flex>
+                                        <PencilIcon />
+                                        <div>{post?.title}</div>
+                                    </Flex>
+                                </HoverPanel>
+                            ))}
+                        </Flex>
+                    </Panel>
+                )}
                 <Panel
                     className="bg-zinc-900/50 p-8 rounded-lg"
                     heading="About me"
