@@ -3,7 +3,7 @@ import {
     type DocumentRendererProps
 } from '@keystone-6/document-renderer';
 
-const renderers: DocumentRendererProps['renderers'] = {
+export const renderers: DocumentRendererProps['renderers'] = {
     block: {
         code: ({ children }) => {
             return (
