@@ -34,7 +34,12 @@ export default function WrapperRoute() {
                                 className="px-3 py-2"
                             >
                                 <ArrowLeft />
-                                Back to {isInArticle ? 'blog' : 'home'}
+                                Back to{' '}
+                                {isInArticle
+                                    ? 'blog'
+                                    : isInPrompts
+                                    ? 'prompts'
+                                    : 'home'}
                             </HoverPanel>
                         )}
                     </Flex>

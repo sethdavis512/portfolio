@@ -10,7 +10,9 @@ export default {
             `/setup`,
             `/truck`,
             `/projects/tws-cms`,
-            `/projects/tws-starter`
+            `/projects/tws-starter`,
+            `/blog`,
+            `/prompts`
         ];
     }
 } satisfies Config;
