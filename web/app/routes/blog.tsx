@@ -10,6 +10,16 @@ import Linky from '~/components/Linky';
 import { formatToDate } from '~/utils/common';
 import { Tag } from '~/components/Tag';
 
+export function meta() {
+    return [
+        { title: `Seth Davis' Blog` },
+        {
+            name: 'description',
+            content: `Explore insights and discussions on web development, React Router, and more.`
+        }
+    ];
+}
+
 export async function loader() {
     try {
         const { posts } = await client.request<GetPublishedPostsQuery>(
@@ -29,7 +39,9 @@ export async function loader() {
 export default function BlogRoute({ loaderData }: Route.ComponentProps) {
     return (
         <>
-            <Heading className="mb-8">Blog</Heading>
+            <Heading as="h1" className="mb-8">
+                Blog
+            </Heading>
             {loaderData.posts && loaderData.posts.length > 0 ? (
                 <div className="flex flex-col gap-4">
                     {loaderData.posts.map((post) => (

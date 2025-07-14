@@ -1,0 +1,15 @@
+query GetPromptDetails($slug: String!) {
+    prompt(where: { slug: $slug }) {
+        id
+        author {
+            id
+            email
+            name
+        }
+        slug
+        title
+        content {
+            document
+        }
+    }
+}

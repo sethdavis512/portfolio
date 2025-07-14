@@ -7,6 +7,16 @@ import Linky from '~/components/Linky';
 import Card from '~/components/Card';
 import Heading from '~/components/Heading';
 
+export function meta() {
+    return [
+        { title: `About Seth Davis` },
+        {
+            name: 'description',
+            content: `Seth Davis is a frontend software engineer based in Austin, Texas. He is passionate about building web applications with React Router 7`
+        }
+    ];
+}
+
 const Quote = ({ quote, author }: { quote: string; author: string }) => (
     <blockquote className="border-l-4 pl-6">
         <p className="mb-2">{`"${quote}"`}</p>

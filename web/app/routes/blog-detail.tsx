@@ -9,6 +9,16 @@ import { BlogArticle } from '~/components/BlogArticle';
 import Divider from '~/components/Divider';
 import Linky from '~/components/Linky';
 
+export function meta({ data }: Route.MetaArgs) {
+    return [
+        { title: `${data.post?.title} | Seth Davis' Blog` },
+        {
+            name: 'description',
+            content: `Read the blog post titled "${data.post?.title}" by Seth Davis. Explore insights and discussions on web development, React Router, and more.`
+        }
+    ];
+}
+
 export async function loader({ params }: Route.LoaderArgs) {
     const { post, relatedPosts } = await client.request<GetPostBySlugQuery>(
         GetPostBySlugDocument,

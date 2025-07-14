@@ -1,15 +1,20 @@
-import { PostgresLogo } from '~/components/PostgresLogo';
-import { RailwayLogo } from '~/components/RailwayLogo';
-import { ReactRouterLogo } from '~/components/ReactRouterLogo';
 import Heading from '~/components/Heading';
-import ReactLogo from '~/components/ReactLogo';
 import Linky from '~/components/Linky';
 
 import heroImage from '~/images/tws-cms-hero.png';
-import { KeystoneLogo } from '~/components/KeystoneLogo';
 import Card from '~/components/Card';
 import { ExternalLinkIcon } from 'lucide-react';
 import { TechStack } from '~/components/TechStack';
+
+export function meta() {
+    return [
+        { title: `Seth Davis' CMS Stack` },
+        {
+            name: 'description',
+            content: `Explore the TWS content management system setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
+        }
+    ];
+}
 
 export default function TWSCMSRoute() {
     const logoClassName =

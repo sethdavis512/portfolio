@@ -2,7 +2,17 @@ import Heading from '~/components/Heading';
 import Linky from '~/components/Linky';
 import { getUniqueId } from '~/utils/common';
 
-export default function TruckRoute() {
+export function meta() {
+    return [
+        { title: `Seth Davis' Setup` },
+        {
+            name: 'description',
+            content: `Explore the setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
+        }
+    ];
+}
+
+export default function SetupRoute() {
     const setup = [
         {
             name: `2023 16" MacBook Pro M2 Max 32GB / 1TB Storage`

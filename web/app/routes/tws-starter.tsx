@@ -1,10 +1,4 @@
-import { PostgresLogo } from '~/components/PostgresLogo';
-import { RailwayLogo } from '~/components/RailwayLogo';
-import { ReactRouterLogo } from '~/components/ReactRouterLogo';
 import Heading from '~/components/Heading';
-import PrismaLogo from '~/components/PrismaLogo';
-import ReactLogo from '~/components/ReactLogo';
-import { ButtonLink } from '~/components/ButtonLink';
 import Linky from '~/components/Linky';
 
 import heroImage from '~/images/tws-starter-hero.png';
@@ -12,9 +6,17 @@ import { ExternalLinkIcon } from 'lucide-react';
 import Card from '~/components/Card';
 import { TechStack } from '~/components/TechStack';
 
+export function meta() {
+    return [
+        { title: `Seth Davis' Starter` },
+        {
+            name: 'description',
+            content: `Explore the TWS starter setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
+        }
+    ];
+}
+
 export default function TWSStarterRoute() {
-    const logoClassName =
-        'w-10 h-10 fill-zinc-700 dark:fill-white hover:fill-primary-500 dark:hover:fill-primary-400';
     return (
         <>
             <img

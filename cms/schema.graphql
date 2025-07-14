@@ -9,6 +9,8 @@ type User {
   posts(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
   postsCount(where: PostWhereInput! = {}): Int
   createdAt: DateTime
+  prompts(where: PromptWhereInput! = {}, orderBy: [PromptOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PromptWhereUniqueInput): [Prompt!]
+  promptsCount(where: PromptWhereInput! = {}): Int
 }
 
 type PasswordState {
@@ -31,6 +33,7 @@ input UserWhereInput {
   email: StringFilter
   posts: PostManyRelationFilter
   createdAt: DateTimeNullableFilter
+  prompts: PromptManyRelationFilter
 }
 
 input IDFilter {
@@ -95,6 +98,12 @@ input DateTimeNullableFilter {
   not: DateTimeNullableFilter
 }
 
+input PromptManyRelationFilter {
+  every: PromptWhereInput
+  some: PromptWhereInput
+  none: PromptWhereInput
+}
+
 input UserOrderByInput {
   id: OrderDirection
   name: OrderDirection
@@ -113,6 +122,7 @@ input UserUpdateInput {
   password: String
   posts: PostRelateToManyForUpdateInput
   createdAt: DateTime
+  prompts: PromptRelateToManyForUpdateInput
 }
 
 input PostRelateToManyForUpdateInput {
@@ -120,6 +130,13 @@ input PostRelateToManyForUpdateInput {
   set: [PostWhereUniqueInput!]
   create: [PostCreateInput!]
   connect: [PostWhereUniqueInput!]
+}
+
+input PromptRelateToManyForUpdateInput {
+  disconnect: [PromptWhereUniqueInput!]
+  set: [PromptWhereUniqueInput!]
+  create: [PromptCreateInput!]
+  connect: [PromptWhereUniqueInput!]
 }
 
 input UserUpdateArgs {
@@ -133,11 +150,17 @@ input UserCreateInput {
   password: String
   posts: PostRelateToManyForCreateInput
   createdAt: DateTime
+  prompts: PromptRelateToManyForCreateInput
 }
 
 input PostRelateToManyForCreateInput {
   create: [PostCreateInput!]
   connect: [PostWhereUniqueInput!]
+}
+
+input PromptRelateToManyForCreateInput {
+  create: [PromptCreateInput!]
+  connect: [PromptWhereUniqueInput!]
 }
 
 type Post {
@@ -248,6 +271,8 @@ type Tag {
   name: String
   posts(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
   postsCount(where: PostWhereInput! = {}): Int
+  prompts(where: PromptWhereInput! = {}, orderBy: [PromptOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PromptWhereUniqueInput): [Prompt!]
+  promptsCount(where: PromptWhereInput! = {}): Int
 }
 
 input TagWhereUniqueInput {
@@ -261,6 +286,7 @@ input TagWhereInput {
   id: IDFilter
   name: StringFilter
   posts: PostManyRelationFilter
+  prompts: PromptManyRelationFilter
 }
 
 input TagOrderByInput {
@@ -271,6 +297,7 @@ input TagOrderByInput {
 input TagUpdateInput {
   name: String
   posts: PostRelateToManyForUpdateInput
+  prompts: PromptRelateToManyForUpdateInput
 }
 
 input TagUpdateArgs {
@@ -281,6 +308,75 @@ input TagUpdateArgs {
 input TagCreateInput {
   name: String
   posts: PostRelateToManyForCreateInput
+  prompts: PromptRelateToManyForCreateInput
+}
+
+type Prompt {
+  id: ID!
+  createdAt: DateTime
+  updatedAt: DateTime
+  title: String
+  slug: String
+  content: Prompt_content_Document
+  author: User
+  tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
+  tagsCount(where: TagWhereInput! = {}): Int
+}
+
+type Prompt_content_Document {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input PromptWhereUniqueInput {
+  id: ID
+  title: String
+  slug: String
+}
+
+input PromptWhereInput {
+  AND: [PromptWhereInput!]
+  OR: [PromptWhereInput!]
+  NOT: [PromptWhereInput!]
+  id: IDFilter
+  createdAt: DateTimeNullableFilter
+  updatedAt: DateTimeNullableFilter
+  title: StringFilter
+  slug: StringFilter
+  author: UserWhereInput
+  tags: TagManyRelationFilter
+}
+
+input PromptOrderByInput {
+  id: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+  title: OrderDirection
+  slug: OrderDirection
+}
+
+input PromptUpdateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  title: String
+  slug: String
+  content: JSON
+  author: UserRelateToOneForUpdateInput
+  tags: TagRelateToManyForUpdateInput
+}
+
+input PromptUpdateArgs {
+  where: PromptWhereUniqueInput!
+  data: PromptUpdateInput!
+}
+
+input PromptCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  title: String
+  slug: String
+  content: JSON
+  author: UserRelateToOneForCreateInput
+  tags: TagRelateToManyForCreateInput
 }
 
 """
@@ -307,6 +403,12 @@ type Mutation {
   updateTags(data: [TagUpdateArgs!]!): [Tag]
   deleteTag(where: TagWhereUniqueInput!): Tag
   deleteTags(where: [TagWhereUniqueInput!]!): [Tag]
+  createPrompt(data: PromptCreateInput!): Prompt
+  createPrompts(data: [PromptCreateInput!]!): [Prompt]
+  updatePrompt(where: PromptWhereUniqueInput!, data: PromptUpdateInput!): Prompt
+  updatePrompts(data: [PromptUpdateArgs!]!): [Prompt]
+  deletePrompt(where: PromptWhereUniqueInput!): Prompt
+  deletePrompts(where: [PromptWhereUniqueInput!]!): [Prompt]
   endSession: Boolean!
   authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult
   createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
@@ -339,6 +441,9 @@ type Query {
   tag(where: TagWhereUniqueInput!): Tag
   tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
   tagsCount(where: TagWhereInput! = {}): Int
+  prompt(where: PromptWhereUniqueInput!): Prompt
+  prompts(where: PromptWhereInput! = {}, orderBy: [PromptOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PromptWhereUniqueInput): [Prompt!]
+  promptsCount(where: PromptWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }

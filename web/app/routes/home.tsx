@@ -15,6 +15,7 @@ import {
     PaperclipIcon,
     PencilIcon,
     ScrollText,
+    SparklesIcon,
     Twitter,
     WaypointsIcon,
     Zap
@@ -32,6 +33,7 @@ import {
     type GetPublishedPostsQuery
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
+import Divider from '~/components/Divider';
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -106,7 +108,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     description="A collection of my open source projects and resources"
                     icon={<Code2Icon {...largeIconProps} />}
                 >
-                    <Flex className="flex-wrap gap-4">
+                    <Flex className="flex-wrap gap-4 mb-4">
+                        <HoverPanel to="/prompts">
+                            <Flex>
+                                <SparklesIcon />
+                                <div>Prompts</div>
+                            </Flex>
+                        </HoverPanel>
                         <HoverPanel to="/projects/tws-starter">
                             <Flex>
                                 <Zap />
@@ -119,6 +127,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 <div>TWS CMS</div>
                             </Flex>
                         </HoverPanel>
+                    </Flex>
+                    <Flex className="flex-wrap gap-4">
                         <HoverPanel
                             external
                             to="https://github.com/orgs/tech-with-seth/repositories"

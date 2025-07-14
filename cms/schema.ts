@@ -58,7 +58,9 @@ export const lists = {
             createdAt: timestamp({
                 // this sets the timestamp to Date.now() when the user is first created
                 defaultValue: { kind: 'now' }
-            })
+            }),
+
+            prompts: relationship({ ref: 'Prompt.author', many: true })
         }
     }),
 
@@ -214,7 +216,96 @@ export const lists = {
         fields: {
             name: text(),
             // this can be helpful to find out all the Posts associated with a Tag
-            posts: relationship({ ref: 'Post.tags', many: true })
+            posts: relationship({ ref: 'Post.tags', many: true }),
+            prompts: relationship({ ref: 'Prompt.tags', many: true })
+        }
+    }),
+
+    Prompt: list({
+        access: allowAll,
+        fields: {
+            createdAt: timestamp({
+                defaultValue: { kind: 'now' },
+                ui: {
+                    createView: { fieldMode: 'hidden' },
+                    listView: { fieldMode: 'read' },
+                    itemView: { fieldMode: 'read' }
+                }
+            }),
+
+            updatedAt: timestamp({
+                defaultValue: { kind: 'now' },
+                db: {
+                    updatedAt: true
+                },
+                ui: {
+                    createView: { fieldMode: 'hidden' },
+                    listView: { fieldMode: 'read' },
+                    itemView: { fieldMode: 'read' }
+                }
+            }),
+
+            title: text({
+                validation: { isRequired: true },
+                isIndexed: 'unique'
+            }),
+
+            slug: text({
+                validation: { isRequired: true },
+                isIndexed: 'unique',
+                isFilterable: true
+            }),
+
+            content: document({
+                formatting: true,
+                layouts: [
+                    [1, 1],
+                    [1, 1, 1],
+                    [2, 1],
+                    [1, 2],
+                    [1, 2, 1]
+                ],
+                links: true,
+                dividers: true
+            }),
+
+            // with this field, you can set a User as the author for a Post
+            author: relationship({
+                // we could have used 'User', but then the relationship would only be 1-way
+                ref: 'User.prompts',
+
+                // this is some customisations for changing how this will look in the AdminUI
+                ui: {
+                    displayMode: 'cards',
+                    cardFields: ['name', 'email'],
+                    inlineEdit: { fields: ['name', 'email'] },
+                    linkToItem: true,
+                    inlineConnect: true
+                },
+
+                // a Post can only have one author
+                //   this is the default, but we show it here for verbosity
+                many: false
+            }),
+
+            // with this field, you can add some Tags to Posts
+            tags: relationship({
+                // we could have used 'Tag', but then the relationship would only be 1-way
+                ref: 'Tag.prompts',
+
+                // a Post can have many Tags, not just one
+                many: true,
+
+                // this is some customisations for changing how this will look in the AdminUI
+                ui: {
+                    displayMode: 'cards',
+                    cardFields: ['name'],
+                    inlineEdit: { fields: ['name'] },
+                    linkToItem: true,
+                    inlineConnect: true,
+                    inlineCreate: { fields: ['name'] }
+                }
+            })
         }
     })
 } satisfies Lists;

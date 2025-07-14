@@ -10,6 +10,16 @@ import type { Route } from './+types/truck';
 import Heading from '~/components/Heading';
 import Card from '~/components/Card';
 
+export function meta() {
+    return [
+        { title: `Seth Davis' Truck` },
+        {
+            name: 'description',
+            content: `Explore the truck stuff of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
+        }
+    ];
+}
+
 export async function loader() {
     return {
         upgrades: [

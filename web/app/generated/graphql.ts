@@ -207,12 +207,16 @@ export type Mutation = {
   createInitialUser: UserAuthenticationWithPasswordSuccess;
   createPost?: Maybe<Post>;
   createPosts?: Maybe<Array<Maybe<Post>>>;
+  createPrompt?: Maybe<Prompt>;
+  createPrompts?: Maybe<Array<Maybe<Prompt>>>;
   createTag?: Maybe<Tag>;
   createTags?: Maybe<Array<Maybe<Tag>>>;
   createUser?: Maybe<User>;
   createUsers?: Maybe<Array<Maybe<User>>>;
   deletePost?: Maybe<Post>;
   deletePosts?: Maybe<Array<Maybe<Post>>>;
+  deletePrompt?: Maybe<Prompt>;
+  deletePrompts?: Maybe<Array<Maybe<Prompt>>>;
   deleteTag?: Maybe<Tag>;
   deleteTags?: Maybe<Array<Maybe<Tag>>>;
   deleteUser?: Maybe<User>;
@@ -220,6 +224,8 @@ export type Mutation = {
   endSession: Scalars['Boolean']['output'];
   updatePost?: Maybe<Post>;
   updatePosts?: Maybe<Array<Maybe<Post>>>;
+  updatePrompt?: Maybe<Prompt>;
+  updatePrompts?: Maybe<Array<Maybe<Prompt>>>;
   updateTag?: Maybe<Tag>;
   updateTags?: Maybe<Array<Maybe<Tag>>>;
   updateUser?: Maybe<User>;
@@ -245,6 +251,16 @@ export type MutationCreatePostArgs = {
 
 export type MutationCreatePostsArgs = {
   data: Array<PostCreateInput>;
+};
+
+
+export type MutationCreatePromptArgs = {
+  data: PromptCreateInput;
+};
+
+
+export type MutationCreatePromptsArgs = {
+  data: Array<PromptCreateInput>;
 };
 
 
@@ -278,6 +294,16 @@ export type MutationDeletePostsArgs = {
 };
 
 
+export type MutationDeletePromptArgs = {
+  where: PromptWhereUniqueInput;
+};
+
+
+export type MutationDeletePromptsArgs = {
+  where: Array<PromptWhereUniqueInput>;
+};
+
+
 export type MutationDeleteTagArgs = {
   where: TagWhereUniqueInput;
 };
@@ -306,6 +332,17 @@ export type MutationUpdatePostArgs = {
 
 export type MutationUpdatePostsArgs = {
   data: Array<PostUpdateArgs>;
+};
+
+
+export type MutationUpdatePromptArgs = {
+  data: PromptUpdateInput;
+  where: PromptWhereUniqueInput;
+};
+
+
+export type MutationUpdatePromptsArgs = {
+  data: Array<PromptUpdateArgs>;
 };
 
 
@@ -472,6 +509,113 @@ export type Post_Content_DocumentDocumentArgs = {
   hydrateRelationships?: Scalars['Boolean']['input'];
 };
 
+export type Prompt = {
+  __typename?: 'Prompt';
+  author?: Maybe<User>;
+  content?: Maybe<Prompt_Content_Document>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id: Scalars['ID']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Array<Tag>>;
+  tagsCount?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PromptTagsArgs = {
+  cursor?: InputMaybe<TagWhereUniqueInput>;
+  orderBy?: Array<TagOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: TagWhereInput;
+};
+
+
+export type PromptTagsCountArgs = {
+  where?: TagWhereInput;
+};
+
+export type PromptCreateInput = {
+  author?: InputMaybe<UserRelateToOneForCreateInput>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<TagRelateToManyForCreateInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type PromptManyRelationFilter = {
+  every?: InputMaybe<PromptWhereInput>;
+  none?: InputMaybe<PromptWhereInput>;
+  some?: InputMaybe<PromptWhereInput>;
+};
+
+export type PromptOrderByInput = {
+  createdAt?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  slug?: InputMaybe<OrderDirection>;
+  title?: InputMaybe<OrderDirection>;
+  updatedAt?: InputMaybe<OrderDirection>;
+};
+
+export type PromptRelateToManyForCreateInput = {
+  connect?: InputMaybe<Array<PromptWhereUniqueInput>>;
+  create?: InputMaybe<Array<PromptCreateInput>>;
+};
+
+export type PromptRelateToManyForUpdateInput = {
+  connect?: InputMaybe<Array<PromptWhereUniqueInput>>;
+  create?: InputMaybe<Array<PromptCreateInput>>;
+  disconnect?: InputMaybe<Array<PromptWhereUniqueInput>>;
+  set?: InputMaybe<Array<PromptWhereUniqueInput>>;
+};
+
+export type PromptUpdateArgs = {
+  data: PromptUpdateInput;
+  where: PromptWhereUniqueInput;
+};
+
+export type PromptUpdateInput = {
+  author?: InputMaybe<UserRelateToOneForUpdateInput>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<TagRelateToManyForUpdateInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type PromptWhereInput = {
+  AND?: InputMaybe<Array<PromptWhereInput>>;
+  NOT?: InputMaybe<Array<PromptWhereInput>>;
+  OR?: InputMaybe<Array<PromptWhereInput>>;
+  author?: InputMaybe<UserWhereInput>;
+  createdAt?: InputMaybe<DateTimeNullableFilter>;
+  id?: InputMaybe<IdFilter>;
+  slug?: InputMaybe<StringFilter>;
+  tags?: InputMaybe<TagManyRelationFilter>;
+  title?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeNullableFilter>;
+};
+
+export type PromptWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Prompt_Content_Document = {
+  __typename?: 'Prompt_content_Document';
+  document: Scalars['JSON']['output'];
+};
+
+
+export type Prompt_Content_DocumentDocumentArgs = {
+  hydrateRelationships?: Scalars['Boolean']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   authenticatedItem?: Maybe<AuthenticatedItem>;
@@ -479,6 +623,9 @@ export type Query = {
   post?: Maybe<Post>;
   posts?: Maybe<Array<Post>>;
   postsCount?: Maybe<Scalars['Int']['output']>;
+  prompt?: Maybe<Prompt>;
+  prompts?: Maybe<Array<Prompt>>;
+  promptsCount?: Maybe<Scalars['Int']['output']>;
   tag?: Maybe<Tag>;
   tags?: Maybe<Array<Tag>>;
   tagsCount?: Maybe<Scalars['Int']['output']>;
@@ -504,6 +651,25 @@ export type QueryPostsArgs = {
 
 export type QueryPostsCountArgs = {
   where?: PostWhereInput;
+};
+
+
+export type QueryPromptArgs = {
+  where: PromptWhereUniqueInput;
+};
+
+
+export type QueryPromptsArgs = {
+  cursor?: InputMaybe<PromptWhereUniqueInput>;
+  orderBy?: Array<PromptOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: PromptWhereInput;
+};
+
+
+export type QueryPromptsCountArgs = {
+  where?: PromptWhereInput;
 };
 
 
@@ -570,6 +736,8 @@ export type Tag = {
   name?: Maybe<Scalars['String']['output']>;
   posts?: Maybe<Array<Post>>;
   postsCount?: Maybe<Scalars['Int']['output']>;
+  prompts?: Maybe<Array<Prompt>>;
+  promptsCount?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -586,9 +754,24 @@ export type TagPostsCountArgs = {
   where?: PostWhereInput;
 };
 
+
+export type TagPromptsArgs = {
+  cursor?: InputMaybe<PromptWhereUniqueInput>;
+  orderBy?: Array<PromptOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: PromptWhereInput;
+};
+
+
+export type TagPromptsCountArgs = {
+  where?: PromptWhereInput;
+};
+
 export type TagCreateInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForCreateInput>;
+  prompts?: InputMaybe<PromptRelateToManyForCreateInput>;
 };
 
 export type TagManyRelationFilter = {
@@ -622,6 +805,7 @@ export type TagUpdateArgs = {
 export type TagUpdateInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForUpdateInput>;
+  prompts?: InputMaybe<PromptRelateToManyForUpdateInput>;
 };
 
 export type TagWhereInput = {
@@ -631,6 +815,7 @@ export type TagWhereInput = {
   id?: InputMaybe<IdFilter>;
   name?: InputMaybe<StringFilter>;
   posts?: InputMaybe<PostManyRelationFilter>;
+  prompts?: InputMaybe<PromptManyRelationFilter>;
 };
 
 export type TagWhereUniqueInput = {
@@ -646,6 +831,8 @@ export type User = {
   password?: Maybe<PasswordState>;
   posts?: Maybe<Array<Post>>;
   postsCount?: Maybe<Scalars['Int']['output']>;
+  prompts?: Maybe<Array<Prompt>>;
+  promptsCount?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -660,6 +847,20 @@ export type UserPostsArgs = {
 
 export type UserPostsCountArgs = {
   where?: PostWhereInput;
+};
+
+
+export type UserPromptsArgs = {
+  cursor?: InputMaybe<PromptWhereUniqueInput>;
+  orderBy?: Array<PromptOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: PromptWhereInput;
+};
+
+
+export type UserPromptsCountArgs = {
+  where?: PromptWhereInput;
 };
 
 export type UserAuthenticationWithPasswordFailure = {
@@ -681,6 +882,7 @@ export type UserCreateInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForCreateInput>;
+  prompts?: InputMaybe<PromptRelateToManyForCreateInput>;
 };
 
 export type UserOrderByInput = {
@@ -712,6 +914,7 @@ export type UserUpdateInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForUpdateInput>;
+  prompts?: InputMaybe<PromptRelateToManyForUpdateInput>;
 };
 
 export type UserWhereInput = {
@@ -723,6 +926,7 @@ export type UserWhereInput = {
   id?: InputMaybe<IdFilter>;
   name?: InputMaybe<StringFilter>;
   posts?: InputMaybe<PostManyRelationFilter>;
+  prompts?: InputMaybe<PromptManyRelationFilter>;
 };
 
 export type UserWhereUniqueInput = {
@@ -741,6 +945,18 @@ export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null }> | null };
+
+export type GetPromptDetailsQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetPromptDetailsQuery = { __typename?: 'Query', prompt?: { __typename?: 'Prompt', id: string, slug?: string | null, title?: string | null, author?: { __typename?: 'User', id: string, email?: string | null, name?: string | null } | null, content?: { __typename?: 'Prompt_content_Document', document: any } | null } | null };
+
+export type GetPromptsListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPromptsListQuery = { __typename?: 'Query', prompts?: Array<{ __typename?: 'Prompt', id: string, slug?: string | null, title?: string | null, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null }> | null }> | null };
 
 export type GetPublishedPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -800,6 +1016,44 @@ export const GetPostsDocument = gql`
 
 export function useGetPostsQuery(options?: Omit<Urql.UseQueryArgs<GetPostsQueryVariables>, 'query'>) {
   return Urql.useQuery<GetPostsQuery, GetPostsQueryVariables>({ query: GetPostsDocument, ...options });
+};
+export const GetPromptDetailsDocument = gql`
+    query GetPromptDetails($slug: String!) {
+  prompt(where: {slug: $slug}) {
+    id
+    author {
+      id
+      email
+      name
+    }
+    slug
+    title
+    content {
+      document
+    }
+  }
+}
+    `;
+
+export function useGetPromptDetailsQuery(options: Omit<Urql.UseQueryArgs<GetPromptDetailsQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetPromptDetailsQuery, GetPromptDetailsQueryVariables>({ query: GetPromptDetailsDocument, ...options });
+};
+export const GetPromptsListDocument = gql`
+    query GetPromptsList {
+  prompts {
+    id
+    slug
+    title
+    tags {
+      id
+      name
+    }
+  }
+}
+    `;
+
+export function useGetPromptsListQuery(options?: Omit<Urql.UseQueryArgs<GetPromptsListQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetPromptsListQuery, GetPromptsListQueryVariables>({ query: GetPromptsListDocument, ...options });
 };
 export const GetPublishedPostsDocument = gql`
     query GetPublishedPosts {

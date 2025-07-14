@@ -1,0 +1,11 @@
+query GetPromptsList {
+    prompts {
+        id
+        slug
+        title
+        tags {
+            id
+            name
+        }
+    }
+}
