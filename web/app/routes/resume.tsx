@@ -14,7 +14,7 @@ const RESUME_URL =
 
 export function meta() {
     return [
-        { title: `Seth Davis' Resume` },
+        { title: `Resume | Seth Davis' Portfolio` },
         {
             name: 'description',
             content: `Explore the resume of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`

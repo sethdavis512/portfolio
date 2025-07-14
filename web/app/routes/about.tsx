@@ -9,7 +9,7 @@ import Heading from '~/components/Heading';
 
 export function meta() {
     return [
-        { title: `About Seth Davis` },
+        { title: `About | Seth Davis' Portfolio` },
         {
             name: 'description',
             content: `Seth Davis is a frontend software engineer based in Austin, Texas. He is passionate about building web applications with React Router 7`

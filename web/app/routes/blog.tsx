@@ -12,7 +12,7 @@ import { Tag } from '~/components/Tag';
 
 export function meta() {
     return [
-        { title: `Seth Davis' Blog` },
+        { title: `Blog | Seth Davis' Portfolio` },
         {
             name: 'description',
             content: `Explore insights and discussions on web development, React Router, and more.`

@@ -33,11 +33,10 @@ import {
     type GetPublishedPostsQuery
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
-import Divider from '~/components/Divider';
 
 export function meta({}: Route.MetaArgs) {
     return [
-        { title: `Seth Davis' Portfolio` },
+        { title: `Home | Seth Davis' Portfolio` },
         { name: 'description', content: `Welcome to Seth Davis' Portfolio` }
     ];
 }

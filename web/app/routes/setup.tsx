@@ -4,7 +4,7 @@ import { getUniqueId } from '~/utils/common';
 
 export function meta() {
     return [
-        { title: `Seth Davis' Setup` },
+        { title: `Setup | Seth Davis' Portfolio` },
         {
             name: 'description',
             content: `Explore the setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`

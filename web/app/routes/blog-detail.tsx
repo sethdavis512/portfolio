@@ -11,7 +11,7 @@ import Linky from '~/components/Linky';
 
 export function meta({ data }: Route.MetaArgs) {
     return [
-        { title: `${data.post?.title} | Seth Davis' Blog` },
+        { title: `${data.post?.title} | Seth Davis' Portfolio` },
         {
             name: 'description',
             content: `Read the blog post titled "${data.post?.title}" by Seth Davis. Explore insights and discussions on web development, React Router, and more.`

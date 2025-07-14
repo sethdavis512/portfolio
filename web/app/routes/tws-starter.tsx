@@ -8,7 +8,7 @@ import { TechStack } from '~/components/TechStack';
 
 export function meta() {
     return [
-        { title: `Seth Davis' Starter` },
+        { title: `Starter | Seth Davis' Portfolio` },
         {
             name: 'description',
             content: `Explore the TWS starter setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`

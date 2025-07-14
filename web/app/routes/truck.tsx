@@ -12,7 +12,7 @@ import Card from '~/components/Card';
 
 export function meta() {
     return [
-        { title: `Seth Davis' Truck` },
+        { title: `Truck | Seth Davis Portfolio` },
         {
             name: 'description',
             content: `Explore the truck stuff of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`

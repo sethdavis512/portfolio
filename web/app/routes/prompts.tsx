@@ -11,7 +11,7 @@ import Heading from '~/components/Heading';
 
 export function meta() {
     return [
-        { title: `Seth Davis' Prompts` },
+        { title: `Prompts | Seth Davis' Portfolio` },
         {
             name: 'description',
             content: `Explore insights and discussions on web development, React Router, and more.`

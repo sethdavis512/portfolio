@@ -13,7 +13,7 @@ import { renderers } from '~/components/BlogArticle';
 
 export function meta({ data }: Route.MetaArgs) {
     return [
-        { title: `${data.prompt?.title} | Seth Davis' Blog` },
+        { title: `${data.prompt?.title} |Seth Davis Portfolio` },
         {
             name: 'description',
             content: `Read the prompt titled "${data.prompt?.title}" by Seth Davis. Explore insights and discussions on web development, React Router, and more.`
