@@ -10,6 +10,7 @@ export default function WrapperRoute() {
     const location = useLocation();
     const isHome = location.pathname === '/';
     const isInArticle = location.pathname.startsWith('/blog/');
+    const isInPrompts = location.pathname.startsWith('/prompts/');
 
     return (
         <div className="mx-auto mb-20 grid h-full max-w-5xl grid-rows-[auto_1fr_auto] px-6 md:px-8">
@@ -23,7 +24,13 @@ export default function WrapperRoute() {
                         </div>
                         {!isHome && (
                             <HoverPanel
-                                to={isInArticle ? '/blog' : '/'}
+                                to={
+                                    isInArticle
+                                        ? '/blog'
+                                        : isInPrompts
+                                        ? '/prompts'
+                                        : '/'
+                                }
                                 className="px-3 py-2"
                             >
                                 <ArrowLeft />
