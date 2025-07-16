@@ -17,8 +17,6 @@ export function meta() {
 }
 
 export default function TWSCMSRoute() {
-    const logoClassName =
-        'w-10 h-10 fill-zinc-700 dark:fill-white hover:fill-primary-500 dark:hover:fill-primary-400';
     return (
         <>
             <img
@@ -51,7 +49,7 @@ export default function TWSCMSRoute() {
                     </p>
                 </div>
                 <div>
-                    <Heading as="h3" size="3" className="mb-6">
+                    <Heading as="h3" size="3" className="mb-8">
                         Technologies
                     </Heading>
                     <TechStack
@@ -64,15 +62,6 @@ export default function TWSCMSRoute() {
                         ]}
                     />
                     <div className="flex flex-col gap-4">
-                        {/* <Linky
-                            external
-                            to="https://github.com/tech-with-seth/tws-cms"
-                        >
-                            <Card className="flex items-center gap-2 w-full">
-                                View the code{' '}
-                                <ExternalLinkIcon className="w-4 h-4" />
-                            </Card>
-                        </Linky> */}
                         <Linky external to="https://cms.sethdavis.tech/">
                             <Card className="flex items-center gap-2 w-full">
                                 View prototype{' '}

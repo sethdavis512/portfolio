@@ -27,7 +27,13 @@ export default function ResumeRoute() {
 
     return (
         <>
-            <Banner className="mb-4">
+            <Flex className="mb-8 items-center">
+                <ScrollText {...largeIconProps} />
+                <Heading as="h1" size="1">
+                    Resume
+                </Heading>
+            </Flex>
+            <Banner className="mb-8">
                 <Flex>
                     <InfoIcon />
                     Looking for a PDF version?{' '}
@@ -36,12 +42,15 @@ export default function ResumeRoute() {
                     </Linky>
                 </Flex>
             </Banner>
-            <Panel heading="Resume" icon={<ScrollText {...largeIconProps} />}>
-                <div className="space-y-6">
+            <Panel className="mb-8">
+                <div className="space-y-4">
+                    <Heading as="h2" size="2">
+                        Summary
+                    </Heading>
                     <p>
                         {`${ContentStyles.FRONTEND} engineer with ${yearsAsDeveloper}+ years in React, architecting accessible, user-focused UIs for scalable web platforms that boost satisfaction and optimize team throughput; motivated to excel on a dynamic, product-driven team`}
                     </p>
-                    <Heading as="h3" size="4">
+                    <Heading as="h2" size="2">
                         {`${ContentStyles.FRONTEND} Engineer Skills`}
                     </Heading>
                     <div className="flex flex-wrap items-center gap-2">
@@ -59,7 +68,7 @@ export default function ResumeRoute() {
                         <SkillTag>Git</SkillTag>
                         <SkillTag>GitHub Copilot</SkillTag>
                     </div>
-                    <Heading as="h3" size="3">
+                    <Heading as="h2" size="2">
                         Experience
                     </Heading>
                     <JobItem
@@ -240,12 +249,12 @@ export default function ResumeRoute() {
                             Communication Design (2012) - San Marcos, Texas
                         </li>
                     </JobItemList>
-                    <Banner>
-                        Interested in learning more about me?{' '}
-                        <Linky to="/about">See my about page</Linky>
-                    </Banner>
                 </div>
             </Panel>
+            <Banner>
+                Interested in learning more about me?{' '}
+                <Linky to="/about">See my about page</Linky>
+            </Banner>
         </>
     );
 }

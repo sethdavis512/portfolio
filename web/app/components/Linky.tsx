@@ -23,14 +23,16 @@ interface LinkyProps extends HTMLAttributes<HTMLAnchorElement> {
     to: string | Partial<Path>;
     className?: string;
     external?: boolean;
-    pad?: boolean;
+    px?: number;
+    py?: number;
 }
 
 export default function Linky({
     children,
     className,
     external,
-    pad,
+    px,
+    py,
     to,
     ...rest
 }: PropsWithChildren<LinkyProps>) {
@@ -38,10 +40,11 @@ export default function Linky({
         return cx(
             'inline-flex cursor-pointer items-center gap-1.5 focus:outline-none',
             'text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300',
-            pad && 'p-4',
+            px && `px-${px}`,
+            py && `py-${py}`,
             className
         );
-    }, [className, external, pad]);
+    }, [className, external]);
 
     const externalProps = useMemo(() => {
         return external

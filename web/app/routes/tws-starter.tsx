@@ -43,7 +43,7 @@ export default function TWSStarterRoute() {
                     </p>
                 </div>
                 <div className="">
-                    <Heading as="h3" size="3" className="mb-6">
+                    <Heading as="h3" size="3" className="mb-8">
                         Technologies
                     </Heading>
                     <TechStack

@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link, Outlet, useLocation } from 'react-router';
 import Flex from '~/components/Flex';
-import HoverPanel from '~/components/HoverPanel';
+import Linky from '~/components/Linky';
 import Logo from '~/components/Logo';
 import { BorderStyles } from '~/constants';
 import texasFlag from '~/images/flag-of-texas-small.svg';
@@ -13,7 +13,7 @@ export default function WrapperRoute() {
     const isInPrompts = location.pathname.startsWith('/prompts/');
 
     return (
-        <div className="mx-auto mb-20 grid h-full max-w-5xl grid-rows-[auto_1fr_auto] px-6 md:px-8">
+        <div className="mx-auto mb-20 grid h-full max-w-5xl grid-rows-[auto_1fr_auto] px-4 md:px-8">
             <div className="py-8 md:py-12">
                 <Flex className="justify-between">
                     <Flex className="gap-6">
@@ -23,7 +23,7 @@ export default function WrapperRoute() {
                             </Link>
                         </div>
                         {!isHome && (
-                            <HoverPanel
+                            <Linky
                                 to={
                                     isInArticle
                                         ? '/blog'
@@ -40,7 +40,7 @@ export default function WrapperRoute() {
                                     : isInPrompts
                                     ? 'prompts'
                                     : 'home'}
-                            </HoverPanel>
+                            </Linky>
                         )}
                     </Flex>
                 </Flex>

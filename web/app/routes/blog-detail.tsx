@@ -40,7 +40,9 @@ export default function BlogDetailRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <Heading className="mb-8">{loaderData.post.title}</Heading>
+            <Heading as="h1" size="1" className="mb-8">
+                {loaderData.post.title}
+            </Heading>
             <BlogArticle document={loaderData.post.content?.document} />
             <Divider className="my-8" />
             <p>

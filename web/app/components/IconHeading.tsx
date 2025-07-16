@@ -16,7 +16,7 @@ export default function IconHeading({
     heading
 }: IconHeadingProps) {
     return (
-        <Flex className={cx('mb-6 gap-3', className)}>
+        <Flex className={cx('mb-8 gap-3', className)}>
             {icon}
             <Heading as="h2">{heading}</Heading>
         </Flex>

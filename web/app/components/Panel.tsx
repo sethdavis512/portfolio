@@ -1,30 +1,25 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 import { cx } from 'cva.config';
-
-import IconHeading from './IconHeading';
+import Flex from './Flex';
 
 interface PanelProps {
-    heading: string;
-    icon: ReactNode;
     className?: string;
-    description?: string;
 }
 
 export default function Panel({
     children,
-    className,
-    description,
-    heading,
-    icon
+    className
 }: PropsWithChildren<PanelProps>) {
     return (
-        <div className={cx('py-4', className)}>
-            <IconHeading icon={icon} heading={heading} />
-            {description && (
-                <div className="mb-4">
-                    <p>{description}</p>
-                </div>
+        <div
+            className={cx(
+                'sm:bg-gradient-to-br sm:from-zinc-950/60 sm:via-zinc-900/80 sm:to-zinc-950/70',
+                'sm:backdrop-blur-md sm:border sm:border-zinc-800/40',
+                'sm:shadow-2xl sm:shadow-black/30',
+                'p-0 sm:p-8 rounded-xl',
+                className
             )}
+        >
             {children}
         </div>
     );
