@@ -189,37 +189,31 @@ export default function AboutRoute() {
                     </li>
                     <li>
                         <Quote
-                            quote="We are what we repeatedly do. Excellence, then, is not an
-            act, but a habit."
+                            quote="We are what we repeatedly do. Excellence, then, is not an act, but a habit."
                             author="Will Durant"
                         />
                     </li>
                     <li>
                         <Quote
-                            quote="Excuses make today easy but tomorrow harder. Discipline
-                makes today hard but tomorrow easier."
+                            quote="Excuses make today easy but tomorrow harder. Discipline makes today hard but tomorrow easier."
                             author="Anonymous"
                         />
                     </li>
                     <li>
                         <Quote
-                            quote="I have not failed. I've just found 10,000 ways that won't
-                work."
+                            quote="I have not failed. I've just found 10,000 ways that won't work."
                             author="Thomas A. Edison"
                         />
                     </li>
                     <li>
                         <Quote
                             quote="A goal without a plan is just a wish."
-                            author="Antoine de
-                Saint-Exupery"
+                            author="Antoine de Saint-Exupery"
                         />
                     </li>
                     <li>
                         <Quote
-                            quote="You don't wait until you're confident enough to take
-                action. You build your confidence as a result of taking
-                action."
+                            quote="You don't wait until you're confident enough to take action. You build your confidence as a result of taking action."
                             author="Jill Coleman"
                         />
                     </li>
