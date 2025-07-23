@@ -78,8 +78,8 @@ export default function AboutRoute() {
                                 💻 Learner
                             </Heading>
                             <p>
-                                All things AI / Prisma / Postgres / Docker / Go
-                                / Python
+                                MCP / Generative UI / Postgres / Docker / Go /
+                                Python
                             </p>
                         </Card>
                     </li>
