@@ -58,6 +58,8 @@ export default function ResumeRoute() {
                     <SkillTag>Prisma</SkillTag>
                     <SkillTag>Postgres</SkillTag>
                     <SkillTag>GraphQL</SkillTag>
+                    <SkillTag>TestCafe</SkillTag>
+                    <SkillTag>Cypress</SkillTag>
                     <SkillTag>Design Systems</SkillTag>
                     <SkillTag>Prototyping</SkillTag>
                     <SkillTag>CSS-in-JS</SkillTag>

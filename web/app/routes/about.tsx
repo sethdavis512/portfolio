@@ -1,7 +1,7 @@
 import { QuoteIcon } from 'lucide-react';
 
 import { largeIconProps } from '~/constants';
-import Panel from '~/components/Panel';
+// import Panel from '~/components/Panel';
 // import profilePhoto from '~/images/austfin-fc-profile.jpg';
 import Linky from '~/components/Linky';
 import Card from '~/components/Card';
@@ -36,7 +36,7 @@ export default function AboutRoute() {
                     Facts about me
                 </Heading>
             </Flex>
-            <div className="flex gap-4 mb-8">
+            <div className="flex flex-col md:flex-row gap-4 mb-8">
                 <ul className="basis-1/2 space-y-4">
                     <li>
                         <Card>
