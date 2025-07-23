@@ -1,125 +1,101 @@
-# Welcome to React Router!
+# Portfolio Frontend (`web/`)
 
-A modern, production-ready template for building full-stack React applications using React Router.
+**Part of the Portfolio Monorepo.**
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+This package is the frontend React app, living alongside the backend CMS in a unified monorepo. It consumes content from the KeystoneJS CMS in `cms/` via GraphQL and provides the public-facing portfolio website.
+
+This package contains the frontend for the portfolio monorepo, built with React Router v7, TypeScript, and TailwindCSS. It provides a modern, responsive, and SEO-friendly web app that consumes content from the KeystoneJS CMS via GraphQL.
 
 ## Features
 
--   🚀 Server-side rendering
--   ⚡️ Hot Module Replacement (HMR)
--   📦 Asset bundling and optimization
--   🔄 Data loading and mutations
--   🔒 TypeScript by default
--   🎉 TailwindCSS for styling
--   📖 [React Router docs](https://reactrouter.com/)
+-   React Router v7 with file-based routing and SSR
+-   TypeScript (strict mode)
+-   TailwindCSS v4 with typography and animation plugins
+-   GraphQL client (`graphql-request`) with codegen for type safety
+-   Custom component library using `cva` (Class Variance Authority)
+-   PostHog analytics integration
+-   Vite build system with TypeScript path mapping
+-   Mobile-first, dark mode by default
 
-## Getting Started
+## Tech Stack
 
-### Installation
+-   [React](https://react.dev/)
+-   [React Router v7](https://reactrouter.com/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [TailwindCSS](https://tailwindcss.com/)
+-   [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography)
+-   [tailwindcss-animate](https://github.com/joe-bell/tailwindcss-animate)
+-   [graphql-request](https://github.com/jasonkuhrt/graphql-request)
+-   [@graphql-codegen](https://www.graphql-code-generator.com/)
+-   [cva](https://cva.style/)
+-   [Vite](https://vitejs.dev/)
 
-Install the dependencies:
+## Directory Structure
 
-```bash
-npm install
+```text
+web/app/
+├── components/   # Reusable UI components
+├── routes/       # React Router v7 routes
+├── utils/        # Utility functions
+├── generated/    # Auto-generated GraphQL types
+├── queries/      # GraphQL query definitions
+└── images/       # Static assets
 ```
 
-### Development
+## Setup & Development
 
-Start the development server with HMR:
+1. **Install dependencies**
 
-```bash
-npm run dev
-```
+    ```sh
+    npm install
+    ```
 
-Your application will be available at `http://localhost:5173`.
+2. **Configure environment variables**
 
-## Building for Production
+    - Copy `.env.example` to `.env` if present, or create `.env` with:
+        - `VITE_GRAPHQL_ENDPOINT` (URL to CMS GraphQL API)
+        - Any analytics or other secrets as needed
 
-Create a production build:
+3. **Start the frontend dev server**
 
-```bash
-npm run build
-```
+    ```sh
+    npm run dev:web
+    # or from project root: npm run dev
+    ```
 
-## Deployment
+4. **Generate GraphQL types**
 
-### Docker Deployment
+    ```sh
+    npm run generate:types
+    ```
 
-This template includes three Dockerfiles optimized for different package managers:
+## GraphQL & Codegen
 
--   `Dockerfile` - for npm
--   `Dockerfile.pnpm` - for pnpm
--   `Dockerfile.bun` - for bun
+-   GraphQL queries are defined in `app/queries/`
+-   Types are generated to `app/generated/` using `@graphql-codegen`
+-   Always run `npm run generate:types` after changing queries or the CMS schema
+-   Use generated types for all GraphQL data in components and loaders
 
-To build and run using Docker:
+## Styling & Components
 
-```bash
-# For npm
-docker build -t my-app .
+-   TailwindCSS utility classes for all styling
+-   Custom component variants with `cva`
+-   Responsive design with Tailwind breakpoints
+-   Dark mode supported (default)
+-   Component composition with strict TypeScript interfaces
 
-# For pnpm
-docker build -f Dockerfile.pnpm -t my-app .
+## Useful Commands
 
-# For bun
-docker build -f Dockerfile.bun -t my-app .
+-   `npm run dev:web` — Start frontend dev server
+-   `npm run build:web` — Build frontend for production
+-   `npm run generate:types` — Generate GraphQL types
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
+## See Also
 
-The containerized application can be deployed to any platform that supports Docker, including:
-
--   AWS ECS
--   Google Cloud Run
--   Azure Container Apps
--   Digital Ocean App Platform
--   Fly.io
--   Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+-   [Main Monorepo README](../README.md)
+-   [KeystoneJS CMS README](../cms/README.md)
+-   [React Router Docs](https://reactrouter.com/)
 
 ---
 
-Built with ❤️ using React Router.
-
-## Postgres Database
-
-To open Postgres on the command line and create a new database, follow these steps:
-
-1. Access the Postgres interactive terminal (`psql`):
-
-    ```bash
-    psql -U postgres
-    ```
-
-    Replace `postgres` with your Postgres username if different.
-
-2. Create a new database:
-
-    ```sql
-    CREATE DATABASE my_database;
-    ```
-
-    Replace `my_database` with your desired database name.
-
-3. Exit the `psql` terminal:
-    ```sql
-    \q
-    ```
+MIT © Seth Davis

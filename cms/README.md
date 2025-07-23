@@ -1,52 +1,109 @@
-# Keystone Project Starter
+# KeystoneJS CMS (`cms/`)
 
-Welcome to Keystone!
+**Part of the Portfolio Monorepo.**
 
-Run
+This package is the backend CMS, living alongside the frontend React app in a unified monorepo. It serves content and authentication to the frontend in `web/` via a GraphQL API and provides the admin interface for content management.
 
+## Features
+
+-   KeystoneJS 6 headless CMS
+-   PostgreSQL database (via Prisma ORM)
+-   Auto-generated GraphQL API at `/api/graphql`
+-   Admin UI at `/admin`
+-   Built-in authentication (bcrypt password hashing)
+-   Rich content fields, relationships, and status workflows
+-   TypeScript throughout
+
+## Tech Stack
+
+-   [KeystoneJS 6](https://keystonejs.io/)
+-   [Prisma ORM](https://www.prisma.io/)
+-   [PostgreSQL](https://www.postgresql.org/)
+-   [TypeScript](https://www.typescriptlang.org/)
+
+## Directory Structure
+
+```text
+cms/
+├── keystone.ts      # Main Keystone config
+├── schema.ts        # Database schema (lists, fields, relationships)
+├── auth.ts          # Auth config
+├── seed.ts          # DB seeding script
+├── schema.prisma    # Prisma DB schema
+├── schema.graphql   # GraphQL schema (generated)
+├── migrations/      # Prisma migrations
+└── ...
 ```
-npm run dev
-```
 
-To view the config for your new app, look at [./keystone.ts](./keystone.ts)
+## Setup & Development
 
-This project starter is designed to give you a sense of the power Keystone can offer you, and show off some of its main features. It's also a pretty simple setup if you want to build out from it.
+1. **Install dependencies**
 
-We recommend you use this alongside our [getting started walkthrough](https://keystonejs.com/docs/walkthroughs/getting-started-with-create-keystone-app) which will walk you through what you get as part of this starter.
+    ```sh
+    npm install
+    ```
 
-If you want an overview of all the features Keystone offers, check out our [features](https://keystonejs.com/why-keystone#features) page.
+2. **Configure environment variables**
 
-## Some Quick Notes On Getting Started
+    - Copy `.env.example` to `.env` if present, or create `.env` with:
+        - `DATABASE_URL` (PostgreSQL connection string)
+        - `SESSION_SECRET` (random string for session encryption)
 
-### Changing the database
+3. **Run database migrations**
 
-We've set you up with an [SQLite database](https://keystonejs.com/docs/apis/config#sqlite) for ease-of-use. If you're wanting to use PostgreSQL, you can!
+    ```sh
+    npx prisma migrate deploy
+    ```
 
-Just change the `db` property on line 16 of the Keystone file [./keystone.ts](./keystone.ts) to
+4. **Seed the database (optional)**
 
-```typescript
-db: {
-    provider: 'postgresql',
-    url: process.env.DATABASE_URL || 'DATABASE_URL_TO_REPLACE',
-}
-```
+    ```sh
+    npm run seed
+    ```
 
-And provide your database url from PostgreSQL.
+5. **Start the CMS server**
 
-For more on database configuration, check out or [DB API Docs](https://keystonejs.com/docs/apis/config#db)
+    ```sh
+    npm run dev:cms
+    # or from project root: npm run dev
+    ```
 
-### Auth
+6. **Access the Admin UI**
 
-We've put auth into its own file to make this humble starter easier to navigate. To explore it without auth turned on, comment out the `isAccessAllowed` on line 21 of the Keystone file [./keystone.ts](./keystone.ts).
+    - Visit [http://localhost:3000/admin](http://localhost:3000/admin)
 
-For more on auth, check out our [Authentication API Docs](https://keystonejs.com/docs/apis/auth#authentication-api)
+7. **GraphQL Playground**
 
-### Adding a frontend
+    - Visit [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql)
 
-As a Headless CMS, Keystone can be used with any frontend that uses GraphQL. It provides a GraphQL endpoint you can write queries against at `/api/graphql` (by default [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql)). At Thinkmill, we tend to use [Next.js](https://nextjs.org/) and [Apollo GraphQL](https://www.apollographql.com/docs/react/get-started/) as our frontend and way to write queries, but if you have your own favourite, feel free to use it.
+## Database & Migrations
 
-A walkthrough on how to do this is forthcoming, but in the meantime our [todo example](https://github.com/keystonejs/keystone-react-todo-demo) shows a Keystone set up with a frontend. For a more full example, you can also look at an example app we built for [Prisma Day 2021](https://github.com/keystonejs/prisma-day-2021-workshop)
+-   Uses Prisma for schema and migrations (`schema.prisma`, `migrations/`)
+-   Run migrations after schema changes:
 
-### Embedding Keystone in a Next.js frontend
+    ```sh
+    npx prisma migrate dev
+    ```
 
-While Keystone works as a standalone app, you can embed your Keystone app into a [Next.js](https://nextjs.org/) app. This is quite a different setup to the starter, and we recommend checking out our walkthrough for that [here](https://keystonejs.com/docs/walkthroughs/embedded-mode-with-sqlite-nextjs#how-to-embed-keystone-sq-lite-in-a-next-js-app).
+## Authentication & Security
+
+-   Auth via KeystoneJS built-in system (see `auth.ts`)
+-   Passwords hashed with bcrypt
+-   Session management with secure cookies
+-   Environment variables for secrets
+
+## Useful Commands
+
+-   `npm run dev:cms` — Start CMS dev server
+-   `npm run seed` — Seed the database
+-   `npx prisma migrate dev` — Run migrations in dev
+-   `npx prisma studio` — Open Prisma Studio (DB browser)
+
+## See Also
+
+-   [Main Monorepo README](../README.md)
+-   [KeystoneJS Docs](https://keystonejs.io/docs)
+
+---
+
+MIT © Seth Davis
