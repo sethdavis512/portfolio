@@ -6,20 +6,20 @@ This package is the backend CMS, living alongside the frontend React app in a un
 
 ## Features
 
--   KeystoneJS 6 headless CMS
--   PostgreSQL database (via Prisma ORM)
--   Auto-generated GraphQL API at `/api/graphql`
--   Admin UI at `/admin`
--   Built-in authentication (bcrypt password hashing)
--   Rich content fields, relationships, and status workflows
--   TypeScript throughout
+- KeystoneJS 6 headless CMS
+- PostgreSQL database (via Prisma ORM)
+- Auto-generated GraphQL API at `/api/graphql`
+- Admin UI at `/admin`
+- Built-in authentication (bcrypt password hashing)
+- Rich content fields, relationships, and status workflows
+- TypeScript throughout
 
 ## Tech Stack
 
--   [KeystoneJS 6](https://keystonejs.io/)
--   [Prisma ORM](https://www.prisma.io/)
--   [PostgreSQL](https://www.postgresql.org/)
--   [TypeScript](https://www.typescriptlang.org/)
+- [KeystoneJS 6](https://keystonejs.io/)
+- [Prisma ORM](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ## Directory Structure
 
@@ -78,8 +78,8 @@ cms/
 
 ## Database & Migrations
 
--   Uses Prisma for schema and migrations (`schema.prisma`, `migrations/`)
--   Run migrations after schema changes:
+- Uses Prisma for schema and migrations (`schema.prisma`, `migrations/`)
+- Run migrations after schema changes:
 
     ```sh
     npx prisma migrate dev
@@ -87,22 +87,22 @@ cms/
 
 ## Authentication & Security
 
--   Auth via KeystoneJS built-in system (see `auth.ts`)
--   Passwords hashed with bcrypt
--   Session management with secure cookies
--   Environment variables for secrets
+- Auth via KeystoneJS built-in system (see `auth.ts`)
+- Passwords hashed with bcrypt
+- Session management with secure cookies
+- Environment variables for secrets
 
 ## Useful Commands
 
--   `npm run dev:cms` — Start CMS dev server
--   `npm run seed` — Seed the database
--   `npx prisma migrate dev` — Run migrations in dev
--   `npx prisma studio` — Open Prisma Studio (DB browser)
+- `npm run dev:cms` — Start CMS dev server
+- `npm run seed` — Seed the database
+- `npx prisma migrate dev` — Run migrations in dev
+- `npx prisma studio` — Open Prisma Studio (DB browser)
 
 ## See Also
 
--   [Main Monorepo README](../README.md)
--   [KeystoneJS Docs](https://keystonejs.io/docs)
+- [Main Monorepo README](../README.md)
+- [KeystoneJS Docs](https://keystonejs.io/docs)
 
 ---
 

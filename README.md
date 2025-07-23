@@ -4,21 +4,21 @@ A modern, full-stack portfolio website built with a monorepo architecture. Featu
 
 ## Architecture
 
--   **Frontend**: `web/` — React Router v7, TypeScript, TailwindCSS, SSR, GraphQL client
--   **Backend**: `cms/` — KeystoneJS 6, PostgreSQL, Prisma ORM, GraphQL API
--   **Monorepo**: Unified development, shared tooling, and consistent TypeScript across both apps
+- **Frontend**: `web/` — React Router v7, TypeScript, TailwindCSS, SSR, GraphQL client
+- **Backend**: `cms/` — KeystoneJS 6, PostgreSQL, Prisma ORM, GraphQL API
+- **Monorepo**: Unified development, shared tooling, and consistent TypeScript across both apps
 
 ---
 
 ## Frontend (`web/`)
 
--   **Framework**: React Router v7 (file-based routing, SSR, pre-rendering)
--   **Language**: TypeScript (strict mode)
--   **Styling**: TailwindCSS v4, `@tailwindcss/typography`, `tailwindcss-animate`
--   **GraphQL**: `graphql-request` client, codegen via `@graphql-codegen`
--   **UI**: Custom component library using `cva` (Class Variance Authority)
--   **Analytics**: PostHog integration
--   **Build**: Vite, TypeScript path mapping
+- **Framework**: React Router v7 (file-based routing, SSR, pre-rendering)
+- **Language**: TypeScript (strict mode)
+- **Styling**: TailwindCSS v4, `@tailwindcss/typography`, `tailwindcss-animate`
+- **GraphQL**: `graphql-request` client, codegen via `@graphql-codegen`
+- **UI**: Custom component library using `cva` (Class Variance Authority)
+- **Analytics**: PostHog integration
+- **Build**: Vite, TypeScript path mapping
 
 ### Directory Structure (Frontend)
 
@@ -34,20 +34,20 @@ web/app/
 
 ### Development (Frontend)
 
--   `npm run dev:web` — Start frontend dev server
--   `npm run generate:types` — Generate GraphQL types from CMS schema
--   Server-side data fetching in route loaders
--   Use absolute imports with `~/` prefix
+- `npm run dev:web` — Start frontend dev server
+- `npm run generate:types` — Generate GraphQL types from CMS schema
+- Server-side data fetching in route loaders
+- Use absolute imports with `~/` prefix
 
 ---
 
 ## Backend (`cms/`)
 
--   **Framework**: KeystoneJS 6 (headless CMS)
--   **Database**: PostgreSQL (Prisma ORM)
--   **Auth**: KeystoneJS built-in, bcrypt password hashing
--   **API**: Auto-generated GraphQL at `/api/graphql`
--   **Language**: TypeScript
+- **Framework**: KeystoneJS 6 (headless CMS)
+- **Database**: PostgreSQL (Prisma ORM)
+- **Auth**: KeystoneJS built-in, bcrypt password hashing
+- **API**: Auto-generated GraphQL at `/api/graphql`
+- **Language**: TypeScript
 
 ### Directory Structure (Backend)
 
@@ -62,10 +62,10 @@ cms/
 
 ### Development (Backend)
 
--   `npm run dev:cms` — Start CMS dev server (admin UI at `/admin`)
--   GraphQL playground at `/api/graphql`
--   Use Prisma migrations for schema changes
--   `npm run generate:types` after schema changes
+- `npm run dev:cms` — Start CMS dev server (admin UI at `/admin`)
+- GraphQL playground at `/api/graphql`
+- Use Prisma migrations for schema changes
+- `npm run generate:types` after schema changes
 
 ---
 
@@ -113,20 +113,20 @@ cms/
 
 ## Deployment & Environment
 
--   Production CMS endpoint: `https://admin.sethdavis.tech/api/graphql`
--   Environment-specific database URLs
--   Session management with secure cookies
--   CORS configured for production domains
+- Production CMS endpoint: `https://admin.sethdavis.tech/api/graphql`
+- Environment-specific database URLs
+- Session management with secure cookies
+- CORS configured for production domains
 
 ---
 
 ## Security & Best Practices
 
--   All secrets in environment variables
--   Passwords hashed with bcrypt
--   Input validation on client and server
--   TypeScript for compile-time safety
--   CORS and session security
+- All secrets in environment variables
+- Passwords hashed with bcrypt
+- Input validation on client and server
+- TypeScript for compile-time safety
+- CORS and session security
 
 ---
 
@@ -134,11 +134,11 @@ cms/
 
 PRs and issues welcome! Please follow the established code style and patterns:
 
--   Strict TypeScript
--   Functional, compositional React
--   TailwindCSS utilities
--   GraphQL codegen for types
--   Server-side data fetching in loaders
+- Strict TypeScript
+- Functional, compositional React
+- TailwindCSS utilities
+- GraphQL codegen for types
+- Server-side data fetching in loaders
 
 ---
 
@@ -150,16 +150,16 @@ MIT © Seth Davis
 
 ## Credits
 
--   [KeystoneJS](https://keystonejs.io/)
--   [React Router](https://reactrouter.com/)
--   [TailwindCSS](https://tailwindcss.com/)
--   [Prisma](https://www.prisma.io/)
--   [Vite](https://vitejs.dev/)
--   [PostHog](https://posthog.com/)
+- [KeystoneJS](https://keystonejs.io/)
+- [React Router](https://reactrouter.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Prisma](https://www.prisma.io/)
+- [Vite](https://vitejs.dev/)
+- [PostHog](https://posthog.com/)
 
 ---
 
 ## See Also
 
--   [Frontend README (`web/`)](web/README.md)
--   [CMS README (`cms/`)](cms/README.md)
+- [Frontend README (`web/`)](web/README.md)
+- [CMS README (`cms/`)](cms/README.md)
