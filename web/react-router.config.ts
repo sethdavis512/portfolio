@@ -11,8 +11,7 @@ export default {
             `/truck`,
             `/projects/tws-cms`,
             `/projects/tws-starter`,
-            `/blog`,
-            `/prompts`
+            `/blog`
         ];
     }
 } satisfies Config;
