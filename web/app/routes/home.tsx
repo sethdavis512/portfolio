@@ -1,4 +1,5 @@
 import {
+    ArrowRightCircle,
     BookHeartIcon,
     BookUserIcon,
     BoxIcon,
@@ -162,6 +163,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 ) : (
                                     <p>No blog posts available</p>
                                 )}
+                                <Linky to="/blog">
+                                    See all posts <ArrowRightCircle />
+                                </Linky>
                             </Flex>
                         </div>
                     </Flex>
