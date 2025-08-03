@@ -47,7 +47,7 @@ export async function loader() {
         );
 
         return {
-            lastThreePosts: posts?.slice(0, 3) || []
+            lastThreePosts: posts?.slice(-3).reverse() || []
         };
     } catch (error) {
         console.error('Error in loader:', error);
