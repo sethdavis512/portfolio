@@ -39,11 +39,11 @@ export async function loader() {
 export default function BlogRoute({ loaderData }: Route.ComponentProps) {
     return (
         <>
-            <Heading as="h1" className="mb-8">
+            <Heading as="h1" className="mb-6 sm:mb-8">
                 Blog
             </Heading>
             {loaderData.posts && loaderData.posts.length > 0 ? (
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3 sm:gap-4">
                     {loaderData.posts.map((post) => (
                         <Linky
                             to={`/blog/${post.slug}`}
@@ -51,22 +51,11 @@ export default function BlogRoute({ loaderData }: Route.ComponentProps) {
                             key={post.id}
                         >
                             <Card className="w-full">
-                                <div className="flex gap-2 items-start mb-2">
-                                    <div>
-                                        <span className="text-xl">📝</span>
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex justify-between">
-                                            <Heading size="4">
-                                                {post.title}
-                                            </Heading>
-                                            <Tag variant="muted">
-                                                {formatToDate(
-                                                    new Date(post.createdAt)
-                                                )}
-                                            </Tag>
-                                        </div>
-                                    </div>
+                                <div className="flex flex-col gap-2 items-start mb-2 sm:flex-row sm:justify-between md:flex-row md:justify-between">
+                                    <Heading size="4">{post.title}</Heading>
+                                    <Tag variant="muted">
+                                        {formatToDate(new Date(post.createdAt))}
+                                    </Tag>
                                 </div>
                                 <p className="text-sm text-zinc-700 dark:text-zinc-300">
                                     {post.excerpt}

@@ -31,7 +31,7 @@ export function TechStack({ icons }: PropsWithChildren<TechStackProps>) {
     );
 
     return (
-        <div className="flex gap-4 mb-8">
+        <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8">
             {hasIcon('keystone') && (
                 <div>
                     <Linky external to="https://keystonejs.com/">

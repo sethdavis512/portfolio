@@ -62,7 +62,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <Heading as="h1" size="1" className="mb-4">
                 Welcome
             </Heading>
-            <p className="pb-4 md:pb-6">
+            <p className="pb-3 sm:pb-4 md:pb-6">
                 {[
                     `My name is Seth Davis. I am a ${
                         ContentStyles.CURRENT_JOB_TITLE
@@ -81,7 +81,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <ScrollText {...largeIconProps} />
                 <Heading as="h2">Resume</Heading>
             </Flex>
-            <p className="mb-8">
+            <p className="mb-6 sm:mb-8">
                 I’m currently exploring new opportunities in frontend
                 development in the Austin area. I’d love to connect and discuss
                 how my experience and skill set could support your team’s goals.{' '}
@@ -92,15 +92,18 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <WaypointsIcon {...largeIconProps} />
                 <Heading as="h2">Connect</Heading>
             </Flex>
-            <p className="mb-8">
+            <p className="mb-6 sm:mb-8">
                 Interested in talking about a project?{' '}
                 <Linky to="https://tidycal.com/sethdavis512">
                     Click here to schedule a time to meet with me!
                 </Linky>
             </p>
-            <div className="space-y-12 sm:space-y-4">
+            <div className="space-y-8 sm:space-y-4">
                 <Panel>
-                    <Flex gap={4} className="flex-col gap-12 sm:flex-row">
+                    <Flex
+                        gap={4}
+                        className="flex-col gap-8 sm:gap-12 sm:flex-row"
+                    >
                         <div className="basis-1/2">
                             <Flex items="center" className="mb-4">
                                 <Code2Icon {...largeIconProps} />
@@ -141,37 +144,47 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Linky>
                             </Flex>
                         </div>
-                        <div className="basis-1/2">
-                            <Flex items="center" className="mb-4">
-                                <PaperclipIcon {...largeIconProps} />
-                                <Heading as="h2">Blog</Heading>
-                            </Flex>
-                            <p className="mb-4">{`I want to write and share more`}</p>
-                            <Flex vertical>
-                                {loaderData.lastThreePosts &&
-                                loaderData.lastThreePosts.length > 0 ? (
-                                    loaderData.lastThreePosts?.map((post) => (
-                                        <Linky
-                                            key={post?.slug}
-                                            to={`/blog/${post?.slug}`}
-                                            py={2}
-                                        >
-                                            <PencilIcon />
-                                            <span>{post?.title}</span>
-                                        </Linky>
-                                    ))
-                                ) : (
-                                    <p>No blog posts available</p>
-                                )}
-                                <Linky to="/blog">
-                                    See all posts <ArrowRightCircle />
-                                </Linky>
-                            </Flex>
-                        </div>
+                        {loaderData.lastThreePosts &&
+                            loaderData.lastThreePosts.length > 0 && (
+                                <div className="basis-1/2">
+                                    <Flex items="center" className="mb-4">
+                                        <PaperclipIcon {...largeIconProps} />
+                                        <Heading as="h2">Blog</Heading>
+                                    </Flex>
+                                    <p className="mb-4">{`I want to write and share more`}</p>
+
+                                    <ul className="flex flex-col gap-2">
+                                        {loaderData.lastThreePosts?.map(
+                                            (post) => (
+                                                <li>
+                                                    <Linky
+                                                        key={post?.slug}
+                                                        to={`/blog/${post?.slug}`}
+                                                        py={2}
+                                                    >
+                                                        <span>
+                                                            {post?.title}
+                                                        </span>
+                                                    </Linky>
+                                                </li>
+                                            )
+                                        )}
+                                        <li>
+                                            <Linky to="/blog">
+                                                See all posts{' '}
+                                                <ArrowRightCircle />
+                                            </Linky>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
                     </Flex>
                 </Panel>
                 <Panel>
-                    <Flex gap={4} className="flex-col gap-12 sm:flex-row">
+                    <Flex
+                        gap={4}
+                        className="flex-col gap-8 sm:gap-12 sm:flex-row"
+                    >
                         <div className="basis-1/2">
                             <Flex items="center" className="mb-4">
                                 <LaughIcon {...largeIconProps} />

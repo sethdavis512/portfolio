@@ -7,6 +7,7 @@ interface FlexProps {
     gap?: 2 | 4 | 6 | 8;
     items?: 'center' | 'start' | 'end' | 'baseline' | 'stretch';
     vertical?: boolean;
+    responsive?: boolean; // Adds responsive gap and flex direction
 }
 
 export default function Flex({
@@ -14,14 +15,15 @@ export default function Flex({
     className,
     gap = 2,
     items = 'start',
-    vertical
+    vertical,
+    responsive = false
 }: PropsWithChildren<FlexProps>) {
     return (
         <div
             className={cx(
                 'flex',
                 vertical && 'flex-col',
-                `gap-${gap}`,
+                responsive ? `gap-${gap - 1 >= 2 ? gap - 1 : 2} sm:gap-${gap}` : `gap-${gap}`,
                 items,
                 className
             )}

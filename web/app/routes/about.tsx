@@ -36,7 +36,7 @@ export default function AboutRoute() {
                     Facts about me
                 </Heading>
             </Flex>
-            <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <ul className="basis-1/2 space-y-4">
                     <li>
                         <Card>
