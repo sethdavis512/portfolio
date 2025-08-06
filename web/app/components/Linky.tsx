@@ -38,7 +38,7 @@ export default function Linky({
 }: PropsWithChildren<LinkyProps>) {
     const linkClassName = useMemo(() => {
         return cx(
-            'inline-flex cursor-pointer items-center gap-1.5 focus:outline-none',
+            'inline-flex cursor-pointer items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
             'text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300',
             px && `px-${px}`,
             py && `py-${py}`,
