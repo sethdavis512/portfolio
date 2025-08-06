@@ -7,13 +7,13 @@ import {
     Code2Icon,
     CodepenIcon,
     FileStackIcon,
+    GalleryHorizontalEndIcon,
     Github,
     HandshakeIcon,
     KeySquareIcon,
     LaughIcon,
     Linkedin,
     PaperclipIcon,
-    PencilIcon,
     ScrollText,
     SparklesIcon,
     Twitter,
@@ -125,6 +125,14 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 <Linky to="/projects/tws-cms" py={2}>
                                     <FileStackIcon />
                                     <span>TWS CMS</span>
+                                </Linky>
+                                <Linky
+                                    external
+                                    to="https://github.com/sethdavis512/rr7-slides"
+                                    py={2}
+                                >
+                                    <GalleryHorizontalEndIcon />
+                                    <span>RR7 Slides</span>
                                 </Linky>
                                 <Linky
                                     external
