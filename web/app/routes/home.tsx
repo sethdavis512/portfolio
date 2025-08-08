@@ -152,40 +152,32 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Linky>
                             </Flex>
                         </div>
-                        {loaderData.lastThreePosts &&
-                            loaderData.lastThreePosts.length > 0 && (
-                                <div className="basis-1/2">
-                                    <Flex items="center" className="mb-4">
-                                        <PaperclipIcon {...largeIconProps} />
-                                        <Heading as="h2">Blog</Heading>
-                                    </Flex>
-                                    <p className="mb-4">{`I want to write and share more`}</p>
+                        <div className="basis-1/2">
+                            <Flex items="center" className="mb-4">
+                                <PaperclipIcon {...largeIconProps} />
+                                <Heading as="h2">Blog</Heading>
+                            </Flex>
+                            <p className="mb-4">{`I want to write and share more`}</p>
 
-                                    <ul className="flex flex-col gap-2">
-                                        {loaderData.lastThreePosts?.map(
-                                            (post) => (
-                                                <li>
-                                                    <Linky
-                                                        key={post?.slug}
-                                                        to={`/blog/${post?.slug}`}
-                                                        py={2}
-                                                    >
-                                                        <span>
-                                                            {post?.title}
-                                                        </span>
-                                                    </Linky>
-                                                </li>
-                                            )
-                                        )}
-                                        <li>
-                                            <Linky to="/blog">
-                                                See all posts{' '}
-                                                <ArrowRightCircle />
-                                            </Linky>
-                                        </li>
-                                    </ul>
-                                </div>
-                            )}
+                            <ul className="flex flex-col gap-2">
+                                {loaderData.lastThreePosts?.map((post) => (
+                                    <li>
+                                        <Linky
+                                            key={post?.slug}
+                                            to={`/blog/${post?.slug}`}
+                                            py={2}
+                                        >
+                                            <span>{post?.title}</span>
+                                        </Linky>
+                                    </li>
+                                ))}
+                                <li>
+                                    <Linky to="/blog">
+                                        See all posts <ArrowRightCircle />
+                                    </Linky>
+                                </li>
+                            </ul>
+                        </div>
                     </Flex>
                 </Panel>
                 <Panel>
