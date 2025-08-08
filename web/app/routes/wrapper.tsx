@@ -9,7 +9,8 @@ import texasFlag from '~/images/flag-of-texas-small.svg';
 export default function WrapperRoute() {
     const location = useLocation();
     const isHome = location.pathname === '/';
-    const isInArticle = location.pathname.startsWith('/blog/');
+    const isInBlogList = location.pathname.startsWith('/blog');
+    const isInArticle = location.pathname.startsWith('/blog/') && !isInBlogList;
     const isInPrompts = location.pathname.startsWith('/prompts/');
 
     return (
