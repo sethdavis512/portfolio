@@ -34,6 +34,8 @@
     --color-tertiary-700: oklch(0.448 0.22 303.9);
     --color-tertiary-800: oklch(0.393 0.18 303.9);
     --color-tertiary-900: oklch(0.343 0.12 303.9);
+
+    --prose-invert-body: #ffffff;
 }
 
 html,

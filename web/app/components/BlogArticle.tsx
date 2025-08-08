@@ -7,73 +7,102 @@ import { CodeBlock } from './CodeBlock';
 export const renderers: DocumentRendererProps['renderers'] = {
     block: {
         code: ({ children, ...props }: any) => {
-            const code = typeof children === 'string' ? children : String(children || '');
-            
+            const code =
+                typeof children === 'string'
+                    ? children
+                    : String(children || '');
+
             // Smart language detection based on code content
             const detectLanguage = (codeContent: string): string => {
                 const content = codeContent.trim().toLowerCase();
-                
+
                 // TypeScript/TSX patterns
-                if (content.includes('interface ') || content.includes('type ') || 
-                    content.includes(': string') || content.includes(': number') ||
-                    content.includes('export interface') || content.includes('export type')) {
-                    return content.includes('<') && content.includes('/>') ? 'tsx' : 'typescript';
+                if (
+                    content.includes('interface ') ||
+                    content.includes('type ') ||
+                    content.includes(': string') ||
+                    content.includes(': number') ||
+                    content.includes('export interface') ||
+                    content.includes('export type')
+                ) {
+                    return content.includes('<') && content.includes('/>')
+                        ? 'tsx'
+                        : 'typescript';
                 }
-                
+
                 // JSX patterns
-                if (content.includes('<') && content.includes('/>') && 
-                    (content.includes('function ') || content.includes('const ') || content.includes('export '))) {
+                if (
+                    content.includes('<') &&
+                    content.includes('/>') &&
+                    (content.includes('function ') ||
+                        content.includes('const ') ||
+                        content.includes('export '))
+                ) {
                     return 'jsx';
                 }
-                
+
                 // JavaScript patterns
-                if (content.includes('function ') || content.includes('const ') || 
-                    content.includes('let ') || content.includes('var ') ||
-                    content.includes('export ') || content.includes('import ')) {
+                if (
+                    content.includes('function ') ||
+                    content.includes('const ') ||
+                    content.includes('let ') ||
+                    content.includes('var ') ||
+                    content.includes('export ') ||
+                    content.includes('import ')
+                ) {
                     return 'javascript';
                 }
-                
+
                 // CSS patterns
-                if (content.includes('{') && content.includes('}') && 
-                    (content.includes(':') && content.includes(';'))) {
+                if (
+                    content.includes('{') &&
+                    content.includes('}') &&
+                    content.includes(':') &&
+                    content.includes(';')
+                ) {
                     return 'css';
                 }
-                
+
                 // JSON patterns
-                if ((content.startsWith('{') && content.endsWith('}')) ||
-                    (content.startsWith('[') && content.endsWith(']'))) {
+                if (
+                    (content.startsWith('{') && content.endsWith('}')) ||
+                    (content.startsWith('[') && content.endsWith(']'))
+                ) {
                     try {
                         JSON.parse(codeContent);
                         return 'json';
                     } catch {}
                 }
-                
+
                 // HTML patterns
-                if (content.includes('<html') || content.includes('<!doctype') ||
-                    (content.includes('<div') && content.includes('</div>'))) {
+                if (
+                    content.includes('<html') ||
+                    content.includes('<!doctype') ||
+                    (content.includes('<div') && content.includes('</div>'))
+                ) {
                     return 'html';
                 }
-                
+
                 // Bash patterns
-                if (content.includes('#!/bin/bash') || content.includes('npm ') ||
-                    content.includes('cd ') || content.includes('ls ') ||
-                    content.includes('mkdir ') || content.includes('git ')) {
+                if (
+                    content.includes('#!/bin/bash') ||
+                    content.includes('npm ') ||
+                    content.includes('cd ') ||
+                    content.includes('ls ') ||
+                    content.includes('mkdir ') ||
+                    content.includes('git ')
+                ) {
                     return 'bash';
                 }
-                
+
                 // Default to typescript for your React Router content
                 return 'typescript';
             };
-            
+
             const language = detectLanguage(code);
-            console.log('Code block detected:', { detectedLanguage: language, code: code.slice(0, 50) + '...' });
-            
+
             return (
-                <CodeBlock 
-                    code={code}
-                    language={language}
-                    className="my-6"
-                />
+                <CodeBlock code={code} language={language} className="my-6" />
             );
         }
     },
