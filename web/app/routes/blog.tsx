@@ -27,7 +27,7 @@ export async function loader() {
         );
 
         return {
-            posts
+            posts: posts?.reverse()
         };
     } catch (error) {
         console.error('Error in loader:', error);
