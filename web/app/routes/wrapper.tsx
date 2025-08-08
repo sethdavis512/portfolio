@@ -8,10 +8,11 @@ import texasFlag from '~/images/flag-of-texas-small.svg';
 
 export default function WrapperRoute() {
     const location = useLocation();
-    const isHome = location.pathname === '/';
-    const isInBlogList = location.pathname.startsWith('/blog');
-    const isInArticle = location.pathname.startsWith('/blog/') && !isInBlogList;
-    const isInPrompts = location.pathname.startsWith('/prompts/');
+    const path = location.pathname.replace(/\/+$/, '') || '/';
+    const isHome = path === '/';
+
+    const isInArticle = path.startsWith('/blog/');
+    const isInPrompts = path.startsWith('/prompts/');
 
     return (
         <div className="mx-auto mb-16 sm:mb-20 max-w-5xl px-4 sm:px-6 md:px-8">
