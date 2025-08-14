@@ -10,6 +10,10 @@ query GetPostBySlug($slug: String!) {
             name
             id
         }
+        tags {
+            id
+            name
+        }
     }
     relatedPosts: posts(
         where: {

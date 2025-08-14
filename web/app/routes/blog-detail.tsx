@@ -43,6 +43,18 @@ export default function BlogDetailRoute({ loaderData }: Route.ComponentProps) {
             <Heading as="h1" size="1" className="mb-8">
                 {loaderData.post.title}
             </Heading>
+            {loaderData.post.tags && (
+                <div className="mb-4">
+                    {loaderData.post.tags.map((tag) => (
+                        <span
+                            key={tag.id}
+                            className="inline-block bg-zinc-800 text-zinc-400 rounded-full px-3 py-1 text-sm font-medium mr-2"
+                        >
+                            {tag.name}
+                        </span>
+                    ))}
+                </div>
+            )}
             <BlogArticle document={loaderData.post.content?.document} />
             <Divider className="my-8" />
             <p>

@@ -6,7 +6,7 @@ import { CodeBlock } from './CodeBlock';
 
 export const renderers: DocumentRendererProps['renderers'] = {
     block: {
-        code: ({ children, ...props }: any) => {
+        code: ({ children }: any) => {
             const code =
                 typeof children === 'string'
                     ? children
