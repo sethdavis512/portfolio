@@ -104,9 +104,11 @@ export default function AboutRoute() {
                     <li>
                         <Card>
                             <Heading as="h3" size="4" className="mb-2">
-                                🪑 Woodworker
+                                🤖 A.I. Maniac
                             </Heading>
-                            <p>{`Built: Shed / Entertainment center / Entry table`}</p>
+                            <Linky external to="https://sethdavis512.github.io/ai-maniacs/">
+                                Mentoring AI professionals
+                            </Linky>
                         </Card>
                     </li>
                     <li>

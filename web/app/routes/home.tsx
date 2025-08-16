@@ -2,6 +2,7 @@ import {
     ArrowRightCircle,
     BookHeartIcon,
     BookUserIcon,
+    BotIcon,
     BoxIcon,
     CableIcon,
     Code2Icon,
@@ -114,6 +115,10 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 resources
                             </p>
                             <Flex vertical>
+                                <Linky external to="https://sethdavis512.github.io/ai-maniacs/" py={2}>
+                                    <BotIcon />
+                                    <span>A.I. Maniacs</span>
+                                </Linky>
                                 <Linky to="/prompts" py={2}>
                                     <SparklesIcon />
                                     <span>Prompts</span>
