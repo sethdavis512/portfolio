@@ -106,7 +106,7 @@ export default function AboutRoute() {
                             <Heading as="h3" size="4" className="mb-2">
                                 🤖 A.I. Maniac
                             </Heading>
-                            <Linky external to="https://sethdavis512.github.io/ai-maniacs/">
+                            <Linky external to="https://ai-maniacs.com">
                                 Mentoring AI professionals
                             </Linky>
                         </Card>
