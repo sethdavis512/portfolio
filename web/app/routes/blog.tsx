@@ -9,15 +9,10 @@ import Card from '~/components/Card';
 import Linky from '~/components/Linky';
 import { formatToDate } from '~/utils/common';
 import { Tag } from '~/components/Tag';
+import { generateBlogMeta } from '~/utils/meta';
 
 export function meta() {
-    return [
-        { title: `Blog | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore insights and discussions on web development, React Router, and more.`
-        }
-    ];
+    return generateBlogMeta();
 }
 
 export async function loader() {

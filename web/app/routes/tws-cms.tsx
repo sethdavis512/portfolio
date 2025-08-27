@@ -5,15 +5,15 @@ import heroImage from '~/images/tws-cms-hero.png';
 import Card from '~/components/Card';
 import { ExternalLinkIcon } from 'lucide-react';
 import { TechStack } from '~/components/TechStack';
+import { generateProjectMeta } from '~/utils/meta';
 
 export function meta() {
-    return [
-        { title: `CMS Stack | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the TWS content management system setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateProjectMeta({
+        name: 'TWS CMS',
+        description: 'A headless content management system built with Keystone.js, React Router 7, PostgreSQL, and Railway. Designed to handle users, customers, posts, and tags with a modern tech stack.',
+        slug: 'tws-cms',
+        tech: ['Keystone.js', 'React Router 7', 'PostgreSQL', 'Railway', 'TypeScript', 'GraphQL']
+    });
 }
 
 export default function TWSCMSRoute() {

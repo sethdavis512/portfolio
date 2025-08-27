@@ -11,6 +11,7 @@ import posthog from 'posthog-js';
 
 import type { Route } from './+types/root';
 import './app.css';
+import { generateStructuredData, combineStructuredData } from './utils/seo';
 
 export const links: Route.LinksFunction = () => [
     //   {
@@ -29,6 +30,19 @@ function PosthogInit() {
     return null;
 }
 
+function StructuredData() {
+    const personSchema = generateStructuredData('Person');
+    const websiteSchema = generateStructuredData('Website');
+    const combinedSchema = combineStructuredData(personSchema, websiteSchema);
+
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: combinedSchema }}
+        />
+    );
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className="dark h-full">
@@ -40,6 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 />
                 <Meta />
                 <Links />
+                <StructuredData />
             </head>
             <body className="h-full">
                 {children}

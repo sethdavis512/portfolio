@@ -5,15 +5,15 @@ import heroImage from '~/images/tws-starter-hero.png';
 import { ExternalLinkIcon } from 'lucide-react';
 import Card from '~/components/Card';
 import { TechStack } from '~/components/TechStack';
+import { generateProjectMeta } from '~/utils/meta';
 
 export function meta() {
-    return [
-        { title: `Starter | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the TWS starter setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateProjectMeta({
+        name: 'TWS Starter',
+        description: 'A full-stack web application starter built with React Router 7, Prisma, PostgreSQL, and hosted on Railway. Provides a solid foundation for modern web development.',
+        slug: 'tws-starter',
+        tech: ['React Router 7', 'Prisma', 'PostgreSQL', 'Railway', 'TypeScript', 'Tailwind CSS']
+    });
 }
 
 export default function TWSStarterRoute() {

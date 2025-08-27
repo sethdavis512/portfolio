@@ -17,3 +17,21 @@ export enum ContentStyles {
     FRONTEND = `Front-End`,
     CURRENT_JOB_TITLE = `Senior ${FRONTEND} Engineer`
 }
+
+// SEO and metadata constants
+export const SITE_META = {
+    DEFAULT_KEYWORDS: [
+        'Seth Davis',
+        'Senior Front-End Engineer',
+        'React Router 7',
+        'TypeScript',
+        'React Developer',
+        'Austin Texas developer',
+        'Frontend engineer Austin',
+        'Web developer portfolio',
+        'Full-stack developer'
+    ],
+    LOCATION: 'Austin, Texas',
+    PROFESSION: 'Senior Front-End Engineer',
+    COMPANY: 'Gartner'
+} as const;

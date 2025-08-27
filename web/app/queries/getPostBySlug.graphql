@@ -3,6 +3,8 @@ query GetPostBySlug($slug: String!) {
         id
         slug
         title
+        excerpt
+        createdAt
         content {
             document
         }

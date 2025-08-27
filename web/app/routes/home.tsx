@@ -28,6 +28,7 @@ import Heading from '~/components/Heading';
 import Linky from '~/components/Linky';
 import Panel from '~/components/Panel';
 import type { Route } from './+types/home';
+import { generateHomeMeta } from '~/utils/meta';
 import {
     GetPublishedPostsDocument,
     type GetPublishedPostsQuery
@@ -35,10 +36,7 @@ import {
 import { client } from '~/utils/graphql.server';
 
 export function meta({}: Route.MetaArgs) {
-    return [
-        { title: `Home | Seth Davis' Portfolio` },
-        { name: 'description', content: `Welcome to Seth Davis' Portfolio` }
-    ];
+    return generateHomeMeta();
 }
 
 export async function loader() {

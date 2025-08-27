@@ -7,18 +7,13 @@ import JobItemList from '~/components/JobItemList';
 import Linky from '~/components/Linky';
 import SkillTag from '~/components/SkillTag';
 import { ContentStyles, largeIconProps } from '~/constants';
+import { generateResumeMeta } from '~/utils/meta';
 
 const RESUME_URL =
     'https://www.dropbox.com/scl/fi/nxqjs1dv1bqloyxgdwq8s/20250525-seth-davis-resume.pdf?rlkey=48e9y025kt90uzxbsrrxz02eh&dl=0';
 
 export function meta() {
-    return [
-        { title: `Resume | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the resume of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateResumeMeta();
 }
 
 export default function ResumeRoute() {

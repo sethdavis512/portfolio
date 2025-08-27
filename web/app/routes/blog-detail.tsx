@@ -8,15 +8,22 @@ import Heading from '~/components/Heading';
 import { BlogArticle } from '~/components/BlogArticle';
 import Divider from '~/components/Divider';
 import Linky from '~/components/Linky';
+import { generateBlogPostMeta } from '~/utils/meta';
 
 export function meta({ data }: Route.MetaArgs) {
-    return [
-        { title: `${data.post?.title} | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Read the blog post titled "${data.post?.title}" by Seth Davis. Explore insights and discussions on web development, React Router, and more.`
-        }
-    ];
+    if (!data.post) {
+        return [{ title: "Blog Post Not Found | Seth Davis' Portfolio" }];
+    }
+
+    return generateBlogPostMeta({
+        title: data.post.title || 'Blog Post',
+        excerpt:
+            data.post.excerpt ||
+            'Read this blog post to learn more about the topic.',
+        slug: data.post.slug || '',
+        createdAt: data.post.createdAt || new Date().toISOString(),
+        tags: data.post.tags?.map((tag: any) => tag.name) || []
+    });
 }
 
 export async function loader({ params }: Route.LoaderArgs) {

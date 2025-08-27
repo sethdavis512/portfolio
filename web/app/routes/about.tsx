@@ -7,15 +7,10 @@ import Linky from '~/components/Linky';
 import Card from '~/components/Card';
 import Heading from '~/components/Heading';
 import Flex from '~/components/Flex';
+import { generateAboutMeta } from '~/utils/meta';
 
 export function meta() {
-    return [
-        { title: `About | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Seth Davis is a frontend software engineer based in Austin, Texas. He is passionate about building web applications with React Router 7`
-        }
-    ];
+    return generateAboutMeta();
 }
 
 const Quote = ({ quote, author }: { quote: string; author: string }) => (
