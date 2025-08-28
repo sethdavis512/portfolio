@@ -1,10 +1,5 @@
 import Divider from '~/components/Divider';
 
-import truck1 from '~/images/truck-1.jpg';
-import truck2 from '~/images/truck-2-768x404.jpg';
-import floorMats from '~/images/f150-floor-mats.jpg';
-import antenna from '~/images/antenna.jpg';
-import truckTent from '~/images/truck-tent.jpg';
 import { formatToUSD, getUniqueId } from '~/utils/common';
 import type { Route } from './+types/truck';
 import Heading from '~/components/Heading';
@@ -27,19 +22,19 @@ export async function loader() {
                 name: 'Overpriced short antenna',
                 url: 'https://roninfactory.com/collections/ford',
                 price: 32,
-                img: antenna
+                img: '/antenna.jpg'
             },
             {
                 name: 'WeatherTech floor mats',
                 url: 'https://www.weathertech.com/ford/2023/f-150/floorliner-hp/',
                 price: 225,
-                img: floorMats
+                img: '/f150-floor-mats.jpg'
             },
             {
                 name: 'Diamondback bed cover',
                 url: 'https://diamondbackcovers.com/products/diamondback-switchback-ford-f-150-2021-up?variant=40259006955619',
                 price: 1899,
-                img: truck2
+                img: '/truck-2-768x404.jpg'
             }
         ].map((upgrade) => ({
             ...upgrade,
@@ -50,7 +45,7 @@ export async function loader() {
                 name: 'Napier Truck Tent',
                 url: 'https://a.co/d/hnYnPZA',
                 price: undefined,
-                img: truckTent
+                img: '/truck-tent.jpg'
             }
         ].map((accessory) => ({
             ...accessory,
@@ -74,7 +69,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                 (2.7kw) • Bed Utility Package • 360 Degree Camera Package
             </p>
             <img
-                src={truck1}
+                src="/truck-1.jpg"
                 alt="Black 2023 Ford F-150"
                 className="rounded-lg border border-zinc-300 dark:border-zinc-700"
             />

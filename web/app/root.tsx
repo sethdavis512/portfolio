@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
     isRouteErrorResponse,
     Links,
@@ -8,6 +8,8 @@ import {
     ScrollRestoration
 } from 'react-router';
 import posthog from 'posthog-js';
+
+import CommandPalette from '~/components/CommandPalette';
 
 import type { Route } from './+types/root';
 import './app.css';
@@ -44,6 +46,20 @@ function StructuredData() {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+    const [open, setOpen] = useState(false);
+    const [loading] = useState(false);
+
+    useEffect(() => {
+        const down = (e: KeyboardEvent) => {
+            if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                setOpen((open) => !open);
+            }
+        };
+        document.addEventListener('keydown', down);
+        return () => document.removeEventListener('keydown', down);
+    }, []);
+
     return (
         <html lang="en" className="dark h-full">
             <head>
@@ -58,6 +74,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </head>
             <body className="h-full">
                 {children}
+                <CommandPalette 
+                    open={open}
+                    onOpenChange={setOpen}
+                    loading={loading}
+                />
                 <ScrollRestoration />
                 <Scripts />
                 <PosthogInit />

@@ -7,9 +7,10 @@ import {
 } from '@react-router/dev/routes';
 
 export default [
+    index('routes/home.tsx'),
     layout('routes/wrapper.tsx', [
-        index('routes/home.tsx'),
         route('about', 'routes/about.tsx'),
+        route('work', 'routes/work.tsx'),
         route('hack', 'routes/hack.tsx'),
         route('meet', 'routes/meet.tsx'),
         route('resume', 'routes/resume.tsx'),

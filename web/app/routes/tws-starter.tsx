@@ -1,7 +1,6 @@
 import Heading from '~/components/Heading';
 import Linky from '~/components/Linky';
 
-import heroImage from '~/images/tws-starter-hero.png';
 import { ExternalLinkIcon } from 'lucide-react';
 import Card from '~/components/Card';
 import { TechStack } from '~/components/TechStack';
@@ -10,9 +9,17 @@ import { generateProjectMeta } from '~/utils/meta';
 export function meta() {
     return generateProjectMeta({
         name: 'TWS Starter',
-        description: 'A full-stack web application starter built with React Router 7, Prisma, PostgreSQL, and hosted on Railway. Provides a solid foundation for modern web development.',
+        description:
+            'A full-stack web application starter built with React Router 7, Prisma, PostgreSQL, and hosted on Railway. Provides a solid foundation for modern web development.',
         slug: 'tws-starter',
-        tech: ['React Router 7', 'Prisma', 'PostgreSQL', 'Railway', 'TypeScript', 'Tailwind CSS']
+        tech: [
+            'React Router 7',
+            'Prisma',
+            'PostgreSQL',
+            'Railway',
+            'TypeScript',
+            'Tailwind CSS'
+        ]
     });
 }
 
@@ -20,7 +27,7 @@ export default function TWSStarterRoute() {
     return (
         <>
             <img
-                src={heroImage}
+                src="/tws-starter-hero.png"
                 className="rounded-xl mb-8 border border-zinc-700"
             />
             <Heading as="h1" size="1" className="mb-8">
