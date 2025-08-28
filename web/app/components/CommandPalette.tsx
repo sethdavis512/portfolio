@@ -1,0 +1,136 @@
+import { Command } from 'cmdk';
+import { Home, PaperclipIcon } from 'lucide-react';
+import { useNavigate } from 'react-router';
+
+interface CommandPaletteProps {
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    loading?: boolean;
+}
+
+const workLinks = [
+    {
+        to: '/work',
+        icon: PaperclipIcon,
+        label: 'All Projects'
+    },
+    {
+        to: '/ai-maniacs',
+        icon: PaperclipIcon,
+        label: 'AI Maniacs'
+    }
+];
+
+const pagesLinks = [
+    {
+        to: '/about',
+        icon: PaperclipIcon,
+        label: 'About'
+    },
+    {
+        to: '/schedule',
+        icon: PaperclipIcon,
+        label: 'Schedule'
+    }
+];
+
+export default function CommandPalette({
+    open,
+    onOpenChange,
+    loading = false
+}: CommandPaletteProps) {
+    const navigate = useNavigate();
+    return (
+        <Command.Dialog
+            open={open}
+            onOpenChange={onOpenChange}
+            label="Global Command Menu"
+            className="fixed inset-0 z-50 flex items-start justify-center pt-20"
+        >
+            <div
+                className="fixed inset-0 bg-black/50"
+                onClick={() => onOpenChange(false)}
+            />
+            <div className="relative bg-zinc-800 rounded-2xl border border-zinc-700 w-full max-w-2xl mx-4 overflow-hidden shadow-2xl">
+                {/* Navigation Header */}
+                <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-700">
+                    <Home className="w-4 h-4 text-zinc-400" />
+                    <span className="text-zinc-300 text-sm font-medium">
+                        Home
+                    </span>
+                </div>
+
+                {/* Main Search Input */}
+                <div className="p-6 border-b border-zinc-700">
+                    <Command.Input
+                        placeholder="What do you need?"
+                        className="w-full bg-transparent text-zinc-100 text-xl font-medium placeholder-zinc-500 border-none outline-none"
+                    />
+                </div>
+
+                <Command.List className="max-h-96 overflow-y-auto">
+                    {loading && (
+                        <Command.Loading className="p-6 text-zinc-400">
+                            Hang on…
+                        </Command.Loading>
+                    )}
+
+                    <Command.Empty className="p-6 text-center text-zinc-500">
+                        No results found.
+                    </Command.Empty>
+
+                    {/* Work Section */}
+                    <div className="p-6 border-b border-zinc-700">
+                        <h3 className="text-zinc-300 font-medium mb-4">Work</h3>
+                        <Command.Group>
+                            {workLinks.map((link) => (
+                                <Command.Item
+                                    key={link.to}
+                                    value={link.label}
+                                    onSelect={() => {
+                                        onOpenChange(false);
+                                        navigate(link.to);
+                                    }}
+                                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-700 data-[selected=true]:bg-zinc-700 cursor-pointer group"
+                                >
+                                    <div className="flex items-center gap-3 flex-1">
+                                        <link.icon className="w-4 h-4 text-zinc-400" />
+                                        <span className="text-zinc-300">
+                                            {link.label}
+                                        </span>
+                                    </div>
+                                </Command.Item>
+                            ))}
+                        </Command.Group>
+                    </div>
+                    {/* Pages Section */}
+                    <div className="p-6">
+                        <h3 className="text-zinc-300 font-medium mb-4">
+                            Pages
+                        </h3>
+                        <Command.Group>
+                            {pagesLinks.map((link) => (
+                                <Command.Item
+                                    key={link.to}
+                                    value={link.label}
+                                    onSelect={() => {
+                                        onOpenChange(false);
+                                        navigate(link.to);
+                                    }}
+                                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-700 data-[selected=true]:bg-zinc-700 cursor-pointer group"
+                                >
+                                    <div className="flex items-center gap-3 flex-1">
+                                        <link.icon className="w-4 h-4 text-zinc-400" />
+                                        <span className="text-zinc-300">
+                                            {link.label}
+                                        </span>
+                                    </div>
+                                </Command.Item>
+                            ))}
+                        </Command.Group>
+                    </div>
+                </Command.List>
+            </div>
+        </Command.Dialog>
+    );
+}

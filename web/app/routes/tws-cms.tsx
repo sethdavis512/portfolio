@@ -1,7 +1,6 @@
 import Heading from '~/components/Heading';
 import Linky from '~/components/Linky';
 
-import heroImage from '~/images/tws-cms-hero.png';
 import Card from '~/components/Card';
 import { ExternalLinkIcon } from 'lucide-react';
 import { TechStack } from '~/components/TechStack';
@@ -10,9 +9,17 @@ import { generateProjectMeta } from '~/utils/meta';
 export function meta() {
     return generateProjectMeta({
         name: 'TWS CMS',
-        description: 'A headless content management system built with Keystone.js, React Router 7, PostgreSQL, and Railway. Designed to handle users, customers, posts, and tags with a modern tech stack.',
+        description:
+            'A headless content management system built with Keystone.js, React Router 7, PostgreSQL, and Railway. Designed to handle users, customers, posts, and tags with a modern tech stack.',
         slug: 'tws-cms',
-        tech: ['Keystone.js', 'React Router 7', 'PostgreSQL', 'Railway', 'TypeScript', 'GraphQL']
+        tech: [
+            'Keystone.js',
+            'React Router 7',
+            'PostgreSQL',
+            'Railway',
+            'TypeScript',
+            'GraphQL'
+        ]
     });
 }
 
@@ -20,7 +27,7 @@ export default function TWSCMSRoute() {
     return (
         <>
             <img
-                src={heroImage}
+                src="/tws-cms-hero.png"
                 className="rounded-xl mb-8 border border-zinc-700"
             />
             <Heading as="h1" size="1" className="mb-8">

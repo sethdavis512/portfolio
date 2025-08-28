@@ -1,8 +1,6 @@
 import { QuoteIcon } from 'lucide-react';
 
 import { largeIconProps } from '~/constants';
-// import Panel from '~/components/Panel';
-// import profilePhoto from '~/images/austfin-fc-profile.jpg';
 import Linky from '~/components/Linky';
 import Card from '~/components/Card';
 import Heading from '~/components/Heading';
@@ -212,6 +210,12 @@ export default function AboutRoute() {
                     />
                 </li>
             </ul>
+            <p className='py-12'>
+                3D images by{' '}
+                <Linky external to="https://www.thiings.co/things">
+                    thiings.co
+                </Linky>
+            </p>
         </>
     );
 }
