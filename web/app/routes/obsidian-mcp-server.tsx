@@ -1,5 +1,7 @@
 // import Linky from '~/components/Linky';
 
+import { ImageWithBottomBorder } from '~/components/ImageWithBottomBorder';
+
 export function meta() {
     return [
         { title: `Obsidian MCP | Seth Davis' Portfolio` },
@@ -13,8 +15,7 @@ export function meta() {
 export default function ObsidianMCPRoute() {
     return (
         <>
-            <img
-                className="w-full mb-8 border-b border-b-zinc-300 dark:border-b-zinc-700"
+            <ImageWithBottomBorder
                 src="/obsidian-mcp-hero.png"
                 alt="Obsidian MCP"
             />

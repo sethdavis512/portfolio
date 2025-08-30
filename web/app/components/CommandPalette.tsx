@@ -53,6 +53,11 @@ const pagesLinks = [
         label: 'About'
     },
     {
+        to: '/blog',
+        icon: LinkIcon,
+        label: 'Blog'
+    },
+    {
         to: '/schedule',
         icon: LinkIcon,
         label: 'Schedule'
@@ -95,21 +100,27 @@ interface CommandSectionProps {
 function CommandSection({ title, links, onSelect }: CommandSectionProps) {
     return (
         <div className="p-6">
-            <h3 className="text-zinc-300 font-medium mb-4">{title}</h3>
+            <h3 className="text-zinc-700 dark:text-zinc-300 font-medium mb-4">{title}</h3>
             <Command.Group>
-                {links.map((link) => (
-                    <Command.Item
-                        key={link.to}
-                        value={link.label}
-                        onSelect={() => onSelect(link.to)}
-                        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-700 data-[selected=true]:bg-zinc-700 cursor-pointer group"
-                    >
-                        <div className="flex items-center gap-3 flex-1">
-                            <link.icon className="w-4 h-4 text-zinc-400" />
-                            <span className="text-zinc-300">{link.label}</span>
-                        </div>
-                    </Command.Item>
-                ))}
+                {links.length > 0 ? (
+                    links.map((link) => (
+                        <Command.Item
+                            key={link.to}
+                            value={link.label}
+                            onSelect={() => onSelect(link.to)}
+                            className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 data-[selected=true]:bg-zinc-100 dark:data-[selected=true]:bg-zinc-700 cursor-pointer group"
+                        >
+                            <div className="flex items-center gap-3 flex-1">
+                                <link.icon className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
+                                <span className="text-zinc-700 dark:text-zinc-300">
+                                    {link.label}
+                                </span>
+                            </div>
+                        </Command.Item>
+                    ))
+                ) : (
+                    <Command.Item>None</Command.Item>
+                )}
             </Command.Group>
         </div>
     );
@@ -123,40 +134,41 @@ export default function CommandPalette({
     const navigate = useNavigate();
     return (
         <Command.Dialog
+            className="fixed inset-0 z-50 flex items-start justify-center pt-20"
             open={open}
             onOpenChange={onOpenChange}
-            label="Global Command Menu"
-            className="fixed inset-0 z-50 flex items-start justify-center pt-20"
+            label="Command Palette"
+            loop
         >
             <div
                 className="fixed inset-0 bg-black/50"
                 onClick={() => onOpenChange(false)}
             />
-            <div className="relative bg-zinc-800 rounded-2xl border border-zinc-700 w-full max-w-2xl mx-4 overflow-hidden shadow-2xl">
+            <div className="relative bg-white dark:bg-zinc-800 rounded-2xl border border-zinc-200 dark:border-zinc-700 w-full max-w-2xl mx-4 overflow-hidden shadow-2xl">
                 {/* Navigation Header */}
-                <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-700">
-                    <Home className="w-4 h-4 text-zinc-400" />
-                    <span className="text-zinc-300 text-sm font-medium">
+                <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200 dark:border-zinc-700">
+                    <Home className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
+                    <span className="text-zinc-700 dark:text-zinc-300 text-sm font-medium">
                         Home
                     </span>
                 </div>
 
                 {/* Main Search Input */}
-                <div className="p-6 border-b border-zinc-700">
+                <div className="p-6 border-b border-zinc-200 dark:border-zinc-700">
                     <Command.Input
                         placeholder="Where would you like to go?"
-                        className="w-full bg-transparent text-zinc-100 text-xl font-medium placeholder-zinc-500 border-none outline-none"
+                        className="w-full bg-transparent text-zinc-900 dark:text-zinc-100 text-xl font-medium placeholder-zinc-400 dark:placeholder-zinc-500 border-none outline-none"
                     />
                 </div>
 
                 <Command.List className="max-h-96 overflow-y-auto">
                     {loading && (
-                        <Command.Loading className="p-6 text-zinc-400">
+                        <Command.Loading className="p-6 text-zinc-500 dark:text-zinc-400">
                             Hang on…
                         </Command.Loading>
                     )}
 
-                    <Command.Empty className="p-6 text-center text-zinc-500">
+                    <Command.Empty className="p-6 text-center text-zinc-400 dark:text-zinc-500">
                         No results found.
                     </Command.Empty>
 

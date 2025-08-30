@@ -35,7 +35,7 @@ function WorkDisplay({
 }: WorkDisplayProps) {
     return (
         <Link to={url}>
-            <div className="hover:bg-zinc-100 hover:dark:bg-zinc-900 transition-colors duration-300 rounded-lg p-8">
+            <div className="hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg p-8">
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <img className="w-[200px]" src={imageSrc} alt={imageAlt} />
                     <div className="text-center md:text-left flex-1">
@@ -51,8 +51,7 @@ function WorkDisplay({
 }
 
 export default function WorkRoute() {
-    const workLogoClassName =
-        'hover:scale-110 transition-transform duration-200 w-5 h-5';
+    const workLogoClassName = 'w-5 h-5';
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start">

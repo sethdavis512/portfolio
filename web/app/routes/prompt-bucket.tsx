@@ -1,5 +1,7 @@
 // import Linky from '~/components/Linky';
 
+import { ImageWithBottomBorder } from '~/components/ImageWithBottomBorder';
+
 export function meta() {
     return [
         { title: `Prompt Bucket | Seth Davis' Portfolio` },
@@ -13,8 +15,7 @@ export function meta() {
 export default function PromptBucketRoute() {
     return (
         <>
-            <img
-                className="w-full mb-8 border-b border-b-zinc-300 dark:border-b-zinc-700"
+            <ImageWithBottomBorder
                 src="/generative-ui-hero.png"
                 alt="Prompt Bucket displayed in a web browser"
             />
