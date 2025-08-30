@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
 
-const MOST_OPAQUE = 0.15;
+const MOST_OPAQUE = 0.70;
 const LEAST_OPAQUE = 0.05;
 const BASE_COLOR = '#6b7280'; // gray-500
+const INITIAL_RADIUS = 200;
+const ROTATION_DURATION = 4 * 60; // seconds for one full rotation
 
 interface CircularPatternProps {
     symbols?: string[];
@@ -14,7 +16,7 @@ interface CircularPatternProps {
 
 export default function CircularPattern({
     symbols = ['{', '}', '<', '>', '/', '*', '+', '='],
-    baseRadius = 100,
+    baseRadius = INITIAL_RADIUS,
     radiusIncrement = 50,
     symbolsPerCircle = 24,
     className = ''
@@ -53,7 +55,7 @@ export default function CircularPattern({
                 <div 
                     className="relative animate-spin"
                     style={{
-                        animationDuration: '60s'
+                        animationDuration: `${ROTATION_DURATION}s`
                     }}
                 >
                     {circles.map((circle, circleIndex) => (

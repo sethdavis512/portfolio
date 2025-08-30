@@ -1,5 +1,5 @@
 import { Command } from 'cmdk';
-import { Home, PaperclipIcon } from 'lucide-react';
+import { Home, LinkIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 interface CommandPaletteProps {
@@ -11,28 +11,109 @@ interface CommandPaletteProps {
 const workLinks = [
     {
         to: '/work',
-        icon: PaperclipIcon,
+        icon: LinkIcon,
         label: 'All Projects'
     },
     {
+        to: '/generative-ui',
+        icon: LinkIcon,
+        label: 'Generative UI'
+    },
+    {
+        to: '/prompt-bucket',
+        icon: LinkIcon,
+        label: 'Prompt Bucket'
+    },
+    {
+        to: '/obsidian-mcp-server',
+        icon: LinkIcon,
+        label: 'Obsidian MCP Server'
+    },
+    {
+        to: '/rr7-slides',
+        icon: LinkIcon,
+        label: 'RR7 Slides'
+    },
+    {
         to: '/ai-maniacs',
-        icon: PaperclipIcon,
+        icon: LinkIcon,
         label: 'AI Maniacs'
     }
 ];
 
 const pagesLinks = [
     {
+        to: '/',
+        icon: LinkIcon,
+        label: 'Home'
+    },
+    {
         to: '/about',
-        icon: PaperclipIcon,
+        icon: LinkIcon,
         label: 'About'
     },
     {
         to: '/schedule',
-        icon: PaperclipIcon,
+        icon: LinkIcon,
         label: 'Schedule'
     }
 ];
+
+const socialLinks = [
+    {
+        to: 'https://www.linkedin.com/in/sethdavis512/',
+        icon: LinkIcon,
+        label: 'LinkedIn'
+    },
+    {
+        to: 'https://x.com/sethdavis512',
+        icon: LinkIcon,
+        label: 'X'
+    },
+    {
+        to: 'https://github.com/sethdavis512',
+        icon: LinkIcon,
+        label: 'GitHub'
+    },
+    {
+        to: 'https://codepen.com/sethdavis512',
+        icon: LinkIcon,
+        label: 'CodePen'
+    }
+];
+
+interface CommandSectionProps {
+    title: string;
+    links: {
+        to: string;
+        icon: React.ComponentType<{ className?: string }>;
+        label: string;
+    }[];
+    onSelect: (to: string) => void;
+}
+
+function CommandSection({ title, links, onSelect }: CommandSectionProps) {
+    return (
+        <div className="p-6">
+            <h3 className="text-zinc-300 font-medium mb-4">{title}</h3>
+            <Command.Group>
+                {links.map((link) => (
+                    <Command.Item
+                        key={link.to}
+                        value={link.label}
+                        onSelect={() => onSelect(link.to)}
+                        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-700 data-[selected=true]:bg-zinc-700 cursor-pointer group"
+                    >
+                        <div className="flex items-center gap-3 flex-1">
+                            <link.icon className="w-4 h-4 text-zinc-400" />
+                            <span className="text-zinc-300">{link.label}</span>
+                        </div>
+                    </Command.Item>
+                ))}
+            </Command.Group>
+        </div>
+    );
+}
 
 export default function CommandPalette({
     open,
@@ -63,7 +144,7 @@ export default function CommandPalette({
                 {/* Main Search Input */}
                 <div className="p-6 border-b border-zinc-700">
                     <Command.Input
-                        placeholder="What do you need?"
+                        placeholder="Where would you like to go?"
                         className="w-full bg-transparent text-zinc-100 text-xl font-medium placeholder-zinc-500 border-none outline-none"
                     />
                 </div>
@@ -79,56 +160,30 @@ export default function CommandPalette({
                         No results found.
                     </Command.Empty>
 
-                    {/* Work Section */}
-                    <div className="p-6 border-b border-zinc-700">
-                        <h3 className="text-zinc-300 font-medium mb-4">Work</h3>
-                        <Command.Group>
-                            {workLinks.map((link) => (
-                                <Command.Item
-                                    key={link.to}
-                                    value={link.label}
-                                    onSelect={() => {
-                                        onOpenChange(false);
-                                        navigate(link.to);
-                                    }}
-                                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-700 data-[selected=true]:bg-zinc-700 cursor-pointer group"
-                                >
-                                    <div className="flex items-center gap-3 flex-1">
-                                        <link.icon className="w-4 h-4 text-zinc-400" />
-                                        <span className="text-zinc-300">
-                                            {link.label}
-                                        </span>
-                                    </div>
-                                </Command.Item>
-                            ))}
-                        </Command.Group>
-                    </div>
-                    {/* Pages Section */}
-                    <div className="p-6">
-                        <h3 className="text-zinc-300 font-medium mb-4">
-                            Pages
-                        </h3>
-                        <Command.Group>
-                            {pagesLinks.map((link) => (
-                                <Command.Item
-                                    key={link.to}
-                                    value={link.label}
-                                    onSelect={() => {
-                                        onOpenChange(false);
-                                        navigate(link.to);
-                                    }}
-                                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-700 data-[selected=true]:bg-zinc-700 cursor-pointer group"
-                                >
-                                    <div className="flex items-center gap-3 flex-1">
-                                        <link.icon className="w-4 h-4 text-zinc-400" />
-                                        <span className="text-zinc-300">
-                                            {link.label}
-                                        </span>
-                                    </div>
-                                </Command.Item>
-                            ))}
-                        </Command.Group>
-                    </div>
+                    <CommandSection
+                        title="Work"
+                        links={workLinks}
+                        onSelect={(to) => {
+                            onOpenChange(false);
+                            navigate(to);
+                        }}
+                    />
+                    <CommandSection
+                        title="Pages"
+                        links={pagesLinks}
+                        onSelect={(to) => {
+                            onOpenChange(false);
+                            navigate(to);
+                        }}
+                    />
+                    <CommandSection
+                        title="Social"
+                        links={socialLinks}
+                        onSelect={(to) => {
+                            onOpenChange(false);
+                            window.open(to, '_blank', 'noopener,noreferrer');
+                        }}
+                    />
                 </Command.List>
             </div>
         </Command.Dialog>

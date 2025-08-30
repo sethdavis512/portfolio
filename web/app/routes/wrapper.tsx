@@ -31,7 +31,7 @@ function AppNavLink({ to, children, ariaLabel }: AppNavLinkProps) {
 
 export default function WrapperRoute() {
     return (
-        <div className="container flex flex-col mx-auto px-4 sm:max-w-3xl md:max-w-5xl h-full">
+        <div className="container flex flex-col mx-auto px-4 sm:max-w-3xl md:max-w-6xl h-full">
             <header className="py-8">
                 <nav>
                     <ul className="flex items-center gap-6 md:gap-16">
