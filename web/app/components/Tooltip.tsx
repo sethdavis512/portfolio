@@ -23,7 +23,7 @@ export default function Tooltip({
                 <TooltipPrimitive.Portal>
                     <TooltipPrimitive.Content
                         side={side}
-                        className="z-50 rounded-md bg-zinc-900 px-3 py-1.5 text-sm text-zinc-50 shadow-lg border border-zinc-700"
+                        className="z-50 rounded-lg bg-zinc-900 px-3 py-1.5 text-sm text-zinc-50 shadow-lg border border-zinc-700"
                         sideOffset={4}
                     >
                         {content}

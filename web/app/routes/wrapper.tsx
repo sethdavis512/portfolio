@@ -15,7 +15,7 @@ function AppNavLink({ to, children, ariaLabel }: AppNavLinkProps) {
     return (
         <NavLink
             className={({ isActive }) =>
-                `transition-colors duration-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3 px-4 ${
+                `transition-colors duration-200 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3 px-4 ${
                     isActive
                         ? 'text-zinc-900 dark:text-white font-medium bg-zinc-100 dark:bg-zinc-900'
                         : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
@@ -26,6 +26,25 @@ function AppNavLink({ to, children, ariaLabel }: AppNavLinkProps) {
         >
             {children}
         </NavLink>
+    );
+}
+
+function StaticNavLink({
+    to,
+    children,
+    ...rest
+}: {
+    to: string;
+    children: React.ReactNode;
+}) {
+    return (
+        <a
+            className="transition-colors duration-200 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3 px-4 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+            href={to}
+            {...rest}
+        >
+            {children}
+        </a>
     );
 }
 
@@ -62,12 +81,9 @@ export default function WrapperRoute() {
                             </AppNavLink>
                         </li>
                         <li>
-                            <AppNavLink
-                                to="/schedule"
-                                aria-label="Return to home page"
-                            >
+                            <StaticNavLink to="https://tidycal.com/sethdavis512">
                                 Schedule
-                            </AppNavLink>
+                            </StaticNavLink>
                         </li>
                     </ul>
                 </nav>

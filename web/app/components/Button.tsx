@@ -4,7 +4,7 @@ import type { VariantProps } from 'cva';
 import { cva, cx } from 'cva.config';
 
 export const buttonVariants = cva({
-    base: 'rounded-xl text-white focus:ring-2 focus:outline-none border-2',
+    base: 'rounded-lg text-white focus:ring-2 focus:outline-none border-2',
     variants: {
         color: {
             primary: [
