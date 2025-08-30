@@ -1,7 +1,7 @@
 // import Linky from '~/components/Linky';
 
 import Card from '~/components/Card';
-import { ImageWithBottomBorder } from '~/components/ImageWithBottomBorder';
+import { HeroImage } from '~/components/HeroImage';
 import Linky from '~/components/Linky';
 
 export function meta() {
@@ -17,7 +17,7 @@ export function meta() {
 export default function GenerativeUIRoute() {
     return (
         <>
-            <ImageWithBottomBorder
+            <HeroImage
                 src="/generative-ui-hero.png"
                 alt="Generative UI"
                 aspectRatio="aspect-[16/9]"
