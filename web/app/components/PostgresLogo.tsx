@@ -3,7 +3,7 @@ import { cx } from 'cva.config';
 export function PostgresLogo({ className }: { className?: string }) {
     return (
         <svg
-            className={cx('fill-white', className)}
+            className={cx('fill-zinc-700 dark:fill-white', className)}
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
         >

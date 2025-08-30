@@ -35,7 +35,7 @@ function WorkDisplay({
 }: WorkDisplayProps) {
     return (
         <Link to={url}>
-            <div className="hover:bg-zinc-900 transition-colors duration-300 rounded-lg p-8">
+            <div className="hover:bg-zinc-100 hover:dark:bg-zinc-900 transition-colors duration-300 rounded-lg p-8">
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <img className="w-[200px]" src={imageSrc} alt={imageAlt} />
                     <div className="text-center md:text-left flex-1">
