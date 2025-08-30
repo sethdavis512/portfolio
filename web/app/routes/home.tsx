@@ -33,21 +33,23 @@ export default function Home() {
     return (
         <>
             <div className="flex justify-center items-center h-full px-4 sm:px-0">
-                <div className="flex flex-col items-start sm:items-center gap-24 relative z-10">
+                <div className="flex flex-col items-start sm:items-center gap-12 relative z-10">
                     <div className="flex flex-col lg:flex-row gap-8">
                         <div>
                             <img
-                                src="/austin-fc-profile.jpg"
+                                src="/20240612-seth-davis-profile-cropped-2.jpg"
                                 alt="Seth Davis wearing an Austin FC hat in front of the stadium"
-                                className="rounded-full h-48 w-48 mb-4"
+                                className="border border-zinc-500 rounded-full h-56 w-56 mb-4"
                             />
                         </div>
                         <div>
-                            <span className="font-bold text-xl">
+                            <span className="font-medium text-xl">
                                 Hello. My name is
                             </span>
-                            <h1 className="text-9xl font-bold">Seth Davis</h1>
-                            <p className="text-xl font-bold">
+                            <h1 className="text-9xl font-black mb-4">
+                                Seth Davis
+                            </h1>
+                            <p className="text-xl font-medium">
                                 I design web applications that boost efficiency
                                 <br />
                                 and simplify tasks
@@ -64,21 +66,7 @@ export default function Home() {
                 </div>
             </div>
             <CircularPattern
-                symbols={shuffle([
-                    '<',
-                    '>',
-                    '{',
-                    '}',
-                    '/',
-                    '*',
-                    '+',
-                    '=',
-                    '|',
-                    '%',
-                    '@',
-                    '~'
-                ])}
-                // opacity={0.08}
+                symbols={shuffle(['<', '>', '{', '}', '/', '*', '=', '|'])}
             />
         </>
     );
