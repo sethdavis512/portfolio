@@ -1,6 +1,6 @@
 // import Linky from '~/components/Linky';
 
-import { ImageWithBottomBorder } from '~/components/ImageWithBottomBorder';
+import { HeroImage } from '~/components/HeroImage';
 
 export function meta() {
     return [
@@ -15,7 +15,7 @@ export function meta() {
 export default function PromptBucketRoute() {
     return (
         <>
-            <ImageWithBottomBorder
+            <HeroImage
                 src="/generative-ui-hero.png"
                 alt="Prompt Bucket displayed in a web browser"
             />

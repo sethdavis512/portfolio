@@ -1,6 +1,6 @@
 // import Linky from '~/components/Linky';
 
-import { ImageWithBottomBorder } from "~/components/ImageWithBottomBorder";
+import { HeroImage } from '~/components/HeroImage';
 
 export function meta() {
     return [
@@ -15,10 +15,7 @@ export function meta() {
 export default function AIManiacsRoute() {
     return (
         <>
-            <ImageWithBottomBorder
-                src="/ai-maniacs-hero.png"
-                alt="AI Maniacs"
-            />
+            <HeroImage src="/ai-maniacs-hero.png" alt="AI Maniacs" />
             <h1 className="text-4xl font-bold mb-4">AI Maniacs</h1>
             <p></p>
         </>

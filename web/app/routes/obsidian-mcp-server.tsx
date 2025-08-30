@@ -1,6 +1,6 @@
 // import Linky from '~/components/Linky';
 
-import { ImageWithBottomBorder } from '~/components/ImageWithBottomBorder';
+import { HeroImage } from '~/components/HeroImage';
 
 export function meta() {
     return [
@@ -15,10 +15,7 @@ export function meta() {
 export default function ObsidianMCPRoute() {
     return (
         <>
-            <ImageWithBottomBorder
-                src="/obsidian-mcp-hero.png"
-                alt="Obsidian MCP"
-            />
+            <HeroImage src="/obsidian-mcp-hero.png" alt="Obsidian MCP" />
             <h1 className="text-4xl font-bold mb-4">Obsidian MCP</h1>
             <p></p>
         </>

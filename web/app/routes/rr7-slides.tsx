@@ -1,4 +1,4 @@
-import { ImageWithBottomBorder } from '~/components/ImageWithBottomBorder';
+import { HeroImage } from '~/components/HeroImage';
 import Linky from '~/components/Linky';
 
 export function meta() {
@@ -14,10 +14,7 @@ export function meta() {
 export default function RR7SlidesRoute() {
     return (
         <>
-            <ImageWithBottomBorder
-                src="/rr7-slides-hero.png"
-                alt="RR7 Slides"
-            />
+            <HeroImage src="/rr7-slides-hero.png" alt="RR7 Slides" />
             <h1 className="text-4xl font-bold mb-4">RR7 Slides</h1>
             <p></p>
         </>
