@@ -4,12 +4,12 @@ import type { VariantProps } from 'cva';
 import { cva, cx } from 'cva.config';
 
 export const buttonVariants = cva({
-    base: 'rounded-xl text-white focus:ring-2 focus:outline-none border',
+    base: 'rounded-xl text-white focus:ring-2 focus:outline-none border-2',
     variants: {
         color: {
             primary: [
                 'bg-primary-400 dark:bg-primary-900 dark:hover:bg-primary-600 hover:bg-primary-600',
-                'border-primary-700 dark:border-primary-800',
+                'border-primary-500 dark:border-primary-800',
                 'focus:ring-primary-300 dark:focus:ring-primary-800'
             ],
             secondary: [
