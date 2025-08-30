@@ -15,9 +15,9 @@ function AppNavLink({ to, children, ariaLabel }: AppNavLinkProps) {
     return (
         <NavLink
             className={({ isActive }) =>
-                `transition-colors duration-200 ${
+                `transition-colors duration-200 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3 px-4 ${
                     isActive
-                        ? 'text-zinc-900 dark:text-white font-medium'
+                        ? 'text-zinc-900 dark:text-white font-medium bg-zinc-100 dark:bg-zinc-900'
                         : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
                 }`
             }
@@ -32,9 +32,9 @@ function AppNavLink({ to, children, ariaLabel }: AppNavLinkProps) {
 export default function WrapperRoute() {
     return (
         <div className="container flex flex-col mx-auto px-4 sm:max-w-3xl md:max-w-6xl h-full">
-            <header className="py-8">
+            <header className="py-8 mb-4 sm:mb-8">
                 <nav>
-                    <ul className="flex items-center gap-6 md:gap-16">
+                    <ul className="flex items-center gap-4 md:gap-8">
                         <li>
                             <Link to="/" aria-label="Return to home page">
                                 <Logo className="fill-zinc-700 h-12 dark:fill-white" />
@@ -54,6 +54,11 @@ export default function WrapperRoute() {
                                 aria-label="Return to home page"
                             >
                                 About
+                            </AppNavLink>
+                        </li>
+                        <li>
+                            <AppNavLink to="/blog" aria-label="Read the blog">
+                                Blog
                             </AppNavLink>
                         </li>
                         <li>
