@@ -3,7 +3,7 @@ import { cx } from 'cva.config';
 export function RailwayLogo({ className }: { className?: string }) {
     return (
         <svg
-            className={cx('fill-white', className)}
+            className={cx('fill-zinc-700 dark:fill-white', className)}
             width="1024"
             height="1024"
             viewBox="0 0 1024 1024"

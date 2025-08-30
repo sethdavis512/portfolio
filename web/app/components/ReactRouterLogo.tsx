@@ -3,7 +3,7 @@ import { cx } from 'cva.config';
 export function ReactRouterLogo({ className }: { className?: string }) {
     return (
         <svg
-            className={cx('fill-white', className)}
+            className={cx('fill-zinc-700 dark:fill-white', className)}
             width="602"
             height="360"
             viewBox="0 0 602 360"
