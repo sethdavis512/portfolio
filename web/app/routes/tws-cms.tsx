@@ -28,7 +28,7 @@ export default function TWSCMSRoute() {
         <>
             <img
                 src="/tws-cms-hero.png"
-                className="rounded-xl mb-8 border border-zinc-700"
+                className="rounded-lg mb-8 border border-zinc-700"
             />
             <Heading as="h1" size="1" className="mb-8">
                 tws-cms
