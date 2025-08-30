@@ -109,7 +109,7 @@ export const renderers: DocumentRendererProps['renderers'] = {
     inline: {
         code: ({ children }) => {
             return (
-                <code className="bg-slate-800 px-2 py-1.5 rounded text-zinc-50 font-mono text-sm border border-zinc-700">
+                <code className="bg-zinc-100 dark:bg-slate-800 px-2 py-1.5 rounded text-zinc-900 dark:text-zinc-50 font-mono text-sm border border-zinc-300 dark:border-zinc-700">
                     {children}
                 </code>
             );
@@ -123,7 +123,7 @@ interface BlogArticleProps {
 
 export function BlogArticle({ document }: BlogArticleProps) {
     return (
-        <div className="w-full prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:my-4 mb-8 prose-pre:p-0 prose-pre:bg-none prose-p:text-white">
+        <div className="w-full prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:my-4 mb-8 prose-pre:p-0 prose-pre:bg-none prose-p:text-zinc-900 dark:prose-p:text-white">
             <DocumentRenderer document={document} renderers={renderers} />
         </div>
     );
