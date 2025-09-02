@@ -14,7 +14,7 @@ export default function Flex({
     children,
     className,
     gap = 2,
-    items = 'start',
+    items,
     vertical,
     responsive = false
 }: PropsWithChildren<FlexProps>) {

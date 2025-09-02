@@ -43,9 +43,14 @@ export function CodeBlock({
                 const { codeToHtml } = await import('shiki');
 
                 const normalizedLang = normalizeLanguage(language);
+                
+                // Use dual themes for light/dark mode support
                 const html = await codeToHtml(code, {
                     lang: normalizedLang,
-                    theme: 'github-dark'
+                    themes: {
+                        light: 'github-light',
+                        dark: 'github-dark'
+                    }
                 });
 
                 setHighlightedHtml(html);
@@ -70,7 +75,7 @@ export function CodeBlock({
                     className
                 )}
             >
-                <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-4 py-2">
+                <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-4 py-2 bg-gray-50 dark:bg-gray-800">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                         {language}
                     </span>
@@ -86,11 +91,12 @@ export function CodeBlock({
         <div
             className={cx(
                 'relative overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700',
+                'bg-white dark:bg-gray-900',
                 '[&_pre]:!bg-transparent [&_pre]:!m-0 [&_pre]:!p-4',
                 className
             )}
         >
-            <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-4 py-2">
+            <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-4 py-2 bg-gray-50 dark:bg-gray-800">
                 <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
                     {language}
                 </span>

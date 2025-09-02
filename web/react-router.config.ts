@@ -4,14 +4,20 @@ export default {
     ssr: true,
     async prerender() {
         return [
-            `/`,
-            `/about`,
-            `/resume`,
-            `/setup`,
-            `/truck`,
-            `/projects/tws-cms`,
-            `/projects/tws-starter`,
-            `/blog`
+            '/',
+            // Projects
+            '/work',
+            '/generative-ui',
+            '/obsidian-mcp-server',
+            '/resume',
+            '/rr7-slides',
+            '/ai-maniacs',
+            // Pages
+            '/about',
+            '/blog',
+            '/schedule',
+            '/setup',
+            '/truck'
         ];
     }
 } satisfies Config;

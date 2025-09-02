@@ -1,8 +1,6 @@
 import { QuoteIcon } from 'lucide-react';
 
 import { largeIconProps } from '~/constants';
-// import Panel from '~/components/Panel';
-// import profilePhoto from '~/images/austfin-fc-profile.jpg';
 import Linky from '~/components/Linky';
 import Card from '~/components/Card';
 import Heading from '~/components/Heading';
@@ -14,7 +12,7 @@ export function meta() {
 }
 
 const Quote = ({ quote, author }: { quote: string; author: string }) => (
-    <blockquote className="border-l-4 pl-6">
+    <blockquote>
         <p className="mb-2">{`"${quote}"`}</p>
         <footer>
             <cite className="text-sm">— {author}</cite>
@@ -93,7 +91,7 @@ export default function AboutRoute() {
                             <Heading as="h3" size="4" className="mb-2">
                                 💪🏻 CrossFit member
                             </Heading>
-                            <p>{`Lifting for almost 2.5 years`}</p>
+                            <p>{`Lifting for 3+ years`}</p>
                         </Card>
                     </li>
                     <li>
@@ -212,6 +210,12 @@ export default function AboutRoute() {
                     />
                 </li>
             </ul>
+            <p className="py-12">
+                3D images by{' '}
+                <Linky external to="https://www.thiings.co/things">
+                    thiings.co
+                </Linky>
+            </p>
         </>
     );
 }
