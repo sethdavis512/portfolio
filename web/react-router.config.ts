@@ -5,17 +5,19 @@ export default {
     async prerender() {
         return [
             '/',
-            '/about',
-            '/ai-maniacs',
-            '/blog',
+            // Projects
+            '/work',
             '/generative-ui',
             '/obsidian-mcp-server',
             '/resume',
             '/rr7-slides',
+            '/ai-maniacs',
+            // Pages
+            '/about',
+            '/blog',
             '/schedule',
             '/setup',
-            '/truck',
-            '/work'
+            '/truck'
         ];
     }
 } satisfies Config;

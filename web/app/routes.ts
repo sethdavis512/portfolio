@@ -20,6 +20,7 @@ export default [
         route('rr7-slides', 'routes/rr7-slides.tsx'),
         route('prompts', 'routes/prompts.tsx'),
         route('prompts/:slug', 'routes/prompt-detail.tsx'),
+        route('rapidalle', 'routes/rapidalle.tsx'),
         route('resume', 'routes/resume.tsx'),
         route('setup', 'routes/setup.tsx'),
         route('socialize', 'routes/socialize.tsx'),

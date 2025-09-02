@@ -14,13 +14,13 @@ export function meta() {
     ];
 }
 
-export default function GenerativeUIRoute() {
+export default function RapidalleRoute() {
     return (
         <>
-            <HeroImage src="/generative-ui-hero.png" alt="Generative UI" />
+            <HeroImage src="/rapidalle-hero.png" alt="Rapidall•E" />
             <div className="flex gap-4">
                 <div className="basis-2/3 space-y-4">
-                    <h1 className="text-4xl font-bold mb-4">Generative UI</h1>
+                    <h1 className="text-4xl font-bold mb-4">Rapidall•E</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Laudantium at corrupti atque adipisci facilis minus in
@@ -47,13 +47,13 @@ export default function GenerativeUIRoute() {
                         <h4 className="font-bold">Looking for more?</h4>
                         <Linky
                             external
-                            to="https://github.com/sethdavis512/generative-ui"
+                            to=""
                         >
                             View source code
                         </Linky>
                         <Linky
                             external
-                            to="https://github.com/sethdavis512/generative-ui"
+                            to=""
                         >
                             Launch live demo
                         </Linky>

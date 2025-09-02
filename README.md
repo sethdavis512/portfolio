@@ -1,6 +1,25 @@
 # Portfolio Monorepo
 
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![KeystoneJS](https://img.shields.io/badge/KeystoneJS-000000?style=for-the-badge&logo=keystone&logoColor=white)](https://keystonejs.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
 A modern, full-stack portfolio website built with a monorepo architecture. Features a React/TypeScript frontend with SSR and a KeystoneJS 6 headless CMS backend, all managed in a single repository.
+
+**Live Site**: [sethdavis.tech](https://sethdavis.tech)
+
+## Key Features
+
+- **Server-Side Rendering (SSR)** with React Router v7
+- **Responsive Design** with TailwindCSS v4
+- **Type-Safe Development** with TypeScript throughout
+- **GraphQL API** with automatic type generation
+- **Headless CMS** with KeystoneJS 6 admin interface
+- **PostgreSQL Database** with Prisma ORM
+- **Analytics Integration** with PostHog
+- **Modern UI Components** with Radix UI primitives
 
 ## Architecture
 

@@ -6,7 +6,11 @@ interface HeroImageProps {
     aspectRatio?: string;
 }
 
-export function HeroImage({ alt, aspectRatio, src }: HeroImageProps) {
+export function HeroImage({
+    alt,
+    aspectRatio = 'aspect-[16/9]',
+    src
+}: HeroImageProps) {
     return (
         <figure
             className={cx(
