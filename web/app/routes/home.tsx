@@ -58,7 +58,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                         <ButtonLink className="mr-2" size="lg" to="/work">
-                            View my work
+                            See my projects
                         </ButtonLink>
                         or use <KeyboardShortcut keys={['Cmd', 'K']} /> to
                         navigate
