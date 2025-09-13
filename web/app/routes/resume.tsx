@@ -1,4 +1,8 @@
-import { InfoIcon, ScrollText } from 'lucide-react';
+import { cx } from 'cva.config';
+import { InfoIcon } from 'lucide-react';
+import type { PropsWithChildren } from 'react';
+import { intervalToDuration, formatDuration } from 'date-fns';
+
 import { Banner } from '~/components/Banner';
 import Flex from '~/components/Flex';
 import Heading from '~/components/Heading';
@@ -6,7 +10,7 @@ import JobItem from '~/components/JobItem';
 import JobItemList from '~/components/JobItemList';
 import Linky from '~/components/Linky';
 import SkillTag from '~/components/SkillTag';
-import { ContentStyles, largeIconProps } from '~/constants';
+import { ContentStyles } from '~/constants';
 import { generateResumeMeta } from '~/utils/meta';
 
 const RESUME_URL =
@@ -16,17 +20,32 @@ export function meta() {
     return generateResumeMeta();
 }
 
+function ResumeSection({
+    children,
+    className
+}: PropsWithChildren<{ className?: string }>) {
+    return <section className={cx('mb-8', className)}>{children}</section>;
+}
+
 export default function ResumeRoute() {
     const yearsAsDeveloper = new Date().getFullYear() - 2016;
+    const timeAtCurrentJob = formatDuration(
+        intervalToDuration({
+            start: new Date(2024, 7),
+            end: new Date()
+        }),
+        { format: ['years', 'months'] }
+    )
+        .replace('years', 'yrs')
+        .replace('year', 'yr')
+        .replace('months', 'mos')
+        .replace('month', 'mo');
 
     return (
         <>
-            <Flex className="mb-8 items-center">
-                <ScrollText {...largeIconProps} />
-                <Heading as="h1" size="1">
-                    Resume
-                </Heading>
-            </Flex>
+            <Heading as="h1" className="mb-8">
+                Resume
+            </Heading>
             <Banner className="mb-8">
                 <Flex>
                     <InfoIcon />
@@ -36,13 +55,15 @@ export default function ResumeRoute() {
                     </Linky>
                 </Flex>
             </Banner>
-            <div className="space-y-4">
+            <ResumeSection>
                 <Heading as="h2" size="2">
                     Summary
                 </Heading>
                 <p>
                     {`${ContentStyles.FRONTEND} engineer with ${yearsAsDeveloper}+ years in React, architecting accessible, user-focused UIs for scalable web platforms that boost satisfaction and optimize team throughput; motivated to excel on a dynamic, product-driven team`}
                 </p>
+            </ResumeSection>
+            <ResumeSection>
                 <Heading as="h2" size="2">
                     {`${ContentStyles.FRONTEND} Engineer Skills`}
                 </Heading>
@@ -65,13 +86,15 @@ export default function ResumeRoute() {
                     <SkillTag>Git</SkillTag>
                     <SkillTag>GitHub Copilot</SkillTag>
                 </div>
+            </ResumeSection>
+            <ResumeSection>
                 <Heading as="h2" size="2">
                     Experience
                 </Heading>
                 <JobItem
                     company="Gartner"
-                    dates="Aug 2024–Present"
-                    title={ContentStyles.CURRENT_JOB_TITLE}
+                    dates={`Aug 2024–Present (${timeAtCurrentJob})`}
+                    title={`Software Engineer, ${ContentStyles.FRONTEND}`}
                 >
                     <JobItemList>
                         <li>
@@ -247,7 +270,7 @@ export default function ResumeRoute() {
                         <li>Go / Python</li>
                     </JobItemList>
                 </JobItem>
-            </div>
+            </ResumeSection>
             <Banner>
                 Interested in learning more about me?{' '}
                 <Linky to="/about">See my about page</Linky>

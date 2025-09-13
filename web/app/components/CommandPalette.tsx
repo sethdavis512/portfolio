@@ -12,12 +12,7 @@ const workLinks = [
     {
         to: '/work',
         icon: LinkIcon,
-        label: 'All Projects'
-    },
-    {
-        to: '/generative-ui',
-        icon: LinkIcon,
-        label: 'Generative UI'
+        label: 'See all'
     },
     {
         to: '/prompt-bucket',
@@ -25,9 +20,9 @@ const workLinks = [
         label: 'Prompt Bucket'
     },
     {
-        to: '/obsidian-mcp-server',
+        to: '/rapidalle',
         icon: LinkIcon,
-        label: 'Obsidian MCP Server'
+        label: 'Rapidall•E'
     },
     {
         to: '/rr7-slides',
@@ -35,9 +30,34 @@ const workLinks = [
         label: 'RR7 Slides'
     },
     {
+        to: '/obsidian-mcp-server',
+        icon: LinkIcon,
+        label: 'Obsidian MCP Server'
+    },
+    {
         to: '/ai-maniacs',
         icon: LinkIcon,
         label: 'AI Maniacs'
+    },
+    {
+        to: '/tech-with-seth',
+        icon: LinkIcon,
+        label: 'Tech with Seth'
+    },
+    {
+        to: '/custom-file-generator',
+        icon: LinkIcon,
+        label: 'Custom File Generator (Guide)'
+    },
+    {
+        to: '/generative-ui',
+        icon: LinkIcon,
+        label: 'Generative UI'
+    },
+    {
+        to: '/rr7-tuner',
+        icon: LinkIcon,
+        label: 'RR7 Tuner'
     }
 ];
 
@@ -58,9 +78,14 @@ const pagesLinks = [
         label: 'Blog'
     },
     {
-        to: '/schedule',
+        to: '/prompts',
         icon: LinkIcon,
-        label: 'Schedule'
+        label: 'Prompts'
+    },
+    {
+        to: '/truck',
+        icon: LinkIcon,
+        label: 'Truck'
     }
 ];
 
@@ -100,7 +125,9 @@ interface CommandSectionProps {
 function CommandSection({ title, links, onSelect }: CommandSectionProps) {
     return (
         <div className="p-6">
-            <h3 className="text-zinc-700 dark:text-zinc-300 font-medium mb-4">{title}</h3>
+            <h3 className="text-zinc-700 dark:text-zinc-300 font-medium mb-4">
+                {title}
+            </h3>
             <Command.Group>
                 {links.length > 0 ? (
                     links.map((link) => (

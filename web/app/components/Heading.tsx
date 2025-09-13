@@ -13,9 +13,9 @@ interface HeadingProps {
 const headingVariants = cva({
     variants: {
         size: {
-            '1': 'text-4xl md:text-5xl',
-            '2': 'text-3xl',
-            '3': 'text-2xl',
+            '1': 'text-4xl md:text-5xl mb-6',
+            '2': 'text-3xl mb-4',
+            '3': 'text-2xl mb-4',
             '4': 'text-xl',
             '5': 'text-lg',
             '6': 'text-md'

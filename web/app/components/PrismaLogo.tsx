@@ -4,7 +4,7 @@ interface PrismaLogoProps {
     className?: string;
 }
 
-export default function PrismaLogo({ className }: PrismaLogoProps) {
+export function PrismaLogo({ className }: PrismaLogoProps) {
     return (
         <svg
             role="img"

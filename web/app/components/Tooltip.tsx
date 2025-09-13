@@ -5,21 +5,17 @@ interface TooltipProps {
     children: ReactNode;
     content: string;
     side?: 'top' | 'right' | 'bottom' | 'left';
-    delayDuration?: number;
 }
 
 export default function Tooltip({
     children,
     content,
-    side = 'top',
-    delayDuration = 300
+    side = 'top'
 }: TooltipProps) {
     return (
-        <TooltipPrimitive.Provider delayDuration={300}>
-            <TooltipPrimitive.Root delayDuration={delayDuration}>
-                <TooltipPrimitive.Trigger asChild>
-                    {children}
-                </TooltipPrimitive.Trigger>
+        <TooltipPrimitive.Provider delayDuration={100}>
+            <TooltipPrimitive.Root>
+                <TooltipPrimitive.Trigger>{children}</TooltipPrimitive.Trigger>
                 <TooltipPrimitive.Portal>
                     <TooltipPrimitive.Content
                         side={side}

@@ -3,8 +3,8 @@ import Linky from '~/components/Linky';
 
 import Card from '~/components/Card';
 import { ExternalLinkIcon } from 'lucide-react';
-import { TechStack } from '~/components/TechStack';
 import { generateProjectMeta } from '~/utils/meta';
+import { TechStackLogos } from '~/components/TechStackLogos';
 
 export function meta() {
     return generateProjectMeta({
@@ -59,8 +59,8 @@ export default function TWSCMSRoute() {
                     <Heading as="h3" size="3" className="mb-8">
                         Technologies
                     </Heading>
-                    <TechStack
-                        icons={[
+                    <TechStackLogos
+                        logos={[
                             'keystone',
                             'react',
                             'react-router',
