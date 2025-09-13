@@ -4,7 +4,7 @@ interface ReactLogoProps {
     className?: string;
 }
 
-export default function ReactLogo({ className }: ReactLogoProps) {
+export function ReactLogo({ className }: ReactLogoProps) {
     return (
         <svg
             role="img"

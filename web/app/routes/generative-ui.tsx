@@ -1,8 +1,6 @@
-// import Linky from '~/components/Linky';
-
-import Card from '~/components/Card';
 import { HeroImage } from '~/components/HeroImage';
-import Linky from '~/components/Linky';
+import { TechShowcase } from '~/components/TechShowcase';
+import { TechStackLogos } from '~/components/TechStackLogos';
 
 export function meta() {
     return [
@@ -18,48 +16,28 @@ export default function GenerativeUIRoute() {
     return (
         <>
             <HeroImage src="/generative-ui-hero.png" alt="Generative UI" />
-            <div className="flex gap-4">
-                <div className="basis-2/3 space-y-4">
-                    <h1 className="text-4xl font-bold mb-4">Generative UI</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laudantium at corrupti atque adipisci facilis minus in
-                        omnis quod optio a! Atque, voluptate! Hic vel et at
-                        velit maxime expedita eum.
-                    </p>
-                    <h2 className="text-2xl font-bold mb-2">What I Learned</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laudantium at corrupti atque adipisci facilis minus in
-                        omnis quod optio a! Atque, voluptate! Hic vel et at
-                        velit maxime expedita eum.
-                    </p>
-                    <h2 className="text-2xl font-bold mb-2">Value</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laudantium at corrupti atque adipisci facilis minus in
-                        omnis quod optio a! Atque, voluptate! Hic vel et at
-                        velit maxime expedita eum.
-                    </p>
-                </div>
-                <div className="basis-1/3">
-                    <Card className="flex flex-col gap-4">
-                        <h4 className="font-bold">Looking for more?</h4>
-                        <Linky
-                            external
-                            to="https://github.com/sethdavis512/generative-ui"
-                        >
-                            View source code
-                        </Linky>
-                        <Linky
-                            external
-                            to="https://github.com/sethdavis512/generative-ui"
-                        >
-                            Launch live demo
-                        </Linky>
-                    </Card>
-                </div>
-            </div>
+            <TechShowcase
+                title="Generative UI"
+                about="Generative UI is an exploration of dynamic, data-driven user interfaces built with modern React and TypeScript. It demonstrates how to create flexible, composable UI components that adapt to changing data and user input."
+                learned="Developed advanced component patterns using TypeScript and React, focusing on reusability and scalability. Gained experience with GraphQL data fetching, SSR, and integrating a CMS backend for content management."
+                value="Showcases best practices in building maintainable, high-performance UIs with a modern tech stack. Highlights the power of generative patterns for rapid prototyping and robust production apps."
+                sourceUrl="https://github.com/sethdavis512/tws-generative-ui"
+                // demoUrl=""
+                techStack={
+                    <TechStackLogos
+                        logos={[
+                            'typescript',
+                            'react',
+                            'react-router',
+                            'tailwind',
+                            'better-auth',
+                            'prisma',
+                            'postgres',
+                            'railway'
+                        ]}
+                    />
+                }
+            />
         </>
     );
 }

@@ -69,8 +69,16 @@ export default function WrapperRoute() {
                         </li>
                         <li>
                             <AppNavLink
+                                to="/resume"
+                                aria-label="View my resume"
+                            >
+                                Resume
+                            </AppNavLink>
+                        </li>
+                        <li>
+                            <AppNavLink
                                 to="/about"
-                                aria-label="Return to home page"
+                                aria-label="Learn more about me"
                             >
                                 About
                             </AppNavLink>
@@ -82,7 +90,7 @@ export default function WrapperRoute() {
                         </li>
                         <li>
                             <StaticNavLink to="https://tidycal.com/sethdavis512">
-                                Schedule
+                                Meet
                             </StaticNavLink>
                         </li>
                     </ul>

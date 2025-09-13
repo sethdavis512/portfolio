@@ -23,12 +23,9 @@ const Quote = ({ quote, author }: { quote: string; author: string }) => (
 export default function AboutRoute() {
     return (
         <>
-            <Flex className="mb-8 items-center">
-                <QuoteIcon {...largeIconProps} />
-                <Heading as="h2" size="2">
-                    Facts about me
-                </Heading>
-            </Flex>
+            <Heading as="h1" className="mb-8">
+                About me
+            </Heading>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <ul className="basis-1/2 space-y-4">
                     <li>
@@ -154,12 +151,9 @@ export default function AboutRoute() {
                     </li>
                 </ul>
             </div>
-            <Flex className="mb-8 items-center">
-                <QuoteIcon {...largeIconProps} />
-                <Heading as="h2" size="2">
-                    Motivation
-                </Heading>
-            </Flex>
+            <Heading as="h2" className="mb-8">
+                Motivation
+            </Heading>
             <ul className="space-y-8">
                 <li>
                     <Quote

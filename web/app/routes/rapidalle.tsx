@@ -3,6 +3,8 @@
 import Card from '~/components/Card';
 import { HeroImage } from '~/components/HeroImage';
 import Linky from '~/components/Linky';
+import { TechShowcase } from '~/components/TechShowcase';
+import { TechStackLogos } from '~/components/TechStackLogos';
 
 export function meta() {
     return [
@@ -18,48 +20,18 @@ export default function RapidalleRoute() {
     return (
         <>
             <HeroImage src="/rapidalle-hero.png" alt="Rapidall•E" />
-            <div className="flex gap-4">
-                <div className="basis-2/3 space-y-4">
-                    <h1 className="text-4xl font-bold mb-4">Rapidall•E</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laudantium at corrupti atque adipisci facilis minus in
-                        omnis quod optio a! Atque, voluptate! Hic vel et at
-                        velit maxime expedita eum.
-                    </p>
-                    <h2 className="text-2xl font-bold mb-2">What I Learned</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laudantium at corrupti atque adipisci facilis minus in
-                        omnis quod optio a! Atque, voluptate! Hic vel et at
-                        velit maxime expedita eum.
-                    </p>
-                    <h2 className="text-2xl font-bold mb-2">Value</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laudantium at corrupti atque adipisci facilis minus in
-                        omnis quod optio a! Atque, voluptate! Hic vel et at
-                        velit maxime expedita eum.
-                    </p>
-                </div>
-                <div className="basis-1/3">
-                    <Card className="flex flex-col gap-4">
-                        <h4 className="font-bold">Looking for more?</h4>
-                        <Linky
-                            external
-                            to=""
-                        >
-                            View source code
-                        </Linky>
-                        <Linky
-                            external
-                            to=""
-                        >
-                            Launch live demo
-                        </Linky>
-                    </Card>
-                </div>
-            </div>
+            <TechShowcase
+                title="Rapidall•E"
+                about="Rapidall•E is a cutting-edge AI model designed to generate high-quality images from text prompts. It leverages advanced machine learning techniques to understand and interpret user inputs, producing stunning visuals that match the given descriptions."
+                learned="Gained hands-on experience with state-of-the-art AI models and their applications in creative fields. Developed a deeper understanding of prompt engineering and its impact on output quality."
+                value="Demonstrates the potential of AI-driven creativity tools in enhancing artistic workflows and enabling new forms of expression."
+                sourceUrl="https://github.com/sethdavis512/rapidalle"
+                techStack={
+                    <TechStackLogos
+                        logos={['typescript', 'react', 'react-router']}
+                    />
+                }
+            />
         </>
     );
 }

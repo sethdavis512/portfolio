@@ -34,7 +34,7 @@ export async function loader() {
 export default function BlogRoute({ loaderData }: Route.ComponentProps) {
     return (
         <>
-            <Heading as="h1" className="mb-6 sm:mb-8">
+            <Heading as="h1" className="mb-8">
                 Blog
             </Heading>
             {loaderData.posts && loaderData.posts.length > 0 ? (

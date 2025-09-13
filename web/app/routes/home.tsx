@@ -50,9 +50,10 @@ export default function Home() {
                                 Seth Davis
                             </h1>
                             <p className="text-xl font-medium">
-                                I design web applications that boost efficiency
+                                I build developer infrastructure enhanced by AI
                                 <br />
-                                and simplify tasks
+                                to boost efficiency and automate repetitive
+                                tasks.
                             </p>
                         </div>
                     </div>
