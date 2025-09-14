@@ -88,6 +88,14 @@ export default function WrapperRoute() {
                             </AppNavLink>
                         </li>
                         <li>
+                            <AppNavLink
+                                to="/prompts"
+                                aria-label="Read the prompts"
+                            >
+                                Prompts
+                            </AppNavLink>
+                        </li>
+                        <li>
                             <StaticNavLink to="https://tidycal.com/sethdavis512">
                                 Meet
                             </StaticNavLink>
