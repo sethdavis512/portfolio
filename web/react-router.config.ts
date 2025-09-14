@@ -13,7 +13,6 @@ export default {
             '/prompt-bucket',
             '/prompts',
             '/rapidalle',
-            '/rapidalle',
             '/resume',
             '/rr7-slides',
             '/rr7-slides',
@@ -26,7 +25,6 @@ export default {
             '/about',
             '/blog',
             '/resume',
-            '/schedule',
             '/setup',
             '/truck'
         ];
