@@ -16,81 +16,144 @@ import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
 import { TypescriptLogo } from './logos/TypescriptLogo';
 import { Linky } from './Linky';
+import { VibeCodeLogo } from './logos/VibeCodeLogo';
+import { PolarLogo } from './logos/PolarLogo';
+import { KeystoneLogo } from './logos/KeystoneLogo';
+import { CloudinaryLogo } from './logos/CloudinaryLogo';
+
+export type LogoName =
+    | 'better-auth'
+    | 'cloudinary'
+    | 'docusaurus'
+    | 'github'
+    | 'keystone'
+    | 'mcp'
+    | 'obsidian'
+    | 'postgres'
+    | 'polar'
+    | 'prisma'
+    | 'railway'
+    | 'react'
+    | 'react-router'
+    | 'tailwind'
+    | 'trigger'
+    | 'typescript'
+    | 'vibe';
 
 interface TechStackLogosProps {
-    logos: string[];
+    logos: LogoName[];
 }
 
 export function TechStackLogos({ logos }: TechStackLogosProps) {
     const logoProps = { className: cx('block w-6 h-6') };
 
-    const logoMap: Record<string, (props: any) => ReactNode> = {
-        'better-auth': (props) => <BetterAuthLogo {...logoProps} {...props} />,
-        'react-router': (props) => (
-            <ReactRouterLogo {...logoProps} {...props} />
-        ),
-        docusaurus: (props) => <DocusaurusLogo {...logoProps} {...props} />,
-        github: (props) => <GitHubLogo {...logoProps} {...props} />,
-        keystone: (props) => <MCPLogo {...logoProps} {...props} />,
-        mcp: (props) => <MCPLogo {...logoProps} {...props} />,
-        obsidian: (props) => <ObsidianLogo {...logoProps} {...props} />,
-        postgres: (props) => <PostgresLogo {...logoProps} {...props} />,
-        prisma: (props) => <PrismaLogo {...logoProps} {...props} />,
-        railway: (props) => <RailwayLogo {...logoProps} {...props} />,
-        react: (props) => <ReactLogo {...logoProps} {...props} />,
-        tailwind: (props) => <TailwindLogo {...logoProps} {...props} />,
-        trigger: (props) => <TriggerDevLogo {...logoProps} {...props} />,
-        typescript: (props) => <TypescriptLogo {...logoProps} {...props} />
+    const logoConfig: Record<
+        LogoName,
+        {
+            component: (props: any) => ReactNode;
+            title: string;
+            url: string;
+        }
+    > = {
+        'better-auth': {
+            component: (props) => <BetterAuthLogo {...logoProps} {...props} />,
+            title: 'Better Auth',
+            url: 'https://betterauth.dev/'
+        },
+        cloudinary: {
+            component: (props) => <CloudinaryLogo {...logoProps} {...props} />,
+            title: 'Cloudinary',
+            url: 'https://cloudinary.com/'
+        },
+        'react-router': {
+            component: (props) => <ReactRouterLogo {...logoProps} {...props} />,
+            title: 'React Router',
+            url: 'https://reactrouter.com/'
+        },
+        docusaurus: {
+            component: (props) => <DocusaurusLogo {...logoProps} {...props} />,
+            title: 'Docusaurus',
+            url: 'https://docusaurus.io/'
+        },
+        github: {
+            component: (props) => <GitHubLogo {...logoProps} {...props} />,
+            title: 'GitHub',
+            url: 'https://github.com/'
+        },
+        keystone: {
+            component: (props) => <KeystoneLogo {...logoProps} {...props} />,
+            title: 'Keystone',
+            url: 'https://keystonejs.com/'
+        },
+        mcp: {
+            component: (props) => <MCPLogo {...logoProps} {...props} />,
+            title: 'Model Context Protocol',
+            url: 'https://modelcontextprotocol.org/'
+        },
+        obsidian: {
+            component: (props) => <ObsidianLogo {...logoProps} {...props} />,
+            title: 'Obsidian',
+            url: 'https://obsidian.md/'
+        },
+        postgres: {
+            component: (props) => <PostgresLogo {...logoProps} {...props} />,
+            title: 'PostgreSQL',
+            url: 'https://www.postgresql.org/'
+        },
+        polar: {
+            component: (props) => <PolarLogo {...logoProps} {...props} />,
+            title: 'Polar',
+            url: 'https://polar.sh/'
+        },
+        prisma: {
+            component: (props) => <PrismaLogo {...logoProps} {...props} />,
+            title: 'Prisma',
+            url: 'https://www.prisma.io/'
+        },
+        railway: {
+            component: (props) => <RailwayLogo {...logoProps} {...props} />,
+            title: 'Railway',
+            url: 'https://railway.app/'
+        },
+        react: {
+            component: (props) => <ReactLogo {...logoProps} {...props} />,
+            title: 'React',
+            url: 'https://react.dev/'
+        },
+        tailwind: {
+            component: (props) => <TailwindLogo {...logoProps} {...props} />,
+            title: 'Tailwind CSS',
+            url: 'https://tailwindcss.com/'
+        },
+        trigger: {
+            component: (props) => <TriggerDevLogo {...logoProps} {...props} />,
+            title: 'Trigger.dev',
+            url: 'https://trigger.dev/'
+        },
+        typescript: {
+            component: (props) => <TypescriptLogo {...logoProps} {...props} />,
+            title: 'TypeScript',
+            url: 'https://www.typescriptlang.org/'
+        },
+        vibe: {
+            component: (props) => <VibeCodeLogo {...logoProps} {...props} />,
+            title: 'Vibe Code',
+            url: 'https://www.ibm.com/think/topics/vibe-coding'
+        }
     };
-
-    const titleMap: Record<string, string> = {
-        'better-auth': 'Better Auth',
-        'react-router': 'React Router',
-        docusaurus: 'Docusaurus',
-        github: 'GitHub',
-        keystone: 'Keystone',
-        mcp: 'Model Context Protocol',
-        obsidian: 'Obsidian',
-        postgres: 'PostgreSQL',
-        prisma: 'Prisma',
-        railway: 'Railway',
-        react: 'React',
-        tailwind: 'Tailwind CSS',
-        trigger: 'Trigger.dev',
-        typescript: 'TypeScript'
-    };
-
-    const urlMap: Record<string, string> = {
-        'better-auth': 'https://betterauth.dev/',
-        'react-router': 'https://reactrouter.com/',
-        docusaurus: 'https://docusaurus.io/',
-        github: 'https://github.com/',
-        keystone: 'https://keystonejs.com/',
-        mcp: 'https://modelcontextprotocol.org/',
-        obsidian: 'https://obsidian.md/',
-        postgres: 'https://www.postgresql.org/',
-        prisma: 'https://www.prisma.io/',
-        railway: 'https://railway.app/',
-        react: 'https://react.dev/',
-        tailwind: 'https://tailwindcss.com/',
-        trigger: 'https://trigger.dev/',
-        typescript: 'https://www.typescriptlang.org/'
-    };
-
-    const LogoComponent: React.FunctionComponent<{
-        logoName: string;
-        [key: string]: any;
-    }> = ({ logoName, ...props }) => logoMap[logoName](props);
 
     return (
         <>
-            {logos.map((logoName) => (
-                <Tooltip content={titleMap[logoName]} key={logoName}>
-                    <Linky to={urlMap[logoName]} external>
-                        <LogoComponent logoName={logoName} tabIndex={-1} />
-                    </Linky>
-                </Tooltip>
-            ))}
+            {logos.map((logoName) => {
+                const config = logoConfig[logoName];
+                return (
+                    <Tooltip content={config.title} key={logoName}>
+                        <Linky to={config.url} external>
+                            {config.component({ tabIndex: -1 })}
+                        </Linky>
+                    </Tooltip>
+                );
+            })}
         </>
     );
 }

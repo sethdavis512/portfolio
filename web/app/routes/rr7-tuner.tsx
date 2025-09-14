@@ -7,7 +7,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'RR7 Tuner',
         descriptionContent:
-            'An exploration of dynamic, data-driven user interfaces built with modern React and TypeScript. Demonstrates flexible, composable UI components that adapt to changing data and user input.'
+            'An exploration of dynamic, data-driven user interfaces built with modern React and TypeScript. Demonstrates flexible, composable UI components that adapt to changing data and user input.',
+        ogUrl: 'https://sethdavis.tech/rr7-tuner'
     });
 }
 

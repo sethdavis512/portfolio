@@ -12,7 +12,6 @@ import { cx } from 'cva.config';
 
 import { Heading } from './components/Heading';
 import { CommandPalette } from '~/components/CommandPalette';
-import { generateStructuredData, combineStructuredData } from './utils/seo';
 
 import type { Route } from './+types/root';
 
@@ -28,22 +27,8 @@ function PosthogInit() {
     return null;
 }
 
-function StructuredData() {
-    const personSchema = generateStructuredData('Person');
-    const websiteSchema = generateStructuredData('Website');
-    const combinedSchema = combineStructuredData(personSchema, websiteSchema);
-
-    return (
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: combinedSchema }}
-        />
-    );
-}
-
-export function Layout({ children }: { children: React.ReactNode }) {
+function useCommandPallette(): [boolean, (open: boolean) => void] {
     const [open, setOpen] = useState(false);
-    const [loading] = useState(false);
 
     useEffect(() => {
         const down = (e: KeyboardEvent) => {
@@ -57,6 +42,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         return () => document.removeEventListener('keydown', down);
     }, []);
 
+    return [open, setOpen];
+}
+
+export function Layout({ children }: { children: React.ReactNode }) {
+    const [open, setOpen] = useCommandPallette();
+
     return (
         <html lang="en" className="dark">
             <head>
@@ -67,7 +58,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 />
                 <Meta />
                 <Links />
-                <StructuredData />
             </head>
             <body
                 className={cx(
@@ -75,11 +65,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 )}
             >
                 {children}
-                <CommandPalette
-                    open={open}
-                    onOpenChange={setOpen}
-                    loading={loading}
-                />
+                <CommandPalette open={open} onOpenChange={setOpen} />
                 <ScrollRestoration />
                 <Scripts />
                 <PosthogInit />

@@ -7,7 +7,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'About',
         descriptionContent:
-            'Learn about Seth Davis, a passionate Frontend Engineer from Austin, Texas. Austin FC fan, CrossFit member, and React Router enthusiast with 8+ years of experience.'
+            'Learn about Seth Davis, a passionate Frontend Engineer from Austin, Texas. Austin FC fan, CrossFit member, and React Router enthusiast with 8+ years of experience.',
+        ogUrl: 'https://sethdavis.tech/about'
     });
 }
 

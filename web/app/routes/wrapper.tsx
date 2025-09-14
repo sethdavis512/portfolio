@@ -68,7 +68,7 @@ interface ContainerProps {
 
 function Container({ children, className }: ContainerProps) {
     return (
-        <div className={cx(`px-4 max-w-5xl mx-auto`, className)}>
+        <div className={cx(`px-4 max-w-6xl mx-auto`, className)}>
             {children}
         </div>
     );

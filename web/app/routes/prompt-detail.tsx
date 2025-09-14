@@ -8,7 +8,7 @@ import {
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/prompt-detail';
-import {Heading} from '~/components/Heading';
+import { Heading } from '~/components/Heading';
 import { renderers } from '~/components/BlogArticle';
 import { generateRouteMeta } from '~/utils/seo';
 
@@ -18,7 +18,8 @@ export function meta({ data }: Route.MetaArgs) {
             data?.prompt?.title || "Prompt Not Found | Seth Davis' Portfolio",
         descriptionContent: data?.prompt?.title
             ? `Read the prompt titled "${data.prompt.title}" by Seth Davis. Explore insights and discussions on AI prompts, web development, and more.`
-            : 'Prompt not found.'
+            : 'Prompt not found.',
+        ogUrl: `https://sethdavis.tech/prompts/${data?.prompt?.slug || ''}`
     });
 }
 

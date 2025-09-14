@@ -10,7 +10,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'TWS CMS',
         descriptionContent:
-            'A headless content management system built with Keystone.js, React Router 7, PostgreSQL, and Railway. Designed to handle users, customers, posts, and tags with a modern tech stack.'
+            'A headless content management system built with Keystone.js, React Router 7, PostgreSQL, and Railway. Designed to handle users, customers, posts, and tags with a modern tech stack.',
+        ogUrl: 'https://sethdavis.tech/tws-cms'
     });
 }
 

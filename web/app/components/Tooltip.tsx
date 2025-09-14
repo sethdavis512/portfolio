@@ -11,7 +11,9 @@ export function Tooltip({ children, content, side = 'top' }: TooltipProps) {
     return (
         <TooltipPrimitive.Provider delayDuration={100}>
             <TooltipPrimitive.Root>
-                <TooltipPrimitive.Trigger>{children}</TooltipPrimitive.Trigger>
+                <TooltipPrimitive.Trigger tabIndex={-1}>
+                    {children}
+                </TooltipPrimitive.Trigger>
                 <TooltipPrimitive.Portal>
                     <TooltipPrimitive.Content
                         side={side}

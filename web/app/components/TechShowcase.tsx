@@ -24,18 +24,18 @@ export function TechShowcase({
     return (
         <>
             <Heading as="h1">{title}</Heading>
-            <div className="flex flex-col-reverse md:flex-row gap-4">
+            <div className="flex flex-col-reverse md:flex-row gap-6">
                 <div className="basis-2/3 space-y-4">
                     <Heading as="h2" size="5">
-                        About
+                        Project Overview
                     </Heading>
                     <p>{about}</p>
                     <Heading as="h2" size="5">
-                        What I Learned
+                        Knowledge Gained
                     </Heading>
                     <p>{learned}</p>
                     <Heading as="h2" size="5">
-                        Value proposition
+                        The Impact
                     </Heading>
                     <p>{value}</p>
                 </div>
