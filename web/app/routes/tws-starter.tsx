@@ -10,7 +10,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'TWS Starter',
         descriptionContent:
-            'A full-stack web application starter built with React Router 7, Prisma, PostgreSQL, and hosted on Railway. Provides a solid foundation for modern web development.'
+            'A full-stack web application starter built with React Router 7, Prisma, PostgreSQL, and hosted on Railway. Provides a solid foundation for modern web development.',
+        ogUrl: 'https://sethdavis.tech/tws-starter'
     });
 }
 

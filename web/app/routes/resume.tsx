@@ -20,7 +20,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Resume',
         descriptionContent:
-            "View Seth Davis's resume. 8+ years experience as a Frontend Engineer, specializing in React, TypeScript, and React Router. Currently at Indeed."
+            "View Seth Davis's resume. 8+ years experience as a Frontend Engineer, specializing in React, TypeScript, and React Router. Currently at Indeed.",
+        ogUrl: 'https://sethdavis.tech/resume'
     });
 }
 

@@ -15,7 +15,8 @@ export function meta({ data }: Route.MetaArgs) {
         pageTitle: data?.post?.title || 'Blog Post',
         descriptionContent:
             data?.post?.excerpt ||
-            'Read this blog post to learn more about the topic.'
+            'Read this blog post to learn more about the topic.',
+        ogUrl: `https://sethdavis.tech/blog/${data?.post?.slug || ''}`
     });
 }
 

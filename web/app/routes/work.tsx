@@ -64,7 +64,7 @@ export default function WorkRoute() {
                 </ContentSection>
                 <ContentSection>
                     <WorkDisplay
-                        cta="Create images now"
+                        cta="View more"
                         title="Rapidall•E"
                         description="Quickly create images using OpenAI's DALL·E"
                         url="/rapidalle"
@@ -74,7 +74,7 @@ export default function WorkRoute() {
                 </ContentSection>
                 <ContentSection>
                     <WorkDisplay
-                        cta="Build presentations"
+                        cta="Learn more"
                         title="RR7 Slides"
                         description="A React Router based web application for creating and sharing slide presentations"
                         url="/rr7-slides"
@@ -114,7 +114,7 @@ export default function WorkRoute() {
                 </ContentSection>
                 <ContentSection>
                     <WorkDisplay
-                        cta="Learn more"
+                        cta="Show more"
                         title="Custom File Generator CLI (Guide)"
                         description="Instructions on how to create a custom file generator using Plop.js"
                         url="/custom-file-generator"
@@ -130,7 +130,7 @@ export default function WorkRoute() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-stretch">
                 <ContentSection>
                     <WorkDisplay
-                        cta="Try the demo"
+                        cta="See progress"
                         title="Generative UI"
                         description="AI-assisted UI chat experience"
                         imageSrc="/webpage.png"

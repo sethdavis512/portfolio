@@ -10,7 +10,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Truck',
         descriptionContent:
-            'Explore truck upgrades and accessories for my 2023 Ford F-150 XLT SuperCrew. Real-world truck modifications and gear recommendations.'
+            'Explore truck upgrades and accessories for my 2023 Ford F-150 XLT SuperCrew. Real-world truck modifications and gear recommendations.',
+        ogUrl: 'https://sethdavis.tech/truck'
     });
 }
 

@@ -15,7 +15,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Blog',
         descriptionContent:
-            "Read Seth Davis's blog covering React Router 7, TypeScript, modern web development, and frontend engineering insights."
+            "Read Seth Davis's blog covering React Router 7, TypeScript, modern web development, and frontend engineering insights.",
+        ogUrl: 'https://sethdavis.tech/blog'
     });
 }
 

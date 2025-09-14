@@ -15,7 +15,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Welcome',
         descriptionContent:
-            'Seth Davis is a Frontend Engineer at Indeed specializing in React Router 7, TypeScript, and modern web development. Based in Austin, Texas.'
+            'Seth Davis is a Frontend Engineer at Indeed specializing in React Router 7, TypeScript, and modern web development. Based in Austin, Texas.',
+        ogUrl: 'https://sethdavis.tech'
     });
 }
 

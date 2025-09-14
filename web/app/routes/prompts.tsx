@@ -14,7 +14,8 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Prompts',
         descriptionContent:
-            'Explore AI prompts and insights on web development, React Router, and modern frontend engineering from Seth Davis.'
+            'Explore AI prompts and insights on web development, React Router, and modern frontend engineering from Seth Davis.',
+        ogUrl: 'https://sethdavis.tech/prompts'
     });
 }
 
