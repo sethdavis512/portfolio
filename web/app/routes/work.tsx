@@ -1,14 +1,14 @@
 import { Link } from 'react-router';
 import { Button } from '~/components/Button';
 import { ContentSection } from '~/components/ContentSection';
-import Divider from '~/components/Divider';
-import Heading from '~/components/Heading';
-import { generatePageMeta } from '~/utils/meta';
+import { Divider } from '~/components/Divider';
+import { Heading } from '~/components/Heading';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return generatePageMeta({
-        title: `Work | Seth Davis' Portfolio`,
-        description: 'Projects and applications built by Seth Davis'
+    return generateRouteMeta({
+        pageTitle: 'Work',
+        descriptionContent: 'Projects and applications built by Seth Davis'
     });
 }
 
@@ -35,7 +35,9 @@ function WorkDisplay({
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <img className="w-[200px]" src={imageSrc} alt={imageAlt} />
                     <div className="text-center md:text-left flex-1">
-                        <h2 className="text-3xl font-bold mb-4">{title}</h2>
+                        <Heading as="h2" className="text-3xl font-bold mb-4">
+                            {title}
+                        </Heading>
                         <p className="mb-4">{description}</p>
                         <Button variant="outline">{cta}</Button>
                     </div>
@@ -122,7 +124,9 @@ export default function WorkRoute() {
                 </ContentSection>
             </div>
             <Divider className="my-8" />
-            <h2 className="text-4xl font-bold mb-8">In progress</h2>
+            <Heading as="h2" className="mb-8">
+                In progress
+            </Heading>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-stretch">
                 <ContentSection>
                     <WorkDisplay

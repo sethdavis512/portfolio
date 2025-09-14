@@ -35,3 +35,38 @@ export const SITE_META = {
     PROFESSION: 'Senior Front-End Engineer',
     COMPANY: 'Gartner'
 } as const;
+
+export const SEO_CONSTANTS = {
+    SITE_NAME: "Seth Davis' Portfolio",
+    SITE_URL: 'https://sethdavis.tech',
+    AUTHOR: {
+        NAME: 'Seth Davis',
+        EMAIL: 'sethdavis512@gmail.com',
+        LOCATION: 'Austin, Texas',
+        JOB_TITLE: 'Senior Front-End Engineer',
+        COMPANY: 'Gartner',
+        LINKEDIN: 'https://www.linkedin.com/in/sethdavis512/',
+        GITHUB: 'https://github.com/sethdavis512',
+        TWITTER: 'https://x.com/sethdavis512'
+    },
+    DEFAULT_DESCRIPTION:
+        'Seth Davis is a Senior Front-End Engineer in Austin, Texas, specializing in React Router 7, TypeScript, and full-stack web development. Explore his portfolio, blog, and open source projects.',
+    KEYWORDS: [
+        'Seth Davis',
+        'Senior Front-End Engineer',
+        'React Router 7',
+        'TypeScript',
+        'React',
+        'Austin Texas developer',
+        'Full-stack developer',
+        'Frontend engineer',
+        'JavaScript developer',
+        'Web developer',
+        'React Router',
+        'GraphQL',
+        'Prisma',
+        'Portfolio'
+    ],
+    SOCIAL_IMAGE: '/seth-davis-social-card.png', // You may want to create this
+    FAVICON: '/favicon.ico'
+} as const;

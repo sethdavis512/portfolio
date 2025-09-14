@@ -1,15 +1,14 @@
 import { HeroImage } from '~/components/HeroImage';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `RR7 Tuner | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the RR7 Tuner repo of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'RR7 Tuner',
+        descriptionContent:
+            'An exploration of dynamic, data-driven user interfaces built with modern React and TypeScript. Demonstrates flexible, composable UI components that adapt to changing data and user input.'
+    });
 }
 
 export default function RR7TunerRoute() {

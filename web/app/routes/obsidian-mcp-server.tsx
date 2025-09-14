@@ -1,17 +1,14 @@
-// import Linky from '~/components/Linky';
-
 import { HeroImage } from '~/components/HeroImage';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `Obsidian MCP | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the Obsidian MCP setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'Obsidian MCP',
+        descriptionContent:
+            "Obsidian Model Context Protocol (MCP) extends Obsidian's capabilities by enabling seamless integration with external AI models for enhanced content generation, summarization, and more."
+    });
 }
 
 export default function ObsidianMCPRoute() {

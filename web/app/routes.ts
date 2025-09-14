@@ -2,7 +2,6 @@ import {
     type RouteConfig,
     index,
     layout,
-    prefix,
     route
 } from '@react-router/dev/routes';
 
@@ -15,7 +14,6 @@ export default [
         route('blog/:slug', 'routes/blog-detail.tsx'),
         route('custom-file-generator', 'routes/custom-file-generator.tsx'),
         route('generative-ui', 'routes/generative-ui.tsx'),
-        route('hack', 'routes/hack.tsx'),
         route('obsidian-mcp-server', 'routes/obsidian-mcp-server.tsx'),
         route('prompt-bucket', 'routes/prompt-bucket.tsx'),
         route('prompts', 'routes/prompts.tsx'),
@@ -25,7 +23,6 @@ export default [
         route('rr7-slides', 'routes/rr7-slides.tsx'),
         route('rr7-tuner', 'routes/rr7-tuner.tsx'),
         route('setup', 'routes/setup.tsx'),
-        route('socialize', 'routes/socialize.tsx'),
         route('truck', 'routes/truck.tsx'),
         route('tech-with-seth', 'routes/tech-with-seth.tsx'),
         route('tws-cms', 'routes/tws-cms.tsx'),

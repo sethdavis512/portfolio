@@ -10,7 +10,7 @@ interface FlexProps {
     responsive?: boolean; // Adds responsive gap and flex direction
 }
 
-export default function Flex({
+export function Flex({
     children,
     className,
     gap = 2,
@@ -23,7 +23,9 @@ export default function Flex({
             className={cx(
                 'flex',
                 vertical && 'flex-col',
-                responsive ? `gap-${gap - 1 >= 2 ? gap - 1 : 2} sm:gap-${gap}` : `gap-${gap}`,
+                responsive
+                    ? `gap-${gap - 1 >= 2 ? gap - 1 : 2} sm:gap-${gap}`
+                    : `gap-${gap}`,
                 items,
                 className
             )}

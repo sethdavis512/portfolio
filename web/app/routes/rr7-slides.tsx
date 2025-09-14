@@ -1,16 +1,14 @@
 import { HeroImage } from '~/components/HeroImage';
-import Linky from '~/components/Linky';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `RR7 Slides | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the RR7 Slides repo of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'RR7 Slides',
+        descriptionContent:
+            'A presentation tool designed to help users create stunning slide decks with ease. Leverages advanced design principles and user-friendly interfaces to streamline the presentation creation process.'
+    });
 }
 
 export default function RR7SlidesRoute() {

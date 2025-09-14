@@ -1,15 +1,14 @@
 import { HeroImage } from '~/components/HeroImage';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `Prompt Bucket | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the portfolio of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'Prompt Bucket',
+        descriptionContent:
+            'A tool for organizing, saving, and sharing AI prompts. Helps users manage their prompt collections, collaborate, and quickly access prompts for various generative AI tools.'
+    });
 }
 
 export default function PromptBucketRoute() {

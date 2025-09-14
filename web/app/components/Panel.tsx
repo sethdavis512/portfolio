@@ -1,15 +1,11 @@
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 import { cx } from 'cva.config';
-import Flex from './Flex';
 
 interface PanelProps {
     className?: string;
 }
 
-export default function Panel({
-    children,
-    className
-}: PropsWithChildren<PanelProps>) {
+export function Panel({ children, className }: PropsWithChildren<PanelProps>) {
     return (
         <div
             className={cx(

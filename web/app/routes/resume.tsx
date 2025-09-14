@@ -4,20 +4,24 @@ import type { PropsWithChildren } from 'react';
 import { intervalToDuration, formatDuration } from 'date-fns';
 
 import { Banner } from '~/components/Banner';
-import Flex from '~/components/Flex';
-import Heading from '~/components/Heading';
-import JobItem from '~/components/JobItem';
-import JobItemList from '~/components/JobItemList';
-import Linky from '~/components/Linky';
-import SkillTag from '~/components/SkillTag';
 import { ContentStyles } from '~/constants';
-import { generateResumeMeta } from '~/utils/meta';
+import { Flex } from '~/components/Flex';
+import { generateRouteMeta } from '~/utils/seo';
+import { Heading } from '~/components/Heading';
+import { JobItem } from '~/components/JobItem';
+import { JobItemList } from '~/components/JobItemList';
+import { Linky } from '~/components/Linky';
+import { SkillTag } from '~/components/SkillTag';
 
 const RESUME_URL =
     'https://www.dropbox.com/scl/fi/nxqjs1dv1bqloyxgdwq8s/20250525-seth-davis-resume.pdf?rlkey=48e9y025kt90uzxbsrrxz02eh&dl=0';
 
 export function meta() {
-    return generateResumeMeta();
+    return generateRouteMeta({
+        pageTitle: 'Resume',
+        descriptionContent:
+            "View Seth Davis's resume. 8+ years experience as a Frontend Engineer, specializing in React, TypeScript, and React Router. Currently at Indeed."
+    });
 }
 
 function ResumeSection({

@@ -3,7 +3,7 @@ interface KeyboardShortcutProps {
     className?: string;
 }
 
-export default function KeyboardShortcut({
+export function KeyboardShortcut({
     keys,
     className = ''
 }: KeyboardShortcutProps) {

@@ -1,18 +1,17 @@
-import Divider from '~/components/Divider';
+import { Divider } from '~/components/Divider';
 
 import { formatToUSD, getUniqueId } from '~/utils/common';
 import type { Route } from './+types/truck';
-import Heading from '~/components/Heading';
-import Card from '~/components/Card';
+import { Heading } from '~/components/Heading';
+import { Card } from '~/components/Card';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `Truck | Seth Davis Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the truck stuff of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'Truck',
+        descriptionContent:
+            'Explore truck upgrades and accessories for my 2023 Ford F-150 XLT SuperCrew. Real-world truck modifications and gear recommendations.'
+    });
 }
 
 export async function loader() {

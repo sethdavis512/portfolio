@@ -1,8 +1,7 @@
 import { Link, NavLink, Outlet } from 'react-router';
-import Flex from '~/components/Flex';
-import KeyboardShortcut from '~/components/KeyboardShortcut';
-import Linky from '~/components/Linky';
-import Logo from '~/components/Logo';
+import { Flex } from '~/components/Flex';
+import { KeyboardShortcut } from '~/components/KeyboardShortcut';
+import { Logo } from '~/components/logos/SethDavisLogo';
 import { BorderStyles } from '~/constants';
 
 interface AppNavLinkProps {

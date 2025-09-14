@@ -5,7 +5,7 @@ interface JobItemListProps {
     className?: string;
 }
 
-export default function JobItemList({
+export function JobItemList({
     children,
     className
 }: PropsWithChildren<JobItemListProps>) {

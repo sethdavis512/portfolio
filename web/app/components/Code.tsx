@@ -5,7 +5,7 @@ interface CodeProps {
     heading: string;
 }
 
-export default function Code({
+export function Code({
     children,
     heading
 }: PropsWithChildren<CodeProps>) {

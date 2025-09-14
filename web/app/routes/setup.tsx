@@ -1,15 +1,14 @@
-import Heading from '~/components/Heading';
-import Linky from '~/components/Linky';
+import { Heading } from '~/components/Heading';
+import { Linky } from '~/components/Linky';
 import { getUniqueId } from '~/utils/common';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `Setup | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'Setup',
+        descriptionContent:
+            'Explore the development setup, tools, and workflow of Seth Davis, a skilled frontend engineer with expertise in React and modern web development.'
+    });
 }
 
 export default function SetupRoute() {

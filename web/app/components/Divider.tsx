@@ -1,6 +1,10 @@
-import { cx } from "cva.config";
+import { cx } from 'cva.config';
 
-export default function Divider({ className }: { className?: string }) {
+interface DividerProps {
+    className?: string;
+}
+
+export function Divider({ className }: DividerProps) {
     return (
         <hr
             className={cx(

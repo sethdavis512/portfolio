@@ -1,19 +1,14 @@
-// import Linky from '~/components/Linky';
-
-import Card from '~/components/Card';
 import { HeroImage } from '~/components/HeroImage';
-import Linky from '~/components/Linky';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `Setup | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'Rapidall•E',
+        descriptionContent:
+            'A cutting-edge AI model designed to generate high-quality images from text prompts. Leverages advanced machine learning techniques to understand and interpret user inputs, producing stunning visuals.'
+    });
 }
 
 export default function RapidalleRoute() {
@@ -28,7 +23,12 @@ export default function RapidalleRoute() {
                 sourceUrl="https://github.com/sethdavis512/rapidalle"
                 techStack={
                     <TechStackLogos
-                        logos={['typescript', 'react', 'react-router']}
+                        logos={[
+                            'typescript',
+                            'react',
+                            'react-router',
+                            'trigger'
+                        ]}
                     />
                 }
             />

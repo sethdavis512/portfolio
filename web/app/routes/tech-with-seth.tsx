@@ -1,15 +1,13 @@
 import { HeroImage } from '~/components/HeroImage';
 import { TechShowcase } from '~/components/TechShowcase';
-import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `Setup | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the setup of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'Tech With Seth',
+        descriptionContent:
+            'An exploration of modern web development practices using React and TypeScript. Demonstrates flexible, composable UI components that adapt to changing data and user input.'
+    });
 }
 
 export default function TechWithSethRoute() {

@@ -1,6 +1,6 @@
-import Card from './Card';
-import Heading from './Heading';
-import Linky from './Linky';
+import { Card } from './Card';
+import { Heading } from './Heading';
+import { Linky } from './Linky';
 
 interface TechShowcaseProps {
     title: string;

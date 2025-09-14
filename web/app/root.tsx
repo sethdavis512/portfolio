@@ -9,20 +9,13 @@ import {
 } from 'react-router';
 import posthog from 'posthog-js';
 
-import CommandPalette from '~/components/CommandPalette';
+import { Heading } from './components/Heading';
+import { CommandPalette } from '~/components/CommandPalette';
 import { generateStructuredData, combineStructuredData } from './utils/seo';
 
 import type { Route } from './+types/root';
 
 import './app.css';
-import Heading from './components/Heading';
-
-export const links: Route.LinksFunction = () => [
-    //   {
-    //     rel: "stylesheet",
-    //     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-    //   },
-];
 
 function PosthogInit() {
     useEffect(() => {
@@ -59,6 +52,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             }
         };
         document.addEventListener('keydown', down);
+
         return () => document.removeEventListener('keydown', down);
     }, []);
 

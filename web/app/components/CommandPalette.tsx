@@ -153,7 +153,7 @@ function CommandSection({ title, links, onSelect }: CommandSectionProps) {
     );
 }
 
-export default function CommandPalette({
+export function CommandPalette({
     open,
     onOpenChange,
     loading = false

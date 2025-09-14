@@ -1,25 +1,16 @@
-import Heading from '~/components/Heading';
-import Linky from '~/components/Linky';
+import { Heading } from '~/components/Heading';
+import { Linky } from '~/components/Linky';
 
 import { ExternalLinkIcon } from 'lucide-react';
-import Card from '~/components/Card';
-import { generateProjectMeta } from '~/utils/meta';
+import { Card } from '~/components/Card';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return generateProjectMeta({
-        name: 'TWS Starter',
-        description:
-            'A full-stack web application starter built with React Router 7, Prisma, PostgreSQL, and hosted on Railway. Provides a solid foundation for modern web development.',
-        slug: 'tws-starter',
-        tech: [
-            'React Router 7',
-            'Prisma',
-            'PostgreSQL',
-            'Railway',
-            'TypeScript',
-            'Tailwind CSS'
-        ]
+    return generateRouteMeta({
+        pageTitle: 'TWS Starter',
+        descriptionContent:
+            'A full-stack web application starter built with React Router 7, Prisma, PostgreSQL, and hosted on Railway. Provides a solid foundation for modern web development.'
     });
 }
 

@@ -1,17 +1,14 @@
-// import Linky from '~/components/Linky';
-
 import { HeroImage } from '~/components/HeroImage';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `AI Maniacs | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore the AI Maniacs project of Seth Davis, a skilled frontend engineer with expertise in React, web development, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'AI Maniacs',
+        descriptionContent:
+            'A learning resource website dedicated to providing comprehensive tutorials, articles, and guides on artificial intelligence. Makes AI concepts accessible to beginners while offering advanced insights for experienced practitioners.'
+    });
 }
 
 export default function AIManiacsRoute() {

@@ -4,7 +4,7 @@ interface RemixLogoProps {
     className: string;
 }
 
-export default function RemixLogo({ className }: RemixLogoProps) {
+export function RemixLogo({ className }: RemixLogoProps) {
     return (
         <svg
             className={cx('fill-zinc-700 dark:fill-white', className)}

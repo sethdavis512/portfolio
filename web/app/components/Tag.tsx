@@ -1,7 +1,7 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react';
 import { cva, cx } from 'cva.config';
 import type { VariantProps } from 'cva';
-import Card from './Card';
+import { Card } from './Card';
 
 export const tagVariants = cva({
     base: 'text-sm inline-block px-2 py-1',

@@ -1,10 +1,10 @@
-import { cx } from "cva.config";
+import { cx } from 'cva.config';
 
 interface WedgesLogoProps {
     className: string;
 }
 
-export default function WedgesLogo({ className }: WedgesLogoProps) {
+export function WedgesLogo({ className }: WedgesLogoProps) {
     return (
         <svg
             className={cx('fill-zinc-700 dark:fill-white', className)}

@@ -4,7 +4,7 @@ interface MongoLogoProps {
     className: string;
 }
 
-export default function MongoLogo({ className }: MongoLogoProps) {
+export function MongoLogo({ className }: MongoLogoProps) {
     return (
         <svg
             className={cx('fill-zinc-700 dark:fill-white', className)}

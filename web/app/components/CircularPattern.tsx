@@ -14,7 +14,7 @@ interface CircularPatternProps {
     className?: string;
 }
 
-export default function CircularPattern({
+export function CircularPattern({
     symbols = ['{', '}', '<', '>', '/', '*', '+', '='],
     baseRadius = INITIAL_RADIUS,
     radiusIncrement = 50,

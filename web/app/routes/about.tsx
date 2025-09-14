@@ -1,24 +1,26 @@
-import { QuoteIcon } from 'lucide-react';
-
-import { largeIconProps } from '~/constants';
-import Linky from '~/components/Linky';
-import Card from '~/components/Card';
-import Heading from '~/components/Heading';
-import Flex from '~/components/Flex';
-import { generateAboutMeta } from '~/utils/meta';
+import { Linky } from '~/components/Linky';
+import { Card } from '~/components/Card';
+import { Heading } from '~/components/Heading';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return generateAboutMeta();
+    return generateRouteMeta({
+        pageTitle: 'About',
+        descriptionContent:
+            'Learn about Seth Davis, a passionate Frontend Engineer from Austin, Texas. Austin FC fan, CrossFit member, and React Router enthusiast with 8+ years of experience.'
+    });
 }
 
-const Quote = ({ quote, author }: { quote: string; author: string }) => (
-    <blockquote>
-        <p className="mb-2">{`"${quote}"`}</p>
-        <footer>
-            <cite className="text-sm">— {author}</cite>
-        </footer>
-    </blockquote>
-);
+function Quote({ quote, author }: { quote: string; author: string }) {
+    return (
+        <blockquote>
+            <p className="mb-2">{`"${quote}"`}</p>
+            <footer>
+                <cite className="text-sm">— {author}</cite>
+            </footer>
+        </blockquote>
+    );
+}
 
 export default function AboutRoute() {
     return (
@@ -154,7 +156,7 @@ export default function AboutRoute() {
             <Heading as="h2" className="mb-8">
                 Motivation
             </Heading>
-            <ul className="space-y-8">
+            <ul className="space-y-8 mb-8">
                 <li>
                     <Quote
                         quote="Nothing in the world can take the place of Persistence. Talent will not; nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not; the world is full of educated derelicts. Persistence and determination alone are omnipotent."
@@ -204,7 +206,10 @@ export default function AboutRoute() {
                     />
                 </li>
             </ul>
-            <p className="py-12">
+            <Heading as="h2" className="mb-8">
+                Acknowledgements
+            </Heading>
+            <p>
                 3D images by{' '}
                 <Linky external to="https://www.thiings.co/things">
                     thiings.co

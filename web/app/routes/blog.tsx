@@ -1,18 +1,22 @@
-import Heading from '~/components/Heading';
+import { Heading } from '~/components/Heading';
 import {
     GetPublishedPostsDocument,
     type GetPublishedPostsQuery
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog';
-import Card from '~/components/Card';
-import Linky from '~/components/Linky';
+import { Card } from '~/components/Card';
+import { Linky } from '~/components/Linky';
 import { formatToDate } from '~/utils/common';
 import { Tag } from '~/components/Tag';
-import { generateBlogMeta } from '~/utils/meta';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return generateBlogMeta();
+    return generateRouteMeta({
+        pageTitle: 'Blog',
+        descriptionContent:
+            "Read Seth Davis's blog covering React Router 7, TypeScript, modern web development, and frontend engineering insights."
+    });
 }
 
 export async function loader() {
