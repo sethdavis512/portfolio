@@ -4,7 +4,7 @@ interface TimeWeaverLogoProps {
     className: string;
 }
 
-export default function TimeWeaverLogo({ className }: TimeWeaverLogoProps) {
+export function TimeWeaverLogo({ className }: TimeWeaverLogoProps) {
     return (
         <svg
             width="100%"

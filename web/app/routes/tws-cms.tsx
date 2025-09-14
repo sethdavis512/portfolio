@@ -1,25 +1,16 @@
-import Heading from '~/components/Heading';
-import Linky from '~/components/Linky';
+import { Heading } from '~/components/Heading';
+import { Linky } from '~/components/Linky';
 
-import Card from '~/components/Card';
+import { Card } from '~/components/Card';
 import { ExternalLinkIcon } from 'lucide-react';
-import { generateProjectMeta } from '~/utils/meta';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return generateProjectMeta({
-        name: 'TWS CMS',
-        description:
-            'A headless content management system built with Keystone.js, React Router 7, PostgreSQL, and Railway. Designed to handle users, customers, posts, and tags with a modern tech stack.',
-        slug: 'tws-cms',
-        tech: [
-            'Keystone.js',
-            'React Router 7',
-            'PostgreSQL',
-            'Railway',
-            'TypeScript',
-            'GraphQL'
-        ]
+    return generateRouteMeta({
+        pageTitle: 'TWS CMS',
+        descriptionContent:
+            'A headless content management system built with Keystone.js, React Router 7, PostgreSQL, and Railway. Designed to handle users, customers, posts, and tags with a modern tech stack.'
     });
 }
 

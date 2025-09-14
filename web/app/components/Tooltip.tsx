@@ -7,11 +7,7 @@ interface TooltipProps {
     side?: 'top' | 'right' | 'bottom' | 'left';
 }
 
-export default function Tooltip({
-    children,
-    content,
-    side = 'top'
-}: TooltipProps) {
+export function Tooltip({ children, content, side = 'top' }: TooltipProps) {
     return (
         <TooltipPrimitive.Provider delayDuration={100}>
             <TooltipPrimitive.Root>

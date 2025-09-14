@@ -5,7 +5,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
 }
 
-export default function Card({
+export function Card({
     className,
     children,
     ...rest

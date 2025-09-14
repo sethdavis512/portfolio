@@ -1,16 +1,21 @@
-import CircularPattern from '~/components/CircularPattern';
-import KeyboardShortcut from '~/components/KeyboardShortcut';
 import { shuffle } from '~/utils/common';
-import { generateHomeMeta } from '~/utils/meta';
+import { generateRouteMeta } from '~/utils/seo';
 import {
     GetPublishedPostsDocument,
     type GetPublishedPostsQuery
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
+
 import { ButtonLink } from '~/components/ButtonLink';
+import { CircularPattern } from '~/components/CircularPattern';
+import { KeyboardShortcut } from '~/components/KeyboardShortcut';
 
 export function meta() {
-    return generateHomeMeta();
+    return generateRouteMeta({
+        pageTitle: 'Welcome',
+        descriptionContent:
+            'Seth Davis is a Frontend Engineer at Indeed specializing in React Router 7, TypeScript, and modern web development. Based in Austin, Texas.'
+    });
 }
 
 export async function loader() {

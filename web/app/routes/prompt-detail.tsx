@@ -8,17 +8,18 @@ import {
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/prompt-detail';
-import Heading from '~/components/Heading';
+import {Heading} from '~/components/Heading';
 import { renderers } from '~/components/BlogArticle';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta({ data }: Route.MetaArgs) {
-    return [
-        { title: `${data.prompt?.title} |Seth Davis Portfolio` },
-        {
-            name: 'description',
-            content: `Read the prompt titled "${data.prompt?.title}" by Seth Davis. Explore insights and discussions on web development, React Router, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle:
+            data?.prompt?.title || "Prompt Not Found | Seth Davis' Portfolio",
+        descriptionContent: data?.prompt?.title
+            ? `Read the prompt titled "${data.prompt.title}" by Seth Davis. Explore insights and discussions on AI prompts, web development, and more.`
+            : 'Prompt not found.'
+    });
 }
 
 export async function loader({ params }: Route.LoaderArgs) {

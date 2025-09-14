@@ -4,19 +4,18 @@ import {
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/prompts';
-import Linky from '~/components/Linky';
-import Card from '~/components/Card';
+import { Linky } from '~/components/Linky';
+import { Card } from '~/components/Card';
 import { Tag } from '~/components/Tag';
-import Heading from '~/components/Heading';
+import { Heading } from '~/components/Heading';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
-    return [
-        { title: `Prompts | Seth Davis' Portfolio` },
-        {
-            name: 'description',
-            content: `Explore insights and discussions on web development, React Router, and more.`
-        }
-    ];
+    return generateRouteMeta({
+        pageTitle: 'Prompts',
+        descriptionContent:
+            'Explore AI prompts and insights on web development, React Router, and modern frontend engineering from Seth Davis.'
+    });
 }
 
 export async function loader() {

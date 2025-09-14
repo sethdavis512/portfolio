@@ -4,7 +4,7 @@ interface SupabaseLogoProps {
     className: string;
 }
 
-export default function SupabaseLogo({ className }: SupabaseLogoProps) {
+export function SupabaseLogo({ className }: SupabaseLogoProps) {
     return (
         <svg
             className={cx('fill-zinc-700 dark:fill-white', className)}

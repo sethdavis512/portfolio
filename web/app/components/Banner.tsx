@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { cva, cx } from 'cva.config';
 
-import Card from './Card';
+import { Card } from './Card';
 import type { VariantProps } from 'cva';
 
 export const bannerVariants = cva({

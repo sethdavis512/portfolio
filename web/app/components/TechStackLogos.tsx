@@ -1,20 +1,21 @@
 import type { ReactNode } from 'react';
 import { cx } from 'cva.config';
 
-import { BetterAuthLogo } from './BetterAuthLogo';
-import { DocusaurusLogo } from './DocusaurusLogo';
-import { GitHubLogo } from './GitHubLogo';
-import { MCPLogo } from './MCPLogo';
-import { ObsidianLogo } from './ObsidianLogo';
-import { PostgresLogo } from './PostgresLogo';
-import { PrismaLogo } from './PrismaLogo';
-import { RailwayLogo } from './RailwayLogo';
-import { ReactLogo } from './ReactLogo';
-import { ReactRouterLogo } from './ReactRouterLogo';
+import { BetterAuthLogo } from './logos/BetterAuthLogo';
+import { DocusaurusLogo } from './logos/DocusaurusLogo';
+import { GitHubLogo } from './logos/GitHubLogo';
+import { MCPLogo } from './logos/MCPLogo';
+import { ObsidianLogo } from './logos/ObsidianLogo';
+import { PostgresLogo } from './logos/PostgresLogo';
+import { PrismaLogo } from './logos/PrismaLogo';
+import { RailwayLogo } from './logos/RailwayLogo';
+import { ReactLogo } from './logos/ReactLogo';
+import { ReactRouterLogo } from './logos/ReactRouterLogo';
 import { TailwindLogo } from './TailwindLogo';
-import { TypescriptLogo } from './TypescriptLogo';
-import Tooltip from './Tooltip';
-import Linky from './Linky';
+import { Tooltip } from './Tooltip';
+import { TriggerDevLogo } from './logos/TriggerDevLogo';
+import { TypescriptLogo } from './logos/TypescriptLogo';
+import { Linky } from './Linky';
 
 interface TechStackLogosProps {
     logos: string[];
@@ -24,53 +25,56 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
     const logoProps = { className: cx('block w-6 h-6') };
 
     const logoMap: Record<string, (props: any) => ReactNode> = {
-        mcp: (props) => <MCPLogo {...logoProps} {...props} />,
-        typescript: (props) => <TypescriptLogo {...logoProps} {...props} />,
-        react: (props) => <ReactLogo {...logoProps} {...props} />,
+        'better-auth': (props) => <BetterAuthLogo {...logoProps} {...props} />,
         'react-router': (props) => (
             <ReactRouterLogo {...logoProps} {...props} />
         ),
-        tailwind: (props) => <TailwindLogo {...logoProps} {...props} />,
-        'better-auth': (props) => <BetterAuthLogo {...logoProps} {...props} />,
-        prisma: (props) => <PrismaLogo {...logoProps} {...props} />,
-        postgres: (props) => <PostgresLogo {...logoProps} {...props} />,
-        railway: (props) => <RailwayLogo {...logoProps} {...props} />,
-        keystone: (props) => <MCPLogo {...logoProps} {...props} />,
         docusaurus: (props) => <DocusaurusLogo {...logoProps} {...props} />,
         github: (props) => <GitHubLogo {...logoProps} {...props} />,
-        obsidian: (props) => <ObsidianLogo {...logoProps} {...props} />
+        keystone: (props) => <MCPLogo {...logoProps} {...props} />,
+        mcp: (props) => <MCPLogo {...logoProps} {...props} />,
+        obsidian: (props) => <ObsidianLogo {...logoProps} {...props} />,
+        postgres: (props) => <PostgresLogo {...logoProps} {...props} />,
+        prisma: (props) => <PrismaLogo {...logoProps} {...props} />,
+        railway: (props) => <RailwayLogo {...logoProps} {...props} />,
+        react: (props) => <ReactLogo {...logoProps} {...props} />,
+        tailwind: (props) => <TailwindLogo {...logoProps} {...props} />,
+        trigger: (props) => <TriggerDevLogo {...logoProps} {...props} />,
+        typescript: (props) => <TypescriptLogo {...logoProps} {...props} />
     };
 
     const titleMap: Record<string, string> = {
-        mcp: 'Model Context Protocol',
-        typescript: 'TypeScript',
-        react: 'React',
-        'react-router': 'React Router',
-        tailwind: 'Tailwind CSS',
         'better-auth': 'Better Auth',
-        prisma: 'Prisma',
-        postgres: 'PostgreSQL',
-        railway: 'Railway',
-        keystone: 'Keystone',
+        'react-router': 'React Router',
         docusaurus: 'Docusaurus',
         github: 'GitHub',
-        obsidian: 'Obsidian'
+        keystone: 'Keystone',
+        mcp: 'Model Context Protocol',
+        obsidian: 'Obsidian',
+        postgres: 'PostgreSQL',
+        prisma: 'Prisma',
+        railway: 'Railway',
+        react: 'React',
+        tailwind: 'Tailwind CSS',
+        trigger: 'Trigger.dev',
+        typescript: 'TypeScript'
     };
 
     const urlMap: Record<string, string> = {
-        mcp: 'https://modelcontextprotocol.org/',
-        typescript: 'https://www.typescriptlang.org/',
-        react: 'https://react.dev/',
-        'react-router': 'https://reactrouter.com/',
-        tailwind: 'https://tailwindcss.com/',
         'better-auth': 'https://betterauth.dev/',
-        prisma: 'https://www.prisma.io/',
-        postgres: 'https://www.postgresql.org/',
-        railway: 'https://railway.app/',
-        keystone: 'https://keystonejs.com/',
+        'react-router': 'https://reactrouter.com/',
         docusaurus: 'https://docusaurus.io/',
         github: 'https://github.com/',
-        obsidian: 'https://obsidian.md/'
+        keystone: 'https://keystonejs.com/',
+        mcp: 'https://modelcontextprotocol.org/',
+        obsidian: 'https://obsidian.md/',
+        postgres: 'https://www.postgresql.org/',
+        prisma: 'https://www.prisma.io/',
+        railway: 'https://railway.app/',
+        react: 'https://react.dev/',
+        tailwind: 'https://tailwindcss.com/',
+        trigger: 'https://trigger.dev/',
+        typescript: 'https://www.typescriptlang.org/'
     };
 
     const LogoComponent: React.FunctionComponent<{

@@ -4,25 +4,18 @@ import {
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/blog-detail';
-import Heading from '~/components/Heading';
+import { Heading } from '~/components/Heading';
 import { BlogArticle } from '~/components/BlogArticle';
-import Divider from '~/components/Divider';
-import Linky from '~/components/Linky';
-import { generateBlogPostMeta } from '~/utils/meta';
+import { Divider } from '~/components/Divider';
+import { Linky } from '~/components/Linky';
+import { generateRouteMeta } from '~/utils/seo';
 
 export function meta({ data }: Route.MetaArgs) {
-    if (!data.post) {
-        return [{ title: "Blog Post Not Found | Seth Davis' Portfolio" }];
-    }
-
-    return generateBlogPostMeta({
-        title: data.post.title || 'Blog Post',
-        excerpt:
-            data.post.excerpt ||
-            'Read this blog post to learn more about the topic.',
-        slug: data.post.slug || '',
-        createdAt: data.post.createdAt || new Date().toISOString(),
-        tags: data.post.tags?.map((tag: any) => tag.name) || []
+    return generateRouteMeta({
+        pageTitle: data?.post?.title || 'Blog Post',
+        descriptionContent:
+            data?.post?.excerpt ||
+            'Read this blog post to learn more about the topic.'
     });
 }
 

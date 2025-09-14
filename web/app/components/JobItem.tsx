@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import Heading from './Heading';
+import { Heading } from './Heading';
 import { cx } from 'cva.config';
 import { BorderStyles } from '~/constants';
 
@@ -11,7 +11,7 @@ interface JobItemProps {
     location?: string;
 }
 
-export default function JobItem({
+export function JobItem({
     children,
     className,
     company,

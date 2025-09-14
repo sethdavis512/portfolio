@@ -27,7 +27,7 @@ interface LinkyProps extends HTMLAttributes<HTMLAnchorElement> {
     py?: number;
 }
 
-export default function Linky({
+export function Linky({
     children,
     className,
     external,
