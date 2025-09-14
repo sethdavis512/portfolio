@@ -74,15 +74,19 @@ body {
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
 }
+
 .TooltipContent[data-state='delayed-open'][data-side='top'] {
     animation-name: slideDownAndFade;
 }
+
 .TooltipContent[data-state='delayed-open'][data-side='right'] {
     animation-name: slideLeftAndFade;
 }
+
 .TooltipContent[data-state='delayed-open'][data-side='bottom'] {
     animation-name: slideUpAndFade;
 }
+
 .TooltipContent[data-state='delayed-open'][data-side='left'] {
     animation-name: slideRightAndFade;
 }
@@ -104,9 +108,11 @@ body {
     box-shadow: 0 2px 10px var(--black-a7);
     user-select: none;
 }
+
 .IconButton:hover {
     background-color: var(--violet-3);
 }
+
 .IconButton:focus {
     box-shadow: 0 0 0 2px black;
 }

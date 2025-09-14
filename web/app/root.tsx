@@ -8,6 +8,7 @@ import {
     ScrollRestoration
 } from 'react-router';
 import posthog from 'posthog-js';
+import { cx } from 'cva.config';
 
 import { Heading } from './components/Heading';
 import { CommandPalette } from '~/components/CommandPalette';
@@ -57,7 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     }, []);
 
     return (
-        <html lang="en" className="dark h-full">
+        <html lang="en" className="dark">
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -68,7 +69,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Links />
                 <StructuredData />
             </head>
-            <body className="h-full">
+            <body
+                className={cx(
+                    `min-h-screen md:grid md:grid-rows-[auto_1fr_auto]`
+                )}
+            >
                 {children}
                 <CommandPalette
                     open={open}
