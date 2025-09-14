@@ -31,15 +31,15 @@ function WorkDisplay({
 }: WorkDisplayProps) {
     return (
         <Link to={url}>
-            <div className="hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg p-8 h-full">
-                <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg h-full">
+                <div className="flex flex-col lg:flex-row items-center gap-4 p-6">
                     <img className="w-[200px]" src={imageSrc} alt={imageAlt} />
-                    <div className="text-center md:text-left flex-1">
-                        <Heading as="h2" className="text-3xl font-bold mb-4">
+                    <div className="text-center lg:text-left flex-1">
+                        <Heading as="h2" className="text-3xl font-bold">
                             {title}
                         </Heading>
-                        <p className="mb-4">{description}</p>
-                        <Button variant="outline">{cta}</Button>
+                        <p className="mb-8">{description}</p>
+                        <Button>{cta}</Button>
                     </div>
                 </div>
             </div>
