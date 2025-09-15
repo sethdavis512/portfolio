@@ -210,15 +210,15 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         <ul className="flex flex-col gap-4">
                             {loaderData?.lastThreePosts?.map((post) => (
                                 <li key={post.id}>
-                                    <Card
-                                        className={`hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg p-8 bg-zinc-200 dark:bg-zinc-950`}
-                                    >
-                                        <Link to={`/blog/${post.slug}`}>
+                                    <Link to={`/blog/${post.slug}`}>
+                                        <Card
+                                            className={`hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg p-8 bg-zinc-200 dark:bg-zinc-950`}
+                                        >
                                             <Heading as="h3" size="3">
                                                 {post.title}
                                             </Heading>
-                                        </Link>
-                                    </Card>
+                                        </Card>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
