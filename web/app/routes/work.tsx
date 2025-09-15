@@ -98,7 +98,7 @@ export default function WorkRoute() {
                         title="AI Maniacs"
                         description="Learning site for AI enthusiasts"
                         url="/ai-maniacs"
-                        imageSrc="/ai-maniacs-logo.png"
+                        imageSrc="/ai-chip.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
                     />
                 </ContentSection>
