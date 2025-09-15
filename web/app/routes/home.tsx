@@ -202,13 +202,15 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </div>
             </HomeSection>
             <HomeSection>
-                <div className="flex flex-col items-center gap-8">
+                <div className="flex flex-col items-center gap-8 px-4">
                     <Heading>Read up on my latest blog posts</Heading>
                     <div className="flex flex-col md:flex-row gap-4 md:gap-12 flex-wrap justify-center">
                         <ul className="flex flex-col gap-4">
                             {loaderData?.lastThreePosts?.map((post) => (
                                 <li key={post.id}>
-                                    <Card className="p-8">
+                                    <Card
+                                        className={`hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg p-8 bg-zinc-200 dark:bg-zinc-950`}
+                                    >
                                         <Link to={`/blog/${post.slug}`}>
                                             <Heading as="h3" size="3">
                                                 {post.title}
