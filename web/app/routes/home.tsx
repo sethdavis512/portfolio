@@ -5,7 +5,6 @@ import {
     type GetPublishedPostsQuery
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
-
 import { ButtonLink } from '~/components/ButtonLink';
 import { CircularPattern } from '~/components/CircularPattern';
 import { KeyboardShortcut } from '~/components/KeyboardShortcut';
@@ -15,7 +14,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Welcome',
         descriptionContent:
-            'Seth Davis is a Frontend Engineer at Indeed specializing in React Router 7, TypeScript, and modern web development. Based in Austin, Texas.',
+            'Seth Davis is a Frontend Engineer specializing in React Router 7, TypeScript, and modern web development. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
     });
 }
