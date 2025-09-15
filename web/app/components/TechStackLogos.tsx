@@ -11,7 +11,7 @@ import { PrismaLogo } from './logos/PrismaLogo';
 import { RailwayLogo } from './logos/RailwayLogo';
 import { ReactLogo } from './logos/ReactLogo';
 import { ReactRouterLogo } from './logos/ReactRouterLogo';
-import { TailwindLogo } from './TailwindLogo';
+import { TailwindLogo } from './logos/TailwindLogo';
 import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
 import { TypescriptLogo } from './logos/TypescriptLogo';

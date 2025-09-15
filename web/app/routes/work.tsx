@@ -1,3 +1,4 @@
+import { cx } from 'cva.config';
 import { Link } from 'react-router';
 import { Button } from '~/components/Button';
 import { ContentSection } from '~/components/ContentSection';
@@ -19,6 +20,7 @@ interface WorkDisplayProps {
     imageSrc: string;
     imageAlt: string;
     url: string;
+    reverse?: boolean;
 }
 
 function WorkDisplay({
@@ -27,14 +29,20 @@ function WorkDisplay({
     description,
     url,
     imageSrc,
-    imageAlt
+    imageAlt,
+    reverse
 }: WorkDisplayProps) {
     return (
         <Link to={url}>
             <div className="hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg h-full">
-                <div className="flex flex-col lg:flex-row items-center gap-4 p-6">
-                    <img className="w-[200px]" src={imageSrc} alt={imageAlt} />
-                    <div className="text-center lg:text-left flex-1">
+                <div
+                    className={cx(
+                        `flex flex-col lg:flex-row items-center gap-8 p-6`,
+                        reverse && 'lg:flex-row-reverse'
+                    )}
+                >
+                    <img className="w-[500px]" src={imageSrc} alt={imageAlt} />
+                    <div className={cx(`text-center lg:text-left flex-1`)}>
                         <Heading as="h2" className="text-3xl font-bold">
                             {title}
                         </Heading>
@@ -51,13 +59,13 @@ export default function WorkRoute() {
     return (
         <>
             <Heading as="h1">My work</Heading>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-stretch">
+            <div className="grid grid-cols-1 gap-8 items-stretch">
                 <ContentSection>
                     <WorkDisplay
                         cta="Explore the tool"
                         title="Prompt Bucket"
                         description="Prompt scoring and organization web application"
-                        imageSrc="/bucket.png"
+                        imageSrc="/prompt-bucket-hero.png"
                         imageAlt="A 3D bucket"
                         url="/prompt-bucket"
                     />
@@ -68,8 +76,9 @@ export default function WorkRoute() {
                         title="Rapidall•E"
                         description="Quickly create images using OpenAI's DALL·E"
                         url="/rapidalle"
-                        imageSrc="/photo-strip.png"
+                        imageSrc="/rapidalle-hero.png"
                         imageAlt="3D rendering of photo strip"
+                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -78,7 +87,7 @@ export default function WorkRoute() {
                         title="RR7 Slides"
                         description="A React Router based web application for creating and sharing slide presentations"
                         url="/rr7-slides"
-                        imageSrc="/presentation.png"
+                        imageSrc="/rr7-slides-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
                     />
                 </ContentSection>
@@ -87,9 +96,10 @@ export default function WorkRoute() {
                         cta="Get started"
                         title="Obsidian MCP Server"
                         description="A second brain for your everyday"
-                        imageSrc="/server.png"
+                        imageSrc="/obsidian-mcp-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
                         url="/obsidian-mcp-server"
+                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -98,7 +108,7 @@ export default function WorkRoute() {
                         title="AI Maniacs"
                         description="Learning site for AI enthusiasts"
                         url="/ai-maniacs"
-                        imageSrc="/ai-chip.png"
+                        imageSrc="/ai-maniacs-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
                     />
                 </ContentSection>
@@ -108,8 +118,9 @@ export default function WorkRoute() {
                         title="Tech with Seth"
                         description="Open sourced libraries and templates"
                         url="/tech-with-seth"
-                        imageSrc="/unlocked.png"
+                        imageSrc="/tech-with-seth-hero.png"
                         imageAlt="3D rendering of unlocked padlock"
+                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -118,7 +129,7 @@ export default function WorkRoute() {
                         title="Custom File Generator CLI (Guide)"
                         description="Instructions on how to create a custom file generator using Plop.js"
                         url="/custom-file-generator"
-                        imageSrc="/plop-drop.png"
+                        imageSrc="/custom-file-generator-hero.png"
                         imageAlt="3D rendering of a drop of water"
                     />
                 </ContentSection>
@@ -127,15 +138,16 @@ export default function WorkRoute() {
             <Heading as="h2" className="mb-8">
                 In progress
             </Heading>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-stretch">
+            <div className="grid grid-cols-1 gap-8 items-stretch">
                 <ContentSection>
                     <WorkDisplay
                         cta="See progress"
                         title="Generative UI"
                         description="AI-assisted UI chat experience"
-                        imageSrc="/webpage.png"
+                        imageSrc="/generative-ui-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
                         url="/generative-ui"
+                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -144,7 +156,7 @@ export default function WorkRoute() {
                         title="RR7 Tuner"
                         description="Tweak your React Router 7 app to your liking"
                         url="/rr7-tuner"
-                        imageSrc="/tuner.png"
+                        imageSrc="/rr7-tuner-hero.png"
                         imageAlt="3D rendering of tuner"
                     />
                 </ContentSection>
