@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+
 import { ButtonLink } from '~/components/ButtonLink';
 import { KeyboardShortcut } from '~/components/KeyboardShortcut';
 import { Heading } from '~/components/Heading';
@@ -10,7 +12,6 @@ import { ReactLogo } from '~/components/logos/ReactLogo';
 import { TailwindLogo } from '~/components/logos/TailwindLogo';
 import { TypescriptLogo } from '~/components/logos/TypescriptLogo';
 import { Tooltip } from '~/components/Tooltip';
-import { Link } from 'react-router';
 import { LinkedInLogo } from '~/components/logos/LinkedInLogo';
 import { CodepenLogo } from '~/components/logos/CodepenLogo';
 import { Linky } from '~/components/Linky';
@@ -71,7 +72,7 @@ function ProjectHighlight({
     to
 }: ProjectHighlightProps) {
     return (
-        <Link to={to} className="md:basis-1/3">
+        <Link to={to} className="md:basis-1/3 cursor-pointer">
             <figure className="relative">
                 <img className="w-full" src={heroImage} alt={heroAlt} />
                 <div className="absolute bottom-0 w-32 max-w-sm right-0 md:-right-5 dark:bg-primary-700 rounded-full">
@@ -81,7 +82,8 @@ function ProjectHighlight({
             <Heading as="h3" size="3">
                 {title}
             </Heading>
-            <p>{description}</p>
+            <p className="mb-8">{description}</p>
+            <ButtonLink to={to}>View Project</ButtonLink>
         </Link>
     );
 }
