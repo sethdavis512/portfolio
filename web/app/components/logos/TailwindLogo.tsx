@@ -1,7 +1,7 @@
 import { cx } from 'cva.config';
 
 interface TailwindLogoProps {
-    className: string;
+    className?: string;
 }
 
 export function TailwindLogo({ className }: TailwindLogoProps) {
