@@ -55,8 +55,7 @@ export default function AboutRoute() {
                     <li>
                         <Card>
                             <Heading as="h3" size="4" className="mb-2">
-                                💿 <span className="line-through">Remix</span>{' '}
-                                React Router fanatic
+                                💿 React Router fanatic
                             </Heading>
                             <p>
                                 <Linky external to="https://reactrouter.com/">
@@ -132,7 +131,7 @@ export default function AboutRoute() {
                                 🎮 Gamer
                             </Heading>
                             <p>
-                                {`Rocket League / No Man's Sky / `}
+                                {`Tears of the Kingdom / Rocket League / No Man's Sky / `}
                                 <Linky
                                     external
                                     to="https://www.xbox.com/en-US/games/store/boomerang-fu/9PJDVRGGFPPH"
