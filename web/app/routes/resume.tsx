@@ -14,7 +14,7 @@ import { Linky } from '~/components/Linky';
 import { SkillTag } from '~/components/SkillTag';
 
 const RESUME_URL =
-    'https://www.dropbox.com/scl/fi/nxqjs1dv1bqloyxgdwq8s/20250525-seth-davis-resume.pdf?rlkey=48e9y025kt90uzxbsrrxz02eh&dl=0';
+    'https://www.dropbox.com/scl/fi/90vuaq2pl9lbaky8jtqg8/20251009-seth-davis-resume.pdf?rlkey=ai8vxl0nd9gbo7sp41uc5idhl&dl=0';
 
 export function meta() {
     return generateRouteMeta({
