@@ -1,7 +1,7 @@
 import { cx } from 'cva.config';
 import { InfoIcon } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
-import { intervalToDuration, formatDuration } from 'date-fns';
+// import { intervalToDuration, formatDuration } from 'date-fns';
 
 import { Banner } from '~/components/Banner';
 import { ContentStyles } from '~/constants';
@@ -34,17 +34,17 @@ function ResumeSection({
 
 export default function ResumeRoute() {
     const yearsAsDeveloper = new Date().getFullYear() - 2016;
-    const timeAtCurrentJob = formatDuration(
-        intervalToDuration({
-            start: new Date(2024, 7),
-            end: new Date()
-        }),
-        { format: ['years', 'months'] }
-    )
-        .replace('years', 'yrs')
-        .replace('year', 'yr')
-        .replace('months', 'mos')
-        .replace('month', 'mo');
+    // const timeAtCurrentJob = formatDuration(
+    //     intervalToDuration({
+    //         start: new Date(2024, 7),
+    //         end: new Date()
+    //     }),
+    //     { format: ['years', 'months'] }
+    // )
+    //     .replace('years', 'yrs')
+    //     .replace('year', 'yr')
+    //     .replace('months', 'mos')
+    //     .replace('month', 'mo');
 
     return (
         <>
@@ -98,7 +98,7 @@ export default function ResumeRoute() {
                 </Heading>
                 <JobItem
                     company="Gartner"
-                    dates={`Aug 2024–Present (${timeAtCurrentJob})`}
+                    dates={`Aug 2024–Oct 2025 (1 yr 1 mo)`}
                     title={`Software Engineer, ${ContentStyles.FRONTEND}`}
                 >
                     <JobItemList>
