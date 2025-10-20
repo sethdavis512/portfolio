@@ -103,7 +103,7 @@ This should be reflected across all content through:
 ### Target Keywords (from constants.ts)
 
 - Seth Davis
-- Senior Front-End Engineer
+- Senior Frontend Engineer
 - React Router 7
 - TypeScript
 - React Developer

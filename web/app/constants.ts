@@ -14,7 +14,7 @@ export enum BorderStyles {
 }
 
 export enum ContentStyles {
-    FRONTEND = `Front-End`,
+    FRONTEND = `Frontend`,
     CURRENT_JOB_TITLE = `Senior ${FRONTEND} Engineer`
 }
 
@@ -22,18 +22,18 @@ export enum ContentStyles {
 export const SITE_META = {
     DEFAULT_KEYWORDS: [
         'Seth Davis',
-        'Senior Front-End Engineer',
+        `Senior ${ContentStyles.FRONTEND} Engineer`,
         'React Router 7',
         'TypeScript',
         'React Developer',
         'Austin Texas developer',
-        'Frontend engineer Austin',
+        `${ContentStyles.FRONTEND} engineer Austin`,
         'Web developer portfolio',
         'Full-stack developer'
     ],
     LOCATION: 'Austin, Texas',
-    PROFESSION: 'Senior Front-End Engineer',
-    COMPANY: 'Gartner'
+    PROFESSION: `Senior ${ContentStyles.FRONTEND} Engineer`,
+    COMPANY: 'Tech with Seth'
 } as const;
 
 export const SEO_CONSTANTS = {
@@ -43,23 +43,22 @@ export const SEO_CONSTANTS = {
         NAME: 'Seth Davis',
         EMAIL: 'sethdavis512@gmail.com',
         LOCATION: 'Austin, Texas',
-        JOB_TITLE: 'Senior Front-End Engineer',
-        COMPANY: 'Gartner',
+        JOB_TITLE: `Senior ${ContentStyles.FRONTEND} Engineer`,
+        COMPANY: 'Tech with Seth',
         LINKEDIN: 'https://www.linkedin.com/in/sethdavis512/',
         GITHUB: 'https://github.com/sethdavis512',
         TWITTER: 'https://x.com/sethdavis512'
     },
-    DEFAULT_DESCRIPTION:
-        'Seth Davis is a Senior Front-End Engineer in Austin, Texas, specializing in React Router 7, TypeScript, and full-stack web development. Explore his portfolio, blog, and open source projects.',
+    DEFAULT_DESCRIPTION: `Seth Davis is a Senior ${ContentStyles.FRONTEND} Engineer in Austin, Texas, specializing in React Router 7, TypeScript, and full-stack web development. Explore his portfolio, blog, and open source projects.`,
     KEYWORDS: [
         'Seth Davis',
-        'Senior Front-End Engineer',
+        `Senior ${ContentStyles.FRONTEND} Engineer`,
         'React Router 7',
         'TypeScript',
         'React',
         'Austin Texas developer',
         'Full-stack developer',
-        'Frontend engineer',
+        `${ContentStyles.FRONTEND} engineer`,
         'JavaScript developer',
         'Web developer',
         'React Router',
