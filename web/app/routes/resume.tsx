@@ -73,23 +73,29 @@ export default function ResumeRoute() {
                     {`${ContentStyles.FRONTEND} Engineer Skills`}
                 </Heading>
                 <div className="flex flex-wrap items-center gap-2">
-                    <SkillTag>Typescript</SkillTag>
-                    <SkillTag>React</SkillTag>
-                    <SkillTag>React Router 7</SkillTag>
-                    <SkillTag>Prisma</SkillTag>
-                    <SkillTag>Postgres</SkillTag>
-                    <SkillTag>GraphQL</SkillTag>
-                    <SkillTag>TestCafe</SkillTag>
-                    <SkillTag>Cypress</SkillTag>
-                    <SkillTag>Design Systems</SkillTag>
-                    <SkillTag>Prototyping</SkillTag>
-                    <SkillTag>CSS-in-JS</SkillTag>
-                    <SkillTag>HTML</SkillTag>
-                    <SkillTag>CSS</SkillTag>
-                    <SkillTag>JS</SkillTag>
-                    <SkillTag>Accessibility</SkillTag>
-                    <SkillTag>Git</SkillTag>
-                    <SkillTag>GitHub Copilot</SkillTag>
+                    {[
+                        'Typescript',
+                        'React',
+                        'React Router 7',
+                        'Prisma',
+                        'Postgres',
+                        'GraphQL',
+                        'TestCafe',
+                        'Cypress',
+                        'Design Systems',
+                        'Prototyping',
+                        'CSS-in-JS',
+                        'HTML',
+                        'CSS',
+                        'JS',
+                        'Accessibility',
+                        'Git',
+                        'Vercel AI SDK',
+                        'Claude Code',
+                        'GitHub Copilot'
+                    ].map((skill) => (
+                        <SkillTag key={skill}>{skill}</SkillTag>
+                    ))}
                 </div>
             </ResumeSection>
             <ResumeSection>
