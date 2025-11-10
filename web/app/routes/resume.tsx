@@ -80,10 +80,6 @@ export default function ResumeRoute() {
                         'Prisma',
                         'Postgres',
                         'GraphQL',
-                        'TestCafe',
-                        'Cypress',
-                        'Design Systems',
-                        'Prototyping',
                         'CSS-in-JS',
                         'HTML',
                         'CSS',
@@ -91,8 +87,11 @@ export default function ResumeRoute() {
                         'Accessibility',
                         'Git',
                         'Vercel AI SDK',
+                        'Open AI API',
                         'Claude Code',
-                        'GitHub Copilot'
+                        'GitHub Copilot',
+                        'PostHog',
+                        'Railway'
                     ].map((skill) => (
                         <SkillTag key={skill}>{skill}</SkillTag>
                     ))}
