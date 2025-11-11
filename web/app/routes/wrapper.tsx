@@ -130,7 +130,7 @@ export default function WrapperRoute() {
                             </li>
                             <li>
                                 <StaticNavLink to="https://tidycal.com/sethdavis512">
-                                    Meet
+                                    Talk with Seth
                                 </StaticNavLink>
                             </li>
                         </ul>
