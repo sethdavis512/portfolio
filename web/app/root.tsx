@@ -61,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </head>
             <body
                 className={cx(
-                    `min-h-screen md:grid md:grid-rows-[auto_1fr_auto]`
+                    `md:min-h-screen md:grid md:grid-rows-[auto_1fr_auto]`
                 )}
             >
                 {children}

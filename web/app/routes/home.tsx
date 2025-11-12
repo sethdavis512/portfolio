@@ -48,7 +48,7 @@ function HomeSection({
     className?: string;
 }) {
     return (
-        <section className={cx(`container mx-auto py-16`, className)}>
+        <section className={cx(`container mx-auto mb-8 md:py-16`, className)}>
             {children}
         </section>
     );
@@ -67,7 +67,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 >
                     Seth Davis
                 </Heading>
-                <div className="space-y-8 mb-8">
+                <div className="space-y-4 md:space-y-8 mb-8">
                     <p className="text-md md:text-2xl font-medium">
                         I build developer infrastructure enhanced by AI
                         <br />

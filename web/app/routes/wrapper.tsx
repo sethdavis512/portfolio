@@ -82,7 +82,7 @@ export default function WrapperRoute() {
             <header className="py-8">
                 <Container>
                     <nav>
-                        <ul className="hidden md:flex items-center gap-4 md:gap-8">
+                        <ul className="hidden lg:flex items-center gap-4 md:gap-8">
                             <li>
                                 <Link to="/" aria-label="Return to home page">
                                     <Logo className="fill-zinc-700 h-16 dark:fill-white" />
@@ -137,7 +137,7 @@ export default function WrapperRoute() {
                         {/* //////////////////// */}
                         {/* Mobile Navigation */}
                         {/* //////////////////// */}
-                        <ul className="md:hidden flex justify-between">
+                        <ul className="lg:hidden flex justify-between">
                             <li>
                                 <Link to="/" aria-label="Return to home page">
                                     <Logo className="fill-zinc-700 h-12 dark:fill-white" />
@@ -152,7 +152,7 @@ export default function WrapperRoute() {
                                     <MenuIcon className="h-6 w-6" />
                                 </Button>
                                 {isOpen && (
-                                    <div className="py-8 px-4 fixed top-0 left-0 w-full h-full bg-white dark:bg-zinc-950 z-50 flex flex-col gap-8 transform transition-transform duration-300 ease-in-out">
+                                    <div className="py-8 px-4 fixed top-0 left-0 w-full h-full bg-white dark:bg-zinc-950 z-50 flex flex-col gap-8 overflow-y-auto transform transition-transform duration-300 ease-in-out">
                                         <div className="flex justify-between items-center">
                                             <Link
                                                 to="/"
@@ -234,7 +234,7 @@ export default function WrapperRoute() {
                     <Outlet />
                 </Container>
             </main>
-            <footer className="py-8">
+            <footer className="py-0 md:py-8">
                 <Container className="flex flex-col items-center gap-4">
                     <div className="flex w-full items-center justify-between my-12">
                         <div className={`flex-grow ${BorderStyles.BOTTOM}`} />
