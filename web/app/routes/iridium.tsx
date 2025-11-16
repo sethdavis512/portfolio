@@ -1,6 +1,5 @@
 import {
     ArrowRight,
-    ComputerIcon,
     LoaderIcon,
     LoaderPinwheelIcon,
     TriangleAlert
