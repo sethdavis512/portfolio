@@ -58,16 +58,6 @@ const workLinks = [
         to: '/custom-file-generator',
         icon: LinkIcon,
         label: 'Custom File Generator (Guide)'
-    },
-    {
-        to: '/generative-ui',
-        icon: LinkIcon,
-        label: 'Generative UI'
-    },
-    {
-        to: '/rr7-tuner',
-        icon: LinkIcon,
-        label: 'RR7 Tuner'
     }
 ];
 
@@ -86,11 +76,6 @@ const pagesLinks = [
         to: '/blog',
         icon: LinkIcon,
         label: 'Blog'
-    },
-    {
-        to: '/prompts',
-        icon: LinkIcon,
-        label: 'Prompts'
     },
     {
         to: '/truck',

@@ -115,13 +115,6 @@ export default function AboutRoute() {
                                 >
                                     Remix Austin
                                 </Linky>
-                                {` / `}
-                                <Linky
-                                    external
-                                    to="https://www.meetup.com/austin-code-mentorship/"
-                                >
-                                    Austin Code Mentorship
-                                </Linky>
                             </p>
                         </Card>
                     </li>
