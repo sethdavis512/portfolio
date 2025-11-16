@@ -20,10 +20,12 @@ import { VibeCodeLogo } from './logos/VibeCodeLogo';
 import { PolarLogo } from './logos/PolarLogo';
 import { KeystoneLogo } from './logos/KeystoneLogo';
 import { CloudinaryLogo } from './logos/CloudinaryLogo';
+import { DaisyUILogo } from './logos/DaisyUILogo';
 
 export type LogoName =
     | 'better-auth'
     | 'cloudinary'
+    | 'daisy'
     | 'docusaurus'
     | 'github'
     | 'keystone'
@@ -69,6 +71,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <ReactRouterLogo {...logoProps} {...props} />,
             title: 'React Router',
             url: 'https://reactrouter.com/'
+        },
+        daisy: {
+            component: (props) => <DaisyUILogo {...logoProps} {...props} />,
+            title: 'DaisyUI',
+            url: 'https://daisyui.com/'
         },
         docusaurus: {
             component: (props) => <DocusaurusLogo {...logoProps} {...props} />,
@@ -144,10 +151,13 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
 
     return (
         <>
-            {logos.map((logoName) => {
+            {logos.map((logoName, index) => {
                 const config = logoConfig[logoName];
                 return (
-                    <Tooltip content={config.title} key={logoName}>
+                    <Tooltip
+                        content={config.title}
+                        key={`${logoName}-${index}`}
+                    >
                         <Linky to={config.url} external>
                             {config.component({ tabIndex: -1 })}
                         </Linky>

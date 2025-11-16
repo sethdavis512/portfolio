@@ -1,6 +1,6 @@
 import { cx } from 'cva.config';
 import { MenuIcon } from 'lucide-react';
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
@@ -9,6 +9,54 @@ import { Logo } from '~/components/logos/SethDavisLogo';
 import { BorderStyles } from '~/constants';
 
 const sharedLinkClasses = `text-4xl md:text-lg`;
+
+interface NavItem {
+    type: 'internal' | 'external';
+    to: string;
+    label: string;
+    ariaLabel: string;
+}
+
+const NAV_ITEMS: NavItem[] = [
+    {
+        type: 'internal',
+        to: '/work',
+        label: 'Work',
+        ariaLabel: 'View my work'
+    },
+    {
+        type: 'internal',
+        to: '/resume',
+        label: 'Resume',
+        ariaLabel: 'View my resume'
+    },
+    {
+        type: 'internal',
+        to: '/iridium',
+        label: 'Iridium',
+        ariaLabel:
+            'Production-ready web application that leverages AI to accelerate development'
+    },
+    {
+        type: 'internal',
+        to: '/freelance',
+        label: 'Freelance',
+        ariaLabel: 'Hire me for freelance work'
+    },
+
+    {
+        type: 'internal',
+        to: '/about',
+        label: 'About',
+        ariaLabel: 'Learn more about me'
+    },
+    {
+        type: 'internal',
+        to: '/blog',
+        label: 'Blog',
+        ariaLabel: 'Read the blog'
+    }
+];
 
 interface AppNavLinkProps {
     to: string;
@@ -88,51 +136,22 @@ export default function WrapperRoute() {
                                     <Logo className="fill-zinc-700 h-16 dark:fill-white" />
                                 </Link>
                             </li>
-                            <li>
-                                <AppNavLink
-                                    to="/work"
-                                    aria-label="Return to home page"
-                                >
-                                    Work
-                                </AppNavLink>
-                            </li>
-                            <li>
-                                <AppNavLink
-                                    to="/resume"
-                                    aria-label="View my resume"
-                                >
-                                    Resume
-                                </AppNavLink>
-                            </li>
-                            <li>
-                                <AppNavLink
-                                    to="/blog"
-                                    aria-label="Read the blog"
-                                >
-                                    Blog
-                                </AppNavLink>
-                            </li>
-                            <li>
-                                <AppNavLink
-                                    to="/prompts"
-                                    aria-label="Read the prompts"
-                                >
-                                    Prompts
-                                </AppNavLink>
-                            </li>
-                            <li>
-                                <AppNavLink
-                                    to="/about"
-                                    aria-label="Learn more about me"
-                                >
-                                    About
-                                </AppNavLink>
-                            </li>
-                            <li>
-                                <StaticNavLink to="https://tidycal.com/sethdavis512">
-                                    Talk with Seth
-                                </StaticNavLink>
-                            </li>
+                            {NAV_ITEMS.map((item) => (
+                                <li key={item.to}>
+                                    {item.type === 'internal' ? (
+                                        <AppNavLink
+                                            to={item.to}
+                                            ariaLabel={item.ariaLabel}
+                                        >
+                                            {item.label}
+                                        </AppNavLink>
+                                    ) : (
+                                        <StaticNavLink to={item.to}>
+                                            {item.label}
+                                        </StaticNavLink>
+                                    )}
+                                </li>
+                            ))}
                         </ul>
                         {/* //////////////////// */}
                         {/* Mobile Navigation */}
@@ -189,39 +208,25 @@ export default function WrapperRoute() {
                                         >
                                             Home
                                         </AppNavLink>
-                                        <AppNavLink
-                                            to="/work"
-                                            onClick={toggleIsOpen}
-                                        >
-                                            Work
-                                        </AppNavLink>
-                                        <AppNavLink
-                                            to="/resume"
-                                            onClick={toggleIsOpen}
-                                        >
-                                            Resume
-                                        </AppNavLink>
-                                        <AppNavLink
-                                            to="/blog"
-                                            onClick={toggleIsOpen}
-                                        >
-                                            Blog
-                                        </AppNavLink>
-                                        <AppNavLink
-                                            to="/prompts"
-                                            onClick={toggleIsOpen}
-                                        >
-                                            Prompts
-                                        </AppNavLink>
-                                        <AppNavLink
-                                            to="/about"
-                                            onClick={toggleIsOpen}
-                                        >
-                                            About
-                                        </AppNavLink>
-                                        <StaticNavLink to="https://tidycal.com/sethdavis512">
-                                            Meet
-                                        </StaticNavLink>
+                                        {NAV_ITEMS.map((item) =>
+                                            item.type === 'internal' ? (
+                                                <AppNavLink
+                                                    key={item.to}
+                                                    to={item.to}
+                                                    ariaLabel={item.ariaLabel}
+                                                    onClick={toggleIsOpen}
+                                                >
+                                                    {item.label}
+                                                </AppNavLink>
+                                            ) : (
+                                                <StaticNavLink
+                                                    key={item.to}
+                                                    to={item.to}
+                                                >
+                                                    {item.label}
+                                                </StaticNavLink>
+                                            )
+                                        )}
                                     </div>
                                 )}
                             </li>

@@ -2,7 +2,6 @@ import { cx } from 'cva.config';
 import { Link } from 'react-router';
 import { Button } from '~/components/Button';
 import { ContentSection } from '~/components/ContentSection';
-import { Divider } from '~/components/Divider';
 import { Heading } from '~/components/Heading';
 import { generateRouteMeta } from '~/utils/seo';
 
@@ -62,12 +61,23 @@ export default function WorkRoute() {
             <div className="grid grid-cols-1 gap-8 items-stretch">
                 <ContentSection>
                     <WorkDisplay
+                        cta="See more"
+                        title="Iridium"
+                        description="Launch your SaaS in days, not months. Iridium provides a quality foundations—from authentication to subscriptions—so you focus on building what makes your product unique."
+                        imageSrc="/iridium-hero.png"
+                        imageAlt="Web browser displaying Iridium dashboard"
+                        url="/iridium"
+                    />
+                </ContentSection>
+                <ContentSection>
+                    <WorkDisplay
                         cta="Explore the tool"
                         title="Prompt Bucket"
                         description="Prompt scoring and organization web application"
                         imageSrc="/prompt-bucket-hero.png"
                         imageAlt="A 3D bucket"
                         url="/prompt-bucket"
+                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -78,7 +88,6 @@ export default function WorkRoute() {
                         url="/rapidalle"
                         imageSrc="/rapidalle-hero.png"
                         imageAlt="3D rendering of photo strip"
-                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -89,6 +98,7 @@ export default function WorkRoute() {
                         url="/rr7-slides"
                         imageSrc="/rr7-slides-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
+                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -99,7 +109,6 @@ export default function WorkRoute() {
                         imageSrc="/obsidian-mcp-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
                         url="/obsidian-mcp-server"
-                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -110,6 +119,7 @@ export default function WorkRoute() {
                         url="/ai-maniacs"
                         imageSrc="/ai-maniacs-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
+                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -120,7 +130,6 @@ export default function WorkRoute() {
                         url="/tech-with-seth"
                         imageSrc="/tech-with-seth-hero.png"
                         imageAlt="3D rendering of unlocked padlock"
-                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
@@ -131,10 +140,11 @@ export default function WorkRoute() {
                         url="/custom-file-generator"
                         imageSrc="/custom-file-generator-hero.png"
                         imageAlt="3D rendering of a drop of water"
+                        reverse
                     />
                 </ContentSection>
             </div>
-            <Divider className="my-8" />
+            {/* <Divider className="my-8" />
             <Heading as="h2" className="mb-8">
                 In progress
             </Heading>
@@ -160,7 +170,7 @@ export default function WorkRoute() {
                         imageAlt="3D rendering of tuner"
                     />
                 </ContentSection>
-            </div>
+            </div> */}
         </>
     );
 }

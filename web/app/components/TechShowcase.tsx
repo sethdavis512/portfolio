@@ -24,28 +24,28 @@ export function TechShowcase({
     return (
         <>
             <Heading as="h1">{title}</Heading>
-            <div className="flex flex-col-reverse md:flex-row gap-6">
-                <div className="basis-2/3 space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="md:col-span-2 space-y-4 min-w-0">
                     <Heading as="h2" size="5">
                         Project Overview
                     </Heading>
-                    <p>{about}</p>
+                    <p className="break-words">{about}</p>
                     <Heading as="h2" size="5">
                         Knowledge Gained
                     </Heading>
-                    <p>{learned}</p>
+                    <p className="break-words">{learned}</p>
                     <Heading as="h2" size="5">
                         The Impact
                     </Heading>
-                    <p>{value}</p>
+                    <p className="break-words">{value}</p>
                 </div>
-                <div className="basis-1/3 space-y-4">
+                <div className="md:col-span-1 space-y-4 min-w-0">
                     {techStack && (
                         <>
                             <Heading as="h4" size="5" className="font-bold">
                                 Tech Stack
                             </Heading>
-                            <Card className="flex gap-3">{techStack}</Card>
+                            <Card className="flex flex-wrap gap-3">{techStack}</Card>
                         </>
                     )}
                     {(demoUrl || sourceUrl) && (
@@ -55,12 +55,12 @@ export function TechShowcase({
                             </Heading>
                             <Card className="flex flex-col gap-4">
                                 {sourceUrl && (
-                                    <Linky external to={sourceUrl}>
+                                    <Linky external to={sourceUrl} className="break-words">
                                         View source code
                                     </Linky>
                                 )}
                                 {demoUrl && (
-                                    <Linky external to={demoUrl}>
+                                    <Linky external to={demoUrl} className="break-words">
                                         See the demo
                                     </Linky>
                                 )}
