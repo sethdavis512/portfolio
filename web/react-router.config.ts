@@ -11,7 +11,6 @@ export default {
             '/generative-ui',
             '/obsidian-mcp-server',
             '/prompt-bucket',
-            '/prompts',
             '/rapidalle',
             '/resume',
             '/rr7-slides',

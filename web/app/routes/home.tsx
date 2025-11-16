@@ -12,8 +12,9 @@ import {
     GetPublishedPostsDocument,
     type GetPublishedPostsQuery
 } from '~/generated/graphql';
-import type { Route } from './+types/home';
 import { cx } from 'cva.config';
+import { Card } from '~/components/Card';
+import { Link } from 'react-router';
 
 export function meta() {
     return generateRouteMeta({
@@ -48,13 +49,13 @@ function HomeSection({
     className?: string;
 }) {
     return (
-        <section className={cx(`container mx-auto mb-8 md:py-16`, className)}>
+        <section className={cx(`container mx-auto mb-8 md:py-8`, className)}>
             {children}
         </section>
     );
 }
 
-export default function Home({ loaderData }: Route.ComponentProps) {
+export default function Home() {
     const socialLogoClassNames = 'w-8 h-8 md:w-12 md:h-12';
 
     return (
@@ -69,27 +70,48 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </Heading>
                 <div className="space-y-4 md:space-y-8 mb-8">
                     <p className="text-md md:text-2xl font-medium">
-                        I build developer infrastructure enhanced by AI
+                        I build tools that help developers spend less time on
                         <br />
-                        to boost efficiency and automate repetitive tasks.
+                        repetitive tasks and more time solving interesting
+                        problems.
                     </p>
                     <p>
-                        {`I am actively seeking new opportunities as a ${ContentStyles.CURRENT_JOB_TITLE}.`}
+                        {`Currently exploring new opportunities as a ${ContentStyles.CURRENT_JOB_TITLE}.`}
                     </p>
                 </div>
                 <div className="flex gap-4">
                     <ButtonLink className="inline-block" size="lg" to="/resume">
                         View Resume
                     </ButtonLink>
-                    <ButtonLink
-                        variant="outline"
-                        className="inline-block"
-                        size="lg"
-                        to="/work"
-                    >
+                    <ButtonLink size="lg" to="/work" variant="outline">
                         See my work
                     </ButtonLink>
                 </div>
+            </HomeSection>
+            <HomeSection>
+                <Heading>Now Building</Heading>
+                <Link to="/iridium">
+                    <Card className="p-0 grid bg-[url(https://res.cloudinary.com/setholito/image/upload/v1762886752/iridium/iridium-hero-1.png)] border-2 border-zinc-700/75 overflow-hidden">
+                        <div className="col-start-1 row-start-1 bg-black/50"></div>
+                        <div className="col-start-1 row-start-1 p-8">
+                            <Heading>Iridium</Heading>
+                            <p className="mb-8">
+                                A full-stack starter built with TypeScript,
+                                React Router, Prisma, and Postgres. It handles
+                                auth, database setup, and testing so you can
+                                focus on integrating AI features instead of
+                                configuring infrastructure. Did I mention
+                                everything is tracked by PostHog? With automatic
+                                event tracking, custom event tracking, session
+                                replay, LLM tracking and more you'll be able to
+                                gain valuable insights into your users' journey.
+                            </p>
+                            <ButtonLink color="secondary" to="/iridium">
+                                Learn more
+                            </ButtonLink>
+                        </div>
+                    </Card>
+                </Link>
             </HomeSection>
             <HomeSection>
                 <Heading>Socials</Heading>

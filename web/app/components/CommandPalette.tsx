@@ -15,6 +15,16 @@ const workLinks = [
         label: 'See all'
     },
     {
+        to: '/iridium',
+        icon: LinkIcon,
+        label: 'Iridium'
+    },
+    {
+        to: '/freelance',
+        icon: LinkIcon,
+        label: 'Freelance'
+    },
+    {
         to: '/prompt-bucket',
         icon: LinkIcon,
         label: 'Prompt Bucket'

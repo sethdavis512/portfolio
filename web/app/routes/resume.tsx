@@ -276,6 +276,7 @@ export default function ResumeRoute() {
                     <JobItemList>
                         <li>Model Context Protocol</li>
                         <li>Vercel AI SDK</li>
+                        <li>n8n</li>
                         <li>Prisma / Postgres / Docker</li>
                         <li>Go / Python</li>
                     </JobItemList>
