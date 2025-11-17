@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { data, useFetcher } from 'react-router';
-import { portfolioBase } from '~/airtable';
+import { getPortfolioBase } from '~/airtable';
 import { Banner } from '~/components/Banner';
 import { Button } from '~/components/Button';
 import { HeroImage } from '~/components/HeroImage';
@@ -34,7 +34,7 @@ export async function action({ request }: Route.ActionArgs) {
     const note = String(formData.get('note'));
 
     try {
-        const response = await portfolioBase('Iridium Interest').create([
+        const response = await getPortfolioBase()('Iridium Interest').create([
             {
                 fields: {
                     'First name': firstName,
