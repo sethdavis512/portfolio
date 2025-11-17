@@ -1,5 +1,10 @@
-import Airtable from 'airtable';
+import { createRequire } from 'node:module';
 
-export const portfolioBase = new Airtable({
+const require = createRequire(import.meta.url);
+const Airtable = require('airtable') as typeof import('airtable');
+
+const airtableClient = new Airtable({
     apiKey: process.env.AIRTABLE_PAT
-}).base(process.env.AIRTABLE_BASE_ID!);
+});
+
+export const portfolioBase = airtableClient.base(process.env.AIRTABLE_BASE_ID!);
