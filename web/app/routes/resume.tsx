@@ -103,7 +103,7 @@ export default function ResumeRoute() {
                 </Heading>
                 <JobItem
                     company="Gartner"
-                    dates={`Aug 2024–Oct 2025 (1 yr 1 mo)`}
+                    dates={`Aug 2024–Oct 2025 (1 yr 2 mos)`}
                     title={`Software Engineer, ${ContentStyles.FRONTEND}`}
                 >
                     <JobItemList>
@@ -162,7 +162,7 @@ export default function ResumeRoute() {
                 </JobItem>
                 <JobItem
                     company="Indeed, Inc"
-                    dates="Jan 2020–Jan 2023 (3 yrs 1 mo)"
+                    dates="Jan 2020–Jan 2023 (3 yrs)"
                     title={`${ContentStyles.FRONTEND} Engineer`}
                 >
                     <JobItemList>
@@ -215,43 +215,22 @@ export default function ResumeRoute() {
                         </li>
                     </JobItemList>
                 </JobItem>
-                <JobItem
-                    company="NIC Inc."
-                    dates="Jan 2018–Feb 2019 (1 yr 2 mos)"
-                    title={`${ContentStyles.FRONTEND} Engineer`}
-                >
+                <JobItem title="Extracurricular" className="mb-12">
                     <JobItemList>
                         <li>
-                            Built an enterprise platform for consumers to build
-                            applications for their constituents
+                            Member and volunteer at the{' '}
+                            <Linky to="https://remixaustin.com/">
+                                Remix Austin Meetup
+                            </Linky>
                         </li>
                         <li>
-                            Partnered with team members to improve the
-                            operations and documentation of applications
+                            Building Iridium: A full-stack starter template
+                            (TypeScript, React Router 7, Prisma, Postgres,
+                            Railway)
                         </li>
                         <li>
-                            Participated in recurring UX developer forums to
-                            enhance codebase
-                        </li>
-                    </JobItemList>
-                </JobItem>
-                <JobItem
-                    company="Texas NIC"
-                    dates="Apr 2017–Dec 2017 (9 mos)"
-                    title={`${ContentStyles.FRONTEND} Engineer`}
-                >
-                    <JobItemList>
-                        <li>
-                            Produced prototypes and designed foundation for
-                            enterprise level application
-                        </li>
-                        <li>
-                            Collaborated with business partners, and designers
-                            to understand requirements and create solutions
-                        </li>
-                        <li>
-                            Initiated code standards and patterns for developers
-                            to follow
+                            Exploring AI-assisted development and LLM code
+                            generation workflows
                         </li>
                     </JobItemList>
                 </JobItem>
@@ -270,15 +249,6 @@ export default function ResumeRoute() {
                             Texas State University - Bachelors of Fine Arts,
                             Communication Design (2012) - San Marcos, Texas
                         </li>
-                    </JobItemList>
-                </JobItem>
-                <JobItem title="Extracurricular" className="mb-12">
-                    <JobItemList>
-                        <li>Model Context Protocol</li>
-                        <li>Vercel AI SDK</li>
-                        <li>n8n</li>
-                        <li>Prisma / Postgres / Docker</li>
-                        <li>Go / Python</li>
                     </JobItemList>
                 </JobItem>
             </ResumeSection>
