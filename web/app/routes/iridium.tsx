@@ -148,7 +148,10 @@ export default function IridiumRoute() {
                                 'tailwind',
                                 'daisy',
                                 'postgres',
+                                'better-auth',
                                 'polar',
+                                'prisma',
+                                'railway',
                                 'cloudinary',
                                 'vibe'
                             ]}
