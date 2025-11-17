@@ -3,7 +3,7 @@ import { ContentStyles } from '~/constants';
 import { data, useFetcher } from 'react-router';
 import { generateRouteMeta } from '~/utils/seo';
 import { Heading } from '~/components/Heading';
-import { portfolioBase } from '~/airtable';
+import { getPortfolioBase } from '~/airtable';
 import type { Route } from './+types/freelance';
 import { Linky } from '~/components/Linky';
 import { Banner } from '~/components/Banner';
@@ -27,7 +27,7 @@ export async function action({ request }: Route.ActionArgs) {
     const note = String(formData.get('note'));
 
     try {
-        const response = await portfolioBase('Customers').create([
+        const response = await getPortfolioBase()('Customers').create([
             {
                 fields: {
                     'First name': firstName,

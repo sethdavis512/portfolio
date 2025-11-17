@@ -1,7 +1,7 @@
-import { portfolioBase } from '~/airtable';
+import { getPortfolioBase } from '~/airtable';
 
 export function getListOfInterestedPeople() {
-    portfolioBase('Customers')
+    getPortfolioBase()('Customers')
         .select({
             // Selecting the first 3 records in Grid view:
             maxRecords: 10,
