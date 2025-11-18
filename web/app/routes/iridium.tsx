@@ -159,7 +159,7 @@ export default function IridiumRoute() {
                     </Card>
                     <section className="rounded-lg bg-zinc-800 p-8 space-y-4">
                         <Heading as="h2" size="4">
-                            Interested in Iridium? Contact me
+                            Interested in Iridium?
                         </Heading>
                         <fetcher.Form
                             method="POST"
