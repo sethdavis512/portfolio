@@ -152,7 +152,6 @@ export default function IridiumRoute() {
                                 'polar',
                                 'prisma',
                                 'railway',
-                                'cloudinary',
                                 'vibe'
                             ]}
                         />
