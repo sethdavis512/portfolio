@@ -14,23 +14,13 @@ export enum BorderStyles {
 }
 
 export enum ContentStyles {
-    FRONTEND = `Front-end`,
-    CURRENT_JOB_TITLE = `Senior ${FRONTEND} Engineer`
+    FRONTEND = `Frontend`,
+    CURRENT_JOB_TITLE = `Software Engineer (${FRONTEND})`
 }
 
 // SEO and metadata constants
 export const SITE_META = {
-    DEFAULT_KEYWORDS: [
-        'Seth Davis',
-        `Senior ${ContentStyles.FRONTEND} Engineer`,
-        'React Router 7',
-        'TypeScript',
-        'React Developer',
-        'Austin Texas developer',
-        `${ContentStyles.FRONTEND} engineer Austin`,
-        'Web developer portfolio',
-        'Full-stack developer'
-    ],
+    DEFAULT_KEYWORDS: ['Seth Davis', `Senior ${ContentStyles.FRONTEND} Engineer`, 'React Router 7', 'TypeScript', 'React Developer', 'Austin Texas developer', `${ContentStyles.FRONTEND} engineer Austin`, 'Web developer portfolio', 'Full-stack developer'],
     LOCATION: 'Austin, Texas',
     PROFESSION: `Senior ${ContentStyles.FRONTEND} Engineer`,
     COMPANY: 'Tech with Seth'
@@ -50,22 +40,7 @@ export const SEO_CONSTANTS = {
         TWITTER: 'https://x.com/sethdavis512'
     },
     DEFAULT_DESCRIPTION: `Seth Davis is a Senior ${ContentStyles.FRONTEND} Engineer in Austin, Texas, specializing in React Router 7, TypeScript, and full-stack web development. Explore his portfolio, blog, and open source projects.`,
-    KEYWORDS: [
-        'Seth Davis',
-        `Senior ${ContentStyles.FRONTEND} Engineer`,
-        'React Router 7',
-        'TypeScript',
-        'React',
-        'Austin Texas developer',
-        'Full-stack developer',
-        `${ContentStyles.FRONTEND} engineer`,
-        'JavaScript developer',
-        'Web developer',
-        'React Router',
-        'GraphQL',
-        'Prisma',
-        'Portfolio'
-    ],
+    KEYWORDS: ['Seth Davis', `Senior ${ContentStyles.FRONTEND} Engineer`, 'React Router 7', 'TypeScript', 'React', 'Austin Texas developer', 'Full-stack developer', `${ContentStyles.FRONTEND} engineer`, 'JavaScript developer', 'Web developer', 'React Router', 'GraphQL', 'Prisma', 'Portfolio'],
     SOCIAL_IMAGE: '/seth-davis-social-card.png', // You may want to create this
     FAVICON: '/favicon.ico'
 } as const;
