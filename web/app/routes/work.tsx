@@ -22,24 +22,11 @@ interface WorkDisplayProps {
     reverse?: boolean;
 }
 
-function WorkDisplay({
-    cta,
-    title,
-    description,
-    url,
-    imageSrc,
-    imageAlt,
-    reverse
-}: WorkDisplayProps) {
+function WorkDisplay({ cta, title, description, url, imageSrc, imageAlt, reverse }: WorkDisplayProps) {
     return (
         <Link to={url}>
             <div className="hover:scale-[102%] transition-all duration-200 hover:bg-zinc-100 hover:dark:bg-zinc-900 rounded-lg h-full">
-                <div
-                    className={cx(
-                        `flex flex-col lg:flex-row items-center gap-8 p-6`,
-                        reverse && 'lg:flex-row-reverse'
-                    )}
-                >
+                <div className={cx(`flex flex-col lg:flex-row items-center gap-8 p-6`, reverse && 'lg:flex-row-reverse')}>
                     <img className="w-[500px]" src={imageSrc} alt={imageAlt} />
                     <div className={cx(`text-center lg:text-left flex-1`)}>
                         <Heading as="h2" className="text-3xl font-bold">
@@ -57,7 +44,7 @@ function WorkDisplay({
 export default function WorkRoute() {
     return (
         <>
-            <Heading as="h1">My work</Heading>
+            <Heading as="h1">Work</Heading>
             <div className="grid grid-cols-1 gap-8 items-stretch">
                 <ContentSection>
                     <WorkDisplay
@@ -70,25 +57,20 @@ export default function WorkRoute() {
                     />
                 </ContentSection>
                 <ContentSection>
-                    <WorkDisplay
-                        cta="Explore the tool"
-                        title="Prompt Bucket"
-                        description="Prompt scoring and organization web application"
-                        imageSrc="/prompt-bucket-hero.png"
-                        imageAlt="A 3D bucket"
-                        url="/prompt-bucket"
-                        reverse
-                    />
+                    <WorkDisplay cta="Explore the tool" title="Prompt Bucket" description="Prompt scoring and organization web application" imageSrc="/prompt-bucket-hero.png" imageAlt="A 3D bucket" url="/prompt-bucket" reverse />
                 </ContentSection>
                 <ContentSection>
                     <WorkDisplay
-                        cta="View more"
-                        title="Rapidall•E"
-                        description="Quickly create images using OpenAI's DALL·E"
-                        url="/rapidalle"
-                        imageSrc="/rapidalle-hero.png"
-                        imageAlt="3D rendering of photo strip"
+                        cta="View Bundle"
+                        title="Claude Desktop for Real Estate Agents"
+                        description="Complete bundle with 51-page guide, 40+ ready-to-use prompts, and quick reference card. Help real estate agents save hours weekly with proven AI workflows for listings, clients, and operations."
+                        url="/claude-real-estate"
+                        imageSrc="/claude-real-estate-card.png"
+                        imageAlt="Claude Desktop for Real Estate Agents bundle"
                     />
+                </ContentSection>
+                <ContentSection>
+                    <WorkDisplay cta="View more" title="Rapidall•E" description="Quickly create images using OpenAI's DALL·E" url="/rapidalle" imageSrc="/rapidalle-hero.png" imageAlt="3D rendering of photo strip" reverse />
                 </ContentSection>
                 <ContentSection>
                     <WorkDisplay
@@ -98,79 +80,21 @@ export default function WorkRoute() {
                         url="/rr7-slides"
                         imageSrc="/rr7-slides-hero.png"
                         imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
-                        reverse
                     />
                 </ContentSection>
                 <ContentSection>
-                    <WorkDisplay
-                        cta="Get started"
-                        title="Obsidian MCP Server"
-                        description="A second brain for your everyday"
-                        imageSrc="/obsidian-mcp-hero.png"
-                        imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
-                        url="/obsidian-mcp-server"
-                    />
+                    <WorkDisplay cta="Get started" title="Obsidian MCP Server" description="A second brain for your everyday" imageSrc="/obsidian-mcp-hero.png" imageAlt="3D rendering of presenter talking about slideshow in front of an audience" url="/obsidian-mcp-server" reverse />
                 </ContentSection>
                 <ContentSection>
-                    <WorkDisplay
-                        cta="Start learning"
-                        title="AI Maniacs"
-                        description="Learning site for AI enthusiasts"
-                        url="/ai-maniacs"
-                        imageSrc="/ai-maniacs-hero.png"
-                        imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
-                        reverse
-                    />
+                    <WorkDisplay cta="Start learning" title="AI Maniacs" description="Learning site for AI enthusiasts" url="/ai-maniacs" imageSrc="/ai-maniacs-hero.png" imageAlt="3D rendering of presenter talking about slideshow in front of an audience" />
                 </ContentSection>
                 <ContentSection>
-                    <WorkDisplay
-                        cta="Browse repositories"
-                        title="Tech with Seth"
-                        description="Open sourced libraries and templates"
-                        url="/tech-with-seth"
-                        imageSrc="/tech-with-seth-hero.png"
-                        imageAlt="3D rendering of unlocked padlock"
-                    />
+                    <WorkDisplay cta="Browse repositories" title="Tech with Seth" description="Open sourced libraries and templates" url="/tech-with-seth" imageSrc="/tech-with-seth-hero.png" imageAlt="3D rendering of unlocked padlock" reverse />
                 </ContentSection>
                 <ContentSection>
-                    <WorkDisplay
-                        cta="Show more"
-                        title="Custom File Generator CLI (Guide)"
-                        description="Instructions on how to create a custom file generator using Plop.js"
-                        url="/custom-file-generator"
-                        imageSrc="/custom-file-generator-hero.png"
-                        imageAlt="3D rendering of a drop of water"
-                        reverse
-                    />
+                    <WorkDisplay cta="Show more" title="Custom File Generator CLI (Guide)" description="Instructions on how to create a custom file generator using Plop.js" url="/custom-file-generator" imageSrc="/custom-file-generator-hero.png" imageAlt="3D rendering of a drop of water" />
                 </ContentSection>
             </div>
-            {/* <Divider className="my-8" />
-            <Heading as="h2" className="mb-8">
-                In progress
-            </Heading>
-            <div className="grid grid-cols-1 gap-8 items-stretch">
-                <ContentSection>
-                    <WorkDisplay
-                        cta="See progress"
-                        title="Generative UI"
-                        description="AI-assisted UI chat experience"
-                        imageSrc="/generative-ui-hero.png"
-                        imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
-                        url="/generative-ui"
-                        reverse
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Check it out"
-                        title="RR7 Tuner"
-                        description="Tweak your React Router 7 app to your liking"
-                        url="/rr7-tuner"
-                        imageSrc="/rr7-tuner-hero.png"
-                        imageAlt="3D rendering of tuner"
-                    />
-                </ContentSection>
-            </div> */}
         </>
     );
 }

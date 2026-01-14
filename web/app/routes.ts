@@ -1,9 +1,4 @@
-import {
-    type RouteConfig,
-    index,
-    layout,
-    route
-} from '@react-router/dev/routes';
+import { type RouteConfig, index, layout, route } from '@react-router/dev/routes';
 
 export default [
     layout('routes/wrapper.tsx', [
@@ -12,12 +7,15 @@ export default [
         route('ai-maniacs', 'routes/ai-maniacs.tsx'),
         route('blog', 'routes/blog.tsx'),
         route('blog/:slug', 'routes/blog-detail.tsx'),
+        route('claude-desktop-for-real-estate-agents', 'routes/claude-desktop-for-real-estate-agents.tsx'),
+        route('claude-desktop-for-insurance-agents', 'routes/claude-desktop-for-insurance-agents.tsx'),
         route('custom-file-generator', 'routes/custom-file-generator.tsx'),
         route('freelance', 'routes/freelance.tsx'),
         route('generative-ui', 'routes/generative-ui.tsx'),
         route('iridium', 'routes/iridium.tsx'),
         route('obsidian-mcp-server', 'routes/obsidian-mcp-server.tsx'),
         route('prompt-bucket', 'routes/prompt-bucket.tsx'),
+        route('products', 'routes/products.tsx'),
         route('prompts', 'routes/prompts.tsx'),
         route('prompts/:slug', 'routes/prompt-detail.tsx'),
         route('rapidalle', 'routes/rapidalle.tsx'),

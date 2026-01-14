@@ -7,6 +7,8 @@ export default {
             '/',
             // Projects
             '/ai-maniacs',
+            '/claude-desktop-for-real-estate-agents',
+            '/claude-desktop-for-insurance-agents',
             '/custom-file-generator',
             '/generative-ui',
             '/obsidian-mcp-server',
@@ -23,6 +25,7 @@ export default {
             // Pages
             '/about',
             '/blog',
+            '/products',
             '/resume',
             '/setup',
             '/truck'

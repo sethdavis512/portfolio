@@ -44,3 +44,9 @@ export const SEO_CONSTANTS = {
     SOCIAL_IMAGE: '/seth-davis-social-card.png', // You may want to create this
     FAVICON: '/favicon.ico'
 } as const;
+
+// Product links
+export const PRODUCT_LINKS = {
+    CLAUDE_REAL_ESTATE_BUNDLE: 'https://buy.polar.sh/polar_cl_ez4JvNqYGYnmHZCOCYxzyFPMR56mYP3G3zSHi2TBYuc',
+    CLAUDE_INSURANCE_BUNDLE: 'https://buy.polar.sh/polar_cl_ZuGd99lGoIt8kG0BJgJf6sDarWhsq378Y5AdT17KqIq'
+} as const;
