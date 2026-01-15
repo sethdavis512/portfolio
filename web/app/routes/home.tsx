@@ -91,7 +91,7 @@ export default function Home() {
             <HomeSection>
                 <Heading>Now Building</Heading>
                 <Link to="/iridium">
-                    <Card className="p-0 grid bg-[url(https://res.cloudinary.com/setholito/image/upload/v1762886752/iridium/iridium-hero-1.png)] border-2 border-zinc-700/75 overflow-hidden">
+                    <Card className="p-0 grid bg-[url(https://res.cloudinary.com/setholito/image/upload/c_fill,g_auto,h_600,w_1200/q_auto,f_auto/v1762886752/iridium/iridium-hero-1.png)] max-h-[300px] border-2 border-zinc-700/75 overflow-hidden">
                         <div className="col-start-1 row-start-1 bg-black/50"></div>
                         <div className="col-start-1 row-start-1 p-8">
                             <Heading>Iridium</Heading>
