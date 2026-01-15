@@ -78,6 +78,11 @@ const pagesLinks = [
         label: 'Blog'
     },
     {
+        to: '/products',
+        icon: LinkIcon,
+        label: 'Products'
+    },
+    {
         to: '/truck',
         icon: LinkIcon,
         label: 'Truck'
