@@ -61,12 +61,12 @@ export default function WorkRoute() {
                 </ContentSection>
                 <ContentSection>
                     <WorkDisplay
-                        cta="View Bundle"
-                        title="Claude Desktop for Real Estate Agents"
-                        description="Complete bundle with 51-page guide, 40+ ready-to-use prompts, and quick reference card. Help real estate agents save hours weekly with proven AI workflows for listings, clients, and operations."
-                        url="/claude-real-estate"
-                        imageSrc="/claude-real-estate-card.png"
-                        imageAlt="Claude Desktop for Real Estate Agents bundle"
+                        cta="Explore bundles"
+                        title="Claude Desktop Bundles for Real Estate + Insurance Agents"
+                        description="Two complete AI playbooks: real estate workflows and insurance operations, built to save hours and upgrade client communication."
+                        url="/products"
+                        imageSrc="/claude-desktop-hero.png"
+                        imageAlt="Claude Desktop Bundles for Real Estate + Insurance Agents"
                     />
                 </ContentSection>
                 <ContentSection>
