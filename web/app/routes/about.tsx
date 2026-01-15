@@ -106,7 +106,7 @@ export default function AboutRoute() {
                     <li>
                         <Card>
                             <Heading as="h3" size="4" className="mb-2">
-                                📅 Meetup goer
+                                📅 Meetup Contributor
                             </Heading>
                             <p>
                                 <Linky
@@ -199,15 +199,6 @@ export default function AboutRoute() {
                     />
                 </li>
             </ul>
-            <Heading as="h2" className="mb-8">
-                Acknowledgements
-            </Heading>
-            <p>
-                3D images by{' '}
-                <Linky external to="https://www.thiings.co/things">
-                    thiings.co
-                </Linky>
-            </p>
         </>
     );
 }
