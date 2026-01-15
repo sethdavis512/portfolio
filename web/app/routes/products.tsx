@@ -28,7 +28,7 @@ export default function ProductsRoute() {
                 <Card className="p-6 space-y-4 flex flex-col">
                     <Linky to="/claude-desktop-for-real-estate-agents" className="block">
                         <figure className="rounded-lg h-[350px] overflow-hidden">
-                            <img className="w-full h-full object-cover" src="/claude-desktop-for-real-estate-agents-jan-2026-edition-cover.png" alt="Claude Desktop for Real Estate Agents January 2026 edition cover" />
+                            <img className="w-full h-full object-cover" src="/claude-desktop-for-real-estate-agents-jan-2026-edition-cover.webp" alt="Claude Desktop for Real Estate Agents January 2026 edition cover" />
                         </figure>
                     </Linky>
                     <Heading as="h2" size="3">
@@ -67,7 +67,7 @@ export default function ProductsRoute() {
                 <Card className="p-6 space-y-4 flex flex-col">
                     <Linky to="/claude-desktop-for-insurance-agents" className="block">
                         <figure className="rounded-lg h-[350px] overflow-hidden">
-                            <img className="w-full h-full object-cover" src="/claude-desktop-for-insurance-agents-jan-2026-edition-cover.png" alt="Claude Desktop for Insurance Agents January 2026 edition cover" />
+                            <img className="w-full h-full object-cover" src="/claude-desktop-for-insurance-agents-jan-2026-edition-cover.webp" alt="Claude Desktop for Insurance Agents January 2026 edition cover" />
                         </figure>
                     </Linky>
                     <Heading as="h2" size="3">

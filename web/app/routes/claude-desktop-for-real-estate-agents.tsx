@@ -24,7 +24,7 @@ export default function ClaudeRealEstateRoute() {
                     Claude Desktop for Real Estate Agents
                 </Heading>
                 <figure className="rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 w-full">
-                    <img className="w-full h-auto max-h-[420px] object-cover" src="/cover-real-estate.jpg" alt="Claude Desktop for Real Estate Agents January 2026 edition cover" />
+                    <img className="w-full h-auto max-h-[420px] object-cover" src="/cover-real-estate-cropped-768x840.webp" alt="Claude Desktop for Real Estate Agents January 2026 edition cover" />
                 </figure>
                 <p className="text-xl text-zinc-600 dark:text-zinc-300">Stop spending hours on routine tasks. Get the complete bundle to transform how you work with AI.</p>
                 <p className="text-lg text-zinc-500 dark:text-zinc-400">January 2026 Edition</p>
