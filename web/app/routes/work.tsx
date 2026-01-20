@@ -54,105 +54,97 @@ function WorkDisplay({
     );
 }
 
+const workItems = [
+    {
+        cta: 'See more',
+        title: 'Iridium',
+        description:
+            'Launch your SaaS in days, not months. Iridium provides a quality foundations—from authentication to subscriptions—so you focus on building what makes your product unique.',
+        imageSrc: '/iridium-thumbnail.webp',
+        imageAlt: 'Web browser displaying Iridium dashboard',
+        url: '/iridium'
+    },
+    {
+        cta: 'Explore the tool',
+        title: 'Prompt Bucket',
+        description: 'Prompt scoring and organization web application',
+        imageSrc: '/prompt-bucket-thumbnail.webp',
+        imageAlt: 'A 3D bucket',
+        url: '/prompt-bucket'
+    },
+    // {
+    //     cta: 'Explore bundles',
+    //     title: 'Claude Desktop Bundles for Real Estate + Insurance Agents',
+    //     description:
+    //         'Two complete AI playbooks for real estate and insurance teams, combining step-by-step workflows, ready-to-use prompts, and client-ready messaging to save hours each week.',
+    //     imageSrc: '/claude-desktop-thumbnail.webp',
+    //     imageAlt: 'Claude Desktop Bundles for Real Estate + Insurance Agents',
+    //     url: '/products'
+    // },
+    {
+        cta: 'View more',
+        title: 'Rapidall•E',
+        description: "Quickly create images using OpenAI's DALL·E",
+        imageSrc: '/rapidalle-thumbnail.webp',
+        imageAlt: '3D rendering of photo strip',
+        url: '/rapidalle'
+    },
+    {
+        cta: 'Learn more',
+        title: 'RR7 Slides',
+        description:
+            'A React Router based web application for creating and sharing slide presentations',
+        imageSrc: '/rr7-slides-thumbnail.webp',
+        imageAlt:
+            '3D rendering of presenter talking about slideshow in front of an audience',
+        url: '/rr7-slides'
+    },
+    {
+        cta: 'Get started',
+        title: 'Obsidian MCP Server',
+        description: 'A second brain for your everyday',
+        imageSrc: '/obsidian-mcp-thumbnail.webp',
+        imageAlt: '3D rendering of a brain with network connections',
+        url: '/obsidian-mcp-server'
+    },
+    {
+        cta: 'Start learning',
+        title: 'AI Maniacs',
+        description: 'Learning site for AI enthusiasts',
+        imageSrc: '/ai-maniacs-thumbnail.webp',
+        imageAlt:
+            '3D rendering of presenter talking about slideshow in front of an audience',
+        url: '/ai-maniacs'
+    },
+    {
+        cta: 'Browse repositories',
+        title: 'Tech with Seth',
+        description: 'Open sourced libraries and templates',
+        imageSrc: '/tech-with-seth-thumbnail.webp',
+        imageAlt: 'Screenshot of GitHub profile page',
+        url: '/tech-with-seth'
+    },
+    {
+        cta: 'Show more',
+        title: 'Custom File Generator CLI (Guide)',
+        description:
+            'Instructions on how to create a custom file generator using Plop.js',
+        imageSrc: '/custom-file-generator-thumbnail.webp',
+        imageAlt: '3D rendering of a drop of water',
+        url: '/custom-file-generator'
+    }
+];
+
 export default function WorkRoute() {
     return (
         <>
             <Heading as="h1">Work</Heading>
             <div className="grid grid-cols-1 gap-8 items-stretch">
-                <ContentSection>
-                    <WorkDisplay
-                        cta="See more"
-                        title="Iridium"
-                        description="Launch your SaaS in days, not months. Iridium provides a quality foundations—from authentication to subscriptions—so you focus on building what makes your product unique."
-                        imageSrc="/iridium-thumbnail.webp"
-                        imageAlt="Web browser displaying Iridium dashboard"
-                        url="/iridium"
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Explore the tool"
-                        title="Prompt Bucket"
-                        description="Prompt scoring and organization web application"
-                        imageSrc="/prompt-bucket-thumbnail.webp"
-                        imageAlt="A 3D bucket"
-                        url="/prompt-bucket"
-                        reverse
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Explore bundles"
-                        title="Claude Desktop Bundles for Real Estate + Insurance Agents"
-                        description="Two complete AI playbooks for real estate and insurance teams, combining step-by-step workflows, ready-to-use prompts, and client-ready messaging to save hours each week."
-                        url="/products"
-                        imageSrc="/claude-desktop-thumbnail.webp"
-                        imageAlt="Claude Desktop Bundles for Real Estate + Insurance Agents"
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="View more"
-                        title="Rapidall•E"
-                        description="Quickly create images using OpenAI's DALL·E"
-                        url="/rapidalle"
-                        imageSrc="/rapidalle-thumbnail.webp"
-                        imageAlt="3D rendering of photo strip"
-                        reverse
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Learn more"
-                        title="RR7 Slides"
-                        description="A React Router based web application for creating and sharing slide presentations"
-                        url="/rr7-slides"
-                        imageSrc="/rr7-slides-thumbnail.webp"
-                        imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Get started"
-                        title="Obsidian MCP Server"
-                        description="A second brain for your everyday"
-                        imageSrc="/obsidian-mcp-thumbnail.webp"
-                        imageAlt="3D rendering of a brain with network connections"
-                        url="/obsidian-mcp-server"
-                        reverse
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Start learning"
-                        title="AI Maniacs"
-                        description="Learning site for AI enthusiasts"
-                        url="/ai-maniacs"
-                        imageSrc="/ai-maniacs-thumbnail.webp"
-                        imageAlt="3D rendering of presenter talking about slideshow in front of an audience"
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Browse repositories"
-                        title="Tech with Seth"
-                        description="Open sourced libraries and templates"
-                        url="/tech-with-seth"
-                        imageSrc="/tech-with-seth-thumbnail.webp"
-                        imageAlt="Screenshot of GitHub profile page"
-                        reverse
-                    />
-                </ContentSection>
-                <ContentSection>
-                    <WorkDisplay
-                        cta="Show more"
-                        title="Custom File Generator CLI (Guide)"
-                        description="Instructions on how to create a custom file generator using Plop.js"
-                        url="/custom-file-generator"
-                        imageSrc="/custom-file-generator-thumbnail.webp"
-                        imageAlt="3D rendering of a drop of water"
-                    />
-                </ContentSection>
+                {workItems.map((item, index) => (
+                    <ContentSection key={item.url}>
+                        <WorkDisplay {...item} reverse={index % 2 !== 0} />
+                    </ContentSection>
+                ))}
             </div>
         </>
     );
