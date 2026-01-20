@@ -81,7 +81,7 @@ export default function Home() {
                 </div>
                 <div className="flex gap-4">
                     <ButtonLink className="inline-block" size="lg" to="/resume">
-                        View Resume
+                        View resume
                     </ButtonLink>
                     <ButtonLink size="lg" to="/work" variant="outline">
                         See my work

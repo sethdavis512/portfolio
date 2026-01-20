@@ -123,33 +123,31 @@ interface CommandSectionProps {
 }
 
 function CommandSection({ title, links, onSelect }: CommandSectionProps) {
+    if (links.length === 0) {
+        return null;
+    }
+
     return (
-        <div className="p-6">
-            <h3 className="text-zinc-700 dark:text-zinc-300 font-medium mb-4">
-                {title}
-            </h3>
-            <Command.Group>
-                {links.length > 0 ? (
-                    links.map((link) => (
-                        <Command.Item
-                            key={link.to}
-                            value={link.label}
-                            onSelect={() => onSelect(link.to)}
-                            className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 data-[selected=true]:bg-zinc-100 dark:data-[selected=true]:bg-zinc-700 cursor-pointer group"
-                        >
-                            <div className="flex items-center gap-3 flex-1">
-                                <link.icon className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
-                                <span className="text-zinc-700 dark:text-zinc-300">
-                                    {link.label}
-                                </span>
-                            </div>
-                        </Command.Item>
-                    ))
-                ) : (
-                    <Command.Item>None</Command.Item>
-                )}
-            </Command.Group>
-        </div>
+        <Command.Group
+            heading={title}
+            className="p-6 [&_[cmdk-group-heading]]:text-zinc-700 dark:[&_[cmdk-group-heading]]:text-zinc-300 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:mb-4"
+        >
+            {links.map((link) => (
+                <Command.Item
+                    key={link.to}
+                    value={link.label}
+                    onSelect={() => onSelect(link.to)}
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 data-[selected=true]:bg-zinc-100 dark:data-[selected=true]:bg-zinc-700 cursor-pointer group"
+                >
+                    <div className="flex items-center gap-3 flex-1">
+                        <link.icon className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
+                        <span className="text-zinc-700 dark:text-zinc-300">
+                            {link.label}
+                        </span>
+                    </div>
+                </Command.Item>
+            ))}
+        </Command.Group>
     );
 }
 
