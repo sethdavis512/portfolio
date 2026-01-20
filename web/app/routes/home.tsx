@@ -91,11 +91,10 @@ export default function Home() {
             <HomeSection>
                 <Heading>Now Building</Heading>
                 <Link to="/iridium">
-                    <Card className="p-0 grid bg-[url(https://res.cloudinary.com/setholito/image/upload/c_fill,g_auto,h_600,w_1200/q_auto,f_auto/v1762886752/iridium/iridium-hero-1.png)] max-h-[300px] border-2 border-zinc-700/75 overflow-hidden">
-                        <div className="col-start-1 row-start-1 bg-black/50"></div>
-                        <div className="col-start-1 row-start-1 p-8">
-                            <Heading>Iridium</Heading>
-                            <p className="mb-8">
+                    <Card className="p-0 grid border-2 border-zinc-700/75 overflow-hidden bg-gradient-to-br from-purple-800 via-zinc-600 to-zinc-700 dark:from-purple-950 dark:via-zinc-800 dark:to-zinc-900">
+                        <div className="col-start-1 row-start-1 p-8 text-white">
+                            <Heading className="text-white">Iridium</Heading>
+                            <p className="mb-8 text-zinc-100">
                                 A full-stack starter built with TypeScript,
                                 React Router, Prisma, and Postgres. It handles
                                 auth, database setup, and testing so you can
@@ -106,7 +105,7 @@ export default function Home() {
                                 replay, LLM tracking and more you'll be able to
                                 gain valuable insights into your users' journey.
                             </p>
-                            <ButtonLink color="secondary" to="/iridium">
+                            <ButtonLink color="primary" size="lg" to="/iridium">
                                 Learn more
                             </ButtonLink>
                         </div>

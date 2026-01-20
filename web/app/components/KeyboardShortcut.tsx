@@ -14,7 +14,9 @@ export function KeyboardShortcut({ keys, className }: KeyboardShortcutProps) {
                         {key}
                     </kbd>
                     {index < keys.length - 1 && (
-                        <span className="mx-1 text-white">+</span>
+                        <span className="mx-1 text-zinc-700 dark:text-white">
+                            +
+                        </span>
                     )}
                 </span>
             ))}
