@@ -91,7 +91,8 @@ export default function ResumeRoute() {
                         'GitHub Copilot',
                         'PostHog',
                         'Railway',
-                        'VS Code'
+                        'VS Code',
+                        'Figma'
                     ].map((skill) => (
                         <SkillTag key={skill}>{skill}</SkillTag>
                     ))}
