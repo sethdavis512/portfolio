@@ -76,7 +76,7 @@ export default function Home() {
                         problems.
                     </p>
                     <p>
-                        {`Currently exploring new opportunities as a ${ContentStyles.CURRENT_JOB_TITLE}.`}
+                        {`Currently seeking new opportunities as a ${ContentStyles.CURRENT_JOB_TITLE}.`}
                     </p>
                 </div>
                 <div className="flex gap-4">
