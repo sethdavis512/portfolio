@@ -30,12 +30,12 @@ const NAV_ITEMS: NavItem[] = [
         label: 'Resume',
         ariaLabel: 'View my resume'
     },
-    {
-        type: 'internal',
-        to: '/products',
-        label: 'Products',
-        ariaLabel: 'View digital products and resources'
-    },
+    // {
+    //     type: 'internal',
+    //     to: '/products',
+    //     label: 'Products',
+    //     ariaLabel: 'View digital products and resources'
+    // },
     {
         type: 'internal',
         to: '/iridium',
