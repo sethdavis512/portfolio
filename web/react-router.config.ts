@@ -21,6 +21,7 @@ export default {
             '/tech-with-seth',
             '/tws-cms',
             '/tws-starter',
+            '/virtruv',
             '/work',
             // Pages
             '/about',

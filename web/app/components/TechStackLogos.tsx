@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { cx } from 'cva.config';
 
 import { BetterAuthLogo } from './logos/BetterAuthLogo';
+import { CSSLogo } from './logos/CSSLogo';
 import { DocusaurusLogo } from './logos/DocusaurusLogo';
 import { GitHubLogo } from './logos/GitHubLogo';
 import { MCPLogo } from './logos/MCPLogo';
@@ -21,10 +22,12 @@ import { PolarLogo } from './logos/PolarLogo';
 import { KeystoneLogo } from './logos/KeystoneLogo';
 import { CloudinaryLogo } from './logos/CloudinaryLogo';
 import { DaisyUILogo } from './logos/DaisyUILogo';
+import { WordPressLogo } from './logos/WordPressLogo';
 
 export type LogoName =
     | 'better-auth'
     | 'cloudinary'
+    | 'css'
     | 'daisy'
     | 'docusaurus'
     | 'github'
@@ -40,7 +43,8 @@ export type LogoName =
     | 'tailwind'
     | 'trigger'
     | 'typescript'
-    | 'vibe';
+    | 'vibe'
+    | 'wordpress';
 
 interface TechStackLogosProps {
     logos: LogoName[];
@@ -66,6 +70,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <CloudinaryLogo {...logoProps} {...props} />,
             title: 'Cloudinary',
             url: 'https://cloudinary.com/'
+        },
+        css: {
+            component: (props) => <CSSLogo {...logoProps} {...props} />,
+            title: 'CSS',
+            url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
         },
         'react-router': {
             component: (props) => <ReactRouterLogo {...logoProps} {...props} />,
@@ -146,6 +155,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <VibeCodeLogo {...logoProps} {...props} />,
             title: 'Vibe Code',
             url: 'https://www.ibm.com/think/topics/vibe-coding'
+        },
+        wordpress: {
+            component: (props) => <WordPressLogo {...logoProps} {...props} />,
+            title: 'WordPress',
+            url: 'https://wordpress.org/'
         }
     };
 

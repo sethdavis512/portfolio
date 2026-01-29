@@ -20,6 +20,11 @@ const workLinks = [
         label: 'Iridium'
     },
     {
+        to: '/virtruv',
+        icon: LinkIcon,
+        label: 'Virtruv'
+    },
+    {
         to: '/freelance',
         icon: LinkIcon,
         label: 'Freelance'

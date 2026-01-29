@@ -65,6 +65,15 @@ const workItems = [
         url: '/iridium'
     },
     {
+        cta: 'View project',
+        title: 'Virtruv',
+        description:
+            'Custom WordPress website build including brand development, visual identity design, and close collaboration with stakeholders to deliver a solution aligned with business objectives.',
+        imageSrc: '/virtruv-thumbnail.webp',
+        imageAlt: 'Virtruv website redesign',
+        url: '/virtruv'
+    },
+    {
         cta: 'Explore the tool',
         title: 'Prompt Bucket',
         description: 'Prompt scoring and organization web application',

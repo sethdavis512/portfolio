@@ -27,6 +27,7 @@ export default [
         route('truck', 'routes/truck.tsx'),
         route('tws-cms', 'routes/tws-cms.tsx'),
         route('tws-starter', 'routes/tws-starter.tsx'),
+        route('virtruv', 'routes/virtruv.tsx'),
         route('work', 'routes/work.tsx')
     ])
 ] satisfies RouteConfig;
