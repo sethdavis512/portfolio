@@ -8,6 +8,7 @@ interface TechShowcaseProps {
     learned: string;
     value: string;
     demoUrl?: string;
+    demoUrlText?: string;
     sourceUrl?: string;
     techStack?: React.ReactNode;
 }
@@ -15,6 +16,7 @@ interface TechShowcaseProps {
 export function TechShowcase({
     about,
     demoUrl,
+    demoUrlText,
     learned,
     sourceUrl,
     techStack,
@@ -61,7 +63,7 @@ export function TechShowcase({
                                 )}
                                 {demoUrl && (
                                     <Linky external to={demoUrl} className="break-words">
-                                        See the demo
+                                        {demoUrlText || "See the demo"}
                                     </Linky>
                                 )}
                             </Card>
