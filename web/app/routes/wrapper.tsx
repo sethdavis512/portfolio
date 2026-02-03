@@ -55,13 +55,13 @@ const NAV_ITEMS: NavItem[] = [
         to: '/about',
         label: 'About',
         ariaLabel: 'Learn more about me'
-    },
-    {
-        type: 'internal',
-        to: '/blog',
-        label: 'Blog',
-        ariaLabel: 'Read the blog'
     }
+    // {
+    //     type: 'internal',
+    //     to: '/blog',
+    //     label: 'Blog',
+    //     ariaLabel: 'Read the blog'
+    // }
 ];
 
 interface AppNavLinkProps {

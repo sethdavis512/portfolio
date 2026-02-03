@@ -82,11 +82,11 @@ const pagesLinks = [
         icon: LinkIcon,
         label: 'About'
     },
-    {
-        to: '/blog',
-        icon: LinkIcon,
-        label: 'Blog'
-    },
+    // {
+    //     to: '/blog',
+    //     icon: LinkIcon,
+    //     label: 'Blog'
+    // },
     // {
     //     to: '/products',
     //     icon: LinkIcon,
