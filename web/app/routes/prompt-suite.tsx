@@ -2,6 +2,10 @@ import { HeroImage } from '~/components/HeroImage';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
 import { generateRouteMeta } from '~/utils/seo';
+import { Card } from '~/components/Card';
+import { Heading } from '~/components/Heading';
+import { Linky } from '~/components/Linky';
+import { Button } from '~/components/Button';
 
 export function meta() {
     return generateRouteMeta({
@@ -28,6 +32,24 @@ export default function PromptSuiteRoute() {
                     />
                 }
             />
+
+            <Card className="mt-8 p-6 bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-blue-200 dark:border-blue-800">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div className="flex-1">
+                        <Heading as="h3" size="4" className="mb-2">
+                            Want to build your own tray app?
+                        </Heading>
+                        <p className="text-zinc-700 dark:text-zinc-300">
+                            Learn the exact patterns used in Prompt Suite. Get a
+                            beginner-friendly guide to building Electron tray
+                            apps from scratch.
+                        </p>
+                    </div>
+                    <Linky to="/tray-app-guide" className="shrink-0">
+                        <Button color="primary">View the Guide →</Button>
+                    </Linky>
+                </div>
+            </Card>
         </>
     );
 }

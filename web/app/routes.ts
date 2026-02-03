@@ -34,6 +34,8 @@ export default [
         route('rr7-tuner', 'routes/rr7-tuner.tsx'),
         route('setup', 'routes/setup.tsx'),
         route('tech-with-seth', 'routes/tech-with-seth.tsx'),
+        route('thank-you', 'routes/thank-you.tsx'),
+        route('tray-app-guide', 'routes/tray-app-guide.tsx'),
         route('truck', 'routes/truck.tsx'),
         route('tws-cms', 'routes/tws-cms.tsx'),
         route('tws-starter', 'routes/tws-starter.tsx'),
