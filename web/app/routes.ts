@@ -11,10 +11,9 @@ export default [
         route('claude-desktop-for-insurance-agents', 'routes/claude-desktop-for-insurance-agents.tsx'),
         route('custom-file-generator', 'routes/custom-file-generator.tsx'),
         route('freelance', 'routes/freelance.tsx'),
-        route('generative-ui', 'routes/generative-ui.tsx'),
         route('iridium', 'routes/iridium.tsx'),
         route('obsidian-mcp-server', 'routes/obsidian-mcp-server.tsx'),
-        route('prompt-bucket', 'routes/prompt-bucket.tsx'),
+        route('prompt-suite', 'routes/prompt-suite.tsx'),
         route('products', 'routes/products.tsx'),
         route('prompts', 'routes/prompts.tsx'),
         route('prompts/:slug', 'routes/prompt-detail.tsx'),
@@ -27,6 +26,7 @@ export default [
         route('truck', 'routes/truck.tsx'),
         route('tws-cms', 'routes/tws-cms.tsx'),
         route('tws-starter', 'routes/tws-starter.tsx'),
+        route('video-machine', 'routes/video-machine.tsx'),
         route('virtruv', 'routes/virtruv.tsx'),
         route('work', 'routes/work.tsx')
     ])

@@ -14,15 +14,15 @@ export enum BorderStyles {
 }
 
 export enum ContentStyles {
-    FRONTEND = `Frontend`,
-    CURRENT_JOB_TITLE = `Software Engineer (${FRONTEND})`
+    FRONTEND = `Design`,
+    CURRENT_JOB_TITLE = `Design Engineer`
 }
 
 // SEO and metadata constants
 export const SITE_META = {
-    DEFAULT_KEYWORDS: ['Seth Davis', `Senior ${ContentStyles.FRONTEND} Engineer`, 'React Router 7', 'TypeScript', 'React Developer', 'Austin Texas developer', `${ContentStyles.FRONTEND} engineer Austin`, 'Web developer portfolio', 'Full-stack developer'],
+    DEFAULT_KEYWORDS: ['Seth Davis', 'Design Engineer', 'Design Systems', 'AI Tooling', 'Creative Technology', 'Generative UI', 'React Router 7', 'TypeScript', 'Austin Texas developer', 'Web developer portfolio'],
     LOCATION: 'Austin, Texas',
-    PROFESSION: `Senior ${ContentStyles.FRONTEND} Engineer`,
+    PROFESSION: `Design Engineer`,
     COMPANY: 'Tech with Seth'
 } as const;
 
@@ -33,14 +33,14 @@ export const SEO_CONSTANTS = {
         NAME: 'Seth Davis',
         EMAIL: 'sethdavis512@gmail.com',
         LOCATION: 'Austin, Texas',
-        JOB_TITLE: `Senior ${ContentStyles.FRONTEND} Engineer`,
+        JOB_TITLE: `Design Engineer`,
         COMPANY: 'Tech with Seth',
         LINKEDIN: 'https://www.linkedin.com/in/sethdavis512/',
         GITHUB: 'https://github.com/sethdavis512',
         TWITTER: 'https://x.com/sethdavis512'
     },
-    DEFAULT_DESCRIPTION: `Seth Davis is a Senior ${ContentStyles.FRONTEND} Engineer in Austin, Texas, specializing in React Router 7, TypeScript, and full-stack web development. Explore his portfolio, blog, and open source projects.`,
-    KEYWORDS: ['Seth Davis', `Senior ${ContentStyles.FRONTEND} Engineer`, 'React Router 7', 'TypeScript', 'React', 'Austin Texas developer', 'Full-stack developer', `${ContentStyles.FRONTEND} engineer`, 'JavaScript developer', 'Web developer', 'React Router', 'GraphQL', 'Prisma', 'Portfolio'],
+    DEFAULT_DESCRIPTION: `Seth Davis is a Design Engineer in Austin, Texas, specializing in design systems, AI-assisted tooling, and generative interfaces. Explore his portfolio showcasing creative technology and modern React development.`,
+    KEYWORDS: ['Seth Davis', 'Design Engineer', 'Design Systems', 'AI Tooling', 'Creative Technology', 'Generative UI', 'React Router 7', 'TypeScript', 'React', 'Austin Texas developer', 'JavaScript developer', 'Web developer', 'GraphQL', 'Prisma', 'Portfolio'],
     SOCIAL_IMAGE: '/seth-davis-social-card.png', // You may want to create this
     FAVICON: '/favicon.ico'
 } as const;

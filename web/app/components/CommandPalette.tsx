@@ -15,6 +15,11 @@ const workLinks = [
         label: 'See all'
     },
     {
+        to: '/video-machine',
+        icon: LinkIcon,
+        label: 'Video Machine'
+    },
+    {
         to: '/iridium',
         icon: LinkIcon,
         label: 'Iridium'
@@ -30,9 +35,9 @@ const workLinks = [
         label: 'Freelance'
     },
     {
-        to: '/prompt-bucket',
+        to: '/prompt-suite',
         icon: LinkIcon,
-        label: 'Prompt Bucket'
+        label: 'Prompt Suite'
     },
     {
         to: '/rapidalle',
