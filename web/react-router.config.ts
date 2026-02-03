@@ -23,7 +23,6 @@ export default {
             '/work',
             // Pages
             '/about',
-            '/blog',
             '/products',
             '/resume',
             '/setup',
