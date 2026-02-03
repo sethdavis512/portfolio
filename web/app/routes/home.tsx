@@ -20,7 +20,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Welcome',
         descriptionContent:
-            'Seth Davis is a Frontend Engineer specializing in React Router 7, TypeScript, and modern web development. Based in Austin, Texas.',
+            'Seth Davis is a Design Engineer specializing in AI-assisted design tooling, design systems, and generative interfaces. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
     });
 }
@@ -70,10 +70,9 @@ export default function Home() {
                 </Heading>
                 <div className="space-y-4 md:space-y-8 mb-8">
                     <p className="text-md md:text-2xl font-medium">
-                        I build tools that help developers spend less time on
+                        I build AI-assisted tools and design systems that bridge
                         <br />
-                        repetitive tasks and more time solving interesting
-                        problems.
+                        design intent and programmable interfaces.
                     </p>
                     <p>
                         {`Currently seeking new opportunities as a ${ContentStyles.CURRENT_JOB_TITLE}.`}
@@ -89,28 +88,62 @@ export default function Home() {
                 </div>
             </HomeSection>
             <HomeSection>
-                <Heading>Now Building</Heading>
-                <Link to="/iridium">
+                <Heading>Featured projects</Heading>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    <Card className="p-0 grid border-2 border-zinc-700/75 overflow-hidden bg-gradient-to-br from-red-800 via-zinc-600 to-zinc-700 dark:from-red-950 dark:via-zinc-800 dark:to-zinc-900">
+                        <div className="col-start-1 row-start-1 p-8 text-white">
+                            <Heading className="text-white">
+                                Video Machine
+                            </Heading>
+                            <p className="mb-8 text-zinc-100">
+                                A video rendering platform that creates
+                                TikTok-style slide presentations using Remotion.
+                                Features credit-based payments and background
+                                processing for seamless video creation.
+                            </p>
+                            <ButtonLink
+                                color="primary"
+                                size="lg"
+                                to="/video-machine"
+                            >
+                                Learn more
+                            </ButtonLink>
+                        </div>
+                    </Card>
+                    <Card className="p-0 grid border-2 border-zinc-700/75 overflow-hidden bg-gradient-to-br from-blue-800 via-zinc-600 to-zinc-700 dark:from-blue-950 dark:via-zinc-800 dark:to-zinc-900">
+                        <div className="col-start-1 row-start-1 p-8 text-white">
+                            <Heading className="text-white">
+                                Prompt Suite
+                            </Heading>
+                            <p className="mb-8 text-zinc-100">
+                                Native desktop tray app for instant AI prompt
+                                access. Quick interactions without disrupting
+                                your workflow, perfect for creative
+                                professionals.
+                            </p>
+                            <ButtonLink
+                                color="primary"
+                                size="lg"
+                                to="/prompt-suite"
+                            >
+                                Learn more
+                            </ButtonLink>
+                        </div>
+                    </Card>
                     <Card className="p-0 grid border-2 border-zinc-700/75 overflow-hidden bg-gradient-to-br from-purple-800 via-zinc-600 to-zinc-700 dark:from-purple-950 dark:via-zinc-800 dark:to-zinc-900">
                         <div className="col-start-1 row-start-1 p-8 text-white">
                             <Heading className="text-white">Iridium</Heading>
                             <p className="mb-8 text-zinc-100">
-                                A full-stack starter built with TypeScript,
-                                React Router, Prisma, and Postgres. It handles
-                                auth, database setup, and testing so you can
-                                focus on integrating AI features instead of
-                                configuring infrastructure. Did I mention
-                                everything is tracked by PostHog? With automatic
-                                event tracking, custom event tracking, session
-                                replay, LLM tracking and more you'll be able to
-                                gain valuable insights into your users' journey.
+                                Production-ready SaaS boilerplate with
+                                TypeScript, React Router, Prisma, and PostHog.
+                                Focus on building features, not infrastructure.
                             </p>
                             <ButtonLink color="primary" size="lg" to="/iridium">
                                 Learn more
                             </ButtonLink>
                         </div>
                     </Card>
-                </Link>
+                </div>
             </HomeSection>
             <HomeSection>
                 <Heading>Socials</Heading>

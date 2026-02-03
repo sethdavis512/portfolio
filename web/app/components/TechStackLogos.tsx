@@ -5,6 +5,8 @@ import { BetterAuthLogo } from './logos/BetterAuthLogo';
 import { CSSLogo } from './logos/CSSLogo';
 import { DocusaurusLogo } from './logos/DocusaurusLogo';
 import { GitHubLogo } from './logos/GitHubLogo';
+import { JavaScriptLogo } from './logos/JavaScriptLogo';
+import { VueLogo } from './logos/VueLogo';
 import { MCPLogo } from './logos/MCPLogo';
 import { ObsidianLogo } from './logos/ObsidianLogo';
 import { PostgresLogo } from './logos/PostgresLogo';
@@ -12,6 +14,7 @@ import { PrismaLogo } from './logos/PrismaLogo';
 import { RailwayLogo } from './logos/RailwayLogo';
 import { ReactLogo } from './logos/ReactLogo';
 import { ReactRouterLogo } from './logos/ReactRouterLogo';
+import { RemotionLogo } from './logos/RemotionLogo';
 import { TailwindLogo } from './logos/TailwindLogo';
 import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
@@ -31,6 +34,7 @@ export type LogoName =
     | 'daisy'
     | 'docusaurus'
     | 'github'
+    | 'javascript'
     | 'keystone'
     | 'mcp'
     | 'obsidian'
@@ -40,10 +44,12 @@ export type LogoName =
     | 'railway'
     | 'react'
     | 'react-router'
+    | 'remotion'
     | 'tailwind'
     | 'trigger'
     | 'typescript'
     | 'vibe'
+    | 'vuejs'
     | 'wordpress';
 
 interface TechStackLogosProps {
@@ -96,6 +102,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             title: 'GitHub',
             url: 'https://github.com/'
         },
+        javascript: {
+            component: (props) => <JavaScriptLogo {...logoProps} {...props} />,
+            title: 'JavaScript',
+            url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
+        },
         keystone: {
             component: (props) => <KeystoneLogo {...logoProps} {...props} />,
             title: 'Keystone',
@@ -136,6 +147,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             title: 'React',
             url: 'https://react.dev/'
         },
+        remotion: {
+            component: (props) => <RemotionLogo {...logoProps} {...props} />,
+            title: 'Remotion',
+            url: 'https://www.remotion.dev/'
+        },
         tailwind: {
             component: (props) => <TailwindLogo {...logoProps} {...props} />,
             title: 'Tailwind CSS',
@@ -155,6 +171,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <VibeCodeLogo {...logoProps} {...props} />,
             title: 'Vibe Code',
             url: 'https://www.ibm.com/think/topics/vibe-coding'
+        },
+        vuejs: {
+            component: (props) => <VueLogo {...logoProps} {...props} />,
+            title: 'Vue.js',
+            url: 'https://vuejs.org/'
         },
         wordpress: {
             component: (props) => <WordPressLogo {...logoProps} {...props} />,

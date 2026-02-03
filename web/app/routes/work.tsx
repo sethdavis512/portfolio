@@ -73,13 +73,31 @@ const workItems = [
         imageAlt: 'Virtruv website redesign',
         url: '/virtruv'
     },
+    // {
+    //     cta: 'Explore the tool',
+    //     title: 'Prompt Bucket',
+    //     description: 'Prompt scoring and organization web application',
+    //     imageSrc: '/prompt-bucket-thumbnail.webp',
+    //     imageAlt: 'A 3D bucket',
+    //     url: '/prompt-bucket'
+    // },
     {
-        cta: 'Explore the tool',
-        title: 'Prompt Bucket',
-        description: 'Prompt scoring and organization web application',
-        imageSrc: '/prompt-bucket-thumbnail.webp',
-        imageAlt: 'A 3D bucket',
-        url: '/prompt-bucket'
+        cta: 'Learn more',
+        title: 'Prompt Suite',
+        description:
+            'Native desktop tray app for instant AI prompt access without disrupting your workflow.',
+        imageSrc: '/prompt-suite-thumbnail.webp',
+        imageAlt: 'Prompt Suite desktop app in system tray',
+        url: '/prompt-suite'
+    },
+    {
+        cta: 'Explore platform',
+        title: 'Video Machine',
+        description:
+            'Video rendering platform that creates TikTok-style slide videos using Remotion, with credit-based payments and background processing.',
+        imageSrc: '/video-machine-thumbnail.webp',
+        imageAlt: 'Video Machine rendering interface',
+        url: '/video-machine'
     },
     // {
     //     cta: 'Explore bundles',

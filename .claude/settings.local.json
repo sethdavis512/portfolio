@@ -7,7 +7,12 @@
       "Bash(gh api:*)",
       "Bash(cat:*)",
       "Bash(tree:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:block.xyz)",
+      "Bash(wc:*)",
+      "Bash(find:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm run typecheck:*)"
     ],
     "deny": [],
     "ask": []

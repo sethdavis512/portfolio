@@ -1,7 +1,20 @@
 import { HeroImage } from '~/components/HeroImage';
+import { ImageGalleryModal } from '~/components/ImageGalleryModal';
+import { ImageThumbnails } from '~/components/ImageThumbnails';
 import { TechShowcase } from '~/components/TechShowcase';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { useImageGallery } from '~/hooks/useImageGallery';
 import { generateRouteMeta } from '~/utils/seo';
+
+const VIRTRUV_IMAGES = [
+    { src: '/virtruv-hero.webp', alt: 'Virtruv Homepage' },
+    { src: '/virtruv-hero-cyber-ops.webp', alt: 'Virtruv Cyber Operations' },
+    {
+        src: '/virtruv-hero-sec-ops.webp',
+        alt: 'Virtruv Security Operations'
+    },
+    { src: '/virtruv-hero-contact.webp', alt: 'Virtruv Contact' }
+];
 
 export function meta() {
     return generateRouteMeta({
@@ -13,9 +26,18 @@ export function meta() {
 }
 
 export default function VirtruvRoute() {
+    const { isOpen, selectedIndex, openGallery, closeGallery } =
+        useImageGallery();
+
     return (
         <>
-            <HeroImage src="/virtruv-hero.png" alt="Virtruv" />
+            <HeroImage
+                src="/virtruv-hero.webp"
+                alt="Virtruv"
+                clickable
+                onClick={() => openGallery(0)}
+                imageCount={VIRTRUV_IMAGES.length}
+            />
             <TechShowcase
                 title="Virtruv"
                 about="Virtruv is a custom WordPress website I revitalized, combining technical development with minor graphic design work. The project included crafting the brand's visual identity through logo design changes, color palette development, and imagery curation. Working closely with the business owner, I delivered a modern, professional web presence that accurately represents the company's values and services."
@@ -24,6 +46,18 @@ export default function VirtruvRoute() {
                 demoUrl="https://virtruv.com"
                 demoUrlText="See the site"
                 techStack={<TechStackLogos logos={['wordpress', 'css']} />}
+            />
+
+            <ImageThumbnails
+                images={VIRTRUV_IMAGES.slice(1)}
+                onImageClick={(index) => openGallery(index + 1)}
+            />
+
+            <ImageGalleryModal
+                images={VIRTRUV_IMAGES}
+                isOpen={isOpen}
+                onClose={closeGallery}
+                initialIndex={selectedIndex}
             />
         </>
     );

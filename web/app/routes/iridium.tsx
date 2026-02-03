@@ -10,12 +10,24 @@ import { getPortfolioBase } from '~/airtable';
 import { Banner } from '~/components/Banner';
 import { Button } from '~/components/Button';
 import { HeroImage } from '~/components/HeroImage';
+import { ImageGalleryModal } from '~/components/ImageGalleryModal';
+import { ImageThumbnails } from '~/components/ImageThumbnails';
 import { TechStackLogos } from '~/components/TechStackLogos';
+import { useImageGallery } from '~/hooks/useImageGallery';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/iridium';
 import { Heading } from '~/components/Heading';
 import { Card } from '~/components/Card';
 import { Linky } from '~/components/Linky';
+
+const IRIDIUM_IMAGES = [
+    { src: '/iridium-hero.webp', alt: 'Iridium Dashboard' },
+    { src: '/iridium-hero-themed.webp', alt: 'Iridium Dashboard Themed' },
+    { src: '/iridium-hero-dashboard.webp', alt: 'Iridium Dashboard' },
+    { src: '/iridium-hero-file-browser.webp', alt: 'Iridium File Browser' },
+    { src: '/iridium-hero-design.webp', alt: 'Iridium Design' },
+    { src: '/iridium-hero-admin-panel.webp', alt: 'Iridium Admin Panel' }
+];
 
 export function meta() {
     return generateRouteMeta({
@@ -65,6 +77,8 @@ export async function action({ request }: Route.ActionArgs) {
 export default function IridiumRoute() {
     const fetcher = useFetcher();
     const formRef = useRef<HTMLFormElement>(null);
+    const { isOpen, selectedIndex, openGallery, closeGallery } =
+        useImageGallery();
 
     useEffect(() => {
         if (fetcher.data && fetcher.data.success && formRef.current) {
@@ -75,7 +89,13 @@ export default function IridiumRoute() {
 
     return (
         <>
-            <HeroImage src="/iridium-hero.png" alt="Iridium" />
+            <HeroImage
+                src="/iridium-hero.webp"
+                alt="Iridium"
+                clickable
+                onClick={() => openGallery(0)}
+                imageCount={IRIDIUM_IMAGES.length}
+            />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-4 min-w-0">
                     <Heading as="h1">Iridium</Heading>
@@ -256,6 +276,18 @@ export default function IridiumRoute() {
                     </section>
                 </div>
             </div>
+
+            <ImageThumbnails
+                images={IRIDIUM_IMAGES.slice(1)}
+                onImageClick={(index) => openGallery(index + 1)}
+            />
+
+            <ImageGalleryModal
+                images={IRIDIUM_IMAGES}
+                isOpen={isOpen}
+                onClose={closeGallery}
+                initialIndex={selectedIndex}
+            />
         </>
     );
 }
