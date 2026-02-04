@@ -32,7 +32,7 @@ export default function ThankYouRoute() {
             <div className="space-y-6">
                 <Card className="space-y-4">
                     <div className="flex items-start gap-3">
-                        <Mail className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mt-0.5 flex-shrink-0" />
+                        <Mail className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mt-0.5 shrink-0" />
                         <div>
                             <Heading as="h2" size="4" className="mb-2">
                                 Check Your Email
@@ -49,7 +49,7 @@ export default function ThankYouRoute() {
 
                 <Card className="space-y-4">
                     <div className="flex items-start gap-3">
-                        <MessageCircle className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mt-0.5 flex-shrink-0" />
+                        <MessageCircle className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mt-0.5 shrink-0" />
                         <div>
                             <Heading as="h2" size="4" className="mb-2">
                                 Need Help?
@@ -92,12 +92,8 @@ export default function ThankYouRoute() {
                             something new.
                         </p>
                         <div className="flex flex-wrap gap-3 pt-2">
-                            <ButtonLink to="/" variant="secondary">
-                                Return Home
-                            </ButtonLink>
-                            <ButtonLink to="/work" variant="secondary">
-                                View My Work
-                            </ButtonLink>
+                            <ButtonLink to="/">Return Home</ButtonLink>
+                            <ButtonLink to="/work">View My Work</ButtonLink>
                         </div>
                     </div>
                 </Card>

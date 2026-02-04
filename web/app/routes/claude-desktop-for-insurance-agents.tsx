@@ -25,9 +25,9 @@ export default function ClaudeInsuranceRoute() {
                 <Heading as="h1" size="1">
                     Claude Desktop for Insurance Agents
                 </Heading>
-                <figure className="rounded-xl w-full max-h-[420px] overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                <figure className="rounded-xl w-full max-h-105 overflow-hidden border border-zinc-200 dark:border-zinc-800">
                     <ResponsiveImage
-                        className="w-full h-auto max-h-[420px] object-cover"
+                        className="w-full h-auto max-h-105 object-cover"
                         src="/cover-insurance-cropped-840x840.webp"
                         alt="Claude Desktop for Insurance Agents January 2026 edition cover"
                         responsive
@@ -51,7 +51,7 @@ export default function ClaudeInsuranceRoute() {
                         <div className="grid grid-cols-1 gap-4">
                             <Card className="p-6 space-y-3">
                                 <div className="flex items-start gap-3">
-                                    <FileText className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                                    <FileText className="w-8 h-8 text-primary shrink-0 mt-1" />
                                     <div>
                                         <Heading
                                             as="h3"
@@ -73,7 +73,7 @@ export default function ClaudeInsuranceRoute() {
 
                             <Card className="p-6 space-y-3">
                                 <div className="flex items-start gap-3">
-                                    <Library className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                                    <Library className="w-8 h-8 text-primary shrink-0 mt-1" />
                                     <div>
                                         <Heading
                                             as="h3"
@@ -95,7 +95,7 @@ export default function ClaudeInsuranceRoute() {
 
                             <Card className="p-6 space-y-3">
                                 <div className="flex items-start gap-3">
-                                    <FileCheck className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                                    <FileCheck className="w-8 h-8 text-primary shrink-0 mt-1" />
                                     <div>
                                         <Heading
                                             as="h3"
@@ -179,7 +179,7 @@ export default function ClaudeInsuranceRoute() {
                         <Heading as="h2" size="3" className="pt-4">
                             The Value
                         </Heading>
-                        <Card className="p-6 bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 border-primary/30">
+                        <Card className="p-6 bg-linear-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 border-primary/30">
                             <ul className="space-y-4 text-zinc-700 dark:text-zinc-300">
                                 <li className="flex items-start gap-3">
                                     <span className="font-bold text-primary text-xl">
