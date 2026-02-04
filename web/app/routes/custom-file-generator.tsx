@@ -18,6 +18,7 @@ export default function GenerativeUIRoute() {
             <HeroImage
                 src="/custom-file-generator-hero.png"
                 alt="Custom File Generator"
+                responsive
             />
             <TechShowcase
                 title="Custom File Generator"

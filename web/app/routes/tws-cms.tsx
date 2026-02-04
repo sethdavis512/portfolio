@@ -18,10 +18,7 @@ export function meta() {
 export default function TWSCMSRoute() {
     return (
         <>
-            <img
-                src="/tws-cms-hero.png"
-                className="rounded-lg mb-8 border border-zinc-700"
-            />
+            {/* TODO: Add tws-cms-hero image */}
             <Heading as="h1" size="1" className="mb-8">
                 tws-cms
             </Heading>

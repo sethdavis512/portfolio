@@ -5,28 +5,23 @@ export default {
     async prerender() {
         return [
             '/',
-            // Projects
+            '/about',
             '/ai-maniacs',
-            '/claude-desktop-for-real-estate-agents',
-            '/claude-desktop-for-insurance-agents',
             '/custom-file-generator',
             '/obsidian-mcp-server',
+            '/products',
             '/rapidalle',
             '/resume',
+            '/resume',
             '/rr7-slides',
-            '/rr7-slides',
-            '/rr7-tuner',
+            '/setup',
             '/tech-with-seth',
+            '/truck',
             '/tws-cms',
             '/tws-starter',
             '/virtruv',
             '/work',
-            // Pages
-            '/about',
-            '/products',
-            '/resume',
-            '/setup',
-            '/truck'
+            '/sitemap.xml'
         ];
     }
 } satisfies Config;

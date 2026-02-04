@@ -18,10 +18,7 @@ export function meta() {
 export default function TWSStarterRoute() {
     return (
         <>
-            <img
-                src="/tws-starter-hero.png"
-                className="rounded-lg mb-8 border border-zinc-700"
-            />
+            {/* TODO: Add tws-starter-hero image */}
             <Heading as="h1" size="1" className="mb-8">
                 tws-starter
             </Heading>

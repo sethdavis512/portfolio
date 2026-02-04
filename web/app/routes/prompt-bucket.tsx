@@ -18,6 +18,7 @@ export default function PromptBucketRoute() {
             <HeroImage
                 src="/prompt-bucket-hero.png"
                 alt="Prompt Bucket app displayed in a web browser"
+                responsive
             />
             <TechShowcase
                 title="Prompt Bucket"
@@ -36,7 +37,7 @@ export default function PromptBucketRoute() {
                             'prisma',
                             'postgres',
                             'polar',
-                            'railway',
+                            'railway'
                             // 'vibe'
                         ]}
                     />

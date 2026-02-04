@@ -12,14 +12,14 @@ export default [
         route('ai-maniacs', 'routes/ai-maniacs.tsx'),
         // route('blog', 'routes/blog.tsx'),
         // route('blog/:slug', 'routes/blog-detail.tsx'),
-        route(
-            'claude-desktop-for-real-estate-agents',
-            'routes/claude-desktop-for-real-estate-agents.tsx'
-        ),
-        route(
-            'claude-desktop-for-insurance-agents',
-            'routes/claude-desktop-for-insurance-agents.tsx'
-        ),
+        // route(
+        //     'claude-desktop-for-real-estate-agents',
+        //     'routes/claude-desktop-for-real-estate-agents.tsx'
+        // ),
+        // route(
+        //     'claude-desktop-for-insurance-agents',
+        //     'routes/claude-desktop-for-insurance-agents.tsx'
+        // ),
         route('custom-file-generator', 'routes/custom-file-generator.tsx'),
         route('freelance', 'routes/freelance.tsx'),
         route('iridium', 'routes/iridium.tsx'),
@@ -42,5 +42,7 @@ export default [
         route('video-machine', 'routes/video-machine.tsx'),
         route('virtruv', 'routes/virtruv.tsx'),
         route('work', 'routes/work.tsx')
-    ])
+    ]),
+    // SEO: XML Sitemap (resource route, no wrapper needed)
+    route('sitemap.xml', 'routes/sitemap.xml.tsx')
 ] satisfies RouteConfig;

@@ -4,48 +4,48 @@
 
 This is a full-stack portfolio website built with a modern monorepo architecture featuring:
 
--   **Frontend**: React Router v7 application with TypeScript, TailwindCSS, and server-side rendering
--   **Backend**: KeystoneJS 6 headless CMS with GraphQL API and PostgreSQL database
--   **Architecture**: Monorepo with separate `web/` and `cms/` packages
+- **Frontend**: React Router v7 application with TypeScript, TailwindCSS, and server-side rendering
+- **Backend**: KeystoneJS 6 headless CMS with GraphQL API and PostgreSQL database
+- **Architecture**: Monorepo with separate `web/` and `cms/` packages
 
 ## Technology Stack
 
 ### Frontend (`web/`)
 
--   **Framework**: React Router v7 with SSR and pre-rendering
--   **Language**: TypeScript with strict type checking
--   **Styling**: TailwindCSS v4 with `@tailwindcss/typography` and `tailwindcss-animate`
--   **GraphQL**: `graphql-request` client with code generation via `@graphql-codegen`
--   **UI Components**: Custom component library using `cva` (Class Variance Authority)
--   **Analytics**: PostHog integration
--   **Build**: Vite with TypeScript path mapping
+- **Framework**: React Router v7 with SSR and pre-rendering
+- **Language**: TypeScript with strict type checking
+- **Styling**: TailwindCSS v4 with `@tailwindcss/typography` and `tailwindcss-animate`
+- **GraphQL**: `graphql-request` client with code generation via `@graphql-codegen`
+- **UI Components**: Custom component library using `cva` (Class Variance Authority)
+- **Analytics**: PostHog integration
+- **Build**: Vite with TypeScript path mapping
 
 ### Backend (`cms/`)
 
--   **Framework**: KeystoneJS 6 headless CMS
--   **Database**: PostgreSQL with Prisma ORM
--   **Authentication**: Built-in KeystoneJS auth with bcrypt password hashing
--   **API**: Auto-generated GraphQL API at `/api/graphql`
--   **Language**: TypeScript
+- **Framework**: KeystoneJS 6 headless CMS
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: Built-in KeystoneJS auth with bcrypt password hashing
+- **API**: Auto-generated GraphQL API at `/api/graphql`
+- **Language**: TypeScript
 
 ## Code Style and Patterns
 
 ### General Guidelines
 
--   Use TypeScript strictly with proper type definitions
--   Follow functional programming patterns where possible
--   Prefer composition over inheritance
--   Use semantic HTML and accessible patterns
--   Write clean, self-documenting code with meaningful variable names
+- Use TypeScript strictly with proper type definitions
+- Follow functional programming patterns where possible
+- Prefer composition over inheritance
+- Use semantic HTML and accessible patterns
+- Write clean, self-documenting code with meaningful variable names
 
 ### React/Frontend Patterns
 
--   Use React Router v7 file-based routing in `app/routes/`
--   Server-side data fetching with `loader` functions
--   Component composition with TypeScript props interfaces
--   Custom hooks for shared logic
--   Responsive design with mobile-first approach
--   Dark mode support (default theme)
+- Use React Router v7 file-based routing in `app/routes/`
+- Server-side data fetching with `loader` functions
+- Component composition with TypeScript props interfaces
+- Custom hooks for shared logic
+- Responsive design with mobile-first approach
+- Dark mode support (default theme)
 
 ### Component Structure
 
@@ -66,18 +66,18 @@ export default function Component({ prop }: ComponentProps) {
 
 ### GraphQL Patterns
 
--   Use generated types from `~/generated/graphql`
--   Server-side GraphQL queries in route loaders
--   Proper error handling for GraphQL requests
--   Fragment-based query organization
+- Use generated types from `~/generated/graphql`
+- Server-side GraphQL queries in route loaders
+- Proper error handling for GraphQL requests
+- Fragment-based query organization
 
 ### Styling Guidelines
 
--   Use TailwindCSS utility classes
--   Custom component variants with `cva`
--   Responsive design with Tailwind breakpoints
--   Consistent spacing using Tailwind scale
--   Component-based design system
+- Use TailwindCSS utility classes
+- Custom component variants with `cva`
+- Responsive design with Tailwind breakpoints
+- Consistent spacing using Tailwind scale
+- Component-based design system
 
 ## File Organization
 
@@ -108,62 +108,62 @@ cms/
 
 ### Common Commands
 
--   `npm run dev` - Start both CMS and web development servers
--   `npm run dev:web` - Start web development server only
--   `npm run dev:cms` - Start CMS development server only
--   `npm run generate:types` - Generate GraphQL types from schema
+- `npm run dev` - Start both CMS and web development servers
+- `npm run dev:web` - Start web development server only
+- `npm run dev:cms` - Start CMS development server only
+- `npm run generate:types` - Generate GraphQL types from schema
 
 ### GraphQL Development
 
--   CMS runs on port 3000 with admin UI at `/admin`
--   GraphQL playground available at `/api/graphql`
--   Auto-generate TypeScript types after schema changes
--   Use proper GraphQL query fragments for reusability
+- CMS runs on port 3000 with admin UI at `/admin`
+- GraphQL playground available at `/api/graphql`
+- Auto-generate TypeScript types after schema changes
+- Use proper GraphQL query fragments for reusability
 
 ### Database Management
 
--   Use Prisma migrations for schema changes
--   Seed script available for initial data setup
--   PostgreSQL in production, supports development database
+- Use Prisma migrations for schema changes
+- Seed script available for initial data setup
+- PostgreSQL in production, supports development database
 
 ## Content Management
 
 ### Schema Design
 
--   **Users**: Authentication and author information
--   **Posts**: Blog content with rich text, status, and relationships
--   **Tags**: Categorical organization for posts
--   Relationships: Users → Posts (one-to-many), Posts ↔ Tags (many-to-many)
+- **Users**: Authentication and author information
+- **Posts**: Blog content with rich text, status, and relationships
+- **Tags**: Categorical organization for posts
+- Relationships: Users → Posts (one-to-many), Posts ↔ Tags (many-to-many)
 
 ### Content Fields
 
--   Rich text content using KeystoneJS document fields
--   Status-based publishing workflow (DRAFT/PUBLISHED/ARCHIVED)
--   SEO-friendly slugs with uniqueness constraints
--   Automatic timestamps for creation and updates
+- Rich text content using KeystoneJS document fields
+- Status-based publishing workflow (DRAFT/PUBLISHED/ARCHIVED)
+- SEO-friendly slugs with uniqueness constraints
+- Automatic timestamps for creation and updates
 
 ## Performance Considerations
 
--   Server-side rendering for better SEO and performance
--   Static pre-rendering for key pages
--   Optimized GraphQL queries to avoid N+1 problems
--   Image optimization and responsive images
--   Minimal client-side JavaScript bundle
+- Server-side rendering for better SEO and performance
+- Static pre-rendering for key pages
+- Optimized GraphQL queries to avoid N+1 problems
+- **Image optimization**: All images >150KB must use `HeroImage` or `ResponsiveImage` components with `responsive` prop. See [docs/IMAGE_OPTIMIZATION.md](../docs/IMAGE_OPTIMIZATION.md) for guidelines.
+- Minimal client-side JavaScript bundle
 
 ## Security and Best Practices
 
--   Environment variables for sensitive configuration
--   CORS configuration for cross-origin requests
--   Password hashing with bcrypt
--   Input validation on both client and server
--   TypeScript for compile-time error prevention
+- Environment variables for sensitive configuration
+- CORS configuration for cross-origin requests
+- Password hashing with bcrypt
+- Input validation on both client and server
+- TypeScript for compile-time error prevention
 
 ## Deployment and Environment
 
--   Production CMS endpoint: `https://admin.sethdavis.tech/api/graphql`
--   Environment-specific database URLs
--   Session management with secure cookies
--   CORS configuration for production domains
+- Production CMS endpoint: `https://admin.sethdavis.tech/api/graphql`
+- Environment-specific database URLs
+- Session management with secure cookies
+- CORS configuration for production domains
 
 ## When Working on This Project
 
@@ -175,15 +175,16 @@ cms/
 6. **Components**: Follow established component patterns and prop interfaces
 7. **Performance**: Consider SSR implications for new features
 8. **Accessibility**: Ensure semantic HTML and proper ARIA attributes
+9. **Images**: Always use `responsive` prop on HeroImage/ResponsiveImage components. Never use raw `<img>` tags for images >150KB. Verify optimized versions exist before deploying.
 
 ## Common Patterns to Follow
 
--   Use absolute imports with `~/` prefix for app modules
--   Server-side data fetching in route loaders
--   Component composition with proper TypeScript interfaces
--   Consistent error handling patterns
--   Responsive design with mobile-first approach
--   SEO optimization with proper meta tags and structured data
+- Use absolute imports with `~/` prefix for app modules
+- Server-side data fetching in route loaders
+- Component composition with proper TypeScript interfaces
+- Consistent error handling patterns
+- Responsive design with mobile-first approach
+- SEO optimization with proper meta tags and structured data
 
 ## Code Generation
 

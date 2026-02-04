@@ -38,7 +38,9 @@ export function ImageThumbnails({
                         type="button"
                     >
                         <img
-                            src={image.src}
+                            src={`/optimized${image.src.replace(/\.[^.]+$/, '')}-640w.webp`}
+                            srcSet={`/optimized${image.src.replace(/\.[^.]+$/, '')}-640w.webp 640w, /optimized${image.src.replace(/\.[^.]+$/, '')}-1024w.webp 1024w`}
+                            sizes="(max-width: 768px) 50vw, 25vw"
                             alt={image.alt}
                             className="w-full h-full object-cover"
                             loading="lazy"

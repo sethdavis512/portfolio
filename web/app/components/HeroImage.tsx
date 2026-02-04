@@ -29,16 +29,16 @@ export function HeroImage({
 
         const baseName = src.replace(/\.[^.]+$/, ''); // Remove extension
 
-        // Always include the original image for highest quality on retina displays
+        // Use only optimized images for best performance
         // Browser will select the best option based on screen size and pixel density
+        // Note: Most images only have 640w and 1024w versions, not 1920w
         const srcSetParts = [
             `/optimized${baseName}-640w.webp 640w`,
-            `/optimized${baseName}-1024w.webp 1024w`,
-            `${src} 1600w` // Original as highest quality option for retina
+            `/optimized${baseName}-1024w.webp 1024w`
         ];
 
         return {
-            src: src, // Fallback to original
+            src: `/optimized${baseName}-1024w.webp`, // Use 1024w as fallback since 1920w doesn't exist
             srcSet: srcSetParts.join(', ')
         };
     };

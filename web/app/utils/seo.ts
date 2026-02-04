@@ -20,6 +20,8 @@ export function generateRouteMeta({
             name: 'robots',
             content: 'index, follow'
         },
+        // Canonical URL
+        { tagName: 'link', rel: 'canonical', href: ogUrl },
         // Open Graph
         {
             property: 'og:title',

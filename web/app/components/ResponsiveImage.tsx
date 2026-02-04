@@ -25,12 +25,12 @@ export function ResponsiveImage({
         if (!responsive) return { src };
 
         const baseName = src.replace(/\.[^.]+$/, ''); // Remove extension
+        // Note: Most images only have 640w and 1024w versions, not 1920w
         return {
-            src: `/optimized${baseName}-1920w.webp`,
+            src: `/optimized${baseName}-1024w.webp`, // Use 1024w as fallback
             srcSet: [
                 `/optimized${baseName}-640w.webp 640w`,
-                `/optimized${baseName}-1024w.webp 1024w`,
-                `/optimized${baseName}-1920w.webp 1920w`
+                `/optimized${baseName}-1024w.webp 1024w`
             ].join(', ')
         };
     };
