@@ -33,12 +33,10 @@ export default function ProductsRoute() {
                 <Card className="p-6 space-y-4 flex flex-col">
                     <Linky to="/tray-app-guide" className="block">
                         <figure className="rounded-lg h-87.5 overflow-hidden">
-                            <ResponsiveImage
+                            <img
                                 className="w-full h-full object-cover"
-                                src="/tray-app-guide-cover-web.png"
+                                src="/optimized/tray-app-guide-cover-web-640w.webp"
                                 alt="Tray App Guide cover"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                responsive
                             />
                         </figure>
                     </Linky>
