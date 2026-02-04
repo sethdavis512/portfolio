@@ -37,6 +37,7 @@ export default function VirtruvRoute() {
                 clickable
                 onClick={() => openGallery(0)}
                 imageCount={VIRTRUV_IMAGES.length}
+                responsive
             />
             <TechShowcase
                 title="Virtruv"

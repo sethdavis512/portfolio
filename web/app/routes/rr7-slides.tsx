@@ -15,7 +15,7 @@ export function meta() {
 export default function RR7SlidesRoute() {
     return (
         <>
-            <HeroImage src="/rr7-slides-hero.png" alt="RR7 Slides" />
+            <HeroImage src="/rr7-slides-hero.png" alt="RR7 Slides" responsive />
             <TechShowcase
                 title="RR7 Slides"
                 about="RR7 Slides represents my exploration into modernizing presentation software for developers. I wanted to try building a solution that would eliminate the friction of traditional presentation tools when all you really want is to write slides in Markdown. This React Router 7 application emerged from my experiments with MDX-based presentations and dynamic content discovery systems. I was particularly interested in exploring how file-based routing could create an automatic slide discovery system that finds .mdx files, orders them intelligently, and implements lazy loading for optimal performance. The result combines the polish of traditional presentation software with the flexibility developers expect - keyboard navigation, smooth transitions, and the ability to embed React components directly in Markdown."

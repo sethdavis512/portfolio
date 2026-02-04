@@ -14,7 +14,11 @@ export function meta() {
 export default function TechWithSethRoute() {
     return (
         <>
-            <HeroImage src="/tech-with-seth-hero.png" alt="Tech With Seth" />
+            <HeroImage
+                src="/tech-with-seth-hero.png"
+                alt="Tech With Seth"
+                responsive
+            />
             <TechShowcase
                 title="Tech With Seth"
                 about="I kept running into the same setup tasks across different projects - scaffolding React components, configuring build tools, writing the same utility functions. Instead of solving these problems over and over, I started building reusable tools and templates. The Tech with Seth GitHub organization is where I put these solutions so other developers can skip the repetitive parts and get to the interesting work faster. It's a mix of CLI tools, starter templates, and utility libraries that handle the boring stuff I got tired of doing manually."

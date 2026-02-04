@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "concurrently \"npm run dev:cms\" \"npm run dev:web\"",
         "dev:web": "npm run dev --prefix web",
-        "dev:cms": "npm run dev --prefix cms"
+        "dev:cms": "npm run dev --prefix cms",
+        "optimize:images": "tsx scripts/optimize-images.ts"
     },
     "repository": {
         "type": "git",
@@ -24,5 +25,10 @@
         "@types/lodash": "^4.17.16",
         "concurrently": "^9.1.2",
         "lodash": "^4.17.21"
+    },
+    "devDependencies": {
+        "@types/sharp": "^0.31.1",
+        "sharp": "^0.34.5",
+        "tsx": "^4.21.0"
     }
 }

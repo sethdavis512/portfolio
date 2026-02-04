@@ -15,7 +15,7 @@ export function meta() {
 export default function AIManiacsRoute() {
     return (
         <>
-            <HeroImage src="/ai-maniacs-hero.png" alt="AI Maniacs" />
+            <HeroImage src="/ai-maniacs-hero.png" alt="AI Maniacs" responsive />
             <TechShowcase
                 title="AI Maniacs"
                 about="AI Maniacs is a comprehensive educational platform that transforms complex AI concepts into accessible, practical learning experiences. Built with Docusaurus, this project serves as a complete guide for users ranging from complete AI beginners to advanced practitioners. The platform covers everything from AI fundamentals and company landscapes to advanced automation strategies and the Model Context Protocol (MCP). What sets AI Maniacs apart is its structured, progressive learning approach with hands-on modules designed for real-world application across multiple industries including healthcare, finance, education, and creative fields."

@@ -19,7 +19,11 @@ export function meta() {
 export default function PromptSuiteRoute() {
     return (
         <>
-            <HeroImage src="/prompt-suite-hero.webp" alt="Prompt Suite" />
+            <HeroImage
+                src="/prompt-suite-hero.webp"
+                alt="Prompt Suite"
+                responsive
+            />
             <TechShowcase
                 title="Prompt Suite"
                 about="Native desktop application that lives in your system tray for instant AI prompt access. Built with Electron, the app provides a frameless, always-on-top popup window for quick prompt interactions without disrupting your workflow. Features include OpenAI integration, prompt saving to markdown files, and auto-hide functionality when clicking elsewhere. Designed for creative professionals who need rapid access to AI assistance while working in design tools or IDEs."

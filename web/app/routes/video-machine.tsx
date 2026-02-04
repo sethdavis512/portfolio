@@ -34,6 +34,7 @@ export default function VideoMachineRoute() {
                 clickable
                 onClick={() => openGallery(0)}
                 imageCount={VIDEO_MACHINE_IMAGES.length}
+                responsive
             />
             <TechShowcase
                 title="Video Machine"

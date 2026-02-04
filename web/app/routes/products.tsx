@@ -4,6 +4,7 @@ import { Card } from '~/components/Card';
 import { FreelanceCallToAction } from '~/components/FreelanceCallToAction';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
+import { ResponsiveImage } from '~/components/ResponsiveImage';
 import { PRODUCT_LINKS } from '~/constants';
 import { generateRouteMeta } from '~/utils/seo';
 
@@ -32,10 +33,12 @@ export default function ProductsRoute() {
                 <Card className="p-6 space-y-4 flex flex-col">
                     <Linky to="/tray-app-guide" className="block">
                         <figure className="rounded-lg h-87.5 overflow-hidden">
-                            <img
+                            <ResponsiveImage
                                 className="w-full h-full object-cover"
                                 src="/tray-app-guide-cover-web.png"
                                 alt="Tray App Guide cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                responsive
                             />
                         </figure>
                     </Linky>

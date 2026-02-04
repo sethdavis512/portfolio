@@ -15,7 +15,7 @@ export function meta() {
 export default function RapidalleRoute() {
     return (
         <>
-            <HeroImage src="/rapidalle-hero.png" alt="Rapidall•E" />
+            <HeroImage src="/rapidalle-hero.png" alt="Rapidall•E" responsive />
             <TechShowcase
                 title="Rapidall•E"
                 about="Design asset generation platform for typography and visual design workflows. Built with React Router 7, the application features real-time image generation using OpenAI's DALL-E 3, background task processing with Trigger.dev, and a credit-based user system. Emphasizes design-focused outputs through sophisticated prompt engineering that ensures consistent, professional-quality typography and artistic results. Integrates with Cloudinary for optimized image storage and delivery."

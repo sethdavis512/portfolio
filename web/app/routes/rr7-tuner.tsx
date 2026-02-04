@@ -15,7 +15,7 @@ export function meta() {
 export default function RR7TunerRoute() {
     return (
         <>
-            <HeroImage src="/rr7-tuner-hero.png" alt="RR7 Tuner" />
+            <HeroImage src="/rr7-tuner-hero.png" alt="RR7 Tuner" responsive />
             <TechShowcase
                 title="RR7 Tuner"
                 about="RR7 Tuner is an exploration of dynamic, data-driven user interfaces built with modern React and TypeScript. It demonstrates how to create flexible, composable UI components that adapt to changing data and user input."

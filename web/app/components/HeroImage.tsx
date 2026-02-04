@@ -8,6 +8,8 @@ interface HeroImageProps {
     clickable?: boolean;
     onClick?: () => void;
     imageCount?: number;
+    /** Enable responsive image variants (expects optimized/image-640w.webp, -1024w.webp, -1920w.webp) */
+    responsive?: boolean;
 }
 
 export function HeroImage({
@@ -16,9 +18,32 @@ export function HeroImage({
     src,
     clickable = false,
     onClick,
-    imageCount
+    imageCount,
+    responsive = false
 }: HeroImageProps) {
     const showGalleryBadge = clickable && imageCount && imageCount > 1;
+
+    // Generate responsive image sources if enabled
+    const getResponsiveSrc = () => {
+        if (!responsive) return { src };
+
+        const baseName = src.replace(/\.[^.]+$/, ''); // Remove extension
+
+        // Always include the original image for highest quality on retina displays
+        // Browser will select the best option based on screen size and pixel density
+        const srcSetParts = [
+            `/optimized${baseName}-640w.webp 640w`,
+            `/optimized${baseName}-1024w.webp 1024w`,
+            `${src} 1600w` // Original as highest quality option for retina
+        ];
+
+        return {
+            src: src, // Fallback to original
+            srcSet: srcSetParts.join(', ')
+        };
+    };
+
+    const imageSources = getResponsiveSrc();
 
     return (
         <figure
@@ -42,7 +67,14 @@ export function HeroImage({
                     : undefined
             }
         >
-            <img className="w-full" src={src} alt={alt} />
+            <img
+                className="w-full"
+                src={imageSources.src}
+                srcSet={imageSources.srcSet}
+                sizes="100vw"
+                alt={alt}
+                loading="eager"
+            />
 
             {showGalleryBadge && (
                 <div className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2.5 rounded-lg bg-black/80 backdrop-blur-sm text-white text-base font-medium transition-all group-hover:bg-black/90 group-hover:scale-105 animate-pulse-subtle shadow-[0_0_20px_rgba(255,255,255,0.15)]">

@@ -95,6 +95,7 @@ export default function IridiumRoute() {
                 clickable
                 onClick={() => openGallery(0)}
                 imageCount={IRIDIUM_IMAGES.length}
+                responsive
             />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-4 min-w-0">

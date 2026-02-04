@@ -1,4 +1,5 @@
 import { Divider } from '~/components/Divider';
+import { ResponsiveImage } from '~/components/ResponsiveImage';
 
 import { formatToUSD, getUniqueId } from '~/utils/common';
 import type { Route } from './+types/truck';
@@ -68,10 +69,11 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                 Trailer Tow Package • Interior Work Surface • Pro Power Onboard
                 (2.7kw) • Bed Utility Package • 360 Degree Camera Package
             </p>
-            <img
+            <ResponsiveImage
                 src="/truck-1.jpg"
                 alt="Black 2023 Ford F-150"
                 className="rounded-lg border border-zinc-300 dark:border-zinc-700"
+                responsive
             />
             <Divider className="my-8" />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
@@ -83,7 +85,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                         <a href={upgrade.url} target="_blank" rel="noreferrer">
                             <Card className="flex flex-col border border-transparent hover:border hover:border-green-500 overflow-hidden">
                                 <div className="-mx-4 -mt-4 mb-4">
-                                    <img
+                                    <ResponsiveImage
                                         src={upgrade.img}
                                         alt="F-150 bed cover"
                                         className="block h-[140px] w-full hover:no-underline"
@@ -94,6 +96,8 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                                             height: 140,
                                             backgroundColor: 'var(--gray-5)'
                                         }}
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        responsive
                                     />
                                 </div>
                                 <Heading
@@ -125,7 +129,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                         >
                             <Card className="flex flex-col border border-transparent hover:border hover:border-green-500 overflow-hidden">
                                 <div className="-mx-4 -mt-4 mb-4">
-                                    <img
+                                    <ResponsiveImage
                                         src={accessory.img}
                                         alt="F-150 bed cover"
                                         className="block h-[140px] w-full hover:no-underline"
@@ -136,6 +140,8 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                                             height: 140,
                                             backgroundColor: 'var(--gray-5)'
                                         }}
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        responsive
                                     />
                                 </div>
                                 {accessory.price && (

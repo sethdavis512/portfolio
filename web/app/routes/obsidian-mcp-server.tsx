@@ -15,7 +15,11 @@ export function meta() {
 export default function ObsidianMCPRoute() {
     return (
         <>
-            <HeroImage src="/obsidian-mcp-hero.png" alt="Obsidian MCP" />
+            <HeroImage
+                src="/obsidian-mcp-hero.png"
+                alt="Obsidian MCP"
+                responsive
+            />
             <TechShowcase
                 title="Obsidian MCP"
                 about="Extensible Model Context Protocol server demonstrating plugin architecture for AI agent integration. Bridges AI assistants (Claude, Cursor, VS Code) with Obsidian vaults for note-taking, content generation, and knowledge synthesis. Client-agnostic design works with any MCP-compatible tool while providing advanced features: bulk operations, metadata handling, intelligent content summarization. A practical example of building agentic infrastructure that extends AI capabilities through standardized protocols."

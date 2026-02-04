@@ -63,6 +63,23 @@ export function ImageGalleryModal({
         }
     }, [emblaMainApi, initialIndex, isOpen]);
 
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                scrollPrev();
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                scrollNext();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, scrollPrev, scrollNext]);
+
     return (
         <Dialog.Root open={isOpen} onOpenChange={onClose}>
             <Dialog.Portal>
