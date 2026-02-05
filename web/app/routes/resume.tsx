@@ -75,6 +75,7 @@ export default function ResumeRoute() {
                         'Typescript',
                         'React',
                         'React Router 7',
+                        'Vue.js',
                         'Prisma',
                         'Postgres',
                         'GraphQL',
