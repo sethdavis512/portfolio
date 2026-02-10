@@ -32,7 +32,7 @@ export default function PromptSuiteRoute() {
                 sourceUrl=""
                 techStack={
                     <TechStackLogos
-                        logos={['javascript', 'vuejs', 'tailwind']}
+                        logos={['javascript', 'vuejs', 'tailwind', 'polar']}
                     />
                 }
             />
