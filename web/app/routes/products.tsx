@@ -46,17 +46,17 @@ const products: Product[] = [
     {
         title: 'Prompt Suite',
         description:
-            'A native desktop tray app for instant AI prompt generation. Quick access to 8+ prompt categories without leaving your workflow.',
+            'Generate polished prompts, PRDs, emails, and marketing copy from your system tray. Pick a category, choose a mode, and go.',
         imageSrc: '/prompt-suite-hero.webp',
         imageAlt: 'Prompt Suite',
         detailUrl: '/prompt-suite',
         purchaseUrl: PRODUCT_LINKS.PROMPT_SUITE,
         features: [
-            '8+ prompt categories',
-            '6 color themes',
-            'Prompt history & credits'
+            '33 prompt modes across 8 categories',
+            '6 color themes (3 light, 3 dark)',
+            'Mac only'
         ],
-        hidden: true
+        hidden: false
     }
 ];
 
@@ -82,7 +82,10 @@ function ProductCard({ product }: { product: Product }) {
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">
                     {product.features.map(function (feature) {
                         return (
-                            <div key={feature} className="flex items-start gap-2">
+                            <div
+                                key={feature}
+                                className="flex items-start gap-2"
+                            >
                                 <span className="text-primary">✓</span>
                                 <span>{feature}</span>
                             </div>
@@ -99,11 +102,7 @@ function ProductCard({ product }: { product: Product }) {
                             Learn More
                         </Button>
                     </Linky>
-                    <Linky
-                        external
-                        to={product.purchaseUrl}
-                        className="flex-1"
-                    >
+                    <Linky external to={product.purchaseUrl} className="flex-1">
                         <Button
                             color="primary"
                             iconBefore={<ShoppingCart className="w-4 h-4" />}
@@ -122,7 +121,11 @@ function ComingSoonCard() {
     return (
         <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg min-h-[400px] text-center">
             <Package className="w-12 h-12 text-zinc-400 dark:text-zinc-500 mb-4" />
-            <Heading as="h2" size="3" className="text-zinc-500 dark:text-zinc-400">
+            <Heading
+                as="h2"
+                size="3"
+                className="text-zinc-500 dark:text-zinc-400"
+            >
                 More Coming Soon
             </Heading>
             <p className="text-zinc-500 dark:text-zinc-500 mt-2 max-w-xs">
@@ -150,7 +153,10 @@ export default function ProductsRoute() {
                     })
                     .map(function (product) {
                         return (
-                            <ProductCard key={product.title} product={product} />
+                            <ProductCard
+                                key={product.title}
+                                product={product}
+                            />
                         );
                     })}
                 <ComingSoonCard />

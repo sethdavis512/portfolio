@@ -144,8 +144,8 @@ export default function TrayAppGuideRoute() {
                                 </Button>
                             </Linky>
 
-                            <div className="pt-4">
-                                <p className="text-sm text-zinc-400 mb-3">
+                            <div className="pt-4 flex gap-2 items-center">
+                                <p className="text-sm text-zinc-400">
                                     Powered by
                                 </p>
                                 <TechStackLogos logos={['polar']} />

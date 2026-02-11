@@ -80,5 +80,6 @@ export const PRODUCT_LINKS = {
         'https://buy.polar.sh/polar_cl_ZuGd99lGoIt8kG0BJgJf6sDarWhsq378Y5AdT17KqIq',
     TRAY_APP_GUIDE:
         'https://buy.polar.sh/polar_cl_A09UreUuvxMfMzSLzHZZVolqkWD50M9aaV0ji28TFjz',
-    PROMPT_SUITE: '#'
+    PROMPT_SUITE:
+        'https://buy.polar.sh/polar_cl_G4Cbys5kCAFbkx09U8BZ7RX6RvCWoitX4BcYx0cehe5'
 } as const;

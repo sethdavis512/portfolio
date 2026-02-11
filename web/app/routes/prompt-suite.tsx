@@ -9,12 +9,14 @@ import { useImageGallery } from '~/hooks/useImageGallery';
 import { PRODUCT_LINKS } from '~/constants';
 import { generateRouteMeta } from '~/utils/seo';
 import { HeroImage } from '~/components/HeroImage';
+import { redirect } from 'react-router';
+import type { Route } from './+types/prompt-suite';
 
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'Prompt Suite',
         descriptionContent:
-            'A native desktop tray app for quick AI prompt generation and management. Lives in your system tray for instant prompt interactions across 8+ categories.',
+            'Generate polished prompts, PRDs, emails, and marketing copy from your system tray. 8 categories, 33 specialized modes, 6 themes. Mac, Windows, and Linux.',
         ogUrl: 'https://sethdavis.tech/prompt-suite'
     });
 }
@@ -50,72 +52,108 @@ export default function PromptSuiteRoute() {
             />
             <div className="space-y-6 mb-8">
                 <Heading as="h1" size="1">
-                    Prompt Suite
+                    Generate better prompts without leaving your workflow
                 </Heading>
                 <p className="text-xl text-zinc-600 dark:text-zinc-300">
-                    A native desktop tray app for instant AI prompt generation.
-                    Lives in your system tray so you can generate polished
-                    prompts across 8+ categories without leaving your workflow.
+                    Prompt Suite lives in your system tray so polished prompts,
+                    PRDs, cold emails, and marketing copy are one click away.
+                    Pick a category, choose a mode, type your context, and hit
+                    generate. Done.
                 </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-6 min-w-0">
                     <Heading as="h2" size="3">
-                        What It Does
+                        8 categories. 33 modes. One tray icon.
                     </Heading>
                     <Card className="p-6">
                         <ul className="space-y-3 text-zinc-700 dark:text-zinc-300">
                             <li className="flex items-start gap-2">
-                                <span className="text-primary">•</span>
+                                <span className="text-primary">⚡</span>
                                 <span>
-                                    AI-powered prompt generation across 8+
-                                    categories
+                                    <strong>Amp</strong> — Turn a rough prompt
+                                    into a precise, comprehensive, or creative
+                                    one
                                 </span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-primary">•</span>
+                                <span className="text-primary">🖼️</span>
                                 <span>
-                                    Specialized templates for Dev, Email,
-                                    Social, Copy, Comms, PRD, Image, and more
+                                    <strong>Image</strong> — Write
+                                    photorealistic, artistic, or product prompts
+                                    for AI image generators
                                 </span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-primary">•</span>
+                                <span className="text-primary">💻</span>
                                 <span>
-                                    One-click generation with copy and save to
-                                    markdown
+                                    <strong>Dev</strong> — Build, debug,
+                                    architect, review, and generate test plans
                                 </span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-primary">•</span>
+                                <span className="text-primary">📄</span>
                                 <span>
-                                    Built-in prompt history with timestamps
+                                    <strong>PRD</strong> — Generate lean,
+                                    enterprise, technical, or executive product
+                                    docs
                                 </span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-primary">•</span>
-                                <span>6 customizable color themes</span>
+                                <span className="text-primary">✉️</span>
+                                <span>
+                                    <strong>Email</strong> — Draft greetings,
+                                    follow-ups, good-news messages, and cold
+                                    outreach
+                                </span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-primary">•</span>
-                                <span>Credit-based usage system</span>
+                                <span className="text-primary">📣</span>
+                                <span>
+                                    <strong>Social</strong> — LinkedIn posts,
+                                    Twitter/X threads, and engagement replies
+                                </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-primary">✏️</span>
+                                <span>
+                                    <strong>Copy</strong> — Headlines, CTAs,
+                                    landing page sections, and ad copy
+                                </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-primary">💬</span>
+                                <span>
+                                    <strong>Comms</strong> — Navigate feedback,
+                                    difficult conversations, and negotiations
+                                </span>
                             </li>
                         </ul>
                     </Card>
 
                     <Heading as="h2" size="3" className="pt-4">
-                        Who It's For
+                        How It Works
                     </Heading>
                     <Card className="p-6">
-                        <p className="text-zinc-700 dark:text-zinc-300">
-                            Prompt Suite is built for developers, marketers,
-                            team leads, and anyone who needs quick, AI-assisted
-                            writing without context-switching. Whether you're
-                            drafting a cold email, writing a commit message, or
-                            generating social copy, Prompt Suite keeps
-                            everything one click away in your system tray.
-                        </p>
+                        <ol className="space-y-3 text-zinc-700 dark:text-zinc-300 list-decimal list-inside">
+                            <li>
+                                <strong>Click the tray icon</strong> — a compact
+                                window appears above your taskbar
+                            </li>
+                            <li>
+                                <strong>Pick a category and mode</strong> —
+                                choose from 33 specialized prompt templates
+                            </li>
+                            <li>
+                                <strong>Add your context</strong> — describe
+                                what you need in the text field
+                            </li>
+                            <li>
+                                <strong>Generate and go</strong> — copy the
+                                result to your clipboard or save it as Markdown
+                            </li>
+                        </ol>
                     </Card>
 
                     <div className="pt-4">
@@ -163,17 +201,17 @@ export default function PromptSuiteRoute() {
                         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                             <div className="flex-1">
                                 <Heading as="h3" size="4" className="mb-2">
-                                    Want to build your own tray app?
+                                    Build your own tray app
                                 </Heading>
                                 <p className="text-zinc-700 dark:text-zinc-300">
-                                    Learn the exact patterns used in Prompt
-                                    Suite. Get a beginner-friendly guide to
-                                    building Electron tray apps from scratch.
+                                    Curious how Prompt Suite was built? Follow
+                                    the step-by-step guide to creating Electron
+                                    tray apps from scratch.
                                 </p>
                             </div>
                             <Linky to="/tray-app-guide" className="shrink-0">
                                 <Button color="primary">
-                                    View the Guide →
+                                    Read the Guide →
                                 </Button>
                             </Linky>
                         </div>
@@ -183,29 +221,33 @@ export default function PromptSuiteRoute() {
                 <div className="md:col-span-1 space-y-4 min-w-0">
                     <section className="rounded-lg bg-zinc-800 p-6 space-y-4 sticky top-4">
                         <Heading as="h2" size="4" className="text-white">
-                            Get Prompt Suite
+                            What you get
                         </Heading>
 
                         <div className="space-y-3 text-zinc-300">
                             <div className="flex items-start gap-2">
                                 <span className="text-primary">✓</span>
-                                <span>System tray app</span>
+                                <span>33 prompt modes across 8 categories</span>
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-primary">✓</span>
-                                <span>8+ prompt categories</span>
+                                <span>One-click copy or save to Markdown</span>
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-primary">✓</span>
-                                <span>6 color themes</span>
+                                <span>6 color themes (3 light, 3 dark)</span>
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-primary">✓</span>
-                                <span>Prompt history</span>
+                                <span>Prompt history with restore</span>
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-primary">✓</span>
-                                <span>Cross-platform</span>
+                                <span>Mac only</span>
+                            </div>
+                            <div className="flex items-start gap-2">
+                                <span className="text-primary">✓</span>
+                                <span>Credits never expire</span>
                             </div>
                         </div>
 
@@ -219,15 +261,13 @@ export default function PromptSuiteRoute() {
                                 iconBefore={<ShoppingCart />}
                                 className="w-full justify-center"
                             >
-                                Purchase App
+                                Get Prompt Suite
                             </Button>
                         </Linky>
 
-                        <div className="pt-4">
-                            <p className="text-sm text-zinc-400 mb-3">
-                                Powered by
-                            </p>
-                            <TechStackLogos logos={['electron', 'polar']} />
+                        <div className="pt-4 flex gap-2 items-center">
+                            <p className="text-sm text-zinc-400">Powered by</p>
+                            <TechStackLogos logos={['polar']} />
                         </div>
                     </section>
                 </div>
