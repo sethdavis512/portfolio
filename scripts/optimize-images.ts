@@ -1,6 +1,7 @@
 import sharp from 'sharp';
-import { readdir, stat } from 'fs/promises';
-import { join, parse, relative } from 'path';
+import { readdir, stat, access } from 'fs/promises';
+import { join, parse, relative, isAbsolute } from 'path';
+import { parseArgs } from 'util';
 
 interface ImageSize {
     width: number;
@@ -18,6 +19,44 @@ const OUTPUT_DIR = join(process.cwd(), 'web/public/optimized');
 
 // Images to skip (already optimized or special cases)
 const SKIP_PATTERNS = [/optimized/, /\.svg$/, /flag-of-texas/, /gartner-logo/];
+
+// Parse command line arguments
+const { values } = parseArgs({
+    options: {
+        file: { type: 'string', short: 'f' }
+    },
+    allowPositionals: true
+});
+
+async function findSingleImage(filename: string): Promise<string | null> {
+    // If it's an absolute path, use it directly
+    if (isAbsolute(filename)) {
+        try {
+            await access(filename);
+            return filename;
+        } catch {
+            return null;
+        }
+    }
+
+    // If it's a relative path from cwd, try that
+    const cwdPath = join(process.cwd(), filename);
+    try {
+        await access(cwdPath);
+        return cwdPath;
+    } catch {
+        // Continue to search in INPUT_DIR
+    }
+
+    // Search in INPUT_DIR by filename
+    const inputPath = join(INPUT_DIR, filename);
+    try {
+        await access(inputPath);
+        return inputPath;
+    } catch {
+        return null;
+    }
+}
 
 async function getAllImages(dir: string): Promise<string[]> {
     const images: string[] = [];
@@ -89,9 +128,11 @@ async function optimizeImage(inputPath: string) {
             await sharp(inputPath)
                 .resize(size.width, null, {
                     withoutEnlargement: true,
-                    fit: 'inside'
+                    fit: 'inside',
+                    kernel: 'lanczos3'
                 })
-                .webp({ quality: 85, effort: 6 })
+                .sharpen({ sigma: 0.5 })
+                .webp({ quality: 90, effort: 6, smartSubsample: true })
                 .toFile(outputPath);
 
             const outputStats = await stat(outputPath);
@@ -116,21 +157,25 @@ async function main() {
     console.log(`📁 Input directory: ${INPUT_DIR}`);
     console.log(`📁 Output directory: ${OUTPUT_DIR}\n`);
 
-    const images = await getAllImages(INPUT_DIR);
-    console.log(`Found ${images.length} images to process\n`);
+    let images: string[];
 
-    // Debug: List virtruv files
-    const virtruvImages = images.filter((img) => img.includes('virtruv'));
-    if (virtruvImages.length > 0) {
-        console.log('Virtruv images found:');
-        virtruvImages.forEach((img) => console.log(`  - ${img}`));
+    // Handle single file mode
+    if (values.file) {
+        const singleImage = await findSingleImage(values.file);
+        if (!singleImage) {
+            console.error(`❌ File not found: ${values.file}`);
+            console.error(`   Searched in:`);
+            console.error(`   - ${values.file}`);
+            console.error(`   - ${join(process.cwd(), values.file)}`);
+            console.error(`   - ${join(INPUT_DIR, values.file)}`);
+            process.exit(1);
+        }
+        console.log(`🎯 Single file mode: ${singleImage}\n`);
+        images = [singleImage];
     } else {
-        console.log('⚠️  No virtruv images found!');
+        images = await getAllImages(INPUT_DIR);
+        console.log(`Found ${images.length} images to process\n`);
     }
-    console.log('');
-
-    let totalOriginalSize = 0;
-    let totalOptimizedSize = 0;
 
     for (const imagePath of images) {
         await optimizeImage(imagePath);

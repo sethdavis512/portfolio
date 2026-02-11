@@ -27,9 +27,7 @@ export default function ObsidianMCPRoute() {
                 value="Demonstrates ability to build agentic infrastructure—plugins, automation tools, workflow extensions that augment AI assistant capabilities. Showcases understanding of emerging protocols and standards in the AI tooling ecosystem. This type of extensible architecture is central to building design intelligence systems that integrate with creative workflows and automate repetitive design tasks."
                 sourceUrl="https://github.com/sethdavis512/obsidian-mcp-server"
                 techStack={
-                    <TechStackLogos
-                        logos={['typescript', 'mcp', 'obsidian', 'vibe']}
-                    />
+                    <TechStackLogos logos={['typescript', 'mcp', 'obsidian']} />
                 }
             />
         </>

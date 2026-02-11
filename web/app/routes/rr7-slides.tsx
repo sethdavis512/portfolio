@@ -29,8 +29,7 @@ export default function RR7SlidesRoute() {
                             'typescript',
                             'react',
                             'react-router',
-                            'tailwind',
-                            'vibe'
+                            'tailwind'
                         ]}
                     />
                 }

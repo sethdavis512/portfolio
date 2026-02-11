@@ -172,8 +172,7 @@ export default function IridiumRoute() {
                                 'better-auth',
                                 'polar',
                                 'prisma',
-                                'railway',
-                                'vibe'
+                                'railway'
                             ]}
                         />
                     </Card>

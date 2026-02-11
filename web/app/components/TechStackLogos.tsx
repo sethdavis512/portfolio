@@ -4,6 +4,7 @@ import { cx } from 'cva.config';
 import { BetterAuthLogo } from './logos/BetterAuthLogo';
 import { CSSLogo } from './logos/CSSLogo';
 import { DocusaurusLogo } from './logos/DocusaurusLogo';
+import { ElectronLogo } from './logos/ElectronLogo';
 import { GitHubLogo } from './logos/GitHubLogo';
 import { JavaScriptLogo } from './logos/JavaScriptLogo';
 import { VueLogo } from './logos/VueLogo';
@@ -20,7 +21,6 @@ import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
 import { TypescriptLogo } from './logos/TypescriptLogo';
 import { Linky } from './Linky';
-import { VibeCodeLogo } from './logos/VibeCodeLogo';
 import { PolarLogo } from './logos/PolarLogo';
 import { KeystoneLogo } from './logos/KeystoneLogo';
 import { CloudinaryLogo } from './logos/CloudinaryLogo';
@@ -33,6 +33,7 @@ export type LogoName =
     | 'css'
     | 'daisy'
     | 'docusaurus'
+    | 'electron'
     | 'github'
     | 'javascript'
     | 'keystone'
@@ -48,7 +49,6 @@ export type LogoName =
     | 'tailwind'
     | 'trigger'
     | 'typescript'
-    | 'vibe'
     | 'vuejs'
     | 'wordpress';
 
@@ -96,6 +96,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <DocusaurusLogo {...logoProps} {...props} />,
             title: 'Docusaurus',
             url: 'https://docusaurus.io/'
+        },
+        electron: {
+            component: (props) => <ElectronLogo {...logoProps} {...props} />,
+            title: 'Electron',
+            url: 'https://www.electronjs.org/'
         },
         github: {
             component: (props) => <GitHubLogo {...logoProps} {...props} />,
@@ -166,11 +171,6 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <TypescriptLogo {...logoProps} {...props} />,
             title: 'TypeScript',
             url: 'https://www.typescriptlang.org/'
-        },
-        vibe: {
-            component: (props) => <VibeCodeLogo {...logoProps} {...props} />,
-            title: 'Vibe Code',
-            url: 'https://www.ibm.com/think/topics/vibe-coding'
         },
         vuejs: {
             component: (props) => <VueLogo {...logoProps} {...props} />,

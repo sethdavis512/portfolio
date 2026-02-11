@@ -10,6 +10,7 @@ export default [
         index('routes/home.tsx'),
         route('about', 'routes/about.tsx'),
         route('ai-maniacs', 'routes/ai-maniacs.tsx'),
+        route('aws-flashcards', 'routes/aws-flashcards.tsx'),
         // route('blog', 'routes/blog.tsx'),
         // route('blog/:slug', 'routes/blog-detail.tsx'),
         // route(

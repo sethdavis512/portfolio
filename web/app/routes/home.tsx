@@ -90,7 +90,7 @@ export default function Home() {
             <HomeSection>
                 <Heading>Featured projects</Heading>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                    <Card className="p-0 grid border-2 border-zinc-700/75 overflow-hidden bg-gradient-to-br from-red-800 via-zinc-600 to-zinc-700 dark:from-red-950 dark:via-zinc-800 dark:to-zinc-900">
+                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-red-800 via-zinc-600 to-zinc-700 dark:from-red-950 dark:via-zinc-800 dark:to-zinc-900">
                         <div className="col-start-1 row-start-1 p-8 text-white">
                             <Heading className="text-white">
                                 Video Machine
@@ -110,7 +110,7 @@ export default function Home() {
                             </ButtonLink>
                         </div>
                     </Card>
-                    <Card className="p-0 grid border-2 border-zinc-700/75 overflow-hidden bg-gradient-to-br from-blue-800 via-zinc-600 to-zinc-700 dark:from-blue-950 dark:via-zinc-800 dark:to-zinc-900">
+                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-blue-800 via-zinc-600 to-zinc-700 dark:from-blue-950 dark:via-zinc-800 dark:to-zinc-900">
                         <div className="col-start-1 row-start-1 p-8 text-white">
                             <Heading className="text-white">
                                 Prompt Suite
@@ -130,7 +130,7 @@ export default function Home() {
                             </ButtonLink>
                         </div>
                     </Card>
-                    <Card className="p-0 grid border-2 border-zinc-700/75 overflow-hidden bg-gradient-to-br from-purple-800 via-zinc-600 to-zinc-700 dark:from-purple-950 dark:via-zinc-800 dark:to-zinc-900">
+                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-purple-800 via-zinc-600 to-zinc-700 dark:from-purple-950 dark:via-zinc-800 dark:to-zinc-900">
                         <div className="col-start-1 row-start-1 p-8 text-white">
                             <Heading className="text-white">Iridium</Heading>
                             <p className="mb-8 text-zinc-100">

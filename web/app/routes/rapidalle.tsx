@@ -30,7 +30,6 @@ export default function RapidalleRoute() {
                             'react-router',
                             'cloudinary',
                             'trigger',
-                            'vibe'
                         ]}
                     />
                 }

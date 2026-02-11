@@ -79,5 +79,6 @@ export const PRODUCT_LINKS = {
     CLAUDE_INSURANCE_BUNDLE:
         'https://buy.polar.sh/polar_cl_ZuGd99lGoIt8kG0BJgJf6sDarWhsq378Y5AdT17KqIq',
     TRAY_APP_GUIDE:
-        'https://buy.polar.sh/polar_cl_A09UreUuvxMfMzSLzHZZVolqkWD50M9aaV0ji28TFjz'
+        'https://buy.polar.sh/polar_cl_A09UreUuvxMfMzSLzHZZVolqkWD50M9aaV0ji28TFjz',
+    PROMPT_SUITE: '#'
 } as const;

@@ -25,13 +25,7 @@ export default function AIManiacsRoute() {
                 demoUrl="https://ai-maniacs.com/"
                 techStack={
                     <TechStackLogos
-                        logos={[
-                            'typescript',
-                            'react',
-                            'docusaurus',
-                            'github',
-                            'vibe'
-                        ]}
+                        logos={['typescript', 'react', 'docusaurus', 'github']}
                     />
                 }
             />

@@ -38,7 +38,6 @@ export default function PromptBucketRoute() {
                             'postgres',
                             'polar',
                             'railway'
-                            // 'vibe'
                         ]}
                     />
                 }

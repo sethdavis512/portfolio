@@ -73,14 +73,6 @@ const workItems = [
         imageAlt: 'Virtruv website redesign',
         url: '/virtruv'
     },
-    // {
-    //     cta: 'Explore the tool',
-    //     title: 'Prompt Bucket',
-    //     description: 'Prompt scoring and organization web application',
-    //     imageSrc: '/prompt-bucket-thumbnail.webp',
-    //     imageAlt: 'A 3D bucket',
-    //     url: '/prompt-bucket'
-    // },
     {
         cta: 'Learn more',
         title: 'Prompt Suite',
@@ -89,6 +81,15 @@ const workItems = [
         imageSrc: '/prompt-suite-thumbnail.webp',
         imageAlt: 'Prompt Suite desktop app in system tray',
         url: '/prompt-suite'
+    },
+    {
+        cta: 'View project',
+        title: 'AWS Flashcards',
+        description:
+            'Electron tray app for studying AWS Cloud Practitioner (CLF-C02) certification with 130+ flashcards.',
+        imageSrc: '/aws-flashcards-thumbnail.webp',
+        imageAlt: 'AWS Flashcards tray app',
+        url: '/aws-flashcards'
     },
     {
         cta: 'Explore platform',
