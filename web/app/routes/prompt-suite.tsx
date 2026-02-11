@@ -17,7 +17,8 @@ export function meta() {
         pageTitle: 'Prompt Suite',
         descriptionContent:
             'Generate polished prompts, PRDs, emails, and marketing copy from your system tray. 8 categories, 33 specialized modes, 6 themes. Mac, Windows, and Linux.',
-        ogUrl: 'https://sethdavis.tech/prompt-suite'
+        ogUrl: 'https://sethdavis.tech/prompt-suite',
+        ogImage: 'https://sethdavis.tech/og/prompt-suite-hero-og.webp'
     });
 }
 

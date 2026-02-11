@@ -1,9 +1,11 @@
 export function generateRouteMeta({
     descriptionContent,
     ogUrl = 'https://sethdavis.tech',
+    ogImage = 'https://sethdavis.tech/og-image.png',
     pageTitle
 }: {
     ogUrl?: string;
+    ogImage?: string;
     pageTitle: string;
     descriptionContent?: string;
 }) {
@@ -38,7 +40,7 @@ export function generateRouteMeta({
         { property: 'og:url', content: ogUrl },
         {
             property: 'og:image',
-            content: 'https://sethdavis.tech/og-image.png'
+            content: ogImage
         },
         // Twitter Card
         { name: 'twitter:card', content: 'summary_large_image' },
@@ -54,7 +56,7 @@ export function generateRouteMeta({
         },
         {
             name: 'twitter:image',
-            content: 'https://sethdavis.tech/og-image.png'
+            content: ogImage
         },
         { name: 'twitter:site', content: '@sethdavis512' },
         { name: 'twitter:creator', content: '@sethdavis512' }
