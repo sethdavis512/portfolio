@@ -259,7 +259,8 @@ export default function PromptSuiteRoute() {
                                         Under Construction
                                     </p>
                                     <p className="text-sm text-amber-800 dark:text-amber-200 mt-1">
-                                        Prompt Suite is coming soon. Check back later for updates.
+                                        Prompt Suite is coming soon. Check back
+                                        later for updates.
                                     </p>
                                 </div>
                             </div>
@@ -278,7 +279,6 @@ export default function PromptSuiteRoute() {
                                 Get Prompt Suite
                             </Button>
                         </Linky> */}
-
 
                         <div className="pt-4 flex gap-2 items-center">
                             <p className="text-sm text-zinc-400">Powered by</p>
