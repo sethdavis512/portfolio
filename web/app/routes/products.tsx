@@ -56,7 +56,7 @@ const products: Product[] = [
             '6 color themes (3 light, 3 dark)',
             'Mac only'
         ],
-        hidden: false
+        hidden: true
     }
 ];
 

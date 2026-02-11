@@ -251,7 +251,21 @@ export default function PromptSuiteRoute() {
                             </div>
                         </div>
 
-                        <Linky
+                        <Card className="p-4 bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
+                            <div className="flex items-start gap-2">
+                                <span className="text-xl">🚧</span>
+                                <div>
+                                    <p className="font-semibold text-amber-900 dark:text-amber-100">
+                                        Under Construction
+                                    </p>
+                                    <p className="text-sm text-amber-800 dark:text-amber-200 mt-1">
+                                        Prompt Suite is coming soon. Check back later for updates.
+                                    </p>
+                                </div>
+                            </div>
+                        </Card>
+
+                        {/* <Linky
                             external
                             to={PRODUCT_LINKS.PROMPT_SUITE}
                             className="w-full block"
@@ -263,7 +277,8 @@ export default function PromptSuiteRoute() {
                             >
                                 Get Prompt Suite
                             </Button>
-                        </Linky>
+                        </Linky> */}
+
 
                         <div className="pt-4 flex gap-2 items-center">
                             <p className="text-sm text-zinc-400">Powered by</p>
