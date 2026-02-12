@@ -130,6 +130,20 @@ cms/
 
 ---
 
+## Adding New Work or Product Pages
+
+When creating a new work item or product page, update these files:
+
+1. Create route file in `web/app/routes/your-page.tsx`
+2. Add route to `web/app/routes.ts`
+3. **Add to command palette** in `web/app/components/CommandPalette.tsx` (in `workLinks` array)
+4. Add to sitemap in `web/app/routes/sitemap.xml.tsx`
+5. Optionally add to pre-render list in `web/react-router.config.ts`
+
+⚠️ **Don't forget the command palette!** Users rely on Cmd+K to navigate to work items.
+
+---
+
 ## Deployment & Environment
 
 - Production CMS endpoint: `https://admin.sethdavis.tech/api/graphql`

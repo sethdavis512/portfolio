@@ -89,3 +89,14 @@ export const componentVariants = cva({
 - Pre-rendered routes defined in `web/react-router.config.ts`
 - Avoid `useEffect` in React Router 7 routes - prefer loaders/actions
 - Use classic `function` syntax over arrow functions
+
+## Adding New Work Items or Products
+
+When adding a new route for work items or products, you MUST update these files:
+
+1. **`web/app/routes.ts`** - Add the route definition
+2. **`web/app/components/CommandPalette.tsx`** - Add to `workLinks` array so it appears in command palette (Cmd+K)
+3. **`web/app/routes/sitemap.xml.tsx`** - Add to sitemap for SEO
+4. **`web/react-router.config.ts`** - Add to `prerender()` array if it should be statically generated
+
+⚠️ **The command palette is critical for site navigation** - users rely on Cmd+K to find work. Don't forget step #2!

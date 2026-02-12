@@ -176,6 +176,11 @@ cms/
 7. **Performance**: Consider SSR implications for new features
 8. **Accessibility**: Ensure semantic HTML and proper ARIA attributes
 9. **Images**: Always use `responsive` prop on HeroImage/ResponsiveImage components. Never use raw `<img>` tags for images >150KB. Verify optimized versions exist before deploying.
+10. **New Work/Product Pages**: When adding new work items or products, update ALL of these:
+    - `web/app/routes.ts` (route definition)
+    - `web/app/components/CommandPalette.tsx` (add to `workLinks` - this is mandatory!)
+    - `web/app/routes/sitemap.xml.tsx` (SEO sitemap)
+    - `web/react-router.config.ts` (pre-rendering if needed)
 
 ## Common Patterns to Follow
 
