@@ -35,6 +35,7 @@ cd cms && npm run seed
 This is a monorepo with two applications:
 
 **Frontend (`web/`)**: React Router v7 app with SSR
+
 - Config-based routing in `web/app/routes.ts`
 - Routes in `web/app/routes/` wrapped by `wrapper.tsx` layout
 - GraphQL client in `web/app/utils/graphql.server.ts` using `graphql-request`
@@ -42,6 +43,7 @@ This is a monorepo with two applications:
 - Components use CVA (Class Variance Authority) with tailwind-merge configured in `web/cva.config.ts`
 
 **Backend (`cms/`)**: KeystoneJS 6 headless CMS
+
 - Schema definitions in `cms/schema.ts` (User, Post, Tag, Prompt lists)
 - Auth config in `cms/auth.ts`
 - PostgreSQL database via Prisma
@@ -50,6 +52,7 @@ This is a monorepo with two applications:
 ## Key Patterns
 
 ### Route Components (React Router 7)
+
 ```typescript
 import type { Route } from './+types/routename';
 
@@ -66,12 +69,14 @@ export default function RouteComponent({ loaderData }: Route.ComponentProps) {
 ```
 
 ### GraphQL Workflow
+
 1. Define queries in `web/app/queries/*.graphql`
 2. Run `npm run generate:types` from `web/`
 3. Import generated types and documents: `import { QueryDocument, type QueryType } from '~/generated/graphql'`
 4. Use in loaders: `await client.request<QueryType>(QueryDocument)`
 
 ### Component Variants (CVA)
+
 ```typescript
 import { cva, cx } from 'cva.config';
 
