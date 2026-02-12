@@ -17,8 +17,6 @@ export default {
             '/setup',
             '/tech-with-seth',
             '/truck',
-            '/tws-cms',
-            '/tws-starter',
             '/virtruv',
             '/work',
             '/sitemap.xml'

@@ -40,6 +40,11 @@ const workLinks = [
         label: 'Prompt Suite'
     },
     {
+        to: '/prompt-bucket',
+        icon: LinkIcon,
+        label: 'Prompt Bucket'
+    },
+    {
         to: '/rapidalle',
         icon: LinkIcon,
         label: 'Rapidall•E'
@@ -65,9 +70,29 @@ const workLinks = [
         label: 'Tech with Seth'
     },
     {
+        to: '/aws-flashcards',
+        icon: LinkIcon,
+        label: 'AWS Flashcards'
+    },
+    {
+        to: '/claude-desktop-for-insurance-agents',
+        icon: LinkIcon,
+        label: 'Claude Desktop for Insurance Agents'
+    },
+    {
+        to: '/claude-desktop-for-real-estate-agents',
+        icon: LinkIcon,
+        label: 'Claude Desktop for Real Estate Agents'
+    },
+    {
         to: '/custom-file-generator',
         icon: LinkIcon,
         label: 'Custom File Generator (Guide)'
+    },
+    {
+        to: '/tray-app-guide',
+        icon: LinkIcon,
+        label: 'Tray App Guide'
     }
 ];
 

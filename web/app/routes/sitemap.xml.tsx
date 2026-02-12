@@ -36,14 +36,11 @@ export async function loader({ request }: Route.LoaderArgs) {
         { url: '/rapidalle', changefreq: 'monthly', priority: 0.9 },
         { url: '/obsidian-mcp-server', changefreq: 'monthly', priority: 0.9 },
         { url: '/custom-file-generator', changefreq: 'monthly', priority: 0.9 },
-        { url: '/rr7-tuner', changefreq: 'monthly', priority: 0.9 },
         { url: '/rr7-slides', changefreq: 'monthly', priority: 0.9 },
 
         // Project pages
         { url: '/ai-maniacs', changefreq: 'monthly', priority: 0.8 },
         { url: '/tech-with-seth', changefreq: 'monthly', priority: 0.8 },
-        { url: '/tws-cms', changefreq: 'monthly', priority: 0.8 },
-        { url: '/tws-starter', changefreq: 'monthly', priority: 0.8 },
         { url: '/truck', changefreq: 'monthly', priority: 0.8 },
         { url: '/virtruv', changefreq: 'monthly', priority: 0.8 },
 

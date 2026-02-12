@@ -221,11 +221,11 @@ return {
 
 ```tsx
 // ❌ BAD - Image file doesn't exist, causes 404
-<img src="/tws-cms-hero.png" className="rounded-lg mb-8" />
+<img src="/my-project-hero.png" className="rounded-lg mb-8" />
 
 // ✅ GOOD - Remove reference or add actual image
-{/* TODO: Add tws-cms-hero image */}
-<Heading as="h1" size="1" className="mb-8">tws-cms</Heading>
+{/* TODO: Add my-project-hero image */}
+<Heading as="h1" size="1" className="mb-8">My Project</Heading>
 ```
 
 ### Pre-Commit Checklist
