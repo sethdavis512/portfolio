@@ -40,7 +40,7 @@ function WorkDisplay({
                         reverse && 'lg:flex-row-reverse'
                     )}
                 >
-                    <img className="w-[500px]" src={imageSrc} alt={imageAlt} />
+                    <img className="w-125" src={imageSrc} alt={imageAlt} />
                     <div className={cx(`text-center lg:text-left flex-1`)}>
                         <Heading as="h2" className="text-3xl font-bold">
                             {title}
@@ -100,15 +100,6 @@ const workItems = [
         imageAlt: 'Video Machine rendering interface',
         url: '/video-machine'
     },
-    // {
-    //     cta: 'Explore bundles',
-    //     title: 'Claude Desktop Bundles for Real Estate + Insurance Agents',
-    //     description:
-    //         'Two complete AI playbooks for real estate and insurance teams, combining step-by-step workflows, ready-to-use prompts, and client-ready messaging to save hours each week.',
-    //     imageSrc: '/claude-desktop-thumbnail.webp',
-    //     imageAlt: 'Claude Desktop Bundles for Real Estate + Insurance Agents',
-    //     url: '/products'
-    // },
     {
         cta: 'View more',
         title: 'Rapidall•E',

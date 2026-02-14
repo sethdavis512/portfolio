@@ -40,11 +40,6 @@ const workLinks = [
         label: 'Prompt Suite'
     },
     {
-        to: '/prompt-bucket',
-        icon: LinkIcon,
-        label: 'Prompt Bucket'
-    },
-    {
         to: '/rapidalle',
         icon: LinkIcon,
         label: 'Rapidall•E'
@@ -75,16 +70,6 @@ const workLinks = [
         label: 'AWS Flashcards'
     },
     {
-        to: '/claude-desktop-for-insurance-agents',
-        icon: LinkIcon,
-        label: 'Claude Desktop for Insurance Agents'
-    },
-    {
-        to: '/claude-desktop-for-real-estate-agents',
-        icon: LinkIcon,
-        label: 'Claude Desktop for Real Estate Agents'
-    },
-    {
         to: '/custom-file-generator',
         icon: LinkIcon,
         label: 'Custom File Generator (Guide)'
@@ -107,16 +92,11 @@ const pagesLinks = [
         icon: LinkIcon,
         label: 'About'
     },
-    // {
-    //     to: '/blog',
-    //     icon: LinkIcon,
-    //     label: 'Blog'
-    // },
-    // {
-    //     to: '/products',
-    //     icon: LinkIcon,
-    //     label: 'Products'
-    // },
+    {
+        to: '/products',
+        icon: LinkIcon,
+        label: 'Products'
+    },
     {
         to: '/truck',
         icon: LinkIcon,
