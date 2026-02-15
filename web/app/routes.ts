@@ -9,7 +9,6 @@ export default [
     layout('routes/wrapper.tsx', [
         index('routes/home.tsx'),
         route('about', 'routes/about.tsx'),
-        route('ai-maniacs', 'routes/ai-maniacs.tsx'),
         route('aws-flashcards', 'routes/aws-flashcards.tsx'),
         // route('blog', 'routes/blog.tsx'),
         // route('blog/:slug', 'routes/blog-detail.tsx'),
@@ -21,7 +20,6 @@ export default [
         //     'claude-desktop-for-insurance-agents',
         //     'routes/claude-desktop-for-insurance-agents.tsx'
         // ),
-        route('custom-file-generator', 'routes/custom-file-generator.tsx'),
         route('freelance', 'routes/freelance.tsx'),
         route('iridium', 'routes/iridium.tsx'),
         route('obsidian-mcp-server', 'routes/obsidian-mcp-server.tsx'),
@@ -29,7 +27,6 @@ export default [
         route('products', 'routes/products.tsx'),
         route('prompts', 'routes/prompts.tsx'),
         route('prompts/:slug', 'routes/prompt-detail.tsx'),
-        route('rapidalle', 'routes/rapidalle.tsx'),
         route('resume', 'routes/resume.tsx'),
         route('rr7-slides', 'routes/rr7-slides.tsx'),
         route('setup', 'routes/setup.tsx'),
@@ -39,6 +36,7 @@ export default [
         route('truck', 'routes/truck.tsx'),
         route('video-machine', 'routes/video-machine.tsx'),
         route('virtruv', 'routes/virtruv.tsx'),
+        route('ai-image-pipeline', 'routes/ai-image-pipeline.tsx'),
         route('work', 'routes/work.tsx')
     ]),
     // SEO: XML Sitemap (resource route, no wrapper needed)

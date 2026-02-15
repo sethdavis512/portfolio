@@ -40,11 +40,6 @@ const workLinks = [
         label: 'Prompt Suite'
     },
     {
-        to: '/rapidalle',
-        icon: LinkIcon,
-        label: 'Rapidall•E'
-    },
-    {
         to: '/rr7-slides',
         icon: LinkIcon,
         label: 'RR7 Slides'
@@ -53,11 +48,6 @@ const workLinks = [
         to: '/obsidian-mcp-server',
         icon: LinkIcon,
         label: 'Obsidian MCP Server'
-    },
-    {
-        to: '/ai-maniacs',
-        icon: LinkIcon,
-        label: 'AI Maniacs'
     },
     {
         to: '/tech-with-seth',
@@ -70,15 +60,15 @@ const workLinks = [
         label: 'AWS Flashcards'
     },
     {
-        to: '/custom-file-generator',
-        icon: LinkIcon,
-        label: 'Custom File Generator (Guide)'
-    },
-    {
         to: '/tray-app-guide',
         icon: LinkIcon,
         label: 'Tray App Guide'
-    }
+    },
+    {
+        to: '/ai-image-pipeline',
+        icon: LinkIcon,
+        label: 'Image Pipeline as a Service'
+    },
 ];
 
 const pagesLinks = [

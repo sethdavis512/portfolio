@@ -33,13 +33,11 @@ export async function loader({ request }: Route.LoaderArgs) {
         { url: '/iridium', changefreq: 'monthly', priority: 0.9 },
         { url: '/prompt-suite', changefreq: 'monthly', priority: 0.9 },
         { url: '/video-machine', changefreq: 'monthly', priority: 0.9 },
-        { url: '/rapidalle', changefreq: 'monthly', priority: 0.9 },
         { url: '/obsidian-mcp-server', changefreq: 'monthly', priority: 0.9 },
-        { url: '/custom-file-generator', changefreq: 'monthly', priority: 0.9 },
         { url: '/rr7-slides', changefreq: 'monthly', priority: 0.9 },
+        { url: '/ai-image-pipeline', changefreq: 'monthly', priority: 0.9 },
 
         // Project pages
-        { url: '/ai-maniacs', changefreq: 'monthly', priority: 0.8 },
         { url: '/tech-with-seth', changefreq: 'monthly', priority: 0.8 },
         { url: '/truck', changefreq: 'monthly', priority: 0.8 },
         { url: '/virtruv', changefreq: 'monthly', priority: 0.8 },

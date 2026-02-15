@@ -66,6 +66,16 @@ const workItems = [
     },
     {
         cta: 'View project',
+        title: 'Image Pipeline as a Service',
+        description:
+            'Automated AI image generation system using Trigger.dev, Replicate, and Cloudinary. Generates 4,300+ themed images daily.',
+        imageSrc: '/ai-image-pipeline-thumbnail.webp',
+        imageAlt:
+            'AI Image Pipeline dashboard showing automated image generation',
+        url: '/ai-image-pipeline'
+    },
+    {
+        cta: 'View project',
         title: 'Virtruv',
         description:
             'Custom WordPress website build including brand development, visual identity design, and close collaboration with stakeholders to deliver a solution aligned with business objectives.',
@@ -101,14 +111,6 @@ const workItems = [
         url: '/video-machine'
     },
     {
-        cta: 'View more',
-        title: 'Rapidall•E',
-        description: "Quickly create images using OpenAI's DALL·E",
-        imageSrc: '/rapidalle-thumbnail.webp',
-        imageAlt: '3D rendering of photo strip',
-        url: '/rapidalle'
-    },
-    {
         cta: 'Learn more',
         title: 'RR7 Slides',
         description:
@@ -127,30 +129,12 @@ const workItems = [
         url: '/obsidian-mcp-server'
     },
     {
-        cta: 'Start learning',
-        title: 'AI Maniacs',
-        description: 'Learning site for AI enthusiasts',
-        imageSrc: '/ai-maniacs-thumbnail.webp',
-        imageAlt:
-            '3D rendering of presenter talking about slideshow in front of an audience',
-        url: '/ai-maniacs'
-    },
-    {
         cta: 'Browse repositories',
         title: 'Tech with Seth',
         description: 'Open sourced libraries and templates',
         imageSrc: '/tech-with-seth-thumbnail.webp',
         imageAlt: 'Screenshot of GitHub profile page',
         url: '/tech-with-seth'
-    },
-    {
-        cta: 'Show more',
-        title: 'Custom File Generator CLI (Guide)',
-        description:
-            'Instructions on how to create a custom file generator using Plop.js',
-        imageSrc: '/custom-file-generator-thumbnail.webp',
-        imageAlt: '3D rendering of a drop of water',
-        url: '/custom-file-generator'
     }
 ];
 

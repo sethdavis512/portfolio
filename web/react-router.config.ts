@@ -6,11 +6,8 @@ export default {
         return [
             '/',
             '/about',
-            '/ai-maniacs',
-            '/custom-file-generator',
             '/obsidian-mcp-server',
             '/products',
-            '/rapidalle',
             '/resume',
             '/resume',
             '/rr7-slides',
@@ -19,6 +16,7 @@ export default {
             '/truck',
             '/virtruv',
             '/work',
+            '/ai-image-pipeline',
             '/sitemap.xml'
         ];
     }
