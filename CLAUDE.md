@@ -34,6 +34,12 @@ cd cms && npx tsx sync-from-prod.ts [--tables=work,post,...] [--clean] [--dry-ru
 
 # Sync from local to production (push new/updated data)
 cd cms && npx tsx sync-to-prod.ts [--tables=work,post,...] [--new-only] [--dry-run] [--force]
+
+# Sync images from local to production (Cloudinary JSON data)
+cd cms && npx tsx sync-images-to-prod.ts
+
+# Rebuild web after data sync (required for pre-rendered pages)
+cd web && railway up -d
 ```
 
 ## Architecture
@@ -110,6 +116,10 @@ export const componentVariants = cva({
 2. Create/edit content locally
 3. Preview changes: `npx tsx sync-to-prod.ts --dry-run`
 4. Push new content: `npx tsx sync-to-prod.ts --new-only`
+5. Sync images: `npx tsx sync-images-to-prod.ts`
+6. **Rebuild web** (required for pre-rendered pages): `cd web && railway up -d`
+
+**Critical**: `railway redeploy` only restarts the container — it does NOT rebuild. Pre-rendered pages fetch GraphQL data at build time, so you must use `railway up` to trigger a fresh build after syncing data.
 
 ## Important Notes
 

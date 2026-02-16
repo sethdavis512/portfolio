@@ -127,6 +127,8 @@ async function main() {
     }
 
     console.log('\n✅ Image sync complete!');
+    console.log('\n📌 Next step: Rebuild web to pick up new images:');
+    console.log('   cd web && railway up -d');
 }
 
 main()

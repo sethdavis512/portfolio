@@ -149,6 +149,15 @@ cd cms && npx tsx sync-to-prod.ts --new-only            # then push
 
 **Conflict handling**: If the same record is edited in both environments, production wins. The local change is skipped with a warning unless `--force` is used.
 
+**After syncing data, rebuild the web app**:
+
+```bash
+cd cms && npx tsx sync-images-to-prod.ts  # sync Cloudinary image data
+cd web && railway up -d                    # trigger fresh build
+```
+
+**Critical**: `railway redeploy` only restarts the container — it does NOT rebuild. Pre-rendered pages (`/work`, `/work/*`) fetch GraphQL data at build time, so changes won't appear until you run `railway up`.
+
 ## Content Management
 
 ### Schema Design

@@ -529,6 +529,9 @@ async function main() {
         );
     } else {
         console.log('\n✅ Sync complete!');
+        console.log('\n📌 Next steps:');
+        console.log('   1. Sync images: npx tsx sync-images-to-prod.ts');
+        console.log('   2. Rebuild web:  cd web && railway up -d');
     }
 }
 
