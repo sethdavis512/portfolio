@@ -138,7 +138,11 @@ export default function Home() {
                                 TypeScript, React Router, Prisma, and PostHog.
                                 Focus on building features, not infrastructure.
                             </p>
-                            <ButtonLink color="primary" size="lg" to="/iridium">
+                            <ButtonLink
+                                color="primary"
+                                size="lg"
+                                to="/work/iridium"
+                            >
                                 Learn more
                             </ButtonLink>
                         </div>

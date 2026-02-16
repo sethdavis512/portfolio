@@ -38,7 +38,7 @@ const NAV_ITEMS: NavItem[] = [
     },
     {
         type: 'internal',
-        to: '/iridium',
+        to: '/work/iridium',
         label: 'Iridium',
         ariaLabel:
             'Production-ready web application that leverages AI to accelerate development'
