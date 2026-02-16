@@ -2,10 +2,15 @@ import { Package, ShoppingCart } from 'lucide-react';
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { FreelanceCallToAction } from '~/components/FreelanceCallToAction';
+import {
+    GetProductsDocument,
+    type GetProductsQuery
+} from '~/generated/graphql';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
-import { PRODUCT_LINKS } from '~/constants';
+import { client } from '~/utils/graphql.server';
 import { generateRouteMeta } from '~/utils/seo';
+import type { Route } from './+types/products';
 
 export function meta() {
     return generateRouteMeta({
@@ -16,84 +21,68 @@ export function meta() {
     });
 }
 
-interface Product {
-    title: string;
-    description: string;
-    imageSrc: string;
-    imageAlt: string;
-    detailUrl: string;
-    purchaseUrl: string;
-    features: string[];
-    hidden?: boolean;
+export async function loader() {
+    const data = await client.request<GetProductsQuery>(GetProductsDocument);
+
+    return { products: data.works || [] };
 }
 
-const products: Product[] = [
-    {
-        title: 'Tray App Guide',
-        description:
-            'Learn to build Electron tray apps with the same patterns used in Prompt Suite. Beginner-friendly guide with practical, working examples.',
-        imageSrc: '/optimized/tray-app-guide-cover-web-640w.webp',
-        imageAlt: 'Tray App Guide cover',
-        detailUrl: '/tray-app-guide',
-        purchaseUrl: PRODUCT_LINKS.TRAY_APP_GUIDE,
-        features: [
-            'Beginner-friendly introduction',
-            'Practical examples',
-            'Quick start guide'
-        ],
-        hidden: false
-    },
-    {
-        title: 'Prompt Suite',
-        description:
-            'Generate polished prompts, PRDs, emails, and marketing copy from your system tray. Pick a category, choose a mode, and go.',
-        imageSrc: '/prompt-suite-hero.webp',
-        imageAlt: 'Prompt Suite',
-        detailUrl: '/prompt-suite',
-        purchaseUrl: PRODUCT_LINKS.PROMPT_SUITE,
-        features: [
-            '33 prompt modes across 8 categories',
-            '6 color themes (3 light, 3 dark)',
-            'Mac only'
-        ],
-        hidden: true
-    }
-];
+interface ProductItem {
+    id: string;
+    title?: string | null;
+    slug?: string | null;
+    description?: string | null;
+    purchaseUrl?: string | null;
+    purchaseButtonText?: string | null;
+    features?: string[] | null;
+    thumbnailImage?: {
+        publicUrl?: string | null;
+        publicUrlTransformed?: string | null;
+    } | null;
+}
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product }: { product: ProductItem }) {
+    const detailUrl = `/work/${product.slug}`;
+    const imageSrc =
+        product.thumbnailImage?.publicUrlTransformed ||
+        product.thumbnailImage?.publicUrl ||
+        '';
+
     return (
         <Card className="p-6 space-y-4 flex flex-col">
-            <Linky to={product.detailUrl} className="block">
+            <Linky to={detailUrl} className="block">
                 <figure className="rounded-lg h-87.5 overflow-hidden">
                     <img
                         className="w-full h-full object-cover"
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
+                        src={imageSrc}
+                        alt={product.title || 'Product thumbnail'}
                     />
                 </figure>
             </Linky>
             <Heading as="h2" size="3">
-                {product.title}
+                {product.title || ''}
             </Heading>
             <p className="text-zinc-700 dark:text-zinc-300 grow">
-                {product.description}
+                {product.description || ''}
             </p>
             <div className="space-y-3">
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                    {product.features.map(function (feature) {
-                        return (
-                            <div
-                                key={feature}
-                                className="flex items-start gap-2"
-                            >
-                                <span className="text-primary">✓</span>
-                                <span>{feature}</span>
-                            </div>
-                        );
-                    })}
+                    {((product.features as string[]) || []).map(
+                        function (feature) {
+                            return (
+                                <div
+                                    key={feature}
+                                    className="flex items-start gap-2"
+                                >
+                                    <span className="text-primary">✓</span>
+                                    <span>{feature}</span>
+                                </div>
+                            );
+                        }
+                    )}
                 </div>
                 <div className="flex gap-3">
-                    <Linky to={product.detailUrl} className="flex-1">
+                    <Linky to={detailUrl} className="flex-1">
                         <Button
                             color="primary"
                             variant="outline"
@@ -102,15 +91,23 @@ function ProductCard({ product }: { product: Product }) {
                             Learn More
                         </Button>
                     </Linky>
-                    <Linky external to={product.purchaseUrl} className="flex-1">
-                        <Button
-                            color="primary"
-                            iconBefore={<ShoppingCart className="w-4 h-4" />}
-                            className="w-full justify-center"
+                    {product.purchaseUrl ? (
+                        <Linky
+                            external
+                            to={product.purchaseUrl}
+                            className="flex-1"
                         >
-                            Buy Now
-                        </Button>
-                    </Linky>
+                            <Button
+                                color="primary"
+                                iconBefore={
+                                    <ShoppingCart className="w-4 h-4" />
+                                }
+                                className="w-full justify-center"
+                            >
+                                {product.purchaseButtonText || 'Buy Now'}
+                            </Button>
+                        </Linky>
+                    ) : null}
                 </div>
             </div>
         </Card>
@@ -135,7 +132,7 @@ function ComingSoonCard() {
     );
 }
 
-export default function ProductsRoute() {
+export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
     return (
         <>
             <div className="space-y-6 mb-8">
@@ -147,18 +144,9 @@ export default function ProductsRoute() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {products
-                    .filter(function (product) {
-                        return !product.hidden;
-                    })
-                    .map(function (product) {
-                        return (
-                            <ProductCard
-                                key={product.title}
-                                product={product}
-                            />
-                        );
-                    })}
+                {loaderData.products.map(function (product) {
+                    return <ProductCard key={product.id} product={product} />;
+                })}
                 <ComingSoonCard />
             </div>
             <FreelanceCallToAction className="mt-10" />

@@ -12,10 +12,30 @@ import { cx } from 'cva.config';
 
 import { Heading } from './components/Heading';
 import { CommandPalette } from '~/components/CommandPalette';
+import {
+    GetWorkNavItemsDocument,
+    type GetWorkNavItemsQuery
+} from '~/generated/graphql';
+import { client } from '~/utils/graphql.server';
 
 import type { Route } from './+types/root';
 
 import './app.css';
+
+export async function loader() {
+    try {
+        const { works } = await client.request<GetWorkNavItemsQuery>(
+            GetWorkNavItemsDocument
+        );
+        return {
+            workNavItems: (works || []).map(function (w) {
+                return { title: w.title || '', slug: w.slug || '' };
+            })
+        };
+    } catch {
+        return { workNavItems: [] };
+    }
+}
 
 function PosthogInit() {
     useEffect(() => {
@@ -46,8 +66,6 @@ function useCommandPallette(): [boolean, (open: boolean) => void] {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    const [open, setOpen] = useCommandPallette();
-
     return (
         <html lang="en" className="dark">
             <head>
@@ -65,7 +83,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 )}
             >
                 {children}
-                <CommandPalette open={open} onOpenChange={setOpen} />
                 <ScrollRestoration />
                 <Scripts />
                 <PosthogInit />
@@ -74,8 +91,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
     );
 }
 
-export default function App() {
-    return <Outlet />;
+export default function App({ loaderData }: Route.ComponentProps) {
+    const [open, setOpen] = useCommandPallette();
+
+    return (
+        <>
+            <Outlet />
+            <CommandPalette
+                open={open}
+                onOpenChange={setOpen}
+                workItems={loaderData.workNavItems}
+            />
+        </>
+    );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

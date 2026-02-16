@@ -23,7 +23,7 @@ export function ImageThumbnails({
             <div className="flex items-center gap-2 mb-6">
                 <Images className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
                 <h3 className="text-lg font-semibold text-zinc-700 dark:text-zinc-300">
-                    Project Gallery
+                    Screenshots
                 </h3>
                 <span className="text-sm text-zinc-500 dark:text-zinc-400">
                     Click to view full size
@@ -38,9 +38,7 @@ export function ImageThumbnails({
                         type="button"
                     >
                         <img
-                            src={`/optimized${image.src.replace(/\.[^.]+$/, '')}-640w.webp`}
-                            srcSet={`/optimized${image.src.replace(/\.[^.]+$/, '')}-640w.webp 640w, /optimized${image.src.replace(/\.[^.]+$/, '')}-1024w.webp 1024w`}
-                            sizes="(max-width: 768px) 50vw, 25vw"
+                            src={image.src}
                             alt={image.alt}
                             className="w-full h-full object-cover"
                             loading="lazy"

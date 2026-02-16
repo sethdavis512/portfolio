@@ -1,17 +1,19 @@
 import { cx } from 'cva.config';
 import { InfoIcon } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
-// import { intervalToDuration, formatDuration } from 'date-fns';
 
 import { Banner } from '~/components/Banner';
 import { ContentStyles } from '~/constants';
 import { Flex } from '~/components/Flex';
+import { GetResumeDocument, type GetResumeQuery } from '~/generated/graphql';
 import { generateRouteMeta } from '~/utils/seo';
 import { Heading } from '~/components/Heading';
 import { JobItem } from '~/components/JobItem';
 import { JobItemList } from '~/components/JobItemList';
 import { Linky } from '~/components/Linky';
 import { SkillTag } from '~/components/SkillTag';
+import { client } from '~/utils/graphql.server';
+import type { Route } from './+types/resume';
 
 const RESUME_URL =
     'https://www.dropbox.com/scl/fi/sl3nav1owzvfhqvphwflh/seth-davis-resume.pdf?rlkey=1gdz3ln2tcdrufv6gyi0zcppl&st=mluwhad0&dl=0';
@@ -25,6 +27,15 @@ export function meta() {
     });
 }
 
+export async function loader() {
+    const data = await client.request<GetResumeQuery>(GetResumeDocument);
+
+    return {
+        skills: data.skills || [],
+        experiences: data.experiences || []
+    };
+}
+
 function ResumeSection({
     children,
     className
@@ -32,19 +43,8 @@ function ResumeSection({
     return <section className={cx('mb-8', className)}>{children}</section>;
 }
 
-export default function ResumeRoute() {
+export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
     const yearsAsDeveloper = new Date().getFullYear() - 2016;
-    // const timeAtCurrentJob = formatDuration(
-    //     intervalToDuration({
-    //         start: new Date(2024, 7),
-    //         end: new Date()
-    //     }),
-    //     { format: ['years', 'months'] }
-    // )
-    //     .replace('years', 'yrs')
-    //     .replace('year', 'yr')
-    //     .replace('months', 'mos')
-    //     .replace('month', 'mo');
 
     return (
         <>
@@ -71,32 +71,13 @@ export default function ResumeRoute() {
                     {`${ContentStyles.FRONTEND} Engineer Skills`}
                 </Heading>
                 <div className="flex flex-wrap items-center gap-2">
-                    {[
-                        'Typescript',
-                        'React',
-                        'React Router 7',
-                        'Vue.js',
-                        'Prisma',
-                        'Postgres',
-                        'GraphQL',
-                        'CSS-in-JS',
-                        'HTML',
-                        'CSS',
-                        'JS',
-                        'GitHub CI/CD',
-                        'Accessibility',
-                        'Git',
-                        'Vercel AI SDK',
-                        'Open AI API',
-                        'Claude Code',
-                        'GitHub Copilot',
-                        'PostHog',
-                        'Railway',
-                        'VS Code',
-                        'Figma'
-                    ].map((skill) => (
-                        <SkillTag key={skill}>{skill}</SkillTag>
-                    ))}
+                    {loaderData.skills.map(function (skill) {
+                        return (
+                            <SkillTag key={skill.id}>
+                                {skill.name || ''}
+                            </SkillTag>
+                        );
+                    })}
                 </div>
             </ResumeSection>
             <ResumeSection>

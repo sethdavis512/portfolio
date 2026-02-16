@@ -27,6 +27,11 @@ export function HeroImage({
     const getResponsiveSrc = () => {
         if (!responsive) return { src };
 
+        // If src is already a full URL (e.g. Cloudinary), use it directly
+        if (src.startsWith('http://') || src.startsWith('https://')) {
+            return { src };
+        }
+
         const baseName = src.replace(/\.[^.]+$/, ''); // Remove extension
 
         // Use only optimized images for best performance

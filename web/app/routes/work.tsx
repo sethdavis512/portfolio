@@ -3,13 +3,26 @@ import { Link } from 'react-router';
 import { Button } from '~/components/Button';
 import { ContentSection } from '~/components/ContentSection';
 import { Heading } from '~/components/Heading';
+import {
+    GetWorkListDocument,
+    type GetWorkListQuery
+} from '~/generated/graphql';
+import { client } from '~/utils/graphql.server';
 import { generateRouteMeta } from '~/utils/seo';
+import type { Route } from './+types/work';
 
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'Work',
         descriptionContent: 'Projects and applications built by Seth Davis'
     });
+}
+
+export async function loader() {
+    const { works } =
+        await client.request<GetWorkListQuery>(GetWorkListDocument);
+
+    return { works: works || [] };
 }
 
 interface WorkDisplayProps {
@@ -54,100 +67,30 @@ function WorkDisplay({
     );
 }
 
-const workItems = [
-    {
-        cta: 'See more',
-        title: 'Iridium',
-        description:
-            'Launch your SaaS in days, not months. Iridium provides a quality foundations—from authentication to subscriptions—so you focus on building what makes your product unique.',
-        imageSrc: '/iridium-thumbnail.webp',
-        imageAlt: 'Web browser displaying Iridium dashboard',
-        url: '/iridium'
-    },
-    {
-        cta: 'View project',
-        title: 'Image Pipeline as a Service',
-        description:
-            'Automated AI image generation system using Trigger.dev, Replicate, and Cloudinary. Generates 4,300+ themed images daily.',
-        imageSrc: '/ai-image-pipeline-thumbnail.webp',
-        imageAlt:
-            'AI Image Pipeline dashboard showing automated image generation',
-        url: '/ai-image-pipeline'
-    },
-    {
-        cta: 'View project',
-        title: 'Virtruv',
-        description:
-            'Custom WordPress website build including brand development, visual identity design, and close collaboration with stakeholders to deliver a solution aligned with business objectives.',
-        imageSrc: '/virtruv-thumbnail.webp',
-        imageAlt: 'Virtruv website redesign',
-        url: '/virtruv'
-    },
-    {
-        cta: 'Learn more',
-        title: 'Prompt Suite',
-        description:
-            'Native desktop tray app for instant AI prompt access without disrupting your workflow.',
-        imageSrc: '/prompt-suite-thumbnail.webp',
-        imageAlt: 'Prompt Suite desktop app in system tray',
-        url: '/prompt-suite'
-    },
-    {
-        cta: 'View project',
-        title: 'AWS Flashcards',
-        description:
-            'Electron tray app for studying AWS Cloud Practitioner (CLF-C02) certification with 130+ flashcards.',
-        imageSrc: '/aws-flashcards-thumbnail.webp',
-        imageAlt: 'AWS Flashcards tray app',
-        url: '/aws-flashcards'
-    },
-    {
-        cta: 'Explore platform',
-        title: 'Video Machine',
-        description:
-            'Video rendering platform that creates TikTok-style slide videos using Remotion, with credit-based payments and background processing.',
-        imageSrc: '/video-machine-thumbnail.webp',
-        imageAlt: 'Video Machine rendering interface',
-        url: '/video-machine'
-    },
-    {
-        cta: 'Learn more',
-        title: 'RR7 Slides',
-        description:
-            'A React Router based web application for creating and sharing slide presentations',
-        imageSrc: '/rr7-slides-thumbnail.webp',
-        imageAlt:
-            '3D rendering of presenter talking about slideshow in front of an audience',
-        url: '/rr7-slides'
-    },
-    {
-        cta: 'Get started',
-        title: 'Obsidian MCP Server',
-        description: 'A second brain for your everyday',
-        imageSrc: '/obsidian-mcp-thumbnail.webp',
-        imageAlt: '3D rendering of a brain with network connections',
-        url: '/obsidian-mcp-server'
-    },
-    {
-        cta: 'Browse repositories',
-        title: 'Tech with Seth',
-        description: 'Open sourced libraries and templates',
-        imageSrc: '/tech-with-seth-thumbnail.webp',
-        imageAlt: 'Screenshot of GitHub profile page',
-        url: '/tech-with-seth'
-    }
-];
-
-export default function WorkRoute() {
+export default function WorkRoute({ loaderData }: Route.ComponentProps) {
     return (
         <>
             <Heading as="h1">Work</Heading>
             <div className="grid grid-cols-1 gap-8 items-stretch">
-                {workItems.map((item, index) => (
-                    <ContentSection key={item.url}>
-                        <WorkDisplay {...item} reverse={index % 2 !== 0} />
-                    </ContentSection>
-                ))}
+                {loaderData.works.map(function (item, index) {
+                    return (
+                        <ContentSection key={item.id}>
+                            <WorkDisplay
+                                title={item.title || ''}
+                                description={item.description || ''}
+                                cta={item.cta || 'View project'}
+                                imageSrc={
+                                    item.thumbnailImage?.publicUrlTransformed ||
+                                    item.thumbnailImage?.publicUrl ||
+                                    ''
+                                }
+                                imageAlt={item.title || 'Project thumbnail'}
+                                url={`/work/${item.slug}`}
+                                reverse={index % 2 !== 0}
+                            />
+                        </ContentSection>
+                    );
+                })}
             </div>
         </>
     );

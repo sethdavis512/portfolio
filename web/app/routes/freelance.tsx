@@ -1,5 +1,4 @@
 import { Button } from '~/components/Button';
-import { ContentStyles } from '~/constants';
 import { data, useFetcher } from 'react-router';
 import { generateRouteMeta } from '~/utils/seo';
 import { Heading } from '~/components/Heading';
@@ -74,20 +73,17 @@ export default function FreelanceRoute() {
                 </Heading>
 
                 <section className="mb-8 space-y-4">
-                    <p>
-                        Hi there! I'm Seth, a{' '}
-                        {ContentStyles.FRONTEND.toLowerCase()} developer with a
-                        passion for building clean, accessible web experiences.
-                        After 9+ years working with companies like Indeed and
-                        Gartner, I'm now available to help bring your project to
-                        life.
+                    <p className="text-xl text-zinc-300">
+                        Looking for a technical partner on your next project? I
+                        help founders and teams ship polished React applications
+                        and AI-powered tools—from prototype to production.
                     </p>
                     <p>
-                        I specialize in React, TypeScript, and modern web
-                        technologies, but what I really love is solving problems
-                        and making things work smoothly for users. Whether you
-                        need a new feature, some help debugging, or a fresh set
-                        of eyes on your codebase, I'd be happy to chat.
+                        After 9+ years working with companies like Indeed and
+                        Gartner, I specialize in React, TypeScript, and modern
+                        web technologies. Whether you need a new feature, help
+                        debugging, or a fresh set of eyes on your codebase, I'd
+                        be happy to chat.
                     </p>
                 </section>
 

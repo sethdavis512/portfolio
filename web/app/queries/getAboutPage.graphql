@@ -1,0 +1,23 @@
+query GetAboutPage {
+    aboutFacts(
+        where: { status: { equals: "PUBLISHED" } }
+        orderBy: [{ sortOrder: asc }]
+    ) {
+        id
+        emoji
+        title
+        content
+        linkUrl
+        linkExternal
+        sortOrder
+    }
+    quotes(
+        where: { status: { equals: "PUBLISHED" } }
+        orderBy: [{ sortOrder: asc }]
+    ) {
+        id
+        text
+        author
+        sortOrder
+    }
+}

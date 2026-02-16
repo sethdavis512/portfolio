@@ -1,0 +1,28 @@
+query GetProducts {
+    works(
+        where: {
+            status: { equals: "PUBLISHED" }
+            sidebarType: { equals: "purchase" }
+        }
+        orderBy: [{ sortOrder: asc }]
+    ) {
+        id
+        title
+        slug
+        description
+        purchaseUrl
+        purchaseButtonText
+        features
+        thumbnailImage {
+            publicUrl
+            publicUrlTransformed(
+                transformation: {
+                    width: "1280"
+                    crop: "scale"
+                    quality: "90"
+                    fetch_format: "auto"
+                }
+            )
+        }
+    }
+}

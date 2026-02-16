@@ -12,13 +12,14 @@ generator client {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  name      String    @default("")
-  email     String    @unique @default("")
-  password  String
-  posts     Post[]    @relation("Post_author")
-  createdAt DateTime? @default(now())
-  prompts   Prompt[]  @relation("Prompt_author")
+  id               String    @id @default(cuid())
+  name             String    @default("")
+  email            String    @unique @default("")
+  password         String
+  posts            Post[]    @relation("Post_author")
+  createdAt        DateTime? @default(now())
+  prompts          Prompt[]  @relation("Prompt_author")
+  from_Work_author Work[]    @relation("Work_author")
 }
 
 model Post {
@@ -41,6 +42,7 @@ model Tag {
   name    String   @default("")
   posts   Post[]   @relation("Post_tags")
   prompts Prompt[] @relation("Prompt_tags")
+  works   Work[]   @relation("Tag_works")
 }
 
 model Prompt {
@@ -55,4 +57,86 @@ model Prompt {
   tags      Tag[]     @relation("Prompt_tags")
 
   @@index([authorId])
+}
+
+model Work {
+  id                 String      @id @default(cuid())
+  createdAt          DateTime?   @default(now())
+  updatedAt          DateTime?   @default(now()) @updatedAt
+  title              String      @unique @default("")
+  slug               String      @unique @default("")
+  status             String      @default("DRAFT")
+  sortOrder          Int?        @default(0)
+  description        String      @default("")
+  cta                String      @default("See more")
+  heroImage          Json?
+  thumbnailImage     Json?
+  about              String      @default("")
+  learned            String      @default("")
+  impact             String      @default("")
+  content            Json        @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  techStack          Json?       @default("[]")
+  sourceUrl          String      @default("")
+  demoUrl            String      @default("")
+  demoUrlText        String      @default("")
+  purchaseUrl        String      @default("")
+  purchaseButtonText String      @default("Purchase")
+  sidebarTitle       String      @default("Get It Now")
+  features           Json?       @default("[]")
+  sidebarType        String?     @default("none")
+  galleryImages      WorkImage[] @relation("WorkImage_work")
+  author             User?       @relation("Work_author", fields: [authorId], references: [id])
+  authorId           String?     @map("author")
+  tags               Tag[]       @relation("Tag_works")
+
+  @@index([authorId])
+}
+
+model Skill {
+  id        String @id @default(cuid())
+  name      String @unique @default("")
+  sortOrder Int?   @default(0)
+  status    String @default("DRAFT")
+}
+
+model Experience {
+  id        String @id @default(cuid())
+  title     String @default("")
+  company   String @default("")
+  location  String @default("Austin, TX")
+  dates     String @default("")
+  type      String @default("job")
+  sortOrder Int?   @default(0)
+  bullets   Json?  @default("[]")
+  status    String @default("DRAFT")
+}
+
+model Quote {
+  id        String @id @default(cuid())
+  text      String @unique @default("")
+  author    String @default("")
+  sortOrder Int?   @default(0)
+  status    String @default("DRAFT")
+}
+
+model AboutFact {
+  id           String  @id @default(cuid())
+  emoji        String  @default("")
+  title        String  @unique @default("")
+  content      String  @default("")
+  linkUrl      String  @default("")
+  linkExternal String? @default("true")
+  sortOrder    Int?    @default(0)
+  status       String  @default("DRAFT")
+}
+
+model WorkImage {
+  id        String  @id @default(cuid())
+  image     Json?
+  alt       String  @default("")
+  sortOrder Int?    @default(0)
+  work      Work?   @relation("WorkImage_work", fields: [workId], references: [id])
+  workId    String? @map("work")
+
+  @@index([workId])
 }

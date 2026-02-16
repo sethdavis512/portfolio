@@ -1,0 +1,28 @@
+query GetWorkList {
+    works(
+        where: {
+            status: { equals: "PUBLISHED" }
+            sidebarType: { not: { equals: "purchase" } }
+        }
+        orderBy: [{ sortOrder: asc }]
+    ) {
+        id
+        title
+        slug
+        description
+        cta
+        sortOrder
+        sidebarType
+        thumbnailImage {
+            publicUrl
+            publicUrlTransformed(
+                transformation: {
+                    width: "1280"
+                    crop: "scale"
+                    quality: "90"
+                    fetch_format: "auto"
+                }
+            )
+        }
+    }
+}

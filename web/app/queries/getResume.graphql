@@ -1,0 +1,23 @@
+query GetResume {
+    skills(
+        where: { status: { equals: "PUBLISHED" } }
+        orderBy: [{ sortOrder: asc }]
+    ) {
+        id
+        name
+        sortOrder
+    }
+    experiences(
+        where: { status: { equals: "PUBLISHED" } }
+        orderBy: [{ sortOrder: asc }]
+    ) {
+        id
+        title
+        company
+        location
+        dates
+        type
+        sortOrder
+        bullets
+    }
+}

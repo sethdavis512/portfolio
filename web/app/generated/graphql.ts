@@ -17,9 +17,130 @@ export type Scalars = {
   Float: { input: number; output: number; }
   DateTime: { input: any; output: any; }
   JSON: { input: any; output: any; }
+  Upload: { input: any; output: any; }
+};
+
+export type AboutFact = {
+  __typename?: 'AboutFact';
+  content?: Maybe<Scalars['String']['output']>;
+  emoji?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  linkExternal?: Maybe<Scalars['String']['output']>;
+  linkUrl?: Maybe<Scalars['String']['output']>;
+  sortOrder?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutFactCreateInput = {
+  content?: InputMaybe<Scalars['String']['input']>;
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  linkExternal?: InputMaybe<Scalars['String']['input']>;
+  linkUrl?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutFactOrderByInput = {
+  content?: InputMaybe<OrderDirection>;
+  emoji?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  linkExternal?: InputMaybe<OrderDirection>;
+  linkUrl?: InputMaybe<OrderDirection>;
+  sortOrder?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+  title?: InputMaybe<OrderDirection>;
+};
+
+export type AboutFactUpdateArgs = {
+  data: AboutFactUpdateInput;
+  where: AboutFactWhereUniqueInput;
+};
+
+export type AboutFactUpdateInput = {
+  content?: InputMaybe<Scalars['String']['input']>;
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  linkExternal?: InputMaybe<Scalars['String']['input']>;
+  linkUrl?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutFactWhereInput = {
+  AND?: InputMaybe<Array<AboutFactWhereInput>>;
+  NOT?: InputMaybe<Array<AboutFactWhereInput>>;
+  OR?: InputMaybe<Array<AboutFactWhereInput>>;
+  content?: InputMaybe<StringFilter>;
+  emoji?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  linkExternal?: InputMaybe<StringNullableFilter>;
+  linkUrl?: InputMaybe<StringFilter>;
+  sortOrder?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type AboutFactWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AuthenticatedItem = User;
+
+/**
+ * Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
+ * All options are strings as they ultimately end up in a URL.
+ */
+export type CloudinaryImageFormat = {
+  angle?: InputMaybe<Scalars['String']['input']>;
+  aspect_ratio?: InputMaybe<Scalars['String']['input']>;
+  background?: InputMaybe<Scalars['String']['input']>;
+  border?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  color_space?: InputMaybe<Scalars['String']['input']>;
+  crop?: InputMaybe<Scalars['String']['input']>;
+  default_image?: InputMaybe<Scalars['String']['input']>;
+  delay?: InputMaybe<Scalars['String']['input']>;
+  density?: InputMaybe<Scalars['String']['input']>;
+  dpr?: InputMaybe<Scalars['String']['input']>;
+  effect?: InputMaybe<Scalars['String']['input']>;
+  fetch_format?: InputMaybe<Scalars['String']['input']>;
+  flags?: InputMaybe<Scalars['String']['input']>;
+  format?: InputMaybe<Scalars['String']['input']>;
+  gravity?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['String']['input']>;
+  opacity?: InputMaybe<Scalars['String']['input']>;
+  overlay?: InputMaybe<Scalars['String']['input']>;
+  page?: InputMaybe<Scalars['String']['input']>;
+  /**  Rewrites the filename to be this pretty string. Do not include `/` or `.` */
+  prettyName?: InputMaybe<Scalars['String']['input']>;
+  quality?: InputMaybe<Scalars['String']['input']>;
+  radius?: InputMaybe<Scalars['String']['input']>;
+  transformation?: InputMaybe<Scalars['String']['input']>;
+  underlay?: InputMaybe<Scalars['String']['input']>;
+  width?: InputMaybe<Scalars['String']['input']>;
+  x?: InputMaybe<Scalars['String']['input']>;
+  y?: InputMaybe<Scalars['String']['input']>;
+  zoom?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CloudinaryImage_File = {
+  __typename?: 'CloudinaryImage_File';
+  encoding?: Maybe<Scalars['String']['output']>;
+  filename?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['ID']['output']>;
+  mimetype?: Maybe<Scalars['String']['output']>;
+  originalFilename?: Maybe<Scalars['String']['output']>;
+  publicUrl?: Maybe<Scalars['String']['output']>;
+  publicUrlTransformed?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type CloudinaryImage_FilePublicUrlTransformedArgs = {
+  transformation?: InputMaybe<CloudinaryImageFormat>;
+};
 
 export type CreateInitialUserInput = {
   email?: InputMaybe<Scalars['String']['input']>;
@@ -38,6 +159,75 @@ export type DateTimeNullableFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
+export type Experience = {
+  __typename?: 'Experience';
+  bullets?: Maybe<Scalars['JSON']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  dates?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  location?: Maybe<Scalars['String']['output']>;
+  sortOrder?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+export type ExperienceCreateInput = {
+  bullets?: InputMaybe<Scalars['JSON']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  dates?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ExperienceOrderByInput = {
+  company?: InputMaybe<OrderDirection>;
+  dates?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  location?: InputMaybe<OrderDirection>;
+  sortOrder?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+  title?: InputMaybe<OrderDirection>;
+  type?: InputMaybe<OrderDirection>;
+};
+
+export type ExperienceUpdateArgs = {
+  data: ExperienceUpdateInput;
+  where: ExperienceWhereUniqueInput;
+};
+
+export type ExperienceUpdateInput = {
+  bullets?: InputMaybe<Scalars['JSON']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  dates?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ExperienceWhereInput = {
+  AND?: InputMaybe<Array<ExperienceWhereInput>>;
+  NOT?: InputMaybe<Array<ExperienceWhereInput>>;
+  OR?: InputMaybe<Array<ExperienceWhereInput>>;
+  company?: InputMaybe<StringFilter>;
+  dates?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  location?: InputMaybe<StringFilter>;
+  sortOrder?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+};
+
+export type ExperienceWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export type IdFilter = {
   equals?: InputMaybe<Scalars['ID']['input']>;
   gt?: InputMaybe<Scalars['ID']['input']>;
@@ -47,6 +237,17 @@ export type IdFilter = {
   lte?: InputMaybe<Scalars['ID']['input']>;
   not?: InputMaybe<IdFilter>;
   notIn?: InputMaybe<Array<Scalars['ID']['input']>>;
+};
+
+export type IntNullableFilter = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<IntNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type KeystoneAdminMeta = {
@@ -204,38 +405,94 @@ export type KeystoneMeta = {
 export type Mutation = {
   __typename?: 'Mutation';
   authenticateUserWithPassword?: Maybe<UserAuthenticationWithPasswordResult>;
+  createAboutFact?: Maybe<AboutFact>;
+  createAboutFacts?: Maybe<Array<Maybe<AboutFact>>>;
+  createExperience?: Maybe<Experience>;
+  createExperiences?: Maybe<Array<Maybe<Experience>>>;
   createInitialUser: UserAuthenticationWithPasswordSuccess;
   createPost?: Maybe<Post>;
   createPosts?: Maybe<Array<Maybe<Post>>>;
   createPrompt?: Maybe<Prompt>;
   createPrompts?: Maybe<Array<Maybe<Prompt>>>;
+  createQuote?: Maybe<Quote>;
+  createQuotes?: Maybe<Array<Maybe<Quote>>>;
+  createSkill?: Maybe<Skill>;
+  createSkills?: Maybe<Array<Maybe<Skill>>>;
   createTag?: Maybe<Tag>;
   createTags?: Maybe<Array<Maybe<Tag>>>;
   createUser?: Maybe<User>;
   createUsers?: Maybe<Array<Maybe<User>>>;
+  createWork?: Maybe<Work>;
+  createWorkImage?: Maybe<WorkImage>;
+  createWorkImages?: Maybe<Array<Maybe<WorkImage>>>;
+  createWorks?: Maybe<Array<Maybe<Work>>>;
+  deleteAboutFact?: Maybe<AboutFact>;
+  deleteAboutFacts?: Maybe<Array<Maybe<AboutFact>>>;
+  deleteExperience?: Maybe<Experience>;
+  deleteExperiences?: Maybe<Array<Maybe<Experience>>>;
   deletePost?: Maybe<Post>;
   deletePosts?: Maybe<Array<Maybe<Post>>>;
   deletePrompt?: Maybe<Prompt>;
   deletePrompts?: Maybe<Array<Maybe<Prompt>>>;
+  deleteQuote?: Maybe<Quote>;
+  deleteQuotes?: Maybe<Array<Maybe<Quote>>>;
+  deleteSkill?: Maybe<Skill>;
+  deleteSkills?: Maybe<Array<Maybe<Skill>>>;
   deleteTag?: Maybe<Tag>;
   deleteTags?: Maybe<Array<Maybe<Tag>>>;
   deleteUser?: Maybe<User>;
   deleteUsers?: Maybe<Array<Maybe<User>>>;
+  deleteWork?: Maybe<Work>;
+  deleteWorkImage?: Maybe<WorkImage>;
+  deleteWorkImages?: Maybe<Array<Maybe<WorkImage>>>;
+  deleteWorks?: Maybe<Array<Maybe<Work>>>;
   endSession: Scalars['Boolean']['output'];
+  updateAboutFact?: Maybe<AboutFact>;
+  updateAboutFacts?: Maybe<Array<Maybe<AboutFact>>>;
+  updateExperience?: Maybe<Experience>;
+  updateExperiences?: Maybe<Array<Maybe<Experience>>>;
   updatePost?: Maybe<Post>;
   updatePosts?: Maybe<Array<Maybe<Post>>>;
   updatePrompt?: Maybe<Prompt>;
   updatePrompts?: Maybe<Array<Maybe<Prompt>>>;
+  updateQuote?: Maybe<Quote>;
+  updateQuotes?: Maybe<Array<Maybe<Quote>>>;
+  updateSkill?: Maybe<Skill>;
+  updateSkills?: Maybe<Array<Maybe<Skill>>>;
   updateTag?: Maybe<Tag>;
   updateTags?: Maybe<Array<Maybe<Tag>>>;
   updateUser?: Maybe<User>;
   updateUsers?: Maybe<Array<Maybe<User>>>;
+  updateWork?: Maybe<Work>;
+  updateWorkImage?: Maybe<WorkImage>;
+  updateWorkImages?: Maybe<Array<Maybe<WorkImage>>>;
+  updateWorks?: Maybe<Array<Maybe<Work>>>;
 };
 
 
 export type MutationAuthenticateUserWithPasswordArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
+};
+
+
+export type MutationCreateAboutFactArgs = {
+  data: AboutFactCreateInput;
+};
+
+
+export type MutationCreateAboutFactsArgs = {
+  data: Array<AboutFactCreateInput>;
+};
+
+
+export type MutationCreateExperienceArgs = {
+  data: ExperienceCreateInput;
+};
+
+
+export type MutationCreateExperiencesArgs = {
+  data: Array<ExperienceCreateInput>;
 };
 
 
@@ -264,6 +521,26 @@ export type MutationCreatePromptsArgs = {
 };
 
 
+export type MutationCreateQuoteArgs = {
+  data: QuoteCreateInput;
+};
+
+
+export type MutationCreateQuotesArgs = {
+  data: Array<QuoteCreateInput>;
+};
+
+
+export type MutationCreateSkillArgs = {
+  data: SkillCreateInput;
+};
+
+
+export type MutationCreateSkillsArgs = {
+  data: Array<SkillCreateInput>;
+};
+
+
 export type MutationCreateTagArgs = {
   data: TagCreateInput;
 };
@@ -281,6 +558,46 @@ export type MutationCreateUserArgs = {
 
 export type MutationCreateUsersArgs = {
   data: Array<UserCreateInput>;
+};
+
+
+export type MutationCreateWorkArgs = {
+  data: WorkCreateInput;
+};
+
+
+export type MutationCreateWorkImageArgs = {
+  data: WorkImageCreateInput;
+};
+
+
+export type MutationCreateWorkImagesArgs = {
+  data: Array<WorkImageCreateInput>;
+};
+
+
+export type MutationCreateWorksArgs = {
+  data: Array<WorkCreateInput>;
+};
+
+
+export type MutationDeleteAboutFactArgs = {
+  where: AboutFactWhereUniqueInput;
+};
+
+
+export type MutationDeleteAboutFactsArgs = {
+  where: Array<AboutFactWhereUniqueInput>;
+};
+
+
+export type MutationDeleteExperienceArgs = {
+  where: ExperienceWhereUniqueInput;
+};
+
+
+export type MutationDeleteExperiencesArgs = {
+  where: Array<ExperienceWhereUniqueInput>;
 };
 
 
@@ -304,6 +621,26 @@ export type MutationDeletePromptsArgs = {
 };
 
 
+export type MutationDeleteQuoteArgs = {
+  where: QuoteWhereUniqueInput;
+};
+
+
+export type MutationDeleteQuotesArgs = {
+  where: Array<QuoteWhereUniqueInput>;
+};
+
+
+export type MutationDeleteSkillArgs = {
+  where: SkillWhereUniqueInput;
+};
+
+
+export type MutationDeleteSkillsArgs = {
+  where: Array<SkillWhereUniqueInput>;
+};
+
+
 export type MutationDeleteTagArgs = {
   where: TagWhereUniqueInput;
 };
@@ -321,6 +658,48 @@ export type MutationDeleteUserArgs = {
 
 export type MutationDeleteUsersArgs = {
   where: Array<UserWhereUniqueInput>;
+};
+
+
+export type MutationDeleteWorkArgs = {
+  where: WorkWhereUniqueInput;
+};
+
+
+export type MutationDeleteWorkImageArgs = {
+  where: WorkImageWhereUniqueInput;
+};
+
+
+export type MutationDeleteWorkImagesArgs = {
+  where: Array<WorkImageWhereUniqueInput>;
+};
+
+
+export type MutationDeleteWorksArgs = {
+  where: Array<WorkWhereUniqueInput>;
+};
+
+
+export type MutationUpdateAboutFactArgs = {
+  data: AboutFactUpdateInput;
+  where: AboutFactWhereUniqueInput;
+};
+
+
+export type MutationUpdateAboutFactsArgs = {
+  data: Array<AboutFactUpdateArgs>;
+};
+
+
+export type MutationUpdateExperienceArgs = {
+  data: ExperienceUpdateInput;
+  where: ExperienceWhereUniqueInput;
+};
+
+
+export type MutationUpdateExperiencesArgs = {
+  data: Array<ExperienceUpdateArgs>;
 };
 
 
@@ -346,6 +725,28 @@ export type MutationUpdatePromptsArgs = {
 };
 
 
+export type MutationUpdateQuoteArgs = {
+  data: QuoteUpdateInput;
+  where: QuoteWhereUniqueInput;
+};
+
+
+export type MutationUpdateQuotesArgs = {
+  data: Array<QuoteUpdateArgs>;
+};
+
+
+export type MutationUpdateSkillArgs = {
+  data: SkillUpdateInput;
+  where: SkillWhereUniqueInput;
+};
+
+
+export type MutationUpdateSkillsArgs = {
+  data: Array<SkillUpdateArgs>;
+};
+
+
 export type MutationUpdateTagArgs = {
   data: TagUpdateInput;
   where: TagWhereUniqueInput;
@@ -365,6 +766,28 @@ export type MutationUpdateUserArgs = {
 
 export type MutationUpdateUsersArgs = {
   data: Array<UserUpdateArgs>;
+};
+
+
+export type MutationUpdateWorkArgs = {
+  data: WorkUpdateInput;
+  where: WorkWhereUniqueInput;
+};
+
+
+export type MutationUpdateWorkImageArgs = {
+  data: WorkImageUpdateInput;
+  where: WorkImageWhereUniqueInput;
+};
+
+
+export type MutationUpdateWorkImagesArgs = {
+  data: Array<WorkImageUpdateArgs>;
+};
+
+
+export type MutationUpdateWorksArgs = {
+  data: Array<WorkUpdateArgs>;
 };
 
 export type NestedStringFilter = {
@@ -618,7 +1041,13 @@ export type Prompt_Content_DocumentDocumentArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  aboutFact?: Maybe<AboutFact>;
+  aboutFacts?: Maybe<Array<AboutFact>>;
+  aboutFactsCount?: Maybe<Scalars['Int']['output']>;
   authenticatedItem?: Maybe<AuthenticatedItem>;
+  experience?: Maybe<Experience>;
+  experiences?: Maybe<Array<Experience>>;
+  experiencesCount?: Maybe<Scalars['Int']['output']>;
   keystone: KeystoneMeta;
   post?: Maybe<Post>;
   posts?: Maybe<Array<Post>>;
@@ -626,12 +1055,62 @@ export type Query = {
   prompt?: Maybe<Prompt>;
   prompts?: Maybe<Array<Prompt>>;
   promptsCount?: Maybe<Scalars['Int']['output']>;
+  quote?: Maybe<Quote>;
+  quotes?: Maybe<Array<Quote>>;
+  quotesCount?: Maybe<Scalars['Int']['output']>;
+  skill?: Maybe<Skill>;
+  skills?: Maybe<Array<Skill>>;
+  skillsCount?: Maybe<Scalars['Int']['output']>;
   tag?: Maybe<Tag>;
   tags?: Maybe<Array<Tag>>;
   tagsCount?: Maybe<Scalars['Int']['output']>;
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
   usersCount?: Maybe<Scalars['Int']['output']>;
+  work?: Maybe<Work>;
+  workImage?: Maybe<WorkImage>;
+  workImages?: Maybe<Array<WorkImage>>;
+  workImagesCount?: Maybe<Scalars['Int']['output']>;
+  works?: Maybe<Array<Work>>;
+  worksCount?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type QueryAboutFactArgs = {
+  where: AboutFactWhereUniqueInput;
+};
+
+
+export type QueryAboutFactsArgs = {
+  cursor?: InputMaybe<AboutFactWhereUniqueInput>;
+  orderBy?: Array<AboutFactOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: AboutFactWhereInput;
+};
+
+
+export type QueryAboutFactsCountArgs = {
+  where?: AboutFactWhereInput;
+};
+
+
+export type QueryExperienceArgs = {
+  where: ExperienceWhereUniqueInput;
+};
+
+
+export type QueryExperiencesArgs = {
+  cursor?: InputMaybe<ExperienceWhereUniqueInput>;
+  orderBy?: Array<ExperienceOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: ExperienceWhereInput;
+};
+
+
+export type QueryExperiencesCountArgs = {
+  where?: ExperienceWhereInput;
 };
 
 
@@ -673,6 +1152,44 @@ export type QueryPromptsCountArgs = {
 };
 
 
+export type QueryQuoteArgs = {
+  where: QuoteWhereUniqueInput;
+};
+
+
+export type QueryQuotesArgs = {
+  cursor?: InputMaybe<QuoteWhereUniqueInput>;
+  orderBy?: Array<QuoteOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: QuoteWhereInput;
+};
+
+
+export type QueryQuotesCountArgs = {
+  where?: QuoteWhereInput;
+};
+
+
+export type QuerySkillArgs = {
+  where: SkillWhereUniqueInput;
+};
+
+
+export type QuerySkillsArgs = {
+  cursor?: InputMaybe<SkillWhereUniqueInput>;
+  orderBy?: Array<SkillOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: SkillWhereInput;
+};
+
+
+export type QuerySkillsCountArgs = {
+  where?: SkillWhereInput;
+};
+
+
 export type QueryTagArgs = {
   where: TagWhereUniqueInput;
 };
@@ -710,10 +1227,147 @@ export type QueryUsersCountArgs = {
   where?: UserWhereInput;
 };
 
+
+export type QueryWorkArgs = {
+  where: WorkWhereUniqueInput;
+};
+
+
+export type QueryWorkImageArgs = {
+  where: WorkImageWhereUniqueInput;
+};
+
+
+export type QueryWorkImagesArgs = {
+  cursor?: InputMaybe<WorkImageWhereUniqueInput>;
+  orderBy?: Array<WorkImageOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: WorkImageWhereInput;
+};
+
+
+export type QueryWorkImagesCountArgs = {
+  where?: WorkImageWhereInput;
+};
+
+
+export type QueryWorksArgs = {
+  cursor?: InputMaybe<WorkWhereUniqueInput>;
+  orderBy?: Array<WorkOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: WorkWhereInput;
+};
+
+
+export type QueryWorksCountArgs = {
+  where?: WorkWhereInput;
+};
+
 export enum QueryMode {
   Default = 'default',
   Insensitive = 'insensitive'
 }
+
+export type Quote = {
+  __typename?: 'Quote';
+  author?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  sortOrder?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+export type QuoteCreateInput = {
+  author?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type QuoteOrderByInput = {
+  author?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  sortOrder?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+  text?: InputMaybe<OrderDirection>;
+};
+
+export type QuoteUpdateArgs = {
+  data: QuoteUpdateInput;
+  where: QuoteWhereUniqueInput;
+};
+
+export type QuoteUpdateInput = {
+  author?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type QuoteWhereInput = {
+  AND?: InputMaybe<Array<QuoteWhereInput>>;
+  NOT?: InputMaybe<Array<QuoteWhereInput>>;
+  OR?: InputMaybe<Array<QuoteWhereInput>>;
+  author?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  sortOrder?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type QuoteWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Skill = {
+  __typename?: 'Skill';
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  sortOrder?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+};
+
+export type SkillCreateInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SkillOrderByInput = {
+  id?: InputMaybe<OrderDirection>;
+  name?: InputMaybe<OrderDirection>;
+  sortOrder?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+};
+
+export type SkillUpdateArgs = {
+  data: SkillUpdateInput;
+  where: SkillWhereUniqueInput;
+};
+
+export type SkillUpdateInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SkillWhereInput = {
+  AND?: InputMaybe<Array<SkillWhereInput>>;
+  NOT?: InputMaybe<Array<SkillWhereInput>>;
+  OR?: InputMaybe<Array<SkillWhereInput>>;
+  id?: InputMaybe<IdFilter>;
+  name?: InputMaybe<StringFilter>;
+  sortOrder?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StringFilter>;
+};
+
+export type SkillWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type StringFilter = {
   contains?: InputMaybe<Scalars['String']['input']>;
@@ -730,6 +1384,21 @@ export type StringFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type StringNullableFilter = {
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  mode?: InputMaybe<QueryMode>;
+  not?: InputMaybe<StringNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Tag = {
   __typename?: 'Tag';
   id: Scalars['ID']['output'];
@@ -738,6 +1407,8 @@ export type Tag = {
   postsCount?: Maybe<Scalars['Int']['output']>;
   prompts?: Maybe<Array<Prompt>>;
   promptsCount?: Maybe<Scalars['Int']['output']>;
+  works?: Maybe<Array<Work>>;
+  worksCount?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -768,10 +1439,25 @@ export type TagPromptsCountArgs = {
   where?: PromptWhereInput;
 };
 
+
+export type TagWorksArgs = {
+  cursor?: InputMaybe<WorkWhereUniqueInput>;
+  orderBy?: Array<WorkOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: WorkWhereInput;
+};
+
+
+export type TagWorksCountArgs = {
+  where?: WorkWhereInput;
+};
+
 export type TagCreateInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForCreateInput>;
   prompts?: InputMaybe<PromptRelateToManyForCreateInput>;
+  works?: InputMaybe<WorkRelateToManyForCreateInput>;
 };
 
 export type TagManyRelationFilter = {
@@ -806,6 +1492,7 @@ export type TagUpdateInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForUpdateInput>;
   prompts?: InputMaybe<PromptRelateToManyForUpdateInput>;
+  works?: InputMaybe<WorkRelateToManyForUpdateInput>;
 };
 
 export type TagWhereInput = {
@@ -816,6 +1503,7 @@ export type TagWhereInput = {
   name?: InputMaybe<StringFilter>;
   posts?: InputMaybe<PostManyRelationFilter>;
   prompts?: InputMaybe<PromptManyRelationFilter>;
+  works?: InputMaybe<WorkManyRelationFilter>;
 };
 
 export type TagWhereUniqueInput = {
@@ -934,6 +1622,296 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type Work = {
+  __typename?: 'Work';
+  about?: Maybe<Scalars['String']['output']>;
+  author?: Maybe<User>;
+  content?: Maybe<Work_Content_Document>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  cta?: Maybe<Scalars['String']['output']>;
+  demoUrl?: Maybe<Scalars['String']['output']>;
+  demoUrlText?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  features?: Maybe<Scalars['JSON']['output']>;
+  galleryImages?: Maybe<Array<WorkImage>>;
+  galleryImagesCount?: Maybe<Scalars['Int']['output']>;
+  heroImage?: Maybe<CloudinaryImage_File>;
+  id: Scalars['ID']['output'];
+  impact?: Maybe<Scalars['String']['output']>;
+  learned?: Maybe<Scalars['String']['output']>;
+  purchaseButtonText?: Maybe<Scalars['String']['output']>;
+  purchaseUrl?: Maybe<Scalars['String']['output']>;
+  sidebarTitle?: Maybe<Scalars['String']['output']>;
+  sidebarType?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sortOrder?: Maybe<Scalars['Int']['output']>;
+  sourceUrl?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Array<Tag>>;
+  tagsCount?: Maybe<Scalars['Int']['output']>;
+  techStack?: Maybe<Scalars['JSON']['output']>;
+  thumbnailImage?: Maybe<CloudinaryImage_File>;
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type WorkGalleryImagesArgs = {
+  cursor?: InputMaybe<WorkImageWhereUniqueInput>;
+  orderBy?: Array<WorkImageOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: WorkImageWhereInput;
+};
+
+
+export type WorkGalleryImagesCountArgs = {
+  where?: WorkImageWhereInput;
+};
+
+
+export type WorkTagsArgs = {
+  cursor?: InputMaybe<TagWhereUniqueInput>;
+  orderBy?: Array<TagOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: TagWhereInput;
+};
+
+
+export type WorkTagsCountArgs = {
+  where?: TagWhereInput;
+};
+
+export type WorkCreateInput = {
+  about?: InputMaybe<Scalars['String']['input']>;
+  author?: InputMaybe<UserRelateToOneForCreateInput>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  cta?: InputMaybe<Scalars['String']['input']>;
+  demoUrl?: InputMaybe<Scalars['String']['input']>;
+  demoUrlText?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Scalars['JSON']['input']>;
+  galleryImages?: InputMaybe<WorkImageRelateToManyForCreateInput>;
+  heroImage?: InputMaybe<Scalars['Upload']['input']>;
+  impact?: InputMaybe<Scalars['String']['input']>;
+  learned?: InputMaybe<Scalars['String']['input']>;
+  purchaseButtonText?: InputMaybe<Scalars['String']['input']>;
+  purchaseUrl?: InputMaybe<Scalars['String']['input']>;
+  sidebarTitle?: InputMaybe<Scalars['String']['input']>;
+  sidebarType?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  sourceUrl?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<TagRelateToManyForCreateInput>;
+  techStack?: InputMaybe<Scalars['JSON']['input']>;
+  thumbnailImage?: InputMaybe<Scalars['Upload']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type WorkImage = {
+  __typename?: 'WorkImage';
+  alt?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<CloudinaryImage_File>;
+  sortOrder?: Maybe<Scalars['Int']['output']>;
+  work?: Maybe<Work>;
+};
+
+export type WorkImageCreateInput = {
+  alt?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Upload']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  work?: InputMaybe<WorkRelateToOneForCreateInput>;
+};
+
+export type WorkImageManyRelationFilter = {
+  every?: InputMaybe<WorkImageWhereInput>;
+  none?: InputMaybe<WorkImageWhereInput>;
+  some?: InputMaybe<WorkImageWhereInput>;
+};
+
+export type WorkImageOrderByInput = {
+  alt?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  sortOrder?: InputMaybe<OrderDirection>;
+};
+
+export type WorkImageRelateToManyForCreateInput = {
+  connect?: InputMaybe<Array<WorkImageWhereUniqueInput>>;
+  create?: InputMaybe<Array<WorkImageCreateInput>>;
+};
+
+export type WorkImageRelateToManyForUpdateInput = {
+  connect?: InputMaybe<Array<WorkImageWhereUniqueInput>>;
+  create?: InputMaybe<Array<WorkImageCreateInput>>;
+  disconnect?: InputMaybe<Array<WorkImageWhereUniqueInput>>;
+  set?: InputMaybe<Array<WorkImageWhereUniqueInput>>;
+};
+
+export type WorkImageUpdateArgs = {
+  data: WorkImageUpdateInput;
+  where: WorkImageWhereUniqueInput;
+};
+
+export type WorkImageUpdateInput = {
+  alt?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Upload']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  work?: InputMaybe<WorkRelateToOneForUpdateInput>;
+};
+
+export type WorkImageWhereInput = {
+  AND?: InputMaybe<Array<WorkImageWhereInput>>;
+  NOT?: InputMaybe<Array<WorkImageWhereInput>>;
+  OR?: InputMaybe<Array<WorkImageWhereInput>>;
+  alt?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  sortOrder?: InputMaybe<IntNullableFilter>;
+  work?: InputMaybe<WorkWhereInput>;
+};
+
+export type WorkImageWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type WorkManyRelationFilter = {
+  every?: InputMaybe<WorkWhereInput>;
+  none?: InputMaybe<WorkWhereInput>;
+  some?: InputMaybe<WorkWhereInput>;
+};
+
+export type WorkOrderByInput = {
+  about?: InputMaybe<OrderDirection>;
+  createdAt?: InputMaybe<OrderDirection>;
+  cta?: InputMaybe<OrderDirection>;
+  demoUrl?: InputMaybe<OrderDirection>;
+  demoUrlText?: InputMaybe<OrderDirection>;
+  description?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  impact?: InputMaybe<OrderDirection>;
+  learned?: InputMaybe<OrderDirection>;
+  purchaseButtonText?: InputMaybe<OrderDirection>;
+  purchaseUrl?: InputMaybe<OrderDirection>;
+  sidebarTitle?: InputMaybe<OrderDirection>;
+  sidebarType?: InputMaybe<OrderDirection>;
+  slug?: InputMaybe<OrderDirection>;
+  sortOrder?: InputMaybe<OrderDirection>;
+  sourceUrl?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+  title?: InputMaybe<OrderDirection>;
+  updatedAt?: InputMaybe<OrderDirection>;
+};
+
+export type WorkRelateToManyForCreateInput = {
+  connect?: InputMaybe<Array<WorkWhereUniqueInput>>;
+  create?: InputMaybe<Array<WorkCreateInput>>;
+};
+
+export type WorkRelateToManyForUpdateInput = {
+  connect?: InputMaybe<Array<WorkWhereUniqueInput>>;
+  create?: InputMaybe<Array<WorkCreateInput>>;
+  disconnect?: InputMaybe<Array<WorkWhereUniqueInput>>;
+  set?: InputMaybe<Array<WorkWhereUniqueInput>>;
+};
+
+export type WorkRelateToOneForCreateInput = {
+  connect?: InputMaybe<WorkWhereUniqueInput>;
+  create?: InputMaybe<WorkCreateInput>;
+};
+
+export type WorkRelateToOneForUpdateInput = {
+  connect?: InputMaybe<WorkWhereUniqueInput>;
+  create?: InputMaybe<WorkCreateInput>;
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type WorkUpdateArgs = {
+  data: WorkUpdateInput;
+  where: WorkWhereUniqueInput;
+};
+
+export type WorkUpdateInput = {
+  about?: InputMaybe<Scalars['String']['input']>;
+  author?: InputMaybe<UserRelateToOneForUpdateInput>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  cta?: InputMaybe<Scalars['String']['input']>;
+  demoUrl?: InputMaybe<Scalars['String']['input']>;
+  demoUrlText?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Scalars['JSON']['input']>;
+  galleryImages?: InputMaybe<WorkImageRelateToManyForUpdateInput>;
+  heroImage?: InputMaybe<Scalars['Upload']['input']>;
+  impact?: InputMaybe<Scalars['String']['input']>;
+  learned?: InputMaybe<Scalars['String']['input']>;
+  purchaseButtonText?: InputMaybe<Scalars['String']['input']>;
+  purchaseUrl?: InputMaybe<Scalars['String']['input']>;
+  sidebarTitle?: InputMaybe<Scalars['String']['input']>;
+  sidebarType?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  sourceUrl?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<TagRelateToManyForUpdateInput>;
+  techStack?: InputMaybe<Scalars['JSON']['input']>;
+  thumbnailImage?: InputMaybe<Scalars['Upload']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type WorkWhereInput = {
+  AND?: InputMaybe<Array<WorkWhereInput>>;
+  NOT?: InputMaybe<Array<WorkWhereInput>>;
+  OR?: InputMaybe<Array<WorkWhereInput>>;
+  about?: InputMaybe<StringFilter>;
+  author?: InputMaybe<UserWhereInput>;
+  createdAt?: InputMaybe<DateTimeNullableFilter>;
+  cta?: InputMaybe<StringFilter>;
+  demoUrl?: InputMaybe<StringFilter>;
+  demoUrlText?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  galleryImages?: InputMaybe<WorkImageManyRelationFilter>;
+  id?: InputMaybe<IdFilter>;
+  impact?: InputMaybe<StringFilter>;
+  learned?: InputMaybe<StringFilter>;
+  purchaseButtonText?: InputMaybe<StringFilter>;
+  purchaseUrl?: InputMaybe<StringFilter>;
+  sidebarTitle?: InputMaybe<StringFilter>;
+  sidebarType?: InputMaybe<StringNullableFilter>;
+  slug?: InputMaybe<StringFilter>;
+  sortOrder?: InputMaybe<IntNullableFilter>;
+  sourceUrl?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringFilter>;
+  tags?: InputMaybe<TagManyRelationFilter>;
+  title?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeNullableFilter>;
+};
+
+export type WorkWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Work_Content_Document = {
+  __typename?: 'Work_content_Document';
+  document: Scalars['JSON']['output'];
+};
+
+
+export type Work_Content_DocumentDocumentArgs = {
+  hydrateRelationships?: Scalars['Boolean']['input'];
+};
+
+export type GetAboutPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAboutPageQuery = { __typename?: 'Query', aboutFacts?: Array<{ __typename?: 'AboutFact', id: string, emoji?: string | null, title?: string | null, content?: string | null, linkUrl?: string | null, linkExternal?: string | null, sortOrder?: number | null }> | null, quotes?: Array<{ __typename?: 'Quote', id: string, text?: string | null, author?: string | null, sortOrder?: number | null }> | null };
+
 export type GetPostBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
@@ -945,6 +1923,11 @@ export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null }> | null };
+
+export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProductsQuery = { __typename?: 'Query', works?: Array<{ __typename?: 'Work', id: string, title?: string | null, slug?: string | null, description?: string | null, purchaseUrl?: string | null, purchaseButtonText?: string | null, features?: any | null, thumbnailImage?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null, publicUrlTransformed?: string | null } | null }> | null };
 
 export type GetPromptDetailsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -970,12 +1953,62 @@ export type GetPublishedRelatedPostsQueryVariables = Exact<{
 
 export type GetPublishedRelatedPostsQuery = { __typename?: 'Query', relatedPublishedPosts?: Array<{ __typename?: 'Post', id: string, slug?: string | null, title?: string | null, excerpt?: string | null, createdAt?: any | null, author?: { __typename?: 'User', name?: string | null, id: string } | null }> | null };
 
+export type GetResumeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetResumeQuery = { __typename?: 'Query', skills?: Array<{ __typename?: 'Skill', id: string, name?: string | null, sortOrder?: number | null }> | null, experiences?: Array<{ __typename?: 'Experience', id: string, title?: string | null, company?: string | null, location?: string | null, dates?: string | null, type?: string | null, sortOrder?: number | null, bullets?: any | null }> | null };
+
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUsersQuery = { __typename?: 'Query', users?: Array<{ __typename?: 'User', id: string, name?: string | null }> | null };
 
+export type GetWorkDetailQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
 
+
+export type GetWorkDetailQuery = { __typename?: 'Query', work?: { __typename?: 'Work', id: string, title?: string | null, slug?: string | null, status?: string | null, description?: string | null, cta?: string | null, about?: string | null, learned?: string | null, impact?: string | null, techStack?: any | null, sourceUrl?: string | null, demoUrl?: string | null, demoUrlText?: string | null, purchaseUrl?: string | null, purchaseButtonText?: string | null, sidebarTitle?: string | null, features?: any | null, sidebarType?: string | null, createdAt?: any | null, updatedAt?: any | null, heroImage?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null, publicUrlTransformed?: string | null } | null, content?: { __typename?: 'Work_content_Document', document: any } | null, galleryImages?: Array<{ __typename?: 'WorkImage', id: string, alt?: string | null, sortOrder?: number | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null, publicUrlTransformed?: string | null } | null }> | null, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null }> | null } | null };
+
+export type GetWorkListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetWorkListQuery = { __typename?: 'Query', works?: Array<{ __typename?: 'Work', id: string, title?: string | null, slug?: string | null, description?: string | null, cta?: string | null, sortOrder?: number | null, sidebarType?: string | null, thumbnailImage?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null, publicUrlTransformed?: string | null } | null }> | null };
+
+export type GetWorkNavItemsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetWorkNavItemsQuery = { __typename?: 'Query', works?: Array<{ __typename?: 'Work', title?: string | null, slug?: string | null }> | null };
+
+export type GetWorkSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetWorkSlugsQuery = { __typename?: 'Query', works?: Array<{ __typename?: 'Work', slug?: string | null }> | null };
+
+
+export const GetAboutPageDocument = gql`
+    query GetAboutPage {
+  aboutFacts(where: {status: {equals: "PUBLISHED"}}, orderBy: [{sortOrder: asc}]) {
+    id
+    emoji
+    title
+    content
+    linkUrl
+    linkExternal
+    sortOrder
+  }
+  quotes(where: {status: {equals: "PUBLISHED"}}, orderBy: [{sortOrder: asc}]) {
+    id
+    text
+    author
+    sortOrder
+  }
+}
+    `;
+
+export function useGetAboutPageQuery(options?: Omit<Urql.UseQueryArgs<GetAboutPageQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetAboutPageQuery, GetAboutPageQueryVariables>({ query: GetAboutPageDocument, ...options });
+};
 export const GetPostBySlugDocument = gql`
     query GetPostBySlug($slug: String!) {
   post(where: {slug: $slug}) {
@@ -1022,6 +2055,32 @@ export const GetPostsDocument = gql`
 
 export function useGetPostsQuery(options?: Omit<Urql.UseQueryArgs<GetPostsQueryVariables>, 'query'>) {
   return Urql.useQuery<GetPostsQuery, GetPostsQueryVariables>({ query: GetPostsDocument, ...options });
+};
+export const GetProductsDocument = gql`
+    query GetProducts {
+  works(
+    where: {status: {equals: "PUBLISHED"}, sidebarType: {equals: "purchase"}}
+    orderBy: [{sortOrder: asc}]
+  ) {
+    id
+    title
+    slug
+    description
+    purchaseUrl
+    purchaseButtonText
+    features
+    thumbnailImage {
+      publicUrl
+      publicUrlTransformed(
+        transformation: {width: "1280", crop: "scale", quality: "90", fetch_format: "auto"}
+      )
+    }
+  }
+}
+    `;
+
+export function useGetProductsQuery(options?: Omit<Urql.UseQueryArgs<GetProductsQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetProductsQuery, GetProductsQueryVariables>({ query: GetProductsDocument, ...options });
 };
 export const GetPromptDetailsDocument = gql`
     query GetPromptDetails($slug: String!) {
@@ -1106,6 +2165,29 @@ export const GetPublishedRelatedPostsDocument = gql`
 export function useGetPublishedRelatedPostsQuery(options: Omit<Urql.UseQueryArgs<GetPublishedRelatedPostsQueryVariables>, 'query'>) {
   return Urql.useQuery<GetPublishedRelatedPostsQuery, GetPublishedRelatedPostsQueryVariables>({ query: GetPublishedRelatedPostsDocument, ...options });
 };
+export const GetResumeDocument = gql`
+    query GetResume {
+  skills(where: {status: {equals: "PUBLISHED"}}, orderBy: [{sortOrder: asc}]) {
+    id
+    name
+    sortOrder
+  }
+  experiences(where: {status: {equals: "PUBLISHED"}}, orderBy: [{sortOrder: asc}]) {
+    id
+    title
+    company
+    location
+    dates
+    type
+    sortOrder
+    bullets
+  }
+}
+    `;
+
+export function useGetResumeQuery(options?: Omit<Urql.UseQueryArgs<GetResumeQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetResumeQuery, GetResumeQueryVariables>({ query: GetResumeDocument, ...options });
+};
 export const GetUsersDocument = gql`
     query GetUsers {
   users {
@@ -1117,4 +2199,107 @@ export const GetUsersDocument = gql`
 
 export function useGetUsersQuery(options?: Omit<Urql.UseQueryArgs<GetUsersQueryVariables>, 'query'>) {
   return Urql.useQuery<GetUsersQuery, GetUsersQueryVariables>({ query: GetUsersDocument, ...options });
+};
+export const GetWorkDetailDocument = gql`
+    query GetWorkDetail($slug: String!) {
+  work(where: {slug: $slug}) {
+    id
+    title
+    slug
+    status
+    description
+    cta
+    about
+    learned
+    impact
+    techStack
+    sourceUrl
+    demoUrl
+    demoUrlText
+    purchaseUrl
+    purchaseButtonText
+    sidebarTitle
+    features
+    sidebarType
+    heroImage {
+      publicUrl
+      publicUrlTransformed(
+        transformation: {width: "1920", crop: "scale", quality: "90", fetch_format: "auto"}
+      )
+    }
+    content {
+      document
+    }
+    galleryImages(orderBy: [{sortOrder: asc}]) {
+      id
+      alt
+      sortOrder
+      image {
+        publicUrl
+        publicUrlTransformed(
+          transformation: {width: "1280", crop: "scale", quality: "90", fetch_format: "auto"}
+        )
+      }
+    }
+    tags {
+      id
+      name
+    }
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+export function useGetWorkDetailQuery(options: Omit<Urql.UseQueryArgs<GetWorkDetailQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetWorkDetailQuery, GetWorkDetailQueryVariables>({ query: GetWorkDetailDocument, ...options });
+};
+export const GetWorkListDocument = gql`
+    query GetWorkList {
+  works(
+    where: {status: {equals: "PUBLISHED"}, sidebarType: {not: {equals: "purchase"}}}
+    orderBy: [{sortOrder: asc}]
+  ) {
+    id
+    title
+    slug
+    description
+    cta
+    sortOrder
+    sidebarType
+    thumbnailImage {
+      publicUrl
+      publicUrlTransformed(
+        transformation: {width: "1280", crop: "scale", quality: "90", fetch_format: "auto"}
+      )
+    }
+  }
+}
+    `;
+
+export function useGetWorkListQuery(options?: Omit<Urql.UseQueryArgs<GetWorkListQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetWorkListQuery, GetWorkListQueryVariables>({ query: GetWorkListDocument, ...options });
+};
+export const GetWorkNavItemsDocument = gql`
+    query GetWorkNavItems {
+  works(where: {status: {equals: "PUBLISHED"}}, orderBy: [{sortOrder: asc}]) {
+    title
+    slug
+  }
+}
+    `;
+
+export function useGetWorkNavItemsQuery(options?: Omit<Urql.UseQueryArgs<GetWorkNavItemsQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetWorkNavItemsQuery, GetWorkNavItemsQueryVariables>({ query: GetWorkNavItemsDocument, ...options });
+};
+export const GetWorkSlugsDocument = gql`
+    query GetWorkSlugs {
+  works(where: {status: {equals: "PUBLISHED"}}) {
+    slug
+  }
+}
+    `;
+
+export function useGetWorkSlugsQuery(options?: Omit<Urql.UseQueryArgs<GetWorkSlugsQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetWorkSlugsQuery, GetWorkSlugsQueryVariables>({ query: GetWorkSlugsDocument, ...options });
 };

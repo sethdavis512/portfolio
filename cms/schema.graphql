@@ -273,6 +273,8 @@ type Tag {
   postsCount(where: PostWhereInput! = {}): Int
   prompts(where: PromptWhereInput! = {}, orderBy: [PromptOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PromptWhereUniqueInput): [Prompt!]
   promptsCount(where: PromptWhereInput! = {}): Int
+  works(where: WorkWhereInput! = {}, orderBy: [WorkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: WorkWhereUniqueInput): [Work!]
+  worksCount(where: WorkWhereInput! = {}): Int
 }
 
 input TagWhereUniqueInput {
@@ -287,6 +289,13 @@ input TagWhereInput {
   name: StringFilter
   posts: PostManyRelationFilter
   prompts: PromptManyRelationFilter
+  works: WorkManyRelationFilter
+}
+
+input WorkManyRelationFilter {
+  every: WorkWhereInput
+  some: WorkWhereInput
+  none: WorkWhereInput
 }
 
 input TagOrderByInput {
@@ -298,6 +307,14 @@ input TagUpdateInput {
   name: String
   posts: PostRelateToManyForUpdateInput
   prompts: PromptRelateToManyForUpdateInput
+  works: WorkRelateToManyForUpdateInput
+}
+
+input WorkRelateToManyForUpdateInput {
+  disconnect: [WorkWhereUniqueInput!]
+  set: [WorkWhereUniqueInput!]
+  create: [WorkCreateInput!]
+  connect: [WorkWhereUniqueInput!]
 }
 
 input TagUpdateArgs {
@@ -309,6 +326,12 @@ input TagCreateInput {
   name: String
   posts: PostRelateToManyForCreateInput
   prompts: PromptRelateToManyForCreateInput
+  works: WorkRelateToManyForCreateInput
+}
+
+input WorkRelateToManyForCreateInput {
+  create: [WorkCreateInput!]
+  connect: [WorkWhereUniqueInput!]
 }
 
 type Prompt {
@@ -379,6 +402,545 @@ input PromptCreateInput {
   tags: TagRelateToManyForCreateInput
 }
 
+type Work {
+  id: ID!
+  createdAt: DateTime
+  updatedAt: DateTime
+  title: String
+  slug: String
+  status: String
+  sortOrder: Int
+  description: String
+  cta: String
+  heroImage: CloudinaryImage_File
+  thumbnailImage: CloudinaryImage_File
+  about: String
+  learned: String
+  impact: String
+  content: Work_content_Document
+  techStack: JSON
+  sourceUrl: String
+  demoUrl: String
+  demoUrlText: String
+  purchaseUrl: String
+  purchaseButtonText: String
+  sidebarTitle: String
+  features: JSON
+  sidebarType: String
+  galleryImages(where: WorkImageWhereInput! = {}, orderBy: [WorkImageOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: WorkImageWhereUniqueInput): [WorkImage!]
+  galleryImagesCount(where: WorkImageWhereInput! = {}): Int
+  author: User
+  tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
+  tagsCount(where: TagWhereInput! = {}): Int
+}
+
+type CloudinaryImage_File {
+  id: ID
+  filename: String
+  originalFilename: String
+  mimetype: String
+  encoding: String
+  publicUrl: String
+  publicUrlTransformed(transformation: CloudinaryImageFormat): String
+}
+
+"""
+Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
+All options are strings as they ultimately end up in a URL.
+"""
+input CloudinaryImageFormat {
+  """ Rewrites the filename to be this pretty string. Do not include `/` or `.`
+  """
+  prettyName: String
+  width: String
+  height: String
+  crop: String
+  aspect_ratio: String
+  gravity: String
+  zoom: String
+  x: String
+  y: String
+  format: String
+  fetch_format: String
+  quality: String
+  radius: String
+  angle: String
+  effect: String
+  opacity: String
+  border: String
+  background: String
+  overlay: String
+  underlay: String
+  default_image: String
+  delay: String
+  color: String
+  color_space: String
+  dpr: String
+  page: String
+  density: String
+  flags: String
+  transformation: String
+}
+
+type Work_content_Document {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input WorkWhereUniqueInput {
+  id: ID
+  title: String
+  slug: String
+}
+
+input WorkWhereInput {
+  AND: [WorkWhereInput!]
+  OR: [WorkWhereInput!]
+  NOT: [WorkWhereInput!]
+  id: IDFilter
+  createdAt: DateTimeNullableFilter
+  updatedAt: DateTimeNullableFilter
+  title: StringFilter
+  slug: StringFilter
+  status: StringFilter
+  sortOrder: IntNullableFilter
+  description: StringFilter
+  cta: StringFilter
+  about: StringFilter
+  learned: StringFilter
+  impact: StringFilter
+  sourceUrl: StringFilter
+  demoUrl: StringFilter
+  demoUrlText: StringFilter
+  purchaseUrl: StringFilter
+  purchaseButtonText: StringFilter
+  sidebarTitle: StringFilter
+  sidebarType: StringNullableFilter
+  galleryImages: WorkImageManyRelationFilter
+  author: UserWhereInput
+  tags: TagManyRelationFilter
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntNullableFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: StringNullableFilter
+}
+
+input WorkImageManyRelationFilter {
+  every: WorkImageWhereInput
+  some: WorkImageWhereInput
+  none: WorkImageWhereInput
+}
+
+input WorkOrderByInput {
+  id: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+  title: OrderDirection
+  slug: OrderDirection
+  status: OrderDirection
+  sortOrder: OrderDirection
+  description: OrderDirection
+  cta: OrderDirection
+  about: OrderDirection
+  learned: OrderDirection
+  impact: OrderDirection
+  sourceUrl: OrderDirection
+  demoUrl: OrderDirection
+  demoUrlText: OrderDirection
+  purchaseUrl: OrderDirection
+  purchaseButtonText: OrderDirection
+  sidebarTitle: OrderDirection
+  sidebarType: OrderDirection
+}
+
+input WorkUpdateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  title: String
+  slug: String
+  status: String
+  sortOrder: Int
+  description: String
+  cta: String
+  heroImage: Upload
+  thumbnailImage: Upload
+  about: String
+  learned: String
+  impact: String
+  content: JSON
+  techStack: JSON
+  sourceUrl: String
+  demoUrl: String
+  demoUrlText: String
+  purchaseUrl: String
+  purchaseButtonText: String
+  sidebarTitle: String
+  features: JSON
+  sidebarType: String
+  galleryImages: WorkImageRelateToManyForUpdateInput
+  author: UserRelateToOneForUpdateInput
+  tags: TagRelateToManyForUpdateInput
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input WorkImageRelateToManyForUpdateInput {
+  disconnect: [WorkImageWhereUniqueInput!]
+  set: [WorkImageWhereUniqueInput!]
+  create: [WorkImageCreateInput!]
+  connect: [WorkImageWhereUniqueInput!]
+}
+
+input WorkUpdateArgs {
+  where: WorkWhereUniqueInput!
+  data: WorkUpdateInput!
+}
+
+input WorkCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  title: String
+  slug: String
+  status: String
+  sortOrder: Int
+  description: String
+  cta: String
+  heroImage: Upload
+  thumbnailImage: Upload
+  about: String
+  learned: String
+  impact: String
+  content: JSON
+  techStack: JSON
+  sourceUrl: String
+  demoUrl: String
+  demoUrlText: String
+  purchaseUrl: String
+  purchaseButtonText: String
+  sidebarTitle: String
+  features: JSON
+  sidebarType: String
+  galleryImages: WorkImageRelateToManyForCreateInput
+  author: UserRelateToOneForCreateInput
+  tags: TagRelateToManyForCreateInput
+}
+
+input WorkImageRelateToManyForCreateInput {
+  create: [WorkImageCreateInput!]
+  connect: [WorkImageWhereUniqueInput!]
+}
+
+type Skill {
+  id: ID!
+  name: String
+  sortOrder: Int
+  status: String
+}
+
+input SkillWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+input SkillWhereInput {
+  AND: [SkillWhereInput!]
+  OR: [SkillWhereInput!]
+  NOT: [SkillWhereInput!]
+  id: IDFilter
+  name: StringFilter
+  sortOrder: IntNullableFilter
+  status: StringFilter
+}
+
+input SkillOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  sortOrder: OrderDirection
+  status: OrderDirection
+}
+
+input SkillUpdateInput {
+  name: String
+  sortOrder: Int
+  status: String
+}
+
+input SkillUpdateArgs {
+  where: SkillWhereUniqueInput!
+  data: SkillUpdateInput!
+}
+
+input SkillCreateInput {
+  name: String
+  sortOrder: Int
+  status: String
+}
+
+type Experience {
+  id: ID!
+  title: String
+  company: String
+  location: String
+  dates: String
+  type: String
+  sortOrder: Int
+  bullets: JSON
+  status: String
+}
+
+input ExperienceWhereUniqueInput {
+  id: ID
+}
+
+input ExperienceWhereInput {
+  AND: [ExperienceWhereInput!]
+  OR: [ExperienceWhereInput!]
+  NOT: [ExperienceWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  company: StringFilter
+  location: StringFilter
+  dates: StringFilter
+  type: StringFilter
+  sortOrder: IntNullableFilter
+  status: StringFilter
+}
+
+input ExperienceOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  company: OrderDirection
+  location: OrderDirection
+  dates: OrderDirection
+  type: OrderDirection
+  sortOrder: OrderDirection
+  status: OrderDirection
+}
+
+input ExperienceUpdateInput {
+  title: String
+  company: String
+  location: String
+  dates: String
+  type: String
+  sortOrder: Int
+  bullets: JSON
+  status: String
+}
+
+input ExperienceUpdateArgs {
+  where: ExperienceWhereUniqueInput!
+  data: ExperienceUpdateInput!
+}
+
+input ExperienceCreateInput {
+  title: String
+  company: String
+  location: String
+  dates: String
+  type: String
+  sortOrder: Int
+  bullets: JSON
+  status: String
+}
+
+type Quote {
+  id: ID!
+  text: String
+  author: String
+  sortOrder: Int
+  status: String
+}
+
+input QuoteWhereUniqueInput {
+  id: ID
+  text: String
+}
+
+input QuoteWhereInput {
+  AND: [QuoteWhereInput!]
+  OR: [QuoteWhereInput!]
+  NOT: [QuoteWhereInput!]
+  id: IDFilter
+  text: StringFilter
+  author: StringFilter
+  sortOrder: IntNullableFilter
+  status: StringFilter
+}
+
+input QuoteOrderByInput {
+  id: OrderDirection
+  text: OrderDirection
+  author: OrderDirection
+  sortOrder: OrderDirection
+  status: OrderDirection
+}
+
+input QuoteUpdateInput {
+  text: String
+  author: String
+  sortOrder: Int
+  status: String
+}
+
+input QuoteUpdateArgs {
+  where: QuoteWhereUniqueInput!
+  data: QuoteUpdateInput!
+}
+
+input QuoteCreateInput {
+  text: String
+  author: String
+  sortOrder: Int
+  status: String
+}
+
+type AboutFact {
+  id: ID!
+  emoji: String
+  title: String
+  content: String
+  linkUrl: String
+  linkExternal: String
+  sortOrder: Int
+  status: String
+}
+
+input AboutFactWhereUniqueInput {
+  id: ID
+  title: String
+}
+
+input AboutFactWhereInput {
+  AND: [AboutFactWhereInput!]
+  OR: [AboutFactWhereInput!]
+  NOT: [AboutFactWhereInput!]
+  id: IDFilter
+  emoji: StringFilter
+  title: StringFilter
+  content: StringFilter
+  linkUrl: StringFilter
+  linkExternal: StringNullableFilter
+  sortOrder: IntNullableFilter
+  status: StringFilter
+}
+
+input AboutFactOrderByInput {
+  id: OrderDirection
+  emoji: OrderDirection
+  title: OrderDirection
+  content: OrderDirection
+  linkUrl: OrderDirection
+  linkExternal: OrderDirection
+  sortOrder: OrderDirection
+  status: OrderDirection
+}
+
+input AboutFactUpdateInput {
+  emoji: String
+  title: String
+  content: String
+  linkUrl: String
+  linkExternal: String
+  sortOrder: Int
+  status: String
+}
+
+input AboutFactUpdateArgs {
+  where: AboutFactWhereUniqueInput!
+  data: AboutFactUpdateInput!
+}
+
+input AboutFactCreateInput {
+  emoji: String
+  title: String
+  content: String
+  linkUrl: String
+  linkExternal: String
+  sortOrder: Int
+  status: String
+}
+
+type WorkImage {
+  id: ID!
+  image: CloudinaryImage_File
+  alt: String
+  sortOrder: Int
+  work: Work
+}
+
+input WorkImageWhereUniqueInput {
+  id: ID
+}
+
+input WorkImageWhereInput {
+  AND: [WorkImageWhereInput!]
+  OR: [WorkImageWhereInput!]
+  NOT: [WorkImageWhereInput!]
+  id: IDFilter
+  alt: StringFilter
+  sortOrder: IntNullableFilter
+  work: WorkWhereInput
+}
+
+input WorkImageOrderByInput {
+  id: OrderDirection
+  alt: OrderDirection
+  sortOrder: OrderDirection
+}
+
+input WorkImageUpdateInput {
+  image: Upload
+  alt: String
+  sortOrder: Int
+  work: WorkRelateToOneForUpdateInput
+}
+
+input WorkRelateToOneForUpdateInput {
+  create: WorkCreateInput
+  connect: WorkWhereUniqueInput
+  disconnect: Boolean
+}
+
+input WorkImageUpdateArgs {
+  where: WorkImageWhereUniqueInput!
+  data: WorkImageUpdateInput!
+}
+
+input WorkImageCreateInput {
+  image: Upload
+  alt: String
+  sortOrder: Int
+  work: WorkRelateToOneForCreateInput
+}
+
+input WorkRelateToOneForCreateInput {
+  create: WorkCreateInput
+  connect: WorkWhereUniqueInput
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -409,6 +971,42 @@ type Mutation {
   updatePrompts(data: [PromptUpdateArgs!]!): [Prompt]
   deletePrompt(where: PromptWhereUniqueInput!): Prompt
   deletePrompts(where: [PromptWhereUniqueInput!]!): [Prompt]
+  createWork(data: WorkCreateInput!): Work
+  createWorks(data: [WorkCreateInput!]!): [Work]
+  updateWork(where: WorkWhereUniqueInput!, data: WorkUpdateInput!): Work
+  updateWorks(data: [WorkUpdateArgs!]!): [Work]
+  deleteWork(where: WorkWhereUniqueInput!): Work
+  deleteWorks(where: [WorkWhereUniqueInput!]!): [Work]
+  createSkill(data: SkillCreateInput!): Skill
+  createSkills(data: [SkillCreateInput!]!): [Skill]
+  updateSkill(where: SkillWhereUniqueInput!, data: SkillUpdateInput!): Skill
+  updateSkills(data: [SkillUpdateArgs!]!): [Skill]
+  deleteSkill(where: SkillWhereUniqueInput!): Skill
+  deleteSkills(where: [SkillWhereUniqueInput!]!): [Skill]
+  createExperience(data: ExperienceCreateInput!): Experience
+  createExperiences(data: [ExperienceCreateInput!]!): [Experience]
+  updateExperience(where: ExperienceWhereUniqueInput!, data: ExperienceUpdateInput!): Experience
+  updateExperiences(data: [ExperienceUpdateArgs!]!): [Experience]
+  deleteExperience(where: ExperienceWhereUniqueInput!): Experience
+  deleteExperiences(where: [ExperienceWhereUniqueInput!]!): [Experience]
+  createQuote(data: QuoteCreateInput!): Quote
+  createQuotes(data: [QuoteCreateInput!]!): [Quote]
+  updateQuote(where: QuoteWhereUniqueInput!, data: QuoteUpdateInput!): Quote
+  updateQuotes(data: [QuoteUpdateArgs!]!): [Quote]
+  deleteQuote(where: QuoteWhereUniqueInput!): Quote
+  deleteQuotes(where: [QuoteWhereUniqueInput!]!): [Quote]
+  createAboutFact(data: AboutFactCreateInput!): AboutFact
+  createAboutFacts(data: [AboutFactCreateInput!]!): [AboutFact]
+  updateAboutFact(where: AboutFactWhereUniqueInput!, data: AboutFactUpdateInput!): AboutFact
+  updateAboutFacts(data: [AboutFactUpdateArgs!]!): [AboutFact]
+  deleteAboutFact(where: AboutFactWhereUniqueInput!): AboutFact
+  deleteAboutFacts(where: [AboutFactWhereUniqueInput!]!): [AboutFact]
+  createWorkImage(data: WorkImageCreateInput!): WorkImage
+  createWorkImages(data: [WorkImageCreateInput!]!): [WorkImage]
+  updateWorkImage(where: WorkImageWhereUniqueInput!, data: WorkImageUpdateInput!): WorkImage
+  updateWorkImages(data: [WorkImageUpdateArgs!]!): [WorkImage]
+  deleteWorkImage(where: WorkImageWhereUniqueInput!): WorkImage
+  deleteWorkImages(where: [WorkImageWhereUniqueInput!]!): [WorkImage]
   endSession: Boolean!
   authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult
   createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
@@ -444,6 +1042,24 @@ type Query {
   prompt(where: PromptWhereUniqueInput!): Prompt
   prompts(where: PromptWhereInput! = {}, orderBy: [PromptOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PromptWhereUniqueInput): [Prompt!]
   promptsCount(where: PromptWhereInput! = {}): Int
+  work(where: WorkWhereUniqueInput!): Work
+  works(where: WorkWhereInput! = {}, orderBy: [WorkOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: WorkWhereUniqueInput): [Work!]
+  worksCount(where: WorkWhereInput! = {}): Int
+  skill(where: SkillWhereUniqueInput!): Skill
+  skills(where: SkillWhereInput! = {}, orderBy: [SkillOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: SkillWhereUniqueInput): [Skill!]
+  skillsCount(where: SkillWhereInput! = {}): Int
+  experience(where: ExperienceWhereUniqueInput!): Experience
+  experiences(where: ExperienceWhereInput! = {}, orderBy: [ExperienceOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ExperienceWhereUniqueInput): [Experience!]
+  experiencesCount(where: ExperienceWhereInput! = {}): Int
+  quote(where: QuoteWhereUniqueInput!): Quote
+  quotes(where: QuoteWhereInput! = {}, orderBy: [QuoteOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: QuoteWhereUniqueInput): [Quote!]
+  quotesCount(where: QuoteWhereInput! = {}): Int
+  aboutFact(where: AboutFactWhereUniqueInput!): AboutFact
+  aboutFacts(where: AboutFactWhereInput! = {}, orderBy: [AboutFactOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: AboutFactWhereUniqueInput): [AboutFact!]
+  aboutFactsCount(where: AboutFactWhereInput! = {}): Int
+  workImage(where: WorkImageWhereUniqueInput!): WorkImage
+  workImages(where: WorkImageWhereInput! = {}, orderBy: [WorkImageOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: WorkImageWhereUniqueInput): [WorkImage!]
+  workImagesCount(where: WorkImageWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }

@@ -1,0 +1,58 @@
+query GetWorkDetail($slug: String!) {
+    work(where: { slug: $slug }) {
+        id
+        title
+        slug
+        status
+        description
+        cta
+        about
+        learned
+        impact
+        techStack
+        sourceUrl
+        demoUrl
+        demoUrlText
+        purchaseUrl
+        purchaseButtonText
+        sidebarTitle
+        features
+        sidebarType
+        heroImage {
+            publicUrl
+            publicUrlTransformed(
+                transformation: {
+                    width: "1920"
+                    crop: "scale"
+                    quality: "90"
+                    fetch_format: "auto"
+                }
+            )
+        }
+        content {
+            document
+        }
+        galleryImages(orderBy: [{ sortOrder: asc }]) {
+            id
+            alt
+            sortOrder
+            image {
+                publicUrl
+                publicUrlTransformed(
+                    transformation: {
+                        width: "1280"
+                        crop: "scale"
+                        quality: "90"
+                        fetch_format: "auto"
+                    }
+                )
+            }
+        }
+        tags {
+            id
+            name
+        }
+        createdAt
+        updatedAt
+    }
+}

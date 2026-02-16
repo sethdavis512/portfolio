@@ -2,74 +2,17 @@ import { Command } from 'cmdk';
 import { Home, LinkIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
+interface WorkNavItem {
+    title: string;
+    slug: string;
+}
+
 interface CommandPaletteProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     loading?: boolean;
+    workItems?: WorkNavItem[];
 }
-
-const workLinks = [
-    {
-        to: '/work',
-        icon: LinkIcon,
-        label: 'See all'
-    },
-    {
-        to: '/video-machine',
-        icon: LinkIcon,
-        label: 'Video Machine'
-    },
-    {
-        to: '/iridium',
-        icon: LinkIcon,
-        label: 'Iridium'
-    },
-    {
-        to: '/virtruv',
-        icon: LinkIcon,
-        label: 'Virtruv'
-    },
-    {
-        to: '/freelance',
-        icon: LinkIcon,
-        label: 'Freelance'
-    },
-    {
-        to: '/prompt-suite',
-        icon: LinkIcon,
-        label: 'Prompt Suite'
-    },
-    {
-        to: '/rr7-slides',
-        icon: LinkIcon,
-        label: 'RR7 Slides'
-    },
-    {
-        to: '/obsidian-mcp-server',
-        icon: LinkIcon,
-        label: 'Obsidian MCP Server'
-    },
-    {
-        to: '/tech-with-seth',
-        icon: LinkIcon,
-        label: 'Tech with Seth'
-    },
-    {
-        to: '/aws-flashcards',
-        icon: LinkIcon,
-        label: 'AWS Flashcards'
-    },
-    {
-        to: '/tray-app-guide',
-        icon: LinkIcon,
-        label: 'Tray App Guide'
-    },
-    {
-        to: '/ai-image-pipeline',
-        icon: LinkIcon,
-        label: 'Image Pipeline as a Service'
-    },
-];
 
 const pagesLinks = [
     {
@@ -159,9 +102,22 @@ function CommandSection({ title, links, onSelect }: CommandSectionProps) {
 export function CommandPalette({
     open,
     onOpenChange,
-    loading = false
+    loading = false,
+    workItems = []
 }: CommandPaletteProps) {
     const navigate = useNavigate();
+
+    const workLinks = [
+        { to: '/work', icon: LinkIcon, label: 'See all' },
+        ...workItems.map(function (item) {
+            return {
+                to: `/work/${item.slug}`,
+                icon: LinkIcon,
+                label: item.title
+            };
+        })
+    ];
+
     return (
         <Command.Dialog
             className="fixed inset-0 z-50 flex items-start justify-center pt-20"

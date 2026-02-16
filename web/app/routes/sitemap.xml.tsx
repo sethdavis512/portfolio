@@ -1,7 +1,9 @@
 import type { Route } from './+types/sitemap.xml';
 import {
     GetPromptsListDocument,
-    type GetPromptsListQuery
+    type GetPromptsListQuery,
+    GetWorkSlugsDocument,
+    type GetWorkSlugsQuery
 } from '~/generated/graphql';
 import { client } from '~/utils/graphql.server';
 
@@ -12,10 +14,11 @@ interface SitemapRoute {
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
-    // Fetch dynamic prompt routes
-    const { prompts } = await client.request<GetPromptsListQuery>(
-        GetPromptsListDocument
-    );
+    // Fetch dynamic routes in parallel
+    const [promptsResult, worksResult] = await Promise.all([
+        client.request<GetPromptsListQuery>(GetPromptsListDocument),
+        client.request<GetWorkSlugsQuery>(GetWorkSlugsDocument)
+    ]);
 
     // Define static routes
     const staticRoutes: SitemapRoute[] = [
@@ -29,48 +32,32 @@ export async function loader({ request }: Route.LoaderArgs) {
         { url: '/products', changefreq: 'monthly', priority: 0.9 },
         { url: '/freelance', changefreq: 'monthly', priority: 0.8 },
 
-        // Product pages
-        { url: '/iridium', changefreq: 'monthly', priority: 0.9 },
-        { url: '/prompt-suite', changefreq: 'monthly', priority: 0.9 },
-        { url: '/video-machine', changefreq: 'monthly', priority: 0.9 },
-        { url: '/obsidian-mcp-server', changefreq: 'monthly', priority: 0.9 },
-        { url: '/rr7-slides', changefreq: 'monthly', priority: 0.9 },
-        { url: '/ai-image-pipeline', changefreq: 'monthly', priority: 0.9 },
-
-        // Project pages
-        { url: '/tech-with-seth', changefreq: 'monthly', priority: 0.8 },
-        { url: '/truck', changefreq: 'monthly', priority: 0.8 },
-        { url: '/virtruv', changefreq: 'monthly', priority: 0.8 },
-
-        // Guide pages
-        {
-            url: '/claude-desktop-for-real-estate-agents',
-            changefreq: 'monthly',
-            priority: 0.8
-        },
-        {
-            url: '/claude-desktop-for-insurance-agents',
-            changefreq: 'monthly',
-            priority: 0.8
-        },
-        { url: '/tray-app-guide', changefreq: 'monthly', priority: 0.8 },
-
         // Utility pages
         { url: '/prompts', changefreq: 'weekly', priority: 0.8 },
         { url: '/setup', changefreq: 'yearly', priority: 0.5 },
         { url: '/thank-you', changefreq: 'yearly', priority: 0.3 }
     ];
 
+    // Add dynamic work routes
+    const workRoutes: SitemapRoute[] =
+        worksResult.works?.map(function (work) {
+            return {
+                url: `/work/${work.slug}`,
+                changefreq: 'monthly' as const,
+                priority: 0.9
+            };
+        }) || [];
+
     // Add dynamic prompt routes
     const dynamicRoutes: SitemapRoute[] =
-        prompts?.map((prompt) => ({
+        promptsResult.prompts?.map((prompt) => ({
             url: `/prompts/${prompt.slug}`,
             changefreq: 'monthly' as const,
             priority: 0.7
         })) || [];
 
     // Combine all routes
-    const allRoutes = [...staticRoutes, ...dynamicRoutes];
+    const allRoutes = [...staticRoutes, ...workRoutes, ...dynamicRoutes];
 
     // Generate XML sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

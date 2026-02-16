@@ -24,6 +24,11 @@ export function ResponsiveImage({
     const getResponsiveSrc = () => {
         if (!responsive) return { src };
 
+        // If src is already a full URL (e.g. Cloudinary), use it directly
+        if (src.startsWith('http://') || src.startsWith('https://')) {
+            return { src };
+        }
+
         const baseName = src.replace(/\.[^.]+$/, ''); // Remove extension
         // Note: Most images only have 640w and 1024w versions, not 1920w
         return {
