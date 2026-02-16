@@ -108,6 +108,29 @@ function buildGalleryImages(work: NonNullable<GetWorkDetailQuery['work']>) {
     return images;
 }
 
+function parseStringArray(value: unknown): string[] {
+    if (Array.isArray(value)) {
+        return value.filter(function (item): item is string {
+            return typeof item === 'string';
+        });
+    }
+
+    if (typeof value === 'string') {
+        try {
+            const parsed = JSON.parse(value);
+            if (Array.isArray(parsed)) {
+                return parsed.filter(function (item): item is string {
+                    return typeof item === 'string';
+                });
+            }
+        } catch {
+            return [];
+        }
+    }
+
+    return [];
+}
+
 function InterestFormSidebar() {
     const fetcher = useFetcher();
     const formRef = useRef<HTMLFormElement>(null);
@@ -277,8 +300,8 @@ function WorkLayout({
     const hasGallery = galleryImages.length > 1;
     const { isOpen, selectedIndex, openGallery, closeGallery } =
         useImageGallery();
-    const techStack = (work.techStack as LogoName[]) || [];
-    const features = (work.features as string[]) || [];
+    const techStack = parseStringArray(work.techStack) as LogoName[];
+    const features = parseStringArray(work.features);
 
     // Check if content.document has meaningful content
     const hasContent =

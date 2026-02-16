@@ -81,19 +81,17 @@ function ProductCard({ product }: { product: ProductItem }) {
             </p>
             <div className="space-y-3">
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                    {features.map(
-                        function (feature) {
-                            return (
-                                <div
-                                    key={feature}
-                                    className="flex items-start gap-2"
-                                >
-                                    <span className="text-primary">✓</span>
-                                    <span>{feature}</span>
-                                </div>
-                            );
-                        }
-                    )}
+                    {features.map(function (feature) {
+                        return (
+                            <div
+                                key={feature}
+                                className="flex items-start gap-2"
+                            >
+                                <span className="text-primary">✓</span>
+                                <span>{feature}</span>
+                            </div>
+                        );
+                    })}
                 </div>
                 <div className="flex gap-3">
                     <Linky to={detailUrl} className="flex-1">

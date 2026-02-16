@@ -81,7 +81,9 @@ async function main() {
             });
 
             if (!prodWork) {
-                console.log(`   ⏭️  Work not found in prod: ${workImage.work.slug}`);
+                console.log(
+                    `   ⏭️  Work not found in prod: ${workImage.work.slug}`
+                );
                 continue;
             }
 
@@ -102,7 +104,9 @@ async function main() {
                         sortOrder: workImage.sortOrder
                     }
                 });
-                console.log(`   ✅ Updated: ${workImage.alt} (${workImage.work.slug})`);
+                console.log(
+                    `   ✅ Updated: ${workImage.alt} (${workImage.work.slug})`
+                );
             } else {
                 // Create new
                 await prodDb.workImage.create({
@@ -113,7 +117,9 @@ async function main() {
                         workId: prodWork.id
                     }
                 });
-                console.log(`   ✅ Created: ${workImage.alt} (${workImage.work.slug})`);
+                console.log(
+                    `   ✅ Created: ${workImage.alt} (${workImage.work.slug})`
+                );
             }
         } catch (error) {
             console.error(`   ❌ ${workImage.alt}:`, error);

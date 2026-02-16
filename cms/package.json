@@ -7,7 +7,9 @@
         "prestart": "keystone prisma migrate deploy",
         "start": "NODE_ENV=production keystone start",
         "build": "keystone build",
-        "seed": "npx tsx seed.ts"
+        "seed": "npx tsx seed.ts",
+        "sync:from-prod": "npx tsx sync-from-prod.ts --clean",
+        "sync:to-prod": "npx tsx sync-images-to-prod.ts"
     },
     "dependencies": {
         "@keystone-6/auth": "^8.1.0",
