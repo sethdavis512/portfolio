@@ -130,17 +130,24 @@ cms/
 
 ---
 
-## Adding New Work or Product Pages
+## Adding New Work Items
 
-When creating a new work item or product page, update these files:
+Work items are managed in the **CMS** (KeystoneJS), not in code.
 
-1. Create route file in `web/app/routes/your-page.tsx`
-2. Add route to `web/app/routes.ts`
-3. **Add to command palette** in `web/app/components/CommandPalette.tsx` (in `workLinks` array)
-4. Add to sitemap in `web/app/routes/sitemap.xml.tsx`
-5. Optionally add to pre-render list in `web/react-router.config.ts`
+1. **Add in CMS admin**: `localhost:3000/admin` or `admin.sethdavis.tech/admin`
+2. **Create Work entry** with title, slug, description, content, and images
+3. **Set status to PUBLISHED**
+4. **Sync to production**:
 
-⚠️ **Don't forget the command palette!** Users rely on Cmd+K to navigate to work items.
+   ```bash
+   cd cms && npx tsx sync-to-prod.ts --new-only
+   cd cms && npx tsx sync-images-to-prod.ts
+   cd web && railway up -d
+   ```
+
+CommandPalette, sitemap, and pre-rendering are all CMS-driven - no manual file updates needed.
+
+⚠️ **Use `railway up`, not `railway redeploy`** - redeploy only restarts, doesn't rebuild.
 
 ---
 

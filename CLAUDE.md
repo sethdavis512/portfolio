@@ -129,13 +129,17 @@ export const componentVariants = cva({
 - Avoid `useEffect` in React Router 7 routes - prefer loaders/actions
 - Use classic `function` syntax over arrow functions
 
-## Adding New Work Items or Products
+## Adding New Work Items
 
-When adding a new route for work items or products, you MUST update these files:
+Work items are managed in the **CMS** (KeystoneJS), not in code. No manual file edits needed.
 
-1. **`web/app/routes.ts`** - Add the route definition
-2. **`web/app/components/CommandPalette.tsx`** - Add to `workLinks` array so it appears in command palette (Cmd+K)
-3. **`web/app/routes/sitemap.xml.tsx`** - Add to sitemap for SEO
-4. **`web/react-router.config.ts`** - Add to `prerender()` array if it should be statically generated
+1. **Add in CMS admin**: `localhost:3000/admin` (local) or `admin.sethdavis.tech/admin` (production)
+2. **Create Work entry** with title, slug, description, content fields, and images
+3. **Set status to PUBLISHED** when ready
+4. **Sync to production**: `cd cms && npx tsx sync-to-prod.ts --new-only`
+5. **Sync images**: `cd cms && npx tsx sync-images-to-prod.ts`
+6. **Rebuild web**: `cd web && railway up -d`
 
-⚠️ **The command palette is critical for site navigation** - users rely on Cmd+K to find work. Don't forget step #2!
+CommandPalette, sitemap, and routing are all CMS-driven - no manual updates required.
+
+⚠️ **Use `railway up`, not `railway redeploy`** - redeploy only restarts, doesn't rebuild pre-rendered pages.

@@ -1,6 +1,6 @@
 # Content Writing Guide for Work Items
 
-Follow these patterns when writing content for portfolio work items.
+Follow these patterns when writing content for portfolio work items in the CMS.
 
 ## Core Content Principles
 
@@ -11,15 +11,16 @@ From [CONTENT_STYLE_GUIDE.md](../../../CONTENT_STYLE_GUIDE.md):
 - **Solution-oriented**: Emphasize problem-solving and productivity
 - **Direct**: Get to the point quickly
 
-## Three-Part Structure (TechShowcase)
+## Three-Part Content Structure
 
-Work items using `TechShowcase` require three content blocks:
+Work items require three content fields in the CMS admin:
 
-### 1. Project Overview (`about` prop)
+### 1. About Field
 
 **Purpose**: Explain what the project is, what it does, and how it works.
 
 **What to include**:
+
 - What the application/project is
 - Primary features and capabilities
 - Technical architecture and key technologies
@@ -28,6 +29,7 @@ Work items using `TechShowcase` require three content blocks:
 **Length**: 3-5 sentences (one paragraph)
 
 **Example** (Video Machine):
+
 ```
 Video Machine is a comprehensive video rendering platform that transforms content 
 into engaging TikTok-style slide presentations. Built with React Router 7 and 
@@ -41,11 +43,12 @@ solution that handles complex video generation workflows at scale.
 
 **Pattern**: [Platform type] + [What it does] + [Key tech] + [How it works] + [Scale/impact]
 
-### 2. Knowledge Gained (`learned` prop)
+### 2. Learned Field
 
 **Purpose**: Demonstrate technical growth and learning from building the project.
 
 **What to include**:
+
 - Technical insights and discoveries
 - New skills or technologies mastered
 - Architectural lessons learned
@@ -55,6 +58,7 @@ solution that handles complex video generation workflows at scale.
 **Length**: 4-6 sentences (one paragraph)
 
 **Example** (Video Machine):
+
 ```
 This project deepened my understanding of distributed systems and asynchronous 
 job processing. Working with Remotion revealed the intricacies of server-side 
@@ -69,11 +73,12 @@ implementing presigned URLs for secure content delivery.
 
 **Pattern**: [Context] + [Specific technical learnings] + [Integration insights] + [Systems understanding]
 
-### 3. Portfolio Value (`value` prop)
+### 3. Impact Field
 
 **Purpose**: Explain why this project matters for your portfolio and what it demonstrates.
 
 **What to include**:
+
 - What capabilities this showcases
 - Technical proficiency demonstrated
 - Breadth of skills shown
@@ -83,6 +88,7 @@ implementing presigned URLs for secure content delivery.
 **Length**: 4-5 sentences (one paragraph)
 
 **Example** (Video Machine):
+
 ```
 Video Machine showcases my ability to architect and build complete SaaS 
 applications from end to end. It demonstrates technical proficiency across 
@@ -98,32 +104,21 @@ experience.
 
 **Pattern**: [What it showcases] + [Domains covered] + [Production readiness] + [Professional capability]
 
-## Custom Layout Content
+## CMS Field Reference
 
-For custom layouts, follow the same three sections but use headings:
-
-### Section Headings
-- "Project Overview"
-- "Knowledge Gained"  
-- "The Impact"
-
-Same content principles apply, just formatted with Heading components.
-
-## Meta Description
-
-Write concise, keyword-rich meta descriptions:
-
-**Format**: [What it is] + [Key feature/tech] + [Benefit/outcome]
-
-**Length**: 150-160 characters maximum
-
-**Examples**:
-- "A video rendering platform that creates TikTok-style slide videos using Remotion. Features credit-based payments, background processing with Trigger.dev, and Railway S3 storage."
-- "Production-ready SaaS boilerplate built with React Router 7, TypeScript, BetterAuth, Polar.sh, and PostgreSQL"
+| Field | Content Type | Guidelines |
+|-------|-------------|------------|
+| `title` | Short text | Project name, displayed as heading |
+| `slug` | Short text | URL path, kebab-case |
+| `description` | Short text | 1-2 sentences for /work page cards |
+| `about` | Long text | Project overview (3-5 sentences) |
+| `learned` | Long text | Knowledge gained (4-6 sentences) |
+| `impact` | Long text | Portfolio value (4-5 sentences) |
+| `techStack` | JSON | Array format: `["typescript", "react"]` |
 
 ## Voice and Tone Checklist
 
-Before finalizing content, ensure:
+Before finalizing content in the CMS, ensure:
 
 - [ ] Uses active voice
 - [ ] Focuses on practical benefits
@@ -137,24 +132,28 @@ Before finalizing content, ensure:
 ## Common Patterns
 
 ### For SaaS/Products
+
 - Lead with problem solved
 - Highlight technical architecture
 - Emphasize production-readiness
 - Focus on user value
 
 ### For Tools/Libraries
+
 - Start with developer pain point
 - Show technical approach
 - Highlight reusability
 - Emphasize efficiency gains
 
 ### For Client Work
+
 - Focus on business objectives met
 - Highlight stakeholder collaboration
 - Show technical execution
 - Demonstrate delivery quality
 
 ### For Experiments/Demos
+
 - Lead with learning objective
 - Highlight novel techniques
 - Show technical curiosity
@@ -163,6 +162,7 @@ Before finalizing content, ensure:
 ## Keyword Integration
 
 Naturally incorporate relevant keywords:
+
 - Primary tech stack (React Router 7, TypeScript, etc.)
 - Domain expertise (SaaS, video rendering, authentication, etc.)
 - Professional capabilities (full-stack, system architecture, etc.)

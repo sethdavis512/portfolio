@@ -208,11 +208,10 @@ cd web && railway up -d                    # trigger fresh build
 7. **Performance**: Consider SSR implications for new features
 8. **Accessibility**: Ensure semantic HTML and proper ARIA attributes
 9. **Images**: Always use `responsive` prop on HeroImage/ResponsiveImage components. Never use raw `<img>` tags for images >150KB. Verify optimized versions exist before deploying.
-10. **New Work/Product Pages**: When adding new work items or products, update ALL of these:
-    - `web/app/routes.ts` (route definition)
-    - `web/app/components/CommandPalette.tsx` (add to `workLinks` - this is mandatory!)
-    - `web/app/routes/sitemap.xml.tsx` (SEO sitemap)
-    - `web/react-router.config.ts` (pre-rendering if needed)
+10. **New Work Items**: Work items are CMS-managed, not code-managed. Add via KeystoneJS admin (`localhost:3000/admin`), then sync:
+    - `cd cms && npx tsx sync-to-prod.ts --new-only` (push to prod)
+    - `cd cms && npx tsx sync-images-to-prod.ts` (sync images)
+    - `cd web && railway up -d` (rebuild - NOT `railway redeploy`)
 
 ## Common Patterns to Follow
 
