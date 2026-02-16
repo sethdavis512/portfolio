@@ -188,6 +188,9 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
         <>
             {logos.map((logoName, index) => {
                 const config = logoConfig[logoName];
+
+                if (!config) return null;
+
                 return (
                     <Tooltip
                         content={config.title}

@@ -126,6 +126,29 @@ cms/
 - Seed script available for initial data setup
 - PostgreSQL in production, supports development database
 
+### Database Sync
+
+**Production is the source of truth.** Two sync scripts manage bidirectional data flow:
+
+```bash
+# Pull from production to local (recommended before editing)
+cd cms && npx tsx sync-from-prod.ts --clean
+
+# Push from local to production (new content only)
+cd cms && npx tsx sync-to-prod.ts --new-only --dry-run  # preview first
+cd cms && npx tsx sync-to-prod.ts --new-only            # then push
+```
+
+**Flags**:
+
+- `--tables=work,post,...` - Sync specific tables only
+- `--dry-run` - Preview without making changes
+- `--clean` - Delete local data before pulling (sync-from-prod)
+- `--new-only` - Only push records that don't exist in prod (sync-to-prod)
+- `--force` - Override conflict detection (dangerous, sync-to-prod)
+
+**Conflict handling**: If the same record is edited in both environments, production wins. The local change is skipped with a warning unless `--force` is used.
+
 ## Content Management
 
 ### Schema Design

@@ -28,6 +28,12 @@ cd cms && npx prisma migrate deploy
 
 # Seed database (cms/)
 cd cms && npm run seed
+
+# Sync from production to local (pull latest data)
+cd cms && npx tsx sync-from-prod.ts [--tables=work,post,...] [--clean] [--dry-run]
+
+# Sync from local to production (push new/updated data)
+cd cms && npx tsx sync-to-prod.ts [--tables=work,post,...] [--new-only] [--dry-run] [--force]
 ```
 
 ## Architecture
@@ -86,6 +92,24 @@ export const componentVariants = cva({
     defaultVariants: { size: 'md' }
 });
 ```
+
+## Database Sync Workflow
+
+**Production is the source of truth.** Use these scripts to sync data between environments:
+
+| Direction | Script | Typical Use |
+|-----------|--------|-------------|
+| Prod → Local | `sync-from-prod.ts` | Pull latest content before editing |
+| Local → Prod | `sync-to-prod.ts` | Push new content you created locally |
+
+**Conflict Detection**: When pushing to prod, records with a newer `updatedAt` in production are skipped (conflict). Use `--force` to override.
+
+**Recommended workflow**:
+
+1. Pull latest: `npx tsx sync-from-prod.ts --clean`
+2. Create/edit content locally
+3. Preview changes: `npx tsx sync-to-prod.ts --dry-run`
+4. Push new content: `npx tsx sync-to-prod.ts --new-only`
 
 ## Important Notes
 
