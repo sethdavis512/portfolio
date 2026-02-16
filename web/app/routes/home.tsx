@@ -104,7 +104,7 @@ export default function Home() {
                             <ButtonLink
                                 color="primary"
                                 size="lg"
-                                to="/video-machine"
+                                to="/work/video-machine"
                             >
                                 Learn more
                             </ButtonLink>
@@ -124,7 +124,7 @@ export default function Home() {
                             <ButtonLink
                                 color="primary"
                                 size="lg"
-                                to="/prompt-suite"
+                                to="/work/prompt-suite"
                             >
                                 Learn more
                             </ButtonLink>

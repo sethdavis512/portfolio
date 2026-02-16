@@ -14,7 +14,8 @@ import type { Route } from './+types/work';
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'Work',
-        descriptionContent: 'Projects and applications built by Seth Davis'
+        descriptionContent: 'Projects and applications built by Seth Davis',
+        ogUrl: 'https://sethdavis.tech/work'
     });
 }
 
