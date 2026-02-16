@@ -34,11 +34,24 @@ interface ProductItem {
     description?: string | null;
     purchaseUrl?: string | null;
     purchaseButtonText?: string | null;
-    features?: string[] | null;
+    features?: unknown;
     thumbnailImage?: {
         publicUrl?: string | null;
         publicUrlTransformed?: string | null;
     } | null;
+}
+
+function parseFeatures(features: unknown): string[] {
+    if (Array.isArray(features)) return features;
+    if (typeof features === 'string') {
+        try {
+            const parsed = JSON.parse(features);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch {
+            return [];
+        }
+    }
+    return [];
 }
 
 function ProductCard({ product }: { product: ProductItem }) {
@@ -47,6 +60,7 @@ function ProductCard({ product }: { product: ProductItem }) {
         product.thumbnailImage?.publicUrlTransformed ||
         product.thumbnailImage?.publicUrl ||
         '';
+    const features = parseFeatures(product.features);
 
     return (
         <Card className="p-6 space-y-4 flex flex-col">
@@ -67,7 +81,7 @@ function ProductCard({ product }: { product: ProductItem }) {
             </p>
             <div className="space-y-3">
                 <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                    {((product.features as string[]) || []).map(
+                    {features.map(
                         function (feature) {
                             return (
                                 <div
