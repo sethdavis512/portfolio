@@ -36,6 +36,8 @@ export function Linky({
     to,
     ...rest
 }: PropsWithChildren<LinkyProps>) {
+    const Component = external ? 'a' : Link;
+
     const linkClassName = useMemo(() => {
         return cx(
             'inline-flex cursor-pointer items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
@@ -56,8 +58,13 @@ export function Linky({
     }, [external]);
 
     return (
-        <Link className={linkClassName} to={to} {...externalProps} {...rest}>
+        <Component
+            className={linkClassName}
+            to={to}
+            {...externalProps}
+            {...rest}
+        >
             {children}
-        </Link>
+        </Component>
     );
 }

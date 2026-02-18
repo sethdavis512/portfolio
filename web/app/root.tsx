@@ -124,7 +124,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
     return (
         <>
-            <title>{message} | Seth Davis' Portfolio</title>
+            <title>{`${message} | Seth Davis' Portfolio`}</title>
             <main className="pt-16 p-4 container mx-auto">
                 <Heading as="h1">{message}</Heading>
                 <p>{details}</p>

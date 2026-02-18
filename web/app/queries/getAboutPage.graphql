@@ -20,4 +20,13 @@ query GetAboutPage {
         author
         sortOrder
     }
+    values(
+        where: { status: { equals: "PUBLISHED" } }
+        orderBy: [{ sortOrder: asc }]
+    ) {
+        id
+        title
+        description
+        sortOrder
+    }
 }

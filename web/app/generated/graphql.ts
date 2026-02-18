@@ -410,6 +410,10 @@ export type Mutation = {
   createExperience?: Maybe<Experience>;
   createExperiences?: Maybe<Array<Maybe<Experience>>>;
   createInitialUser: UserAuthenticationWithPasswordSuccess;
+  createOffering?: Maybe<Offering>;
+  createOfferings?: Maybe<Array<Maybe<Offering>>>;
+  createPackage?: Maybe<Package>;
+  createPackages?: Maybe<Array<Maybe<Package>>>;
   createPost?: Maybe<Post>;
   createPosts?: Maybe<Array<Maybe<Post>>>;
   createPrompt?: Maybe<Prompt>;
@@ -422,6 +426,8 @@ export type Mutation = {
   createTags?: Maybe<Array<Maybe<Tag>>>;
   createUser?: Maybe<User>;
   createUsers?: Maybe<Array<Maybe<User>>>;
+  createValue?: Maybe<Value>;
+  createValues?: Maybe<Array<Maybe<Value>>>;
   createWork?: Maybe<Work>;
   createWorkImage?: Maybe<WorkImage>;
   createWorkImages?: Maybe<Array<Maybe<WorkImage>>>;
@@ -430,6 +436,10 @@ export type Mutation = {
   deleteAboutFacts?: Maybe<Array<Maybe<AboutFact>>>;
   deleteExperience?: Maybe<Experience>;
   deleteExperiences?: Maybe<Array<Maybe<Experience>>>;
+  deleteOffering?: Maybe<Offering>;
+  deleteOfferings?: Maybe<Array<Maybe<Offering>>>;
+  deletePackage?: Maybe<Package>;
+  deletePackages?: Maybe<Array<Maybe<Package>>>;
   deletePost?: Maybe<Post>;
   deletePosts?: Maybe<Array<Maybe<Post>>>;
   deletePrompt?: Maybe<Prompt>;
@@ -442,6 +452,8 @@ export type Mutation = {
   deleteTags?: Maybe<Array<Maybe<Tag>>>;
   deleteUser?: Maybe<User>;
   deleteUsers?: Maybe<Array<Maybe<User>>>;
+  deleteValue?: Maybe<Value>;
+  deleteValues?: Maybe<Array<Maybe<Value>>>;
   deleteWork?: Maybe<Work>;
   deleteWorkImage?: Maybe<WorkImage>;
   deleteWorkImages?: Maybe<Array<Maybe<WorkImage>>>;
@@ -451,6 +463,10 @@ export type Mutation = {
   updateAboutFacts?: Maybe<Array<Maybe<AboutFact>>>;
   updateExperience?: Maybe<Experience>;
   updateExperiences?: Maybe<Array<Maybe<Experience>>>;
+  updateOffering?: Maybe<Offering>;
+  updateOfferings?: Maybe<Array<Maybe<Offering>>>;
+  updatePackage?: Maybe<Package>;
+  updatePackages?: Maybe<Array<Maybe<Package>>>;
   updatePost?: Maybe<Post>;
   updatePosts?: Maybe<Array<Maybe<Post>>>;
   updatePrompt?: Maybe<Prompt>;
@@ -463,6 +479,8 @@ export type Mutation = {
   updateTags?: Maybe<Array<Maybe<Tag>>>;
   updateUser?: Maybe<User>;
   updateUsers?: Maybe<Array<Maybe<User>>>;
+  updateValue?: Maybe<Value>;
+  updateValues?: Maybe<Array<Maybe<Value>>>;
   updateWork?: Maybe<Work>;
   updateWorkImage?: Maybe<WorkImage>;
   updateWorkImages?: Maybe<Array<Maybe<WorkImage>>>;
@@ -498,6 +516,26 @@ export type MutationCreateExperiencesArgs = {
 
 export type MutationCreateInitialUserArgs = {
   data: CreateInitialUserInput;
+};
+
+
+export type MutationCreateOfferingArgs = {
+  data: OfferingCreateInput;
+};
+
+
+export type MutationCreateOfferingsArgs = {
+  data: Array<OfferingCreateInput>;
+};
+
+
+export type MutationCreatePackageArgs = {
+  data: PackageCreateInput;
+};
+
+
+export type MutationCreatePackagesArgs = {
+  data: Array<PackageCreateInput>;
 };
 
 
@@ -561,6 +599,16 @@ export type MutationCreateUsersArgs = {
 };
 
 
+export type MutationCreateValueArgs = {
+  data: ValueCreateInput;
+};
+
+
+export type MutationCreateValuesArgs = {
+  data: Array<ValueCreateInput>;
+};
+
+
 export type MutationCreateWorkArgs = {
   data: WorkCreateInput;
 };
@@ -598,6 +646,26 @@ export type MutationDeleteExperienceArgs = {
 
 export type MutationDeleteExperiencesArgs = {
   where: Array<ExperienceWhereUniqueInput>;
+};
+
+
+export type MutationDeleteOfferingArgs = {
+  where: OfferingWhereUniqueInput;
+};
+
+
+export type MutationDeleteOfferingsArgs = {
+  where: Array<OfferingWhereUniqueInput>;
+};
+
+
+export type MutationDeletePackageArgs = {
+  where: PackageWhereUniqueInput;
+};
+
+
+export type MutationDeletePackagesArgs = {
+  where: Array<PackageWhereUniqueInput>;
 };
 
 
@@ -661,6 +729,16 @@ export type MutationDeleteUsersArgs = {
 };
 
 
+export type MutationDeleteValueArgs = {
+  where: ValueWhereUniqueInput;
+};
+
+
+export type MutationDeleteValuesArgs = {
+  where: Array<ValueWhereUniqueInput>;
+};
+
+
 export type MutationDeleteWorkArgs = {
   where: WorkWhereUniqueInput;
 };
@@ -700,6 +778,28 @@ export type MutationUpdateExperienceArgs = {
 
 export type MutationUpdateExperiencesArgs = {
   data: Array<ExperienceUpdateArgs>;
+};
+
+
+export type MutationUpdateOfferingArgs = {
+  data: OfferingUpdateInput;
+  where: OfferingWhereUniqueInput;
+};
+
+
+export type MutationUpdateOfferingsArgs = {
+  data: Array<OfferingUpdateArgs>;
+};
+
+
+export type MutationUpdatePackageArgs = {
+  data: PackageUpdateInput;
+  where: PackageWhereUniqueInput;
+};
+
+
+export type MutationUpdatePackagesArgs = {
+  data: Array<PackageUpdateArgs>;
 };
 
 
@@ -769,6 +869,17 @@ export type MutationUpdateUsersArgs = {
 };
 
 
+export type MutationUpdateValueArgs = {
+  data: ValueUpdateInput;
+  where: ValueWhereUniqueInput;
+};
+
+
+export type MutationUpdateValuesArgs = {
+  data: Array<ValueUpdateArgs>;
+};
+
+
 export type MutationUpdateWorkArgs = {
   data: WorkUpdateInput;
   where: WorkWhereUniqueInput;
@@ -804,10 +915,156 @@ export type NestedStringFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Offering = {
+  __typename?: 'Offering';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+};
+
+export type OfferingCreateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type OfferingManyRelationFilter = {
+  every?: InputMaybe<OfferingWhereInput>;
+  none?: InputMaybe<OfferingWhereInput>;
+  some?: InputMaybe<OfferingWhereInput>;
+};
+
+export type OfferingOrderByInput = {
+  description?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  name?: InputMaybe<OrderDirection>;
+  order?: InputMaybe<OrderDirection>;
+};
+
+export type OfferingRelateToManyForCreateInput = {
+  connect?: InputMaybe<Array<OfferingWhereUniqueInput>>;
+  create?: InputMaybe<Array<OfferingCreateInput>>;
+};
+
+export type OfferingRelateToManyForUpdateInput = {
+  connect?: InputMaybe<Array<OfferingWhereUniqueInput>>;
+  create?: InputMaybe<Array<OfferingCreateInput>>;
+  disconnect?: InputMaybe<Array<OfferingWhereUniqueInput>>;
+  set?: InputMaybe<Array<OfferingWhereUniqueInput>>;
+};
+
+export type OfferingUpdateArgs = {
+  data: OfferingUpdateInput;
+  where: OfferingWhereUniqueInput;
+};
+
+export type OfferingUpdateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type OfferingWhereInput = {
+  AND?: InputMaybe<Array<OfferingWhereInput>>;
+  NOT?: InputMaybe<Array<OfferingWhereInput>>;
+  OR?: InputMaybe<Array<OfferingWhereInput>>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  name?: InputMaybe<StringFilter>;
+  order?: InputMaybe<IntNullableFilter>;
+};
+
+export type OfferingWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export enum OrderDirection {
   Asc = 'asc',
   Desc = 'desc'
 }
+
+export type Package = {
+  __typename?: 'Package';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  offerings?: Maybe<Array<Offering>>;
+  offeringsCount?: Maybe<Scalars['Int']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  price?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type PackageOfferingsArgs = {
+  cursor?: InputMaybe<OfferingWhereUniqueInput>;
+  orderBy?: Array<OfferingOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: OfferingWhereInput;
+};
+
+
+export type PackageOfferingsCountArgs = {
+  where?: OfferingWhereInput;
+};
+
+export type PackageCreateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  offerings?: InputMaybe<OfferingRelateToManyForCreateInput>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  price?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PackageOrderByInput = {
+  description?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  name?: InputMaybe<OrderDirection>;
+  order?: InputMaybe<OrderDirection>;
+  price?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+  type?: InputMaybe<OrderDirection>;
+};
+
+export type PackageUpdateArgs = {
+  data: PackageUpdateInput;
+  where: PackageWhereUniqueInput;
+};
+
+export type PackageUpdateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  offerings?: InputMaybe<OfferingRelateToManyForUpdateInput>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  price?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PackageWhereInput = {
+  AND?: InputMaybe<Array<PackageWhereInput>>;
+  NOT?: InputMaybe<Array<PackageWhereInput>>;
+  OR?: InputMaybe<Array<PackageWhereInput>>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  name?: InputMaybe<StringFilter>;
+  offerings?: InputMaybe<OfferingManyRelationFilter>;
+  order?: InputMaybe<IntNullableFilter>;
+  price?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+};
+
+export type PackageWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type PasswordState = {
   __typename?: 'PasswordState';
@@ -1049,6 +1306,12 @@ export type Query = {
   experiences?: Maybe<Array<Experience>>;
   experiencesCount?: Maybe<Scalars['Int']['output']>;
   keystone: KeystoneMeta;
+  offering?: Maybe<Offering>;
+  offerings?: Maybe<Array<Offering>>;
+  offeringsCount?: Maybe<Scalars['Int']['output']>;
+  package?: Maybe<Package>;
+  packages?: Maybe<Array<Package>>;
+  packagesCount?: Maybe<Scalars['Int']['output']>;
   post?: Maybe<Post>;
   posts?: Maybe<Array<Post>>;
   postsCount?: Maybe<Scalars['Int']['output']>;
@@ -1067,6 +1330,9 @@ export type Query = {
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
   usersCount?: Maybe<Scalars['Int']['output']>;
+  value?: Maybe<Value>;
+  values?: Maybe<Array<Value>>;
+  valuesCount?: Maybe<Scalars['Int']['output']>;
   work?: Maybe<Work>;
   workImage?: Maybe<WorkImage>;
   workImages?: Maybe<Array<WorkImage>>;
@@ -1111,6 +1377,44 @@ export type QueryExperiencesArgs = {
 
 export type QueryExperiencesCountArgs = {
   where?: ExperienceWhereInput;
+};
+
+
+export type QueryOfferingArgs = {
+  where: OfferingWhereUniqueInput;
+};
+
+
+export type QueryOfferingsArgs = {
+  cursor?: InputMaybe<OfferingWhereUniqueInput>;
+  orderBy?: Array<OfferingOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: OfferingWhereInput;
+};
+
+
+export type QueryOfferingsCountArgs = {
+  where?: OfferingWhereInput;
+};
+
+
+export type QueryPackageArgs = {
+  where: PackageWhereUniqueInput;
+};
+
+
+export type QueryPackagesArgs = {
+  cursor?: InputMaybe<PackageWhereUniqueInput>;
+  orderBy?: Array<PackageOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: PackageWhereInput;
+};
+
+
+export type QueryPackagesCountArgs = {
+  where?: PackageWhereInput;
 };
 
 
@@ -1225,6 +1529,25 @@ export type QueryUsersArgs = {
 
 export type QueryUsersCountArgs = {
   where?: UserWhereInput;
+};
+
+
+export type QueryValueArgs = {
+  where: ValueWhereUniqueInput;
+};
+
+
+export type QueryValuesArgs = {
+  cursor?: InputMaybe<ValueWhereUniqueInput>;
+  orderBy?: Array<ValueOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: ValueWhereInput;
+};
+
+
+export type QueryValuesCountArgs = {
+  where?: ValueWhereInput;
 };
 
 
@@ -1622,6 +1945,58 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type Value = {
+  __typename?: 'Value';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  sortOrder?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ValueCreateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ValueOrderByInput = {
+  description?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  sortOrder?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+  title?: InputMaybe<OrderDirection>;
+};
+
+export type ValueUpdateArgs = {
+  data: ValueUpdateInput;
+  where: ValueWhereUniqueInput;
+};
+
+export type ValueUpdateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  sortOrder?: InputMaybe<Scalars['Int']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ValueWhereInput = {
+  AND?: InputMaybe<Array<ValueWhereInput>>;
+  NOT?: InputMaybe<Array<ValueWhereInput>>;
+  OR?: InputMaybe<Array<ValueWhereInput>>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IdFilter>;
+  sortOrder?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type ValueWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Work = {
   __typename?: 'Work';
   about?: Maybe<Scalars['String']['output']>;
@@ -1910,7 +2285,12 @@ export type Work_Content_DocumentDocumentArgs = {
 export type GetAboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAboutPageQuery = { __typename?: 'Query', aboutFacts?: Array<{ __typename?: 'AboutFact', id: string, emoji?: string | null, title?: string | null, content?: string | null, linkUrl?: string | null, linkExternal?: string | null, sortOrder?: number | null }> | null, quotes?: Array<{ __typename?: 'Quote', id: string, text?: string | null, author?: string | null, sortOrder?: number | null }> | null };
+export type GetAboutPageQuery = { __typename?: 'Query', aboutFacts?: Array<{ __typename?: 'AboutFact', id: string, emoji?: string | null, title?: string | null, content?: string | null, linkUrl?: string | null, linkExternal?: string | null, sortOrder?: number | null }> | null, quotes?: Array<{ __typename?: 'Quote', id: string, text?: string | null, author?: string | null, sortOrder?: number | null }> | null, values?: Array<{ __typename?: 'Value', id: string, title?: string | null, description?: string | null, sortOrder?: number | null }> | null };
+
+export type GetPackagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPackagesQuery = { __typename?: 'Query', packages?: Array<{ __typename?: 'Package', id: string, name?: string | null, description?: string | null, type?: string | null, order?: number | null, price?: number | null, offerings?: Array<{ __typename?: 'Offering', id: string, name?: string | null, description?: string | null }> | null }> | null };
 
 export type GetPostBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -2003,11 +2383,38 @@ export const GetAboutPageDocument = gql`
     author
     sortOrder
   }
+  values(where: {status: {equals: "PUBLISHED"}}, orderBy: [{sortOrder: asc}]) {
+    id
+    title
+    description
+    sortOrder
+  }
 }
     `;
 
 export function useGetAboutPageQuery(options?: Omit<Urql.UseQueryArgs<GetAboutPageQueryVariables>, 'query'>) {
   return Urql.useQuery<GetAboutPageQuery, GetAboutPageQueryVariables>({ query: GetAboutPageDocument, ...options });
+};
+export const GetPackagesDocument = gql`
+    query GetPackages {
+  packages(orderBy: {order: asc}) {
+    id
+    name
+    description
+    type
+    order
+    offerings {
+      id
+      name
+      description
+    }
+    price
+  }
+}
+    `;
+
+export function useGetPackagesQuery(options?: Omit<Urql.UseQueryArgs<GetPackagesQueryVariables>, 'query'>) {
+  return Urql.useQuery<GetPackagesQuery, GetPackagesQueryVariables>({ query: GetPackagesDocument, ...options });
 };
 export const GetPostBySlugDocument = gql`
     query GetPostBySlug($slug: String!) {

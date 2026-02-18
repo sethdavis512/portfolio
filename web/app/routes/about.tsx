@@ -8,6 +8,7 @@ import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 import { client } from '~/utils/graphql.server';
 import type { Route } from './+types/about';
+import { ButtonLink } from '~/components/ButtonLink';
 
 export function meta() {
     return generateRouteMeta({
@@ -19,12 +20,12 @@ export function meta() {
 }
 
 export async function loader() {
-    const data =
-        await client.request<GetAboutPageQuery>(GetAboutPageDocument);
+    const data = await client.request<GetAboutPageQuery>(GetAboutPageDocument);
 
     return {
         aboutFacts: data.aboutFacts || [],
-        quotes: data.quotes || []
+        quotes: data.quotes || [],
+        values: data.values || []
     };
 }
 
@@ -73,6 +74,23 @@ function FactCard({
     );
 }
 
+function ValueCard({
+    title,
+    description
+}: {
+    title: string;
+    description: string;
+}) {
+    return (
+        <Card className="h-full p-6">
+            <Heading as="h3" size="4" className="mb-4">
+                {title}
+            </Heading>
+            <p className="text-zinc-300">{description}</p>
+        </Card>
+    );
+}
+
 export default function AboutRoute({ loaderData }: Route.ComponentProps) {
     const midpoint = Math.ceil(loaderData.aboutFacts.length / 2);
     const leftFacts = loaderData.aboutFacts.slice(0, midpoint);
@@ -115,6 +133,64 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                     })}
                 </ul>
             </div>
+            {loaderData.values.length > 0 && (
+                <>
+                    <Heading as="h2" className="mb-8">
+                        How I Work
+                    </Heading>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                        {loaderData.values.map(function (value, index) {
+                            const isLast =
+                                index === loaderData.values.length - 1;
+                            const isOddTotal =
+                                loaderData.values.length % 3 !== 0;
+                            const shouldSpanFull =
+                                isLast &&
+                                isOddTotal &&
+                                loaderData.values.length % 3 === 1;
+                            const shouldSpanTwo =
+                                isLast && loaderData.values.length % 3 === 2;
+
+                            return (
+                                <div
+                                    key={value.id}
+                                    className={
+                                        shouldSpanFull
+                                            ? 'md:col-span-2 lg:col-span-3'
+                                            : shouldSpanTwo
+                                              ? 'lg:col-span-1'
+                                              : ''
+                                    }
+                                >
+                                    <ValueCard
+                                        title={value.title || ''}
+                                        description={value.description || ''}
+                                    />
+                                </div>
+                            );
+                        })}
+                    </div>
+                </>
+            )}
+            <hr className="border-zinc-500 my-12" />
+            <section className="">
+                <Heading as="h2" className="mb-4">
+                    Want to see it in action?
+                </Heading>
+                <p className="text-zinc-300 mb-6">
+                    Check out projects where I put these values into practice,
+                    or get in touch to discuss working together.
+                </p>
+                <div className="flex gap-4">
+                    <ButtonLink to="/work" size="lg">
+                        See my work
+                    </ButtonLink>
+                    <ButtonLink to="/freelance" size="lg" variant="outline">
+                        Get in touch
+                    </ButtonLink>
+                </div>
+            </section>
+            <hr className="border-zinc-500 my-12" />
             <Heading as="h2" className="mb-8">
                 Motivation
             </Heading>

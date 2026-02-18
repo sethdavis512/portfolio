@@ -19,6 +19,7 @@ import { RemotionLogo } from './logos/RemotionLogo';
 import { TailwindLogo } from './logos/TailwindLogo';
 import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
+import { TurborepoLogo } from './logos/TurborepoLogo';
 import { TypescriptLogo } from './logos/TypescriptLogo';
 import { Linky } from './Linky';
 import { PolarLogo } from './logos/PolarLogo';
@@ -48,6 +49,7 @@ export type LogoName =
     | 'remotion'
     | 'tailwind'
     | 'trigger'
+    | 'turborepo'
     | 'typescript'
     | 'vuejs'
     | 'wordpress';
@@ -166,6 +168,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <TriggerDevLogo {...logoProps} {...props} />,
             title: 'Trigger.dev',
             url: 'https://trigger.dev/'
+        },
+        turborepo: {
+            component: (props) => <TurborepoLogo {...logoProps} {...props} />,
+            title: 'Turborepo',
+            url: 'https://turbo.build/repo'
         },
         typescript: {
             component: (props) => <TypescriptLogo {...logoProps} {...props} />,

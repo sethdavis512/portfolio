@@ -31,6 +31,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         { url: '/resume', changefreq: 'monthly', priority: 0.8 },
         { url: '/products', changefreq: 'monthly', priority: 0.9 },
         { url: '/freelance', changefreq: 'monthly', priority: 0.8 },
+        { url: '/services', changefreq: 'monthly', priority: 0.8 },
 
         // Utility pages
         { url: '/prompts', changefreq: 'weekly', priority: 0.8 },

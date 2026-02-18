@@ -140,3 +140,30 @@ model WorkImage {
 
   @@index([workId])
 }
+
+model Value {
+  id          String @id @default(cuid())
+  title       String @unique @default("")
+  description String @default("")
+  sortOrder   Int?   @default(0)
+  status      String @default("DRAFT")
+}
+
+model Offering {
+  id                     String    @id @default(cuid())
+  name                   String    @unique @default("")
+  description            String    @default("")
+  order                  Int?      @default(0)
+  from_Package_offerings Package[] @relation("Package_offerings")
+}
+
+model Package {
+  id          String     @id @default(cuid())
+  status      String     @default("DRAFT")
+  name        String     @unique @default("")
+  description String     @default("")
+  type        String     @default("ONE_TIME")
+  offerings   Offering[] @relation("Package_offerings")
+  price       Int?       @default(0)
+  order       Int?       @default(0)
+}

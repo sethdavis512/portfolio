@@ -38,30 +38,22 @@ const NAV_ITEMS: NavItem[] = [
     },
     {
         type: 'internal',
-        to: '/work/iridium',
-        label: 'Iridium',
-        ariaLabel:
-            'Production-ready web application that leverages AI to accelerate development'
-    },
-    {
-        type: 'internal',
         to: '/freelance',
         label: 'Freelance',
-        ariaLabel: 'Hire me for freelance work'
+        ariaLabel: 'View my freelance services and offerings'
     },
-
+    // {
+    //     type: 'internal',
+    //     to: '/services',
+    //     label: 'Services',
+    //     ariaLabel: 'View my services and offerings'
+    // },
     {
         type: 'internal',
         to: '/about',
         label: 'About',
         ariaLabel: 'Learn more about me'
     }
-    // {
-    //     type: 'internal',
-    //     to: '/blog',
-    //     label: 'Blog',
-    //     ariaLabel: 'Read the blog'
-    // }
 ];
 
 interface AppNavLinkProps {

@@ -126,19 +126,19 @@ function ProductCard({ product }: { product: ProductItem }) {
     );
 }
 
-function ComingSoonCard() {
+export function ComingSoonCard() {
     return (
         <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg min-h-[400px] text-center">
             <Package className="w-12 h-12 text-zinc-400 dark:text-zinc-500 mb-4" />
             <Heading
                 as="h2"
                 size="3"
-                className="text-zinc-500 dark:text-zinc-400"
+                className="text-zinc-500 dark:text-zinc-500"
             >
                 More Coming Soon
             </Heading>
             <p className="text-zinc-500 dark:text-zinc-500 mt-2 max-w-xs">
-                New tools and resources are in the works. Check back soon!
+                Check back later!
             </p>
         </div>
     );

@@ -625,7 +625,7 @@ export const lists = {
         access: allowAll,
         ui: {
             listView: {
-                initialColumns: ['alt', 'sortOrder', 'work']
+                initialColumns: ['work', 'alt', 'sortOrder']
             },
             labelField: 'alt'
         },
@@ -648,6 +648,98 @@ export const lists = {
                     inlineConnect: true
                 }
             })
+        }
+    }),
+
+    Value: list({
+        access: allowAll,
+        ui: {
+            listView: {
+                initialColumns: ['title', 'sortOrder', 'status']
+            }
+        },
+        fields: {
+            title: text({
+                validation: { isRequired: true },
+                isIndexed: 'unique'
+            }),
+            description: text({
+                validation: { isRequired: true },
+                ui: { displayMode: 'textarea' }
+            }),
+            sortOrder: integer({ defaultValue: 0 }),
+            status: select({
+                options: [
+                    { label: 'Draft', value: 'DRAFT' },
+                    { label: 'Published', value: 'PUBLISHED' }
+                ],
+                defaultValue: 'DRAFT',
+                validation: { isRequired: true },
+                ui: { displayMode: 'segmented-control' }
+            })
+        }
+    }),
+
+    Offering: list({
+        access: allowAll,
+        ui: {
+            listView: {
+                initialColumns: ['name', 'description']
+            }
+        },
+        fields: {
+            name: text({
+                validation: { isRequired: true },
+                isIndexed: 'unique'
+            }),
+            description: text({ ui: { displayMode: 'textarea' } }),
+            order: integer({ defaultValue: 0 })
+        }
+    }),
+
+    Package: list({
+        access: allowAll,
+        ui: {
+            listView: {
+                initialColumns: ['name', 'status', 'description', 'order']
+            }
+        },
+        fields: {
+            status: select({
+                options: [
+                    { label: 'Draft', value: 'DRAFT' },
+                    { label: 'Published', value: 'PUBLISHED' },
+                    { label: 'Archived', value: 'ARCHIVED' }
+                ],
+                defaultValue: 'DRAFT',
+                validation: { isRequired: true },
+                ui: {
+                    displayMode: 'segmented-control'
+                }
+            }),
+            name: text({
+                validation: { isRequired: true },
+                isIndexed: 'unique'
+            }),
+            description: text({ ui: { displayMode: 'textarea' } }),
+            type: select({
+                options: [
+                    { label: 'One time', value: 'ONE_TIME' },
+                    { label: 'Hourly', value: 'HOURLY' },
+                    { label: 'Subscription', value: 'SUBSCRIPTION' },
+                    { label: 'Retainer', value: 'RETAINER' },
+                    { label: 'Other', value: 'OTHER' }
+                ],
+                defaultValue: 'ONE_TIME',
+                validation: { isRequired: true },
+                ui: { displayMode: 'segmented-control' }
+            }),
+            offerings: relationship({
+                ref: 'Offering',
+                many: true
+            }),
+            price: integer({ defaultValue: 0 }),
+            order: integer({ defaultValue: 0 })
         }
     })
 } satisfies Lists;

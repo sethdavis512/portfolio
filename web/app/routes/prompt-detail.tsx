@@ -15,7 +15,7 @@ import { generateRouteMeta } from '~/utils/seo';
 export function meta({ data }: Route.MetaArgs) {
     return generateRouteMeta({
         pageTitle:
-            data?.prompt?.title || "Prompt Not Found | Seth Davis' Portfolio",
+            data?.prompt?.title || "Prompt Not Found",
         descriptionContent: data?.prompt?.title
             ? `Read the prompt titled "${data.prompt.title}" by Seth Davis. Explore insights and discussions on AI prompts, web development, and more.`
             : 'Prompt not found.',

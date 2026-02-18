@@ -1,0 +1,15 @@
+query GetPackages {
+    packages(orderBy: { order: asc }) {
+        id
+        name
+        description
+        type
+        order
+        offerings {
+            id
+            name
+            description
+        }
+        price
+    }
+}
