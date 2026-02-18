@@ -16,7 +16,10 @@
       "Bash(agent-browser open:*)",
       "Bash(agent-browser screenshot:*)",
       "Bash(agent-browser snapshot:*)",
-      "Bash(agent-browser set:*)"
+      "Bash(agent-browser set:*)",
+      "Skill(deployment)",
+      "Skill(deployment:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []
