@@ -33,6 +33,7 @@ const ALL_TABLES = [
     'experience',
     'quote',
     'aboutfact',
+    'value',
     'user',
     'work',
     'workimage',
@@ -329,6 +330,32 @@ async function main() {
         );
         allStats.aboutfact = stats;
         printStats('AboutFact', stats);
+    }
+
+    // Sync Values
+    if (tables.includes('value')) {
+        console.log('\n💎 Syncing Values...');
+        const localItems = await localDb.value.findMany();
+        const prodItems = await prodDb.value.findMany();
+        console.log(
+            `   Local: ${localItems.length}, Production: ${prodItems.length}`
+        );
+
+        const stats = await syncTable(
+            'Value',
+            localItems,
+            prodItems,
+            async (item) => {
+                await prodDb.value.upsert({
+                    where: { id: item.id },
+                    create: item,
+                    update: item
+                });
+            },
+            { dryRun, newOnly, force }
+        );
+        allStats.value = stats;
+        printStats('Value', stats);
     }
 
     // Sync Users
