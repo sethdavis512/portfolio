@@ -23,19 +23,22 @@ export async function loader() {
                 name: 'Overpriced short antenna',
                 url: 'https://roninfactory.com/collections/ford',
                 price: 32,
-                img: '/antenna.jpg'
+                img: '/antenna.jpg',
+                has1024: false
             },
             {
                 name: 'WeatherTech floor mats',
                 url: 'https://www.weathertech.com/ford/2023/f-150/floorliner-hp/',
                 price: 225,
-                img: '/f150-floor-mats.jpg'
+                img: '/f150-floor-mats.jpg',
+                has1024: true
             },
             {
                 name: 'Diamondback bed cover',
                 url: 'https://diamondbackcovers.com/products/diamondback-switchback-ford-f-150-2021-up?variant=40259006955619',
                 price: 1899,
-                img: '/truck-2-768x404.jpg'
+                img: '/truck-2-768x404.jpg',
+                has1024: false
             }
         ].map((upgrade) => ({
             ...upgrade,
@@ -46,7 +49,8 @@ export async function loader() {
                 name: 'Napier Truck Tent',
                 url: 'https://a.co/d/hnYnPZA',
                 price: undefined,
-                img: '/truck-tent.jpg'
+                img: '/truck-tent.jpg',
+                has1024: true
             }
         ].map((accessory) => ({
             ...accessory,
@@ -74,6 +78,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                 alt="Black 2023 Ford F-150"
                 className="rounded-lg border border-zinc-300 dark:border-zinc-700"
                 responsive
+                include1024
             />
             <Divider className="my-8" />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
@@ -87,8 +92,8 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                                 <div className="-mx-4 -mt-4 mb-4">
                                     <ResponsiveImage
                                         src={upgrade.img}
-                                        alt="F-150 bed cover"
-                                        className="block h-[140px] w-full hover:no-underline"
+                                        alt={upgrade.name}
+                                        className="block h-35 w-full hover:no-underline"
                                         style={{
                                             display: 'block',
                                             objectFit: 'cover',
@@ -98,6 +103,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                                         }}
                                         sizes="(max-width: 768px) 100vw, 33vw"
                                         responsive
+                                        include1024={upgrade.has1024}
                                     />
                                 </div>
                                 <Heading
@@ -131,7 +137,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                                 <div className="-mx-4 -mt-4 mb-4">
                                     <ResponsiveImage
                                         src={accessory.img}
-                                        alt="F-150 bed cover"
+                                        alt={accessory.name}
                                         className="block h-[140px] w-full hover:no-underline"
                                         style={{
                                             display: 'block',
@@ -142,6 +148,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                                         }}
                                         sizes="(max-width: 768px) 100vw, 33vw"
                                         responsive
+                                        include1024={accessory.has1024}
                                     />
                                 </div>
                                 {accessory.price && (

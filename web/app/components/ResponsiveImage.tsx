@@ -4,8 +4,10 @@ interface ResponsiveImageProps {
     src: string;
     alt: string;
     className?: string;
-    /** Enable responsive image variants (expects optimized/image-640w.webp, -1024w.webp, -1920w.webp) */
+    /** Enable responsive image variants (expects optimized/image-640w.webp) */
     responsive?: boolean;
+    /** Include 1024w variant in srcset (only if the optimized version exists) */
+    include1024?: boolean;
     sizes?: string;
     loading?: 'lazy' | 'eager';
     style?: React.CSSProperties;
@@ -16,6 +18,7 @@ export function ResponsiveImage({
     alt,
     className,
     responsive = true,
+    include1024 = false,
     sizes = '100vw',
     loading = 'lazy',
     style
@@ -30,13 +33,16 @@ export function ResponsiveImage({
         }
 
         const baseName = src.replace(/\.[^.]+$/, ''); // Remove extension
-        // Note: Most images only have 640w and 1024w versions, not 1920w
+        const srcSetParts = [`/optimized${baseName}-640w.webp 640w`];
+
+        // Only include 1024w if explicitly enabled (means the file exists)
+        if (include1024) {
+            srcSetParts.push(`/optimized${baseName}-1024w.webp 1024w`);
+        }
+
         return {
-            src: `/optimized${baseName}-1024w.webp`, // Use 1024w as fallback
-            srcSet: [
-                `/optimized${baseName}-640w.webp 640w`,
-                `/optimized${baseName}-1024w.webp 1024w`
-            ].join(', ')
+            src: `/optimized${baseName}-640w.webp`,
+            srcSet: srcSetParts.join(', ')
         };
     };
 
