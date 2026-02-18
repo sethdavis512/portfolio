@@ -83,7 +83,7 @@ export default function RouteComponent({ loaderData }: Route.ComponentProps) {
 ### GraphQL Workflow
 
 1. Define queries in `web/app/queries/*.graphql`
-2. Run `npm run generate:types` from `web/`
+2. Run `npm run generate:types` from `web/` (uses `../cms/schema.graphql` — CMS doesn't need to be running)
 3. Import generated types and documents: `import { QueryDocument, type QueryType } from '~/generated/graphql'`
 4. Use in loaders: `await client.request<QueryType>(QueryDocument)`
 

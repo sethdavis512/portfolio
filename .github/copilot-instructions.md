@@ -111,12 +111,13 @@ cms/
 - `npm run dev` - Start both CMS and web development servers
 - `npm run dev:web` - Start web development server only
 - `npm run dev:cms` - Start CMS development server only
-- `npm run generate:types` - Generate GraphQL types from schema
+- `npm run generate:types` - Generate GraphQL types from schema (uses `cms/schema.graphql` — CMS doesn't need to be running)
 
 ### GraphQL Development
 
 - CMS runs on port 3000 with admin UI at `/admin`
 - GraphQL playground available at `/api/graphql`
+- Codegen reads from `cms/schema.graphql` directly, not the running server
 - Auto-generate TypeScript types after schema changes
 - Use proper GraphQL query fragments for reusability
 

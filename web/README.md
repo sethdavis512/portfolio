@@ -73,6 +73,7 @@ web/app/
 
 - GraphQL queries are defined in `app/queries/`
 - Types are generated to `app/generated/` using `@graphql-codegen`
+- Codegen uses `../cms/schema.graphql` directly — no need to have CMS running
 - Always run `npm run generate:types` after changing queries or the CMS schema
 - Use generated types for all GraphQL data in components and loaders
 
