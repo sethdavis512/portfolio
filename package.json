@@ -23,11 +23,8 @@
     },
     "homepage": "https://github.com/sethdavis512/portfolio#readme",
     "dependencies": {
-        "@hono/node-server": "^1.19.9",
         "@types/lodash": "^4.17.16",
         "concurrently": "^9.1.2",
-        "hono": "^4.12.1",
-        "hono-react-router-adapter": "^0.6.5",
         "lodash": "^4.17.21"
     },
     "devDependencies": {
