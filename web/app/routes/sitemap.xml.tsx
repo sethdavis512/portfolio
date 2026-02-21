@@ -1,7 +1,5 @@
 import type { Route } from './+types/sitemap.xml';
 import {
-    GetPromptsListDocument,
-    type GetPromptsListQuery,
     GetTilListDocument,
     type GetTilListQuery,
     GetWorkSlugsDocument,
@@ -17,8 +15,7 @@ interface SitemapRoute {
 
 export async function loader({ request }: Route.LoaderArgs) {
     // Fetch dynamic routes in parallel
-    const [promptsResult, worksResult, tilResult] = await Promise.all([
-        client.request<GetPromptsListQuery>(GetPromptsListDocument),
+    const [worksResult, tilResult] = await Promise.all([
         client.request<GetWorkSlugsQuery>(GetWorkSlugsDocument),
         client.request<GetTilListQuery>(GetTilListDocument)
     ]);
@@ -37,7 +34,6 @@ export async function loader({ request }: Route.LoaderArgs) {
         { url: '/services', changefreq: 'monthly', priority: 0.8 },
 
         // Utility pages
-        { url: '/prompts', changefreq: 'weekly', priority: 0.8 },
         { url: '/til', changefreq: 'weekly', priority: 0.8 },
         { url: '/setup', changefreq: 'yearly', priority: 0.5 },
         { url: '/thank-you', changefreq: 'yearly', priority: 0.3 }
@@ -53,14 +49,6 @@ export async function loader({ request }: Route.LoaderArgs) {
             };
         }) || [];
 
-    // Add dynamic prompt routes
-    const dynamicRoutes: SitemapRoute[] =
-        promptsResult.prompts?.map((prompt) => ({
-            url: `/prompts/${prompt.slug}`,
-            changefreq: 'monthly' as const,
-            priority: 0.7
-        })) || [];
-
     // Add dynamic TIL routes
     const tilRoutes: SitemapRoute[] =
         tilResult.posts?.map((post) => ({
@@ -70,12 +58,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         })) || [];
 
     // Combine all routes
-    const allRoutes = [
-        ...staticRoutes,
-        ...workRoutes,
-        ...dynamicRoutes,
-        ...tilRoutes
-    ];
+    const allRoutes = [...staticRoutes, ...workRoutes, ...tilRoutes];
 
     // Generate XML sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
