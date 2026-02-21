@@ -29,6 +29,7 @@ model Post {
   status    String    @default("DRAFT")
   title     String    @unique @default("")
   slug      String    @unique @default("")
+  type      String    @default("POST")
   content   Json      @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
   author    User?     @relation("Post_author", fields: [authorId], references: [id])
   authorId  String?   @map("author")

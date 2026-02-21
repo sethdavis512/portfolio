@@ -34,6 +34,11 @@ const pagesLinks = [
         to: '/truck',
         icon: LinkIcon,
         label: 'Truck'
+    },
+    {
+        to: '/til',
+        icon: LinkIcon,
+        label: 'TIL'
     }
 ];
 

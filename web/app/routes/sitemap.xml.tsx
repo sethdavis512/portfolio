@@ -2,6 +2,8 @@ import type { Route } from './+types/sitemap.xml';
 import {
     GetPromptsListDocument,
     type GetPromptsListQuery,
+    GetTilListDocument,
+    type GetTilListQuery,
     GetWorkSlugsDocument,
     type GetWorkSlugsQuery
 } from '~/generated/graphql';
@@ -15,9 +17,10 @@ interface SitemapRoute {
 
 export async function loader({ request }: Route.LoaderArgs) {
     // Fetch dynamic routes in parallel
-    const [promptsResult, worksResult] = await Promise.all([
+    const [promptsResult, worksResult, tilResult] = await Promise.all([
         client.request<GetPromptsListQuery>(GetPromptsListDocument),
-        client.request<GetWorkSlugsQuery>(GetWorkSlugsDocument)
+        client.request<GetWorkSlugsQuery>(GetWorkSlugsDocument),
+        client.request<GetTilListQuery>(GetTilListDocument)
     ]);
 
     // Define static routes
@@ -35,6 +38,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
         // Utility pages
         { url: '/prompts', changefreq: 'weekly', priority: 0.8 },
+        { url: '/til', changefreq: 'weekly', priority: 0.8 },
         { url: '/setup', changefreq: 'yearly', priority: 0.5 },
         { url: '/thank-you', changefreq: 'yearly', priority: 0.3 }
     ];
@@ -57,8 +61,21 @@ export async function loader({ request }: Route.LoaderArgs) {
             priority: 0.7
         })) || [];
 
+    // Add dynamic TIL routes
+    const tilRoutes: SitemapRoute[] =
+        tilResult.posts?.map((post) => ({
+            url: `/til/${post.slug}`,
+            changefreq: 'monthly' as const,
+            priority: 0.7
+        })) || [];
+
     // Combine all routes
-    const allRoutes = [...staticRoutes, ...workRoutes, ...dynamicRoutes];
+    const allRoutes = [
+        ...staticRoutes,
+        ...workRoutes,
+        ...dynamicRoutes,
+        ...tilRoutes
+    ];
 
     // Generate XML sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

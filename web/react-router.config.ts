@@ -11,6 +11,7 @@ export default {
             '/setup',
             '/truck',
             '/work',
+            '/til',
             '/sitemap.xml'
         ];
 
@@ -32,7 +33,19 @@ export default {
                 (w: { slug: string }) => `/work/${w.slug}`
             );
 
-            return [...staticPaths, ...workPaths];
+            const tilResponse = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    query: `query { posts(where: { status: { equals: "PUBLISHED" }, type: { equals: "TIL" } }) { slug } }`
+                })
+            });
+            const tilJson = await tilResponse.json();
+            const tilPaths = (tilJson.data?.posts || []).map(
+                (p: { slug: string }) => `/til/${p.slug}`
+            );
+
+            return [...staticPaths, ...workPaths, ...tilPaths];
         } catch {
             return staticPaths;
         }

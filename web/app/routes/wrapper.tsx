@@ -50,6 +50,12 @@ const NAV_ITEMS: NavItem[] = [
     // },
     {
         type: 'internal',
+        to: '/til',
+        label: 'TIL',
+        ariaLabel: 'Browse things I have learned'
+    },
+    {
+        type: 'internal',
         to: '/about',
         label: 'About',
         ariaLabel: 'Learn more about me'

@@ -5,6 +5,7 @@
 // If you want to learn more about how lists are configured, please read
 // - https://keystonejs.com/docs/config/lists
 
+import kebabCase from 'lodash/kebabCase';
 import { graphql, list } from '@keystone-6/core';
 import { allowAll } from '@keystone-6/core/access';
 import { Node as SlateNode } from 'slate';
@@ -83,6 +84,19 @@ export const lists = {
         //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
         access: allowAll,
 
+        ui: {
+            // this sets the default columns that are displayed in the list view
+            listView: {
+                initialColumns: [
+                    'title',
+                    'type',
+                    'status',
+                    'author',
+                    'createdAt'
+                ]
+            }
+        },
+
         // this is the fields for our Post list
         fields: {
             createdAt: timestamp({
@@ -125,9 +139,21 @@ export const lists = {
             }),
 
             slug: text({
-                validation: { isRequired: true },
                 isIndexed: 'unique',
-                isFilterable: true
+                isFilterable: true,
+                ui: {
+                    description: 'Auto-generated from title if left blank'
+                }
+            }),
+
+            type: select({
+                options: [
+                    { label: 'Blog Post', value: 'POST' },
+                    { label: 'TIL', value: 'TIL' }
+                ],
+                defaultValue: 'POST',
+                validation: { isRequired: true },
+                ui: { displayMode: 'segmented-control' }
             }),
 
             excerpt: virtual({
@@ -208,6 +234,23 @@ export const lists = {
                     inlineCreate: { fields: ['name'] }
                 }
             })
+        },
+
+        hooks: {
+            resolveInput: ({ operation, resolvedData }) => {
+                // Auto-generate slug from title on create if slug is not provided
+                if (
+                    operation === 'create' &&
+                    !resolvedData.slug &&
+                    resolvedData.title
+                ) {
+                    return {
+                        ...resolvedData,
+                        slug: kebabCase(resolvedData.title)
+                    };
+                }
+                return resolvedData;
+            }
         }
     }),
 

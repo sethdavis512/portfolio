@@ -1,0 +1,16 @@
+query GetTILList {
+    posts(
+        where: { status: { equals: "PUBLISHED" }, type: { equals: "TIL" } }
+        orderBy: [{ createdAt: desc }]
+    ) {
+        id
+        slug
+        title
+        excerpt
+        createdAt
+        tags {
+            id
+            name
+        }
+    }
+}

@@ -170,6 +170,7 @@ type Post {
   status: String
   title: String
   slug: String
+  type: String
   excerpt(length: Int! = 250): String
   content: Post_content_Document
   author: User
@@ -197,6 +198,7 @@ input PostWhereInput {
   status: StringFilter
   title: StringFilter
   slug: StringFilter
+  type: StringFilter
   author: UserWhereInput
   tags: TagManyRelationFilter
 }
@@ -214,6 +216,7 @@ input PostOrderByInput {
   status: OrderDirection
   title: OrderDirection
   slug: OrderDirection
+  type: OrderDirection
 }
 
 input PostUpdateInput {
@@ -222,6 +225,7 @@ input PostUpdateInput {
   status: String
   title: String
   slug: String
+  type: String
   content: JSON
   author: UserRelateToOneForUpdateInput
   tags: TagRelateToManyForUpdateInput
@@ -251,6 +255,7 @@ input PostCreateInput {
   status: String
   title: String
   slug: String
+  type: String
   content: JSON
   author: UserRelateToOneForCreateInput
   tags: TagRelateToManyForCreateInput
