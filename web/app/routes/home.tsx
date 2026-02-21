@@ -152,19 +152,32 @@ export default function Home() {
             <HomeSection>
                 <Heading>Socials</Heading>
                 <div className="flex gap-8">
-                    <Linky external to="https://github.com/sethdavis512">
+                    <Linky
+                        external
+                        to="https://github.com/sethdavis512"
+                        aria-label="GitHub"
+                    >
                         <GitHubLogo className={socialLogoClassNames} />
                     </Linky>
                     <Linky
                         external
                         to="https://www.linkedin.com/in/sethdavis512/"
+                        aria-label="LinkedIn"
                     >
                         <LinkedInLogo className={socialLogoClassNames} />
                     </Linky>
-                    <Linky external to="https://www.x.com/sethdavis512/">
+                    <Linky
+                        external
+                        to="https://www.x.com/sethdavis512/"
+                        aria-label="X (Twitter)"
+                    >
                         <XLogo className={socialLogoClassNames} />
                     </Linky>
-                    <Linky external to="https://www.codepen.io/sethdavis512/">
+                    <Linky
+                        external
+                        to="https://www.codepen.io/sethdavis512/"
+                        aria-label="CodePen"
+                    >
                         <CodepenLogo className={socialLogoClassNames} />
                     </Linky>
                 </div>
