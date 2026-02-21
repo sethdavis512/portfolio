@@ -52,7 +52,7 @@ const NAV_ITEMS: NavItem[] = [
         type: 'internal',
         to: '/til',
         label: 'TIL',
-        ariaLabel: 'Browse things I have learned'
+        ariaLabel: 'TIL – Browse things I have learned'
     },
     {
         type: 'internal',

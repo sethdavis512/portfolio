@@ -10,5 +10,8 @@ export default defineConfig({
         reactRouter(),
         serverAdapter({ entry: './server/index.ts' }),
         tsconfigPaths()
-    ]
+    ],
+    build: {
+        target: 'es2020'
+    }
 });
