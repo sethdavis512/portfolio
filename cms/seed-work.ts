@@ -96,7 +96,7 @@ const workItems = [
         learned: '',
         impact: '',
         techStack: ['polar'],
-        sidebarType: 'none',
+        sidebarType: 'purchase',
         features: [
             '33 prompt modes across 8 categories',
             'One-click copy or save to Markdown',
@@ -108,7 +108,8 @@ const workItems = [
         sourceUrl: '',
         demoUrl: '',
         demoUrlText: '',
-        purchaseUrl: '',
+        purchaseUrl:
+            'https://buy.polar.sh/polar_cl_G4Cbys5kCAFbkx09U8BZ7RX6RvCWoitX4BcYx0cehe5',
         purchaseButtonText: 'Get Prompt Suite'
     },
     {

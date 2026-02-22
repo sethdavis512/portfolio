@@ -40,8 +40,7 @@ export async function loader() {
 function PosthogInit() {
     useEffect(() => {
         posthog.init('phc_NIVP9tJ3sH5xgM3DFKV4ADJFOJb14DCG6KBMzGiHPeC', {
-            api_host: 'https://us.i.posthog.com',
-            disable_toolbar: true
+            api_host: 'https://us.i.posthog.com'
         });
     }, []);
 
