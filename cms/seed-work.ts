@@ -15,12 +15,12 @@ const workItems = [
         status: 'PUBLISHED',
         sortOrder: 1,
         description:
-            'Launch your SaaS in days, not months. Iridium provides a quality foundations—from authentication to subscriptions—so you focus on building what makes your product unique.',
+            'Ship AI-powered apps in days, not months. Iridium gives you authentication, a full AI chat system, and production-ready patterns so you can focus on what makes your product unique.',
         cta: 'See more',
-        about: "Iridium is a production-ready SaaS boilerplate that gets you from idea to launch faster. Built on modern React Router 7 with TypeScript, it includes authentication via BetterAuth, subscription billing through Polar.sh, and PostgreSQL. Prisma for your database, Vercel AI SDK for integration with OpenAI (or LLM of your choice), analytics with PostHog, and a beautiful DaisyUI component library mean you can focus on building your unique features instead of reinventing the wheel. Whether you're a solo founder or a development team, Iridium provides the solid foundation you need to ship faster.",
+        about: 'Iridium is a production-ready starter kit for building AI-powered applications. Built on React Router 7 with TypeScript, it ships with a complete AI chat system powered by the Vercel AI SDK and OpenAI, including threaded conversations, real-time streaming, message persistence, and auto-generated thread titles. Authentication is handled by Better Auth with role-based access control (User, Editor, Admin), secure HTTP-only sessions, and user banning. The stack includes PostgreSQL with Prisma, Tailwind CSS with DaisyUI, and Docker for deployment. Validated form patterns with React Hook Form and Zod, middleware-based route protection, and strong accessibility practices round out a foundation you can build on immediately.',
         learned:
-            'Gained deep expertise in integrating modern authentication systems, implementing subscription-based billing models, and structuring a production-grade SaaS application. Learned best practices for combining multiple third-party services into a cohesive stack, managing environment configurations securely, and creating reusable boilerplate architecture that accelerates future projects.',
-        impact: 'Enables developers to launch SaaS products weeks faster by eliminating the need to build and integrate foundational features from scratch. Reduces time-to-market significantly, allowing teams to focus on unique product features and business value rather than authentication flows, payment integration, and database setup. Provides a solid foundation that minimizes technical debt and security vulnerabilities.',
+            'Gained deep expertise in building real-time AI chat interfaces with streaming responses, message persistence, and conversation threading. Learned how to architect a clean data access layer with dedicated server-side models, implement middleware-based route protection patterns, and integrate Better Auth with role-based access control. Developed strong patterns for combining React Hook Form with Zod for end-to-end form validation. Built accessible, responsive layouts with proper ARIA attributes, focus management, and keyboard navigation.',
+        impact: 'Enables developers to launch AI-powered applications in days by providing a complete, working foundation out of the box. Instead of spending weeks wiring up authentication, database models, and AI integration, teams get a running app with threaded AI chat, secure auth, and production patterns from the first clone. The focused architecture minimizes technical debt while the clean separation of concerns makes it straightforward to extend with your own features.',
         techStack: [
             'typescript',
             'react',
@@ -29,12 +29,12 @@ const workItems = [
             'daisy',
             'postgres',
             'better-auth',
-            'polar',
             'prisma',
+            'openai',
             'railway'
         ],
         demoUrl: 'https://iridium.sethdavis.tech/',
-        demoUrlText: 'See the progress',
+        demoUrlText: 'Try the demo',
         sidebarType: 'interest-form',
         features: [],
         sourceUrl: '',

@@ -84,7 +84,7 @@ const experiences = [
         sortOrder: 4,
         bullets: [
             'Active contributor to Remix Austin Meetup, engaging in discussions on modern React architecture and routing patterns',
-            'Building Iridium: A full-stack starter template with batteries included (TypeScript, React Router 7, Prisma, Postgres, Railway, Polar.sh)',
+            'Building Iridium: An AI-powered app starter kit with batteries included (TypeScript, React Router 7, Prisma, Postgres, Better Auth, Vercel AI SDK)',
             'Follows industry podcasts (Syntax, VS Code Insiders) on modern frontend tooling and developer experience',
             'Exploring AI-assisted development and LLM code generation workflows'
         ]

@@ -187,9 +187,9 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                             architecture and routing patterns
                         </li>
                         <li>
-                            Building Iridium: A full-stack starter template with
-                            batteries included (TypeScript, React Router 7,
-                            Prisma, Postgres, Railway, Polar.sh)
+                            Building Iridium: An AI-powered app starter kit
+                            with batteries included (TypeScript, React Router 7,
+                            Prisma, Postgres, Better Auth, Vercel AI SDK)
                         </li>
                         <li>
                             Follows industry podcasts (Syntax, VS Code Insiders)

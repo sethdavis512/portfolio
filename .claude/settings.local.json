@@ -19,7 +19,12 @@
       "Bash(agent-browser set:*)",
       "Skill(deployment)",
       "Skill(deployment:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(curl -s 'http://localhost:3000/api/graphql' -H 'Content-Type: application/json' -d '{:*)",
+      "Bash(curl -s:*)",
+      "Bash(node -e \":*)",
+      "Bash(npx tsx sync-images-to-prod.ts)",
+      "Bash(railway up -d)"
     ],
     "deny": [],
     "ask": []

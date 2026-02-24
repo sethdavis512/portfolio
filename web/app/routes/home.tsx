@@ -14,7 +14,6 @@ import {
 } from '~/generated/graphql';
 import { cx } from 'cva.config';
 import { Card } from '~/components/Card';
-import { Link } from 'react-router';
 
 export function meta() {
     return generateRouteMeta({
@@ -134,9 +133,9 @@ export default function Home() {
                         <div className="col-start-1 row-start-1 p-8 text-white">
                             <Heading className="text-white">Iridium</Heading>
                             <p className="mb-8 text-zinc-100">
-                                Production-ready SaaS boilerplate with
-                                TypeScript, React Router, Prisma, and PostHog.
-                                Focus on building features, not infrastructure.
+                                Full-stack AI app starter kit with
+                                TypeScript, React Router, Better Auth, and
+                                OpenAI. Ship faster, not from scratch.
                             </p>
                             <ButtonLink
                                 color="primary"

@@ -1,14 +1,23 @@
 'use strict';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 
-const prisma = new PrismaClient();
+dotenv.config();
 
-const EMAIL = 'sethdavis512@gmail.com';
-const PASSWORD = 'dAwzow-zuqbip-mufgy9';
-const NAME = 'Seth Davis';
+const prisma = new PrismaClient({
+    datasourceUrl: process.env.DATABASE_URL_DEV || process.env.DATABASE_URL
+});
 
 async function main() {
+    const EMAIL = process.env.SEED_EMAIL;
+    const PASSWORD = process.env.SEED_PASSWORD;
+    const NAME = process.env.SEED_NAME;
+
+    if (!EMAIL || !PASSWORD || !NAME) {
+        throw new Error('Missing required env vars: SEED_EMAIL, SEED_PASSWORD, SEED_NAME');
+    }
+
     const hashedPassword = await bcrypt.hash(PASSWORD, 10);
 
     try {
