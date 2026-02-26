@@ -19,7 +19,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Welcome',
         descriptionContent:
-            'Seth Davis is a Design Engineer specializing in AI-assisted design tooling, design systems, and generative interfaces. Based in Austin, Texas.',
+            'Seth Davis is a Senior Frontend Developer specializing in AI-assisted design tooling, design systems, and generative interfaces. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
     });
 }

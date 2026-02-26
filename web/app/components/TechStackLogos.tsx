@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { cx } from 'cva.config';
 
 import { BetterAuthLogo } from './logos/BetterAuthLogo';
+import { BunLogo } from './logos/BunLogo';
 import { CSSLogo } from './logos/CSSLogo';
 import { DocusaurusLogo } from './logos/DocusaurusLogo';
 import { ElectronLogo } from './logos/ElectronLogo';
@@ -16,6 +17,7 @@ import { RailwayLogo } from './logos/RailwayLogo';
 import { ReactLogo } from './logos/ReactLogo';
 import { ReactRouterLogo } from './logos/ReactRouterLogo';
 import { RemotionLogo } from './logos/RemotionLogo';
+import { StripeLogo } from './logos/StripeLogo';
 import { TailwindLogo } from './logos/TailwindLogo';
 import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
@@ -30,6 +32,7 @@ import { WordPressLogo } from './logos/WordPressLogo';
 
 export type LogoName =
     | 'better-auth'
+    | 'bun'
     | 'cloudinary'
     | 'css'
     | 'daisy'
@@ -47,6 +50,7 @@ export type LogoName =
     | 'react'
     | 'react-router'
     | 'remotion'
+    | 'stripe'
     | 'tailwind'
     | 'trigger'
     | 'turborepo'
@@ -73,6 +77,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <BetterAuthLogo {...logoProps} {...props} />,
             title: 'Better Auth',
             url: 'https://betterauth.dev/'
+        },
+        bun: {
+            component: (props) => <BunLogo {...logoProps} {...props} />,
+            title: 'Bun',
+            url: 'https://bun.sh/'
         },
         cloudinary: {
             component: (props) => <CloudinaryLogo {...logoProps} {...props} />,
@@ -158,6 +167,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <RemotionLogo {...logoProps} {...props} />,
             title: 'Remotion',
             url: 'https://www.remotion.dev/'
+        },
+        stripe: {
+            component: (props) => <StripeLogo {...logoProps} {...props} />,
+            title: 'Stripe',
+            url: 'https://stripe.com/'
         },
         tailwind: {
             component: (props) => <TailwindLogo {...logoProps} {...props} />,

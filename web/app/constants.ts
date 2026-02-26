@@ -15,14 +15,14 @@ export enum BorderStyles {
 
 export enum ContentStyles {
     FRONTEND = `Design`,
-    CURRENT_JOB_TITLE = `Design Engineer`
+    CURRENT_JOB_TITLE = `Senior Frontend Developer`
 }
 
 // SEO and metadata constants
 export const SITE_META = {
     DEFAULT_KEYWORDS: [
         'Seth Davis',
-        'Design Engineer',
+        'Senior Frontend Developer',
         'Design Systems',
         'AI Tooling',
         'Creative Technology',
@@ -33,7 +33,7 @@ export const SITE_META = {
         'Web developer portfolio'
     ],
     LOCATION: 'Austin, Texas',
-    PROFESSION: `Design Engineer`,
+    PROFESSION: `Senior Frontend Developer`,
     COMPANY: 'Tech with Seth'
 } as const;
 
@@ -44,16 +44,16 @@ export const SEO_CONSTANTS = {
         NAME: 'Seth Davis',
         EMAIL: 'sethdavis512@gmail.com',
         LOCATION: 'Austin, Texas',
-        JOB_TITLE: `Design Engineer`,
+        JOB_TITLE: `Senior Frontend Developer`,
         COMPANY: 'Tech with Seth',
         LINKEDIN: 'https://www.linkedin.com/in/sethdavis512/',
         GITHUB: 'https://github.com/sethdavis512',
         TWITTER: 'https://x.com/sethdavis512'
     },
-    DEFAULT_DESCRIPTION: `Seth Davis is a Design Engineer in Austin, Texas, specializing in design systems, AI-assisted tooling, and generative interfaces. Explore his portfolio showcasing creative technology and modern React development.`,
+    DEFAULT_DESCRIPTION: `Seth Davis is a Senior Frontend Developer in Austin, Texas, specializing in design systems, AI-assisted tooling, and generative interfaces. Explore his portfolio showcasing creative technology and modern React development.`,
     KEYWORDS: [
         'Seth Davis',
-        'Design Engineer',
+        'Senior Frontend Developer',
         'Design Systems',
         'AI Tooling',
         'Creative Technology',

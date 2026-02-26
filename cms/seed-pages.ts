@@ -35,7 +35,7 @@ const skills = [
 
 const experiences = [
     {
-        title: 'Senior Design Engineer',
+        title: 'Senior Frontend Developer',
         company: 'Gartner',
         location: 'Austin, TX',
         dates: 'Aug 2024\u2013Oct 2025 (1 yr 2 mos)',
@@ -48,7 +48,7 @@ const experiences = [
         ]
     },
     {
-        title: 'Senior Design Engineer',
+        title: 'Senior Frontend Developer',
         company: 'Indeed, Inc',
         location: 'Austin, TX',
         dates: 'Jan 2023\u2013May 2024 (1 yr 5 mos)',
@@ -62,7 +62,7 @@ const experiences = [
         ]
     },
     {
-        title: 'Design Engineer',
+        title: 'Senior Frontend Developer',
         company: 'Indeed, Inc',
         location: 'Austin, TX',
         dates: 'Jan 2020\u2013Jan 2023 (3 yrs)',

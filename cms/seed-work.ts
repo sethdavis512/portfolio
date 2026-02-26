@@ -15,12 +15,12 @@ const workItems = [
         status: 'PUBLISHED',
         sortOrder: 1,
         description:
-            'Ship AI-powered apps in days, not months. Iridium gives you authentication, a full AI chat system, and production-ready patterns so you can focus on what makes your product unique.',
+            'Ship AI-powered apps in days, not months. Iridium gives you authentication, an agentic AI chat system with tool calling, Stripe payments, and production-ready patterns so you can focus on what makes your product unique.',
         cta: 'See more',
-        about: 'Iridium is a production-ready starter kit for building AI-powered applications. Built on React Router 7 with TypeScript, it ships with a complete AI chat system powered by the Vercel AI SDK and OpenAI, including threaded conversations, real-time streaming, message persistence, and auto-generated thread titles. Authentication is handled by Better Auth with role-based access control (User, Editor, Admin), secure HTTP-only sessions, and user banning. The stack includes PostgreSQL with Prisma, Tailwind CSS with DaisyUI, and Docker for deployment. Validated form patterns with React Hook Form and Zod, middleware-based route protection, and strong accessibility practices round out a foundation you can build on immediately.',
+        about: 'Iridium is a production-ready starter kit for building AI-powered applications. Built on React Router 7 with TypeScript and Bun, it ships with a complete agentic AI chat system powered by VoltAgent, the Vercel AI SDK, and OpenAI — including threaded conversations, real-time streaming, message persistence, and agent tools like note-taking and Stripe payment link creation. Authentication is handled by Better Auth with role-based access control (User, Editor, Admin), secure HTTP-only sessions, and user banning. The stack includes PostgreSQL with Prisma, Tailwind CSS with DaisyUI, and Docker for deployment. Stripe integration enables the AI agent to create payment links on demand with full metadata tracking. Validated form patterns with React Hook Form and Zod, middleware-based route protection, and strong accessibility practices round out a foundation you can build on immediately.',
         learned:
-            'Gained deep expertise in building real-time AI chat interfaces with streaming responses, message persistence, and conversation threading. Learned how to architect a clean data access layer with dedicated server-side models, implement middleware-based route protection patterns, and integrate Better Auth with role-based access control. Developed strong patterns for combining React Hook Form with Zod for end-to-end form validation. Built accessible, responsive layouts with proper ARIA attributes, focus management, and keyboard navigation.',
-        impact: 'Enables developers to launch AI-powered applications in days by providing a complete, working foundation out of the box. Instead of spending weeks wiring up authentication, database models, and AI integration, teams get a running app with threaded AI chat, secure auth, and production patterns from the first clone. The focused architecture minimizes technical debt while the clean separation of concerns makes it straightforward to extend with your own features.',
+            'Gained deep expertise in building agentic AI chat interfaces with VoltAgent, including tool calling, PostgreSQL-backed agent memory, and working memory with Zod-validated schemas. Learned how to integrate Stripe payment link creation as an agent tool with proper error normalization and security patterns. Adopted Bun as the development runtime for faster installs and script execution while maintaining Node compatibility in production Docker builds. Developed strong patterns for combining React Hook Form with Zod for end-to-end form validation. Built accessible, responsive layouts with proper ARIA attributes, focus management, and keyboard navigation.',
+        impact: 'Enables developers to launch AI-powered applications in days by providing a complete, working foundation out of the box. Instead of spending weeks wiring up authentication, database models, AI integration, and payment processing, teams get a running app with agentic AI chat, Stripe payments, secure auth, and production patterns from the first clone. The VoltAgent-powered agent system demonstrates real-world tool calling with note creation, search, and payment link generation. The focused architecture minimizes technical debt while the clean separation of concerns makes it straightforward to extend with your own agent tools and features.',
         techStack: [
             'typescript',
             'react',
@@ -30,7 +30,8 @@ const workItems = [
             'postgres',
             'better-auth',
             'prisma',
-            'openai',
+            'bun',
+            'stripe',
             'railway'
         ],
         demoUrl: 'https://iridium.sethdavis.tech/',
