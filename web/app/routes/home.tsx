@@ -89,28 +89,47 @@ export default function Home() {
             <HomeSection>
                 <Heading>Featured projects</Heading>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-red-800 via-zinc-600 to-zinc-700 dark:from-red-950 dark:via-zinc-800 dark:to-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 text-white">
-                            <Heading className="text-white">
-                                Video Machine
-                            </Heading>
+                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-purple-800 via-zinc-600 to-zinc-700 dark:from-purple-950 dark:via-zinc-800 dark:to-zinc-900">
+                        <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
+                            <Heading className="text-white">Iridium</Heading>
                             <p className="mb-8 text-zinc-100">
-                                A video rendering platform that creates
-                                TikTok-style slide presentations using Remotion.
-                                Features credit-based payments and background
-                                processing for seamless video creation.
+                                Full-stack AI app starter kit with TypeScript,
+                                React Router, Better Auth, and OpenAI. Ship
+                                faster, not from scratch.
                             </p>
                             <ButtonLink
+                                className="mt-auto self-start"
                                 color="primary"
                                 size="lg"
-                                to="/work/video-machine"
+                                to="/work/iridium"
+                            >
+                                Learn more
+                            </ButtonLink>
+                        </div>
+                    </Card>
+                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-red-800 via-zinc-600 to-zinc-700 dark:from-red-950 dark:via-zinc-800 dark:to-zinc-900">
+                        <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
+                            <Heading className="text-white">
+                                Lone Star UI
+                            </Heading>
+                            <p className="mb-8 text-zinc-100">
+                                A React 19 component library built with
+                                TypeScript, Tailwind CSS 4, and CVA (Class
+                                Variance Authority). Publishes ESM-only to npm
+                                with full type declarations.
+                            </p>
+                            <ButtonLink
+                                className="mt-auto self-start"
+                                color="primary"
+                                size="lg"
+                                to="/work/lone-star-ui"
                             >
                                 Learn more
                             </ButtonLink>
                         </div>
                     </Card>
                     <Card className="p-0 grid overflow-hidden bg-linear-to-br from-blue-800 via-zinc-600 to-zinc-700 dark:from-blue-950 dark:via-zinc-800 dark:to-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 text-white">
+                        <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
                             <Heading className="text-white">
                                 Prompt Suite
                             </Heading>
@@ -121,26 +140,10 @@ export default function Home() {
                                 professionals.
                             </p>
                             <ButtonLink
+                                className="mt-auto self-start"
                                 color="primary"
                                 size="lg"
                                 to="/work/prompt-suite"
-                            >
-                                Learn more
-                            </ButtonLink>
-                        </div>
-                    </Card>
-                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-purple-800 via-zinc-600 to-zinc-700 dark:from-purple-950 dark:via-zinc-800 dark:to-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 text-white">
-                            <Heading className="text-white">Iridium</Heading>
-                            <p className="mb-8 text-zinc-100">
-                                Full-stack AI app starter kit with
-                                TypeScript, React Router, Better Auth, and
-                                OpenAI. Ship faster, not from scratch.
-                            </p>
-                            <ButtonLink
-                                color="primary"
-                                size="lg"
-                                to="/work/iridium"
                             >
                                 Learn more
                             </ButtonLink>

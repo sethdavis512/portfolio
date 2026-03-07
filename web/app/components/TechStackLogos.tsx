@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { cx } from 'cva.config';
 
+import { BaseUILogo } from './logos/BaseUILogo';
 import { BetterAuthLogo } from './logos/BetterAuthLogo';
 import { BunLogo } from './logos/BunLogo';
 import { CSSLogo } from './logos/CSSLogo';
@@ -17,6 +18,7 @@ import { RailwayLogo } from './logos/RailwayLogo';
 import { ReactLogo } from './logos/ReactLogo';
 import { ReactRouterLogo } from './logos/ReactRouterLogo';
 import { RemotionLogo } from './logos/RemotionLogo';
+import { StorybookLogo } from './logos/StorybookLogo';
 import { StripeLogo } from './logos/StripeLogo';
 import { TailwindLogo } from './logos/TailwindLogo';
 import { Tooltip } from './Tooltip';
@@ -31,6 +33,7 @@ import { DaisyUILogo } from './logos/DaisyUILogo';
 import { WordPressLogo } from './logos/WordPressLogo';
 
 export type LogoName =
+    | 'baseui'
     | 'better-auth'
     | 'bun'
     | 'cloudinary'
@@ -50,6 +53,7 @@ export type LogoName =
     | 'react'
     | 'react-router'
     | 'remotion'
+    | 'storybook'
     | 'stripe'
     | 'tailwind'
     | 'trigger'
@@ -73,6 +77,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             url: string;
         }
     > = {
+        baseui: {
+            component: (props) => <BaseUILogo {...logoProps} {...props} />,
+            title: 'Base UI',
+            url: 'https://base-ui.com/'
+        },
         'better-auth': {
             component: (props) => <BetterAuthLogo {...logoProps} {...props} />,
             title: 'Better Auth',
@@ -167,6 +176,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <RemotionLogo {...logoProps} {...props} />,
             title: 'Remotion',
             url: 'https://www.remotion.dev/'
+        },
+        storybook: {
+            component: (props) => <StorybookLogo {...logoProps} {...props} />,
+            title: 'Storybook',
+            url: 'https://storybook.js.org/'
         },
         stripe: {
             component: (props) => <StripeLogo {...logoProps} {...props} />,
