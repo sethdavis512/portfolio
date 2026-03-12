@@ -39,8 +39,13 @@ export async function loader() {
 
 function PosthogInit() {
     useEffect(() => {
+        if (window.location.hostname === 'localhost') return;
+
         posthog.init('phc_NIVP9tJ3sH5xgM3DFKV4ADJFOJb14DCG6KBMzGiHPeC', {
-            api_host: 'https://us.i.posthog.com'
+            api_host: 'https://us.i.posthog.com',
+            loaded: () => {
+                window.posthog = posthog;
+            }
         });
     }, []);
 
