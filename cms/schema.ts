@@ -7,7 +7,26 @@
 
 import kebabCase from 'lodash/kebabCase';
 import { graphql, list } from '@keystone-6/core';
-import { allowAll } from '@keystone-6/core/access';
+// Access control: public read, authenticated write
+const isSignedIn = ({ session }: { session?: any }) => !!session;
+
+const publicRead = {
+    operation: {
+        query: () => true,
+        create: isSignedIn,
+        update: isSignedIn,
+        delete: isSignedIn,
+    }
+};
+
+const adminOnly = {
+    operation: {
+        query: isSignedIn,
+        create: isSignedIn,
+        update: isSignedIn,
+        delete: isSignedIn,
+    }
+};
 import { Node as SlateNode } from 'slate';
 
 // see https://keystonejs.com/docs/fields/overview for the full list of fields
@@ -43,11 +62,7 @@ const cloudinaryConfig = {
 
 export const lists = {
     User: list({
-        // WARNING
-        //   for this starter project, anyone can create, query, update and delete anything
-        //   if you want to prevent random people on the internet from accessing your data,
-        //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
-        access: allowAll,
+        access: adminOnly,
 
         // this is the fields for our User list
         fields: {
@@ -78,11 +93,7 @@ export const lists = {
     }),
 
     Post: list({
-        // WARNING
-        //   for this starter project, anyone can create, query, update and delete anything
-        //   if you want to prevent random people on the internet from accessing your data,
-        //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
-        access: allowAll,
+        access: publicRead,
 
         ui: {
             // this sets the default columns that are displayed in the list view
@@ -256,11 +267,7 @@ export const lists = {
 
     // this last list is our Tag list, it only has a name field for now
     Tag: list({
-        // WARNING
-        //   for this starter project, anyone can create, query, update and delete anything
-        //   if you want to prevent random people on the internet from accessing your data,
-        //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
-        access: allowAll,
+        access: publicRead,
 
         // setting this to isHidden for the user interface prevents this list being visible in the Admin UI
         ui: {
@@ -278,7 +285,7 @@ export const lists = {
     }),
 
     Prompt: list({
-        access: allowAll,
+        access: adminOnly,
         fields: {
             createdAt: timestamp({
                 defaultValue: { kind: 'now' },
@@ -366,7 +373,7 @@ export const lists = {
     }),
 
     Work: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: [
@@ -532,7 +539,7 @@ export const lists = {
     }),
 
     Skill: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: ['name', 'sortOrder', 'status']
@@ -557,7 +564,7 @@ export const lists = {
     }),
 
     Experience: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: [
@@ -602,7 +609,7 @@ export const lists = {
     }),
 
     Quote: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: ['author', 'sortOrder', 'status']
@@ -630,7 +637,7 @@ export const lists = {
     }),
 
     AboutFact: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: ['title', 'emoji', 'sortOrder', 'status']
@@ -665,7 +672,7 @@ export const lists = {
     }),
 
     WorkImage: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: ['work', 'alt', 'sortOrder']
@@ -695,7 +702,7 @@ export const lists = {
     }),
 
     Value: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: ['title', 'sortOrder', 'status']
@@ -724,7 +731,7 @@ export const lists = {
     }),
 
     Offering: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: ['name', 'description']
@@ -741,7 +748,7 @@ export const lists = {
     }),
 
     Package: list({
-        access: allowAll,
+        access: publicRead,
         ui: {
             listView: {
                 initialColumns: ['name', 'status', 'description', 'order']

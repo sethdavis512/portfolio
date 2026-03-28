@@ -26,20 +26,8 @@ cd web && npm run build
 # Database migrations (cms/)
 cd cms && npx prisma migrate deploy
 
-# Seed database (cms/)
-cd cms && npm run seed
-
-# Sync from production to local (pull latest data)
-cd cms && npx tsx sync-from-prod.ts [--tables=work,post,...] [--clean] [--dry-run]
-
-# Sync from local to production (push new/updated data)
-cd cms && npx tsx sync-to-prod.ts [--tables=work,post,...] [--new-only] [--dry-run] [--force]
-
-# Sync images from local to production (Cloudinary JSON data)
-cd cms && npx tsx sync-images-to-prod.ts
-
-# Rebuild web after data sync (required for pre-rendered pages)
-cd web && railway up -d
+# Rebuild web after data changes (required for pre-rendered pages)
+cd web && echo "// build trigger: $(date -u +%Y%m%d%H%M%S)" >> .build-trigger && railway up -d
 ```
 
 ## Architecture
@@ -99,47 +87,42 @@ export const componentVariants = cva({
 });
 ```
 
-## Database Sync Workflow
+## Triggering a Web Rebuild After Data Changes
 
-**Production is the source of truth.** Use these scripts to sync data between environments:
+Pre-rendered pages (`/work/*`, `/til/*`, etc.) fetch GraphQL data at **build time** (see `web/react-router.config.ts`). After CMS data changes, you must trigger a fresh build.
 
-| Direction | Script | Typical Use |
-|-----------|--------|-------------|
-| Prod → Local | `sync-from-prod.ts` | Pull latest content before editing |
-| Local → Prod | `sync-to-prod.ts` | Push new content you created locally |
+**`railway up -d` will be SKIPPED if no files in `web/` changed.** To force a rebuild:
 
-**Conflict Detection**: When pushing to prod, records with a newer `updatedAt` in production are skipped (conflict). Use `--force` to override.
+```bash
+cd web && echo "// build trigger: $(date -u +%Y%m%d%H%M%S)" >> .build-trigger && railway up -d
+```
 
-**Recommended workflow**:
-
-1. Pull latest: `npx tsx sync-from-prod.ts --clean`
-2. Create/edit content locally
-3. Preview changes: `npx tsx sync-to-prod.ts --dry-run`
-4. Push new content: `npx tsx sync-to-prod.ts --new-only`
-5. Sync images: `npx tsx sync-images-to-prod.ts`
-6. **Rebuild web** (required for pre-rendered pages): `cd web && railway up -d`
-
-**Critical**: `railway redeploy` only restarts the container — it does NOT rebuild. Pre-rendered pages fetch GraphQL data at build time, so you must use `railway up` to trigger a fresh build after syncing data.
+- `railway redeploy` only restarts the container -- it does NOT rebuild pre-rendered pages.
+- Always use `railway up` to trigger a fresh build after data changes.
 
 ## Important Notes
 
 - Use `~/` prefix for absolute imports in web app
-- CMS uses `DATABASE_URL_DEV` in development, `DATABASE_URL` in production
+- CMS always uses `DATABASE_URL` (production database)
+- GraphQL API requires authentication for mutations (public reads are open)
 - Pre-rendered routes defined in `web/react-router.config.ts`
 - Avoid `useEffect` in React Router 7 routes - prefer loaders/actions
 - Use classic `function` syntax over arrow functions
 
-## Adding New Work Items
+## Adding or Updating Work Items
 
 Work items are managed in the **CMS** (KeystoneJS), not in code. No manual file edits needed.
 
-1. **Add in CMS admin**: `localhost:3000/admin` (local) or `admin.sethdavis.tech/admin` (production)
-2. **Create Work entry** with title, slug, description, content fields, and images
-3. **Set status to PUBLISHED** when ready
-4. **Sync to production**: `cd cms && npx tsx sync-to-prod.ts --new-only`
-5. **Sync images**: `cd cms && npx tsx sync-images-to-prod.ts`
-6. **Rebuild web**: `cd web && railway up -d`
+Claude can create/update work items via authenticated GraphQL mutations against `https://admin.sethdavis.tech/api/graphql`. Credentials are read from `cms/.env` (`SEED_EMAIL`, `SEED_PASSWORD`). See `.claude/skills/portfolio-work-creator/` for the full workflow and mutation templates.
 
-CommandPalette, sitemap, and routing are all CMS-driven - no manual updates required.
+### Adding or updating an item
 
-⚠️ **Use `railway up`, not `railway redeploy`** - redeploy only restarts, doesn't rebuild pre-rendered pages.
+1. **Authenticate** via `authenticateUserWithPassword` mutation to get a session cookie
+2. **Create/update** via GraphQL mutation with the session cookie
+3. **Upload images** in the CMS admin UI at `admin.sethdavis.tech/admin`
+4. **Rebuild web**: `cd web && echo "// build trigger: $(date -u +%Y%m%d%H%M%S)" >> .build-trigger && railway up -d`
+
+CommandPalette, sitemap, and routing are all CMS-driven — no manual updates required.
+
+⚠️ **Use `railway up`, not `railway redeploy`** — redeploy only restarts, doesn't rebuild pre-rendered pages.
+⚠️ **`railway up` skips if no web/ files changed** — touch a file first (see "Triggering a Web Rebuild" above).

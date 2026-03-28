@@ -1,3 +1,6 @@
+// Baseline snapshot of work items for initial database seeding.
+// For adding/updating work items, use the CMS admin UI or GraphQL API
+// at localhost:3000/api/graphql (see .claude/skills/portfolio-work-creator/).
 'use strict';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
@@ -91,20 +94,23 @@ const workItems = [
         status: 'PUBLISHED',
         sortOrder: 4,
         description:
-            'Native desktop tray app for instant AI prompt access without disrupting your workflow.',
+            'A focused Electron tray app for shipping high-quality AI outputs fast. 11 tools. 52 modes. One tray icon.',
         cta: 'Learn more',
-        about: 'Generate polished prompts, PRDs, emails, and marketing copy from your system tray. Pick a category, choose a mode, type your context, and hit generate. Done.',
-        learned: '',
-        impact: '',
-        techStack: ['polar'],
+        about: 'Generate polished prompts, PRDs, proposals, reports, emails, and marketing copy from your system tray. Pick a tool, choose a mode, type your context, and hit generate. Powered by Anthropic Claude.',
+        learned:
+            'Building a tray-first Electron app taught me a lot about platform-specific behavior — from macOS dock hiding to Linux tray icon fallbacks. I learned how to integrate Polar for license key validation and meter-based credit billing. Keeping the entire renderer in a single HTML file with Vue 3 via CDN turned out to be a surprisingly effective architecture for a focused desktop tool.',
+        impact:
+            'Prompt Suite removes the friction between needing a well-crafted prompt and getting one. Instead of opening a browser, navigating to a chat UI, and crafting a system prompt from scratch, users click a tray icon and generate production-ready output in seconds. The credit-based model means you only pay for what you use, and credits never expire.',
+        techStack: ['electron', 'vue', 'tailwindcss', 'hono', 'bun', 'anthropic', 'polar'],
         sidebarType: 'purchase',
         features: [
-            '33 prompt modes across 8 categories',
+            '52 prompt modes across 11 tools',
             'One-click copy or save to Markdown',
             '6 color themes (3 light, 3 dark)',
             'Prompt history with restore',
-            'Mac only',
-            'Credits never expire'
+            'Mac, Windows, and Linux',
+            'Credits never expire',
+            'Powered by Anthropic Claude'
         ],
         sourceUrl: '',
         demoUrl: '',
@@ -307,6 +313,26 @@ const workItems = [
         sourceUrl: '',
         demoUrl: '',
         demoUrlText: ''
+    },
+    {
+        title: 'Composed Form',
+        slug: 'composed-form',
+        status: 'PUBLISHED',
+        sortOrder: 13,
+        description:
+            'A React library for building composable, multi-step forms with progressive validation. Built on react-hook-form and Zod.',
+        cta: 'View project',
+        about: 'Composed Form is a React library for building composable, multi-step wizard forms with progressive validation. It wraps react-hook-form and Zod so each step only validates its own fields before advancing, while the full form schema is enforced on final submission. Steps are declared as React components with an enabled prop for conditional visibility, and hidden steps stay mounted to preserve field state. The library ships with hooks for step navigation and progress tracking, a field registry that automatically maps inputs to their parent step, and a nested partial utility for extracting step-specific data from the full form object. It exports ESM and CommonJS builds with full TypeScript declarations.',
+        learned: 'Building this library taught me how to layer progressive validation on top of react-hook-form without forking its internals. I used a field registry pattern where each Step maintains a Set of its registered field names, enabling partial schema validation at navigation boundaries while deferring full validation to submission. Managing step state through refs with a force-update pattern avoided stale closures without excessive re-renders. I also learned how to keep hidden steps mounted with aria-hidden so react-hook-form never loses field state during navigation, and how to build a nested partial extraction utility that reconstructs dot-path keys into proper nested objects for the onSubmitStep callback.',
+        impact: 'Multi-step forms are one of the most common complex UI patterns, and most teams either build them from scratch or fight their form library to support step-by-step validation. Composed Form solves this with a small, composable API that works with the react-hook-form ecosystem instead of replacing it. The declarative Step components, conditional step support, and progressive validation pattern make it straightforward to build registration wizards, checkout flows, or onboarding sequences with full type safety and no boilerplate.',
+        techStack: ['typescript', 'react', 'bun'],
+        sourceUrl: 'https://github.com/sethdavis512/composed-form',
+        demoUrl: 'https://sethdavis512.github.io/composed-form/',
+        demoUrlText: 'View examples',
+        sidebarType: 'none',
+        features: [],
+        purchaseUrl: '',
+        purchaseButtonText: 'Purchase'
     }
 ];
 
