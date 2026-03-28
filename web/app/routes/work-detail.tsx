@@ -2,13 +2,14 @@ import {
     DocumentRenderer,
     type DocumentRendererProps
 } from '@keystone-6/document-renderer';
-import { Images, LoaderIcon, ShoppingCart, TriangleAlert } from 'lucide-react';
+import { LoaderIcon, ShoppingCart } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { data, useFetcher } from 'react-router';
 import { getPortfolioBase } from '~/airtable';
-import { Banner } from '~/components/Banner';
 import { renderers } from '~/components/BlogArticle';
 import { Button } from '~/components/Button';
+import { FormAlert } from '~/components/FormAlert';
+import { FormField } from '~/components/FormField';
 import { Card } from '~/components/Card';
 import { FreelanceCallToAction } from '~/components/FreelanceCallToAction';
 import { Heading } from '~/components/Heading';
@@ -22,12 +23,13 @@ import {
     type GetWorkDetailQuery
 } from '~/generated/graphql';
 import { useImageGallery } from '~/hooks/useImageGallery';
+import { validateContactForm } from '~/schemas/contact';
 import { client } from '~/utils/graphql.server';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/work-detail';
 
-export function meta({ data }: Route.MetaArgs) {
-    const work = data?.work;
+export function meta({ loaderData }: Route.MetaArgs) {
+    const work = loaderData?.work;
     return generateRouteMeta({
         pageTitle: work?.title || 'Work Not Found',
         descriptionContent: work?.description || 'Project by Seth Davis.',
@@ -50,19 +52,20 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export async function action({ request, params }: Route.ActionArgs) {
     const formData = await request.formData();
-    const firstName = String(formData.get('firstName'));
-    const lastName = String(formData.get('lastName'));
-    const email = String(formData.get('email'));
-    const note = String(formData.get('note'));
+    const validation = validateContactForm(formData);
+
+    if (!validation.success) {
+        return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
+    }
 
     try {
         const response = await getPortfolioBase()('Iridium Interest').create([
             {
                 fields: {
-                    'First name': firstName,
-                    'Last name': lastName,
-                    Email: email,
-                    Note: note
+                    'First name': validation.data.firstName,
+                    'Last name': validation.data.lastName,
+                    Email: validation.data.email,
+                    Note: validation.data.note || ''
                 }
             }
         ]);
@@ -148,76 +151,46 @@ function InterestFormSidebar() {
             </Heading>
             <fetcher.Form method="POST" className="space-y-4" ref={formRef}>
                 {fetcher.data?.success ? (
-                    <Banner>Request sent successfully!</Banner>
+                    <FormAlert variant="success">
+                        Request sent successfully!
+                    </FormAlert>
                 ) : fetcher.data?.error ? (
-                    <div className="bg-amber-500 p-4 rounded">
-                        <div className="mb-2">
-                            <TriangleAlert />
-                        </div>
-                        <p>
-                            There was an error sending your request.
-                            <br />
-                            Please try again later.
-                        </p>
-                    </div>
+                    <FormAlert variant="error">
+                        There was an error sending your request.
+                        <br />
+                        Please try again later.
+                    </FormAlert>
                 ) : null}
-                <div>
-                    <label
-                        htmlFor="firstName"
-                        className="block mb-2 font-medium"
-                    >
-                        First name
-                    </label>
-                    <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        required
-                        className="p-2 border border-zinc-500 rounded w-full"
-                        placeholder="Your first name"
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor="lastName"
-                        className="block mb-2 font-medium"
-                    >
-                        Last name
-                    </label>
-                    <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        required
-                        className="p-2 border border-zinc-500 rounded w-full"
-                        placeholder="Your last name"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email" className="block mb-2 font-medium">
-                        Email Address
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        className="p-2 border border-zinc-500 rounded w-full"
-                        placeholder="you@example.com"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="note" className="block mb-2 font-medium">
-                        Note
-                    </label>
-                    <textarea
-                        id="note"
-                        name="note"
-                        rows={4}
-                        className="p-2 border border-zinc-500 rounded w-full"
-                        placeholder="Tell me a bit about your project..."
-                    ></textarea>
-                </div>
+                <FormField
+                    label="First name"
+                    name="firstName"
+                    required
+                    placeholder="Your first name"
+                    error={fetcher.data?.fieldErrors?.firstName}
+                />
+                <FormField
+                    label="Last name"
+                    name="lastName"
+                    required
+                    placeholder="Your last name"
+                    error={fetcher.data?.fieldErrors?.lastName}
+                />
+                <FormField
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    error={fetcher.data?.fieldErrors?.email}
+                />
+                <FormField
+                    label="Note"
+                    name="note"
+                    as="textarea"
+                    rows={4}
+                    placeholder="Tell me a bit about your project..."
+                    error={fetcher.data?.fieldErrors?.note}
+                />
                 <Button
                     type="submit"
                     iconBefore={

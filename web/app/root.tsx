@@ -52,7 +52,7 @@ function PosthogInit() {
     return null;
 }
 
-function useCommandPallette(): [boolean, (open: boolean) => void] {
+function useCommandPalette(): [boolean, (open: boolean) => void] {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
@@ -97,7 +97,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App({ loaderData }: Route.ComponentProps) {
-    const [open, setOpen] = useCommandPallette();
+    const [open, setOpen] = useCommandPalette();
 
     return (
         <>

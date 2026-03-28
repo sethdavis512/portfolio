@@ -10,13 +10,13 @@ import { Tag } from '~/components/Tag';
 import { renderers } from '~/components/BlogArticle';
 import { generateRouteMeta } from '~/utils/seo';
 
-export function meta({ data }: Route.MetaArgs) {
+export function meta({ loaderData }: Route.MetaArgs) {
     return generateRouteMeta({
-        pageTitle: data?.post?.title || 'TIL',
-        descriptionContent: data?.post?.title
-            ? `TIL: "${data.post.title}" — a short discovery by Seth Davis.`
+        pageTitle: loaderData?.post?.title || 'TIL',
+        descriptionContent: loaderData?.post?.title
+            ? `TIL: "${loaderData.post.title}" — a short discovery by Seth Davis.`
             : 'TIL entry not found.',
-        ogUrl: `https://sethdavis.tech/til/${data?.post?.slug || ''}`
+        ogUrl: `https://sethdavis.tech/til/${loaderData?.post?.slug || ''}`
     });
 }
 
