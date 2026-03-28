@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient({ datasourceUrl: process.env.DATABASE_URL });
 
-const VALID_FIELDS = ['heroImage', 'thumbnailImage'] as const;
+const VALID_FIELDS = ['heroImage', 'thumbnailImage', 'gallery'] as const;
 type ImageField = (typeof VALID_FIELDS)[number];
 
 async function uploadToCloudinary(filePathOrUrl: string) {
@@ -57,9 +57,9 @@ async function main() {
 
     if (!slug || !field || !filePath) {
         console.error(
-            'Usage: bun run upload-image.ts <slug> <field> <file-or-url>'
+            'Usage: bun run upload-image.ts <slug> <field> <file-or-url> [alt-text]'
         );
-        console.error('Fields: heroImage, thumbnailImage');
+        console.error('Fields: heroImage, thumbnailImage, gallery');
         process.exit(1);
     }
 
@@ -80,12 +80,28 @@ async function main() {
     const meta = await uploadToCloudinary(filePath);
     const imageJson = toKeystoneJson(meta, filename);
 
-    await prisma.work.update({
-        where: { slug },
-        data: { [field]: imageJson }
-    });
+    if (field === 'gallery') {
+        const altText = process.argv[5] || filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+        const existingCount = await prisma.workImage.count({
+            where: { workId: work.id }
+        });
+        await prisma.workImage.create({
+            data: {
+                image: imageJson,
+                alt: altText,
+                sortOrder: existingCount + 1,
+                work: { connect: { id: work.id } }
+            }
+        });
+        console.log(`Added gallery image for "${work.title}" (alt: "${altText}", sort: ${existingCount + 1})`);
+    } else {
+        await prisma.work.update({
+            where: { slug },
+            data: { [field]: imageJson }
+        });
+        console.log(`Updated ${field} for "${work.title}"`);
+    }
 
-    console.log(`Updated ${field} for "${work.title}"`);
     console.log(`URL: ${meta.secure_url}`);
 }
 

@@ -137,21 +137,23 @@ curl -s https://admin.sethdavis.tech/api/graphql \
 
 ### Step 6: Upload Images
 
-Upload hero and thumbnail images via the upload script:
+Upload images via the upload script:
 
 ```bash
 cd cms && bun run upload-image.ts <slug> heroImage <file-or-url>
 cd cms && bun run upload-image.ts <slug> thumbnailImage <file-or-url>
+cd cms && bun run upload-image.ts <slug> gallery <file-or-url> "Alt text description"
 ```
 
-Accepts local file paths or URLs. Uploads to Cloudinary and updates the database record directly.
+Accepts local file paths or URLs. Uploads to Cloudinary and updates the database directly.
 
 | Field            | Purpose                                     |
 | ---------------- | ------------------------------------------- |
 | `heroImage`      | Large hero image at top of work detail page |
 | `thumbnailImage` | Card thumbnail on /work page                |
+| `gallery`        | Gallery images on work detail page          |
 
-**For gallery images**: Use the CMS admin UI at `admin.sethdavis.tech/admin`.
+Gallery images auto-increment `sortOrder` and use the alt text argument (or filename if omitted).
 
 ### Step 7: Rebuild Web
 
