@@ -26,6 +26,9 @@ cd web && npm run build
 # Database migrations (cms/)
 cd cms && npx prisma migrate deploy
 
+# Upload work item images to Cloudinary (from cms/)
+cd cms && bun run upload-image.ts <slug> <heroImage|thumbnailImage> <file-or-url>
+
 # Rebuild web after data changes (required for pre-rendered pages)
 cd web && echo "// build trigger: $(date -u +%Y%m%d%H%M%S)" >> .build-trigger && railway up -d
 ```
@@ -119,7 +122,7 @@ Claude can create/update work items via authenticated GraphQL mutations against 
 
 1. **Authenticate** via `authenticateUserWithPassword` mutation to get a session cookie
 2. **Create/update** via GraphQL mutation with the session cookie
-3. **Upload images** in the CMS admin UI at `admin.sethdavis.tech/admin`
+3. **Upload images**: `cd cms && bun run upload-image.ts <slug> heroImage <file-or-url>`
 4. **Rebuild web**: `cd web && echo "// build trigger: $(date -u +%Y%m%d%H%M%S)" >> .build-trigger && railway up -d`
 
 CommandPalette, sitemap, and routing are all CMS-driven — no manual updates required.
