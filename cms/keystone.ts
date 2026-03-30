@@ -22,6 +22,7 @@ export default withAuth(
             url: process.env.DATABASE_URL!
         },
         server: {
+            port: 3333,
             cors: {
                 origin: [process.env.FRONTEND_URL, 'http://localhost:3000'],
                 credentials: true

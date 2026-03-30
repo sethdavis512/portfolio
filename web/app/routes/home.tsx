@@ -19,7 +19,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Welcome',
         descriptionContent:
-            'Seth Davis is a Senior Frontend Developer specializing in AI-assisted design tooling, design systems, and generative interfaces. Based in Austin, Texas.',
+            'Seth Davis is a Design Technologist specializing in AI-assisted design tooling, design systems, and generative interfaces. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
     });
 }
@@ -74,7 +74,11 @@ export default function Home() {
                         design intent and programmable interfaces.
                     </p>
                     <p>
-                        {`Currently seeking new opportunities as a ${ContentStyles.CURRENT_JOB_TITLE}.`}
+                        Currently seeking new opportunities as a{' '}
+                        <Linky to="/design-technologist">
+                            {ContentStyles.CURRENT_JOB_TITLE}
+                        </Linky>
+                        .
                     </p>
                 </div>
                 <div className="flex gap-4">

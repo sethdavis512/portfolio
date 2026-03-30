@@ -7,6 +7,7 @@ export default {
             '/',
             '/about',
             '/products',
+            '/design-technologist',
             '/resume',
             '/setup',
             '/truck',

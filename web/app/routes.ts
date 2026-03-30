@@ -16,6 +16,7 @@ export default [
         route('til/:slug', 'routes/til-detail.tsx'),
         route('resume', 'routes/resume.tsx'),
         route('setup', 'routes/setup.tsx'),
+        route('design-technologist', 'routes/design-technologist.tsx'),
         route('thank-you', 'routes/thank-you.tsx'),
         route('truck', 'routes/truck.tsx'),
         route('work', 'routes/work.tsx'),

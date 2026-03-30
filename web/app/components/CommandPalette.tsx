@@ -39,6 +39,11 @@ const pagesLinks = [
         to: '/til',
         icon: LinkIcon,
         label: 'TIL'
+    },
+    {
+        to: '/design-technologist',
+        icon: LinkIcon,
+        label: 'What is a Design Technologist?'
     }
 ];
 
