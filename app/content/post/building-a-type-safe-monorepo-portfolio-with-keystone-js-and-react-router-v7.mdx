@@ -1,0 +1,286 @@
+---
+title: "Building a Type-Safe Monorepo Portfolio with KeystoneJS and React Router v7"
+slug: "building-a-type-safe-monorepo-portfolio-with-keystone-js-and-react-router-v7"
+status: "PUBLISHED"
+type: "POST"
+tags: ["react-router-7"]
+excerpt: "When I set out to rebuild my portfolio website, I had one clear goal: create a system that would make content creation as frictionless as possible while maintaining the developer experience I craved. What emerged was a modern monorepo architecture th"
+createdAt: "2025-08-01T18:10:54.850Z"
+updatedAt: "2025-08-01T18:10:54.850Z"
+---
+
+When I set out to rebuild my portfolio website, I had one clear goal: create a system that would make content creation as frictionless as possible while maintaining the developer experience I craved. What emerged was a modern monorepo architecture that combines KeystoneJS 6 as a headless CMS with React Router v7's new server-side rendering capabilities—all unified under a single repository with end-to-end TypeScript safety.
+
+## The Problem: Content Management vs. Developer Experience
+
+Like many developers, I'd been caught in the eternal struggle between wanting a simple static site and needing the flexibility of dynamic content. Static site generators are great until you want to quickly publish a blog post from your phone. Traditional CMSs offer content flexibility but often feel disconnected from your development workflow.
+
+I wanted something that would:
+
+- Let me write content in a proper editor with rich text capabilities
+- Maintain full type safety across the entire stack
+- Keep both frontend and backend code in sync
+- Enable server-side rendering for performance and SEO
+- Allow for rapid iteration and deployment
+
+## The Solution: A Unified Monorepo Architecture
+
+The answer turned out to be treating my portfolio as two interconnected applications sharing a single repository:
+
+```
+portfolio/
+├── cms/          # KeystoneJS 6 headless CMS
+├── web/          # React Router v7 frontend
+└── package.json  # Root orchestration
+```
+
+This architecture gives me the best of both worlds: a powerful admin interface for content management and a modern React application for the public-facing site.
+
+### Why KeystoneJS 6?
+
+KeystoneJS 6 caught my attention because it generates a GraphQL API automatically from your schema definition. Here's what my content model looks like:
+
+```
+// cms/schema.ts
+export const lists = {
+    User: list({
+        access: allowAll,
+        fields: {
+            name: text({ validation: { isRequired: true } }),
+            email: text({ 
+                validation: { isRequired: true },
+                isIndexed: 'unique' 
+            }),
+            password: password({ validation: { isRequired: true } }),
+            posts: relationship({ ref: 'Post.author', many: true }),
+            prompts: relationship({ ref: 'Prompt.author', many: true })
+        }
+    }),
+
+    Post: list({
+        access: allowAll,
+        fields: {
+            title: text({ 
+                validation: { isRequired: true },
+                isIndexed: 'unique' 
+            }),
+            slug: text({ 
+                validation: { isRequired: true },
+                isIndexed: 'unique',
+                isFilterable: true 
+            }),
+            status: select({
+                options: [
+                    { label: 'Draft', value: 'DRAFT' },
+                    { label: 'Published', value: 'PUBLISHED' },
+                    { label: 'Archived', value: 'ARCHIVED' }
+                ],
+                defaultValue: 'DRAFT',
+                validation: { isRequired: true }
+            }),
+            content: document({
+                formatting: true,
+                layouts: [[1, 1], [1, 1, 1], [2, 1]],
+                links: true,
+                dividers: true
+            }),
+            author: relationship({ ref: 'User.posts', many: false }),
+            tags: relationship({ ref: 'Tag.posts', many: true })
+        }
+    })
+}
+```
+
+What's beautiful about this approach is that KeystoneJS automatically generates:
+
+- A GraphQL API at `/api/graphql`
+- An admin UI at `/admin`
+- TypeScript types for all your data
+- Database migrations via Prisma
+
+### React Router v7: The Perfect Frontend Companion
+
+React Router v7's new file-based routing and built-in SSR capabilities made it an ideal match for this setup. Here's how a typical page loader works:
+
+```
+// web/app/routes/blog.tsx
+import { client } from '~/utils/graphql.server';
+import { GetPublishedPostsDocument } from '~/generated/graphql';
+
+export async function loader() {
+    try {
+        const { posts } = await client.request(GetPublishedPostsDocument);
+        return { posts };
+    } catch (error) {
+        console.error('Error in loader:', error);
+        return { status: 'ERROR' };
+    }
+}
+
+export default function BlogRoute({ loaderData }: Route.ComponentProps) {
+    return (
+        <>
+            <Heading as="h1">Blog</Heading>
+            {loaderData.posts?.map((post) => (
+                <Card key={post.id}>
+                    <Heading size="4">{post.title}</Heading>
+                    <p>{post.excerpt}</p>
+                </Card>
+            ))}
+        </>
+    );
+}
+```
+
+The magic happens in the type safety. Notice the `GetPublishedPostsDocument` import—this is auto-generated from my GraphQL schema using GraphQL Code Generator.
+
+## The Type Safety Bridge
+
+Here's where things get really interesting. The bridge between my CMS and frontend isn't just functional—it's completely type-safe. My development workflow looks like this:
+
+1. **Define schema in KeystoneJS** - The source of truth for my data model
+2. **Generate GraphQL schema** - KeystoneJS outputs a `.graphql` file automatically
+3. **Write GraphQL queries** - Store these in `web/app/queries/`
+4. **Generate TypeScript types** - GraphQL Codegen creates fully typed interfaces
+5. **Use types in React components** - End-to-end type safety from database to UI
+
+Here's my GraphQL codegen configuration:
+
+```
+# web/codegen.yml
+generates:
+  ./app/generated/graphql.ts:
+    documents: './app/queries/**/*.graphql'
+    schema: '../cms/schema.graphql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+```
+
+Running `npm run generate:types` after any schema change ensures my frontend types stay perfectly in sync with my backend data model. If I add a new field to a Post, TypeScript will immediately tell me everywhere in my frontend that needs updating.
+
+## Development Workflow: One Command to Rule Them All
+
+The monorepo setup shines in daily development. My root `package.json` orchestrates both applications:
+
+```
+{
+  "scripts": {
+    "dev": "concurrently \"npm run dev:cms\" \"npm run dev:web\"",
+    "dev:web": "npm run dev --prefix web", 
+    "dev:cms": "npm run dev --prefix cms"
+  }
+}
+```
+
+Running `npm run dev` spins up both the CMS (port 3000) and frontend (port 5173) simultaneously. I can:
+
+- Create content in the admin UI at `localhost:3000/admin`
+- See changes reflected immediately in the frontend at `localhost:5173`
+- Test GraphQL queries in the playground at `localhost:3000/api/graphql`
+
+## Performance: The Best of SSR and Static Generation
+
+React Router v7's hybrid approach gives me incredible flexibility. Here's my prerender configuration:
+
+```
+// web/react-router.config.ts
+export default {
+    ssr: true,
+    async prerender() {
+        return [
+            `/`,
+            `/about`, 
+            `/resume`,
+            `/blog`
+        ];
+    }
+} satisfies Config;
+```
+
+This means:
+
+- Static pages like `/about` are pre-rendered at build time
+- Dynamic content like individual blog posts use SSR
+- The CMS admin interface remains separate and secure
+- SEO is excellent because everything is server-rendered
+
+## The Content Creation Experience
+
+The real test of any CMS is the content creation experience. KeystoneJS's document field provides a rich text editor that outputs structured JSON:
+
+```
+content: document({
+    formatting: true,
+    layouts: [
+        [1, 1],        // Two columns
+        [1, 1, 1],     // Three columns  
+        [2, 1],        // Sidebar layout
+        [1, 2]         // Reverse sidebar
+    ],
+    links: true,
+    dividers: true
+})
+```
+
+Writing blog posts feels natural—I get rich text editing, multiple layout options, and the ability to embed links and dividers. The content is stored as structured data, not HTML, which means I maintain full control over rendering in my React components.
+
+## Deployment and Production Considerations
+
+In production, I deploy the CMS and frontend as separate services:
+
+- **CMS**: Runs on Railway with PostgreSQL database
+- **Frontend**: Deployed to Vercel with static optimization
+- **Data flow**: Frontend fetches from `https://admin.sethdavis.tech/api/graphql`
+
+The CORS configuration in KeystoneJS handles cross-origin requests securely:
+
+```
+// cms/keystone.ts
+export default withAuth(
+    config({
+        server: {
+            cors: {
+                origin: process.env.FRONTEND_URL,
+                credentials: true
+            }
+        }
+    })
+);
+```
+
+## Lessons Learned and Trade-offs
+
+**What works amazingly well:**
+
+- Type safety from database to UI eliminates entire classes of bugs
+- Content creation feels professional and intuitive
+- Development productivity is incredible when everything stays in sync
+- SSR performance is excellent out of the box
+
+**What to watch out for:**
+
+- GraphQL codegen adds a step to the development workflow
+- Monorepo complexity can feel overwhelming initially
+- KeystoneJS has a learning curve if you're used to simpler CMSs
+- Database schema changes require more coordination
+
+## The Result: Frictionless Content Creation
+
+The end result is a system where I genuinely enjoy creating content. When I have an idea for a blog post, I can:
+
+1. Open the admin UI on my phone
+2. Draft the post with rich text formatting
+3. Publish it immediately
+4. Know that the frontend will render it perfectly with full type safety
+
+For fellow developers building portfolio sites or content-heavy applications, this architecture offers a compelling middle ground between static simplicity and dynamic flexibility. The upfront investment in setup pays dividends in long-term maintainability and development velocity.
+
+The combination of KeystoneJS 6 and React Router v7 feels like the future of full-stack TypeScript development—and I'm excited to see where this pattern takes us next.
+
+---
+
+**Want to explore the code?** Check out the [full portfolio repository](https://github.com/sethdavis512/portfolio) to see this architecture in action, or visit the [live site](https://sethdavis.tech) to see the results.
+
+**Found this helpful?** I'd love to hear about your own experiences building type-safe full-stack applications. What patterns have you discovered in your projects?

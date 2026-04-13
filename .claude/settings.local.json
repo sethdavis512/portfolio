@@ -37,7 +37,15 @@
       "Bash(xargs kill:*)",
       "Bash(railway link:*)",
       "Bash(bun run:*)",
-      "Bash(bun:*)"
+      "Bash(bun:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run:*)",
+      "Bash(cp -rn web/.agents/skills/* .agents/skills/)",
+      "Bash(cp -rn web/.github/skills/* .github/skills/)",
+      "Bash(cp -rn web/.claude/skills/* .claude/skills/)",
+      "Bash(cp -n web/.claude/settings.local.json .claude/)",
+      "Bash(cp -n web/docs/* docs/)",
+      "Bash(xargs sed:*)"
     ],
     "deny": [],
     "ask": []

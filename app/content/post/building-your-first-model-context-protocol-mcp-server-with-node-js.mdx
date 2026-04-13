@@ -1,0 +1,688 @@
+---
+title: "Building Your First Model Context Protocol (MCP) Server with Node.js"
+slug: "building-your-first-model-context-protocol-mcp-server-with-node-js"
+status: "PUBLISHED"
+type: "POST"
+tags: ["mcp", "ai"]
+excerpt: "Have you ever wanted to give your AI assistant superpowers? Not just the ability to chat, but to actually do things in your development environment—analyze your code, create files, integrate with APIs, and automate your workflow? That's exactly what"
+createdAt: "2025-08-01T19:04:53.877Z"
+updatedAt: "2025-08-01T19:04:53.877Z"
+---
+
+Have you ever wanted to give your AI assistant superpowers? Not just the ability to chat, but to actually *do things* in your development environment—analyze your code, create files, integrate with APIs, and automate your workflow? That's exactly what the Model Context Protocol (MCP) enables, and I'm going to show you how to build your own MCP server from scratch.
+
+After building my first MCP server with tools for code analysis, project documentation, and development automation, I've learned that MCP is like giving your AI assistant "hands and eyes" in the digital world. Let me walk you through the journey of creating your own.
+
+## What is the Model Context Protocol?
+
+The Model Context Protocol (MCP) is an open protocol that enables AI assistants to securely connect to data sources and tools. Think of it as a bridge between conversational AI and real-world systems. Instead of just generating text, your AI can:
+
+- Execute actions in real systems
+- Access live data from databases and APIs
+- Integrate with external services securely
+- Automate complex workflows across multiple systems
+- Provide real-time information instead of static knowledge
+
+The magic happens when you can say to your AI: "Analyze my codebase for technical debt, generate a PRD for the new feature, and create GitHub issues for the improvements" — and it actually does all of that.
+
+## Why Build Your Own MCP Server?
+
+While there are existing MCP servers available, building your own gives you:
+
+1. **Complete Control**: Tailor tools to your exact workflow and requirements
+2. **Security**: Keep sensitive operations within your own infrastructure
+3. **Integration**: Connect to your specific databases, APIs, and internal systems
+4. **Learning**: Understand how AI tool integration really works under the hood
+5. **Innovation**: Create unique automation that doesn't exist elsewhere
+
+## Prerequisites and Setup
+
+Before we dive in, make sure you have:
+
+- **Node.js 18+** installed on your system
+- Basic familiarity with **JavaScript/ES6 modules**
+- Understanding of **async/await** patterns
+- A code editor (VS Code recommended for MCP integration)
+
+Let's start by setting up our project structure:
+
+```
+mkdir my-first-mcp
+cd my-first-mcp
+npm init -y
+```
+
+## Installing Dependencies
+
+The core dependency for any MCP server is the official SDK:
+
+```
+npm install @modelcontextprotocol/sdk
+```
+
+We'll also add some utility packages for file operations:
+
+```
+npm install glob
+```
+
+Update your `package.json` to use ES modules:
+
+```
+{
+  "name": "my-first-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.1",
+    "glob": "^11.0.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+```
+
+## Understanding MCP Architecture
+
+Before we write code, let's understand the key components:
+
+### 1. **Server**: The main MCP server instance
+
+- Handles incoming requests from AI clients
+- Manages tool registration and execution
+- Provides metadata about available capabilities
+
+### 2. **Transport**: Communication layer
+
+- `StdioServerTransport`: Uses standard input/output (most common)
+- Enables the server to communicate with AI clients
+
+### 3. **Tools**: Individual functions the AI can call
+
+- Each tool has a name, description, and input schema
+- Tools are the actual "superpowers" you're giving the AI
+
+### 4. **Schemas**: Type definitions for requests
+
+- `ListToolsRequestSchema`: Lists available tools
+- `CallToolRequestSchema`: Executes specific tools
+
+## Building Your First MCP Server
+
+Let's create a basic MCP server that starts simple but demonstrates the core patterns. Create `index.js`:
+
+```
+#!/usr/bin/env node
+
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import {
+    CallToolRequestSchema,
+    ListToolsRequestSchema
+} from '@modelcontextprotocol/sdk/types.js';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { join, dirname } from 'path';
+
+// Create a new MCP server with metadata
+const server = new Server(
+    {
+        name: 'my-first-mcp',
+        version: '1.0.0'
+    },
+    {
+        capabilities: {
+            tools: {}
+        }
+    }
+);
+```
+
+The server initialization includes:
+
+- **Name and version**: Identifies your server to AI clients
+- **Capabilities**: Declares what types of operations the server supports (in this case, tools)
+
+### Registering Tools with the List Handler
+
+The first handler we need is for listing available tools:
+
+```
+// List available tools
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+    return {
+        tools: [
+            {
+                name: 'echo',
+                description: 'Echo back the provided message',
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        message: {
+                            type: 'string',
+                            description: 'The message to echo back'
+                        }
+                    },
+                    required: ['message']
+                }
+            },
+            {
+                name: 'analyze_file',
+                description: 'Read and analyze a code file for patterns and insights',
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        filePath: {
+                            type: 'string',
+                            description: 'Path to the file to analyze'
+                        },
+                        analysisType: {
+                            type: 'string',
+                            description: 'Type of analysis: "patterns", "complexity", or "quality"'
+                        }
+                    },
+                    required: ['filePath']
+                }
+            }
+        ]
+    };
+});
+```
+
+Each tool definition includes:
+
+- **name**: Unique identifier for the tool
+- **description**: What the tool does (helps AI understand when to use it)
+- **inputSchema**: JSON Schema defining expected parameters
+
+### Implementing Tool Execution
+
+Now we implement the actual tool logic with the call handler:
+
+```
+// Handle tool calls
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+    const { name, arguments: args } = request.params;
+
+    switch (name) {
+        case 'echo':
+            return {
+                content: [
+                    {
+                        type: 'text',
+                        text: `Echo: ${args.message}`
+                    }
+                ]
+            };
+
+        case 'analyze_file':
+            try {
+                const filePath = args.filePath;
+                const analysisType = args.analysisType || 'patterns';
+
+                // Check if file exists
+                if (!existsSync(filePath)) {
+                    throw new Error(`File not found: ${filePath}`);
+                }
+
+                // Read file content
+                const fileContent = readFileSync(filePath, 'utf-8');
+                const fileName = filePath.split('/').pop();
+                const fileExtension = fileName.split('.').pop();
+
+                // Create analysis prompt based on type
+                let analysisPrompt;
+                switch (analysisType) {
+                    case 'patterns':
+                        analysisPrompt = `Analyze this ${fileExtension.toUpperCase()} file for code patterns, architectural decisions, and best practices:`;
+                        break;
+                    case 'complexity':
+                        analysisPrompt = `Analyze this ${fileExtension.toUpperCase()} file for cyclomatic complexity and refactoring opportunities:`;
+                        break;
+                    case 'quality':
+                        analysisPrompt = `Review this ${fileExtension.toUpperCase()} file for code quality, potential bugs, and improvements:`;
+                        break;
+                    default:
+                        analysisPrompt = `Analyze this ${fileExtension.toUpperCase()} file:`;
+                }
+
+                return {
+                    content: [
+                        {
+                            type: 'text',
+                            text: `${analysisPrompt}
+
+File: ${fileName}
+
+\`\`\`${fileExtension}
+${fileContent}
+\`\`\`
+
+Please provide detailed analysis and recommendations.`
+                        }
+                    ]
+                };
+            } catch (error) {
+                return {
+                    content: [
+                        {
+                            type: 'text',
+                            text: `❌ Analysis Error: ${error.message}`
+                        }
+                    ]
+                };
+            }
+
+        default:
+            throw new Error(`Unknown tool: ${name}`);
+    }
+});
+```
+
+Key patterns in tool implementation:
+
+1. **Error Handling**: Always wrap tool logic in try-catch blocks
+2. **File Safety**: Check file existence before reading
+3. **Flexible Parameters**: Provide sensible defaults for optional parameters
+4. **Rich Responses**: Return formatted content that helps the AI understand context
+5. **Clear Error Messages**: Help users understand what went wrong
+
+### Starting the Server
+
+Finally, we need to start the server and connect it to the transport:
+
+```
+// Start the server
+async function main() {
+    const transport = new StdioServerTransport();
+    await server.connect(transport);
+    console.error('MCP server running on stdio');
+}
+
+main().catch((error) => {
+    console.error('Server error:', error);
+    process.exit(1);
+});
+```
+
+The `StdioServerTransport` uses standard input/output for communication, which is perfect for integration with AI clients that can spawn subprocess-based tools.
+
+## Building More Advanced Tools
+
+Now let's add a more sophisticated tool that demonstrates file operations and project structure analysis:
+
+```
+{
+    name: 'create_project_docs',
+    description: 'Generate project documentation based on codebase analysis',
+    inputSchema: {
+        type: 'object',
+        properties: {
+            projectRoot: {
+                type: 'string',
+                description: 'Root directory of the project'
+            },
+            docType: {
+                type: 'string',
+                description: 'Type of documentation: "readme", "api", or "architecture"'
+            }
+        },
+        required: ['projectRoot']
+    }
+}
+```
+
+And its implementation:
+
+```
+case 'create_project_docs':
+    try {
+        const { projectRoot, docType = 'readme' } = args;
+        const docsDir = join(projectRoot, 'docs');
+        
+        // Create docs directory if it doesn't exist
+        if (!existsSync(docsDir)) {
+            mkdirSync(docsDir, { recursive: true });
+        }
+
+        // Scan project structure
+        const { glob } = await import('glob');
+        const files = await glob('**/*.{js,ts,jsx,tsx,md,json}', {
+            cwd: projectRoot,
+            ignore: ['node_modules/**', 'dist/**', '.git/**']
+        });
+
+        // Create documentation prompt
+        const prompt = `Generate ${docType} documentation for a project with the following structure:
+
+Project files:
+${files.map(file => `- ${file}`).join('\n')}
+
+Please create comprehensive ${docType} documentation that:
+1. Explains the project purpose and architecture
+2. Provides setup and usage instructions
+3. Documents key files and their roles
+4. Includes examples where appropriate
+
+Format as clean Markdown suitable for ${docType}.md`;
+
+        return {
+            content: [
+                {
+                    type: 'text',
+                    text: prompt
+                }
+            ]
+        };
+    } catch (error) {
+        return {
+            content: [
+                {
+                    type: 'text',
+                    text: `❌ Documentation Error: ${error.message}`
+                }
+            ]
+        };
+    }
+```
+
+This tool demonstrates several advanced patterns:
+
+- **Directory Operations**: Creating directories with `mkdirSync`
+- **File System Scanning**: Using glob patterns to find relevant files
+- **Dynamic Imports**: Loading modules conditionally
+- **Structured Prompts**: Creating detailed instructions for the AI
+
+## Testing Your MCP Server
+
+Before connecting to an AI client, let's test the server locally. Create a simple test script `test-connection.js`:
+
+```
+import { spawn } from 'child_process';
+
+async function testMCPServer() {
+    console.log('Testing MCP server...');
+    
+    const serverProcess = spawn('node', ['index.js'], {
+        stdio: ['pipe', 'pipe', 'inherit']
+    });
+
+    // Test ListTools request
+    const listToolsRequest = {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/list',
+        params: {}
+    };
+
+    serverProcess.stdin.write(JSON.stringify(listToolsRequest) + '\n');
+
+    serverProcess.stdout.on('data', (data) => {
+        console.log('Server response:', data.toString());
+    });
+
+    // Clean up after test
+    setTimeout(() => {
+        serverProcess.kill();
+        console.log('Test completed');
+    }, 2000);
+}
+
+testMCPServer().catch(console.error);
+```
+
+Run the test:
+
+```
+node test-connection.js
+```
+
+You should see the server respond with your tool definitions.
+
+## Installing and Configuring Your MCP Server
+
+### Method 1: Claude Desktop Integration
+
+If you're using Claude Desktop, add your server to the configuration file:
+
+**On macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**On Windows**: `%APPDATA%/Claude/claude_desktop_config.json`
+
+```
+{
+  "mcpServers": {
+    "my-first-mcp": {
+      "command": "node",
+      "args": ["/full/path/to/your/project/index.js"],
+      "cwd": "/full/path/to/your/project"
+    }
+  }
+}
+```
+
+### Method 2: VS Code with Continue Extension
+
+1. Install the **Continue** extension from the marketplace
+2. Open Command Palette (`Cmd+Shift+P` or `Ctrl+Shift+P`)
+3. Run "Continue: Open config.json"
+4. Add your MCP server configuration:
+
+```
+{
+  "models": [
+    {
+      "title": "GPT-4 with MCP",
+      "provider": "openai",
+      "model": "gpt-4",
+      "apiKey": "your-api-key-here"
+    }
+  ],
+  "mcpServers": [
+    {
+      "name": "my-first-mcp",
+      "command": "node",
+      "args": ["index.js"],
+      "cwd": "/full/path/to/your/project"
+    }
+  ]
+}
+```
+
+### Method 3: Generic MCP Client
+
+For other MCP-compatible clients, you'll typically need to:
+
+1. Specify the command: `node`
+2. Set arguments: `["index.js"]`
+3. Set working directory to your project path
+4. Ensure the client can spawn subprocess-based tools
+
+## Real-World Examples and Use Cases
+
+### Code Analysis and Documentation
+
+Your MCP server can become a powerful development assistant:
+
+```
+// Example conversation with AI:
+// "Analyze the authentication module in src/auth.js for security issues"
+// → MCP server reads file, provides detailed analysis
+// "Now create comprehensive tests for the issues you found"
+// → AI generates test cases based on the analysis
+```
+
+### Project Automation
+
+Build tools that automate routine tasks:
+
+```
+// Tools for:
+// - Generating boilerplate code
+// - Creating project documentation
+// - Setting up CI/CD configurations
+// - Managing dependencies and updates
+```
+
+### Integration Workflows
+
+Connect your AI to external systems:
+
+```
+// Example tools:
+// - Deploy to staging environments
+// - Create GitHub issues from TODO comments
+// - Update project status in Jira
+// - Send team notifications to Slack
+```
+
+## Advanced Patterns and Best Practices
+
+### 1. Tool Composition
+
+Design tools that work together:
+
+```
+// Chain tools together for complex workflows
+// 1. analyze_codebase → 2. generate_tests → 3. create_documentation
+```
+
+### 2. Context Preservation
+
+Maintain state between tool calls:
+
+```
+// Store analysis results for reuse
+const analysisCache = new Map();
+
+// In tool implementation:
+if (analysisCache.has(filePath)) {
+    return analysisCache.get(filePath);
+}
+```
+
+### 3. Security Considerations
+
+Always validate inputs and limit scope:
+
+```
+// Validate file paths
+if (!filePath.startsWith(process.cwd())) {
+    throw new Error('Access denied: Path outside project directory');
+}
+
+// Sanitize inputs
+const safePath = path.resolve(process.cwd(), filePath);
+```
+
+### 4. Error Recovery
+
+Provide helpful error messages and suggestions:
+
+```
+catch (error) {
+    if (error.code === 'ENOENT') {
+        return {
+            content: [{
+                type: 'text',
+                text: `❌ File not found: ${filePath}
+                
+Suggestions:
+- Check if the file path is correct
+- Ensure the file exists in the project
+- Try using a relative path from project root`
+            }]
+        };
+    }
+}
+```
+
+## Troubleshooting Common Issues
+
+### Server Won't Start
+
+**Problem**: `Error: Cannot find module '@modelcontextprotocol/sdk'`
+**Solution**: Run `npm install` to ensure dependencies are installed
+
+**Problem**: `SyntaxError: Cannot use import statement outside a module`
+**Solution**: Ensure `"type": "module"` is in your `package.json`
+
+### AI Client Can't Connect
+
+**Problem**: MCP server not showing up in AI client
+**Solution**:
+
+- Verify the configuration file path and format
+- Check that file paths are absolute, not relative
+- Restart the AI client after configuration changes
+
+### Tools Not Working
+
+**Problem**: Tool calls return errors or unexpected results
+**Solution**:
+
+- Test tools individually with the test script
+- Add detailed logging to debug tool execution
+- Ensure all required parameters are properly validated
+
+## Next Steps and Expanding Your Server
+
+Once you have a basic MCP server running, consider adding:
+
+### More Sophisticated Tools
+
+- Database integrations
+- API clients for external services
+- File processing and generation tools
+- Project analysis and metrics
+
+### Enhanced Error Handling
+
+- Retry mechanisms for network operations
+- Graceful degradation for partial failures
+- Detailed logging and monitoring
+
+### Performance Optimizations
+
+- Caching for expensive operations
+- Async processing for long-running tasks
+- Resource management and cleanup
+
+### Security Enhancements
+
+- Authentication and authorization
+- Input sanitization and validation
+- Rate limiting and abuse prevention
+
+## The Bigger Picture
+
+Building your own MCP server is just the beginning. As you become comfortable with the protocol, you'll start seeing opportunities everywhere:
+
+- **Team Productivity**: Build tools specific to your team's workflow
+- **Business Automation**: Connect AI to your business processes
+- **Creative Applications**: Use AI to generate and manipulate content
+- **System Integration**: Bridge previously disconnected systems
+
+The Model Context Protocol transforms AI from a conversational tool into a powerful automation platform. Your simple file analyzer is the first step in a journey toward AI-powered workflows that can revolutionize how work gets done.
+
+## Conclusion
+
+We've built a foundation MCP server that demonstrates the core concepts:
+
+- Tool registration and schema definition
+- File system operations with proper error handling
+- Integration patterns for AI workflows
+- Configuration for popular AI clients
+
+The real magic happens when you start building tools specific to your workflow. Think about the repetitive tasks in your development process, the integrations you wish existed, or the analyses you perform manually. Each of these is an opportunity for an MCP tool.
+
+Start small with simple file operations and gradually build more sophisticated integrations. Before you know it, you'll have an AI assistant that can actually *do* things in your development environment, not just talk about them.
+
+The future of development is AI and humans collaborating through tools — and now you know how to build those tools yourself.
+
+---
+
+**Ready to go deeper?** Check out the [MCP SDK documentation](https://modelcontextprotocol.io/) and explore the growing ecosystem of MCP servers. Your next great automation idea is just a tool definition away.

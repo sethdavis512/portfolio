@@ -1,9 +1,0 @@
-query GetWorkNavItems {
-    works(
-        where: { status: { equals: "PUBLISHED" } }
-        orderBy: [{ sortOrder: asc }]
-    ) {
-        title
-        slug
-    }
-}

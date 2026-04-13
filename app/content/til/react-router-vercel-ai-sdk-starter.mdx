@@ -1,0 +1,48 @@
+---
+title: "React Router & Vercel AI SDK Starter"
+slug: "react-router-vercel-ai-sdk-starter"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["react-router-7", "ai-sdk"]
+excerpt: "tl;dr - Check out this fun starter repo: https://github.com/tech-with-seth/tws-ai-starter The React Router 7 & OpenAI Quickstart represents a compelling evolution in how we approach AI-integrated web applications. This starter template demonstrates a"
+createdAt: "2025-07-09T03:27:52.029Z"
+updatedAt: "2026-02-21T20:10:15.921Z"
+---
+
+tl;dr - Check out this fun starter repo: [https://github.com/tech-with-seth/tws-ai-starter](https://github.com/tech-with-seth/tws-ai-starter)
+
+The React Router 7 & OpenAI Quickstart represents a compelling evolution in how we approach AI-integrated web applications. This starter template demonstrates a thoughtful marriage between React Router's latest routing capabilities and OpenAI's powerful language models, creating a foundation that's both developer-friendly and production-ready.
+
+## **What Makes This Template Unique**
+
+### Modern Routing Architecture
+
+The most striking feature is the use of React Router 7's new config-based routing system. Unlike traditional React Router setups, this template leverages a declarative configuration approach where routes are defined using helper functions like index(), route(), and layout(). The routes.ts file acts as a single source of truth, making the application structure immediately clear to developers.
+
+The routing configuration demonstrates nested layouts through the Layout.tsx component, which wraps both the home.tsx and completions.tsx routes. This pattern promotes consistent UI structure while maintaining clean separation of concerns.
+
+### Streamlined AI Integration
+
+What sets this template apart is its remarkably clean AI integration. The completions.tsx route showcases how modern AI SDKs can be seamlessly integrated into React Router's action-based data flow. Using the @ai-sdk/openai package and Vercel's ai library, the template demonstrates a pattern where AI calls are handled server-side through route actions, maintaining security while providing excellent user experience.
+
+The AI integration is refreshingly straightforward - a simple form submission triggers an OpenAI GPT-4 completion, with the response rendered immediately in the UI. This pattern eliminates the complexity often associated with AI-powered features, making it accessible to developers at all levels.
+
+### Developer Experience Focus
+
+The template prioritizes developer experience through several thoughtful choices. The use of TypeScript throughout ensures type safety, while the integration with React Router 7's new type generation system (evidenced by the Route.ActionArgs and Route.ComponentProps types) provides excellent IntelliSense support.
+
+The styling approach using Tailwind CSS with custom theme configuration in app.css demonstrates modern CSS practices. The template includes comprehensive dark mode support, responsive design patterns, and a cohesive visual hierarchy that works across different viewing contexts.
+
+### Production-Ready Patterns
+
+Beyond the surface-level features, the template establishes several production-ready patterns. The `root.tsx` file implements a proper HTML document structure with SEO-friendly meta tags, proper accessibility considerations, and performance optimizations like scroll restoration.
+
+The form handling in the completions route includes proper validation using the tiny-invariant library, demonstrating how to build robust user interactions. The error boundaries and loading states, while simple, provide a solid foundation for more complex error handling scenarios.
+
+## **The Future of AI Web Development**
+
+This starter template represents a glimpse into the future of AI-powered web development - one where AI capabilities are treated as first-class citizens in the web application architecture rather than bolted-on afterthoughts. The clean separation between routing, AI processing, and UI rendering creates a maintainable foundation that can scale with application complexity.
+
+For developers looking to build AI-powered applications, this template provides an excellent starting point that balances simplicity with extensibility, modern tooling with proven patterns.
+
+Check out the code! [https://github.com/tech-with-seth/tws-ai-starter](https://github.com/tech-with-seth/tws-ai-starter)

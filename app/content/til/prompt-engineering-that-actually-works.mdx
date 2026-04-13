@@ -1,0 +1,124 @@
+---
+title: "Prompt Engineering That Actually Works"
+slug: "prompt-engineering-that-actually-works"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["ai", "prompt"]
+excerpt: "Good prompts are clear, constrained, contextual, and testable. You don’t need tricks—just a simple process you can reuse and iterate. If you’ve been stacking “secret hacks,” breathe. Great prompts feel like great product briefs: short, opinionated, a"
+createdAt: "2025-08-08T19:29:20.936Z"
+updatedAt: "2026-02-21T20:10:00.668Z"
+---
+
+Good prompts are clear, constrained, contextual, and testable. You don’t need tricks—just a simple process you can reuse and iterate.
+
+If you’ve been stacking “secret hacks,” breathe. Great prompts feel like great product briefs: short, opinionated, and easy to verify. The aim isn’t magic—it’s reliability.
+
+## 5 quick steps
+
+1. State the outcome in one sentence (what success looks like).
+2. Provide only the context that changes the answer (facts, audience, constraints).
+3. Show 1 short success example (and optionally a failure to avoid).
+4. Specify the output contract (format, fields, length, tone, exclusions).
+5. Run → review → change one variable → rerun. Keep a prompt log.
+
+### Micro-examples (fast intuition)
+
+- Outcome: “Draft a 90-word outreach email that gets a reply.”
+- Context: “Audience: senior eng. managers; constraint: no fluff; goal: book 15-min intro.”
+- Example: “Good: plain, specific, one ask. Bad: hype, 3 asks, vague offer.”
+- Contract: “Format: 1 paragraph + 1 bullet CTA. Length: ≤ 90 words. Tone: direct.”
+- Iterate: “Test 3 subject lines; keep body constant; log open/reply deltas.”
+
+### Why this works
+
+- It reduces ambiguity: outcome + contract define success.
+- It guards against drift: examples anchor style/content.
+- It’s measurable: you can test and compare small changes.
+
+### Prompt template
+
+```
+You are [role]. Task: [one-sentence outcome].
+
+Context:
+- [facts + domain constraints]
+- [audience, goals, brand voice]
+
+Rules:
+- [must/never; style; safety]
+- [length limit; format requirements]
+
+Inputs:
+- [variables or data snippets]
+
+Output:
+- Format: [JSON/Markdown/plain]; Fields: [list fields]
+- Length: [<= N words/sentences]
+- Include: [key requirements]; Exclude: [out-of-scope]
+
+Examples:
+- Good: "[brief example that matches the contract]"
+- Bad: "[common failure to avoid]"
+
+Return ONLY the Output.
+```
+
+### Mini example
+
+```
+You are a senior product marketer. Task: Write a 120-word launch note for the “Instant Sync” feature.
+
+Context:
+- Audience: existing Pro users; cares about reliability + speed.
+- Feature: background sync in <1s; works offline; zero setup.
+
+Rules:
+- Tone: confident, plain language. No hype words ("revolutionary").
+- Length: <= 120 words. Include a CTA link placeholder.
+
+Output:
+- Format: Markdown paragraph + 1 CTA line.
+
+Example (Good):
+"Instant Sync keeps your work up to date in under a second, even offline…"
+
+Example (Bad):
+"Introducing our revolutionary, game‑changing update!!! Experience productivity like never before with cutting‑edge cloud synergies…"
+
+Self-critique checklist:
+- <= 120 words
+- Mentions <1s background sync and offline
+- Plain tone (no hype words)
+- One clear CTA line with link placeholder
+
+Return ONLY the Output.
+```
+
+Variations to try
+
+- Change audience to “new trial users” and shrink to 80 words.
+- Keep copy fixed; swap 3 headlines; pick the best via a quick user poll.
+- Ask the model to rate its own output against the checklist (0–1 per item).
+
+### Common traps (and fixes)
+
+- Long context dump: Keep only facts that would change the answer.
+- Vague asks: Replace “make it better” with a measurable outcome.
+- No contract: Always specify format, fields, and length.
+- Single-shot thinking: Change one variable per iteration; log it.
+- Style drift: Pin a short “good” example right in the prompt.
+
+### Pro tips
+
+- Front-load constraints. The first 3 lines do most of the steering.
+- Prefer examples over adjectives. “Show one” beats “sound professional.”
+- Write the contract before the content. It clarifies what matters.
+- Use failure examples sparingly—they’re powerful anchors when short.
+
+### Prompt log (tiny example)
+
+- 2025‑08‑08 V1: 120w, Pro users, plain tone. Win: highest clarity. Lose: weak CTA.
+- 2025‑08‑08 V2: Added benefit-first CTA line. Win: better click intent.
+- 2025‑08‑08 V3: Shortened to 95w; tightened verbs. Win: faster read; kept specs.
+
+Last mile: test your prompt with 3 varied inputs, ask the model to self-critique against your output contract, and pin successful versions in a prompt log (date, change, win/lose). Iterate, don’t stack hacks. Ship small improvements on purpose.

@@ -1,0 +1,33 @@
+---
+title: "Composed Form"
+slug: "composed-form"
+status: "PUBLISHED"
+description: "A React library for building composable, multi-step forms with progressive validation. Built on react-hook-form and Zod."
+cta: "View project"
+sortOrder: 13
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/c8ijntranbz2qlmt2qlw.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/nlakzxhwyksjtbivqorf.png"
+about: "Composed Form is a React library for building composable, multi-step wizard forms with progressive validation. It wraps react-hook-form and Zod so each step only validates its own fields before advancing, while the full form schema is enforced on final submission. Steps are declared as React components with an enabled prop for conditional visibility, and hidden steps stay mounted to preserve field state. The library ships with hooks for step navigation and progress tracking, a field registry that automatically maps inputs to their parent step, and a nested partial utility for extracting step-specific data from the full form object. It exports ESM and CommonJS builds with full TypeScript declarations."
+learned: "Building this library taught me how to layer progressive validation on top of react-hook-form without forking its internals. I used a field registry pattern where each Step maintains a Set of its registered field names, enabling partial schema validation at navigation boundaries while deferring full validation to submission. Managing step state through refs with a force-update pattern avoided stale closures without excessive re-renders. I also learned how to keep hidden steps mounted with aria-hidden so react-hook-form never loses field state during navigation, and how to build a nested partial extraction utility that reconstructs dot-path keys into proper nested objects for the onSubmitStep callback."
+impact: "Multi-step forms are one of the most common complex UI patterns, and most teams either build them from scratch or fight their form library to support step-by-step validation. Composed Form solves this with a small, composable API that works with the react-hook-form ecosystem instead of replacing it. The declarative Step components, conditional step support, and progressive validation pattern make it straightforward to build registration wizards, checkout flows, or onboarding sequences with full type safety and no boilerplate."
+techStack: ["typescript", "react", "bun"]
+sourceUrl: "https://github.com/sethdavis512/composed-form"
+demoUrl: "https://sethdavis512.github.io/composed-form/"
+demoUrlText: "View examples"
+purchaseUrl: ""
+purchaseButtonText: "Purchase"
+sidebarTitle: "Get It Now"
+features: []
+sidebarType: "none"
+tags: []
+galleryImages: 
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/yr3odgruzhbulv7goa28.png"
+  alt: "Speakers step with dynamic arrays"
+  sortOrder: 1
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/u9u7kk1twnd4fonkppsn.png"
+  alt: "Review step with inline editing"
+  sortOrder: 2
+hasContent: false
+createdAt: "2026-03-28T17:03:04.203Z"
+updatedAt: "2026-03-28T17:43:56.560Z"
+---

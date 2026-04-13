@@ -1,0 +1,81 @@
+---
+title: "TIL: I Was Sleeping on Turborepo"
+slug: "til-i-was-sleeping-on-turborepo"
+status: "DRAFT"
+type: "TIL"
+tags: []
+excerpt: "I'll be honest — Turborepo has been on my radar for years. I'd seen it mentioned in conference talks, read about it in newsletters, and watched it pop up in job descriptions. But I kept putting it off, thinking \"I'll look at it when I actually need i"
+createdAt: "2026-02-21T19:41:06.550Z"
+updatedAt: "2026-02-21T19:42:58.551Z"
+---
+
+I'll be honest — Turborepo has been on my radar for years. I'd seen it mentioned in conference talks, read about it in newsletters, and watched it pop up in job descriptions. But I kept putting it off, thinking *"I'll look at it when I actually need it."* Well, I finally needed it while building PitStop — and I was not ready for how good it is.
+
+## The Project That Changed Things
+
+PitStop is an auto shop management platform I've been building as a "batteries included" monorepo — two separate React Router 7 apps (an admin app and a customer portal) that share a bunch of common packages: auth, database, UI components, validation schemas, and more. It's the kind of setup that screams for a proper monorepo tool.
+
+## What the PitStop Structure Looks Like
+
+Here's the folder layout Turborepo helped me organize. Two apps, eight shared packages, one root to run them all:
+
+```
+pit-stop/
+├── apps/
+│   ├── admin/             # React Router 7 admin app
+│   └── portal/            # React Router 7 customer portal
+├── packages/
+│   ├── auth/              # Shared authentication (Better Auth)
+│   ├── database/          # Shared Prisma database client
+│   ├── eslint-config/     # Shared ESLint config
+│   ├── theme/             # Shared design tokens & styles
+│   ├── typescript-config/ # Shared TypeScript config
+│   ├── ui/                # Shared UI component library
+│   ├── utils/             # Shared utility functions
+│   └── validation/        # Shared Zod validation schemas
+├── prisma/
+├── package.json           # Root with npm workspaces
+└── turbo.json             # Turborepo task pipeline config
+```
+
+## One Command to Rule Them All
+
+The moment that sold me was running `npm install` at the root. Every app, every package, every dependency — installed in one shot. No cd'ing into each directory. No running install four separate times. Then `npm run dev` fires up **both apps simultaneously**, in parallel, each with their own port and dev server output streaming into the same terminal. It's absurdly satisfying to watch.
+
+## The Config That Makes It Work
+
+Turborepo's task pipeline config is surprisingly minimal. Here's the entire `turbo.json` for PitStop:
+
+```
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", "build/**"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+```
+
+The `"^build"` in `dependsOn` is the key insight: it means "build all my workspace dependencies before building me." Turborepo figures out the correct order automatically. You don't have to think about it.
+
+## What Actually Impressed Me
+
+- **Parallel task execution** — tasks that can run simultaneously, do. No extra config required.
+- **Smart caching** — Turborepo caches task outputs. If nothing changed in a package, it won't rebuild it. Build times get wild fast.
+- **Workspace awareness** — it understands your npm workspaces natively. Shared packages like `packages/ui` are automatically available to every app without any extra linking.
+- **Task dependency graph** — define that `build` depends on `^build` and Turborepo handles the ordering. You don't wire this up yourself.
+- **Root-level scripts** — one `npm run dev` at the project root starts everything. No tmux splits, no multiple terminals, no orchestration scripts.
+
+## Don't Sleep On It
+
+If you're building anything with shared code across multiple apps — a design system, shared auth, a common database client — Turborepo is genuinely the right tool. I kept waiting for the right moment to learn it, but the learning curve was way smaller than I expected. The `turbo.json` above is the entire config. That's it. The rest is just standard npm workspaces that Turborepo enhances.
+
+I wasted time being skeptical of it. Don't make the same mistake I did.

@@ -1,0 +1,402 @@
+import { LoaderIcon, ShoppingCart } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { data, useFetcher } from 'react-router';
+import { getPortfolioBase } from '~/airtable';
+import { MdxContent } from '~/components/MdxContent';
+import { Button } from '~/components/Button';
+import { FormAlert } from '~/components/FormAlert';
+import { FormField } from '~/components/FormField';
+import { Card } from '~/components/Card';
+import { FreelanceCallToAction } from '~/components/FreelanceCallToAction';
+import { Heading } from '~/components/Heading';
+import { HeroImage } from '~/components/HeroImage';
+import { ImageGalleryModal } from '~/components/ImageGalleryModal';
+import { ImageThumbnails } from '~/components/ImageThumbnails';
+import { Linky } from '~/components/Linky';
+import { TechStackLogos, type LogoName } from '~/components/TechStackLogos';
+import { getWorkBySlug } from '~/content';
+import type { WorkFrontmatter } from '~/content/types';
+import { useImageGallery } from '~/hooks/useImageGallery';
+import { validateContactForm } from '~/schemas/contact';
+import { generateRouteMeta } from '~/utils/seo';
+import type { Route } from './+types/work-detail';
+
+export function meta({ loaderData }: Route.MetaArgs) {
+    const work = loaderData?.work;
+    return generateRouteMeta({
+        pageTitle: work?.title || 'Work Not Found',
+        descriptionContent: work?.description || 'Project by Seth Davis.',
+        ogUrl: `https://sethdavis.tech/work/${work?.slug || ''}`
+    });
+}
+
+export function loader({ params }: Route.LoaderArgs) {
+    const result = getWorkBySlug(params.slug!);
+
+    if (!result) {
+        throw new Response('Not Found', { status: 404 });
+    }
+
+    return { work: result.frontmatter };
+}
+
+export async function action({ request, params }: Route.ActionArgs) {
+    const formData = await request.formData();
+    const validation = validateContactForm(formData);
+
+    if (!validation.success) {
+        return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
+    }
+
+    try {
+        const response = await getPortfolioBase()('Iridium Interest').create([
+            {
+                fields: {
+                    'First name': validation.data.firstName,
+                    'Last name': validation.data.lastName,
+                    Email: validation.data.email,
+                    Note: validation.data.note || ''
+                }
+            }
+        ]);
+
+        if (!response || response.length === 0) {
+            throw new Error('No record created in Airtable');
+        }
+
+        return data({ success: true }, { status: 200 });
+    } catch (error) {
+        console.error('Error saving interested person:', error);
+        return data(
+            {
+                error: 'There was an error sending your request. Please try again later.'
+            },
+            { status: 500 }
+        );
+    }
+}
+
+function buildGalleryImages(work: WorkFrontmatter) {
+    const images: { src: string; alt: string }[] = [];
+
+    if (work.heroImage) {
+        images.push({
+            src: work.heroImage,
+            alt: work.title || 'Hero image'
+        });
+    }
+
+    for (const gi of work.galleryImages ?? []) {
+        if (gi.src) {
+            images.push({ src: gi.src, alt: gi.alt || work.title || 'Gallery image' });
+        }
+    }
+
+    return images;
+}
+
+function InterestFormSidebar() {
+    const fetcher = useFetcher();
+    const formRef = useRef<HTMLFormElement>(null);
+
+    useEffect(() => {
+        if (fetcher.data && fetcher.data.success && formRef.current) {
+            formRef.current.reset();
+        }
+    }, [fetcher.data]);
+
+    return (
+        <section className="rounded-lg bg-zinc-800 p-8 space-y-4">
+            <Heading as="h2" size="4">
+                Interested?
+            </Heading>
+            <fetcher.Form method="POST" className="space-y-4" ref={formRef}>
+                {fetcher.data?.success ? (
+                    <FormAlert variant="success">
+                        Request sent successfully!
+                    </FormAlert>
+                ) : fetcher.data?.error ? (
+                    <FormAlert variant="error">
+                        There was an error sending your request.
+                        <br />
+                        Please try again later.
+                    </FormAlert>
+                ) : null}
+                <FormField
+                    label="First name"
+                    name="firstName"
+                    required
+                    placeholder="Your first name"
+                    error={fetcher.data?.fieldErrors?.firstName}
+                />
+                <FormField
+                    label="Last name"
+                    name="lastName"
+                    required
+                    placeholder="Your last name"
+                    error={fetcher.data?.fieldErrors?.lastName}
+                />
+                <FormField
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    error={fetcher.data?.fieldErrors?.email}
+                />
+                <FormField
+                    label="Note"
+                    name="note"
+                    as="textarea"
+                    rows={4}
+                    placeholder="Tell me a bit about your project..."
+                    error={fetcher.data?.fieldErrors?.note}
+                />
+                <Button
+                    type="submit"
+                    iconBefore={
+                        fetcher.state !== 'idle' ? (
+                            <LoaderIcon className="animate-spin" />
+                        ) : undefined
+                    }
+                >
+                    {fetcher.state !== 'idle' ? '' : 'Send request'}
+                </Button>
+            </fetcher.Form>
+        </section>
+    );
+}
+
+interface PurchaseSidebarProps {
+    purchaseUrl: string;
+    purchaseButtonText?: string | null;
+    sidebarTitle?: string | null;
+    features?: string[];
+    techStack?: LogoName[];
+}
+
+function PurchaseSidebar({
+    purchaseUrl,
+    purchaseButtonText,
+    sidebarTitle,
+    features,
+    techStack
+}: PurchaseSidebarProps) {
+    return (
+        <section className="rounded-lg bg-zinc-800 p-6 space-y-4 sticky top-4">
+            <Heading as="h2" size="4" className="text-white">
+                {sidebarTitle || 'Get It Now'}
+            </Heading>
+
+            {features && features.length > 0 && (
+                <div className="space-y-3 text-zinc-300">
+                    {features.map(function (feature) {
+                        return (
+                            <div
+                                key={feature}
+                                className="flex items-start gap-2"
+                            >
+                                <span className="text-primary">✓</span>
+                                <span>{feature}</span>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+
+            <Linky external to={purchaseUrl} className="w-full block">
+                <Button
+                    color="primary"
+                    iconBefore={<ShoppingCart />}
+                    className="w-full justify-center"
+                >
+                    {purchaseButtonText || 'Purchase'}
+                </Button>
+            </Linky>
+
+            {techStack && techStack.length > 0 && (
+                <div className="pt-4 flex gap-2 items-center">
+                    <p className="text-sm text-zinc-400">Powered by</p>
+                    <TechStackLogos logos={techStack} />
+                </div>
+            )}
+        </section>
+    );
+}
+
+function WorkLayout({ work }: { work: WorkFrontmatter }) {
+    const galleryImages = buildGalleryImages(work);
+    const hasGallery = galleryImages.length > 1;
+    const { isOpen, selectedIndex, openGallery, closeGallery } =
+        useImageGallery();
+    const techStack = work.techStack as LogoName[];
+    const features = work.features;
+
+    // Get the MDX component for rich content
+    const workModule = getWorkBySlug(work.slug);
+    const hasContent = work.hasContent && workModule;
+
+    const hasPurchase = work.sidebarType === 'purchase' && work.purchaseUrl;
+    const hasInterestForm = work.sidebarType === 'interest-form';
+    const hasLinks = work.sourceUrl || work.demoUrl;
+    const hasTechStack = techStack.length > 0;
+    const hasSidebar =
+        hasPurchase || hasInterestForm || hasLinks || hasTechStack;
+
+    function renderContent() {
+        if (hasContent && workModule) {
+            return <MdxContent Component={workModule.Component} />;
+        }
+
+        return (
+            <>
+                {work.about && (
+                    <>
+                        <Heading as="h2" size="5">
+                            Project Overview
+                        </Heading>
+                        <p className="break-words">{work.about}</p>
+                    </>
+                )}
+                {work.learned && (
+                    <>
+                        <Heading as="h2" size="5">
+                            Knowledge Gained
+                        </Heading>
+                        <p className="break-words">{work.learned}</p>
+                    </>
+                )}
+                {work.impact && (
+                    <>
+                        <Heading as="h2" size="5">
+                            The Impact
+                        </Heading>
+                        <p className="break-words">{work.impact}</p>
+                    </>
+                )}
+            </>
+        );
+    }
+
+    function renderSidebar() {
+        return (
+            <div className="md:col-span-1 space-y-4 min-w-0">
+                {hasPurchase && (
+                    <PurchaseSidebar
+                        purchaseUrl={work.purchaseUrl!}
+                        purchaseButtonText={work.purchaseButtonText}
+                        sidebarTitle={work.sidebarTitle}
+                        features={features}
+                        techStack={techStack}
+                    />
+                )}
+
+                {!hasPurchase && hasTechStack && (
+                    <>
+                        <Heading as="h4" size="5" className="font-bold">
+                            Tech Stack
+                        </Heading>
+                        <Card className="flex flex-wrap gap-3">
+                            <TechStackLogos logos={techStack} />
+                        </Card>
+                    </>
+                )}
+
+                {!hasPurchase && hasLinks && (
+                    <>
+                        <Heading as="h4" size="5" className="font-bold">
+                            Links
+                        </Heading>
+                        <Card className="flex flex-col gap-4">
+                            {work.sourceUrl && (
+                                <Linky
+                                    external
+                                    to={work.sourceUrl}
+                                    className="break-words"
+                                >
+                                    View source code
+                                </Linky>
+                            )}
+                            {work.demoUrl && (
+                                <Linky
+                                    to={work.demoUrl}
+                                    className="break-words"
+                                >
+                                    {work.demoUrlText || 'See the demo'}
+                                </Linky>
+                            )}
+                        </Card>
+                    </>
+                )}
+
+                {hasInterestForm && <InterestFormSidebar />}
+            </div>
+        );
+    }
+
+    return (
+        <>
+            {work.heroImage && (
+                <HeroImage
+                    src={work.heroImage}
+                    alt={work.title || 'Project hero'}
+                    clickable={hasGallery}
+                    onClick={
+                        hasGallery
+                            ? function () {
+                                  openGallery(0);
+                              }
+                            : undefined
+                    }
+                    imageCount={hasGallery ? galleryImages.length : undefined}
+                />
+            )}
+
+            <div className="space-y-6 mb-8">
+                <Heading as="h1" size="1">
+                    {work.title}
+                </Heading>
+                {work.description && (
+                    <p className="text-xl text-zinc-600 dark:text-zinc-300">
+                        {work.description}
+                    </p>
+                )}
+            </div>
+
+            {hasSidebar ? (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="md:col-span-2 space-y-6 min-w-0">
+                        {renderContent()}
+                        <FreelanceCallToAction className="mt-10" />
+                    </div>
+                    {renderSidebar()}
+                </div>
+            ) : (
+                <>
+                    {renderContent()}
+                    <FreelanceCallToAction className="mt-10" />
+                </>
+            )}
+
+            {hasGallery && (
+                <ImageThumbnails
+                    images={galleryImages.slice(1)}
+                    onImageClick={function (index) {
+                        openGallery(index + 1);
+                    }}
+                />
+            )}
+
+            <ImageGalleryModal
+                images={galleryImages}
+                isOpen={isOpen}
+                onClose={closeGallery}
+                initialIndex={selectedIndex}
+            />
+        </>
+    );
+}
+
+export default function WorkDetailRoute({ loaderData }: Route.ComponentProps) {
+    return <WorkLayout work={loaderData.work} />;
+}

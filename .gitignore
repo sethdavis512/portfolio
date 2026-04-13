@@ -1,2 +1,8 @@
-node_modules
+.env
+.DS_Store
+/node_modules/
 lighthouse-reports
+
+# React Router
+/.react-router/
+/build/

@@ -1,5 +1,0 @@
-query GetWorkSlugs {
-    works(where: { status: { equals: "PUBLISHED" } }) {
-        slug
-    }
-}
