@@ -1,76 +1,213 @@
+import { Button } from '~/components/Button';
+import { data, useFetcher } from 'react-router';
+import { generateRouteMeta } from '~/utils/seo';
 import { Heading } from '~/components/Heading';
-import { packages } from '~/content/data/packages';
+import { getPortfolioBase } from '~/airtable';
 import type { Route } from './+types/services';
-import { Card } from '~/components/Card';
-import { cx } from '~/cva.config';
-import { ComingSoonCard } from './products';
 import { Linky } from '~/components/Linky';
-import { ArrowRight } from 'lucide-react';
+import { FormAlert } from '~/components/FormAlert';
+import { FormField } from '~/components/FormField';
+import { LoaderIcon } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { validateContactForm } from '~/schemas/contact';
 
-export function loader() {
-    return { packages };
+export function meta() {
+    return generateRouteMeta({
+        pageTitle: 'Services',
+        descriptionContent:
+            'Frontend development, AI-powered tools, and technical consulting. React and TypeScript expertise from prototype to production.',
+        ogUrl: 'https://sethdavis.tech/services'
+    });
 }
 
-export default function ServicesRoute({ loaderData }: Route.ComponentProps) {
+export async function action({ request }: Route.ActionArgs) {
+    const formData = await request.formData();
+    const validation = validateContactForm(formData);
+
+    if (!validation.success) {
+        return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
+    }
+
+    try {
+        const response = await getPortfolioBase()('Customers').create([
+            {
+                fields: {
+                    'First name': validation.data.firstName,
+                    'Last name': validation.data.lastName,
+                    Email: validation.data.email,
+                    Note: validation.data.note || ''
+                }
+            }
+        ]);
+
+        if (!response || response.length === 0) {
+            throw new Error('No record created in Airtable');
+        }
+
+        return data({ success: true }, { status: 200 });
+    } catch (error) {
+        console.error('Error saving interested person:', error);
+
+        return data(
+            {
+                error: 'There was an error sending your request. Please try again later.'
+            },
+            { status: 500 }
+        );
+    }
+}
+
+export default function ServicesRoute() {
+    const fetcher = useFetcher();
+    const formRef = useRef<HTMLFormElement>(null);
+
+    useEffect(() => {
+        if (fetcher.data && fetcher.data.success && formRef.current) {
+            formRef.current.reset();
+        }
+    }, [fetcher.data]);
+
     return (
-        <>
-            <Heading as="h1">Services</Heading>
-            <p className="mb-8">
-                I offer a range of services to help businesses and individuals
-                leverage the power of AI and technology. Whether you're looking
-                for custom software development, AI consulting, or training
-                workshops, I can provide tailored solutions to meet your needs.
-                With a focus on practical applications and measurable results,
-                my services are designed to help you achieve your goals and stay
-                ahead in the rapidly evolving tech landscape.
-            </p>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
-                {loaderData.packages.map((pkg) => (
-                    <div key={pkg.id}>
-                        <Card
-                            className={cx(
-                                'p-6 h-full flex flex-col justify-between items-start gap-4 min-h-100 bg-linear-to-br from-zinc-800 to-zinc-900'
-                            )}
-                        >
-                            <div className="self-start items-start">
-                                <div className="bg-green-700 inline-block rounded-full py-1 px-2 mb-4">
-                                    <p className="font-bold">
-                                        ${pkg.price}
-                                        {pkg.type === 'HOURLY' ? ' / hr' : ''}
-                                    </p>
-                                </div>
-                                <div>
-                                    <Heading>{pkg.name}</Heading>
-                                    <p className="mb-4">{pkg.description}</p>
-                                    <ul className="flex flex-col gap-4">
-                                        {pkg.offerings?.map((offering) => (
-                                            <li key={offering.id}>
-                                                <p className="mb-2">
-                                                    <strong>
-                                                        {offering.name}
-                                                    </strong>
-                                                </p>
-                                                <p>{offering.description}</p>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="self-end pt-4">
-                                <Linky
-                                    className="underline"
-                                    external
-                                    to={`mailto:sethdavis512@gmail.com?subject=Inquiry about ${pkg.name} service&body=Hi Seth, I am interested in your ${pkg.name} service. Thank you!`}
-                                >
-                                    Inquire
-                                    <ArrowRight className="w-4 h-4" />
-                                </Linky>
-                            </div>
-                        </Card>
-                    </div>
-                ))}
-                {loaderData.packages.length % 2 > 0 && <ComingSoonCard />}
+        <div className="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+                <Heading as="h1" className="mb-8">
+                    Services
+                </Heading>
+
+                <section className="mb-8 space-y-4">
+                    <p className="text-xl text-zinc-300">
+                        I help founders and teams ship polished web applications
+                        and AI-powered tools. From hands-on building to
+                        technical strategy, I bring 9+ years of production
+                        experience to your project.
+                    </p>
+                </section>
+
+                <section className="mb-8">
+                    <Heading as="h2" size="4">
+                        AI-Powered Tools
+                    </Heading>
+                    <p className="mt-4">
+                        Building intelligent features and integrations using
+                        Vercel AI SDK, OpenAI, and Claude API. From chatbots and
+                        content generation to custom AI workflows that solve
+                        real problems.
+                    </p>
+                </section>
+
+                <section className="mb-8">
+                    <Heading as="h2" size="4">
+                        Web Application Development
+                    </Heading>
+                    <p className="mt-4">
+                        Full-stack React and TypeScript applications built with
+                        React Router 7, Prisma, and PostgreSQL. Responsive,
+                        accessible, and ready for production.
+                    </p>
+                </section>
+
+                <section className="mb-8">
+                    <Heading as="h2" size="4">
+                        Technical Consulting
+                    </Heading>
+                    <p className="mt-4">
+                        Code audits, architecture reviews, and technical
+                        strategy sessions. A fresh set of eyes on your codebase
+                        with actionable recommendations.
+                    </p>
+                </section>
+
+                <section className="mb-12">
+                    <Heading as="h2" size="4">
+                        Let's Work Together
+                    </Heading>
+                    <p className="mb-6 mt-4">
+                        If you have a project in mind or just want to discuss
+                        possibilities, I'd love to hear from you. No commitment
+                        required.
+                    </p>
+                </section>
             </div>
-        </>
+            <div>
+                <section className="rounded-lg bg-zinc-800 p-8 space-y-4">
+                    <Heading as="h2" size="4">
+                        Schedule a call
+                    </Heading>
+                    <p>
+                        Rather have a video chat?{' '}
+                        <Linky
+                            external
+                            to="https://tidycal.com/sethdavis512/meet-and-greet"
+                        >
+                            See calendar availability
+                        </Linky>
+                    </p>
+                    <hr className="my-6 border-zinc-500" />
+                    <fetcher.Form
+                        method="POST"
+                        className="space-y-4"
+                        ref={formRef}
+                    >
+                        {fetcher.data?.success ? (
+                            <FormAlert variant="success">
+                                Request sent successfully!
+                            </FormAlert>
+                        ) : fetcher.data?.error ? (
+                            <FormAlert variant="error">
+                                There was an error sending your request.
+                                <br />
+                                Please try again later.
+                            </FormAlert>
+                        ) : null}
+                        <Heading as="h2" size="4">
+                            Make a request
+                        </Heading>
+                        <FormField
+                            label="First name"
+                            name="firstName"
+                            required
+                            placeholder="Your first name"
+                            error={fetcher.data?.fieldErrors?.firstName}
+                        />
+                        <FormField
+                            label="Last name"
+                            name="lastName"
+                            required
+                            placeholder="Your last name"
+                            error={fetcher.data?.fieldErrors?.lastName}
+                        />
+                        <FormField
+                            label="Email Address"
+                            name="email"
+                            type="email"
+                            required
+                            placeholder="you@example.com"
+                            error={fetcher.data?.fieldErrors?.email}
+                        />
+                        <FormField
+                            label="Note"
+                            name="note"
+                            as="textarea"
+                            rows={4}
+                            placeholder="Tell me a bit about your project..."
+                            error={fetcher.data?.fieldErrors?.note}
+                        />
+                        <Button
+                            type="submit"
+                            disabled={fetcher.state !== 'idle'}
+                            iconBefore={
+                                fetcher.state !== 'idle' ? (
+                                    <LoaderIcon className="animate-spin" />
+                                ) : undefined
+                            }
+                        >
+                            {fetcher.state !== 'idle'
+                                ? 'Sending...'
+                                : 'Send request'}
+                        </Button>
+                    </fetcher.Form>
+                </section>
+            </div>
+        </div>
     );
 }

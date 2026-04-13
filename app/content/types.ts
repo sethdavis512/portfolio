@@ -83,20 +83,3 @@ export interface Skill {
     name: string;
     sortOrder: number;
 }
-
-export interface Offering {
-    id: string;
-    name: string;
-    description: string;
-}
-
-export interface Package {
-    id: string;
-    name: string;
-    description: string;
-    type: string;
-    price: number;
-    order: number;
-    status: string;
-    offerings: Offering[];
-}

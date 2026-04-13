@@ -177,7 +177,7 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                     <ButtonLink to="/work" size="lg">
                         See my work
                     </ButtonLink>
-                    <ButtonLink to="/freelance" size="lg" variant="outline">
+                    <ButtonLink to="/services" size="lg" variant="outline">
                         Get in touch
                     </ButtonLink>
                 </div>

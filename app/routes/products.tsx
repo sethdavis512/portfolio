@@ -1,7 +1,7 @@
 import { Package, ShoppingCart } from 'lucide-react';
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
-import { FreelanceCallToAction } from '~/components/FreelanceCallToAction';
+import { ServicesCallToAction } from '~/components/ServicesCallToAction';
 import { getPublishedProducts } from '~/content';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
@@ -146,7 +146,7 @@ export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
                 })}
                 <ComingSoonCard />
             </div>
-            <FreelanceCallToAction className="mt-10" />
+            <ServicesCallToAction className="mt-10" />
         </>
     );
 }

@@ -3,13 +3,13 @@ import { Card } from '~/components/Card';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 
-interface FreelanceCallToActionProps {
+interface ServicesCallToActionProps {
     className?: string;
 }
 
-export function FreelanceCallToAction({
+export function ServicesCallToAction({
     className
-}: FreelanceCallToActionProps) {
+}: ServicesCallToActionProps) {
     return (
         <Card
             className={`overflow-hidden bg-zinc-900 text-white ${className ?? ''}`.trim()}
@@ -21,11 +21,10 @@ export function FreelanceCallToAction({
                     </Heading>
                     <p className="text-sm text-zinc-300">
                         I help founders and teams ship polished React
-                        applications and AI-powered tools—from prototype to
-                        production.
+                        applications and AI-powered tools.
                     </p>
                 </div>
-                <Linky to="/freelance" className="shrink-0">
+                <Linky to="/services" className="shrink-0">
                     <Button color="primary">Reach out</Button>
                 </Linky>
             </div>

@@ -7,7 +7,7 @@ import { Button } from '~/components/Button';
 import { FormAlert } from '~/components/FormAlert';
 import { FormField } from '~/components/FormField';
 import { Card } from '~/components/Card';
-import { FreelanceCallToAction } from '~/components/FreelanceCallToAction';
+import { ServicesCallToAction } from '~/components/ServicesCallToAction';
 import { Heading } from '~/components/Heading';
 import { HeroImage } from '~/components/HeroImage';
 import { ImageGalleryModal } from '~/components/ImageGalleryModal';
@@ -367,14 +367,14 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="md:col-span-2 space-y-6 min-w-0">
                         {renderContent()}
-                        <FreelanceCallToAction className="mt-10" />
+                        <ServicesCallToAction className="mt-10" />
                     </div>
                     {renderSidebar()}
                 </div>
             ) : (
                 <>
                     {renderContent()}
-                    <FreelanceCallToAction className="mt-10" />
+                    <ServicesCallToAction className="mt-10" />
                 </>
             )}
 

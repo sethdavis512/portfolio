@@ -4,17 +4,20 @@ export const contactFormSchema = z.object({
     firstName: z
         .string()
         .trim()
-        .min(1, 'First name is required'),
+        .min(1, 'First name is required')
+        .max(100, 'First name is too long'),
     lastName: z
         .string()
         .trim()
-        .min(1, 'Last name is required'),
+        .min(1, 'Last name is required')
+        .max(100, 'Last name is too long'),
     email: z
         .string()
         .trim()
         .min(1, 'Email is required')
+        .max(320, 'Email is too long')
         .email('Please enter a valid email address'),
-    note: z.string().optional()
+    note: z.string().trim().max(2000, 'Note is too long').optional()
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;

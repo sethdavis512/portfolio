@@ -11,11 +11,11 @@ export function FormAlert({
     children
 }: PropsWithChildren<FormAlertProps>) {
     if (variant === 'success') {
-        return <Banner>{children}</Banner>;
+        return <Banner role="alert">{children}</Banner>;
     }
 
     return (
-        <div className="rounded-lg border border-red-500 bg-red-500/15 p-4">
+        <div role="alert" className="rounded-lg border border-red-500 bg-red-500/15 p-4">
             <div className="mb-2">
                 <TriangleAlert className="text-red-400" />
             </div>

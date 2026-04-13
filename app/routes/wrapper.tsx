@@ -38,9 +38,9 @@ const NAV_ITEMS: NavItem[] = [
     },
     {
         type: 'internal',
-        to: '/freelance',
-        label: 'Freelance',
-        ariaLabel: 'View my freelance services and offerings'
+        to: '/services',
+        label: 'Services',
+        ariaLabel: 'View my services and offerings'
     },
     {
         type: 'internal',

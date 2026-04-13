@@ -29,10 +29,11 @@ export interface BannerProps
 export function Banner({
     className,
     children,
-    variant
+    variant,
+    ...rest
 }: PropsWithChildren<BannerProps>) {
     return (
-        <Card className={cx(bannerVariants({ variant }), className)}>
+        <Card className={cx(bannerVariants({ variant }), className)} {...rest}>
             {children}
         </Card>
     );

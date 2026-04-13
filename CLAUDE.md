@@ -114,4 +114,4 @@ export const componentVariants = cva({
 - Avoid `useEffect` in React Router 7 routes, prefer loaders/actions
 - Use classic `function` syntax over arrow functions
 - MDX files must escape `<` characters outside code blocks (use `&lt;` or `≤`)
-- Airtable is used for freelance contact and interest forms (separate from content)
+- Airtable is used for services contact and interest forms (separate from content)

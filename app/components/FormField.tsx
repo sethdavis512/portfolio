@@ -21,6 +21,7 @@ export function FormField({
     as = 'input',
     rows
 }: FormFieldProps) {
+    const errorId = `${name}-error`;
     const inputClasses = cx(
         'p-2 border rounded w-full',
         error
@@ -41,6 +42,8 @@ export function FormField({
                     rows={rows}
                     className={inputClasses}
                     placeholder={placeholder}
+                    aria-invalid={error ? true : undefined}
+                    aria-describedby={error ? errorId : undefined}
                 />
             ) : (
                 <input
@@ -50,10 +53,12 @@ export function FormField({
                     required={required}
                     className={inputClasses}
                     placeholder={placeholder}
+                    aria-invalid={error ? true : undefined}
+                    aria-describedby={error ? errorId : undefined}
                 />
             )}
             {error && (
-                <p className="mt-1 text-sm text-red-400">{error}</p>
+                <p id={errorId} className="mt-1 text-sm text-red-400">{error}</p>
             )}
         </div>
     );
