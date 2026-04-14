@@ -1,14 +1,14 @@
-FROM oven/bun:1-alpine AS deps
+FROM oven/bun:1 AS deps
 COPY package.json bun.lock /app/
 WORKDIR /app
 RUN bun install --frozen-lockfile
 
-FROM oven/bun:1-alpine AS prod-deps
+FROM oven/bun:1 AS prod-deps
 COPY package.json bun.lock /app/
 WORKDIR /app
 RUN bun install --frozen-lockfile --production
 
-FROM oven/bun:1-alpine AS build
+FROM oven/bun:1 AS build
 COPY . /app/
 COPY --from=deps /app/node_modules /app/node_modules
 WORKDIR /app
