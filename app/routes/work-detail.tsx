@@ -204,15 +204,14 @@ function PurchaseSidebar({
                 </div>
             )}
 
-            <Linky external to={purchaseUrl} className="w-full block">
-                <Button
-                    color="primary"
-                    iconBefore={<ShoppingCart />}
-                    className="w-full justify-center"
-                >
-                    {purchaseButtonText || 'Purchase'}
-                </Button>
-            </Linky>
+            <Button
+                href={purchaseUrl}
+                color="primary"
+                iconBefore={<ShoppingCart />}
+                className="w-full justify-center"
+            >
+                {purchaseButtonText || 'Purchase'}
+            </Button>
 
             {techStack && techStack.length > 0 && (
                 <div className="pt-4 flex gap-2 items-center">
@@ -310,8 +309,7 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
                         <Card className="flex flex-col gap-4">
                             {work.sourceUrl && (
                                 <Linky
-                                    external
-                                    to={work.sourceUrl}
+                                    href={work.sourceUrl}
                                     className="break-words"
                                 >
                                     View source code
@@ -319,7 +317,7 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
                             )}
                             {work.demoUrl && (
                                 <Linky
-                                    to={work.demoUrl}
+                                    href={work.demoUrl}
                                     className="break-words"
                                 >
                                     {work.demoUrlText || 'See the demo'}

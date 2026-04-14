@@ -1,5 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import { CodeBlock } from './CodeBlock';
+import { linkyVariants } from './Linky';
 
 function getCodeProps(children: ReactNode): { code: string; className: string } | null {
     if (
@@ -25,6 +26,22 @@ const mdxComponents: Record<string, ComponentType<any>> = {
         return <pre>{children}</pre>;
     },
 
+    a: function MdxAnchor({ href, children, ...props }: { href?: string; children: ReactNode }) {
+        return (
+            <a
+                href={href}
+                className={linkyVariants({ variant: 'underline' })}
+                {...(href?.startsWith('http') && {
+                    target: '_blank',
+                    rel: 'noopener noreferrer'
+                })}
+                {...props}
+            >
+                {children}
+            </a>
+        );
+    },
+
     code: function MdxInlineCode({ children, className }: { children: ReactNode; className?: string }) {
         // Fenced code blocks get className="language-xxx" from MDX
         // Those are handled by the <pre> override above, so just render as-is
@@ -33,7 +50,7 @@ const mdxComponents: Record<string, ComponentType<any>> = {
         }
         // Inline code
         return (
-            <code className="bg-zinc-100 dark:bg-slate-800 px-2 py-1.5 rounded text-zinc-900 dark:text-zinc-50 font-mono text-sm border border-zinc-300 dark:border-zinc-700">
+            <code className="bg-zinc-100 dark:bg-zinc-800 px-2 py-1.5 rounded text-zinc-900 dark:text-zinc-50 font-mono text-sm border border-zinc-300 dark:border-zinc-700">
                 {children}
             </code>
         );
@@ -46,7 +63,7 @@ interface MdxContentProps {
 
 export function MdxContent({ Component }: MdxContentProps) {
     return (
-        <div className="prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:my-4 prose-pre:p-0 prose-pre:bg-none prose-p:text-white">
+        <div className="prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:my-4 prose-pre:p-0 prose-pre:bg-none">
             <Component components={mdxComponents} />
         </div>
     );

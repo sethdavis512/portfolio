@@ -5,21 +5,34 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import serverAdapter from 'hono-react-router-adapter/vite';
+import { defaultOptions } from '@hono/vite-dev-server';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
     plugins: [
         tailwindcss(),
-        mdx({
-            remarkPlugins: [
-                remarkFrontmatter,
-                remarkMdxFrontmatter,
-                remarkGfm
+        {
+            enforce: 'pre',
+            ...mdx({
+                remarkPlugins: [
+                    remarkFrontmatter,
+                    remarkMdxFrontmatter,
+                    remarkGfm
+                ]
+            })
+        },
+        reactRouter(),
+        serverAdapter({
+            entry: './server/index.ts',
+            exclude: [
+                ...defaultOptions.exclude,
+                /.*\.mdx$/,
+                '/assets/**',
+                '/app/**',
+                /\?(?:inline|url|no-inline|raw|import(?:&(?:inline|url|no-inline|raw)?)?)$/
             ]
         }),
-        reactRouter(),
-        serverAdapter({ entry: './server/index.ts' }),
         tsconfigPaths()
     ],
 });

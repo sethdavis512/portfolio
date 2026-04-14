@@ -6,7 +6,7 @@ import { generateRouteMeta } from '~/utils/seo';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 import type { Route } from './+types/about';
-import { ButtonLink } from '~/components/ButtonLink';
+import { Button } from '~/components/Button';
 
 export function meta() {
     return generateRouteMeta({
@@ -55,9 +55,11 @@ function FactCard({
             </Heading>
             {linkUrl && content ? (
                 <p>
-                    <Linky external={isExternal} to={linkUrl}>
-                        {content}
-                    </Linky>
+                    {isExternal ? (
+                        <Linky href={linkUrl}>{content}</Linky>
+                    ) : (
+                        <Linky to={linkUrl}>{content}</Linky>
+                    )}
                 </p>
             ) : content ? (
                 <p>{content}</p>
@@ -174,12 +176,12 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                     or get in touch to discuss working together.
                 </p>
                 <div className="flex gap-4">
-                    <ButtonLink to="/work" size="lg">
+                    <Button to="/work" size="lg">
                         See my work
-                    </ButtonLink>
-                    <ButtonLink to="/services" size="lg" variant="outline">
+                    </Button>
+                    <Button to="/services" size="lg" variant="outline">
                         Get in touch
-                    </ButtonLink>
+                    </Button>
                 </div>
             </section>
             <hr className="border-zinc-500 my-12" />

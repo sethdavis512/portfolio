@@ -1,6 +1,6 @@
 import { Heading } from '~/components/Heading';
 import { Card } from '~/components/Card';
-import { ButtonLink } from '~/components/ButtonLink';
+import { Button } from '~/components/Button';
 import { generateRouteMeta } from '~/utils/seo';
 
 export function meta() {
@@ -271,12 +271,12 @@ export default function DesignTechnologistRoute() {
                     and generative interfaces.
                 </p>
                 <div className="flex gap-4">
-                    <ButtonLink to="/work" size="lg">
+                    <Button to="/work" size="lg">
                         See my work
-                    </ButtonLink>
-                    <ButtonLink to="/resume" size="lg" variant="outline">
+                    </Button>
+                    <Button to="/resume" size="lg" variant="outline">
                         View resume
-                    </ButtonLink>
+                    </Button>
                 </div>
             </section>
         </>

@@ -1,6 +1,6 @@
 import { Card } from '~/components/Card';
 import { Heading } from '~/components/Heading';
-import { ButtonLink } from '~/components/ButtonLink';
+import { Button } from '~/components/Button';
 import { Linky } from '~/components/Linky';
 import { generateRouteMeta } from '~/utils/seo';
 import { CheckCircle2, Mail, MessageCircle } from 'lucide-react';
@@ -62,17 +62,11 @@ export default function ThankYouRoute() {
                             <div className="space-y-2">
                                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
                                     Reach out via:{' '}
-                                    <Linky
-                                        external
-                                        to="https://x.com/sethdavis512"
-                                    >
+                                    <Linky href="https://x.com/sethdavis512">
                                         X (@sethdavis512)
                                     </Linky>
                                     {' or '}
-                                    <Linky
-                                        external
-                                        to="https://www.linkedin.com/in/sethdavis512/"
-                                    >
+                                    <Linky href="https://www.linkedin.com/in/sethdavis512/">
                                         LinkedIn
                                     </Linky>
                                 </p>
@@ -92,8 +86,8 @@ export default function ThankYouRoute() {
                             something new.
                         </p>
                         <div className="flex flex-wrap gap-3 pt-2">
-                            <ButtonLink to="/">Return Home</ButtonLink>
-                            <ButtonLink to="/work">View My Work</ButtonLink>
+                            <Button to="/">Return Home</Button>
+                            <Button to="/work">View My Work</Button>
                         </div>
                     </div>
                 </Card>

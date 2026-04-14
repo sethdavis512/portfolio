@@ -57,12 +57,12 @@ export function TechShowcase({
                             </Heading>
                             <Card className="flex flex-col gap-4">
                                 {sourceUrl && (
-                                    <Linky external to={sourceUrl} className="break-words">
+                                    <Linky href={sourceUrl} className="break-words">
                                         View source code
                                     </Linky>
                                 )}
                                 {demoUrl && (
-                                    <Linky external to={demoUrl} className="break-words">
+                                    <Linky href={demoUrl} className="break-words">
                                         {demoUrlText || "See the demo"}
                                     </Linky>
                                 )}

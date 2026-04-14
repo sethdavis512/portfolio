@@ -231,7 +231,7 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
                         content={config.title}
                         key={`${logoName}-${index}`}
                     >
-                        <Linky to={config.url} external>
+                        <Linky href={config.url}>
                             {config.component({ tabIndex: -1 })}
                         </Linky>
                     </Tooltip>

@@ -1,64 +1,69 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react';
+import type { VariantProps } from 'cva';
+import type { Path } from 'react-router';
 import { Link } from 'react-router';
 
-import { cx } from '~/cva.config';
+import { cva, cx } from '~/cva.config';
 
-interface Path {
-    /**
-     * A URL pathname, beginning with a /.
-     */
-    pathname: string;
-    /**
-     * A URL search string, beginning with a ?.
-     */
-    search: string;
-    /**
-     * A URL fragment identifier, beginning with a #.
-     */
-    hash: string;
-}
+export const linkyVariants = cva({
+    base: 'inline-flex cursor-pointer items-center gap-1.5 transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
+    variants: {
+        variant: {
+            inline: 'text-primary-400 hover:text-primary-300',
+            muted: 'text-zinc-400 hover:text-zinc-200',
+            underline:
+                'text-primary-400 hover:text-primary-300 underline underline-offset-4 decoration-primary-500/40 hover:decoration-primary-400'
+        }
+    },
+    defaultVariants: {
+        variant: 'inline'
+    }
+});
 
-interface LinkyProps extends HTMLAttributes<HTMLAnchorElement> {
-    to: string | Partial<Path>;
+interface LinkyBaseProps
+    extends Omit<HTMLAttributes<HTMLAnchorElement>, 'className'>,
+        VariantProps<typeof linkyVariants> {
     className?: string;
-    external?: boolean;
-    px?: number;
-    py?: number;
 }
+
+interface InternalLinkyProps extends LinkyBaseProps {
+    to: string | Partial<Path>;
+    href?: never;
+}
+
+interface ExternalLinkyProps extends LinkyBaseProps {
+    href: string;
+    to?: never;
+}
+
+export type LinkyProps = InternalLinkyProps | ExternalLinkyProps;
 
 export function Linky({
     children,
     className,
-    external,
-    px,
-    py,
-    to,
+    variant,
     ...rest
 }: PropsWithChildren<LinkyProps>) {
-    const linkClassName = cx(
-        'inline-flex cursor-pointer items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
-        'text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300',
-        px && `px-${px}`,
-        py && `py-${py}`,
-        className
-    );
+    const classes = cx(linkyVariants({ variant, className }));
 
-    if (external) {
+    if ('href' in rest && rest.href != null) {
+        const { href, ...anchorProps } = rest;
         return (
             <a
-                className={linkClassName}
-                href={to as string}
+                className={classes}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                {...rest}
+                {...anchorProps}
             >
                 {children}
             </a>
         );
     }
 
+    const { to, ...linkProps } = rest as InternalLinkyProps;
     return (
-        <Link className={linkClassName} to={to} {...rest}>
+        <Link className={classes} to={to} {...linkProps}>
             {children}
         </Link>
     );

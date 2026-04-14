@@ -135,10 +135,7 @@ export default function ServicesRoute() {
                     </Heading>
                     <p>
                         Rather have a video chat?{' '}
-                        <Linky
-                            external
-                            to="https://tidycal.com/sethdavis512/meet-and-greet"
-                        >
+                        <Linky href="https://tidycal.com/sethdavis512/meet-and-greet">
                             See calendar availability
                         </Linky>
                     </p>

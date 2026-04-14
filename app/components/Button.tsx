@@ -1,145 +1,137 @@
 import type { PropsWithChildren, JSX } from 'react';
 import type { VariantProps } from 'cva';
+import type { LinkProps } from 'react-router';
+import { Link } from 'react-router';
 
 import { cva, cx } from '~/cva.config';
 
 export const buttonVariants = cva({
-    base: 'rounded-lg text-white focus:ring-2 focus:outline-none border-2',
+    base: 'inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
     variants: {
         color: {
-            primary: [
-                'bg-primary-400 dark:bg-primary-900 dark:hover:bg-primary-600 hover:bg-primary-600',
-                'border-primary-500 dark:border-primary-800',
-                'focus:ring-primary-300 dark:focus:ring-primary-800'
-            ],
-            secondary: [
-                'bg-secondary-500 dark:bg-secondary-900 dark:hover:bg-secondary-600 hover:bg-secondary-600',
-                'border-secondary-500 dark:border-secondary-500',
-                'focus:ring-secondary-300 dark:focus:ring-secondary-800'
-            ],
-            success: [
-                'bg-success-500 dark:bg-success-900 dark:hover:bg-success-600 hover:bg-success-600',
-                'border-success-700 dark:border-success-800',
-                'focus:ring-success-300 dark:focus:ring-success-800'
-            ],
-            warning: [
-                'bg-warning-500 dark:bg-warning-900 dark:hover:bg-warning-600 hover:bg-warning-600',
-                'border-warning-700 dark:border-warning-800',
-                'focus:ring-warning-300 dark:focus:ring-warning-800'
-            ],
-            danger: [
-                'bg-danger-500 dark:bg-danger-900 dark:hover:bg-danger-600 hover:bg-danger-600',
-                'border-danger-700 dark:border-danger-800',
-                'focus:ring-danger-300 dark:focus:ring-danger-800'
-            ]
+            primary: [],
+            secondary: []
         },
         variant: {
-            soft: ['border-none'],
-            outline: ['bg-transparent dark:bg-transparent']
+            solid: [],
+            soft: [],
+            outline: [],
+            ghost: [
+                'border-none bg-transparent text-current',
+                'hover:bg-zinc-800',
+                'focus-visible:ring-primary-400'
+            ]
         },
         size: {
-            sm: 'px-2.5 py-1.5 text-sm',
-            md: 'px-3.5 py-2',
-            lg: 'px-6 py-3 text-xl'
+            sm: 'px-3 py-1.5 text-sm gap-1.5',
+            md: 'px-4 py-2 text-sm gap-1.5',
+            lg: 'px-6 py-3 text-base gap-2'
         }
     },
     defaultVariants: {
         color: 'primary',
+        variant: 'solid',
         size: 'md'
     },
     compoundVariants: [
+        // Primary solid
         {
             color: 'primary',
-            variant: ['soft'],
+            variant: 'solid',
             className: [
-                `bg-primary-300/25 dark:bg-primary-900/25 dark:hover:bg-primary-600/40 hover:bg-primary-600/40`,
-                `focus:ring-primary-300 dark:focus:ring-primary-800`
+                'bg-primary-600 hover:bg-primary-500 text-white',
+                'border-none shadow-sm shadow-primary-900/30',
+                'focus-visible:ring-primary-400'
             ]
         },
+        // Primary outline
         {
             color: 'primary',
-            variant: ['soft', 'outline'],
+            variant: 'outline',
             className: [
-                `text-primary-500 dark:text-primary-500`,
-                `hover:bg-primary-300/40 dark:hover:bg-primary-900/40`
+                'border border-primary-500/50 hover:border-primary-400 text-primary-400 hover:text-primary-300',
+                'bg-transparent hover:bg-primary-500/10',
+                'focus-visible:ring-primary-400'
             ]
         },
+        // Primary soft
+        {
+            color: 'primary',
+            variant: 'soft',
+            className: [
+                'border-none bg-primary-500/15 hover:bg-primary-500/25 text-primary-400 hover:text-primary-300',
+                'focus-visible:ring-primary-400'
+            ]
+        },
+        // Secondary solid
         {
             color: 'secondary',
-            variant: ['soft'],
+            variant: 'solid',
             className: [
-                `bg-secondary-300/25 dark:bg-secondary-900/25 dark:hover:bg-secondary-600/40 hover:bg-secondary-600/40`,
-                `focus:ring-secondary-300 dark:focus:ring-secondary-800`
+                'bg-secondary-600 hover:bg-secondary-500 text-white',
+                'border-none shadow-sm shadow-secondary-900/30',
+                'focus-visible:ring-secondary-400'
             ]
         },
+        // Secondary outline
         {
             color: 'secondary',
-            variant: ['soft', 'outline'],
+            variant: 'outline',
             className: [
-                `text-secondary-500 dark:text-secondary-500`,
-                `hover:bg-secondary-300/40 dark:hover:bg-secondary-900/40`
+                'border border-secondary-500/50 hover:border-secondary-400 text-secondary-400 hover:text-secondary-300',
+                'bg-transparent hover:bg-secondary-500/10',
+                'focus-visible:ring-secondary-400'
             ]
         },
+        // Secondary soft
         {
-            color: 'success',
-            variant: ['soft'],
+            color: 'secondary',
+            variant: 'soft',
             className: [
-                `bg-success-300/25 dark:bg-success-900/25 dark:hover:bg-success-600/40 hover:bg-success-600/40`,
-                `focus:ring-success-300 dark:focus:ring-success-800`
-            ]
-        },
-        {
-            color: 'success',
-            variant: ['soft', 'outline'],
-            className: [
-                `text-success-500 dark:text-success-500`,
-                `hover:bg-success-300/40 dark:hover:bg-success-900/40`
-            ]
-        },
-        {
-            color: 'warning',
-            variant: ['soft'],
-            className: [
-                `bg-warning-300/25 dark:bg-warning-900/25 dark:hover:bg-warning-600/40 hover:bg-warning-600/40`,
-                `focus:ring-warning-300 dark:focus:ring-warning-800`
-            ]
-        },
-        {
-            color: 'warning',
-            variant: ['soft', 'outline'],
-            className: [
-                `text-warning-500 dark:text-warning-500`,
-                `hover:bg-warning-300/40 dark:hover:bg-warning-900/40`
-            ]
-        },
-        {
-            color: 'danger',
-            variant: ['soft'],
-            className: [
-                `bg-danger-300/25 dark:bg-danger-900/25 dark:hover:bg-danger-600/40 hover:bg-danger-600/40`,
-                `focus:ring-danger-300 dark:focus:ring-danger-800`
-            ]
-        },
-        {
-            color: 'danger',
-            variant: ['soft', 'outline'],
-            className: [
-                `text-danger-500 dark:text-danger-500`,
-                `hover:bg-danger-300/40 dark:hover:bg-danger-900/40`
+                'border-none bg-secondary-500/15 hover:bg-secondary-500/25 text-secondary-400 hover:text-secondary-300',
+                'focus-visible:ring-secondary-400'
             ]
         }
     ]
 });
 
-export interface ButtonProps
-    extends Pick<
-            React.ButtonHTMLAttributes<HTMLButtonElement>,
-            'className' | 'disabled' | 'name' | 'type' | 'value' | 'onClick'
-        >,
-        VariantProps<typeof buttonVariants> {
+interface SharedButtonProps extends VariantProps<typeof buttonVariants> {
+    className?: string;
     iconBefore?: JSX.Element;
     iconAfter?: JSX.Element;
 }
+
+interface NativeButtonProps
+    extends SharedButtonProps,
+        Pick<
+            React.ButtonHTMLAttributes<HTMLButtonElement>,
+            'disabled' | 'name' | 'type' | 'value' | 'onClick'
+        > {
+    to?: never;
+    href?: never;
+}
+
+interface LinkButtonProps extends SharedButtonProps {
+    to: LinkProps['to'];
+    href?: never;
+    disabled?: never;
+    name?: never;
+    type?: never;
+    value?: never;
+    onClick?: never;
+}
+
+interface ExternalButtonProps extends SharedButtonProps {
+    href: string;
+    to?: never;
+    disabled?: never;
+    name?: never;
+    type?: never;
+    value?: never;
+    onClick?: never;
+}
+
+export type ButtonProps = NativeButtonProps | LinkButtonProps | ExternalButtonProps;
 
 export function Button({
     children,
@@ -151,24 +143,60 @@ export function Button({
     variant,
     ...rest
 }: PropsWithChildren<ButtonProps>) {
-    return (
-        <button
-            className={cx(
-                buttonVariants({
-                    className,
-                    color,
-                    size,
-                    variant
-                }),
-                (Boolean(IconBefore) || Boolean(IconAfter)) &&
-                    children &&
-                    'flex items-center gap-1.5'
-            )}
-            {...rest}
-        >
+    const classes = cx(
+        buttonVariants({
+            className,
+            color,
+            size,
+            variant
+        }),
+        (Boolean(IconBefore) || Boolean(IconAfter)) &&
+            children &&
+            'flex items-center gap-1.5'
+    );
+
+    const content = (
+        <>
             {IconBefore ?? null}
             {children && <span className="inline-block">{children}</span>}
             {IconAfter ?? null}
+        </>
+    );
+
+    if ('to' in rest && rest.to != null) {
+        const { to } = rest;
+        return (
+            <Link className={classes} to={to}>
+                {content}
+            </Link>
+        );
+    }
+
+    if ('href' in rest && rest.href != null) {
+        const { href } = rest;
+        return (
+            <a
+                className={classes}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {content}
+            </a>
+        );
+    }
+
+    const { disabled, name, type, value, onClick } = rest as NativeButtonProps;
+    return (
+        <button
+            className={classes}
+            disabled={disabled}
+            name={name}
+            type={type}
+            value={value}
+            onClick={onClick}
+        >
+            {content}
         </button>
     );
 }

@@ -115,3 +115,26 @@ export const componentVariants = cva({
 - Use classic `function` syntax over arrow functions
 - MDX files must escape `<` characters outside code blocks (use `&lt;` or `≤`)
 - Airtable is used for services contact and interest forms (separate from content)
+
+## Design Context
+
+### Users
+Mixed audience: hiring managers evaluating credibility, potential clients scoping collaboration, and developer peers browsing work and TILs. They arrive with different goals but all need to quickly understand who Seth is, what he builds, and why it matters. Design should serve fast scanning (recruiters) and deeper exploration (peers, clients) equally.
+
+### Brand Personality
+**Bold, creative, energetic.** This is not a quiet resume site. It should feel like the work of someone who ships ambitious things and enjoys the craft. Design choices should make a statement without tipping into gimmick territory.
+
+### Aesthetic Direction
+- **Dark-first**: Dark mode is the default and primary experience (hard-coded `dark` class)
+- **Color system**: Primary (teal/cyan), Secondary (blue/purple), Tertiary (magenta) in OKLCH with 100-900 scales. Zinc for neutrals
+- **Typography**: Inter for body, JetBrains Mono for code. Hero text goes big and bold (`font-black`, up to `text-9xl`)
+- **Motion**: Subtle and purposeful. Fade-slide entrances, gentle pulse, smooth hover transitions (200-300ms). No gratuitous animation
+- **Anti-reference**: Must not look like a generic dev portfolio template. No cookie-cutter layouts, stock illustrations, or safe/bland choices
+- **Theme**: Light mode supported via `dark:` variants but dark is the primary design surface
+
+### Design Principles
+1. **Show, don't decorate.** Every visual choice should reveal something about the work or the person. Ornament without purpose gets cut.
+2. **Confidence over cleverness.** Bold typography, strong color, decisive layout. Avoid hedging with too many small elements competing for attention.
+3. **Respect the scan.** Mixed audience means varied attention spans. Key information should land in seconds; depth should reward those who stay.
+4. **Dark canvas, vivid accents.** The zinc-950 background is the stage. Primary/secondary/tertiary colors are the performers. Use them with intention, not everywhere.
+5. **WCAG AA minimum.** Contrast ratios, keyboard navigation, screen reader support, and focus indicators are non-negotiable. Test color combinations against AA thresholds.

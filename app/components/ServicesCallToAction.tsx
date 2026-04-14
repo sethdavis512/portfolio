@@ -1,7 +1,6 @@
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { Heading } from '~/components/Heading';
-import { Linky } from '~/components/Linky';
 
 interface ServicesCallToActionProps {
     className?: string;
@@ -24,9 +23,9 @@ export function ServicesCallToAction({
                         applications and AI-powered tools.
                     </p>
                 </div>
-                <Linky to="/services" className="shrink-0">
-                    <Button color="primary">Reach out</Button>
-                </Linky>
+                <Button to="/services" color="primary" className="shrink-0">
+                    Reach out
+                </Button>
             </div>
         </Card>
     );

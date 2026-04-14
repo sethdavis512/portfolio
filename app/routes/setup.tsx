@@ -55,7 +55,7 @@ export default function SetupRoute() {
                 {setup.map((item) => (
                     <li key={item.id}>
                         {item.url ? (
-                            <Linky external to={item.url}>
+                            <Linky href={item.url}>
                                 {item.name}
                             </Linky>
                         ) : (

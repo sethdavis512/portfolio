@@ -49,7 +49,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <Flex>
                     <InfoIcon />
                     Looking for a PDF version?{' '}
-                    <Linky external to={RESUME_URL}>
+                    <Linky href={RESUME_URL}>
                         Download it here
                     </Linky>
                 </Flex>
@@ -174,7 +174,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     <JobItemList>
                         <li>
                             Active contributor to{' '}
-                            <Linky to="https://remixaustin.com/">
+                            <Linky href="https://remixaustin.com/">
                                 Remix Austin Meetup
                             </Linky>
                             , engaging in discussions on modern React

@@ -1,4 +1,4 @@
-import { ButtonLink } from '~/components/ButtonLink';
+import { Button } from '~/components/Button';
 import { Heading } from '~/components/Heading';
 import { generateRouteMeta } from '~/utils/seo';
 import { LinkedInLogo } from '~/components/logos/LinkedInLogo';
@@ -34,133 +34,153 @@ function HomeSection({
 }
 
 export default function Home() {
-    const socialLogoClassNames = 'w-8 h-8 md:w-12 md:h-12';
+    const socialLogoClassNames = 'w-11 h-11 md:w-12 md:h-12';
 
     return (
         <>
-            <HomeSection>
-                <span className="font-medium text-2xl">Hello. My name is</span>
-                <Heading
-                    as="h1"
-                    className="text-7xl md:text-9xl font-black mb-4"
-                >
-                    Seth Davis
-                </Heading>
-                <div className="space-y-4 md:space-y-8 mb-8">
-                    <p className="text-md md:text-2xl font-medium">
-                        I build AI-assisted tools and design systems that bridge
-                        <br />
-                        design intent and programmable interfaces.
-                    </p>
-                    <p>
-                        Currently seeking new opportunities as a{' '}
-                        <Linky to="/design-technologist">
-                            {ContentStyles.CURRENT_JOB_TITLE}
-                        </Linky>
-                        .
-                    </p>
-                </div>
-                <div className="flex gap-4">
-                    <ButtonLink className="inline-block" size="lg" to="/resume">
-                        View resume
-                    </ButtonLink>
-                    <ButtonLink size="lg" to="/work" variant="outline">
-                        See my work
-                    </ButtonLink>
+            <HomeSection className="md:py-16">
+                <div className="flex items-start gap-6">
+                    <div className="hidden md:block w-1 self-stretch bg-primary-500 rounded-full" />
+                    <div>
+                        <span className="text-sm uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-2 block">
+                            Design Technologist
+                        </span>
+                        <Heading
+                            as="h1"
+                            className="text-7xl md:text-9xl font-black mb-6"
+                        >
+                            Seth Davis
+                        </Heading>
+                        <p className="text-lg md:text-2xl font-medium max-w-2xl mb-4 text-zinc-300">
+                            I build AI-assisted tools and design systems that
+                            bridge design intent and programmable interfaces.
+                        </p>
+                        <p className="mb-10 text-zinc-400">
+                            Currently seeking new opportunities as a{' '}
+                            <Linky to="/design-technologist">
+                                {ContentStyles.CURRENT_JOB_TITLE}
+                            </Linky>
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            <Button size="lg" to="/work">
+                                See my work
+                            </Button>
+                            <Button
+                                size="lg"
+                                to="/resume"
+                                color="secondary"
+                                variant="outline"
+                            >
+                                View resume
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </HomeSection>
             <HomeSection>
                 <Heading>Featured projects</Heading>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-purple-800 via-zinc-600 to-zinc-700 dark:from-purple-950 dark:via-zinc-800 dark:to-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                            <Heading className="text-white">Iridium</Heading>
-                            <p className="mb-8 text-zinc-100">
+                <div className="grid grid-cols-1 gap-6">
+                    {/* Hero project: full width */}
+                    <Card className="p-0 grid overflow-hidden border border-primary-800/40 bg-zinc-900">
+                        <div className="col-start-1 row-start-1 p-8 md:p-10 text-white flex flex-col">
+                            <span className="text-xs uppercase tracking-widest text-primary-400 mb-3">
+                                Flagship
+                            </span>
+                            <Heading className="text-white text-3xl md:text-4xl">
+                                Iridium
+                            </Heading>
+                            <p className="mb-8 text-zinc-300 max-w-2xl text-lg">
                                 Full-stack AI app starter kit with TypeScript,
                                 React Router, Better Auth, and OpenAI. Ship
                                 faster, not from scratch.
                             </p>
-                            <ButtonLink
-                                className="mt-auto self-start"
+                            <Button
+                                className="self-start"
                                 color="primary"
                                 size="lg"
                                 to="/work/iridium"
                             >
                                 Learn more
-                            </ButtonLink>
+                            </Button>
                         </div>
                     </Card>
-                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-red-800 via-zinc-600 to-zinc-700 dark:from-red-950 dark:via-zinc-800 dark:to-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                            <Heading className="text-white">
-                                Lone Star UI
-                            </Heading>
-                            <p className="mb-8 text-zinc-100">
-                                A React 19 component library built with
-                                TypeScript, Tailwind CSS 4, and CVA (Class
-                                Variance Authority). Publishes ESM-only to npm
-                                with full type declarations.
-                            </p>
-                            <ButtonLink
-                                className="mt-auto self-start"
-                                color="primary"
-                                size="lg"
-                                to="/work/lone-star-ui"
-                            >
-                                Learn more
-                            </ButtonLink>
-                        </div>
-                    </Card>
-                    <Card className="p-0 grid overflow-hidden bg-linear-to-br from-blue-800 via-zinc-600 to-zinc-700 dark:from-blue-950 dark:via-zinc-800 dark:to-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                            <Heading className="text-white">
-                                Prompt Suite
-                            </Heading>
-                            <p className="mb-8 text-zinc-100">
-                                Native desktop tray app for instant AI prompt
-                                access. Quick interactions without disrupting
-                                your workflow, perfect for creative
-                                professionals.
-                            </p>
-                            <ButtonLink
-                                className="mt-auto self-start"
-                                color="primary"
-                                size="lg"
-                                to="/work/prompt-suite"
-                            >
-                                Learn more
-                            </ButtonLink>
-                        </div>
-                    </Card>
+                    {/* Secondary projects: 2-column */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
+                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
+                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                                    Open Source
+                                </span>
+                                <Heading className="text-white">
+                                    Lone Star UI
+                                </Heading>
+                                <p className="mb-8 text-zinc-300">
+                                    A React 19 component library built with
+                                    TypeScript, Tailwind CSS 4, and CVA.
+                                    Publishes ESM-only to npm with full type
+                                    declarations.
+                                </p>
+                                <Button
+                                    className="mt-auto self-start"
+                                    color="primary"
+                                    variant="outline"
+                                    size="md"
+                                    to="/work/lone-star-ui"
+                                >
+                                    Learn more
+                                </Button>
+                            </div>
+                        </Card>
+                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
+                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
+                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                                    Product
+                                </span>
+                                <Heading className="text-white">
+                                    Prompt Suite
+                                </Heading>
+                                <p className="mb-8 text-zinc-300">
+                                    Native desktop tray app for instant AI
+                                    prompt access. Quick interactions without
+                                    disrupting your workflow.
+                                </p>
+                                <Button
+                                    className="mt-auto self-start"
+                                    color="primary"
+                                    variant="outline"
+                                    size="md"
+                                    to="/work/prompt-suite"
+                                >
+                                    Learn more
+                                </Button>
+                            </div>
+                        </Card>
+                    </div>
                 </div>
             </HomeSection>
             <HomeSection>
                 <Heading>Socials</Heading>
                 <div className="flex gap-8">
                     <Linky
-                        external
-                        to="https://github.com/sethdavis512"
+                        href="https://github.com/sethdavis512"
                         aria-label="GitHub"
                     >
                         <GitHubLogo className={socialLogoClassNames} />
                     </Linky>
                     <Linky
-                        external
-                        to="https://www.linkedin.com/in/sethdavis512/"
+                        href="https://www.linkedin.com/in/sethdavis512/"
                         aria-label="LinkedIn"
                     >
                         <LinkedInLogo className={socialLogoClassNames} />
                     </Linky>
                     <Linky
-                        external
-                        to="https://www.x.com/sethdavis512/"
+                        href="https://www.x.com/sethdavis512/"
                         aria-label="X (Twitter)"
                     >
                         <XLogo className={socialLogoClassNames} />
                     </Linky>
                     <Linky
-                        external
-                        to="https://www.codepen.io/sethdavis512/"
+                        href="https://www.codepen.io/sethdavis512/"
                         aria-label="CodePen"
                     >
                         <CodepenLogo className={socialLogoClassNames} />

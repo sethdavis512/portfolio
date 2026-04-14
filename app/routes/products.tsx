@@ -1,4 +1,4 @@
-import { Package, ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { ServicesCallToAction } from '~/components/ServicesCallToAction';
@@ -78,32 +78,26 @@ function ProductCard({ product }: { product: ProductItem }) {
                         );
                     })}
                 </div>
-                <div className="flex gap-3">
-                    <Linky to={detailUrl} className="flex-1">
-                        <Button
-                            color="primary"
-                            variant="outline"
-                            className="w-full justify-center"
-                        >
-                            Learn More
-                        </Button>
-                    </Linky>
+                <div className="flex flex-wrap gap-3">
+                    <Button
+                        to={detailUrl}
+                        color="primary"
+                        variant="outline"
+                        className="flex-1 justify-center"
+                    >
+                        Learn More
+                    </Button>
                     {product.purchaseUrl ? (
-                        <Linky
-                            external
-                            to={product.purchaseUrl}
-                            className="flex-1"
+                        <Button
+                            href={product.purchaseUrl}
+                            color="primary"
+                            iconBefore={
+                                <ShoppingCart className="w-4 h-4" />
+                            }
+                            className="flex-1 justify-center"
                         >
-                            <Button
-                                color="primary"
-                                iconBefore={
-                                    <ShoppingCart className="w-4 h-4" />
-                                }
-                                className="w-full justify-center"
-                            >
-                                {product.purchaseButtonText || 'Buy Now'}
-                            </Button>
-                        </Linky>
+                            {product.purchaseButtonText || 'Buy Now'}
+                        </Button>
                     ) : null}
                 </div>
             </div>
@@ -111,23 +105,6 @@ function ProductCard({ product }: { product: ProductItem }) {
     );
 }
 
-export function ComingSoonCard() {
-    return (
-        <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg min-h-[400px] text-center">
-            <Package className="w-12 h-12 text-zinc-400 dark:text-zinc-500 mb-4" />
-            <Heading
-                as="h2"
-                size="3"
-                className="text-zinc-500 dark:text-zinc-500"
-            >
-                More Coming Soon
-            </Heading>
-            <p className="text-zinc-500 dark:text-zinc-500 mt-2 max-w-xs">
-                Check back later!
-            </p>
-        </div>
-    );
-}
 
 export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
     return (
@@ -144,7 +121,6 @@ export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
                 {loaderData.products.map(function (product) {
                     return <ProductCard key={product.id} product={product} />;
                 })}
-                <ComingSoonCard />
             </div>
             <ServicesCallToAction className="mt-10" />
         </>
