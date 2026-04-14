@@ -1,0 +1,79 @@
+---
+title: "buncli"
+slug: "buncli"
+status: "PUBLISHED"
+description: "A template for building full-featured CLI tools with Bun, Commander, and Inquirer. Clone it, add your commands, ship a standalone binary."
+cta: "View project"
+sortOrder: 43
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/placeholder-terminal.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/placeholder-terminal.png"
+about: "buncli is a starter template for building interactive command-line tools with Bun. It pairs Commander for command parsing, options, and subcommands with @inquirer/prompts for guided user input, all running on Bun's fast TypeScript-native runtime. The template ships with a working greet command that demonstrates the pattern: define the command with Commander, prompt for missing input with Inquirer, and handle Ctrl+C gracefully. From there you add your own commands, wire up Bun Shell for system operations, and compile to a standalone binary that runs anywhere with zero dependencies."
+learned: "Building this template clarified how much friction Bun removes from CLI development. There is no compile step for TypeScript, no bundler config, and no separate test runner to install. Bun Shell replaces child_process and execa with tagged template literals that feel native. The compile target produces a self-contained binary that embeds the Bun runtime, so distributing internal tools to teammates who do not have a JavaScript runtime installed is a non-issue. Cross-compilation to Linux, macOS, and Windows from a single machine means CI can produce platform binaries in one pass."
+impact: "Most teams have a graveyard of bash scripts and one-off Python utilities that no one maintains because they are painful to extend and impossible to distribute. buncli gives a structured starting point that is easy to hand to any TypeScript developer. The use cases are broad: project scaffolding, deployment workflows, environment status checks, onboarding automation, incident response runbooks, secrets rotation, audit reporting, and internal data lookups. Because Bun compiles to a standalone binary, the resulting tool can be dropped into CI pipelines, handed to non-engineers, or hosted as a GitHub Release asset without requiring any runtime installation."
+techStack: ["typescript", "bun"]
+sourceUrl: "https://github.com/sethdavis512/buncli"
+demoUrl: ""
+demoUrlText: ""
+purchaseUrl: ""
+purchaseButtonText: "Purchase"
+sidebarTitle: "Get It Now"
+features: []
+sidebarType: "none"
+tags: []
+galleryImages: []
+hasContent: true
+createdAt: "2026-04-14T00:00:00.000Z"
+updatedAt: "2026-04-14T00:00:00.000Z"
+---
+
+## What it is
+
+buncli is a ready-to-fork template for building CLI tools in TypeScript. It combines three things that work well together:
+
+- **[Commander](https://github.com/tj/commander.js)** for parsing commands, options, and arguments with built-in help text
+- **[@inquirer/prompts](https://github.com/SBoudrias/Inquirer.js)** for interactive input: text, select lists, confirmations, checkboxes, password fields, searchable lists, and more
+- **[Bun](https://bun.sh)** as the runtime, bundler, package manager, and compiler
+
+Clone the repo, install with `bun install`, and you have a working CLI with a sample `greet` command. Add your own commands in minutes.
+
+## Why Bun
+
+Bun is a compelling choice for CLI tools for several reasons:
+
+- **TypeScript without a build step.** Bun runs `.ts` files directly. No `tsc`, no `ts-node`, no bundler config. Write TypeScript and run it.
+- **Bun Shell.** Import `$` from `bun` and run shell commands with tagged template literals. No `child_process`, no `execa`, no callback gymnastics.
+- **Fast startup.** CLI tools need to feel instant. Bun's startup time is significantly faster than Node, which matters when your tool runs dozens of times a day.
+- **Built-in file I/O.** `Bun.file()` and `Bun.write()` replace `fs.readFile` and `fs.writeFile` with a cleaner API. JSON parsing is one method call.
+- **Standalone binaries.** `bun build --compile` produces a single executable that embeds the Bun runtime. No Node, no Bun, no `node_modules` on the target machine. Download it, `chmod +x`, run it.
+- **Cross-compilation.** Build for Linux, macOS, and Windows from any platform with `--target=bun-{linux,darwin,windows}-{x64,arm64}`.
+- **Auto-loaded `.env` files.** Environment variables from `.env` are available on `process.env` without `dotenv` or any config.
+
+## Use cases
+
+A shared internal CLI is one of the fastest ways to bring consistency to a fragmented team:
+
+- **Standardized project scaffolding.** Prompt developers through required setup steps so every new project starts from the same baseline.
+- **Guided deployment workflows.** Walk engineers through pre-flight checks, environment selection, and confirmation steps before pushing to production.
+- **Environment and service status checks.** Poll endpoints, database connections, and third-party integrations to surface issues before they become support tickets.
+- **Onboarding automation.** New hire runs one command and gets their local environment configured: dependencies installed, `.env` files populated, seed data loaded.
+- **Incident response runbooks.** Encode the steps engineers take during an outage into a guided interactive script so the playbook is actually followed under pressure.
+- **Secrets and credential rotation.** Walk through rotating API keys across services with confirmation prompts and validation that new credentials work before old ones are revoked.
+- **Automated release notes.** Pull merged PRs and commit history since the last tag, format them into a changelog, consistently, every time.
+- **Internal data lookups.** Query internal APIs or databases by record ID, customer name, or date range without digging through five dashboards.
+- **Audit and compliance reporting.** Generate point-in-time snapshots of user access, configuration state, or data exports in a consistent format.
+
+## Getting started
+
+```bash
+# Clone and install
+git clone https://github.com/sethdavis512/buncli.git mycli
+cd mycli
+bun install
+
+# Run in development
+bun run index.ts greet
+
+# Compile to a standalone binary
+bun build --compile --minify --bytecode ./index.ts --outfile mycli
+./mycli greet
+```

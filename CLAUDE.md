@@ -102,6 +102,16 @@ export const componentVariants = cva({
 4. Optional: add MDX body for rich content, set `hasContent: true`
 5. Deploy (content changes are code changes, so normal deploy flow)
 
+### Placeholder images for work items
+When a project photo is not immediately available, use these generic Cloudinary placeholders in frontmatter. Replace with project-specific images later.
+
+| Use | Cloudinary URL |
+|-----|----------------|
+| CLI/terminal projects | `https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/placeholder-terminal.png` |
+| Browser/web projects | `https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/placeholder-browser.png` |
+
+Swap `w_1920` to `w_1280` for thumbnailImage. Dark-inverted alternates exist in `public/` if the 2d2d2d-on-black variants need replacing.
+
 ### Adding a TIL post
 1. Create `app/content/til/<slug>.mdx` with YAML frontmatter
 2. Write content as MDX body
