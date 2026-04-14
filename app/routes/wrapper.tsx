@@ -157,9 +157,6 @@ export default function WrapperRoute() {
                                 </li>
                             ))}
                         </ul>
-                        {/* //////////////////// */}
-                        {/* Mobile Navigation */}
-                        {/* //////////////////// */}
                         <ul className="lg:hidden flex justify-between">
                             <li>
                                 <Link to="/" aria-label="Return to home page">

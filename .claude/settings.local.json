@@ -45,7 +45,14 @@
       "Bash(cp -rn web/.claude/skills/* .claude/skills/)",
       "Bash(cp -n web/.claude/settings.local.json .claude/)",
       "Bash(cp -n web/docs/* docs/)",
-      "Bash(xargs sed:*)"
+      "Bash(xargs sed:*)",
+      "WebFetch(domain:web-staging2-c95a.up.railway.app)",
+      "WebFetch(domain:sethdavis.tech)",
+      "Skill(agent-browser)",
+      "Bash(grep -rn \"as=\\\\\"h[0-9]\\\\\"\" /Users/seth/repositories/portfolio/app/routes/*.tsx)",
+      "Bash(grep -E \"\\\\.tsx$\")",
+      "Skill(railway:status)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []

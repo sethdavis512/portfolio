@@ -14,8 +14,8 @@ const SIZES: ImageSize[] = [
     { width: 1920, suffix: '-1920w' }
 ];
 
-const INPUT_DIR = join(process.cwd(), 'web/public');
-const OUTPUT_DIR = join(process.cwd(), 'web/public/optimized');
+const INPUT_DIR = join(process.cwd(), 'public');
+const OUTPUT_DIR = join(process.cwd(), 'public/optimized');
 
 // Images to skip (already optimized or special cases)
 const SKIP_PATTERNS = [/optimized/, /\.svg$/, /flag-of-texas/, /gartner-logo/];

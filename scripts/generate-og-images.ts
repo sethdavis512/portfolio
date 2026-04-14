@@ -8,8 +8,8 @@ const OG_WIDTH = 1200;
 const OG_HEIGHT = 630;
 const OG_ASPECT_RATIO = OG_WIDTH / OG_HEIGHT; // ~1.91:1
 
-const INPUT_DIR = join(process.cwd(), 'web/public');
-const OUTPUT_DIR = join(process.cwd(), 'web/public/og');
+const INPUT_DIR = join(process.cwd(), 'public');
+const OUTPUT_DIR = join(process.cwd(), 'public/og');
 
 // Images to skip
 const SKIP_PATTERNS = [/optimized/, /\/og\//, /\.svg$/];
