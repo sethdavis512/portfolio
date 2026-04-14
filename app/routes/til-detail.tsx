@@ -8,9 +8,8 @@ import { generateRouteMeta } from '~/utils/seo';
 export function meta({ loaderData }: Route.MetaArgs) {
     return generateRouteMeta({
         pageTitle: loaderData?.post?.title || 'TIL',
-        descriptionContent: loaderData?.post?.title
-            ? `TIL: "${loaderData.post.title}" — a short discovery by Seth Davis.`
-            : 'TIL entry not found.',
+        descriptionContent: loaderData?.post?.excerpt
+            || `TIL: "${loaderData?.post?.title}" by Seth Davis.`,
         ogUrl: `https://sethdavis.tech/til/${loaderData?.post?.slug || ''}`
     });
 }
@@ -24,6 +23,7 @@ export function loader({ params }: Route.LoaderArgs) {
         post: {
             slug: til.frontmatter.slug,
             title: til.frontmatter.title,
+            excerpt: til.frontmatter.excerpt,
             tags: til.frontmatter.tags
         }
     };

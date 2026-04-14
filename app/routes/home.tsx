@@ -12,7 +12,7 @@ import { Card } from '~/components/Card';
 
 export function meta() {
     return generateRouteMeta({
-        pageTitle: 'Welcome',
+        pageTitle: 'Seth Davis | Design Technologist',
         descriptionContent:
             'Seth Davis is a Design Technologist specializing in AI-assisted design tooling, design systems, and generative interfaces. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'

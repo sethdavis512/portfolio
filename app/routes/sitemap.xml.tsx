@@ -16,6 +16,8 @@ export function loader({ request }: Route.LoaderArgs) {
         { url: '/products', changefreq: 'monthly', priority: 0.9 },
         { url: '/services', changefreq: 'monthly', priority: 0.8 },
         { url: '/til', changefreq: 'weekly', priority: 0.8 },
+        { url: '/design-technologist', changefreq: 'monthly', priority: 0.8 },
+        { url: '/truck', changefreq: 'yearly', priority: 0.4 },
         { url: '/setup', changefreq: 'yearly', priority: 0.5 },
         { url: '/thank-you', changefreq: 'yearly', priority: 0.3 }
     ];

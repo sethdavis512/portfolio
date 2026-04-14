@@ -26,7 +26,8 @@ export function meta({ loaderData }: Route.MetaArgs) {
     return generateRouteMeta({
         pageTitle: work?.title || 'Work Not Found',
         descriptionContent: work?.description || 'Project by Seth Davis.',
-        ogUrl: `https://sethdavis.tech/work/${work?.slug || ''}`
+        ogUrl: `https://sethdavis.tech/work/${work?.slug || ''}`,
+        ogImage: work?.thumbnailImage || work?.heroImage || undefined
     });
 }
 
