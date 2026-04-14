@@ -1,7 +1,7 @@
 export function generateRouteMeta({
     descriptionContent,
     ogUrl = 'https://sethdavis.tech',
-    ogImage = 'https://sethdavis.tech/og-image.png',
+    ogImage = 'https://res.cloudinary.com/setholito/image/upload/v1/portfolio/og-image.png',
     pageTitle
 }: {
     ogUrl?: string;

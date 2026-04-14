@@ -259,7 +259,7 @@ export default function WrapperRoute() {
                             </p>
                             <img
                                 className="h-5 w-5"
-                                src="/flag-of-texas-small.svg"
+                                src="https://res.cloudinary.com/setholito/image/upload/v1/portfolio/flag-of-texas-small.svg"
                                 alt="Texas flag"
                             />
                         </Flex>
