@@ -8,10 +8,11 @@ export default {
         const staticPaths = [
             '/',
             '/about',
-            '/products',
             '/design-technologist',
             '/resume',
+            '/services',
             '/setup',
+            '/thank-you',
             '/truck',
             '/work',
             '/til',
