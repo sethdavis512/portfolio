@@ -88,6 +88,7 @@ export default function ThankYouRoute() {
                         <div className="flex flex-wrap gap-3 pt-2">
                             <Button to="/">Return Home</Button>
                             <Button to="/work">View My Work</Button>
+                            <Button href="https://techwithseth.com/digital-goods">Browse Digital Goods</Button>
                         </div>
                     </div>
                 </Card>

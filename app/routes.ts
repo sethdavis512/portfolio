@@ -10,7 +10,6 @@ export default [
         index('routes/home.tsx'),
         route('about', 'routes/about.tsx'),
         route('services', 'routes/services.tsx'),
-        route('products', 'routes/products.tsx'),
         route('til', 'routes/til.tsx'),
         route('til/:slug', 'routes/til-detail.tsx'),
         route('resume', 'routes/resume.tsx'),

@@ -149,7 +149,7 @@ export default function Home() {
                                     color="primary"
                                     variant="outline"
                                     size="md"
-                                    to="/work/prompt-suite"
+                                    href="https://techwithseth.com/digital-goods/prompt-suite"
                                 >
                                     Learn more
                                 </Button>

@@ -13,7 +13,6 @@ export function loader({ request }: Route.LoaderArgs) {
         { url: '/about', changefreq: 'monthly', priority: 0.8 },
         { url: '/work', changefreq: 'weekly', priority: 0.9 },
         { url: '/resume', changefreq: 'monthly', priority: 0.8 },
-        { url: '/products', changefreq: 'monthly', priority: 0.9 },
         { url: '/services', changefreq: 'monthly', priority: 0.8 },
         { url: '/til', changefreq: 'weekly', priority: 0.8 },
         { url: '/design-technologist', changefreq: 'monthly', priority: 0.8 },

@@ -26,9 +26,9 @@ const pagesLinks = [
         label: 'About'
     },
     {
-        to: '/products',
+        to: 'https://techwithseth.com/digital-goods',
         icon: LinkIcon,
-        label: 'Products'
+        label: 'Digital Goods'
     },
     {
         to: '/truck',

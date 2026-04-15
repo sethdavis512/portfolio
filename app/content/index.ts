@@ -1,6 +1,5 @@
 export {
     getAllWorkSlugs,
-    getPublishedProducts,
     getPublishedWorks,
     getWorkBySlug
 } from './work';

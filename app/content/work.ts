@@ -20,23 +20,10 @@ function allWorks() {
 
 export function getPublishedWorks() {
     return allWorks()
-        .filter(
-            (w) =>
-                w.frontmatter.status === 'PUBLISHED' &&
-                w.frontmatter.sidebarType !== 'purchase'
-        )
+        .filter((w) => w.frontmatter.status === 'PUBLISHED')
         .sort((a, b) => a.frontmatter.sortOrder - b.frontmatter.sortOrder);
 }
 
-export function getPublishedProducts() {
-    return allWorks()
-        .filter(
-            (w) =>
-                w.frontmatter.status === 'PUBLISHED' &&
-                w.frontmatter.sidebarType === 'purchase'
-        )
-        .sort((a, b) => a.frontmatter.sortOrder - b.frontmatter.sortOrder);
-}
 
 export function getWorkBySlug(slug: string) {
     const key = './work/' + slug + '.mdx';

@@ -1,4 +1,4 @@
-import { LoaderIcon, ShoppingCart } from 'lucide-react';
+import { LoaderIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { data, useFetcher } from 'react-router';
 import { getPortfolioBase } from '~/airtable';
@@ -168,80 +168,21 @@ function InterestFormSidebar() {
     );
 }
 
-interface PurchaseSidebarProps {
-    purchaseUrl: string;
-    purchaseButtonText?: string | null;
-    sidebarTitle?: string | null;
-    features?: string[];
-    techStack?: LogoName[];
-}
-
-function PurchaseSidebar({
-    purchaseUrl,
-    purchaseButtonText,
-    sidebarTitle,
-    features,
-    techStack
-}: PurchaseSidebarProps) {
-    return (
-        <section className="rounded-lg bg-zinc-800 p-6 space-y-4 sticky top-4">
-            <Heading as="h2" size="4" className="text-white">
-                {sidebarTitle || 'Get It Now'}
-            </Heading>
-
-            {features && features.length > 0 && (
-                <div className="space-y-3 text-zinc-300">
-                    {features.map(function (feature) {
-                        return (
-                            <div
-                                key={feature}
-                                className="flex items-start gap-2"
-                            >
-                                <span className="text-primary">✓</span>
-                                <span>{feature}</span>
-                            </div>
-                        );
-                    })}
-                </div>
-            )}
-
-            <Button
-                href={purchaseUrl}
-                color="primary"
-                iconBefore={<ShoppingCart />}
-                className="w-full justify-center"
-            >
-                {purchaseButtonText || 'Purchase'}
-            </Button>
-
-            {techStack && techStack.length > 0 && (
-                <div className="pt-4 flex gap-2 items-center">
-                    <p className="text-sm text-zinc-400">Powered by</p>
-                    <TechStackLogos logos={techStack} />
-                </div>
-            )}
-        </section>
-    );
-}
-
 function WorkLayout({ work }: { work: WorkFrontmatter }) {
     const galleryImages = buildGalleryImages(work);
     const hasGallery = galleryImages.length > 1;
     const { isOpen, selectedIndex, openGallery, closeGallery } =
         useImageGallery();
     const techStack = work.techStack as LogoName[];
-    const features = work.features;
 
     // Get the MDX component for rich content
     const workModule = getWorkBySlug(work.slug);
     const hasContent = work.hasContent && workModule;
 
-    const hasPurchase = work.sidebarType === 'purchase' && work.purchaseUrl;
     const hasInterestForm = work.sidebarType === 'interest-form';
     const hasLinks = work.sourceUrl || work.demoUrl;
     const hasTechStack = techStack.length > 0;
-    const hasSidebar =
-        hasPurchase || hasInterestForm || hasLinks || hasTechStack;
+    const hasSidebar = hasInterestForm || hasLinks || hasTechStack;
 
     function renderContent() {
         if (hasContent && workModule) {
@@ -281,17 +222,7 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
     function renderSidebar() {
         return (
             <div className="md:col-span-1 space-y-4 min-w-0">
-                {hasPurchase && (
-                    <PurchaseSidebar
-                        purchaseUrl={work.purchaseUrl!}
-                        purchaseButtonText={work.purchaseButtonText}
-                        sidebarTitle={work.sidebarTitle}
-                        features={features}
-                        techStack={techStack}
-                    />
-                )}
-
-                {!hasPurchase && hasTechStack && (
+                {hasTechStack && (
                     <>
                         <Heading as="h4" size="5" className="font-bold">
                             Tech Stack
@@ -302,7 +233,7 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
                     </>
                 )}
 
-                {!hasPurchase && hasLinks && (
+                {hasLinks && (
                     <>
                         <Heading as="h4" size="5" className="font-bold">
                             Links

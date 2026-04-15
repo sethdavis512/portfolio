@@ -12,14 +12,14 @@ import { cx } from '~/cva.config';
 
 import { Heading } from './components/Heading';
 import { CommandPalette } from '~/components/CommandPalette';
-import { getPublishedWorks, getPublishedProducts } from '~/content';
+import { getPublishedWorks } from '~/content';
 
 import type { Route } from './+types/root';
 
 import './app.css';
 
 export function loader() {
-    const allWorks = [...getPublishedWorks(), ...getPublishedProducts()];
+    const allWorks = getPublishedWorks();
     return {
         workNavItems: allWorks.map((w) => ({
             title: w.frontmatter.title,

@@ -32,12 +32,6 @@ const NAV_ITEMS: NavItem[] = [
     },
     {
         type: 'internal',
-        to: '/products',
-        label: 'Products',
-        ariaLabel: 'View digital products and resources'
-    },
-    {
-        type: 'internal',
         to: '/services',
         label: 'Services',
         ariaLabel: 'View my services and offerings'
@@ -53,6 +47,12 @@ const NAV_ITEMS: NavItem[] = [
         to: '/about',
         label: 'About',
         ariaLabel: 'Learn more about me'
+    },
+    {
+        type: 'external',
+        to: 'https://techwithseth.com/digital-goods',
+        label: 'Digital Goods',
+        ariaLabel: 'Browse digital goods on Tech with Seth'
     }
 ];
 
@@ -213,10 +213,7 @@ export default function WrapperRoute() {
                                             </svg>
                                         </Button>
                                     </div>
-                                    <AppNavLink
-                                        to="/"
-                                        onClick={toggleIsOpen}
-                                    >
+                                    <AppNavLink to="/" onClick={toggleIsOpen}>
                                         Home
                                     </AppNavLink>
                                     {NAV_ITEMS.map((item) =>
