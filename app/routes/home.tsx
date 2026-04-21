@@ -65,12 +65,7 @@ export default function Home() {
                             <Button size="lg" to="/work">
                                 See my work
                             </Button>
-                            <Button
-                                size="lg"
-                                to="/resume"
-                                color="secondary"
-                                variant="outline"
-                            >
+                            <Button size="lg" to="/resume" variant="outline">
                                 View resume
                             </Button>
                         </div>

@@ -250,7 +250,7 @@ export default function WrapperRoute() {
                 <Container className="flex flex-col items-center gap-4">
                     <div className="flex w-full items-center justify-between my-12">
                         <div className={`flex-grow ${BorderStyles.BOTTOM}`} />
-                        <Flex className="px-4 text-center">
+                        <Flex className="px-4 text-center items-center">
                             <p className="inline-block">
                                 ✌🏻 Made in Austin, TX{' '}
                             </p>
