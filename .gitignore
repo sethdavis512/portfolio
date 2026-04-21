@@ -6,3 +6,6 @@ lighthouse-reports
 # React Router
 /.react-router/
 /build/
+
+# Claude Code local settings
+.claude/settings.local.json
