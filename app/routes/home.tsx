@@ -99,8 +99,8 @@ export default function Home() {
                             </Button>
                         </div>
                     </Card>
-                    {/* Secondary projects: 2-column */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Secondary projects: 3-column */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
                             <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
                                 <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
@@ -121,6 +121,30 @@ export default function Home() {
                                     variant="outline"
                                     size="md"
                                     to="/work/lone-star-ui"
+                                >
+                                    Learn more
+                                </Button>
+                            </div>
+                        </Card>
+                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
+                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
+                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                                    Learning
+                                </span>
+                                <Heading className="text-white">
+                                    AI Maniacs
+                                </Heading>
+                                <p className="mb-8 text-zinc-300">
+                                    Free AI education platform. Fundamentals
+                                    through agent workflows, built to keep up
+                                    with how fast the field moves.
+                                </p>
+                                <Button
+                                    className="mt-auto self-start"
+                                    color="primary"
+                                    variant="outline"
+                                    size="md"
+                                    to="/work/ai-maniacs"
                                 >
                                     Learn more
                                 </Button>
