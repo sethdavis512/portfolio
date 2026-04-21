@@ -1,0 +1,90 @@
+---
+title: "Bun Shell and Bun Cron Basics"
+slug: "bun-shell-and-bun-cron-basics"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["bun", "typescript", "scripting"]
+excerpt: "Two Bun APIs that have quietly replaced half of my scripting toolkit: Bun Shell for running shell commands from TypeScript, and Bun Cron for scheduling them. Here's the short tour."
+createdAt: "2026-04-21T00:00:00.000Z"
+updatedAt: "2026-04-21T00:00:00.000Z"
+---
+
+I've been leaning on two Bun APIs lately that have quietly replaced a chunk of my scripting toolkit: **Bun Shell** for running shell commands from TypeScript, and **Bun Cron** for scheduling them. Both feel like the missing pieces that make Bun viable as a general-purpose scripting runtime, not just a faster Node.
+
+Here's the short tour.
+
+## Bun Shell
+
+Bun Shell is a tagged template literal you import from `bun`. You write shell commands inline with real JavaScript interpolation, and Bun handles escaping, piping, and cross-platform behavior for you. No `child_process`, no `execa`, no shell injection footguns.
+
+```ts
+import { $ } from "bun";
+
+const branch = (await $`git rev-parse --abbrev-ref HEAD`.text()).trim();
+console.log(`On branch: ${branch}`);
+```
+
+A few things I like about it:
+
+- **`.text()`, `.json()`, `.lines()`** for consuming output. No manual buffer handling.
+- **Safe interpolation.** Anything you drop into `${}` is escaped, so passing user input or file paths with spaces doesn't blow up.
+- **Piping works like you'd expect.** `$\`cat file.txt\`.pipe($\`grep error\`)` reads naturally.
+- **Errors throw.** A non-zero exit code throws, so you get real try/catch flow instead of checking `.code` everywhere.
+
+Where it shines for me is replacing those glue scripts that used to be 30 lines of `spawn` wiring. A release script, a deploy check, a "grab the last commit and post it somewhere" task. All of it becomes a handful of lines of TypeScript with full type safety on everything except the shell call itself.
+
+```ts
+import { $ } from "bun";
+
+const files = await $`git diff --name-only HEAD~1`.lines();
+const changed = files.filter((f) => f.endsWith(".ts"));
+
+if (changed.length > 0) {
+    await $`bun run typecheck`;
+}
+```
+
+That's the whole script. No dependencies. Runs anywhere Bun runs.
+
+## Bun Cron
+
+Bun Cron is the newer of the two, and it's the one I was most skeptical about. Scheduling inside a runtime has historically been a bad idea (what happens when the process restarts? what about missed runs?), but Bun's approach is refreshingly small-scoped: it gives you a `Bun.cron` primitive for in-process scheduling, and leaves the "should this really be a cron job on my server" question to you.
+
+The API is basically what you'd guess:
+
+```ts
+import { cron } from "bun";
+
+cron("0 9 * * *", () => {
+    console.log("Good morning. Running the daily report.");
+});
+```
+
+Standard five-field cron syntax. The callback runs in-process. You can register as many schedules as you want in a single long-running script.
+
+Where I've found it useful:
+
+- **Local dev tasks.** A watcher that hits an endpoint every few minutes, a background pruner, a "re-fetch this cache at the top of every hour" job during development.
+- **Self-contained worker scripts.** A single `bun run worker.ts` that owns a handful of recurring tasks without pulling in a job queue or a separate scheduler.
+- **Replacing tiny systemd timers.** For personal projects where I don't want to manage a full timer unit just to ping a URL every 15 minutes.
+
+It is not a replacement for a real job system. No persistence, no retries, no distributed coordination. If the process dies, the schedule dies with it. That's by design, and knowing the boundary is half the reason I trust it.
+
+## Why these two together
+
+The combo that clicked for me is: **Bun Shell** gives you safe, typed access to the rest of your system, and **Bun Cron** gives you a way to run those shell-driven tasks on a schedule without spinning up anything external. A single TypeScript file, one `bun run` command, and you have a scheduled task that can do real work.
+
+```ts
+import { $, cron } from "bun";
+
+cron("*/30 * * * *", async () => {
+    const status = await $`git -C ~/projects/site status --porcelain`.text();
+    if (status.trim().length > 0) {
+        console.warn("Uncommitted changes detected");
+    }
+});
+```
+
+Thirty minutes. Shell command. Typed output. No dependencies. That's the whole pitch.
+
+If you've been writing Bash scripts for this kind of glue work, or pulling in `node-cron` plus `execa` every time you need a scheduled task, it's worth half an afternoon to see how much of it collapses into plain Bun.

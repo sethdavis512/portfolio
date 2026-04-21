@@ -1,0 +1,66 @@
+---
+title: "Shipping a CLI as a Single Bun Binary"
+slug: "shipping-a-cli-as-a-single-bun-binary"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["bun", "cli", "distribution", "typescript"]
+excerpt: "bun build --compile takes a TypeScript entry point and spits out one native executable. No node_modules, no Node install, no Docker. Dropping it into /usr/local/bin makes your personal tooling feel like a first-class Unix command."
+createdAt: "2026-04-21T00:00:00.000Z"
+updatedAt: "2026-04-21T00:00:00.000Z"
+---
+
+I've written a lot of "personal CLI" projects over the years, and distribution has always been the awkward part. You write the tool in Node, it works great on your machine, and then you want to use it from any directory, any shell, any project, and suddenly you're adding a `bin` field to `package.json`, symlinking things into `~/.local/bin`, fighting `npm link`, or writing a shell wrapper that points at a specific node_modules. None of it is hard. All of it is friction.
+
+Bun has a feature that quietly solves this: **`bun build --compile`** takes a TypeScript entry point and produces a single native executable. One file. No `node_modules`, no `node`, no Bun install required on the target machine. You can move it around like any other binary.
+
+This is the thing that finally made my personal CLI feel like a real tool instead of a script collection.
+
+## The shape of it
+
+The workflow is about as plain as it gets:
+
+```bash
+bun build --compile --target=bun-darwin-arm64 ./main.ts --outfile dist/tws
+sudo cp ./dist/tws /usr/local/bin/tws
+```
+
+That's the whole distribution story. From now on, `tws` works from any directory, any shell, for anyone on the machine. Tab completion sees it. `which tws` answers. `man`-style conventions (`tws --help`) all just work.
+
+Bun supports a handful of targets, so the same TypeScript can compile for:
+
+- `bun-darwin-arm64` (Apple Silicon)
+- `bun-darwin-x64` (Intel Mac)
+- `bun-linux-x64`
+- `bun-linux-arm64`
+- `bun-windows-x64`
+
+That's enough to cover everyone I'd ever want to share a tool with.
+
+## What you actually get
+
+A few things stand out once the binary is sitting in `/usr/local/bin`:
+
+- **Startup is fast.** Bun is already faster than Node at starting, and a compiled binary skips even the module resolution phase. Subcommands feel instantaneous. It stops feeling like "a script I wrote" and starts feeling like `git` or `jq`.
+- **No runtime to manage.** I don't have to think about which Node version is active, whether I ran `nvm use`, or whether my `node_modules` are in sync. The binary carries its own runtime.
+- **One artifact to share.** If a friend wants the tool, I send them a file. They make it executable. Done. No `npm install`, no "do you have Bun installed," no troubleshooting their machine.
+- **It plays well with everything else.** Shell pipelines, `xargs`, `find -exec`, cron, launchd, GitHub Actions, Raycast, Alfred. Everything that works with a real binary works with your compiled Bun script.
+- **Updates are trivial.** `bun run compile:mac && sudo cp dist/tws /usr/local/bin/tws`. That's the release process. No registry, no versioning ceremony, no publish step. For a personal CLI, that's exactly right.
+
+## The things to know
+
+It's not free, and there are a few sharp edges worth flagging:
+
+- **The binary is not small.** Compiling against Bun's runtime produces an executable in the tens of megabytes. For a personal tool or a team tool, fine. For anything you'd put in a homebrew formula, something to think about.
+- **Native modules can be fussy.** Most pure-JS/TS dependencies compile cleanly. Things with native bindings (sharp, better-sqlite3 in some configs) can need care. Bun's own built-ins (`bun:sqlite`, `Bun.file`, `Bun.$`) sidestep this and are worth preferring when you can.
+- **You give up `npm link`-style hot iteration.** You develop with `bun run`, not against the compiled binary. That's fine, but it means "I edited the source and my CLI changed" is a compile step, not instant.
+- **Signing and notarization.** For macOS, if you want to distribute the binary to other people without Gatekeeper complaints, you'll eventually want to sign and notarize it. For your own machine, `chmod +x` and you're done.
+
+## Why this matters for "personal tooling"
+
+The broader reason I'm writing this down: the ergonomics of a compiled binary change what kinds of things are worth building.
+
+When a tool is "a node script in a repo," I have to cd into that repo to run it, or set up a global install, or remember the `bun run ./path/to/script.ts` invocation. The tool only exists when I go get it. That's enough friction to kill most ideas. I'll do a one-off instead.
+
+When the tool is a binary at `/usr/local/bin/tws`, it's always there. Subcommands become cheap to add. Small workflows I would never have bothered to automate (kill a dev port, spin up a Stripe Payment Link, scaffold a project, bundle a database) turn into `tws <verb>`. The marginal cost of adding a new subcommand is low, and the marginal gain of having it available everywhere is high. Things compound.
+
+A compiled Bun binary is, to a first approximation, the cheapest way to give yourself a real CLI. TypeScript in, native executable out, `sudo cp` to install. If you've been hand-rolling shell scripts or living in `npx`, this is worth the afternoon.

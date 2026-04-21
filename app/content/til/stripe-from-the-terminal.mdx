@@ -1,0 +1,74 @@
+---
+title: "Stripe From the Terminal: Payment Links and Checkout Sessions in One Command"
+slug: "stripe-from-the-terminal"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["stripe", "bun", "cli", "payments"]
+excerpt: "Most of what I used to do in the Stripe dashboard turns out to be three API calls and a prompt. A small CLI over the Stripe SDK kills the dashboard tab for 80% of day-to-day tasks."
+createdAt: "2026-04-21T00:00:00.000Z"
+updatedAt: "2026-04-21T00:00:00.000Z"
+---
+
+The Stripe dashboard is a great piece of software. It's also a great piece of software that I don't want to open fourteen times a day to copy one Payment Link or spin up a test Checkout Session. The click paths are fine. There are just a lot of them.
+
+Turns out most of what I was doing in the dashboard is three API calls and a prompt. Once I wrote a tiny CLI over the Stripe SDK, the dashboard became a thing I open for dispute resolution and billing settings, and nothing else.
+
+## Payment Links: the 80% case
+
+A Payment Link is a hosted checkout page tied to a product or a one-off price. Perfect for "here's a link, pay me." I used to:
+
+1. Open the dashboard
+2. Click Products, find the one I want
+3. Copy the price ID, or create a new price
+4. Go to Payment Links, create a new link
+5. Copy the URL
+6. Paste it where I needed it
+
+That's six steps and a context switch. With a CLI, it collapses into one of two forms: **"link me this existing price"** or **"link me a new one-off price for this dollar amount."**
+
+```bash
+tws stripe link --price price_1Abc123
+tws stripe link --amount 500 --name "Coffee"
+tws stripe link --amount 1999 --currency eur
+```
+
+The second form is the one I use most. Ninety percent of the Payment Links I make are one-offs for a specific amount, often for a client, often with a descriptive name so it's easy to find later in the dashboard. No product, no recurring billing, no tiers. The CLI version takes about a second.
+
+When I do want to link to an existing recurring price, I have a subcommand that lists products and prices, lets me pick one, and spits back the Payment Link URL. Zero typing of price IDs.
+
+## Checkout Sessions: the same idea, one layer deeper
+
+Payment Links are great for "send someone a URL." Checkout Sessions are what you want when you're actually building a flow: you're going to redirect a user to Stripe, collect payment, and redirect them back. They're more configurable, they expire, and they're what you'd use from inside an app.
+
+For development, the friction is the same. I don't want to set up a whole test app just to see what a Checkout page looks like for a new product. So the CLI mirrors the Payment Link commands:
+
+```bash
+tws stripe checkout --price price_1Abc123
+tws stripe checkout --amount 500 --name "Donation"
+```
+
+Same shape, different surface. The command creates a Session and prints the URL. I click it, I see the Checkout page, I'm done. It's the fastest way I've found to sanity-check a price, a currency, a product name, or a flow idea before writing any code.
+
+## Why this feels so much better than the dashboard
+
+A few reasons:
+
+- **Flags beat forms.** Once I know the shape of the command, there's no hunting for the right field on the right page. `--amount 500 --name "Coffee"` is not going to move on me.
+- **History is free.** Everything I've ever made is in my shell history. Re-creating a link is up-arrow, enter.
+- **It composes with other tools.** The command prints a URL to stdout, which means I can pipe it into `pbcopy`, paste it into a script that posts to Slack, or drop it into a report. A dashboard can't do that.
+- **It's scriptable.** If I need ten Payment Links for ten products, that's a for-loop, not ten rounds of clicking.
+- **The dashboard stays out of my face.** Keeping the browser tab closed during a focused work block is underrated.
+
+## When the dashboard still wins
+
+Three places I still reach for the dashboard and probably always will:
+
+1. **Disputes and refunds.** I want the full context, the customer history, the evidence upload UI. Not a command.
+2. **Billing and account settings.** Too rare to bother scripting.
+3. **Exploring unfamiliar products.** When I'm poking at a Stripe feature I've never used, the dashboard is the best docs. Once I understand the shape, it moves to the CLI.
+
+## The takeaway
+
+If you use Stripe regularly and you're still in the dashboard for the same handful of tasks every day, spend an hour wrapping those tasks in your own CLI. The Stripe SDK is excellent, the auth is just an env var, and the ergonomic gain is wildly out of proportion to the effort.
+
+The dashboard is for the edge cases. The CLI is for the job.

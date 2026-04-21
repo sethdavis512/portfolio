@@ -1,0 +1,91 @@
+---
+title: "Bun Shell Meets Replicate: A Tiny Stack With a Huge Surface Area"
+slug: "bun-shell-meets-replicate"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["bun", "replicate", "ai", "scripting"]
+excerpt: "Bun Shell plus the Replicate SDK is one of those combinations where the sum is wildly bigger than the parts. A single TypeScript file can now reach into thousands of hosted models, pipe the output into real files on disk, and glue the whole thing into the rest of my system."
+createdAt: "2026-04-21T00:00:00.000Z"
+updatedAt: "2026-04-21T00:00:00.000Z"
+---
+
+I've been building up a personal CLI lately, and the part that keeps surprising me is how much leverage you get from pairing **Bun Shell** with **Replicate's SDK**. Individually they're both useful. Together, a single TypeScript file can reach into thousands of hosted AI models, pipe the output into real files on disk, open it in the right app, commit it to a repo, and glue the whole thing into the rest of my system. The surface area is enormous.
+
+This is a short post about why that combo works, and an honest attempt at sketching how many directions you can take it.
+
+## Why the combination works
+
+Most "AI script" setups I've seen fall into one of two buckets:
+
+1. A Python notebook that's great for exploration but a pain to wire into real workflows.
+2. A full web app with a backend, a queue, and auth, which is overkill when you just want to run a model once a day.
+
+Bun Shell plus Replicate slots neatly between those. You get:
+
+- **One runtime.** Bun runs the TypeScript, runs the shell calls, reads files, writes files, handles env vars. No Python, no Docker, no build step.
+- **Typed access to the outside world.** Replicate's SDK gives you a typed client for their entire catalog of models. Image, video, audio, text, embeddings, OCR, speech, upscaling, background removal, music, 3D. It's all one `client.run()` call away.
+- **A safe way to touch the rest of your machine.** Bun Shell handles file paths, piping, and escaping without the usual footguns. You can take a model's output URL, download it, move it into a dated folder, and open it in Finder in the same script that made the prediction.
+- **Zero ceremony.** No server to run. No worker to deploy. You invoke it, it runs, it exits. That's the whole lifecycle.
+
+The leverage comes from the fact that Replicate is a universal adapter for AI capabilities, and Bun is a universal adapter for the local machine. Glue those together and suddenly "I want to automate this thing that used to require a person" is a fifteen-minute script.
+
+## The mountain of use cases
+
+Once I internalized that shape, the ideas started stacking up faster than I could build them. A partial list, grouped by what the script actually *does*:
+
+### Generate
+
+- Daily wallpaper generator that picks a theme, runs an image model, saves to a Pictures folder, and rotates the macOS desktop.
+- Album art for a weekly playlist, generated from the track names.
+- Cover images for blog posts, keyed off the post's title and excerpt.
+- Product mockup renders from a text description, dropped straight into a `mockups/` folder.
+- Short video loops for social, generated overnight and ready in the morning.
+- Voiceover audio for captions or video scripts, saved as MP3 next to the script file.
+- Background music beds for videos, generated per-project.
+- Icon sets, logo explorations, texture tiles, diagram illustrations, hero images.
+
+### Transform
+
+- Background removal on every image in a folder, in one pass.
+- Upscale a directory of old photos or screenshots before archiving them.
+- Convert voice memos to text, then to a summarized note, then file it by date.
+- Take a screen recording, transcribe it, and produce a markdown writeup.
+- Extract structured data from PDFs or scanned invoices.
+- Translate an entire folder of subtitle files overnight.
+- Generate alt text for every image in a blog post directory.
+
+### Analyze
+
+- Nightly sentiment pass on incoming support emails or reviews.
+- Tag and categorize every photo in a shoot, drop the tags into EXIF.
+- Summarize yesterday's commits into a changelog entry.
+- Classify screenshots into folders (code, design, conversation, receipts).
+- Grade a batch of writing against a rubric and output scores as CSV.
+
+### Orchestrate
+
+- Chain a transcription model into a summarization model into a title-generation model, all in one script.
+- Fan out a prompt across several models and save the outputs side-by-side for comparison.
+- Use one model's output (a detected object, say) as the input to another model's prompt.
+- Kick off a long prediction, poll for it, and notify you when it finishes.
+- Keep a local log of every prediction with inputs, outputs, cost, and timing, queryable later.
+
+### Integrate
+
+- Wire it into a git hook so every PR gets a generated preview image.
+- Trigger it from a Raycast or Alfred command so you can hit a keystroke and get a result.
+- Schedule it with Bun Cron and let it run on a cadence.
+- Pipe the output straight into `pbcopy` so the result is on your clipboard.
+- Open the generated file in the right app (`open -a Figma`, `code`, Preview) as the last step of the script.
+
+That's maybe a quarter of the list I have saved, and each one is a file or two of TypeScript. The bar to building them is now so low that the question shifts from "is this worth automating?" to "why haven't I automated this yet?"
+
+## Why it feels different from "just use Replicate"
+
+Replicate on its own is an API. You can call it from anywhere. What Bun Shell adds is the *last mile*: taking the thing the model returned and making it useful without leaving the script.
+
+A prediction comes back as a URL. What you actually want is a file in the right folder with the right name, visible in the right app, committed to the right repo, and announced in the right channel. That last mile used to be a Python script with five dependencies or a Node script with a handful of `child_process` calls. Now it's a few lines of Bun Shell in the same file that made the prediction.
+
+That small change, the collapsing of "call the model" and "do something with the result" into a single runtime and a single file, is what unlocks the mountain of use cases. It's not that any one of them is impressive on its own. It's that the cost of trying one is now roughly the cost of writing a grocery list, so you try a lot of them, and a few of them turn out to be things you can't live without.
+
+If you have an AI idea that's been sitting in a "maybe someday" note, this is the stack I'd reach for first. A single `bun run`, a Replicate token in your env, and a willingness to treat your own workflows as programmable.

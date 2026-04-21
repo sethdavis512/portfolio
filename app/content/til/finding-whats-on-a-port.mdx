@@ -1,0 +1,70 @@
+---
+title: "Finding What's on a Port (and Killing It Safely)"
+slug: "finding-whats-on-a-port"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["cli", "bun", "dev-tools", "macos"]
+excerpt: "Every dev has the same 30-second ritual: a port is in use, copy the error, run lsof, squint at the PID, kill it, try again. It's silly that we still do this manually. A tiny CLI command that understands 'which dev server is on 3000, and is it safe to kill?' pays for itself in a week."
+createdAt: "2026-04-21T00:00:00.000Z"
+updatedAt: "2026-04-21T00:00:00.000Z"
+---
+
+You know the ritual.
+
+```
+Error: listen EADDRINUSE: address already in use :::3000
+```
+
+You stare at it. You copy `3000`. You run `lsof -i :3000`. You squint at the PID. You `kill -9` the PID. You re-run your dev server. It works. You move on.
+
+Every dev I know does this a dozen times a week. It's one of those small, stupid taxes on the day that nobody bothers to automate because it's "only 30 seconds." Thirty seconds times a dozen times a week times fifty weeks a year is ten hours of squinting at `lsof` output. So I finally wrapped it.
+
+## What the command actually does
+
+The shape I landed on is boring in the best way:
+
+```bash
+tws ports            # What's running on the usual suspects?
+tws ports 3000       # What's on this specific port?
+tws ports kill 3000  # Kill it, if it's safe to.
+```
+
+Under the hood it's `lsof -i` and a prompt, but the useful parts are the details around the edges.
+
+### A curated list of "usual suspects"
+
+Running `tws ports` with no arguments checks a list of common dev ports: `3000`, `3333`, `4321`, `5173`, `8080`, `8000`, `8888`, `4200`. These are the Vite, Next, Astro, Express, and Rails defaults I actually use. Most of the time I don't know which one is stuck, just that something is. One command tells me.
+
+### A protected process list
+
+This is the part that surprised me. The naive version of "kill whatever's on port 3000" is dangerous: plenty of well-behaved apps listen on unexpected ports. Electron-based apps (VS Code, Slack, Discord, Figma, Notion), browsers, system services, database servers, Docker. You really do not want a reflex `kill -9` on any of those.
+
+So the command maintains a list of protected process names. If the thing listening on the port is in the list, the default behavior is to *refuse to kill it* and tell you what it is. You can override with `--force` if you know what you're doing, but the default is "don't shoot yourself in the foot."
+
+The list grew organically from real near-misses. Every time I caught myself about to kill something I shouldn't, I added it. A partial tour of the protected set:
+
+- **Electron apps.** Slack, Discord, Figma, VS Code, Notion, and friends all show up as `Electron` or `Code Helper` in `lsof`. They listen on surprising ports for internal IPC. Killing them loses your unsaved work.
+- **Browsers.** Chrome, Firefox, Safari, Arc, Brave. They bind to a lot of ports. Nothing good comes from killing them from a dev script.
+- **Database servers.** `postgres`, `mysqld`, `mongod`, `redis-server`. If your Postgres is on a non-standard port and you forget, a casual `tws ports kill` would happily take down your local database. Protecting them forces an explicit `--force`.
+- **Docker.** `com.docker.backend` and friends. Killing Docker Desktop is almost never what you meant.
+- **macOS system services.** `launchd`, `rapportd`, `ControlCe`, `SystemUIServer`. These are the ones where the naive version of this tool becomes "how I broke my Mac."
+
+### A prompt before it kills
+
+Even when the process isn't in the protected list, the command shows me what it's about to kill and asks for confirmation. PID, process name, the port it's on, and how long it's been running. If it's my stuck `node` process from an hour ago, I hit enter. If it's something I don't recognize, I bail and investigate.
+
+## Why a CLI is the right surface for this
+
+I tried a few other shapes before settling on this one.
+
+- **A shell alias** (`alias killport='lsof -ti :$1 | xargs kill -9'`) works but has zero safety and zero discoverability.
+- **An Activity Monitor lookup** is fine but slow, and you still have to know what you're looking for.
+- **A Raycast extension** is great if you live in Raycast, but I often hit this from a dev-server terminal where my hands are already on the keyboard.
+
+A subcommand in a CLI I'm already using was the right fit. Same keystrokes as everything else, takes a port as an argument, pipes cleanly into other things, and carries the protected-processes logic with it.
+
+## The small idea behind it
+
+The broader lesson for me wasn't about ports. It was that **the small frictions are worth automating, but only if the automation is safer than what it replaces.** A one-line alias that blindly kills anything on a port is a foot-gun waiting to go off during a demo. A command that knows what it's looking at, shows you, and refuses to do the dumb thing by default is actually better than the manual ritual, not just faster.
+
+Every time the protected list catches me about to do something stupid, it justifies the whole thing.
