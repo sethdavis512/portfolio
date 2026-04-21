@@ -17,7 +17,8 @@ export const contactFormSchema = z.object({
         .min(1, 'Email is required')
         .max(320, 'Email is too long')
         .email('Please enter a valid email address'),
-    note: z.string().trim().max(2000, 'Note is too long').optional()
+    note: z.string().trim().max(2000, 'Note is too long').optional(),
+    offer: z.string().trim().max(100, 'Offer is too long').optional()
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -31,7 +32,8 @@ export function validateContactForm(formData: FormData):
         firstName: formData.get('firstName'),
         lastName: formData.get('lastName'),
         email: formData.get('email'),
-        note: formData.get('note') || undefined
+        note: formData.get('note') || undefined,
+        offer: formData.get('offer') || undefined
     });
 
     if (result.success) {

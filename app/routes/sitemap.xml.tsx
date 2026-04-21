@@ -1,5 +1,6 @@
 import type { Route } from './+types/sitemap.xml';
 import { getAllWorkSlugs, getAllTilSlugs } from '~/content';
+import { getAllServiceSlugs } from '~/content/data/service-offers';
 
 interface SitemapRoute {
     url: string;
@@ -33,7 +34,18 @@ export function loader({ request }: Route.LoaderArgs) {
         priority: 0.7
     }));
 
-    const allRoutes = [...staticRoutes, ...workRoutes, ...tilRoutes];
+    const serviceRoutes: SitemapRoute[] = getAllServiceSlugs().map((slug) => ({
+        url: `/services/${slug}`,
+        changefreq: 'monthly' as const,
+        priority: 0.9
+    }));
+
+    const allRoutes = [
+        ...staticRoutes,
+        ...workRoutes,
+        ...tilRoutes,
+        ...serviceRoutes
+    ];
 
     // Generate XML sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
