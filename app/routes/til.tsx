@@ -1,10 +1,12 @@
+import { Form, useSearchParams } from 'react-router';
 import { getPublishedTils } from '~/content';
 import type { Route } from './+types/til';
 import { Linky } from '~/components/Linky';
 import { Card } from '~/components/Card';
-import { Tag } from '~/components/Tag';
+import { Tag, tagVariants } from '~/components/Tag';
 import { Heading } from '~/components/Heading';
 import { generateRouteMeta } from '~/utils/seo';
+import { cx } from '~/cva.config';
 
 export function meta() {
     return generateRouteMeta({
@@ -25,10 +27,21 @@ export function loader() {
         createdAt: t.frontmatter.createdAt,
         tags: t.frontmatter.tags.map((name) => ({ id: name, name }))
     }));
-    return { posts };
+    const allTags = Array.from(
+        new Set(tils.flatMap((t) => t.frontmatter.tags))
+    ).sort();
+    return { posts, allTags };
 }
 
 export default function TILRoute({ loaderData }: Route.ComponentProps) {
+    const [searchParams] = useSearchParams();
+    const activeTopic = searchParams.get('topic');
+    const filteredPosts = activeTopic
+        ? loaderData.posts.filter((post) =>
+              post.tags.some((tag) => tag.name === activeTopic)
+          )
+        : loaderData.posts;
+
     return (
         <>
             <Heading as="h1" className="mb-2">
@@ -38,9 +51,47 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                 Short things I have learned — snippets, discoveries, and quick
                 explanations.
             </p>
+            {loaderData.allTags.length > 0 && (
+                <Form method="get" className="mb-6">
+                    <fieldset className="flex flex-wrap gap-2">
+                        <legend className="sr-only">Filter TILs by topic</legend>
+                        <button
+                            type="submit"
+                            className={cx(
+                                tagVariants({
+                                    variant: activeTopic ? 'muted' : 'primary'
+                                }),
+                                'cursor-pointer'
+                            )}
+                        >
+                            All
+                        </button>
+                        {loaderData.allTags.map((tag) => {
+                            const isActive = activeTopic === tag;
+                            return (
+                                <button
+                                    key={tag}
+                                    type="submit"
+                                    name="topic"
+                                    value={tag}
+                                    aria-pressed={isActive}
+                                    className={cx(
+                                        tagVariants({
+                                            variant: isActive ? 'primary' : 'muted'
+                                        }),
+                                        'cursor-pointer'
+                                    )}
+                                >
+                                    {tag}
+                                </button>
+                            );
+                        })}
+                    </fieldset>
+                </Form>
+            )}
             <div className="flex flex-col gap-3">
-                {loaderData.posts && loaderData.posts.length > 0 ? (
-                    loaderData.posts.map((post) => (
+                {filteredPosts.length > 0 ? (
+                    filteredPosts.map((post) => (
                         <Linky key={post.id} to={`/til/${post.slug}`}>
                             <Card className="w-full group border border-zinc-800 hover:border-zinc-600 dark:hover:border-zinc-500 transition-colors duration-200 hover:bg-zinc-800/60 dark:hover:bg-zinc-800/60">
                                 <div className="flex items-start justify-between gap-4">
@@ -77,6 +128,10 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                             </Card>
                         </Linky>
                     ))
+                ) : activeTopic ? (
+                    <p className="text-zinc-400">
+                        No TILs tagged <code>{activeTopic}</code> yet.
+                    </p>
                 ) : (
                     <p className="text-zinc-400">
                         Nothing here yet — check back soon.
