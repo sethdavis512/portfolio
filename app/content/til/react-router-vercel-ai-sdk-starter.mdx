@@ -4,14 +4,14 @@ slug: "react-router-vercel-ai-sdk-starter"
 status: "PUBLISHED"
 type: "TIL"
 tags: ["react-router-7", "ai-sdk"]
-excerpt: "tl;dr - Check out this fun starter repo: https://github.com/tech-with-seth/tws-ai-starter The React Router 7 & OpenAI Quickstart represents a compelling evolution in how we approach AI-integrated web applications. This starter template demonstrates a"
+excerpt: "tl;dr - Check out this fun starter repo: https://github.com/tech-with-seth/tws-ai-starter The React Router 7 & Vercel AI SDK Quickstart represents a compelling evolution in how we approach AI-integrated web applications. This starter template demonstrates a"
 createdAt: "2025-07-09T03:27:52.029Z"
 updatedAt: "2026-02-21T20:10:15.921Z"
 ---
 
 tl;dr - Check out this fun starter repo: [https://github.com/tech-with-seth/tws-ai-starter](https://github.com/tech-with-seth/tws-ai-starter)
 
-The React Router 7 & OpenAI Quickstart represents a compelling evolution in how we approach AI-integrated web applications. This starter template demonstrates a thoughtful marriage between React Router's latest routing capabilities and OpenAI's powerful language models, creating a foundation that's both developer-friendly and production-ready.
+The React Router 7 & Vercel AI SDK Quickstart represents a compelling evolution in how we approach AI-integrated web applications. This starter template demonstrates a thoughtful marriage between React Router's latest routing capabilities and the Vercel AI SDK, creating a foundation that's both developer-friendly and production-ready — drop in Anthropic (or any supported provider) and go.
 
 ## **What Makes This Template Unique**
 
@@ -23,9 +23,9 @@ The routing configuration demonstrates nested layouts through the Layout.tsx c
 
 ### Streamlined AI Integration
 
-What sets this template apart is its remarkably clean AI integration. The completions.tsx route showcases how modern AI SDKs can be seamlessly integrated into React Router's action-based data flow. Using the @ai-sdk/openai package and Vercel's ai library, the template demonstrates a pattern where AI calls are handled server-side through route actions, maintaining security while providing excellent user experience.
+What sets this template apart is its remarkably clean AI integration. The completions.tsx route showcases how modern AI SDKs can be seamlessly integrated into React Router's action-based data flow. Using the Vercel `ai` library with a swappable provider adapter (e.g. `@ai-sdk/anthropic`), the template demonstrates a pattern where AI calls are handled server-side through route actions, maintaining security while providing excellent user experience.
 
-The AI integration is refreshingly straightforward - a simple form submission triggers an OpenAI GPT-4 completion, with the response rendered immediately in the UI. This pattern eliminates the complexity often associated with AI-powered features, making it accessible to developers at all levels.
+The AI integration is refreshingly straightforward — a simple form submission triggers a completion against your chosen model (Claude via `@ai-sdk/anthropic` is a great default), with the response rendered immediately in the UI. This pattern eliminates the complexity often associated with AI-powered features, making it accessible to developers at all levels.
 
 ### Developer Experience Focus
 

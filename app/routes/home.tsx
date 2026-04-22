@@ -86,7 +86,7 @@ export default function Home() {
                             </Heading>
                             <p className="mb-8 text-zinc-300 max-w-2xl text-lg">
                                 Full-stack AI app starter kit with TypeScript,
-                                React Router, Better Auth, and OpenAI. Ship
+                                React Router, Better Auth, and Anthropic. Ship
                                 faster, not from scratch.
                             </p>
                             <Button
