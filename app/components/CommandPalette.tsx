@@ -106,7 +106,7 @@ function CommandSection({ title, links, onSelect }: CommandSectionProps) {
     return (
         <Command.Group
             heading={title}
-            className="p-6 [&_[cmdk-group-heading]]:text-zinc-700 dark:[&_[cmdk-group-heading]]:text-zinc-300 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:mb-4"
+            className="p-6 **:[[cmdk-group-heading]]:text-zinc-700 dark:**:[[cmdk-group-heading]]:text-zinc-300 **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:mb-4"
         >
             {links.map((link) => (
                 <Command.Item
