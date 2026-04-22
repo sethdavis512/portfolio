@@ -1,4 +1,4 @@
-import { Form, useSearchParams } from 'react-router';
+import { Form, Link, useSearchParams } from 'react-router';
 import { getPublishedTils } from '~/content';
 import type { Route } from './+types/til';
 import { Linky } from '~/components/Linky';
@@ -33,6 +33,8 @@ export function loader() {
     return { posts, allTags };
 }
 
+const PAGE_SIZE = 5;
+
 export default function TILRoute({ loaderData }: Route.ComponentProps) {
     const [searchParams] = useSearchParams();
     const activeTopic = searchParams.get('topic');
@@ -41,6 +43,25 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
               post.tags.some((tag) => tag.name === activeTopic)
           )
         : loaderData.posts;
+
+    const pageParam = Number(searchParams.get('page'));
+    const totalPages = Math.max(1, Math.ceil(filteredPosts.length / PAGE_SIZE));
+    const currentPage = Math.min(
+        Math.max(1, Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1),
+        totalPages
+    );
+    const pagedPosts = filteredPosts.slice(
+        (currentPage - 1) * PAGE_SIZE,
+        currentPage * PAGE_SIZE
+    );
+
+    function pageHref(page: number) {
+        const params = new URLSearchParams();
+        if (activeTopic) params.set('topic', activeTopic);
+        if (page > 1) params.set('page', String(page));
+        const qs = params.toString();
+        return qs ? `?${qs}` : '';
+    }
 
     return (
         <>
@@ -90,8 +111,8 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                 </Form>
             )}
             <div className="flex flex-col gap-3">
-                {filteredPosts.length > 0 ? (
-                    filteredPosts.map((post) => (
+                {pagedPosts.length > 0 ? (
+                    pagedPosts.map((post) => (
                         <Linky key={post.id} to={`/til/${post.slug}`}>
                             <Card className="w-full group border border-zinc-800 hover:border-zinc-600 dark:hover:border-zinc-500 transition-colors duration-200 hover:bg-zinc-800/60 dark:hover:bg-zinc-800/60">
                                 <div className="flex items-start justify-between gap-4">
@@ -138,6 +159,36 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                     </p>
                 )}
             </div>
+            {totalPages > 1 && (
+                <nav
+                    aria-label="Pagination"
+                    className="mt-8 flex items-center justify-between"
+                >
+                    {currentPage > 1 ? (
+                        <Link
+                            to={pageHref(currentPage - 1)}
+                            className="text-sm text-zinc-300 hover:text-white"
+                        >
+                            ← Newer
+                        </Link>
+                    ) : (
+                        <span />
+                    )}
+                    <span className="text-sm text-zinc-500">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    {currentPage < totalPages ? (
+                        <Link
+                            to={pageHref(currentPage + 1)}
+                            className="text-sm text-zinc-300 hover:text-white"
+                        >
+                            Older →
+                        </Link>
+                    ) : (
+                        <span />
+                    )}
+                </nav>
+            )}
         </>
     );
 }
