@@ -72,21 +72,21 @@ export function SlideCode({ code, language = 'typescript', className }: Props) {
                 className
             )}
         >
-            <div className="absolute top-4 right-5 text-[0.7rem] font-mono uppercase tracking-[0.2em] text-zinc-500">
+            <div className="absolute top-2 right-3 sm:top-4 sm:right-5 text-[0.6rem] sm:text-[0.7rem] font-mono uppercase tracking-[0.2em] text-zinc-500 pointer-events-none">
                 {language}
             </div>
             <div
                 className={cx(
-                    'overflow-x-auto px-8 py-8',
+                    'overflow-x-auto px-4 py-5 sm:px-6 sm:py-6 md:px-8 md:py-8',
                     '[&>pre]:!m-0 [&>pre]:!bg-transparent [&>pre]:!border-0',
-                    '[&_code]:!font-mono [&_code]:!text-[clamp(0.95rem,0.9vw+0.6rem,1.35rem)] [&_code]:!leading-[1.65]'
+                    '[&_code]:!font-mono [&_code]:!text-[clamp(0.75rem,1.6vw+0.3rem,1.35rem)] [&_code]:!leading-[1.55] sm:[&_code]:!leading-[1.65]'
                 )}
             >
                 {highlightedHtml ? (
                     <div dangerouslySetInnerHTML={{ __html: highlightedHtml }} />
                 ) : (
                     <pre className="m-0 bg-transparent">
-                        <code className="font-mono text-zinc-100 text-[clamp(0.95rem,0.9vw+0.6rem,1.35rem)] leading-[1.65]">
+                        <code className="font-mono text-zinc-100 text-[clamp(0.75rem,1.6vw+0.3rem,1.35rem)] leading-[1.55] sm:leading-[1.65]">
                             {code}
                         </code>
                     </pre>

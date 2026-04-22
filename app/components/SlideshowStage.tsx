@@ -111,7 +111,7 @@ export function SlideshowStage({
         <div className="w-screen h-screen relative bg-zinc-950 text-zinc-100 overflow-hidden font-sans">
             <title>{`${slide.title} — ${deck.meta.title}`}</title>
 
-            <div className="slide-container absolute inset-0 px-24 py-16 pb-28 flex items-center justify-center">
+            <div className="slide-container absolute inset-0 px-5 pt-14 pb-20 sm:px-10 sm:pt-16 sm:pb-24 md:px-16 lg:px-24 lg:py-16 lg:pb-28 flex items-center justify-center overflow-y-auto">
                 <div className="max-w-6xl w-full h-full">
                     <SlideComponent components={slideMdxComponents} />
                 </div>
@@ -120,7 +120,7 @@ export function SlideshowStage({
             {prevSlideId && (
                 <Link
                     to={`${basePath}/${prevSlideId}`}
-                    className="absolute left-6 top-1/2 -translate-y-1/2 p-3 text-zinc-500 hover:text-white transition-colors"
+                    className="hidden sm:block absolute left-2 md:left-6 top-1/2 -translate-y-1/2 p-3 text-zinc-500 hover:text-white transition-colors"
                     aria-label="Previous slide"
                     prefetch="intent"
                     viewTransition
@@ -145,7 +145,7 @@ export function SlideshowStage({
             {nextSlideId && (
                 <Link
                     to={`${basePath}/${nextSlideId}`}
-                    className="absolute right-6 top-1/2 -translate-y-1/2 p-3 text-zinc-500 hover:text-white transition-colors"
+                    className="hidden sm:block absolute right-2 md:right-6 top-1/2 -translate-y-1/2 p-3 text-zinc-500 hover:text-white transition-colors"
                     aria-label="Next slide"
                     prefetch="intent"
                     viewTransition
