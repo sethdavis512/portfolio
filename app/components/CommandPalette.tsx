@@ -26,14 +26,14 @@ const pagesLinks = [
         label: 'About'
     },
     {
-        to: 'https://techwithseth.com/digital-goods',
+        to: '/resume',
         icon: LinkIcon,
-        label: 'Digital Goods'
+        label: 'Resume'
     },
     {
-        to: '/truck',
+        to: '/services',
         icon: LinkIcon,
-        label: 'Truck'
+        label: 'Services'
     },
     {
         to: '/til',
@@ -41,9 +41,27 @@ const pagesLinks = [
         label: 'TIL'
     },
     {
+        to: '/slides',
+        icon: LinkIcon,
+        label: 'Slides'
+    },
+    {
+        to: '/truck',
+        icon: LinkIcon,
+        label: 'Truck'
+    },
+    {
         to: '/design-technologist',
         icon: LinkIcon,
         label: 'What is a Design Technologist?'
+    }
+];
+
+const externalLinks = [
+    {
+        to: 'https://techwithseth.com/digital-goods',
+        icon: LinkIcon,
+        label: 'Digital Goods'
     }
 ];
 
@@ -64,7 +82,7 @@ const socialLinks = [
         label: 'GitHub'
     },
     {
-        to: 'https://codepen.com/sethdavis512',
+        to: 'https://www.codepen.io/sethdavis512/',
         icon: LinkIcon,
         label: 'CodePen'
     }
@@ -182,6 +200,14 @@ export function CommandPalette({
                         onSelect={(to) => {
                             onOpenChange(false);
                             navigate(to);
+                        }}
+                    />
+                    <CommandSection
+                        title="External"
+                        links={externalLinks}
+                        onSelect={(to) => {
+                            onOpenChange(false);
+                            window.open(to, '_blank', 'noopener,noreferrer');
                         }}
                     />
                     <CommandSection
