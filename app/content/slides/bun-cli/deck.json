@@ -1,0 +1,8 @@
+{
+    "title": "Build Your Own Bun-Powered CLI",
+    "description": "Why every developer should ship a personal CLI, and why Bun is the shortest path from idea to binary.",
+    "order": 1,
+    "status": "PUBLISHED",
+    "updatedAt": "2026-04-22",
+    "tags": ["bun", "cli", "typescript", "talks"]
+}

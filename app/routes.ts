@@ -20,7 +20,10 @@ export default [
         route('truck', 'routes/truck.tsx'),
         route('work', 'routes/work.tsx'),
         route('work/:slug', 'routes/work-detail.tsx'),
+        route('slides', 'routes/slides-index.tsx'),
+        route('slides/:deckId', 'routes/slides-deck-index.tsx'),
         route('*', 'routes/not-found.tsx')
     ]),
+    route('slides/:deckId/:slideId', 'routes/slides-deck-stage.tsx'),
     route('sitemap.xml', 'routes/sitemap.xml.tsx')
 ] satisfies RouteConfig;

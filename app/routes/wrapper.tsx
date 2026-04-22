@@ -44,6 +44,12 @@ const NAV_ITEMS: NavItem[] = [
     },
     {
         type: 'internal',
+        to: '/slides',
+        label: 'Slides',
+        ariaLabel: 'Browse slideshows and talks'
+    },
+    {
+        type: 'internal',
         to: '/about',
         label: 'About',
         ariaLabel: 'Learn more about me'

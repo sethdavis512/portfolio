@@ -88,3 +88,183 @@ body {
     }
 }
 
+
+/* ============================================================
+   SLIDESHOW VIEW TRANSITIONS
+
+   Slides set two data attributes on <html> before navigating:
+     data-nav="forward|back"
+     data-transition="depth|fade|lift|zoom|flip|none"
+   The rules below pick animations based on both.
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+    .slide-container {
+        view-transition-name: slide;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+
+    ::view-transition-old(slide),
+    ::view-transition-new(slide) {
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    ::view-transition-old(slide) {
+        animation-duration: 0.35s;
+    }
+    ::view-transition-new(slide) {
+        animation-duration: 0.65s;
+    }
+
+    /* DEPTH (default) */
+    ::view-transition-old(slide) {
+        animation-name: depth-recede-left;
+    }
+    ::view-transition-new(slide) {
+        animation-name: depth-emerge-right;
+    }
+    html[data-nav='back']::view-transition-old(slide) {
+        animation-name: depth-recede-right;
+    }
+    html[data-nav='back']::view-transition-new(slide) {
+        animation-name: depth-emerge-left;
+    }
+
+    /* FADE */
+    html[data-transition='fade']::view-transition-old(slide) {
+        animation-name: fade-out;
+        animation-duration: 0.3s;
+    }
+    html[data-transition='fade']::view-transition-new(slide) {
+        animation-name: fade-in;
+        animation-duration: 0.5s;
+    }
+
+    /* LIFT */
+    html[data-transition='lift']::view-transition-old(slide) {
+        animation-name: lift-up-out;
+    }
+    html[data-transition='lift']::view-transition-new(slide) {
+        animation-name: lift-up-in;
+    }
+    html[data-transition='lift'][data-nav='back']::view-transition-old(slide) {
+        animation-name: lift-down-out;
+    }
+    html[data-transition='lift'][data-nav='back']::view-transition-new(slide) {
+        animation-name: lift-down-in;
+    }
+
+    /* ZOOM */
+    html[data-transition='zoom']::view-transition-old(slide) {
+        animation-name: zoom-in-out;
+    }
+    html[data-transition='zoom']::view-transition-new(slide) {
+        animation-name: zoom-fade-in;
+    }
+    html[data-transition='zoom'][data-nav='back']::view-transition-old(slide) {
+        animation-name: zoom-out-out;
+    }
+    html[data-transition='zoom'][data-nav='back']::view-transition-new(slide) {
+        animation-name: zoom-back-in;
+    }
+
+    /* FLIP */
+    html[data-transition='flip']::view-transition-old(slide),
+    html[data-transition='flip']::view-transition-new(slide) {
+        animation-duration: 0.5s;
+        backface-visibility: hidden;
+    }
+    html[data-transition='flip']::view-transition-old(slide) {
+        animation-name: flip-out-forward;
+    }
+    html[data-transition='flip']::view-transition-new(slide) {
+        animation-name: flip-in-forward;
+    }
+    html[data-transition='flip'][data-nav='back']::view-transition-old(slide) {
+        animation-name: flip-out-back;
+    }
+    html[data-transition='flip'][data-nav='back']::view-transition-new(slide) {
+        animation-name: flip-in-back;
+    }
+
+    /* NONE */
+    html[data-transition='none']::view-transition-old(slide),
+    html[data-transition='none']::view-transition-new(slide) {
+        animation: none;
+    }
+}
+
+@keyframes depth-recede-left {
+    from { opacity: 1; transform: scale(1) translateX(0); filter: blur(0); }
+    to   { opacity: 0; transform: scale(0.95) translateX(-40px); filter: blur(4px); }
+}
+@keyframes depth-emerge-right {
+    from { opacity: 0; transform: scale(1.03) translateX(40px); }
+    to   { opacity: 1; transform: scale(1) translateX(0); }
+}
+@keyframes depth-recede-right {
+    from { opacity: 1; transform: scale(1) translateX(0); filter: blur(0); }
+    to   { opacity: 0; transform: scale(0.95) translateX(40px); filter: blur(4px); }
+}
+@keyframes depth-emerge-left {
+    from { opacity: 0; transform: scale(1.03) translateX(-40px); }
+    to   { opacity: 1; transform: scale(1) translateX(0); }
+}
+
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes lift-up-out {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-60px) scale(0.97); }
+}
+@keyframes lift-up-in {
+    from { opacity: 0; transform: translateY(60px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes lift-down-out {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(60px) scale(0.97); }
+}
+@keyframes lift-down-in {
+    from { opacity: 0; transform: translateY(-60px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes zoom-in-out {
+    from { opacity: 1; transform: scale(1); filter: blur(0); }
+    to   { opacity: 0; transform: scale(1.15); filter: blur(3px); }
+}
+@keyframes zoom-fade-in {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@keyframes zoom-out-out {
+    from { opacity: 1; transform: scale(1); filter: blur(0); }
+    to   { opacity: 0; transform: scale(0.85); filter: blur(3px); }
+}
+@keyframes zoom-back-in {
+    from { opacity: 0; transform: scale(1.08); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes flip-out-forward {
+    from { opacity: 1; transform: perspective(1200px) rotateY(0deg); }
+    to   { opacity: 0; transform: perspective(1200px) rotateY(-90deg); }
+}
+@keyframes flip-in-forward {
+    from { opacity: 0; transform: perspective(1200px) rotateY(90deg); }
+    to   { opacity: 1; transform: perspective(1200px) rotateY(0deg); }
+}
+@keyframes flip-out-back {
+    from { opacity: 1; transform: perspective(1200px) rotateY(0deg); }
+    to   { opacity: 0; transform: perspective(1200px) rotateY(90deg); }
+}
+@keyframes flip-in-back {
+    from { opacity: 0; transform: perspective(1200px) rotateY(-90deg); }
+    to   { opacity: 1; transform: perspective(1200px) rotateY(0deg); }
+}
+

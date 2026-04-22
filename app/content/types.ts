@@ -83,3 +83,26 @@ export interface Skill {
     name: string;
     sortOrder: number;
 }
+
+export type SlideTransition =
+    | 'depth'
+    | 'fade'
+    | 'lift'
+    | 'zoom'
+    | 'flip'
+    | 'none';
+
+export interface SlideFrontmatter {
+    title: string;
+    order: number;
+    transition?: SlideTransition;
+}
+
+export interface DeckMeta {
+    title: string;
+    description?: string;
+    order?: number;
+    status?: 'PUBLISHED' | 'DRAFT';
+    updatedAt?: string;
+    tags?: string[];
+}

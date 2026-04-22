@@ -1,0 +1,32 @@
+---
+title: Why Bun
+order: 3
+transition: lift
+---
+
+<div className="h-full flex flex-col justify-center">
+    <div className="uppercase tracking-[0.3em] text-xs text-primary-400 mb-6">02 / The tool</div>
+    <h2 className="font-black text-[clamp(2.5rem,5vw+0.5rem,6rem)] text-white leading-[1] mb-12">Bun is the shortest path from idea to binary.</h2>
+    <div className="grid grid-cols-2 gap-6">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6">
+            <div className="font-mono text-xs text-primary-400 mb-3">01</div>
+            <h3 className="font-bold text-white text-xl mb-2">Single-binary ship</h3>
+            <div className="text-zinc-400 text-sm">One command compiles your TypeScript into a standalone executable. No Node install on the other end.</div>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6">
+            <div className="font-mono text-xs text-secondary-400 mb-3">02</div>
+            <h3 className="font-bold text-white text-xl mb-2">TypeScript, no setup</h3>
+            <div className="text-zinc-400 text-sm">No tsconfig, no ts-node, no build step during development. Run a <code className="font-mono text-primary-300">.ts</code> file directly.</div>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6">
+            <div className="font-mono text-xs text-tertiary-400 mb-3">03</div>
+            <h3 className="font-bold text-white text-xl mb-2">Built-in shell</h3>
+            <div className="text-zinc-400 text-sm">The <code className="font-mono text-primary-300">$</code> template literal gives you cross-platform shell without child_process gymnastics.</div>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6">
+            <div className="font-mono text-xs text-primary-400 mb-3">04</div>
+            <h3 className="font-bold text-white text-xl mb-2">SQLite on tap</h3>
+            <div className="text-zinc-400 text-sm"><code className="font-mono text-primary-300">bun:sqlite</code> gives every CLI a local database in zero lines of config.</div>
+        </div>
+    </div>
+</div>

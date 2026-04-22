@@ -9,6 +9,8 @@ import { XLogo } from '~/components/logos/XLogo';
 import { ContentStyles } from '~/constants';
 import { cx } from '~/cva.config';
 import { Card } from '~/components/Card';
+import { getAllDecks } from '~/content';
+import type { Route } from './+types/home';
 
 export function meta() {
     return generateRouteMeta({
@@ -33,8 +35,21 @@ function HomeSection({
     );
 }
 
-export default function Home() {
+export function loader() {
+    const decks = getAllDecks()
+        .slice(0, 3)
+        .map((d) => ({
+            slug: d.slug,
+            title: d.meta.title,
+            description: d.meta.description ?? null,
+            slideCount: d.slides.length
+        }));
+    return { decks };
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
     const socialLogoClassNames = 'w-11 h-11 md:w-12 md:h-12';
+    const { decks } = loaderData;
 
     return (
         <>
@@ -177,6 +192,41 @@ export default function Home() {
                     </div>
                 </div>
             </HomeSection>
+            {decks.length > 0 && (
+                <HomeSection>
+                    <div className="flex items-baseline justify-between mb-6">
+                        <Heading className="mb-0">Recent slides</Heading>
+                        <Linky to="/slides" className="text-sm">
+                            All slides →
+                        </Linky>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {decks.map((deck) => (
+                            <Linky key={deck.slug} to={`/slides/${deck.slug}`}>
+                                <Card className="h-full p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900 group hover:border-primary-700/60 transition-colors">
+                                    <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
+                                        <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                                            Deck
+                                        </span>
+                                        <Heading className="text-white">
+                                            {deck.title}
+                                        </Heading>
+                                        {deck.description && (
+                                            <p className="mb-6 text-zinc-300">
+                                                {deck.description}
+                                            </p>
+                                        )}
+                                        <span className="mt-auto text-xs font-mono text-zinc-500">
+                                            {deck.slideCount} slide
+                                            {deck.slideCount === 1 ? '' : 's'}
+                                        </span>
+                                    </div>
+                                </Card>
+                            </Linky>
+                        ))}
+                    </div>
+                </HomeSection>
+            )}
             <HomeSection>
                 <Heading>Socials</Heading>
                 <div className="flex gap-8">
