@@ -1,255 +1,174 @@
 ---
 name: portfolio-work-creator
-description: Guides adding portfolio work items to sethdavis.tech via the CMS. Work items are managed in KeystoneJS admin, not in code. Use when the user wants to add a new work item, project, product, or case study to their portfolio website. Also use when the user mentions "add work", "new portfolio item", "create project page", or wants to showcase something in their portfolio.
+description: Adds a portfolio work item to sethdavis.tech by creating a local MDX file under app/content/work/. Use when the user wants to add a project, product, case study, or work item to their portfolio (phrases like "add to my portfolio", "showcase this project", "create a work page", "new portfolio item"). Do NOT use for TIL entries (app/content/til/) or blog posts (app/content/post/) — those are separate content types.
 ---
 
 # Portfolio Work Creator
 
-Work items are managed entirely through the **KeystoneJS CMS**. No route files, no manual code updates - everything is stored in the database and rendered dynamically.
+Work items live as **local MDX files** in `app/content/work/`. The portfolio loader (`app/content/work.ts`) globs them at build time, so creating a new file is the entire workflow. There is no CMS, no database, no GraphQL.
 
-## Architecture Overview
+**Do not edit:** `app/routes.ts`, `app/components/CommandPalette.tsx`, `app/routes/sitemap.xml.tsx`, `react-router.config.ts`. Routing, command palette entries, sitemap, and prerendering all derive from the MDX glob automatically.
 
-- **Work items live in the CMS database** (Work model in KeystoneJS)
-- **Dynamic routing**: Single `work/:slug` route handles all work items
-- **CommandPalette**: Fetches work items from GraphQL at root loader
-- **Sitemap**: Generated dynamically from CMS data
-- **Pre-rendering**: Fetches work slugs from GraphQL at build time
-- **Production database is used directly** -- no local/dev database
+## Workflow
 
-**No manual file edits needed for:**
+1. **Gather** the project's title, one-sentence description, source/demo URLs, and tech stack.
+2. **Pick a slug** in kebab-case. It becomes both the filename (`<slug>.mdx`) and the URL (`/work/<slug>`).
+3. **Pick a sortOrder.** Lower numbers appear first on `/work`. Check existing values with `grep -h "sortOrder:" app/content/work/*.mdx | sort -un` and slot the new item where it belongs in the lineup. Recent flagship work usually goes 0–3.
+4. **Write `app/content/work/<slug>.mdx`** using the template below.
+5. **Decide on images.** Use a Cloudinary placeholder (see "Images") if a project-specific photo is not ready yet.
+6. **Decide on body content.** If `hasContent: true`, add an MDX body below the frontmatter. Otherwise leave the file frontmatter-only.
+7. **Verify** with `bun run typecheck`. The dev server (`bun run dev`) will surface any MDX parse errors.
 
-- `web/app/routes.ts`
-- `web/app/components/CommandPalette.tsx`
-- `web/app/routes/sitemap.xml.tsx`
-- `web/react-router.config.ts`
+That's it. Commit the file like any other code change; the normal deploy flow ships it.
 
-## When to Use This Skill
+## Frontmatter template
 
-Use when:
-
-- Adding new work items, projects, or products to portfolio
-- User says "add to my portfolio", "create a work page", "showcase this project"
-- Documenting completed work for the portfolio site
-- Creating case studies or project pages
-
-## Quick Start Workflow
-
-### Step 1: Gather Project Information
-
-Research the project or ask the user for:
-
-- **Project title** (required)
-- **URL slug** (kebab-case, required)
-- **Description** (1-2 sentences for /work page card)
-- **Tech stack** (JSON array of logo identifiers)
-- **Content sections** (about, learned, impact paragraphs)
-
-### Step 2: Authenticate with Production API
-
-Read credentials from `cms/.env` and authenticate to get a session cookie:
-
-```bash
-# Read credentials
-SEED_EMAIL=$(grep SEED_EMAIL cms/.env | cut -d'"' -f2)
-SEED_PASSWORD=$(grep SEED_PASSWORD cms/.env | cut -d'"' -f2)
-
-# Authenticate and save session cookie
-curl -s -c /tmp/cms-cookies.txt https://admin.sethdavis.tech/api/graphql \
-  -H 'Content-Type: application/json' \
-  -d "{\"query\":\"mutation { authenticateUserWithPassword(email: \\\"$SEED_EMAIL\\\", password: \\\"$SEED_PASSWORD\\\") { ... on UserAuthenticationWithPasswordSuccess { sessionToken item { id } } ... on UserAuthenticationWithPasswordFailure { message } } }\"}"
+```mdx
+---
+title: "Project Name"
+slug: "project-slug"
+status: "PUBLISHED"
+description: "1-2 sentence card description shown on /work."
+cta: "See more"
+sortOrder: 1
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/placeholder-browser.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/placeholder-browser.png"
+about: "Project overview paragraph (3-5 sentences)."
+learned: "Knowledge gained paragraph (4-6 sentences)."
+impact: "Why it matters paragraph (4-5 sentences)."
+techStack: ["typescript", "react"]
+sourceUrl: "https://github.com/owner/repo"
+demoUrl: ""
+demoUrlText: ""
+purchaseUrl: ""
+purchaseButtonText: ""
+sidebarTitle: ""
+features: []
+sidebarType: "none"
+tags: []
+galleryImages: []
+hasContent: false
+createdAt: "2026-04-27T00:00:00.000Z"
+updatedAt: "2026-04-27T00:00:00.000Z"
+---
 ```
 
-Verify the response contains `sessionToken`. If it returns a failure message, check the credentials.
+## Frontmatter field reference
 
-### Step 3: Check for Existing Item
+| Field | Type | Notes | Required |
+|-------|------|-------|----------|
+| `title` | string | Display name | Yes |
+| `slug` | string | kebab-case, must match filename | Yes |
+| `status` | string | `PUBLISHED`, `DRAFT`, or `ARCHIVED`. Only `PUBLISHED` shows on `/work` | Yes |
+| `description` | string | Card text on `/work` listing | Yes |
+| `cta` | string | Card button label (default: `See more`) | No |
+| `sortOrder` | number | Lower = earlier on `/work` | Yes |
+| `heroImage` | URL | Top of detail page (1920px Cloudinary URL) | Yes |
+| `thumbnailImage` | URL | Card on `/work` (1280px Cloudinary URL) | Yes |
+| `about` | string | Project overview, 3-5 sentences | Yes |
+| `learned` | string | Knowledge gained, 4-6 sentences | Yes |
+| `impact` | string | Why it matters, 4-5 sentences | Yes |
+| `techStack` | string[] | Tech identifiers — see list below | Yes |
+| `sourceUrl` | URL | GitHub or source link, empty string if none | Yes (use `""` if none) |
+| `demoUrl` | URL | Live demo, empty string if none | Yes (use `""` if none) |
+| `demoUrlText` | string | Custom demo button label | No |
+| `purchaseUrl` | URL | Purchase link | No |
+| `purchaseButtonText` | string | Purchase button label | No |
+| `sidebarTitle` | string | Heading for product sidebar | No |
+| `sidebarType` | string | `none`, `purchase`, or `interest-form` | Yes |
+| `features` | string[] | Bullet list shown in `purchase` sidebar | No |
+| `tags` | string[] | Free-form labels | No |
+| `galleryImages` | object[] | See "Gallery images" below | No |
+| `hasContent` | boolean | `true` if the file has an MDX body | Yes |
+| `createdAt` | ISO string | First publish date | Yes |
+| `updatedAt` | ISO string | Last edit date | Yes |
 
-Query to see if the slug already exists (to decide create vs update). Reads are public, no cookie needed:
+## Tech stack identifiers
 
-```bash
-curl -s https://admin.sethdavis.tech/api/graphql \
-  -H 'Content-Type: application/json' \
-  -d '{"query":"{ works(where: { slug: { equals: \"THE-SLUG\" } }) { id title slug } }"}'
+`techStack` accepts only these strings (mapped in `app/components/TechStackLogos.tsx`):
+
+`anthropic`, `baseui`, `better-auth`, `bun`, `cloudinary`, `css`, `daisy`, `docusaurus`, `electron`, `github`, `javascript`, `keystone`, `mcp`, `obsidian`, `polar`, `postgres`, `prisma`, `railway`, `react`, `react-router`, `remotion`, `storybook`, `stripe`, `tailwind`, `trigger`, `turborepo`, `typescript`, `voltagent`, `vuejs`, `wordpress`
+
+Unknown identifiers are silently dropped (they render as `null`). If a tech the project uses is missing from this list, add a logo component to `app/components/logos/` and wire it into `TechStackLogos.tsx` (see `VoltAgentLogo.tsx` or `AnthropicLogo.tsx` for the minimal pattern). Don't invent new identifiers without adding the logo.
+
+## Images
+
+### Placeholders
+
+When a project photo is not ready, use one of these Cloudinary placeholders:
+
+| Project type | Hero (`w_1920`) / Thumb (`w_1280`) URL stem |
+|--------------|---------------------------------------------|
+| CLI/terminal | `.../portfolio/placeholder-terminal.png` |
+| Browser/web | `.../portfolio/placeholder-browser.png` |
+
+Full URL format: `https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_<WIDTH>/v1/portfolio/placeholder-<TYPE>.png`. Use `w_1920` for `heroImage`, `w_1280` for `thumbnailImage`.
+
+### Real images
+
+Upload via the `cloudinary-upload` skill or `cloudinary` CLI; the result is a `https://res.cloudinary.com/setholito/...` URL. Always include the `c_scale,f_auto,q_90,w_<WIDTH>` transform segment so Cloudinary serves the right size.
+
+### Gallery images
+
+Optional. Each entry has `src`, `alt`, and `sortOrder`:
+
+```yaml
+galleryImages:
+  - src: "https://res.cloudinary.com/setholito/.../w_1280/v1/portfolio/screenshot-1.png"
+    alt: "Home page"
+    sortOrder: 0
+  - src: "https://res.cloudinary.com/setholito/.../w_1280/v1/portfolio/screenshot-2.png"
+    alt: "Mobile view"
+    sortOrder: 1
 ```
 
-### Step 4: Create or Update via GraphQL Mutation
+Use 1280px width for gallery images.
 
-**Create a new work item** (requires session cookie from Step 2):
+## MDX body (when `hasContent: true`)
 
-```bash
-curl -s -b /tmp/cms-cookies.txt https://admin.sethdavis.tech/api/graphql \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "query": "mutation($data: WorkCreateInput!) { createWork(data: $data) { id title slug } }",
-    "variables": {
-      "data": {
-        "title": "Project Title",
-        "slug": "project-slug",
-        "status": "PUBLISHED",
-        "sortOrder": 13,
-        "description": "Card description for /work page",
-        "cta": "View project",
-        "about": "Project overview paragraph...",
-        "learned": "What you learned paragraph...",
-        "impact": "Why it matters paragraph...",
-        "techStack": ["typescript", "react"],
-        "sourceUrl": "https://github.com/...",
-        "demoUrl": "https://...",
-        "demoUrlText": "View demo",
-        "sidebarType": "none",
-        "features": []
-      }
-    }
-  }'
-```
+Most work items are frontmatter-only and rely on `about` / `learned` / `impact` for content. Set `hasContent: true` and add a body **only** when the project warrants long-form prose, code samples, or rich explanation.
 
-**Update an existing work item:**
+Body rules:
+- Plain markdown headings (`##`), prose, lists, and fenced code blocks all work.
+- The body renders inside the wrapper layout — do not author full-height JSX layouts (those are for slides, not work items).
+- Use relative imports (`~/` aliases do not resolve inside MDX at build time).
+- Escape literal `<` outside code blocks as `&lt;`.
 
-```bash
-curl -s -b /tmp/cms-cookies.txt https://admin.sethdavis.tech/api/graphql \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "query": "mutation($where: WorkWhereUniqueInput!, $data: WorkUpdateInput!) { updateWork(where: $where, data: $data) { id title slug } }",
-    "variables": {
-      "where": { "slug": "project-slug" },
-      "data": {
-        "description": "Updated description"
-      }
-    }
-  }'
-```
+See `app/content/work/buncli.mdx` for a reference body.
 
-**Important notes:**
-- All mutations require the session cookie (`-b /tmp/cms-cookies.txt`)
-- `techStack` and `features` are JSON fields -- pass as arrays
-- `sidebarType` valid values: `none`, `purchase`, `interest-form`
-- `status` valid values: `DRAFT`, `PUBLISHED`, `ARCHIVED`
-- Long text fields (about, learned, impact) must be escaped for JSON
+## Sidebar variants
 
-### Step 5: Verify Creation
+`sidebarType` controls the right-rail block on the detail page:
 
-Query back the item to confirm it was created correctly:
+- `none` — no sidebar (most personal projects)
+- `purchase` — shows `sidebarTitle`, `features`, and a `purchaseButtonText` button linking to `purchaseUrl`
+- `interest-form` — shows `sidebarTitle` and an Airtable-backed interest form (used for products like Iridium)
 
-```bash
-curl -s https://admin.sethdavis.tech/api/graphql \
-  -H 'Content-Type: application/json' \
-  -d '{"query":"{ works(where: { slug: { equals: \"project-slug\" } }) { id title slug status sortOrder description about learned impact techStack sourceUrl demoUrl sidebarType } }"}' | python3 -m json.tool
-```
+## Content writing
 
-### Step 6: Upload Images
+Read [references/content-guide.md](references/content-guide.md) before writing the `about`, `learned`, and `impact` paragraphs — it covers the three-part structure, length targets, and voice patterns. Skip this only when porting existing copy verbatim.
 
-Upload images via the upload script:
+## Validation checklist
 
-```bash
-cd cms && bun run upload-image.ts <slug> heroImage <file-or-url>
-cd cms && bun run upload-image.ts <slug> thumbnailImage <file-or-url>
-cd cms && bun run upload-image.ts <slug> gallery <file-or-url> "Alt text description"
-```
+Before considering the task done:
 
-Accepts local file paths or URLs. Uploads to Cloudinary and updates the database directly.
+- [ ] File is at `app/content/work/<slug>.mdx` and the slug matches `slug:` in frontmatter
+- [ ] `status: "PUBLISHED"`
+- [ ] `sortOrder` chosen against existing values (no unintended duplicates next to each other unless intentional)
+- [ ] `description`, `about`, `learned`, `impact` all filled in
+- [ ] `techStack` uses only known identifiers
+- [ ] `heroImage` and `thumbnailImage` set (placeholder or real)
+- [ ] `sourceUrl` and `demoUrl` are valid URLs or empty strings (not omitted)
+- [ ] `hasContent` matches whether a body exists
+- [ ] `createdAt` and `updatedAt` are ISO timestamps
+- [ ] `bun run typecheck` passes
 
-| Field            | Purpose                                     |
-| ---------------- | ------------------------------------------- |
-| `heroImage`      | Large hero image at top of work detail page |
-| `thumbnailImage` | Card thumbnail on /work page                |
-| `gallery`        | Gallery images on work detail page          |
+## Common issues
 
-Gallery images auto-increment `sortOrder` and use the alt text argument (or filename if omitted).
+**MDX parse error on dev server.** Usually an unescaped `<` in prose, a malformed YAML value, or a missing closing quote in a long paragraph. Check the file with `bun run dev` and read the error.
 
-### Step 7: Rebuild Web
+**Tech stack icon missing on detail page.** The identifier isn't in `TechStackLogos.tsx`'s `LogoName` union. Add a logo component (mirror `VoltAgentLogo.tsx`), import it, extend the union, and add a config entry — all in one file.
 
-After data and images are in production, rebuild the web frontend:
+**Item doesn't appear on /work.** Check `status: "PUBLISHED"` (not `"DRAFT"`). Restart the dev server if the file was just created — the glob is evaluated at startup.
 
-```bash
-cd web && echo "// build trigger: $(date -u +%Y%m%d%H%M%S)" >> .build-trigger && railway up -d
-```
-
-- `railway redeploy` only restarts the container -- it does NOT rebuild.
-- Pre-rendered pages fetch data at build time, so `railway up` is required.
-
-### Step 8: Clean Up
-
-```bash
-rm -f /tmp/cms-cookies.txt
-```
-
-## Content Writing Guidelines
-
-Follow the three-part structure:
-
-1. **About (Project Overview)**: What it is, what it does, how it works (3-5 sentences)
-2. **Learned (Knowledge Gained)**: Technical learnings and insights (4-6 sentences)
-3. **Impact (Portfolio Value)**: Why it matters, what it showcases (4-5 sentences)
-
-See [content-guide.md](references/content-guide.md) for detailed writing patterns and examples.
-
-## Available Tech Stack Logos
-
-JSON array format: `["typescript", "react", "tailwind"]`
-
-All available logos:
-`baseui`, `better-auth`, `bun`, `cloudinary`, `css`, `daisy`, `docusaurus`, `electron`, `github`, `javascript`, `keystone`, `mcp`, `obsidian`, `postgres`, `polar`, `prisma`, `railway`, `react`, `react-router`, `remotion`, `storybook`, `stripe`, `tailwind`, `trigger`, `turborepo`, `typescript`, `vuejs`, `wordpress`
-
-## Work Field Reference
-
-| Field                | Type       | Valid Values / Format                     | Required |
-| -------------------- | ---------- | ----------------------------------------- | -------- |
-| `title`              | String     | Display name                              | Yes      |
-| `slug`               | String     | kebab-case, unique                        | Yes      |
-| `status`             | String     | `DRAFT`, `PUBLISHED`, `ARCHIVED`          | Yes      |
-| `sortOrder`          | Int        | Lower = first on /work page               | No       |
-| `description`        | String     | Card description for /work page           | Yes      |
-| `cta`                | String     | Button text (default: "See more")         | No       |
-| `about`              | String     | Project overview paragraph                | No       |
-| `learned`            | String     | What you learned paragraph                | No       |
-| `impact`             | String     | Why it matters paragraph                  | No       |
-| `techStack`          | JSON       | `["typescript", "react"]`                 | No       |
-| `sourceUrl`          | String     | GitHub/source link                        | No       |
-| `demoUrl`            | String     | Live demo link                            | No       |
-| `demoUrlText`        | String     | Custom demo button text                   | No       |
-| `purchaseUrl`        | String     | Purchase/sale link                        | No       |
-| `purchaseButtonText` | String     | Purchase button label                     | No       |
-| `sidebarTitle`       | String     | Product sidebar heading                   | No       |
-| `sidebarType`        | String     | `none`, `purchase`, `interest-form`       | No       |
-| `features`           | JSON       | `["Feature 1", "Feature 2"]`             | No       |
-
-## Validation Checklist
-
-After adding a work item:
-
-- [ ] Status set to PUBLISHED
-- [ ] Slug is valid kebab-case
-- [ ] Description filled in for /work card
-- [ ] Hero image uploaded (appears on detail page)
-- [ ] Thumbnail image uploaded (appears on /work cards)
-- [ ] Content sections filled (about, learned, impact)
-- [ ] Tech stack JSON is valid array
-- [ ] Verified via GraphQL query
-- [ ] Ran `railway up -d` from web directory to rebuild
-
-## Common Issues
-
-**Work item doesn't appear on production after creation**:
-
-- Did you run `railway up -d` from the `web/` directory?
-- `railway redeploy` does NOT rebuild -- use `railway up`
-
-**Mutation returns access denied**:
-
-- Re-authenticate: session cookies expire after 30 days
-- Verify credentials in `cms/.env` match the production user
-
-**Images not showing**:
-
-- Check that images were uploaded in CMS admin (not just referenced)
-- Rebuild with `railway up -d`
-
-**Work item not in CommandPalette**:
-
-- CommandPalette fetches from CMS dynamically -- no manual update needed
-- Ensure status is PUBLISHED
-- Rebuild with `railway up -d`
-
-**Sort order wrong on /work page**:
-
-- Adjust `sortOrder` field (lower numbers appear first)
-- Rebuild after updating
+**CommandPalette doesn't show the new item.** It's wired to the work loader, so a typecheck-clean MDX file with `status: "PUBLISHED"` will appear after dev server restart or rebuild.

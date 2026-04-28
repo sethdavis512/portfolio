@@ -1,10 +1,8 @@
 # Content Writing Guide for Work Items
 
-Follow these patterns when writing content for portfolio work items in the CMS.
+Follow these patterns when writing the `about`, `learned`, and `impact` frontmatter fields in a work item MDX file.
 
 ## Core Content Principles
-
-From [CONTENT_STYLE_GUIDE.md](../../../CONTENT_STYLE_GUIDE.md):
 
 - **Practical**: Focus on real-world applications and tangible benefits
 - **Efficient**: Clear, concise communication without fluff
@@ -13,7 +11,7 @@ From [CONTENT_STYLE_GUIDE.md](../../../CONTENT_STYLE_GUIDE.md):
 
 ## Three-Part Content Structure
 
-Work items require three content fields in the CMS admin:
+Every work item has three content fields in frontmatter:
 
 ### 1. About Field
 
@@ -104,21 +102,9 @@ experience.
 
 **Pattern**: [What it showcases] + [Domains covered] + [Production readiness] + [Professional capability]
 
-## CMS Field Reference
-
-| Field | Content Type | Guidelines |
-|-------|-------------|------------|
-| `title` | Short text | Project name, displayed as heading |
-| `slug` | Short text | URL path, kebab-case |
-| `description` | Short text | 1-2 sentences for /work page cards |
-| `about` | Long text | Project overview (3-5 sentences) |
-| `learned` | Long text | Knowledge gained (4-6 sentences) |
-| `impact` | Long text | Portfolio value (4-5 sentences) |
-| `techStack` | JSON | Array format: `["typescript", "react"]` |
-
 ## Voice and Tone Checklist
 
-Before finalizing content in the CMS, ensure:
+Before finalizing the content fields, ensure:
 
 - [ ] Uses active voice
 - [ ] Focuses on practical benefits

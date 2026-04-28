@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { cx } from '~/cva.config';
 
+import { AnthropicLogo } from './logos/AnthropicLogo';
 import { BaseUILogo } from './logos/BaseUILogo';
 import { BetterAuthLogo } from './logos/BetterAuthLogo';
 import { BunLogo } from './logos/BunLogo';
@@ -25,6 +26,7 @@ import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
 import { TurborepoLogo } from './logos/TurborepoLogo';
 import { TypescriptLogo } from './logos/TypescriptLogo';
+import { VoltAgentLogo } from './logos/VoltAgentLogo';
 import { Linky } from './Linky';
 import { PolarLogo } from './logos/PolarLogo';
 import { KeystoneLogo } from './logos/KeystoneLogo';
@@ -33,6 +35,7 @@ import { DaisyUILogo } from './logos/DaisyUILogo';
 import { WordPressLogo } from './logos/WordPressLogo';
 
 export type LogoName =
+    | 'anthropic'
     | 'baseui'
     | 'better-auth'
     | 'bun'
@@ -59,6 +62,7 @@ export type LogoName =
     | 'trigger'
     | 'turborepo'
     | 'typescript'
+    | 'voltagent'
     | 'vuejs'
     | 'wordpress';
 
@@ -77,6 +81,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             url: string;
         }
     > = {
+        anthropic: {
+            component: (props) => <AnthropicLogo {...logoProps} {...props} />,
+            title: 'Anthropic',
+            url: 'https://www.anthropic.com/'
+        },
         baseui: {
             component: (props) => <BaseUILogo {...logoProps} {...props} />,
             title: 'Base UI',
@@ -206,6 +215,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <TypescriptLogo {...logoProps} {...props} />,
             title: 'TypeScript',
             url: 'https://www.typescriptlang.org/'
+        },
+        voltagent: {
+            component: (props) => <VoltAgentLogo {...logoProps} {...props} />,
+            title: 'VoltAgent',
+            url: 'https://voltagent.dev/'
         },
         vuejs: {
             component: (props) => <VueLogo {...logoProps} {...props} />,

@@ -1,0 +1,41 @@
+---
+title: 'Sprocket'
+slug: 'sprocket'
+status: 'PUBLISHED'
+description: 'A personal AI assistant powered by a supervisor and 12 specialized sub-agents covering relationships, journal, notes, tasks, calendar, habits, finance, and weekly reviews, all in one chat.'
+cta: 'See more'
+sortOrder: 1
+heroImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/sprocket-hero.png'
+thumbnailImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-hero.png'
+about: 'Sprocket is a multi-agent personal assistant bootstrapped from Iridium, my React Router 7 starter kit, and grown into its own product on top of VoltAgent. A supervisor agent routes requests to twelve specialists (RelationshipManager, JournalCoach, NoteTaker, Planner, CalendarAssistant, HabitTracker, FinanceTracker, WeeklyReviewer, EmailDrafter, ResearchAssistant, GitHubAssistant, and CreativeAssistant), each with its own tools backed by a single Postgres database via Prisma. Every domain (contacts, interactions, journal entries, notes, tasks, events, habits, expenses) is exposed both as a normal CRUD UI and as an agent tool, so the chat surface and the manual surface stay in lockstep. Working memory persists across conversations and across agents, hooks inject temporal context into every request, and guardrails enforce input length limits and PII redaction on streamed output. Auth is Better Auth with HTTP-only sessions, and a built-in cron framework runs scheduled jobs (like a daily digest) as standalone Railway services with full run history.'
+learned: "This project was a deep exercise in agent-native architecture. Designing the supervisor/sub-agent topology forced me to think carefully about which decisions belong at the routing layer versus inside specialist prompts, and how to forward tool-call and text-delta streams cleanly to the UI. I worked through the practical realities of long-running AI memory: separating VoltAgent's memory schema from the application schema by giving each its own database, building structured working memory with Zod validation, and using RAG retrievers to pull relevant notes into agent context. The cron framework taught me Railway's cron model the hard way: minimum five-minute frequency, no exact-minute precision, UTC only, and skips rather than double-fires when a previous run is still active. I also got real reps on guardrails, middleware, and hooks as first-class abstractions, and on keeping every agent capability reachable from both human and agent surfaces."
+impact: 'Sprocket is the project I point to when someone wants to see how I think about agent-native software. It is not a wrapper around a single LLM call. It is twelve specialized agents sharing memory, a supervisor that delegates, guardrails on input and output, RAG-backed retrieval, and a UI that makes tool calls legible to the user. For anyone evaluating me for AI engineering, agent design, or full-stack roles where the assistant is the product, this is the clearest end-to-end example. It also exercises the rest of the stack I work in daily: React Router 7 with type-safe loaders and actions, Prisma, Better Auth, Tailwind with DaisyUI, Bun in development, Docker in production, and Railway for deploys and cron. Sprocket and Iridium are intentionally paired in my portfolio. Iridium is the foundation, and Sprocket is the proof that the foundation holds up under a real, opinionated product.'
+techStack:
+    [
+        'typescript',
+        'react',
+        'react-router',
+        'tailwind',
+        'daisy',
+        'postgres',
+        'prisma',
+        'better-auth',
+        'bun',
+        'railway',
+        'voltagent',
+        'anthropic'
+    ]
+sourceUrl: ''
+demoUrl: ''
+demoUrlText: ''
+purchaseUrl: ''
+purchaseButtonText: ''
+sidebarTitle: ''
+features: []
+sidebarType: 'none'
+tags: ['AI', 'Agents', 'Personal Assistant']
+galleryImages: []
+hasContent: false
+createdAt: '2026-04-27T00:00:00.000Z'
+updatedAt: '2026-04-27T00:00:00.000Z'
+---
