@@ -1,0 +1,86 @@
+---
+title: "Lessons From Building a Multi-Agent Personal Assistant"
+slug: "lessons-from-building-a-multi-agent-personal-assistant"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["ai", "agents", "architecture"]
+excerpt: "Why a supervisor with twelve specialists beats one giant prompt, what shared memory unlocks, and why the most interesting AI app is the one your old apps could already have been."
+createdAt: "2026-04-28T00:00:00.000Z"
+updatedAt: "2026-04-28T00:00:00.000Z"
+---
+
+Sprocket is my personal assistant. It manages contacts, journal entries, notes, tasks, calendar events, habits, and expenses, drafts emails, generates images, runs weekly reviews, and answers cross-domain questions about my own life. Underneath, it is not one big AI. It is a supervisor and twelve specialists sharing one memory. Building it changed how I think about what an AI app even is.
+
+## Why split it up
+
+The instinct with a personal assistant is to write one enormous system prompt and hand the model every tool you have. That works for a demo. It collapses the moment the surface area grows past a handful of features.
+
+A supervisor + sub-agent layout fixes the failure modes:
+
+- **Context stays small.** Each specialist only loads the prompts and tools relevant to its domain. The journal coach never sees finance tools. The finance tracker never reads contact prompts.
+- **Decisions stay coherent.** The supervisor decides which specialist owns the request and forwards the conversation. Specialists do not argue with each other; they do their job.
+- **You can change one thing without breaking everything.** Tuning the journaling agent's tone is a one-file change. Adding a new domain is a new specialist, not a new branch in a 4,000-token prompt.
+- **Tool calls become legible.** When a specialist is named after its job, the user sees a clear story: "RelationshipManager logged a call with Alex." That readability matters more than I expected.
+
+## What the structure looks like
+
+```
+Supervisor
+├── hooks (inject current date/time, timestamp messages)
+├── middleware (trim, normalize)
+├── guardrails (length cap, redact PII on output)
+└── delegates to:
+    ├── Relationship    (contacts + interactions)
+    ├── Journal         (entries, mood, tags)
+    ├── Notes           (capture + RAG retrieval)
+    ├── Planner         (tasks, priorities, due dates)
+    ├── Calendar        (events, scheduling)
+    ├── Habits          (streaks, completions)
+    ├── Finance         (expenses, summaries, YNAB)
+    ├── WeeklyReview    (cross-domain digest)
+    ├── EmailDrafter    (context-aware drafts)
+    ├── Research        (cross-domain search)
+    ├── GitHub          (PRs, issues)
+    └── Creative        (image generation)
+```
+
+Twelve specialists. One shared memory. One supervisor that knows none of them by their tools, only by their purpose.
+
+## What shared memory actually unlocks
+
+Each specialist writes to the same Postgres database through a typed model layer. The journal coach can search notes. The weekly reviewer can read interactions, journal entries, tasks, habits, and expenses in a single pull. The email drafter can ask the relationship manager for recent contact context before composing a reply.
+
+Every domain is also exposed as a normal CRUD UI. The chat surface and the manual surface stay in lockstep because they call the same model functions. Anything I can do by hand, the agent can do by tool. Anything the agent does, I can verify and edit by hand.
+
+That is the underrated property of agent-native software: every action a human can take, an agent can also take, and vice versa. Once you build that way, the chat is no longer a separate product. It is a parallel control plane on the same data.
+
+## The pieces around the model that earn their keep
+
+Most of the leverage is not in the prompts. It is in the layers wrapped around them.
+
+**Hooks.** Inject the current date and time into every request as a system message. The model is genuinely bad at temporal reasoning if you don't tell it what "today" is. One small hook, one massive quality jump.
+
+**Middleware.** Trim whitespace, normalize quotes, strip control characters. Boring. Pays for itself the first time a copy-pasted email kicks an agent off the rails.
+
+**Guardrails.** Two flavors. Input guardrails reject messages over a length cap before they reach the model. Output guardrails redact patterns like SSNs and credit card numbers from streamed tokens. Both run as small functions, not separate models.
+
+**Working memory.** Long-running structured state validated by a schema. Name, preferences, current focus, recent decisions. The supervisor reads it on every turn. Specialists update it as they learn things. The result is an assistant that actually remembers you across conversations and across agents.
+
+**RAG retrievers.** When the notes specialist gets a question, it pulls the most relevant notes by similarity and injects them as context before responding. No vector database needed; Postgres with pgvector is fine.
+
+## What this opens up
+
+Once the architecture clicks, a lot of things you thought were separate apps stop being separate apps.
+
+- **Habit tracker, journal, and budget become the same app.** They are all just specialists writing to one memory. The weekly review becomes trivial because the data is already in one place.
+- **Email composition becomes contextual.** The drafter pulls the last three interactions with the recipient before writing a single line. You stop writing cold emails to people you actually know.
+- **Calendar invites become smart.** When you say "schedule something with Sam next week," the calendar specialist asks the relationship manager which Sam, looks at recent interactions, and proposes a time that matches your patterns.
+- **Public surfaces fall out for free.** A published event page at `/e/<slug>`, a sharable note, a printable weekly review. None of those are agent features. They are just data the agent already manages.
+
+The point is not the chat interface. The chat interface is a side effect. The product is the shared memory and the typed actions that read and write it. Once that is in place, every new specialist is a small file and every new surface is a small route.
+
+## The mindset shift
+
+Before this, I built apps where a chat box was bolted on at the end. Now I build apps where every feature is a tool, every tool is callable by a human or an agent, and the chat is just one of several ways in.
+
+That is a different way to think about software, and once you see it you cannot unsee it. The most interesting AI app is the one your old app could already have been if you had drawn the boundaries differently.

@@ -89,17 +89,31 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                         </button>
                         {loaderData.allTags.map((tag) => {
                             const isActive = activeTopic === tag;
+                            if (isActive) {
+                                return (
+                                    <Link
+                                        key={tag}
+                                        to="/til"
+                                        aria-pressed="true"
+                                        title="Clear filter"
+                                        className={cx(
+                                            tagVariants({ variant: 'primary' }),
+                                            'cursor-pointer'
+                                        )}
+                                    >
+                                        {tag}
+                                    </Link>
+                                );
+                            }
                             return (
                                 <button
                                     key={tag}
                                     type="submit"
                                     name="topic"
                                     value={tag}
-                                    aria-pressed={isActive}
+                                    aria-pressed="false"
                                     className={cx(
-                                        tagVariants({
-                                            variant: isActive ? 'primary' : 'muted'
-                                        }),
+                                        tagVariants({ variant: 'muted' }),
                                         'cursor-pointer'
                                     )}
                                 >
