@@ -1,11 +1,4 @@
-import { LoaderIcon } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import { data, useFetcher } from 'react-router';
-import { getPortfolioBase } from '~/airtable';
 import { MdxContent } from '~/components/MdxContent';
-import { Button } from '~/components/Button';
-import { FormAlert } from '~/components/FormAlert';
-import { FormField } from '~/components/FormField';
 import { Card } from '~/components/Card';
 import { ServicesCallToAction } from '~/components/ServicesCallToAction';
 import { Heading } from '~/components/Heading';
@@ -17,7 +10,6 @@ import { TechStackLogos, type LogoName } from '~/components/TechStackLogos';
 import { getWorkBySlug } from '~/content';
 import type { WorkFrontmatter } from '~/content/types';
 import { useImageGallery } from '~/hooks/useImageGallery';
-import { validateContactForm } from '~/schemas/contact';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/work-detail';
 
@@ -41,42 +33,6 @@ export function loader({ params }: Route.LoaderArgs) {
     return { work: result.frontmatter };
 }
 
-export async function action({ request, params }: Route.ActionArgs) {
-    const formData = await request.formData();
-    const validation = validateContactForm(formData);
-
-    if (!validation.success) {
-        return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
-    }
-
-    try {
-        const response = await getPortfolioBase()('Iridium Interest').create([
-            {
-                fields: {
-                    'First name': validation.data.firstName,
-                    'Last name': validation.data.lastName,
-                    Email: validation.data.email,
-                    Note: validation.data.note || ''
-                }
-            }
-        ]);
-
-        if (!response || response.length === 0) {
-            throw new Error('No record created in Airtable');
-        }
-
-        return data({ success: true }, { status: 200 });
-    } catch (error) {
-        console.error('Error saving interested person:', error);
-        return data(
-            {
-                error: 'There was an error sending your request. Please try again later.'
-            },
-            { status: 500 }
-        );
-    }
-}
-
 function buildGalleryImages(work: WorkFrontmatter) {
     const images: { src: string; alt: string }[] = [];
 
@@ -96,78 +52,6 @@ function buildGalleryImages(work: WorkFrontmatter) {
     return images;
 }
 
-function InterestFormSidebar() {
-    const fetcher = useFetcher();
-    const formRef = useRef<HTMLFormElement>(null);
-
-    useEffect(() => {
-        if (fetcher.data && fetcher.data.success && formRef.current) {
-            formRef.current.reset();
-        }
-    }, [fetcher.data]);
-
-    return (
-        <section className="rounded-lg bg-zinc-800 p-8 space-y-4">
-            <Heading as="h2" size="4">
-                Interested?
-            </Heading>
-            <fetcher.Form method="POST" className="space-y-4" ref={formRef}>
-                {fetcher.data?.success ? (
-                    <FormAlert variant="success">
-                        Request sent successfully!
-                    </FormAlert>
-                ) : fetcher.data?.error ? (
-                    <FormAlert variant="error">
-                        There was an error sending your request.
-                        <br />
-                        Please try again later.
-                    </FormAlert>
-                ) : null}
-                <FormField
-                    label="First name"
-                    name="firstName"
-                    required
-                    placeholder="Your first name"
-                    error={fetcher.data?.fieldErrors?.firstName}
-                />
-                <FormField
-                    label="Last name"
-                    name="lastName"
-                    required
-                    placeholder="Your last name"
-                    error={fetcher.data?.fieldErrors?.lastName}
-                />
-                <FormField
-                    label="Email Address"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="you@example.com"
-                    error={fetcher.data?.fieldErrors?.email}
-                />
-                <FormField
-                    label="Note"
-                    name="note"
-                    as="textarea"
-                    rows={4}
-                    placeholder="Tell me a bit about your project..."
-                    error={fetcher.data?.fieldErrors?.note}
-                />
-                <Button
-                    type="submit"
-                    iconBefore={
-                        fetcher.state !== 'idle' ? (
-                            <LoaderIcon className="animate-spin" />
-                        ) : undefined
-                    }
-                >
-                    {fetcher.state !== 'idle' ? '' : 'Send request'}
-                </Button>
-            </fetcher.Form>
-        </section>
-    );
-}
-
 function WorkLayout({ work }: { work: WorkFrontmatter }) {
     const galleryImages = buildGalleryImages(work);
     const hasGallery = galleryImages.length > 1;
@@ -175,94 +59,11 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
         useImageGallery();
     const techStack = work.techStack as LogoName[];
 
-    // Get the MDX component for rich content
     const workModule = getWorkBySlug(work.slug);
     const hasContent = work.hasContent && workModule;
 
-    const hasInterestForm = work.sidebarType === 'interest-form';
     const hasLinks = work.sourceUrl || work.demoUrl;
     const hasTechStack = techStack.length > 0;
-    const hasSidebar = hasInterestForm || hasLinks || hasTechStack;
-
-    function renderContent() {
-        if (hasContent && workModule) {
-            return <MdxContent Component={workModule.Component} />;
-        }
-
-        return (
-            <>
-                {work.about && (
-                    <>
-                        <Heading as="h2" size="5">
-                            Project Overview
-                        </Heading>
-                        <p className="break-words">{work.about}</p>
-                    </>
-                )}
-                {work.learned && (
-                    <>
-                        <Heading as="h2" size="5">
-                            Knowledge Gained
-                        </Heading>
-                        <p className="break-words">{work.learned}</p>
-                    </>
-                )}
-                {work.impact && (
-                    <>
-                        <Heading as="h2" size="5">
-                            The Impact
-                        </Heading>
-                        <p className="break-words">{work.impact}</p>
-                    </>
-                )}
-            </>
-        );
-    }
-
-    function renderSidebar() {
-        return (
-            <div className="md:col-span-1 space-y-4 min-w-0">
-                {hasTechStack && (
-                    <>
-                        <Heading as="h4" size="5" className="font-bold">
-                            Tech Stack
-                        </Heading>
-                        <Card className="flex flex-wrap gap-3">
-                            <TechStackLogos logos={techStack} />
-                        </Card>
-                    </>
-                )}
-
-                {hasLinks && (
-                    <>
-                        <Heading as="h4" size="5" className="font-bold">
-                            Links
-                        </Heading>
-                        <Card className="flex flex-col gap-4">
-                            {work.sourceUrl && (
-                                <Linky
-                                    href={work.sourceUrl}
-                                    className="break-words"
-                                >
-                                    View source code
-                                </Linky>
-                            )}
-                            {work.demoUrl && (
-                                <Linky
-                                    href={work.demoUrl}
-                                    className="break-words"
-                                >
-                                    {work.demoUrlText || 'See the demo'}
-                                </Linky>
-                            )}
-                        </Card>
-                    </>
-                )}
-
-                {hasInterestForm && <InterestFormSidebar />}
-            </div>
-        );
-    }
 
     return (
         <>
@@ -291,22 +92,73 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
                         {work.description}
                     </p>
                 )}
+                {hasTechStack && (
+                    <div className="flex flex-wrap items-center gap-4 pt-2">
+                        <TechStackLogos logos={techStack} />
+                    </div>
+                )}
             </div>
 
-            {hasSidebar ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="md:col-span-2 space-y-6 min-w-0">
-                        {renderContent()}
-                        <ServicesCallToAction className="mt-10" />
-                    </div>
-                    {renderSidebar()}
-                </div>
-            ) : (
-                <>
-                    {renderContent()}
-                    <ServicesCallToAction className="mt-10" />
-                </>
-            )}
+            <div className="space-y-6 min-w-0">
+                {hasContent && workModule ? (
+                    <MdxContent Component={workModule.Component} />
+                ) : (
+                    <>
+                        {work.about && (
+                            <>
+                                <Heading as="h2" size="5">
+                                    Project Overview
+                                </Heading>
+                                <p className="break-words">{work.about}</p>
+                            </>
+                        )}
+                        {work.learned && (
+                            <>
+                                <Heading as="h2" size="5">
+                                    Knowledge Gained
+                                </Heading>
+                                <p className="break-words">{work.learned}</p>
+                            </>
+                        )}
+                        {work.impact && (
+                            <>
+                                <Heading as="h2" size="5">
+                                    The Impact
+                                </Heading>
+                                <p className="break-words">{work.impact}</p>
+                            </>
+                        )}
+                    </>
+                )}
+
+                {hasLinks && (
+                    <>
+                        <Heading as="h2" size="5">
+                            Links
+                        </Heading>
+                        <Card className="flex flex-col gap-4">
+                            {work.sourceUrl && (
+                                <Linky
+                                    href={work.sourceUrl}
+                                    className="break-words"
+                                >
+                                    View source code
+                                </Linky>
+                            )}
+                            {work.demoUrl && (
+                                <Linky
+                                    href={work.demoUrl}
+                                    className="break-words"
+                                >
+                                    {work.demoUrlText || 'See the demo'}
+                                </Linky>
+                            )}
+                        </Card>
+                    </>
+                )}
+
+                <ServicesCallToAction className="mt-10" />
+            </div>
 
             {hasGallery && (
                 <ImageThumbnails

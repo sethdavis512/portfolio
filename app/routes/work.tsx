@@ -23,7 +23,6 @@ export function loader() {
         description: w.frontmatter.description,
         cta: w.frontmatter.cta,
         sortOrder: w.frontmatter.sortOrder,
-        sidebarType: w.frontmatter.sidebarType,
         thumbnailImage: w.frontmatter.thumbnailImage
     }));
     return { works };

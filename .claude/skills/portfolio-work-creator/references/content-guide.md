@@ -153,4 +153,4 @@ Naturally incorporate relevant keywords:
 - Domain expertise (SaaS, video rendering, authentication, etc.)
 - Professional capabilities (full-stack, system architecture, etc.)
 
-Never force keywords—they should flow naturally in technical descriptions.
+Never force keywords; they should flow naturally in technical descriptions.

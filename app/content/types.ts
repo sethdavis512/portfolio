@@ -20,11 +20,6 @@ export interface WorkFrontmatter {
     sourceUrl: string;
     demoUrl: string;
     demoUrlText: string;
-    purchaseUrl: string;
-    purchaseButtonText: string;
-    sidebarTitle: string;
-    features: string[];
-    sidebarType: string;
     tags: string[];
     galleryImages: GalleryImage[];
     hasContent: boolean;
