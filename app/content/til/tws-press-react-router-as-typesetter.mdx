@@ -1,0 +1,125 @@
+---
+title: "TWS Press: Treating React Router Like a Typesetter"
+slug: "tws-press-react-router-as-typesetter"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["publishing", "react-router", "playwright", "bun"]
+excerpt: "TWS Press is a React Router app that exports itself to PDF, grades the output against a rubric, and ships signed download links. Treating a web framework as a typesetter turns out to be a quietly powerful idea."
+createdAt: "2026-04-29T00:00:00.000Z"
+updatedAt: "2026-04-29T00:00:00.000Z"
+---
+
+TWS is short for **Tech with Seth** — my personal brand and the umbrella for the tools, packages, and small products I build under my own name. TWS Press is the publishing arm of it: the system I use to turn ideas into print-ready guides without leaving my own stack.
+
+For a long time, producing a polished PDF guide felt like leaving the development stack and entering a parallel universe. InDesign, LaTeX, a Word template someone mailed you in 2014, a third-party API that prints HTML the way it thinks HTML should be printed. None of it felt like building software. All of it felt like fighting a tool that wanted you to do things its way.
+
+TWS Press is what happened when I stopped fighting that. It is a React Router 7 app that authors guides as routes, exports itself to PDF with a headless browser, grades the result against a rubric, and ships time-limited signed links. The web stack already knows how to lay out pages. I just pointed a printer at it.
+
+## The shape of it
+
+A guide is a route. A route is a React component. Reusable sections (cover, table of contents, body modules, calls to action) are components too. Print styling — `@page` rules, page breaks, fluid typography — is just CSS. Everything you already know about composing a web page applies, plus a few print-specific properties you only need to learn once.
+
+```tsx
+export default function Guide() {
+    return (
+        <article className="guide">
+            <Cover title="A Field Guide to X" />
+            <Section heading="Why this matters">…</Section>
+            <Section heading="How it works">…</Section>
+            <CallToAction />
+        </article>
+    );
+}
+```
+
+That is the entire authoring model. New guide, new file. Reusable sections live in a `content/` folder and get imported wherever they're needed. The same component tree that renders to HTML in the browser renders to HTML in a headless browser, which is where the press kicks in.
+
+## Export: Playwright as the press
+
+Playwright is the part that makes this whole thing legitimate. Spin up the dev server, point a headless Chromium at the guide URL, wait for the network to settle, and ask for a PDF.
+
+```ts
+import { chromium } from "playwright";
+
+const browser = await chromium.launch();
+const page = await browser.newPage();
+
+await page.goto("http://localhost:5177/guides/example", {
+    waitUntil: "networkidle"
+});
+await page.emulateMedia({ media: "print" });
+
+await page.pdf({
+    path: "out/example.pdf",
+    format: "Letter",
+    printBackground: true
+});
+
+await browser.close();
+```
+
+Twelve lines. The output is a real PDF — searchable text, embedded fonts, working internal links, real accessibility metadata. Anything you can style on the web you can put on the page. Charts render. Custom fonts embed. SVG works. CSS grid works. Dark accents on a white printable surface work, because `prefers-color-scheme` and `@media print` are first-class in any browser.
+
+## Review: a rubric the build can fail on
+
+Headless rendering is reliable in the boring cases and surprising in the interesting ones. A font that didn't load. A code block that wrapped weirdly at letter width. A cover image that compressed too aggressively. The fix is to grade every export before it goes anywhere a buyer can see it.
+
+The rubric is a small JSON file. Weighted dimensions for subjective qualities, a hard-fail block for objective ones. The review script loads it, measures the PDF, computes a weighted score, and exits non-zero if anything fails.
+
+```json
+{
+    "weights": {
+        "layout": 0.3,
+        "structure": 0.2,
+        "copy": 0.2,
+        "visual": 0.2,
+        "a11y": 0.1
+    },
+    "hardFail": {
+        "minPages": 2,
+        "maxFileSizeMb": 25,
+        "requireTitleMetadata": true
+    },
+    "passingScore": 0.8
+}
+```
+
+A failed score is a red build. A red build means the regression never ships. Once that loop is in place you can iterate on copy and visuals with the same confidence you iterate on application code: the rubric tells you when something got worse, automatically, every time.
+
+## Delivery: signed URLs with an audit trail
+
+The last mile is delivery. Upload the PDF to S3, return a presigned URL that expires in an hour, and write a small JSON manifest so the link can be reissued later without re-uploading the file.
+
+```ts
+import {
+    S3Client,
+    PutObjectCommand,
+    GetObjectCommand
+} from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
+const s3 = new S3Client({ region: "us-east-1" });
+
+await s3.send(new PutObjectCommand({ Bucket, Key, Body: file }));
+
+const url = await getSignedUrl(
+    s3,
+    new GetObjectCommand({ Bucket, Key }),
+    { expiresIn: 60 * 60 }
+);
+```
+
+Short-lived links are the right default. Buyers get a URL that works for an hour. If they need it again, the manifest has everything you need to mint a fresh one without touching the file. The audit record (delivery ID, timestamp, expiry, file hash) is the part that turns this from a hack into a system you can answer questions about later.
+
+## What this opens up
+
+Once the four pieces are in place — author, export, review, deliver — a lot of separate problems collapse into the same problem.
+
+- **Any web-styled artifact becomes a deliverable.** Lookbooks, course handouts, client reports, cohort certificates, weekly digests. If it can be a route, it can be a PDF.
+- **A guide can ship as a PDF and a public web page.** Same source. Same components. The marketing site and the product become the same artifact in two formats.
+- **AI generation slots in cleanly.** A script that turns a prompt into a guide structure plus a cover image is just another stage in the pipeline. The rest of the pipeline doesn't care whether a human or a model wrote the content.
+- **Quality gates make iteration cheap.** You can rewrite the cover layout at 11pm without worrying. The rubric will tell you in the morning if you broke something.
+
+## The takeaway
+
+Most "publishing" tools are fighting the wrong battle. The web stack already knows how to lay out pages, embed fonts, render charts, handle accessibility, and support dark and light modes. Aim a headless browser at it and the same React you ship to users becomes the PDF you ship to buyers. The render is almost the boring part. The real product is the pipeline around it — the scoring, the signing, the auditing — that turns a single export into a system you can trust.
