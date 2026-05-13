@@ -8,11 +8,11 @@ COPY package.json bun.lock /app/
 WORKDIR /app
 RUN bun install --frozen-lockfile --production
 
-FROM oven/bun:1.3.13 AS build
+FROM node:20 AS build
 COPY . /app/
 COPY --from=deps /app/node_modules /app/node_modules
 WORKDIR /app
-RUN bun run build
+RUN npx --no-install react-router build
 
 FROM node:20-alpine
 ENV NODE_ENV=production
