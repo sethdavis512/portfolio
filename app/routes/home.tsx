@@ -16,7 +16,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Seth Davis | Design Technologist',
         descriptionContent:
-            'Seth Davis is a Design Technologist specializing in AI-assisted design tooling, design systems, and generative interfaces. Based in Austin, Texas.',
+            'Seth Davis helps product teams ship better interfaces faster, through design systems, AI tooling, and front-end engineering. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
     });
 }
@@ -67,11 +67,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                             Seth Davis
                         </Heading>
                         <p className="text-lg md:text-2xl font-medium max-w-2xl mb-4 text-zinc-300">
-                            I build AI-assisted tools and design systems that
-                            bridge design intent and programmable interfaces.
+                            I help product teams ship better interfaces
+                            faster, through design systems, AI tooling, and
+                            front-end engineering.
                         </p>
                         <p className="mb-10 text-zinc-400">
-                            Currently seeking new opportunities as a{' '}
+                            Open to new engagements as a{' '}
                             <Linky to="/design-technologist">
                                 {ContentStyles.CURRENT_JOB_TITLE}
                             </Linky>

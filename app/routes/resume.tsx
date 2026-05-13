@@ -21,7 +21,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Resume',
         descriptionContent:
-            "View Seth Davis's resume. 9+ years experience as a Frontend Engineer, specializing in React, TypeScript, and React Router. Currently at Indeed.",
+            "View Seth Davis's resume. Design Technologist with 9+ years of experience helping product teams ship better interfaces with design systems, AI tooling, and front-end engineering. Available for new engagements.",
         ogUrl: 'https://sethdavis.tech/resume'
     });
 }
