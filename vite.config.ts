@@ -7,9 +7,11 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import serverAdapter from 'hono-react-router-adapter/vite';
 import { defaultOptions } from '@hono/vite-dev-server';
 import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+    resolve: {
+        tsconfigPaths: true
+    },
     plugins: [
         tailwindcss(),
         {
@@ -32,7 +34,6 @@ export default defineConfig({
                 '/app/**',
                 /\?(?:inline|url|no-inline|raw|import(?:&(?:inline|url|no-inline|raw)?)?)$/
             ]
-        }),
-        tsconfigPaths()
+        })
     ],
 });
