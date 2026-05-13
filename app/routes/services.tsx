@@ -19,11 +19,12 @@ export default function ServicesRoute() {
     return (
         <>
             <Heading as="h1" className="text-4xl md:text-6xl font-black mb-6">
-                Services
+                Three things I build, on a fixed price.
             </Heading>
             <p className="text-xl md:text-2xl text-zinc-300 max-w-3xl mb-4">
-                Fixed-scope engagements I deliver over and over, so you know exactly
-                what you get and when.
+                CLI tools, image pipelines, and marketing sites. Each one is a
+                productized engagement with a written scope and a fixed cost, so
+                you know what you're getting before you sign.
             </p>
             <p className="text-zinc-400 max-w-3xl mb-12">
                 Need something else?{' '}
