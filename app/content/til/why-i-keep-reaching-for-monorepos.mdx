@@ -1,0 +1,78 @@
+---
+title: "Why I Keep Reaching for Monorepos"
+slug: "why-i-keep-reaching-for-monorepos"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["monorepo", "turborepo", "pnpm", "workspaces"]
+excerpt: "Shared packages, one timeline, and a build pipeline that only rebuilds what actually changed. The longer I work in a monorepo, the more I notice the friction it removes."
+createdAt: "2026-05-13T00:00:00.000Z"
+updatedAt: "2026-05-13T00:00:00.000Z"
+---
+
+I've been spending a lot of time inside a monorepo lately — a pnpm workspace with a handful of apps (a marketing site, a docs site, and a playground) and a handful of shared packages (a UI library, a theming layer, shared utilities, a CLI, plus ESLint and TypeScript configs). The longer I sit in it, the more I notice how many problems it quietly solves.
+
+This is a short list of the benefits I keep coming back to.
+
+## One package, many apps
+
+Every shared concern lives in its own package and gets pulled into apps with a workspace dependency:
+
+```json
+{
+    "dependencies": {
+        "@repo/shared": "workspace:*",
+        "@repo/ui": "workspace:*"
+    }
+}
+```
+
+That `workspace:*` is the unlock. There's no `npm link`, no symlink dance, no publishing a private package to a registry just to consume it. The app imports `@repo/ui` like any other dependency, but the source lives a couple of folders away in the same repo. Change the button in `packages/ui` and every app picks it up on the next build. One source of truth for components, one source of truth for tokens, one source of truth for utilities — used by as many apps as you want.
+
+The configs work the same way. `@repo/typescript-config` and `@repo/eslint-config` are real packages that every app extends, which means upgrading a TypeScript flag or an ESLint rule happens in one place and propagates to the whole repo.
+
+## Everyone's progress in one place
+
+This benefit is harder to feel until you've lived without it. When the marketing site, the docs site, the playground, the UI library, and the CLI all live in the same repo, the `git log` becomes the actual story of the product. You can see the design system change land in the UI package, then the marketing site adopt it, then the docs site update its examples — all in the same history, often in the same PR.
+
+Code review covers the whole change. CI runs against the whole change. You don't have to chase a version bump across four repos to understand what shipped this week.
+
+## Build only what changed
+
+The piece I find genuinely delightful is how Turborepo decides what to run. Each task in `turbo.json` declares its inputs:
+
+```json
+{
+    "tasks": {
+        "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["$TURBO_DEFAULT$", ".env*"],
+            "outputs": [".next/**", "!.next/cache/**"]
+        },
+        "check-types": {
+            "dependsOn": ["^check-types"],
+            "inputs": [
+                "src/**",
+                "app/**",
+                "*.ts",
+                "*.tsx",
+                "tsconfig.json",
+                "package.json"
+            ]
+        }
+    }
+}
+```
+
+Turbo hashes those inputs. If nothing in `src/**` or `tsconfig.json` changed, the task is a no-op. Edit a README and `check-types` won't run at all. Edit only the playground app and the marketing site's build is skipped entirely. The pipeline understands the dependency graph, so when something in `packages/ui` changes, every consumer rebuilds — but only those consumers.
+
+The `dependsOn: ["^build"]` is doing real work here too. It means "build my workspace dependencies before me." You don't manually order anything. The graph orders itself.
+
+## Caching that pays you back twice
+
+The other half of the speed story is the cache. Turbo stores task outputs keyed by the input hash. Run `build` once, change nothing, run it again — instant. Switch branches, run `build` on the old commit, switch back — still instant. The same cache works in CI: a PR that touches one app skips every task it doesn't affect, and a re-run of the same commit is essentially free.
+
+This is the part that compounds. A repo with eight packages and three apps could be a slow place to work. With caching turned on, most days you're only paying the cost of the thing you actually changed.
+
+## The sum of the parts
+
+None of these benefits are dramatic on their own. Shared packages are nice. A single git history is nice. Skipping unchanged builds is nice. Caching is nice. But together they change the shape of the work: less coordination overhead, less waiting, less guessing about which version of which package is deployed where. The monorepo isn't doing anything magical — it's just removing a long list of small frictions, and the absence of all that friction is what makes it feel fast.
