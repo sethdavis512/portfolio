@@ -186,7 +186,7 @@ export default function WrapperRoute() {
                                             : 'opacity-0 -translate-y-4 pointer-events-none'
                                     )}
                                     aria-hidden={!isOpen}
-                                    inert={!isOpen}
+                                    {...(!isOpen && { inert: '' as any })}
                                 >
                                     <div className="flex justify-between items-center">
                                         <Link
