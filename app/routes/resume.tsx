@@ -49,9 +49,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <Flex>
                     <InfoIcon />
                     Looking for a PDF version?{' '}
-                    <Linky href={RESUME_URL}>
-                        Download it here
-                    </Linky>
+                    <Linky href={RESUME_URL}>Download it here</Linky>
                 </Flex>
             </Banner>
             <ResumeSection>
@@ -79,9 +77,32 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     Experience
                 </Heading>
                 <JobItem
+                    company="Committee for Children"
+                    dates="May 2026–Present"
+                    title="Senior Software Engineer (Contract)"
+                    location="Remote"
+                >
+                    <JobItemList>
+                        <li>TODO: add bullet</li>
+                    </JobItemList>
+                </JobItem>
+                <JobItem
+                    company="Tambo.co"
+                    dates="Mar 2026–Apr 2026 (2 mos)"
+                    title="Senior Software Engineer (Contract)"
+                    location="Remote"
+                >
+                    <JobItemList>
+                        <li>
+                            TODO: add bullet about contributions to Tambo's open
+                            source project
+                        </li>
+                    </JobItemList>
+                </JobItem>
+                <JobItem
                     company="Gartner"
                     dates={`Aug 2024–Oct 2025 (1 yr 2 mos)`}
-                    title={`Senior ${ContentStyles.CURRENT_JOB_TITLE}`}
+                    title="Senior Software Engineer"
                 >
                     <JobItemList>
                         <li>
@@ -106,7 +127,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <JobItem
                     company="Indeed, Inc"
                     dates="Jan 2023–May 2024 (1 yr 5 mos)"
-                    title={`Senior ${ContentStyles.CURRENT_JOB_TITLE}`}
+                    title="Senior User Experience Developer"
                 >
                     <JobItemList>
                         <li>
@@ -140,7 +161,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <JobItem
                     company="Indeed, Inc"
                     dates="Jan 2020–Jan 2023 (3 yrs)"
-                    title={`${ContentStyles.CURRENT_JOB_TITLE}`}
+                    title="User Experience Developer"
                 >
                     <JobItemList>
                         <li>
@@ -181,8 +202,8 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                             architecture and routing patterns
                         </li>
                         <li>
-                            Building Iridium: An AI-powered app starter kit
-                            with batteries included (TypeScript, React Router 7,
+                            Building Iridium: An AI-powered app starter kit with
+                            batteries included (TypeScript, React Router 7,
                             Prisma, Postgres, Better Auth, Vercel AI SDK)
                         </li>
                         <li>
