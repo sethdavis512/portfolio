@@ -10,7 +10,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Services',
         descriptionContent:
-            'Productized services from Seth Davis: custom CLI tools, image and media pipelines, and marketing sites for developers. Fixed scope, fixed price.',
+            'Productized services from Seth Davis: custom CLI tools and Contentful-powered websites on React Router 7. Fixed scope, fixed price.',
         ogUrl: 'https://sethdavis.tech/services'
     });
 }
@@ -19,12 +19,12 @@ export default function ServicesRoute() {
     return (
         <>
             <Heading as="h1" className="text-4xl md:text-6xl font-black mb-6">
-                Three things I build, on a fixed price.
+                Two things I build, on a fixed price.
             </Heading>
             <p className="text-xl md:text-2xl text-zinc-300 max-w-3xl mb-4">
-                CLI tools, image pipelines, and marketing sites. Each one is a
-                productized engagement with a written scope and a fixed cost, so
-                you know what you're getting before you sign.
+                Developer CLI tools and Contentful-powered websites. Each one
+                is a productized engagement with a written scope and a fixed
+                cost, so you know what you're getting before you sign.
             </p>
             <p className="text-zinc-400 max-w-3xl mb-12">
                 Need something else?{' '}
@@ -33,7 +33,7 @@ export default function ServicesRoute() {
                 </Linky>{' '}
                 and we can figure out whether it's a fit.
             </p>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2">
                 {serviceOffers.map((offer) => (
                     <Link
                         key={offer.slug}

@@ -19,8 +19,8 @@ export function ServicesCallToAction({
                         Looking for a technical partner on your next project?
                     </Heading>
                     <p className="text-sm text-zinc-300">
-                        I help founders and teams ship polished React
-                        applications and AI-powered tools.
+                        I build CLI tools and Contentful-powered websites
+                        on React Router 7. Fixed scope, fixed price.
                     </p>
                 </div>
                 <Button to="/services" color="primary" className="shrink-0">

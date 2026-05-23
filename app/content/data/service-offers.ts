@@ -117,176 +117,89 @@ export const serviceOffers: ServiceOffer[] = [
         ]
     },
     {
-        slug: 'image-pipelines',
-        title: 'Image and media pipelines that run themselves',
-        shortTitle: 'Image pipelines',
+        slug: 'contentful-sites',
+        title: 'Contentful-powered sites built on React Router 7',
+        shortTitle: 'Contentful sites',
         tagline:
-            'Automated image generation, transformation, and delivery on Cloudinary, Trigger.dev, and Replicate. Thousands of assets a day, without you touching Photoshop.',
+            'Your content team gets a CMS they love. Your engineering team gets a typed, server-rendered React app they can actually maintain. I connect the two.',
         seoDescription:
-            'Image pipeline as a service: Cloudinary setup, responsive image generation, AI image pipelines on Trigger.dev and Replicate. Production SaaS-grade automation. Starting at $3,500.',
-        startingPrice: '$3,500',
-        proofLine: 'Based on a live pipeline generating 4,300+ AI images per day across three genres.',
+            'Contentful integration with React Router 7: content modeling, live preview, server rendering, SEO, and a frontend your editors and engineers both want to use. Starting at $5,000.',
+        startingPrice: '$5,000',
+        proofLine: 'Built on React Router 7, the framework behind Shopify and sethdavis.tech.',
         idealFor: [
-            'Marketplaces, directories, and editorial sites that need fresh imagery at scale',
-            'Ecommerce teams producing thousands of product images with consistent treatment',
-            'Content platforms that want AI-generated hero and thumbnail imagery without manual design work',
-            'Teams whose image workflow today is a designer, a Dropbox folder, and a lot of Slack'
+            'Marketing teams stuck waiting on engineering for every content change',
+            'Companies that chose Contentful but still need a frontend to display it',
+            'Agencies delivering Contentful-backed sites to clients who need to self-serve content',
+            'Teams migrating from WordPress or Webflow to a headless architecture'
         ],
         deliverables: [
-            'A production Cloudinary account, structured with folders, tags, and naming you can actually navigate',
-            'Responsive image generation: auto-format, auto-quality, breakpoint variants, lazy loading',
-            'Optional AI generation layer: prompt templates, permutation engine, incompatibility filtering',
-            'Scheduled background jobs on Trigger.dev with retries, structured logs, and cost monitoring',
-            'A typed SDK or helper module your app imports to request and render images',
-            'Runbook covering cost controls, failure modes, and how to add new image types'
-        ],
-        scopeExamples: [
-            {
-                name: 'Responsive image rollout',
-                description:
-                    'Replace every `<img>` in your app with Cloudinary-backed responsive images: auto format, auto quality, device-appropriate sizes. Typical LCP improvements of 30-50% on image-heavy pages.'
-            },
-            {
-                name: 'AI image pipeline',
-                description:
-                    'Template-driven prompts + permutation engine + Replicate + Cloudinary, scheduled on Trigger.dev. Generates themed imagery on a cron, tags it semantically, and monitors cost.'
-            },
-            {
-                name: 'Bulk transform + migration',
-                description:
-                    'Migrate an existing library (S3, local, WordPress, Shopify) to Cloudinary with preserved URLs, renamed assets, applied transformations, and a redirect map so SEO doesn\'t break.'
-            }
-        ],
-        process: [
-            {
-                step: 'Scope call (free)',
-                description:
-                    'We cover your current image setup, volumes, budgets, and what a good outcome looks like. You leave with a written scope and fixed price.'
-            },
-            {
-                step: 'Infrastructure',
-                description:
-                    'Cloudinary structure, Trigger.dev project, environment separation, secret management, and the first end-to-end image flowing through.'
-            },
-            {
-                step: 'Pipeline build',
-                description:
-                    'The real generation and/or transformation logic, error handling, cost controls, and observability. Regular demos.'
-            },
-            {
-                step: 'Integration + handoff',
-                description:
-                    'Your app consuming the pipeline via a typed helper, runbook, and post-launch support.'
-            }
-        ],
-        caseStudies: ['ai-image-pipeline', 'video-machine'],
-        faq: [
-            {
-                question: 'Why Cloudinary specifically?',
-                answer:
-                    'It\'s the most complete media CDN for developer workflows: format/quality automation, transformation URLs, semantic tagging, AI add-ons, generous free tier. If you have a strong preference for another provider (Imgix, Bunny, self-hosted), the pipeline patterns port over — Cloudinary is the default, not a requirement.'
-            },
-            {
-                question: 'What about costs at scale?',
-                answer:
-                    'Cost control is built into the pipeline, not bolted on. You get daily spend logging, per-job budget caps, and alerts when volumes spike. The live pipeline this is based on runs at $200-400/month while generating 4,300+ images a day.'
-            },
-            {
-                question: 'Can you integrate with our existing CMS?',
-                answer:
-                    'Yes. Common targets are Sanity, Keystone, Contentful, Prismic, or a custom DB. The integration is a field or webhook in your CMS that the pipeline watches, writes back to, or replaces.'
-            },
-            {
-                question: 'Do you handle the design direction for AI images?',
-                answer:
-                    'I handle the system: prompt templates, permutation rules, filtering, and the feedback loop to improve output. Creative direction (what "good" looks like for your brand) is something we define together in the scope call, with you as the judge.'
-            }
-        ]
-    },
-    {
-        slug: 'marketing-sites',
-        title: 'Marketing and portfolio sites for developers and founders',
-        shortTitle: 'Marketing sites',
-        tagline:
-            'Fast, typed, content-driven sites built on React Router 7 and MDX. SEO-ready, dark-mode-first, and a joy to ship content to.',
-        seoDescription:
-            'Developer portfolio and marketing site development in React Router 7 with MDX. Fast, typed, SEO-ready, dark-mode-first. Starting at $2,500.',
-        startingPrice: '$2,500',
-        proofLine: 'This site is one of them: RR7, MDX, Cloudinary, prerendered, 100 Lighthouse.',
-        idealFor: [
-            'Indie devs and technical founders who need a site that actually ranks and converts',
-            'Small agencies rebuilding their own site "when they get a minute"',
-            'Open-source maintainers who want a proper home for docs, posts, and case studies',
-            'Solo consultants replacing a Squarespace or Webflow setup they\'ve outgrown'
-        ],
-        deliverables: [
-            'React Router 7 site, server-rendered or prerendered depending on hosting target',
-            'MDX content pipeline: posts, work, TILs, and custom sections writable in markdown',
+            'A React Router 7 app wired to your Contentful space with typed content queries',
+            'Content model design (or restructuring of your existing space) for clean editorial workflows',
+            'Contentful live preview so editors see changes before they publish',
+            'Server-side rendering with stale-while-revalidate caching for fast page loads',
             'SEO baseline: meta, OpenGraph, Twitter cards, canonical URLs, XML sitemap, robots.txt',
-            'Design system using your tokens or a bespoke palette, dark-mode-first',
-            'Cloudinary-backed responsive imagery',
-            'Deploy to Railway, Vercel, Netlify, or Cloudflare (your pick), with preview environments'
+            'Deploy to Railway, Vercel, or Cloudflare with preview environments and webhook-triggered rebuilds'
         ],
         scopeExamples: [
             {
-                name: 'Founder / solo consultant site',
+                name: 'Marketing site + blog',
                 description:
-                    'Hero, work, writing, services, contact. Typed content in MDX. Ships with real case studies and an actually-converting services page.'
+                    'Landing pages, blog, team bios, and case studies. Editors manage everything in Contentful. The frontend is fast, accessible, and SEO-ready without engineering involvement for content changes.'
             },
             {
-                name: 'Indie dev portfolio',
+                name: 'Docs or knowledge base',
                 description:
-                    'Work, TIL posts, resume, setup page. Prerendered static site. Designed to rank for your name + your stack and land you inbound without ads.'
+                    'Structured documentation site with sidebar navigation, search, and versioning. Content lives in Contentful so non-engineers can update docs without touching code or markdown.'
             },
             {
-                name: 'Small agency site',
+                name: 'WordPress or Webflow migration',
                 description:
-                    'Services, work, team, blog. Productized service landing pages (like the page you\'re reading). Content-editable by non-devs via MDX in the repo.'
+                    'Move your existing content into Contentful and build a React Router 7 frontend that matches (or improves on) your current site. Redirects, SEO equity, and asset migration included.'
             }
         ],
         process: [
             {
                 step: 'Scope call (free)',
                 description:
-                    'We cover pages, content, audience, and what "done" looks like. You leave with a written scope and fixed price.'
+                    'We walk through your content, your team, and what the site needs to do. You leave with a written scope and a fixed price.'
             },
             {
-                step: 'Content + design',
+                step: 'Content modeling',
                 description:
-                    'Content inventory, sitemap, page wireframes, typography and color pass. Real copy, not lorem.'
+                    'I design (or restructure) your Contentful content types, validations, and editorial experience so your team can publish confidently.'
             },
             {
                 step: 'Build + review',
                 description:
-                    'Routes, MDX pipeline, components, SEO, animations. Preview deploys on every push; regular demos.'
+                    'Routes, components, live preview, caching, and SEO. Preview deploys on every push so you see progress throughout.'
             },
             {
                 step: 'Launch + handoff',
                 description:
-                    'Production deploy, analytics wired up, walkthrough of how to add posts and projects yourself. Post-launch support included.'
+                    'Production deploy, webhooks wired, editor walkthrough, and written documentation. Post-launch support included.'
             }
         ],
-        caseStudies: ['tech-with-seth', 'iridium'],
+        caseStudies: ['tech-with-seth'],
         faq: [
             {
-                question: 'Why React Router 7 and not Next.js or Astro?',
+                question: 'Why React Router 7 and not Next.js?',
                 answer:
-                    'React Router 7 gives you server rendering, route-level data loading, and prerendering without Next\'s framework tax. It\'s small, typed end-to-end, and dead simple to host anywhere. Astro is a great choice for mostly-static content sites; if that\'s you, I\'ll recommend it instead.'
+                    'React Router 7 gives you server rendering, route-level data loading, and prerendering without the complexity and vendor lock-in of Next.js. It deploys anywhere (Railway, Vercel, Cloudflare, a Docker container) and the entire data flow is typed end-to-end.'
             },
             {
-                question: 'How do I edit content after handoff?',
+                question: 'We already have a Contentful space. Can you work with it?',
                 answer:
-                    'Content is MDX files in your repo. You (or your writer) edit markdown, commit, and the preview deploy updates. No CMS to pay for, no lock-in. If a CMS fits your team better (Sanity, Keystone), I\'ll wire it up on request.'
+                    'Yes. I\'ll audit your existing content types and either build on them or propose changes if the current structure is making editorial work harder than it should be. No need to start from scratch.'
             },
             {
-                question: 'Will it actually rank?',
+                question: 'How does live preview work?',
                 answer:
-                    'The technical foundation will be right: crawlable, fast, structured markup, clean URLs, sitemap. Ranking itself depends on the content you publish and the intent you target — I can\'t promise #1 for "React developer", but I can promise the site won\'t be the reason you don\'t rank.'
+                    'Contentful\'s live preview SDK lets editors see draft changes in the actual frontend before publishing. I wire this up so your preview environment shows real-time updates as editors type, not a separate "preview mode" that looks nothing like the live site.'
             },
             {
-                question: 'Can you migrate from my current site?',
+                question: 'What about images and media?',
                 answer:
-                    'Yes. I\'ll pull existing content, set up redirects so you don\'t lose SEO equity, and migrate assets to Cloudinary. Migration work is included in the scope if you mention it on the scope call.'
+                    'Contentful\'s built-in asset CDN handles responsive images, format conversion, and quality optimization out of the box. If you have heavier media needs (video, AI-generated imagery), I can layer on Cloudinary as part of the build.'
             }
         ]
     }
