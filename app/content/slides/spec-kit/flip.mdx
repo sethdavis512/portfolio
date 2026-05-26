@@ -1,0 +1,22 @@
+---
+title: The Flip
+order: 4
+transition: fade
+---
+
+<div className="h-full flex flex-col justify-center max-w-6xl mx-auto">
+    <div className="uppercase tracking-[0.3em] text-[0.65rem] sm:text-xs text-primary-400 mb-4 sm:mb-6">03 / The inversion</div>
+    <h2 className="font-black text-[clamp(1.75rem,4vw+0.5rem,4.5rem)] text-white leading-[1.05] mb-8 sm:mb-12">Spec-Driven Development flips the script.</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 sm:p-8">
+            <div className="font-mono text-zinc-500 text-sm mb-3 sm:mb-4">Before</div>
+            <div className="font-black text-zinc-500 text-xl sm:text-2xl mb-3 sm:mb-4 leading-tight line-through decoration-zinc-700">Code is king. Specs are scaffolding.</div>
+            <div className="text-zinc-500 text-sm sm:text-base">Write a doc, write the code, watch them drift apart.</div>
+        </div>
+        <div className="rounded-xl border border-primary-500/40 bg-primary-500/5 p-5 sm:p-8">
+            <div className="font-mono text-primary-400 text-sm mb-3 sm:mb-4">After</div>
+            <div className="font-black text-white text-xl sm:text-2xl mb-3 sm:mb-4 leading-tight">Specs are executable. Code is the output.</div>
+            <div className="text-zinc-300 text-sm sm:text-base">The spec is the source. The agent generates the implementation.</div>
+        </div>
+    </div>
+</div>
