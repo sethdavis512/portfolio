@@ -1,0 +1,30 @@
+---
+title: tasks
+order: 15
+transition: fade
+---
+
+import { SlideCode } from '../../../components/SlideCode';
+
+<div className="h-full flex flex-col justify-center gap-4 sm:gap-6">
+    <div>
+        <div className="uppercase tracking-[0.3em] text-[0.65rem] sm:text-xs text-secondary-400 mb-3 sm:mb-4">14 / tasks</div>
+        <h2 className="font-black text-[clamp(1.75rem,4vw+0.5rem,4.5rem)] text-white leading-[1.05]">Break the plan into reviewable steps.</h2>
+    </div>
+    <SlideCode
+        language="md"
+        code={`/speckit.tasks
+
+# Tasks: photo-album organizer
+
+- [ ] T01: Scaffold Vite + TypeScript project
+- [ ] T02: Define SQLite schema (albums, photos)
+- [ ] T03: Implement album list view
+- [ ] T04: HTML5 drag-and-drop reorder
+- [ ] T05: Photo grid within album
+- [ ] T06: Keyboard navigation
+- [ ] T07: Accessibility pass (focus, ARIA, contrast)
+- [ ] T08: Smoke test against acceptance criteria`}
+    />
+    <div className="text-zinc-400 text-[clamp(0.85rem,1vw+0.2rem,1.2rem)]">Each task fits in your head. The whole plan fits in a PR description.</div>
+</div>

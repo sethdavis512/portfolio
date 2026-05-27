@@ -1,6 +1,6 @@
 ---
-title: Plan
-order: 12
+title: plan
+order: 14
 transition: fade
 ---
 
@@ -8,7 +8,7 @@ import { SlideCode } from '../../../components/SlideCode';
 
 <div className="h-full flex flex-col justify-center gap-4 sm:gap-6">
     <div>
-        <div className="uppercase tracking-[0.3em] text-[0.65rem] sm:text-xs text-secondary-400 mb-3 sm:mb-4">11 / The how</div>
+        <div className="uppercase tracking-[0.3em] text-[0.65rem] sm:text-xs text-secondary-400 mb-3 sm:mb-4">13 / plan</div>
         <h2 className="font-black text-[clamp(1.75rem,4vw+0.5rem,4.5rem)] text-white leading-[1.05]">Now name the stack.</h2>
     </div>
     <SlideCode
@@ -18,10 +18,7 @@ import { SlideCode } from '../../../components/SlideCode';
 The application uses Vite with minimal number of libraries.
 Use vanilla HTML, CSS, and JavaScript as much as possible.
 Images are not uploaded anywhere and metadata is stored
-in a local SQLite database.
-
-/speckit.tasks       # break the plan into ordered steps
-/speckit.implement   # the agent writes the code`}
+in a local SQLite database.`}
     />
-    <div className="text-zinc-400 text-[clamp(0.85rem,1vw+0.2rem,1.2rem)]">Plan → Tasks → Implement. Every step writes a Markdown artifact the next step can read.</div>
+    <div className="text-zinc-400 text-[clamp(0.85rem,1vw+0.2rem,1.2rem)]">The plan becomes a markdown file the next command reads. No prompt history, no chat scroll.</div>
 </div>
