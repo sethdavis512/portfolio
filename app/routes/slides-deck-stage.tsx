@@ -57,6 +57,8 @@ export default function SlidesDeckStageRoute({
             slideId={loaderData.slideId}
             navigation={loaderData.navigation}
             basePath={`/slides/${loaderData.deckSlug}`}
+            backHref={`/slides/${loaderData.deckSlug}`}
+            backLabel="Back to overview"
         />
     );
 }
