@@ -1,15 +1,18 @@
 import { readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Config } from '@react-router/dev/config';
-import { getAllServiceSlugs } from './app/content/data/service-offers';
 
 export default {
     ssr: true,
     async prerender() {
+        // NOTE: Do not prerender routes that export an `action` (currently
+        // /contact and /services/:slug). A prerendered route emits a static
+        // `<path>.data` file that shadows the server action, so form POSTs
+        // never run the action and the client throws a route error. Those
+        // routes are server-rendered on demand instead (ssr: true).
         const staticPaths = [
             '/',
             '/about',
-            '/contact',
             '/design-technologist',
             '/resume',
             '/services',
@@ -32,8 +35,6 @@ export default {
             .filter((f) => f.endsWith('.mdx'))
             .map((f) => f.replace('.mdx', ''));
 
-        const serviceSlugs = getAllServiceSlugs();
-
         const slidesDir = resolve(contentDir, 'slides');
         const deckPaths: string[] = [];
         const slidePaths: string[] = [];
@@ -54,7 +55,6 @@ export default {
             ...staticPaths,
             ...workSlugs.map((s) => `/work/${s}`),
             ...tilSlugs.map((s) => `/til/${s}`),
-            ...serviceSlugs.map((s) => `/services/${s}`),
             ...deckPaths,
             ...slidePaths
         ];
