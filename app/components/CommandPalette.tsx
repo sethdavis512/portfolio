@@ -36,6 +36,11 @@ const pagesLinks = [
         label: 'Services'
     },
     {
+        to: '/contact',
+        icon: LinkIcon,
+        label: 'Contact'
+    },
+    {
         to: '/til',
         icon: LinkIcon,
         label: 'TIL'
