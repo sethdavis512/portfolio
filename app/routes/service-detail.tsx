@@ -55,6 +55,14 @@ export async function action({ request }: Route.ActionArgs) {
         return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
     }
 
+    // The Airtable "Customers" table has no "Offer" field, so the requested
+    // offer is folded into Note instead of written as a separate column.
+    const message = validation.data.note?.trim();
+    const offer = validation.data.offer?.trim();
+    const note = [offer ? `[Service: ${offer}]` : '[Service inquiry]', message]
+        .filter(Boolean)
+        .join(' ');
+
     try {
         const response = await getPortfolioBase()('Customers').create([
             {
@@ -62,8 +70,7 @@ export async function action({ request }: Route.ActionArgs) {
                     'First name': validation.data.firstName,
                     'Last name': validation.data.lastName,
                     Email: validation.data.email,
-                    Note: validation.data.note || '',
-                    Offer: validation.data.offer || ''
+                    Note: note
                 }
             }
         ]);
