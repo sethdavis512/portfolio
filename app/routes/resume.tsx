@@ -1,9 +1,9 @@
 import { cx } from '~/cva.config';
-import { InfoIcon } from 'lucide-react';
+import { InfoIcon, MailIcon } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
 
 import { Banner } from '~/components/Banner';
-import { ContentStyles } from '~/constants';
+import { CONTACT_EMAIL, ContentStyles } from '~/constants';
 import { Flex } from '~/components/Flex';
 import { skills } from '~/content/data/skills';
 import { generateRouteMeta } from '~/utils/seo';
@@ -45,7 +45,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
             <Heading as="h1" className="mb-8">
                 Resume
             </Heading>
-            <Banner className="mb-8">
+            <Banner className="mb-4">
                 <Flex>
                     <InfoIcon />
                     Looking for a PDF version?{' '}
@@ -54,6 +54,20 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     </Linky>
                 </Flex>
             </Banner>
+            <div className="mb-8 flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-2 text-zinc-300">
+                <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="inline-flex items-center gap-2 font-medium text-zinc-100 hover:text-primary-400 transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+                >
+                    <MailIcon className="size-4" />
+                    {CONTACT_EMAIL}
+                </a>
+                <span className="hidden sm:inline text-zinc-600">·</span>
+                <span>
+                    Hiring or have a project?{' '}
+                    <Linky to="/contact">Send me a message</Linky>
+                </span>
+            </div>
             <ResumeSection>
                 <Heading as="h2" size="2">
                     Summary

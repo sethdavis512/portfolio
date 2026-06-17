@@ -8,3 +8,5 @@ export enum ContentStyles {
     FRONTEND = `Design`,
     CURRENT_JOB_TITLE = `Design Technologist`
 }
+
+export const CONTACT_EMAIL = 'sethdavis512@gmail.com';

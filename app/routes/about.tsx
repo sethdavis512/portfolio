@@ -7,6 +7,7 @@ import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 import type { Route } from './+types/about';
 import { Button } from '~/components/Button';
+import { CONTACT_EMAIL } from '~/constants';
 
 export function meta() {
     return generateRouteMeta({
@@ -175,14 +176,20 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                     Check out projects where I put these values into practice,
                     or get in touch to discuss working together.
                 </p>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                     <Button to="/work" size="lg">
                         See my work
                     </Button>
-                    <Button to="/services" size="lg" variant="outline">
+                    <Button to="/contact" size="lg" variant="outline">
                         Get in touch
                     </Button>
                 </div>
+                <p className="mt-6 text-zinc-400">
+                    Or email me directly at{' '}
+                    <Linky href={`mailto:${CONTACT_EMAIL}`}>
+                        {CONTACT_EMAIL}
+                    </Linky>
+                </p>
             </section>
             <hr className="border-zinc-500 my-12" />
             <Heading as="h2" className="mb-8">
