@@ -1,16 +1,12 @@
 import { cx } from '~/cva.config';
-import { MailIcon, MenuIcon } from 'lucide-react';
+import { MenuIcon } from 'lucide-react';
 import { useReducer } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { KeyboardShortcut } from '~/components/KeyboardShortcut';
-import { Linky } from '~/components/Linky';
-import { GitHubLogo } from '~/components/logos/GitHubLogo';
-import { LinkedInLogo } from '~/components/logos/LinkedInLogo';
 import { Logo } from '~/components/logos/SethDavisLogo';
-import { XLogo } from '~/components/logos/XLogo';
-import { BorderStyles, CONTACT_EMAIL } from '~/constants';
+import { BorderStyles } from '~/constants';
 
 const sharedLinkClasses = `text-4xl md:text-lg`;
 
@@ -263,47 +259,8 @@ export default function WrapperRoute() {
                 </Container>
             </main>
             <footer className="py-0 md:py-8">
-                <Container className="flex flex-col items-center gap-8">
-                    <div className="flex flex-col items-center gap-5 mt-12">
-                        <a
-                            href={`mailto:${CONTACT_EMAIL}`}
-                            className="inline-flex items-center gap-2 text-lg font-medium text-zinc-700 dark:text-zinc-200 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
-                        >
-                            <MailIcon className="size-5" />
-                            {CONTACT_EMAIL}
-                        </a>
-                        <div className="flex items-center gap-6">
-                            <Linky
-                                to="/contact"
-                                variant="muted"
-                                className="text-sm"
-                            >
-                                Contact
-                            </Linky>
-                            <Linky
-                                href="https://github.com/sethdavis512"
-                                aria-label="GitHub"
-                                variant="muted"
-                            >
-                                <GitHubLogo className="w-6 h-6" />
-                            </Linky>
-                            <Linky
-                                href="https://www.linkedin.com/in/sethdavis512/"
-                                aria-label="LinkedIn"
-                                variant="muted"
-                            >
-                                <LinkedInLogo className="w-6 h-6" />
-                            </Linky>
-                            <Linky
-                                href="https://www.x.com/sethdavis512/"
-                                aria-label="X (Twitter)"
-                                variant="muted"
-                            >
-                                <XLogo className="w-6 h-6" />
-                            </Linky>
-                        </div>
-                    </div>
-                    <div className="flex w-full items-center justify-between mb-12">
+                <Container className="flex flex-col items-center gap-4">
+                    <div className="flex w-full items-center justify-between my-12">
                         <div className={`flex-grow ${BorderStyles.BOTTOM}`} />
                         <Flex className="px-4 text-center items-center">
                             <p className="inline-block">
