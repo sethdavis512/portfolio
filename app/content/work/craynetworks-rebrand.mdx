@@ -1,0 +1,34 @@
+---
+title: "Cray Networks Rebrand"
+slug: "craynetworks-rebrand"
+status: "PUBLISHED"
+description: "A design-engineering rebrand of a 20-year-old Central Texas IT shop, built around a live OKLCH theming engine and a Base UI design system."
+cta: "See more"
+sortOrder: 2
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/craynetworks-rebrand-home.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/craynetworks-rebrand-home.png"
+about: "The Cray Networks rebrand modernizes the brand of a real 20-year-old IT support business serving Central Texas while doubling as a senior-level design-system demonstration. The build keeps the company's existing blue-and-white identity but finally systematizes it: a canonical OKLCH token model drives every color, and a live theming engine lets the entire site re-skin in real time without a single React re-render. It is a full React Router framework-mode app with SSR, a Base UI component library, a variable-font typography lab, and a hand-coded SVG logo built from network nodes. An interactive showcase walks through the design rationale, including an honest before-and-after slider against the actual 2003 site. The result argues for design-system competence by proving it in the product itself rather than claiming it."
+learned: "Building the theming engine pushed me deep into the CSS cascade and the OKLCH color space. Authoring tokens as composable lightness, chroma, and hue channels meant I could override accent color, density, and radius by setting inline CSS variables on the html element, letting them outrank the root scope and re-theme the page instantly with no component re-render. I worked out SSR-safe theme persistence with cookies to avoid a flash of unstyled content, plus Zod-validated shareable theme query parameters. The variable-font work taught me to drive real wght and opsz axes for genuine optical sizing rather than faking type scales. Pairing Base UI primitives with Class Variance Authority and Tailwind v4's @theme inline gave me a clean way to keep utility classes overridable while a single token file stayed the source of truth and prevented drift."
+impact: "This project showcases my ability to design and engineer a coherent design system end to end, from primitive color channels up through documented, accessible components. It demonstrates fluency across the modern frontend stack: React Router framework mode with SSR, Tailwind v4, Base UI, variable fonts, and OKLCH color, all shipped on a Dockerized Railway deploy. The live theming and typography labs prove I understand how systems scale and stay maintainable rather than just how a single screen looks. The honest before-and-after narrative shows I can respect an existing brand while modernizing it, a balance that matters for real client work. As a portfolio piece it speaks directly to design-minded hiring managers who can tell the difference between a template and a system."
+techStack: ["react-router", "react", "typescript", "tailwind", "baseui", "bun", "railway", "css"]
+sourceUrl: "https://github.com/sethdavis512/craynetworks-rebrand"
+demoUrl: "https://cray-networks-rebrand.up.railway.app"
+demoUrlText: "View live site"
+tags: ["design system", "rebrand", "client work"]
+galleryImages:
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/craynetworks-rebrand-theme.png"
+    alt: "The live theming drawer, with sliders for accent hue, chroma, lightness, radius, and density that rewrite CSS variables instantly"
+    sortOrder: 0
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/craynetworks-rebrand-components.png"
+    alt: "The dogfooded Base UI component library, a live gallery of buttons, inputs, switches, tabs, dialogs, and more reading the same OKLCH tokens"
+    sortOrder: 1
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/craynetworks-rebrand-studio.png"
+    alt: "The typography studio, with variable-font controls and a live modular-scale type specimen ramp"
+    sortOrder: 2
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/craynetworks-rebrand-behind.png"
+    alt: "The Behind the Rebrand page, with a before and after reveal slider comparing the 2003 site to the new design"
+    sortOrder: 3
+hasContent: false
+createdAt: "2026-06-25T00:00:00.000Z"
+updatedAt: "2026-06-25T00:00:00.000Z"
+---
