@@ -1,205 +1,101 @@
-# Portfolio Monorepo
+# Portfolio
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![KeystoneJS](https://img.shields.io/badge/KeystoneJS-000000?style=for-the-badge&logo=keystone&logoColor=white)](https://keystonejs.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![React Router](https://img.shields.io/badge/React_Router_7-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white)](https://reactrouter.com/)
+[![Bun](https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white)](https://bun.sh/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-A modern, full-stack portfolio website built with a monorepo architecture. Features a React/TypeScript frontend with SSR and a KeystoneJS 6 headless CMS backend, all managed in a single repository.
+Seth Davis's personal portfolio — a server-rendered React Router v7 app with all content authored locally as MDX and TypeScript data files. No external CMS or database; content changes are code changes.
 
 **Live Site**: [sethdavis.tech](https://sethdavis.tech)
 
-## Key Features
+## Stack
 
-- **Server-Side Rendering (SSR)** with React Router v7
-- **Responsive Design** with TailwindCSS v4
-- **Type-Safe Development** with TypeScript throughout
-- **GraphQL API** with automatic type generation
-- **Headless CMS** with KeystoneJS 6 admin interface
-- **PostgreSQL Database** with Prisma ORM
-- **Analytics Integration** with PostHog
-- **Modern UI Components** with Radix UI primitives
+- **Framework**: [React Router v7](https://reactrouter.com/) in framework mode (SSR + static pre-rendering)
+- **Runtime / package manager**: [Bun](https://bun.sh/)
+- **Server**: [Hono](https://hono.dev/) via `hono-react-router-adapter` (`main.ts` serves the build, `server/` holds app server config)
+- **Language**: TypeScript (strict)
+- **Styling**: TailwindCSS v4 with `@tailwindcss/typography` and `tailwindcss-animate`
+- **Content**: MDX (`@mdx-js/rollup`, `remark-gfm`, `remark-frontmatter`, `remark-mdx-frontmatter`)
+- **Components**: [CVA](https://cva.style/) (Class Variance Authority) + `tailwind-merge`, Radix UI primitives, `lucide-react` icons
+- **Syntax highlighting**: [Shiki](https://shiki.style/)
+- **Command palette**: [cmdk](https://cmdk.paco.me/)
+- **Forms**: [Airtable](https://airtable.com/) (contact + services interest forms)
+- **Analytics**: [PostHog](https://posthog.com/)
+- **Build**: Vite
+
+## Commands
+
+```bash
+bun install        # Install dependencies
+
+bun run dev        # Start the dev server
+bun run typecheck  # react-router typegen + tsc
+bun run build      # Production build (build/client + build/server)
+bun run start      # Serve the production build via Hono (tsx main.ts)
+```
 
 ## Architecture
 
-- **Frontend**: `web/` — React Router v7, TypeScript, TailwindCSS, SSR, GraphQL client
-- **Backend**: `cms/` — KeystoneJS 6, PostgreSQL, Prisma ORM, GraphQL API
-- **Monorepo**: Unified development, shared tooling, and consistent TypeScript across both apps
+A single React Router v7 application — no monorepo, no backend service.
 
----
+- **Routing**: config-based in `app/routes.ts`. Most routes are wrapped by the `routes/wrapper.tsx` layout; the full-screen slideshow stage and `sitemap.xml` sit outside it.
+- **Routes**: in `app/routes/`. Loaders return serializable data only; components read it via `loaderData` props (not `useLoaderData`). MDX components are resolved at module/render scope, never returned from loaders.
+- **Pre-rendering**: `react-router.config.ts` walks the content directories at build time to generate static paths for work, TIL, and slide-deck pages. Routes that export an `action` (e.g. `/contact`, `/services/:slug`) are intentionally **not** pre-rendered so their form POSTs hit the server action.
+- **Content loaders**: `app/content/work.ts` and `app/content/posts.ts` use `import.meta.glob` to eagerly load MDX modules. Slides load via `app/content/slides.ts`.
+- **Server entry**: `main.ts` boots a Hono server, serves static assets from `build/client`, and hands requests to the React Router build.
 
-## Frontend (`web/`)
-
-- **Framework**: React Router v7 (file-based routing, SSR, pre-rendering)
-- **Language**: TypeScript (strict mode)
-- **Styling**: TailwindCSS v4, `@tailwindcss/typography`, `tailwindcss-animate`
-- **GraphQL**: `graphql-request` client, codegen via `@graphql-codegen`
-- **UI**: Custom component library using `cva` (Class Variance Authority)
-- **Analytics**: PostHog integration
-- **Build**: Vite, TypeScript path mapping
-
-### Directory Structure (Frontend)
+### Directory layout
 
 ```text
-web/app/
-├── components/   # Reusable UI components
-├── routes/       # React Router v7 routes
-├── utils/        # Utility functions
-├── generated/    # Auto-generated GraphQL types
-├── queries/      # GraphQL query definitions
-└── images/       # Static assets
+app/
+├── routes.ts          # Route configuration
+├── routes/            # Route modules (loaders/actions/components)
+├── components/        # UI components (CVA-based)
+├── content/
+│   ├── work/*.mdx     # Work / project items
+│   ├── til/*.mdx      # Today-I-Learned posts
+│   ├── post/*.mdx     # Blog posts
+│   ├── slides/<deck>/ # Slide decks (one folder per deck, one MDX per slide)
+│   ├── data/*.ts      # Structured data (about facts, quotes, values, skills, offers)
+│   ├── work.ts        # Work loader (import.meta.glob)
+│   ├── posts.ts       # Post/TIL loader
+│   ├── slides.ts      # Slides loader
+│   └── types.ts       # Content TypeScript interfaces
+├── hooks/             # React hooks
+├── schemas/           # Zod schemas
+├── utils/             # Utilities
+├── cva.config.ts      # CVA + tailwind-merge config
+├── app.css            # Tailwind + view-transition styles
+└── root.tsx           # Root document
+main.ts                # Hono production server entry
+server/                # Hono app server config
+react-router.config.ts # SSR + prerender config
 ```
 
-### Development (Frontend)
+## Adding content
 
-- `npm run dev:web` — Start frontend dev server
-- `npm run generate:types` — Generate GraphQL types from CMS schema
-- Server-side data fetching in route loaders
-- Use absolute imports with `~/` prefix
+Content lives in the repo, so adding it is a code change followed by a deploy.
 
----
+- **Work item** — add `app/content/work/<slug>.mdx` with YAML frontmatter (`status: "PUBLISHED"`, `sortOrder`, Cloudinary image URLs). Add an MDX body and set `hasContent: true` for rich pages.
+- **TIL post** — add `app/content/til/<slug>.mdx` with frontmatter (`status: "PUBLISHED"`, `excerpt`) and write the body as MDX.
+- **Slide deck** — create a folder `app/content/slides/<deck-slug>/` with a `deck.json` and one MDX file per slide. The deck auto-appears at `/slides` and is pre-rendered automatically.
 
-## Backend (`cms/`)
+See [`CLAUDE.md`](CLAUDE.md) for detailed authoring conventions (frontmatter fields, slide MDX rules, placeholder images) and [`CONTENT_STYLE_GUIDE.md`](CONTENT_STYLE_GUIDE.md) for voice and tone.
 
-- **Framework**: KeystoneJS 6 (headless CMS)
-- **Database**: PostgreSQL (Prisma ORM)
-- **Auth**: KeystoneJS built-in, bcrypt password hashing
-- **API**: Auto-generated GraphQL at `/api/graphql`
-- **Language**: TypeScript
+## Conventions
 
-### Directory Structure (Backend)
+- Use the `~/` prefix for absolute imports within `app/`.
+- Prefer loaders/actions over `useEffect` in routes.
+- Use classic `function` syntax over arrow functions.
+- Escape `<` outside code blocks in MDX (`&lt;` or `≤`).
+- Components use CVA variants; styling is dark-first with an OKLCH primary/secondary/tertiary color system.
 
-```text
-cms/
-├── keystone.ts      # Main Keystone config
-├── schema.ts        # Database schema
-├── auth.ts          # Auth config
-├── seed.ts          # DB seeding
-├── migrations/      # Prisma migrations
-```
+## Deployment
 
-### Development (Backend)
-
-- `npm run dev:cms` — Start CMS dev server (admin UI at `/admin`)
-- GraphQL playground at `/api/graphql`
-- Use Prisma migrations for schema changes
-- `npm run generate:types` after schema changes
-
----
-
-## Getting Started
-
-1. **Install dependencies**
-
-    ```sh
-    npm install
-    ```
-
-2. **Set up environment variables**
-
-    - Copy `.env.example` to `.env` in both `web/` and `cms/` as needed
-    - Fill in database URLs, secrets, etc.
-
-3. **Run development servers**
-
-    ```sh
-    npm run dev
-    # or run frontend/cms separately:
-    npm run dev:web
-    npm run dev:cms
-    ```
-
-4. **Generate GraphQL types**
-
-    ```sh
-    npm run generate:types
-    ```
-
-5. **Apply database migrations**
-
-    ```sh
-    cd cms && npx prisma migrate deploy
-    ```
-
-6. **Seed the database**
-
-    ```sh
-    cd cms && npm run seed
-    ```
-
----
-
-## Adding New Work Items
-
-Work items are managed in the **CMS** (KeystoneJS), not in code.
-
-1. **Add in CMS admin**: `localhost:3000/admin` or `admin.sethdavis.tech/admin`
-2. **Create Work entry** with title, slug, description, content, and images
-3. **Set status to PUBLISHED**
-4. **Sync to production**:
-
-   ```bash
-   cd cms && npx tsx sync-to-prod.ts --new-only
-   cd cms && npx tsx sync-images-to-prod.ts
-   cd web && railway up -d
-   ```
-
-CommandPalette, sitemap, and pre-rendering are all CMS-driven - no manual file updates needed.
-
-⚠️ **Use `railway up`, not `railway redeploy`** - redeploy only restarts, doesn't rebuild.
-
----
-
-## Deployment & Environment
-
-- Production CMS endpoint: `https://admin.sethdavis.tech/api/graphql`
-- Environment-specific database URLs
-- Session management with secure cookies
-- CORS configured for production domains
-
----
-
-## Security & Best Practices
-
-- All secrets in environment variables
-- Passwords hashed with bcrypt
-- Input validation on client and server
-- TypeScript for compile-time safety
-- CORS and session security
-
----
-
-## Contribution
-
-PRs and issues welcome! Please follow the established code style and patterns:
-
-- Strict TypeScript
-- Functional, compositional React
-- TailwindCSS utilities
-- GraphQL codegen for types
-- Server-side data fetching in loaders
-
----
+Built with `bun run build` and served by the Hono entry (`bun run start`). A `Dockerfile` is included for containerized deploys.
 
 ## License
 
 MIT © Seth Davis
-
----
-
-## Credits
-
-- [KeystoneJS](https://keystonejs.io/)
-- [React Router](https://reactrouter.com/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [Prisma](https://www.prisma.io/)
-- [Vite](https://vitejs.dev/)
-- [PostHog](https://posthog.com/)
-
----
-
-## See Also
-
-- [Frontend README (`web/`)](web/README.md)
-- [CMS README (`cms/`)](cms/README.md)
