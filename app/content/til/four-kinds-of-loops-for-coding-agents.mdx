@@ -1,0 +1,71 @@
+---
+title: "Four Kinds of Loops for Coding Agents"
+slug: "four-kinds-of-loops-for-coding-agents"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["ai", "claude-code", "agents"]
+excerpt: "The Claude Code team defines loops as agents repeating cycles of work until a stop condition is met. There are four kinds, and the difference between them is what you hand off: the check, the stop condition, the trigger, or the prompt itself."
+createdAt: "2026-07-07T00:00:00.000Z"
+updatedAt: "2026-07-07T00:00:00.000Z"
+---
+
+There's a lot of chatter about "designing loops" instead of prompting your coding agent, and everyone seems to mean something different by it. The Claude Code team pins it down with a definition I like: **a loop is an agent repeating cycles of work until a stop condition is met**.
+
+What clicked for me is that the four loop types they describe aren't really about the mechanism. They're about *which piece of the work you hand off*.
+
+## 1. Turn-based loops: you hand off the check
+
+Every prompt you send is already a loop. Claude gathers context, acts, checks its work, and responds. You review, then write the next prompt. That review step is the part you can delegate.
+
+Encode your manual verification steps as a `SKILL.md` so the agent can check its own work end-to-end: start the dev server, click the thing, screenshot before and after, confirm zero console errors. The more quantitative the checks, the better the agent self-verifies.
+
+Best for shorter, one-off tasks that aren't part of a schedule.
+
+## 2. Goal-based loops: you hand off the stop condition
+
+Some tasks need iteration, and agents end loops early when "good enough" is left up to them. With `/goal`, you define what done looks like, and an evaluator sends the agent back to work until the condition is met or a turn cap is hit.
+
+```bash
+/goal get the homepage Lighthouse score to 90 or above, stop after 5 tries.
+```
+
+Deterministic criteria work best here: tests passing, a score threshold, a build succeeding. Best for tasks with verifiable exit criteria.
+
+## 3. Time-based loops: you hand off the trigger
+
+Some work recurs with the same task and changing inputs, or depends on an external system you can only poll. `/loop` re-runs a prompt on an interval:
+
+```bash
+/loop 5m check my PR, address review comments, and fix failing CI
+```
+
+`/loop` runs on your machine, so it dies when you close the lid. `/schedule` moves the same idea to the cloud. Best for recurring work or watching external systems, and the interval should match how often the thing you're watching actually changes.
+
+## 4. Proactive loops: you hand off the prompt
+
+Compose the primitives and there's no human in the loop at all. An event or schedule triggers the run, `/goal` defines done, skills define verification, and workflows orchestrate the agents:
+
+```bash
+/schedule every hour: check the project-feedback channel for bug reports. /goal: don't stop until every report found this run is triaged, actioned, and responded to.
+```
+
+Best for recurring streams of well-defined work: bug triage, migrations, dependency upgrades.
+
+## The cheat sheet
+
+| Loop | You hand off | Use it when |
+| --- | --- | --- |
+| Turn-based | The check | You're exploring or deciding |
+| Goal-based | The stop condition | You know what done looks like |
+| Time-based | The trigger | The work happens on a schedule |
+| Proactive | The prompt | The work is recurring and well-defined |
+
+## Two things that keep loops from going sideways
+
+**Quality comes from the system, not the loop.** The agent follows the patterns already in your codebase, so keep it clean. Give it verification skills. Use a second agent with fresh context for code review. And when a result misses the bar, don't just fix the result. Encode the fix so every future iteration benefits.
+
+**Tokens come from boundaries.** Clear success criteria, explicit turn caps, the cheapest model that can do the job, and scripts for deterministic steps instead of re-reasoning them every run. Pilot on a small slice before a big run.
+
+The starting move is simple: pick one task where you're the bottleneck and ask which piece you could hand off. Can you write the verification check? Is the goal crisp enough to evaluate? Does the work arrive on a schedule? Start there, run it, watch where it stalls, and iterate.
+
+Source: [Getting started with loops](https://x.com/ClaudeDevs/status/2074208949205881033) by the Claude Code team.
