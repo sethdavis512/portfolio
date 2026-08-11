@@ -1,7 +1,7 @@
 export enum BorderStyles {
-    DEFAULT = 'border border-zinc-300 dark:border-zinc-700',
-    BOTTOM = 'border-b border-b-zinc-300 dark:border-b-zinc-700',
-    TOP = 'border-t border-t-zinc-300 dark:border-t-zinc-700'
+    DEFAULT = 'border-2 border-black dark:border-zinc-200',
+    BOTTOM = 'border-b-2 border-b-black dark:border-b-zinc-200',
+    TOP = 'border-t-2 border-t-black dark:border-t-zinc-200'
 }
 
 export enum ContentStyles {

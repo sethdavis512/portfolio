@@ -54,30 +54,34 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     return (
         <>
             <HomeSection className="md:py-16">
-                <div className="flex items-start gap-6">
-                    <div className="hidden md:block w-1 self-stretch bg-primary-500 rounded-full" />
-                    <div>
-                        <span className="text-sm uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-2 block">
-                            Design Technologist
-                        </span>
-                        <Heading
-                            as="h1"
-                            className="text-7xl md:text-9xl font-black mb-6"
-                        >
-                            Seth Davis
-                        </Heading>
-                        <p className="text-lg md:text-2xl font-medium max-w-2xl mb-4 text-zinc-300">
+                <div className="flex items-center justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-8 font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                    <span>Design Technologist</span>
+                    <span aria-hidden="true">Austin, TX — Vol. 01</span>
+                </div>
+                <Heading
+                    as="h1"
+                    className="text-[clamp(4rem,14vw,11rem)] md:text-[clamp(4rem,14vw,11rem)] leading-[0.85] mb-8 tracking-tight"
+                >
+                    Seth
+                    <br />
+                    <span className="italic text-primary-600 dark:text-primary-400">
+                        Davis
+                    </span>
+                </Heading>
+                <div className="grid md:grid-cols-12 gap-8 items-start">
+                    <div className="md:col-span-7 border-t-2 border-black dark:border-zinc-200 pt-6">
+                        <p className="text-xl md:text-2xl font-medium max-w-2xl mb-4 text-zinc-800 dark:text-zinc-200">
                             I help product teams ship better interfaces
                             faster, through design systems, AI tooling, and
                             front-end engineering.
                         </p>
-                        <p className="mb-10 text-zinc-400">
+                        <p className="mb-10 text-zinc-600 dark:text-zinc-400">
                             Open to new engagements as a{' '}
                             <Linky to="/design-technologist">
                                 {ContentStyles.CURRENT_JOB_TITLE}
                             </Linky>
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <div className="flex flex-col sm:flex-row gap-4">
                             <Button size="lg" to="/work">
                                 See my work
                             </Button>
@@ -86,27 +90,37 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                             </Button>
                         </div>
                     </div>
+                    <div className="hidden md:block md:col-span-5 border-t-2 border-black dark:border-zinc-200 pt-6 font-mono text-xs uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400 space-y-2">
+                        <p>Design systems</p>
+                        <p>AI tooling</p>
+                        <p>Front-end engineering</p>
+                    </div>
                 </div>
             </HomeSection>
             <HomeSection>
-                <Heading>Featured projects</Heading>
+                <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-8">
+                    <Heading className="mb-0">Featured projects</Heading>
+                    <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                        02
+                    </span>
+                </div>
                 <div className="grid grid-cols-1 gap-6">
-                    {/* Hero project: full width */}
-                    <Card className="p-0 grid overflow-hidden border border-primary-800/40 bg-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 md:p-10 text-white flex flex-col">
-                            <span className="text-xs uppercase tracking-widest text-primary-400 mb-3">
-                                Flagship
+                    {/* Hero project: full width acid slab */}
+                    <Card className="p-0 grid overflow-hidden bg-primary-400 dark:bg-primary-400 text-black dark:text-black border-black dark:border-black shadow-[8px_8px_0_0_var(--color-black)] dark:shadow-[8px_8px_0_0_var(--color-zinc-200)]">
+                        <div className="col-start-1 row-start-1 p-8 md:p-10 flex flex-col">
+                            <span className="font-mono text-xs uppercase tracking-[0.25em] mb-3">
+                                No. 001 — Flagship
                             </span>
-                            <Heading className="text-white text-3xl md:text-4xl">
+                            <Heading className="text-black dark:text-black text-4xl md:text-5xl">
                                 Iridium
                             </Heading>
-                            <p className="mb-8 text-zinc-300 max-w-2xl text-lg">
+                            <p className="mb-8 max-w-2xl text-lg font-medium">
                                 Full-stack AI app starter kit with TypeScript,
                                 React Router, Better Auth, and Anthropic. Ship
                                 faster, not from scratch.
                             </p>
                             <Button
-                                className="self-start"
+                                className="self-start bg-black text-primary-400 border-black shadow-[4px_4px_0_0_var(--color-primary-900)] dark:border-black dark:shadow-[4px_4px_0_0_var(--color-primary-900)]"
                                 color="primary"
                                 size="lg"
                                 to="/work/iridium"
@@ -117,15 +131,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </Card>
                     {/* Secondary projects: 3-column */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
-                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
-                                    Open Source
+                        <Card className="p-0 grid overflow-hidden">
+                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 mb-3">
+                                    No. 002 — Open Source
                                 </span>
-                                <Heading className="text-white">
-                                    Lone Star UI
-                                </Heading>
-                                <p className="mb-8 text-zinc-300">
+                                <Heading>Lone Star UI</Heading>
+                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
                                     A React 19 component library built with
                                     TypeScript, Tailwind CSS 4, and CVA.
                                     Publishes ESM-only to npm with full type
@@ -142,15 +154,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Button>
                             </div>
                         </Card>
-                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
-                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
-                                    Learning
+                        <Card className="p-0 grid overflow-hidden">
+                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 mb-3">
+                                    No. 003 — Learning
                                 </span>
-                                <Heading className="text-white">
-                                    AI Maniacs
-                                </Heading>
-                                <p className="mb-8 text-zinc-300">
+                                <Heading>AI Maniacs</Heading>
+                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
                                     Free AI education platform. Fundamentals
                                     through agent workflows, built to keep up
                                     with how fast the field moves.
@@ -166,15 +176,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Button>
                             </div>
                         </Card>
-                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
-                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
-                                    Product
+                        <Card className="p-0 grid overflow-hidden">
+                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 mb-3">
+                                    No. 004 — Product
                                 </span>
-                                <Heading className="text-white">
-                                    Prompt Suite
-                                </Heading>
-                                <p className="mb-8 text-zinc-300">
+                                <Heading>Prompt Suite</Heading>
+                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
                                     Native desktop tray app for instant AI
                                     prompt access. Quick interactions without
                                     disrupting your workflow.
@@ -195,7 +203,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             </HomeSection>
             {decks.length > 0 && (
                 <HomeSection>
-                    <div className="flex items-baseline justify-between mb-6">
+                    <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-8">
                         <Heading className="mb-0">Recent slides</Heading>
                         <Linky to="/slides" className="text-sm">
                             All slides →
@@ -203,21 +211,25 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {decks.map((deck) => (
-                            <Linky key={deck.slug} to={`/slides/${deck.slug}`}>
-                                <Card className="h-full p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900 group hover:border-primary-700/60 transition-colors">
-                                    <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                        <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                            <Linky
+                                key={deck.slug}
+                                to={`/slides/${deck.slug}`}
+                                className="block no-underline hover:bg-transparent hover:text-current dark:hover:text-current"
+                            >
+                                <Card className="h-full p-0 grid overflow-hidden group hover:bg-primary-400 dark:hover:bg-primary-400 hover:text-black dark:hover:text-black transition-colors duration-150">
+                                    <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                        <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 group-hover:text-black mb-3">
                                             Deck
                                         </span>
-                                        <Heading className="text-white">
+                                        <Heading className="group-hover:text-black dark:group-hover:text-black">
                                             {deck.title}
                                         </Heading>
                                         {deck.description && (
-                                            <p className="mb-6 text-zinc-300">
+                                            <p className="mb-6 text-zinc-700 dark:text-zinc-300 group-hover:text-black">
                                                 {deck.description}
                                             </p>
                                         )}
-                                        <span className="mt-auto text-xs font-mono text-zinc-500">
+                                        <span className="mt-auto text-xs font-mono uppercase tracking-[0.15em] text-zinc-500 group-hover:text-black">
                                             {deck.slideCount} slide
                                             {deck.slideCount === 1 ? '' : 's'}
                                         </span>
@@ -229,7 +241,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </HomeSection>
             )}
             <HomeSection>
-                <Heading>Socials</Heading>
+                <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-8">
+                    <Heading className="mb-0">Socials</Heading>
+                    <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                        04
+                    </span>
+                </div>
                 <div className="flex gap-8">
                     <Linky
                         href="https://github.com/sethdavis512"

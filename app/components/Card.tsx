@@ -13,7 +13,7 @@ export function Card({
     return (
         <div
             className={cx(
-                'p-4 rounded-lg bg-zinc-100 dark:bg-zinc-900',
+                'p-4 border-2 border-black bg-white dark:border-zinc-200 dark:bg-zinc-900',
                 className
             )}
             {...rest}

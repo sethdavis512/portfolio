@@ -6,7 +6,13 @@ import { Link } from 'react-router';
 import { cva, cx } from '~/cva.config';
 
 export const buttonVariants = cva({
-    base: 'inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
+    base: [
+        'inline-flex items-center justify-center cursor-pointer select-none',
+        'font-mono uppercase tracking-[0.15em] font-semibold',
+        'border-2 transition-[background-color,color,transform,box-shadow] duration-150',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+        'focus-visible:ring-primary-500 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950'
+    ],
     variants: {
         color: {
             primary: [],
@@ -17,15 +23,14 @@ export const buttonVariants = cva({
             soft: [],
             outline: [],
             ghost: [
-                'border-none bg-transparent text-current',
-                'hover:bg-zinc-800',
-                'focus-visible:ring-primary-400'
+                'border-transparent bg-transparent text-current',
+                'hover:bg-zinc-200 dark:hover:bg-zinc-800'
             ]
         },
         size: {
-            sm: 'px-3 py-1.5 text-sm gap-1.5',
-            md: 'px-4 py-2 text-sm gap-1.5',
-            lg: 'px-6 py-3 text-base gap-2'
+            sm: 'px-3 py-1.5 text-xs gap-1.5',
+            md: 'px-5 py-2.5 text-xs gap-2',
+            lg: 'px-7 py-3.5 text-sm gap-2.5'
         }
     },
     defaultVariants: {
@@ -34,53 +39,55 @@ export const buttonVariants = cva({
         size: 'md'
     },
     compoundVariants: [
-        // Primary solid
+        // Primary solid: acid slab with hard offset shadow that collapses on press
         {
             color: 'primary',
             variant: 'solid',
             className: [
-                'bg-primary-600 hover:bg-primary-500 text-white',
-                'border-none shadow-sm shadow-primary-900/30',
-                'focus-visible:ring-primary-400'
+                'bg-primary-400 text-black border-black dark:border-white',
+                'shadow-[4px_4px_0_0_var(--color-black)] dark:shadow-[4px_4px_0_0_var(--color-white)]',
+                'hover:translate-x-[2px] hover:translate-y-[2px]',
+                'hover:shadow-[2px_2px_0_0_var(--color-black)] dark:hover:shadow-[2px_2px_0_0_var(--color-white)]',
+                'active:translate-x-[4px] active:translate-y-[4px] active:shadow-none'
             ]
         },
-        // Primary outline
+        // Primary outline: ink frame, inverts to acid on hover
         {
             color: 'primary',
             variant: 'outline',
             className: [
-                'border border-primary-500/50 hover:border-primary-400 text-primary-400 hover:text-primary-300',
-                'bg-transparent hover:bg-primary-500/10',
-                'focus-visible:ring-primary-400'
+                'bg-transparent text-black border-black dark:text-white dark:border-white',
+                'hover:bg-primary-400 hover:text-black dark:hover:text-black dark:hover:border-primary-400'
             ]
         },
-        // Primary soft
+        // Primary soft: quiet acid wash
         {
             color: 'primary',
             variant: 'soft',
             className: [
-                'border-none bg-primary-500/15 hover:bg-primary-500/25 text-primary-400 hover:text-primary-300',
-                'focus-visible:ring-primary-400'
+                'border-transparent bg-primary-400/20 text-primary-800 dark:text-primary-300',
+                'hover:bg-primary-400/35'
             ]
         },
-        // Secondary solid
+        // Secondary solid: bone slab
         {
             color: 'secondary',
             variant: 'solid',
             className: [
-                'bg-secondary-600 hover:bg-secondary-500 text-white',
-                'border-none shadow-sm shadow-secondary-900/30',
-                'focus-visible:ring-secondary-400'
+                'bg-white text-black border-black dark:border-white',
+                'shadow-[4px_4px_0_0_var(--color-black)] dark:shadow-[4px_4px_0_0_var(--color-white)]',
+                'hover:translate-x-[2px] hover:translate-y-[2px]',
+                'hover:shadow-[2px_2px_0_0_var(--color-black)] dark:hover:shadow-[2px_2px_0_0_var(--color-white)]',
+                'active:translate-x-[4px] active:translate-y-[4px] active:shadow-none'
             ]
         },
-        // Secondary outline
+        // Secondary outline: slate frame
         {
             color: 'secondary',
             variant: 'outline',
             className: [
-                'border border-secondary-500/50 hover:border-secondary-400 text-secondary-400 hover:text-secondary-300',
-                'bg-transparent hover:bg-secondary-500/10',
-                'focus-visible:ring-secondary-400'
+                'bg-transparent text-secondary-700 border-secondary-700 dark:text-secondary-300 dark:border-secondary-400',
+                'hover:bg-secondary-400 hover:text-black dark:hover:text-black'
             ]
         },
         // Secondary soft
@@ -88,8 +95,8 @@ export const buttonVariants = cva({
             color: 'secondary',
             variant: 'soft',
             className: [
-                'border-none bg-secondary-500/15 hover:bg-secondary-500/25 text-secondary-400 hover:text-secondary-300',
-                'focus-visible:ring-secondary-400'
+                'border-transparent bg-secondary-500/15 text-secondary-700 dark:text-secondary-300',
+                'hover:bg-secondary-500/30'
             ]
         }
     ]

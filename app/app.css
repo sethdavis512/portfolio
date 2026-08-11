@@ -2,40 +2,74 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
+    /* Editorial brutalist type stack */
     --font-sans:
-        'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Archivo', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
         'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary-100: oklch(0.96 0.03 28);
-    --color-primary-200: oklch(0.90 0.06 28);
-    --color-primary-300: oklch(0.82 0.11 28);
-    --color-primary-400: oklch(0.74 0.15 28);
-    --color-primary-500: oklch(0.66 0.17 28);
-    --color-primary-600: oklch(0.57 0.18 28);
-    --color-primary-700: oklch(0.47 0.15 28);
-    --color-primary-800: oklch(0.40 0.11 28);
-    --color-primary-900: oklch(0.33 0.08 28);
+    --font-display: 'Fraunces', 'Iowan Old Style', 'Georgia', ui-serif, serif;
+    --font-mono:
+        'JetBrains Mono', ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
 
-    --color-secondary-100: oklch(0.95 0.01 230);
-    --color-secondary-200: oklch(0.88 0.03 230);
-    --color-secondary-300: oklch(0.80 0.04 230);
-    --color-secondary-400: oklch(0.72 0.06 230);
-    --color-secondary-500: oklch(0.64 0.06 230);
-    --color-secondary-600: oklch(0.54 0.05 230);
-    --color-secondary-700: oklch(0.46 0.04 230);
-    --color-secondary-800: oklch(0.40 0.03 230);
-    --color-secondary-900: oklch(0.34 0.02 230);
+    /* Acid chartreuse — the highlighter on newsprint */
+    --color-primary-100: oklch(0.97 0.06 125);
+    --color-primary-200: oklch(0.94 0.12 125);
+    --color-primary-300: oklch(0.9 0.17 125);
+    --color-primary-400: oklch(0.86 0.21 125);
+    --color-primary-500: oklch(0.81 0.22 125);
+    --color-primary-600: oklch(0.68 0.18 126);
+    --color-primary-700: oklch(0.55 0.14 127);
+    --color-primary-800: oklch(0.45 0.11 128);
+    --color-primary-900: oklch(0.37 0.08 128);
 
-    --color-tertiary-100: oklch(0.96 0.03 60);
-    --color-tertiary-200: oklch(0.91 0.06 60);
-    --color-tertiary-300: oklch(0.84 0.10 60);
-    --color-tertiary-400: oklch(0.77 0.12 60);
-    --color-tertiary-500: oklch(0.68 0.12 60);
-    --color-tertiary-600: oklch(0.58 0.10 60);
-    --color-tertiary-700: oklch(0.48 0.08 60);
-    --color-tertiary-800: oklch(0.40 0.06 60);
-    --color-tertiary-900: oklch(0.34 0.04 60);
+    /* Slate blue — cool editorial support */
+    --color-secondary-100: oklch(0.95 0.02 250);
+    --color-secondary-200: oklch(0.88 0.04 250);
+    --color-secondary-300: oklch(0.8 0.06 250);
+    --color-secondary-400: oklch(0.72 0.08 250);
+    --color-secondary-500: oklch(0.64 0.09 250);
+    --color-secondary-600: oklch(0.54 0.08 250);
+    --color-secondary-700: oklch(0.46 0.06 250);
+    --color-secondary-800: oklch(0.4 0.05 250);
+    --color-secondary-900: oklch(0.34 0.04 250);
 
-    --prose-invert-body: #ffffff;
+    /* Vermillion — rare, loud emphasis */
+    --color-tertiary-100: oklch(0.95 0.04 32);
+    --color-tertiary-200: oklch(0.89 0.08 32);
+    --color-tertiary-300: oklch(0.8 0.14 32);
+    --color-tertiary-400: oklch(0.7 0.19 32);
+    --color-tertiary-500: oklch(0.62 0.21 32);
+    --color-tertiary-600: oklch(0.54 0.19 32);
+    --color-tertiary-700: oklch(0.46 0.16 32);
+    --color-tertiary-800: oklch(0.39 0.12 32);
+    --color-tertiary-900: oklch(0.33 0.09 32);
+
+    /* Warm ink-and-bone neutrals (overrides Tailwind zinc) */
+    --color-zinc-50: oklch(0.975 0.005 85);
+    --color-zinc-100: oklch(0.955 0.007 85);
+    --color-zinc-200: oklch(0.91 0.008 85);
+    --color-zinc-300: oklch(0.86 0.008 85);
+    --color-zinc-400: oklch(0.7 0.01 85);
+    --color-zinc-500: oklch(0.55 0.01 85);
+    --color-zinc-600: oklch(0.44 0.01 85);
+    --color-zinc-700: oklch(0.37 0.01 85);
+    --color-zinc-800: oklch(0.27 0.008 85);
+    --color-zinc-900: oklch(0.215 0.007 85);
+    --color-zinc-950: oklch(0.155 0.006 85);
+
+    --color-white: oklch(0.965 0.008 90);
+    --color-black: oklch(0.13 0.005 85);
+
+    /* Brutalist geometry: no soft corners */
+    --radius-xs: 0;
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-2xl: 0;
+    --radius-3xl: 0;
+    --radius-4xl: 0;
+
+    --prose-invert-body: oklch(0.93 0.008 88);
 
     --animate-fade-slide: fade-slide 0.75s ease-out 0.3s forwards;
     --animate-pulse-subtle: pulse-subtle 3s ease-in-out infinite;
@@ -81,11 +115,23 @@
 
 html,
 body {
-    @apply bg-white dark:bg-zinc-950;
+    @apply bg-white text-black dark:bg-zinc-950 dark:text-zinc-100;
 
     @media (prefers-color-scheme: dark) {
         color-scheme: dark;
     }
+}
+
+/* Highlighter selection — acid on ink */
+::selection {
+    background: var(--color-primary-400);
+    color: var(--color-black);
+}
+
+/* Display serif renders best with optical sizing + tight tracking */
+.font-display {
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
 }
 
 

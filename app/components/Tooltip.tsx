@@ -17,11 +17,11 @@ export function Tooltip({ children, content, side = 'top' }: TooltipProps) {
                 <TooltipPrimitive.Portal>
                     <TooltipPrimitive.Content
                         side={side}
-                        className="z-50 rounded-lg bg-zinc-900 px-3 py-1.5 text-sm text-zinc-50 shadow-lg border border-zinc-700"
+                        className="z-50 bg-black px-3 py-1.5 font-mono text-xs uppercase tracking-[0.1em] text-white border-2 border-white"
                         sideOffset={4}
                     >
                         {content}
-                        <TooltipPrimitive.Arrow className="fill-zinc-900" />
+                        <TooltipPrimitive.Arrow className="fill-black" />
                     </TooltipPrimitive.Content>
                 </TooltipPrimitive.Portal>
             </TooltipPrimitive.Root>

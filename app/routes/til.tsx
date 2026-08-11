@@ -65,10 +65,15 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <Heading as="h1" className="mb-2">
-                TIL
-            </Heading>
-            <p className="text-zinc-400 mb-8">
+            <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-4">
+                <Heading as="h1" className="mb-0">
+                    TIL
+                </Heading>
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                    Field notes
+                </span>
+            </div>
+            <p className="text-zinc-600 dark:text-zinc-400 mb-8">
                 Short things I have learned — snippets, discoveries, and quick
                 explanations.
             </p>
@@ -127,15 +132,19 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
             <div className="flex flex-col gap-3">
                 {pagedPosts.length > 0 ? (
                     pagedPosts.map((post) => (
-                        <Linky key={post.id} to={`/til/${post.slug}`}>
-                            <Card className="w-full group border border-zinc-800 hover:border-zinc-600 dark:hover:border-zinc-500 transition-colors duration-200 hover:bg-zinc-800/60 dark:hover:bg-zinc-800/60">
+                        <Linky
+                            key={post.id}
+                            to={`/til/${post.slug}`}
+                            className="block no-underline hover:bg-transparent hover:text-current dark:hover:text-current"
+                        >
+                            <Card className="w-full group transition-shadow duration-150 hover:shadow-[6px_6px_0_0_var(--color-black)] dark:hover:shadow-[6px_6px_0_0_var(--color-zinc-200)]">
                                 <div className="flex items-start justify-between gap-4">
                                     <div className="flex-1 min-w-0">
                                         <Heading as="h3" size="4">
                                             {post.title}
                                         </Heading>
                                         {post.excerpt && (
-                                            <p className="text-zinc-400 text-sm mt-1 line-clamp-2">
+                                            <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-1 line-clamp-2">
                                                 {post.excerpt}
                                             </p>
                                         )}
@@ -164,11 +173,11 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                         </Linky>
                     ))
                 ) : activeTopic ? (
-                    <p className="text-zinc-400">
+                    <p className="text-zinc-600 dark:text-zinc-400">
                         No TILs tagged <code>{activeTopic}</code> yet.
                     </p>
                 ) : (
-                    <p className="text-zinc-400">
+                    <p className="text-zinc-600 dark:text-zinc-400">
                         Nothing here yet — check back soon.
                     </p>
                 )}
@@ -181,20 +190,20 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                     {currentPage > 1 ? (
                         <Link
                             to={pageHref(currentPage - 1)}
-                            className="text-sm text-zinc-300 hover:text-white"
+                            className="font-mono text-xs uppercase tracking-[0.15em] text-zinc-700 dark:text-zinc-300 hover:bg-primary-400 hover:text-black px-2 py-1"
                         >
                             ← Newer
                         </Link>
                     ) : (
                         <span />
                     )}
-                    <span className="text-sm text-zinc-500">
+                    <span className="font-mono text-xs uppercase tracking-[0.15em] text-zinc-500">
                         Page {currentPage} of {totalPages}
                     </span>
                     {currentPage < totalPages ? (
                         <Link
                             to={pageHref(currentPage + 1)}
-                            className="text-sm text-zinc-300 hover:text-white"
+                            className="font-mono text-xs uppercase tracking-[0.15em] text-zinc-700 dark:text-zinc-300 hover:bg-primary-400 hover:text-black px-2 py-1"
                         >
                             Older →
                         </Link>

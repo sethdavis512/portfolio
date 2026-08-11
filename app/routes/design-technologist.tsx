@@ -95,7 +95,7 @@ export default function DesignTechnologistRoute() {
             <Heading as="h1" className="mb-4">
                 What is a Design Technologist?
             </Heading>
-            <p className="text-lg text-zinc-300 mb-12 max-w-2xl">
+            <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-12 max-w-2xl">
                 A Design Technologist is an engineer who thinks like a designer.
                 They operate at the intersection of design and code, eliminating
                 the handoff gap that exists between most design and engineering
@@ -138,18 +138,18 @@ export default function DesignTechnologistRoute() {
                                 key={role.title}
                                 className={
                                     role.highlighted
-                                        ? 'ring-2 ring-primary-500 dark:ring-primary-400'
+                                        ? 'border-primary-600 dark:border-primary-400 shadow-[6px_6px_0_0_var(--color-primary-600)] dark:shadow-[6px_6px_0_0_var(--color-primary-400)]'
                                         : ''
                                 }
                             >
                                 <Heading as="h3" size="4" className="mb-3">
                                     {role.title}
                                 </Heading>
-                                <p className="text-sm text-zinc-400 mb-2">
+                                <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-2">
                                     Focus
                                 </p>
                                 <p className="mb-4">{role.focus}</p>
-                                <p className="text-sm text-zinc-400 mb-2">
+                                <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-2">
                                     Primary output
                                 </p>
                                 <p>{role.output}</p>
@@ -181,7 +181,7 @@ export default function DesignTechnologistRoute() {
                                                 key={item}
                                                 className="flex items-start gap-2"
                                             >
-                                                <span className="text-primary-500 mt-1.5 block w-1.5 h-1.5 rounded-full bg-current shrink-0" />
+                                                <span className="text-primary-600 dark:text-primary-400 mt-2 block w-2 h-2 bg-current shrink-0" />
                                                 <span>{item}</span>
                                             </li>
                                         );
@@ -208,7 +208,7 @@ export default function DesignTechnologistRoute() {
                                 >
                                     {item.title}
                                 </Heading>
-                                <p className="text-zinc-300">
+                                <p className="text-zinc-700 dark:text-zinc-300">
                                     {item.description}
                                 </p>
                             </Card>
@@ -223,7 +223,7 @@ export default function DesignTechnologistRoute() {
                 </Heading>
                 <div className="space-y-4 max-w-2xl">
                     <p>
-                        <strong className="text-white">
+                        <strong className="text-black dark:text-white">
                             Design systems are infrastructure.
                         </strong>{' '}
                         Every serious product team maintains a component library.
@@ -231,7 +231,7 @@ export default function DesignTechnologistRoute() {
                         engineering rigor in that system.
                     </p>
                     <p>
-                        <strong className="text-white">
+                        <strong className="text-black dark:text-white">
                             AI is creating new interface paradigms.
                         </strong>{' '}
                         Generative UI, conversational interfaces, and
@@ -241,7 +241,7 @@ export default function DesignTechnologistRoute() {
                         simultaneously.
                     </p>
                     <p>
-                        <strong className="text-white">
+                        <strong className="text-black dark:text-white">
                             Speed of iteration is a competitive advantage.
                         </strong>{' '}
                         Teams that go from concept to working prototype in hours
@@ -249,7 +249,7 @@ export default function DesignTechnologistRoute() {
                         compresses that cycle dramatically.
                     </p>
                     <p>
-                        <strong className="text-white">
+                        <strong className="text-black dark:text-white">
                             The last 10% of UI quality is disproportionately
                             valuable.
                         </strong>{' '}
@@ -260,13 +260,13 @@ export default function DesignTechnologistRoute() {
                 </div>
             </section>
 
-            <hr className="border-zinc-500 my-12" />
+            <hr className="border-t-2 border-black dark:border-zinc-200 my-12" />
 
             <section>
                 <Heading as="h2" className="mb-4">
                     See it in practice
                 </Heading>
-                <p className="text-zinc-300 mb-6">
+                <p className="text-zinc-700 dark:text-zinc-300 mb-6">
                     Check out my work building design systems, creative tooling,
                     and generative interfaces.
                 </p>

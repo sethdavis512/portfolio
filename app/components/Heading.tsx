@@ -13,8 +13,8 @@ interface HeadingProps {
 const headingVariants = cva({
     variants: {
         size: {
-            '1': 'text-4xl md:text-5xl mb-6',
-            '2': 'text-3xl mb-4',
+            '1': 'text-5xl md:text-6xl mb-6',
+            '2': 'text-3xl md:text-4xl mb-4',
             '3': 'text-2xl mb-4',
             '4': 'text-xl',
             '5': 'text-lg',
@@ -39,7 +39,7 @@ export function Heading({
         <Component
             id={id}
             className={cx(
-                'font-bold text-zinc-700 dark:text-white',
+                'font-display font-black leading-[0.95] text-black dark:text-white',
                 headingVariants({ className, size })
             )}
         >

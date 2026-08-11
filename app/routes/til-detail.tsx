@@ -38,10 +38,15 @@ export default function TILDetailRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <div className="mb-8">
-                <Heading className="mb-2">{loaderData.post.title}</Heading>
+            <div className="mb-8 border-b-2 border-black dark:border-zinc-200 pb-6">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 block mb-3">
+                    TIL — Field note
+                </span>
+                <Heading as="h1" size="1" className="mb-2">
+                    {loaderData.post.title}
+                </Heading>
                 {loaderData.post.tags.length > 0 && (
-                    <ul className="flex gap-2 mt-3">
+                    <ul className="flex gap-2 mt-4">
                         {loaderData.post.tags.map((tag) => (
                             <li key={tag}>
                                 <Tag>{tag}</Tag>

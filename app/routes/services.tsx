@@ -18,15 +18,21 @@ export function meta() {
 export default function ServicesRoute() {
     return (
         <>
-            <Heading as="h1" className="text-4xl md:text-6xl font-black mb-6">
-                Two things I build, on a fixed price.
+            <div className="border-b-2 border-black dark:border-zinc-200 pb-3 mb-8 font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                Services — Fixed scope, fixed price
+            </div>
+            <Heading as="h1" className="text-5xl md:text-7xl mb-6">
+                Two things I build,{' '}
+                <span className="italic text-primary-600 dark:text-primary-400">
+                    on a fixed price.
+                </span>
             </Heading>
-            <p className="text-xl md:text-2xl text-zinc-300 max-w-3xl mb-4">
+            <p className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300 max-w-3xl mb-4">
                 Developer CLI tools and Contentful-powered websites. Each one
                 is a productized engagement with a written scope and a fixed
                 cost, so you know what you're getting before you sign.
             </p>
-            <p className="text-zinc-400 max-w-3xl mb-12">
+            <p className="text-zinc-600 dark:text-zinc-400 max-w-3xl mb-12">
                 Need something else?{' '}
                 <Linky href="https://tidycal.com/sethdavis512/meet-and-greet">
                     Book a scope call
@@ -38,10 +44,10 @@ export default function ServicesRoute() {
                     <Link
                         key={offer.slug}
                         to={`/services/${offer.slug}`}
-                        className="group rounded-xl bg-zinc-900 border border-zinc-800 hover:border-primary-500/50 transition-colors duration-200 p-6 flex flex-col"
+                        className="group border-2 border-black dark:border-zinc-200 transition-shadow duration-150 hover:shadow-[8px_8px_0_0_var(--color-black)] dark:hover:shadow-[8px_8px_0_0_var(--color-zinc-200)] p-6 flex flex-col"
                     >
                         <div className="flex flex-wrap items-center gap-2 mb-4">
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-500/15 text-primary-300 px-2.5 py-0.5 text-xs font-medium">
+                            <span className="inline-flex items-center gap-1.5 bg-primary-400 text-black px-2.5 py-1 font-mono text-xs uppercase tracking-[0.12em]">
                                 <Tag className="size-3" />
                                 From {offer.startingPrice}
                             </span>
@@ -49,13 +55,13 @@ export default function ServicesRoute() {
                         <Heading as="h2" size="3" className="mb-3">
                             {offer.shortTitle}
                         </Heading>
-                        <p className="text-zinc-300 mb-4 flex-1">
+                        <p className="text-zinc-700 dark:text-zinc-300 mb-4 flex-1">
                             {offer.tagline}
                         </p>
                         <p className="text-sm text-zinc-500 mb-5">
                             {offer.proofLine}
                         </p>
-                        <span className="inline-flex items-center gap-1.5 text-primary-400 group-hover:text-primary-300 font-medium">
+                        <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.15em] text-black dark:text-white font-semibold">
                             See offer details
                             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                         </span>

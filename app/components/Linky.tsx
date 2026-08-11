@@ -6,13 +6,20 @@ import { Link } from 'react-router';
 import { cva, cx } from '~/cva.config';
 
 export const linkyVariants = cva({
-    base: 'inline-flex cursor-pointer items-center gap-1.5 transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
+    base: 'inline-flex cursor-pointer items-center gap-1.5 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950',
     variants: {
         variant: {
-            inline: 'text-primary-400 hover:text-primary-300',
-            muted: 'text-zinc-400 hover:text-zinc-200',
-            underline:
-                'text-primary-400 hover:text-primary-300 underline underline-offset-4 decoration-primary-500/40 hover:decoration-primary-400'
+            inline: [
+                'text-black dark:text-white underline decoration-2 underline-offset-4',
+                'decoration-primary-600 dark:decoration-primary-400',
+                'hover:bg-primary-400 hover:text-black hover:decoration-transparent dark:hover:text-black'
+            ],
+            muted: 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white underline decoration-zinc-400/60 underline-offset-4 hover:decoration-current',
+            underline: [
+                'text-black dark:text-white underline decoration-2 underline-offset-4',
+                'decoration-primary-600 dark:decoration-primary-400',
+                'hover:bg-primary-400 hover:text-black hover:decoration-transparent dark:hover:text-black'
+            ]
         }
     },
     defaultVariants: {

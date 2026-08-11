@@ -12,7 +12,7 @@ export function SkillTag({
     children
 }: PropsWithChildren<SkillTagProps>) {
     return (
-        <Tag variant="primary" className={cx(className)}>
+        <Tag variant="secondary" className={cx(className)}>
             {children}
         </Tag>
     );

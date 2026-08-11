@@ -23,15 +23,19 @@ export function FormField({
 }: FormFieldProps) {
     const errorId = `${name}-error`;
     const inputClasses = cx(
-        'p-2 border rounded w-full',
+        'p-3 border-2 w-full bg-transparent transition-colors duration-150',
+        'focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-white dark:ring-offset-zinc-950',
         error
-            ? 'border-red-500 focus:ring-red-500'
-            : 'border-zinc-500 focus:ring-primary-500'
+            ? 'border-tertiary-500 focus:ring-tertiary-500'
+            : 'border-black dark:border-zinc-200 focus:ring-primary-500 dark:focus:ring-primary-400'
     );
 
     return (
         <div>
-            <label htmlFor={name} className="block mb-2 font-medium">
+            <label
+                htmlFor={name}
+                className="block mb-2 font-mono uppercase tracking-[0.12em] text-xs font-semibold"
+            >
                 {label}
             </label>
             {as === 'textarea' ? (
@@ -58,7 +62,7 @@ export function FormField({
                 />
             )}
             {error && (
-                <p id={errorId} className="mt-1 text-sm text-red-400">{error}</p>
+                <p id={errorId} className="mt-1 text-sm text-tertiary-600 dark:text-tertiary-400">{error}</p>
             )}
         </div>
     );
