@@ -49,7 +49,7 @@ function FeaturedWorkDisplay({
 }: WorkDisplayProps) {
     return (
         <Link to={url} className="group block h-full">
-            <div className="border-2 border-black dark:border-zinc-200 h-full transition-shadow duration-150 group-hover:shadow-[8px_8px_0_0_var(--color-black)] dark:group-hover:shadow-[8px_8px_0_0_var(--color-zinc-200)]">
+            <div className="border border-zinc-200 dark:border-zinc-800 h-full transition-shadow duration-150 group-hover:border-primary-500/60">
                 <div
                     className={cx(
                         `flex flex-col lg:flex-row items-center gap-8 p-6`,
@@ -57,7 +57,7 @@ function FeaturedWorkDisplay({
                     )}
                 >
                     <img
-                        className="w-125 border-2 border-black dark:border-zinc-200"
+                        className="w-125 border border-zinc-200 dark:border-zinc-800"
                         src={imageSrc}
                         alt={imageAlt}
                     />
@@ -87,9 +87,9 @@ function CompactWorkCard({
 }: Omit<WorkDisplayProps, 'cta' | 'reverse'>) {
     return (
         <Link to={url} className="group">
-            <div className="overflow-hidden border-2 border-black dark:border-zinc-200 transition-shadow duration-150 group-hover:shadow-[6px_6px_0_0_var(--color-black)] dark:group-hover:shadow-[6px_6px_0_0_var(--color-zinc-200)] h-full flex flex-col">
+            <div className="overflow-hidden border border-zinc-200 dark:border-zinc-800 transition-shadow duration-150 group-hover:border-primary-500/60 h-full flex flex-col">
                 {imageSrc && (
-                    <div className="aspect-video overflow-hidden border-b-2 border-black dark:border-zinc-200">
+                    <div className="aspect-video overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
                         <img
                             className="w-full h-full object-cover"
                             src={imageSrc}
@@ -118,11 +118,11 @@ export default function WorkRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-10">
+            <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-10">
                 <Heading as="h1" className="mb-0">
                     Work
                 </Heading>
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     Selected projects
                 </span>
             </div>
@@ -145,7 +145,7 @@ export default function WorkRoute({ loaderData }: Route.ComponentProps) {
             </div>
             {rest.length > 0 && (
                 <>
-                    <div className="border-b-2 border-black dark:border-zinc-200 pb-3 mb-8">
+                    <div className="border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8">
                         <Heading as="h2" size="3" className="mb-0">
                             More projects
                         </Heading>

@@ -38,8 +38,8 @@ export default function TILDetailRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <div className="mb-8 border-b-2 border-black dark:border-zinc-200 pb-6">
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 block mb-3">
+            <div className="mb-8 border-b border-zinc-200 dark:border-zinc-800 pb-6">
+                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 block mb-3">
                     TIL — Field note
                 </span>
                 <Heading as="h1" size="1" className="mb-2">

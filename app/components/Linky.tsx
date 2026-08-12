@@ -10,15 +10,15 @@ export const linkyVariants = cva({
     variants: {
         variant: {
             inline: [
-                'text-black dark:text-white underline decoration-2 underline-offset-4',
-                'decoration-primary-600 dark:decoration-primary-400',
-                'hover:bg-primary-400 hover:text-black hover:decoration-transparent dark:hover:text-black'
+                'text-zinc-900 dark:text-zinc-100 underline underline-offset-4',
+                'decoration-primary-500/60',
+                'hover:text-primary-700 dark:hover:text-primary-300 hover:decoration-primary-500'
             ],
             muted: 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white underline decoration-zinc-400/60 underline-offset-4 hover:decoration-current',
             underline: [
-                'text-black dark:text-white underline decoration-2 underline-offset-4',
-                'decoration-primary-600 dark:decoration-primary-400',
-                'hover:bg-primary-400 hover:text-black hover:decoration-transparent dark:hover:text-black'
+                'text-zinc-900 dark:text-zinc-100 underline underline-offset-4',
+                'decoration-primary-500/60',
+                'hover:text-primary-700 dark:hover:text-primary-300 hover:decoration-primary-500'
             ]
         }
     },

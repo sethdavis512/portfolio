@@ -27,7 +27,7 @@ function Quote({ quote, author }: { quote: string; author: string }) {
         <blockquote className="border-l-4 border-primary-500 pl-6">
             <p className="mb-2 font-display text-xl md:text-2xl">{`"${quote}"`}</p>
             <footer>
-                <cite className="font-mono text-xs uppercase tracking-[0.2em] not-italic text-zinc-600 dark:text-zinc-400">
+                <cite className="text-xs font-medium tracking-wide not-italic text-zinc-600 dark:text-zinc-400">
                     &mdash; {author}
                 </cite>
             </footer>
@@ -95,11 +95,11 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-10">
+            <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-10">
                 <Heading as="h1" className="mb-0">
                     About me
                 </Heading>
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     The person
                 </span>
             </div>
@@ -174,7 +174,7 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                     </div>
                 </>
             )}
-            <hr className="border-t-2 border-black dark:border-zinc-200 my-12" />
+            <hr className="border-t border-zinc-200 dark:border-zinc-800 my-12" />
             <section className="">
                 <Heading as="h2" className="mb-4">
                     Want to see it in action?
@@ -198,7 +198,7 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                     </Linky>
                 </p>
             </section>
-            <hr className="border-t-2 border-black dark:border-zinc-200 my-12" />
+            <hr className="border-t border-zinc-200 dark:border-zinc-800 my-12" />
             <Heading as="h2" className="mb-8">
                 Motivation
             </Heading>

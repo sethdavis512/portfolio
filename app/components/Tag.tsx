@@ -4,14 +4,14 @@ import type { VariantProps } from 'cva';
 import { Card } from './Card';
 
 export const tagVariants = cva({
-    base: 'inline-block px-2 py-1 font-mono uppercase tracking-[0.12em] text-xs',
+    base: 'inline-block px-2 py-1 font-medium text-xs',
     variants: {
         variant: {
             primary:
-                'bg-primary-400 dark:bg-primary-400 border-black dark:border-black text-black dark:text-black',
+                'bg-primary-500/15 border-transparent text-primary-800 dark:text-primary-300',
             secondary:
-                'bg-transparent border-black text-black dark:border-zinc-200 dark:text-zinc-100',
-            muted: 'bg-transparent border-zinc-500 text-zinc-600 dark:text-zinc-400'
+                'bg-transparent border-zinc-300 text-zinc-700 dark:border-zinc-700 dark:text-zinc-300',
+            muted: 'bg-transparent border-zinc-300 dark:border-zinc-800 text-zinc-500 dark:text-zinc-500'
         }
     },
     defaultVariants: {

@@ -8,8 +8,8 @@ import { cva, cx } from '~/cva.config';
 export const buttonVariants = cva({
     base: [
         'inline-flex items-center justify-center cursor-pointer select-none',
-        'font-mono uppercase tracking-[0.15em] font-semibold',
-        'border-2 transition-[background-color,color,transform,box-shadow] duration-150',
+        'font-medium rounded-lg',
+        'border transition-colors duration-200',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
         'focus-visible:ring-primary-500 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950'
     ],
@@ -24,13 +24,13 @@ export const buttonVariants = cva({
             outline: [],
             ghost: [
                 'border-transparent bg-transparent text-current',
-                'hover:bg-zinc-200 dark:hover:bg-zinc-800'
+                'hover:bg-zinc-100 dark:hover:bg-zinc-800/70'
             ]
         },
         size: {
-            sm: 'px-3 py-1.5 text-xs gap-1.5',
-            md: 'px-5 py-2.5 text-xs gap-2',
-            lg: 'px-7 py-3.5 text-sm gap-2.5'
+            sm: 'px-3 py-1.5 text-sm gap-1.5',
+            md: 'px-4 py-2 text-sm gap-2',
+            lg: 'px-6 py-3 text-base gap-2.5'
         }
     },
     defaultVariants: {
@@ -39,55 +39,51 @@ export const buttonVariants = cva({
         size: 'md'
     },
     compoundVariants: [
-        // Primary solid: acid slab with hard offset shadow that collapses on press
+        // Primary solid: warm amber, ink text for contrast
         {
             color: 'primary',
             variant: 'solid',
             className: [
-                'bg-primary-400 text-black border-black dark:border-white',
-                'shadow-[4px_4px_0_0_var(--color-black)] dark:shadow-[4px_4px_0_0_var(--color-white)]',
-                'hover:translate-x-[2px] hover:translate-y-[2px]',
-                'hover:shadow-[2px_2px_0_0_var(--color-black)] dark:hover:shadow-[2px_2px_0_0_var(--color-white)]',
-                'active:translate-x-[4px] active:translate-y-[4px] active:shadow-none'
+                'bg-primary-400 hover:bg-primary-300 text-black border-transparent',
+                'shadow-sm'
             ]
         },
-        // Primary outline: ink frame, inverts to acid on hover
+        // Primary outline: quiet frame, amber on hover
         {
             color: 'primary',
             variant: 'outline',
             className: [
-                'bg-transparent text-black border-black dark:text-white dark:border-white',
-                'hover:bg-primary-400 hover:text-black dark:hover:text-black dark:hover:border-primary-400'
+                'bg-transparent text-zinc-800 dark:text-zinc-200',
+                'border-zinc-300 dark:border-zinc-700',
+                'hover:border-primary-500/60 hover:text-primary-700 dark:hover:text-primary-300'
             ]
         },
-        // Primary soft: quiet acid wash
+        // Primary soft: amber wash
         {
             color: 'primary',
             variant: 'soft',
             className: [
-                'border-transparent bg-primary-400/20 text-primary-800 dark:text-primary-300',
-                'hover:bg-primary-400/35'
+                'border-transparent bg-primary-500/15 text-primary-800 dark:text-primary-300',
+                'hover:bg-primary-500/25'
             ]
         },
-        // Secondary solid: bone slab
+        // Secondary solid: sage
         {
             color: 'secondary',
             variant: 'solid',
             className: [
-                'bg-white text-black border-black dark:border-white',
-                'shadow-[4px_4px_0_0_var(--color-black)] dark:shadow-[4px_4px_0_0_var(--color-white)]',
-                'hover:translate-x-[2px] hover:translate-y-[2px]',
-                'hover:shadow-[2px_2px_0_0_var(--color-black)] dark:hover:shadow-[2px_2px_0_0_var(--color-white)]',
-                'active:translate-x-[4px] active:translate-y-[4px] active:shadow-none'
+                'bg-secondary-500 hover:bg-secondary-400 text-black border-transparent',
+                'shadow-sm'
             ]
         },
-        // Secondary outline: slate frame
+        // Secondary outline
         {
             color: 'secondary',
             variant: 'outline',
             className: [
-                'bg-transparent text-secondary-700 border-secondary-700 dark:text-secondary-300 dark:border-secondary-400',
-                'hover:bg-secondary-400 hover:text-black dark:hover:text-black'
+                'bg-transparent text-secondary-700 dark:text-secondary-300',
+                'border-zinc-300 dark:border-zinc-700',
+                'hover:border-secondary-500/60'
             ]
         },
         // Secondary soft
@@ -96,7 +92,7 @@ export const buttonVariants = cva({
             variant: 'soft',
             className: [
                 'border-transparent bg-secondary-500/15 text-secondary-700 dark:text-secondary-300',
-                'hover:bg-secondary-500/30'
+                'hover:bg-secondary-500/25'
             ]
         }
     ]

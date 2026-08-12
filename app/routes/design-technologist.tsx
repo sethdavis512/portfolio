@@ -138,18 +138,18 @@ export default function DesignTechnologistRoute() {
                                 key={role.title}
                                 className={
                                     role.highlighted
-                                        ? 'border-primary-600 dark:border-primary-400 shadow-[6px_6px_0_0_var(--color-primary-600)] dark:shadow-[6px_6px_0_0_var(--color-primary-400)]'
+                                        ? 'border-primary-600 dark:border-primary-400 shadow-lg shadow-primary-900/20'
                                         : ''
                                 }
                             >
                                 <Heading as="h3" size="4" className="mb-3">
                                     {role.title}
                                 </Heading>
-                                <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-2">
+                                <p className="text-xs font-medium tracking-wide text-zinc-500 dark:text-zinc-400 mb-2">
                                     Focus
                                 </p>
                                 <p className="mb-4">{role.focus}</p>
-                                <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-2">
+                                <p className="text-xs font-medium tracking-wide text-zinc-500 dark:text-zinc-400 mb-2">
                                     Primary output
                                 </p>
                                 <p>{role.output}</p>
@@ -260,7 +260,7 @@ export default function DesignTechnologistRoute() {
                 </div>
             </section>
 
-            <hr className="border-t-2 border-black dark:border-zinc-200 my-12" />
+            <hr className="border-t border-zinc-200 dark:border-zinc-800 my-12" />
 
             <section>
                 <Heading as="h2" className="mb-4">

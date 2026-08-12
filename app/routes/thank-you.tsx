@@ -18,8 +18,8 @@ export default function ThankYouRoute() {
     return (
         <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-20 h-20 border-2 border-black dark:border-zinc-200 bg-primary-400 mb-6">
-                    <CheckCircle2 className="w-10 h-10 text-black" />
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-500/15 mb-6">
+                    <CheckCircle2 className="w-10 h-10 text-primary-700 dark:text-primary-300" />
                 </div>
                 <Heading as="h1" className="mb-4">
                     Thank You for Your Purchase!
@@ -75,12 +75,12 @@ export default function ThankYouRoute() {
                     </div>
                 </Card>
 
-                <Card className="bg-black text-white dark:bg-zinc-900">
+                <Card className="bg-zinc-50 dark:bg-zinc-900">
                     <div className="space-y-3">
-                        <Heading as="h2" size="4" className="text-white">
+                        <Heading as="h2" size="4">
                             What's Next?
                         </Heading>
-                        <p className="text-zinc-300">
+                        <p className="text-zinc-600 dark:text-zinc-300">
                             Explore more of my work, check out other projects,
                             or get in touch if you'd like to collaborate on
                             something new.

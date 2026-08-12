@@ -30,11 +30,11 @@ export default function SlidesIndexRoute({
 }: Route.ComponentProps) {
     return (
         <>
-            <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-4">
+            <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-4">
                 <Heading as="h1" className="mb-0">
                     Slides
                 </Heading>
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     Talks & decks
                 </span>
             </div>
@@ -50,7 +50,7 @@ export default function SlidesIndexRoute({
                             to={`/slides/${deck.slug}`}
                             className="block no-underline hover:bg-transparent hover:text-current dark:hover:text-current"
                         >
-                            <Card className="w-full group transition-shadow duration-150 hover:shadow-[6px_6px_0_0_var(--color-black)] dark:hover:shadow-[6px_6px_0_0_var(--color-zinc-200)]">
+                            <Card className="w-full group transition-shadow duration-150 hover:border-primary-500/60">
                                 <div className="flex items-start justify-between gap-4">
                                     <div className="flex-1 min-w-0">
                                         <Heading as="h3" size="4">
@@ -61,7 +61,7 @@ export default function SlidesIndexRoute({
                                                 {deck.description}
                                             </p>
                                         )}
-                                        <p className="text-zinc-500 text-xs mt-3 font-mono uppercase tracking-[0.15em]">
+                                        <p className="text-zinc-500 text-xs mt-3 font-medium tracking-wide">
                                             {deck.slideCount} slide
                                             {deck.slideCount === 1 ? '' : 's'}
                                         </p>

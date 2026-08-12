@@ -72,7 +72,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
             <ResponsiveImage
                 src="https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/truck-1.jpg"
                 alt="Black 2023 Ford F-150"
-                className="border-2 border-black dark:border-zinc-200"
+                className="border border-zinc-200 dark:border-zinc-800"
             />
             <Divider className="my-8" />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
@@ -82,7 +82,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                 {loaderData.upgrades.map((upgrade) => (
                     <div key={upgrade.id} className="col-span-1 md:col-span-4">
                         <a href={upgrade.url} target="_blank" rel="noreferrer">
-                            <Card className="flex flex-col overflow-hidden transition-shadow duration-150 hover:shadow-[6px_6px_0_0_var(--color-black)] dark:hover:shadow-[6px_6px_0_0_var(--color-zinc-200)]">
+                            <Card className="flex flex-col overflow-hidden transition-shadow duration-150 hover:border-primary-500/60">
                                 <div className="-mx-4 -mt-4 mb-4">
                                     <ResponsiveImage
                                         src={upgrade.img}
@@ -125,7 +125,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Card className="flex flex-col overflow-hidden transition-shadow duration-150 hover:shadow-[6px_6px_0_0_var(--color-black)] dark:hover:shadow-[6px_6px_0_0_var(--color-zinc-200)]">
+                            <Card className="flex flex-col overflow-hidden transition-shadow duration-150 hover:border-primary-500/60">
                                 <div className="-mx-4 -mt-4 mb-4">
                                     <ResponsiveImage
                                         src={accessory.img}

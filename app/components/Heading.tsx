@@ -39,7 +39,7 @@ export function Heading({
         <Component
             id={id}
             className={cx(
-                'font-display font-black leading-[0.95] text-black dark:text-white',
+                'font-display font-bold leading-[1.05] text-zinc-900 dark:text-zinc-50',
                 headingVariants({ className, size })
             )}
         >

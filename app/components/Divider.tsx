@@ -8,7 +8,7 @@ export function Divider({ className }: DividerProps) {
     return (
         <hr
             className={cx(
-                'my-4 h-0.5 border-0 bg-black dark:bg-zinc-200',
+                'my-4 h-px border-0 bg-zinc-200 dark:bg-zinc-800',
                 className
             )}
         />

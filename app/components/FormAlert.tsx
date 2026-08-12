@@ -17,7 +17,7 @@ export function FormAlert({
     return (
         <div
             role="alert"
-            className="border-2 border-tertiary-500 bg-tertiary-500/15 p-4"
+            className="rounded-xl border border-tertiary-500/50 bg-tertiary-500/10 p-4"
         >
             <div className="mb-2">
                 <TriangleAlert className="text-tertiary-600 dark:text-tertiary-400" />

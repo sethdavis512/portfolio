@@ -103,9 +103,6 @@ export default function ContactRoute() {
     return (
         <article className="max-w-3xl mx-auto space-y-12">
             <section>
-                <div className="border-b-2 border-black dark:border-zinc-200 pb-3 mb-6 font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
-                    Correspondence
-                </div>
                 <Heading as="h1" className="mb-4">
                     Get in touch
                 </Heading>
@@ -117,7 +114,7 @@ export default function ContactRoute() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                     <a
                         href={`mailto:${CONTACT_EMAIL}`}
-                        className="inline-flex items-center gap-2 border-2 border-black dark:border-zinc-200 bg-primary-400 text-black px-4 py-3 font-mono text-sm uppercase tracking-[0.1em] font-semibold shadow-[4px_4px_0_0_var(--color-black)] dark:shadow-[4px_4px_0_0_var(--color-zinc-200)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_var(--color-black)] dark:hover:shadow-[2px_2px_0_0_var(--color-zinc-200)] transition-[transform,box-shadow] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
+                        className="inline-flex items-center gap-2 rounded-lg bg-primary-400 hover:bg-primary-300 text-black px-4 py-3 text-sm font-medium shadow-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
                     >
                         <Mail className="size-5" />
                         {CONTACT_EMAIL}
@@ -137,7 +134,7 @@ export default function ContactRoute() {
 
             <section
                 id="message"
-                className="border-2 border-black dark:border-zinc-200 p-8 md:p-10"
+                className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-8 md:p-10"
             >
                 <div className="max-w-xl mb-6">
                     <Heading as="h2" size="3" className="mb-3">

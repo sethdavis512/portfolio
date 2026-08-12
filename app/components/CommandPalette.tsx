@@ -111,16 +111,16 @@ function CommandSection({ title, links, onSelect }: CommandSectionProps) {
     return (
         <Command.Group
             heading={title}
-            className="p-6 **:[[cmdk-group-heading]]:font-mono **:[[cmdk-group-heading]]:uppercase **:[[cmdk-group-heading]]:tracking-[0.2em] **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:text-zinc-500 dark:**:[[cmdk-group-heading]]:text-zinc-400 **:[[cmdk-group-heading]]:mb-4"
+            className="p-6 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:tracking-wide **:[[cmdk-group-heading]]:text-zinc-500 dark:**:[[cmdk-group-heading]]:text-zinc-400 **:[[cmdk-group-heading]]:mb-4"
         >
             {links.map((link) => (
                 <Command.Item
                     key={link.to}
                     value={link.label}
                     onSelect={() => onSelect(link.to)}
-                    className="flex items-center gap-3 px-3 py-2 hover:bg-primary-400 hover:text-black data-[selected=true]:bg-primary-400 data-[selected=true]:**:text-black cursor-pointer group"
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 data-[selected=true]:bg-zinc-100 dark:data-[selected=true]:bg-zinc-800 cursor-pointer group"
                 >
-                    <div className="flex items-center gap-3 flex-1 text-zinc-700 dark:text-zinc-300 group-hover:text-black group-data-[selected=true]:text-black">
+                    <div className="flex items-center gap-3 flex-1 text-zinc-700 dark:text-zinc-300">
                         <link.icon className="w-4 h-4 text-current" />
                         <span className="text-current">{link.label}</span>
                     </div>
@@ -161,17 +161,17 @@ export function CommandPalette({
                 className="fixed inset-0 bg-black/50"
                 onClick={() => onOpenChange(false)}
             />
-            <div className="relative bg-white dark:bg-zinc-950 border-2 border-black dark:border-zinc-200 w-full max-w-2xl mx-4 overflow-hidden shadow-[8px_8px_0_0_var(--color-black)] dark:shadow-[8px_8px_0_0_var(--color-zinc-200)]">
+            <div className="relative bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 w-full max-w-2xl mx-4 overflow-hidden shadow-lg shadow-black/10 dark:shadow-black/40">
                 {/* Navigation Header */}
-                <div className="flex items-center gap-3 px-6 py-4 border-b-2 border-black dark:border-zinc-200">
+                <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200 dark:border-zinc-800">
                     <Home className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
-                    <span className="font-mono uppercase tracking-[0.2em] text-xs text-zinc-700 dark:text-zinc-300">
-                        Index
+                    <span className="font-medium tracking-wide text-xs text-zinc-700 dark:text-zinc-300">
+                        Navigate
                     </span>
                 </div>
 
                 {/* Main Search Input */}
-                <div className="p-6 border-b-2 border-black dark:border-zinc-200">
+                <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
                     <Command.Input
                         placeholder="Where would you like to go?"
                         className="w-full bg-transparent text-black dark:text-zinc-100 text-xl font-display font-semibold placeholder-zinc-400 dark:placeholder-zinc-500 border-none outline-none"

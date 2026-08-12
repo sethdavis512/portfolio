@@ -10,7 +10,7 @@ export function KeyboardShortcut({ keys, className }: KeyboardShortcutProps) {
         <span className={cx(`inline-flex items-center gap-1`, className)}>
             {keys.map((key, index) => (
                 <span key={index} className="inline-flex items-center">
-                    <kbd className="px-2 py-0.5 text-xs bg-transparent text-black dark:text-white border-2 border-black dark:border-zinc-200 font-mono uppercase">
+                    <kbd className="px-2 py-0.5 text-xs bg-transparent text-black dark:text-white border border-zinc-200 dark:border-zinc-800 font-mono uppercase">
                         {key}
                     </kbd>
                     {index < keys.length - 1 && (

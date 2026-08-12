@@ -38,13 +38,13 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
             <section className="pt-4">
                 <Link
                     to="/services"
-                    className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.15em] text-zinc-600 dark:text-zinc-400 hover:bg-primary-400 hover:text-black px-2 py-1 mb-6"
+                    className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 hover:text-primary-700 dark:hover:text-primary-300 px-2 py-1 mb-6"
                 >
                     <ArrowRight className="size-4 rotate-180" />
                     All services
                 </Link>
                 <div className="flex flex-wrap items-center gap-2 mb-6">
-                    <span className="inline-flex items-center gap-1.5 bg-primary-400 text-black px-3 py-1 font-mono text-xs uppercase tracking-[0.12em]">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-500/15 text-primary-800 dark:text-primary-300 px-3 py-1 text-xs font-medium">
                         <Tag className="size-3.5" />
                         Starting at {offer.startingPrice}
                     </span>
@@ -84,7 +84,7 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                     {offer.idealFor.map((item) => (
                         <li
                             key={item}
-                            className="flex items-start gap-3 rounded-lg border-2 border-black dark:border-zinc-200 p-4"
+                            className="flex items-start gap-3 rounded-lg border border-zinc-200 dark:border-zinc-800 p-4"
                         >
                             <CheckCircle2 className="size-5 text-primary-400 mt-0.5 shrink-0" />
                             <span className="text-zinc-200">{item}</span>
@@ -101,7 +101,7 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                     {offer.deliverables.map((item) => (
                         <li
                             key={item}
-                            className="flex items-start gap-3 rounded-lg border-2 border-black dark:border-zinc-200 p-4"
+                            className="flex items-start gap-3 rounded-lg border border-zinc-200 dark:border-zinc-800 p-4"
                         >
                             <span className="size-1.5 rounded-full bg-tertiary-400 mt-2.5 shrink-0" />
                             <span className="text-zinc-200">{item}</span>
@@ -118,7 +118,7 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                     {offer.scopeExamples.map((example) => (
                         <div
                             key={example.name}
-                            className="rounded-lg border-2 border-black dark:border-zinc-200 p-6"
+                            className="rounded-lg border border-zinc-200 dark:border-zinc-800 p-6"
                         >
                             <Heading as="h3" size="5" className="mb-2 text-primary-300">
                                 {example.name}
@@ -139,7 +139,7 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                     {offer.process.map((step, index) => (
                         <li
                             key={step.step}
-                            className="flex gap-5 rounded-lg border-2 border-black dark:border-zinc-200 p-5"
+                            className="flex gap-5 rounded-lg border border-zinc-200 dark:border-zinc-800 p-5"
                         >
                             <span className="font-black text-3xl text-primary-500/60 leading-none shrink-0 w-10">
                                 0{index + 1}
@@ -172,7 +172,7 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                             <Link
                                 key={work.slug}
                                 to={`/work/${work.slug}`}
-                                className="group overflow-hidden border-2 border-black dark:border-zinc-200 transition-shadow duration-150 hover:shadow-[6px_6px_0_0_var(--color-black)] dark:hover:shadow-[6px_6px_0_0_var(--color-zinc-200)] flex flex-col"
+                                className="group overflow-hidden border border-zinc-200 dark:border-zinc-800 transition-shadow duration-150 hover:border-primary-500/60 flex flex-col"
                             >
                                 {work.thumbnailImage && (
                                     <div className="aspect-video overflow-hidden">
@@ -209,7 +209,7 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                     {offer.faq.map((item) => (
                         <details
                             key={item.question}
-                            className="group border-2 border-black dark:border-zinc-200 p-5 open:border-primary-600 dark:open:border-primary-400"
+                            className="group border border-zinc-200 dark:border-zinc-800 p-5 open:border-primary-600 dark:open:border-primary-400"
                         >
                             <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
                                 <span className="font-semibold text-zinc-100">
@@ -227,7 +227,7 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
 
             <section
                 id="start"
-                className="border-2 border-black dark:border-zinc-200 p-8 md:p-10"
+                className="border border-zinc-200 dark:border-zinc-800 p-8 md:p-10"
             >
                 <div className="max-w-xl">
                     <Heading as="h2" size="3" className="mb-3">

@@ -23,18 +23,18 @@ export function FormField({
 }: FormFieldProps) {
     const errorId = `${name}-error`;
     const inputClasses = cx(
-        'p-3 border-2 w-full bg-transparent transition-colors duration-150',
+        'p-3 rounded-lg border w-full bg-transparent transition-colors duration-150',
         'focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-white dark:ring-offset-zinc-950',
         error
             ? 'border-tertiary-500 focus:ring-tertiary-500'
-            : 'border-black dark:border-zinc-200 focus:ring-primary-500 dark:focus:ring-primary-400'
+            : 'border-zinc-300 dark:border-zinc-700 focus:ring-primary-500 dark:focus:ring-primary-400'
     );
 
     return (
         <div>
             <label
                 htmlFor={name}
-                className="block mb-2 font-mono uppercase tracking-[0.12em] text-xs font-semibold"
+                className="block mb-2 text-sm font-medium"
             >
                 {label}
             </label>

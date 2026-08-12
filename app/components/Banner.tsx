@@ -5,7 +5,7 @@ import { Card } from './Card';
 import type { VariantProps } from 'cva';
 
 export const bannerVariants = cva({
-    base: 'p-4 border-2 border-black dark:border-zinc-200',
+    base: 'p-4 border border-zinc-200 dark:border-zinc-800',
     variants: {
         variant: {
             primary: 'bg-primary-400/30 dark:bg-primary-400/15',

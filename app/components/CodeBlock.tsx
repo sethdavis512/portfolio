@@ -105,13 +105,13 @@ export function CodeBlock({
                     className
                 )}
             >
-                <div className="flex items-center justify-between border-b-2 border-black dark:border-zinc-200 px-4 py-2">
-                    <span className="text-xs font-mono font-semibold text-zinc-600 dark:text-zinc-300 uppercase tracking-[0.2em]">
+                <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-4 py-2">
+                    <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                         {language}
                     </span>
                     <button
                         onClick={copyToClipboard}
-                        className="text-xs font-mono font-semibold uppercase tracking-[0.15em] cursor-pointer px-3 py-1 border-2 border-black dark:border-zinc-200 text-black dark:text-white hover:bg-primary-400 hover:text-black dark:hover:text-black transition-colors duration-150"
+                        className="text-xs font-medium cursor-pointer px-3 py-1 rounded-md border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:text-primary-700 dark:hover:text-primary-300 hover:border-primary-500/60 transition-colors duration-150"
                         title="Copy to clipboard"
                     >
                         {copied ? 'Copied' : 'Copy'}
@@ -130,18 +130,18 @@ export function CodeBlock({
         <div
             className={cx(
                 'not-prose group relative overflow-hidden',
-                'border-2 border-black dark:border-zinc-200',
+                'border border-zinc-200 dark:border-zinc-800',
                 'bg-zinc-50 dark:bg-zinc-900',
                 className
             )}
         >
-            <div className="flex items-center justify-between border-b-2 border-black dark:border-zinc-200 px-4 py-2">
-                <span className="text-xs font-mono font-semibold text-zinc-600 dark:text-zinc-300 uppercase tracking-[0.2em]">
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-4 py-2">
+                <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                     {language}
                 </span>
                 <button
                     onClick={copyToClipboard}
-                    className="text-xs font-mono font-semibold uppercase tracking-[0.15em] cursor-pointer px-3 py-1 border-2 border-black dark:border-zinc-200 text-black dark:text-white hover:bg-primary-400 hover:text-black dark:hover:text-black transition-colors duration-150"
+                    className="text-xs font-medium cursor-pointer px-3 py-1 rounded-md border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:text-primary-700 dark:hover:text-primary-300 hover:border-primary-500/60 transition-colors duration-150"
                     title="Copy to clipboard"
                 >
                     {copied ? 'Copied' : 'Copy'}

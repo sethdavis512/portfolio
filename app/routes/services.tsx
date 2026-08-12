@@ -18,7 +18,7 @@ export function meta() {
 export default function ServicesRoute() {
     return (
         <>
-            <div className="border-b-2 border-black dark:border-zinc-200 pb-3 mb-8 font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+            <div className="border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                 Services — Fixed scope, fixed price
             </div>
             <Heading as="h1" className="text-5xl md:text-7xl mb-6">
@@ -44,10 +44,10 @@ export default function ServicesRoute() {
                     <Link
                         key={offer.slug}
                         to={`/services/${offer.slug}`}
-                        className="group border-2 border-black dark:border-zinc-200 transition-shadow duration-150 hover:shadow-[8px_8px_0_0_var(--color-black)] dark:hover:shadow-[8px_8px_0_0_var(--color-zinc-200)] p-6 flex flex-col"
+                        className="group border border-zinc-200 dark:border-zinc-800 transition-shadow duration-150 hover:border-primary-500/60 p-6 flex flex-col"
                     >
                         <div className="flex flex-wrap items-center gap-2 mb-4">
-                            <span className="inline-flex items-center gap-1.5 bg-primary-400 text-black px-2.5 py-1 font-mono text-xs uppercase tracking-[0.12em]">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-500/15 text-primary-800 dark:text-primary-300 px-2.5 py-1 text-xs font-medium">
                                 <Tag className="size-3" />
                                 From {offer.startingPrice}
                             </span>
@@ -61,7 +61,7 @@ export default function ServicesRoute() {
                         <p className="text-sm text-zinc-500 mb-5">
                             {offer.proofLine}
                         </p>
-                        <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.15em] text-black dark:text-white font-semibold">
+                        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-700 dark:text-primary-300">
                             See offer details
                             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                         </span>

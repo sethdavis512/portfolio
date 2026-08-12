@@ -42,11 +42,11 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <div className="flex items-baseline justify-between border-b-2 border-black dark:border-zinc-200 pb-3 mb-10">
+            <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-10">
                 <Heading as="h1" className="mb-0">
                     Resume
                 </Heading>
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400">
+                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     The record
                 </span>
             </div>
@@ -62,7 +62,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
             <div className="mb-8 flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-2 text-zinc-700 dark:text-zinc-300">
                 <a
                     href={`mailto:${CONTACT_EMAIL}`}
-                    className="inline-flex items-center gap-2 font-medium text-black dark:text-zinc-100 hover:bg-primary-400 hover:text-black dark:hover:text-black transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
+                    className="inline-flex items-center gap-2 font-medium text-black dark:text-zinc-100 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
                 >
                     <MailIcon className="size-4" />
                     {CONTACT_EMAIL}

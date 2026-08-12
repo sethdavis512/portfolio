@@ -11,14 +11,14 @@ export function ServicesCallToAction({
 }: ServicesCallToActionProps) {
     return (
         <Card
-            className={`overflow-hidden bg-black text-white dark:bg-zinc-900 ${className ?? ''}`.trim()}
+            className={`overflow-hidden bg-zinc-50 dark:bg-zinc-900 ${className ?? ''}`.trim()}
         >
             <div className="flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
                 <div className="space-y-2">
-                    <Heading as="h2" size="4" className="text-white">
+                    <Heading as="h2" size="4">
                         Looking for a technical partner on your next project?
                     </Heading>
-                    <p className="text-sm text-zinc-300">
+                    <p className="text-sm text-zinc-600 dark:text-zinc-300">
                         I build CLI tools and Contentful-powered websites
                         on React Router 7. Fixed scope, fixed price.
                     </p>

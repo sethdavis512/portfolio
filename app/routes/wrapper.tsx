@@ -7,7 +7,7 @@ import { Flex } from '~/components/Flex';
 import { KeyboardShortcut } from '~/components/KeyboardShortcut';
 import { Logo } from '~/components/logos/SethDavisLogo';
 
-const sharedLinkClasses = `text-3xl md:text-sm font-mono uppercase tracking-[0.15em]`;
+const sharedLinkClasses = `text-3xl md:text-sm font-medium`;
 
 interface NavItem {
     type: 'internal' | 'external';
@@ -83,9 +83,10 @@ function AppNavLink({ to, children, ariaLabel, onClick }: AppNavLinkProps) {
                     sharedLinkClasses,
                     `transition-colors duration-150 py-2 px-3`,
                     `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950`,
-                    isActive && `bg-primary-400 text-black font-semibold`,
+                    isActive &&
+                        `bg-primary-500/15 text-primary-800 dark:text-primary-300 rounded-lg`,
                     !isActive &&
-                        `text-zinc-600 dark:text-zinc-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black`
+                        `text-zinc-600 dark:text-zinc-400 rounded-lg hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800/70 dark:hover:text-zinc-100`
                 )
             }
             to={to}
@@ -108,7 +109,7 @@ function StaticNavLink({
         <a
             className={cx(
                 sharedLinkClasses,
-                `transition-colors duration-150 py-2 px-3 text-zinc-600 dark:text-zinc-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black`,
+                `transition-colors duration-150 py-2 px-3 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800/70 dark:hover:text-zinc-100`,
                 `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950`
             )}
             href={to}
@@ -137,7 +138,7 @@ export default function WrapperRoute() {
 
     return (
         <>
-            <header className="py-6 border-b-2 border-black dark:border-zinc-200">
+            <header className="py-6 border-b border-zinc-200 dark:border-zinc-800">
                 <Container>
                     <nav>
                         <ul className="hidden lg:flex items-center gap-4 md:gap-8">
@@ -256,9 +257,9 @@ export default function WrapperRoute() {
                     <Outlet />
                 </Container>
             </main>
-            <footer className="border-t-2 border-black dark:border-zinc-200 mt-16">
+            <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-16">
                 <Container className="py-8">
-                    <Flex className="items-center justify-between font-mono text-xs uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
+                    <Flex className="items-center justify-between text-xs text-zinc-500">
                         <span>Seth Davis</span>
                         <Flex className="items-center gap-2">
                             <span>✌🏻 Made in Austin, TX</span>
@@ -272,7 +273,7 @@ export default function WrapperRoute() {
                 </Container>
             </footer>
             <div className="hidden md:block fixed right-6 bottom-6">
-                <span className="bg-white dark:bg-zinc-950 py-2.5 px-4 border-2 border-black dark:border-zinc-200 text-black dark:text-white font-mono text-xs uppercase tracking-[0.15em] shadow-[4px_4px_0_0_var(--color-black)] dark:shadow-[4px_4px_0_0_var(--color-zinc-200)] inline-flex items-center gap-2">
+                <span className="rounded-lg bg-white dark:bg-zinc-900 py-2.5 px-4 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs shadow-sm inline-flex items-center gap-2">
                     Navigate <KeyboardShortcut keys={['Cmd', 'K']} />
                 </span>
             </div>

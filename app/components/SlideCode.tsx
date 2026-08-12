@@ -72,7 +72,7 @@ export function SlideCode({ code, language = 'typescript', className }: Props) {
                 className
             )}
         >
-            <div className="absolute top-2 right-3 sm:top-4 sm:right-5 text-[0.6rem] sm:text-[0.7rem] font-mono uppercase tracking-[0.2em] text-zinc-500 pointer-events-none">
+            <div className="absolute top-2 right-3 sm:top-4 sm:right-5 text-[0.6rem] sm:text-[0.7rem] font-medium tracking-wide text-zinc-500 pointer-events-none">
                 {language}
             </div>
             <div
