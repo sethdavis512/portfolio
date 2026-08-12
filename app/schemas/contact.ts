@@ -18,7 +18,10 @@ export const contactFormSchema = z.object({
         .max(320, 'Email is too long')
         .email('Please enter a valid email address'),
     note: z.string().trim().max(2000, 'Note is too long').optional(),
-    offer: z.string().trim().max(100, 'Offer is too long').optional()
+    offer: z.string().trim().max(100, 'Offer is too long').optional(),
+    company: z.string().trim().max(200, 'Company is too long').optional(),
+    budget: z.string().trim().max(50, 'Budget is too long').optional(),
+    timeline: z.string().trim().max(50, 'Timeline is too long').optional()
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -33,7 +36,10 @@ export function validateContactForm(formData: FormData):
         lastName: formData.get('lastName'),
         email: formData.get('email'),
         note: formData.get('note') || undefined,
-        offer: formData.get('offer') || undefined
+        offer: formData.get('offer') || undefined,
+        company: formData.get('company') || undefined,
+        budget: formData.get('budget') || undefined,
+        timeline: formData.get('timeline') || undefined
     });
 
     if (result.success) {

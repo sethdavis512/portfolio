@@ -1,5 +1,10 @@
 import { cx } from '~/cva.config';
 
+interface FormFieldOption {
+    value: string;
+    label: string;
+}
+
 interface FormFieldProps {
     label: string;
     name: string;
@@ -7,8 +12,10 @@ interface FormFieldProps {
     placeholder?: string;
     required?: boolean;
     error?: string;
-    as?: 'input' | 'textarea';
+    as?: 'input' | 'textarea' | 'select';
     rows?: number;
+    options?: FormFieldOption[];
+    defaultValue?: string;
 }
 
 export function FormField({
@@ -19,7 +26,9 @@ export function FormField({
     required,
     error,
     as = 'input',
-    rows
+    rows,
+    options,
+    defaultValue
 }: FormFieldProps) {
     const errorId = `${name}-error`;
     const inputClasses = cx(
@@ -38,7 +47,28 @@ export function FormField({
             >
                 {label}
             </label>
-            {as === 'textarea' ? (
+            {as === 'select' ? (
+                <select
+                    id={name}
+                    name={name}
+                    required={required}
+                    defaultValue={defaultValue ?? ''}
+                    className={cx(inputClasses, 'appearance-none pr-10')}
+                    aria-invalid={error ? true : undefined}
+                    aria-describedby={error ? errorId : undefined}
+                >
+                    {placeholder && (
+                        <option value="" disabled>
+                            {placeholder}
+                        </option>
+                    )}
+                    {options?.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+            ) : as === 'textarea' ? (
                 <textarea
                     id={name}
                     name={name}

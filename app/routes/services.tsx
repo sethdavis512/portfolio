@@ -1,6 +1,7 @@
-import { ArrowRight, Tag } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 
+import { Button } from '~/components/Button';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 import { generateRouteMeta } from '~/utils/seo';
@@ -10,7 +11,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Services',
         descriptionContent:
-            'Productized services from Seth Davis: custom CLI tools and Contentful-powered websites on React Router 7. Fixed scope, fixed price.',
+            'Design engineering services from Seth Davis: marketing sites, design systems, AI prototypes, and fractional design technologist retainers. Book a free scope call.',
         ogUrl: 'https://sethdavis.tech/services'
     });
 }
@@ -18,40 +19,48 @@ export function meta() {
 export default function ServicesRoute() {
     return (
         <>
-            <div className="border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
-                Services — Fixed scope, fixed price
-            </div>
+            <p className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-4">
+                Services
+            </p>
             <Heading as="h1" className="text-5xl md:text-7xl mb-6">
-                Two things I build,{' '}
+                Design engineering for teams{' '}
                 <span className="italic text-primary-600 dark:text-primary-400">
-                    on a fixed price.
+                    shipping with AI.
                 </span>
             </Heading>
             <p className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300 max-w-3xl mb-4">
-                Developer CLI tools and Contentful-powered websites. Each one
-                is a productized engagement with a written scope and a fixed
-                cost, so you know what you're getting before you sign.
+                Sites, design systems, and working AI prototypes, built by one
+                senior design technologist who moves at agent speed and reviews
+                like a human. Every engagement starts with a free scope call.
             </p>
-            <p className="text-zinc-600 dark:text-zinc-400 max-w-3xl mb-12">
-                Need something else?{' '}
+            <p className="text-zinc-600 dark:text-zinc-400 max-w-3xl mb-8">
+                Not sure which shape fits?{' '}
                 <Linky href="https://tidycal.com/sethdavis512/meet-and-greet">
-                    Book a scope call
+                    Book the call
                 </Linky>{' '}
-                and we can figure out whether it's a fit.
+                and we'll figure it out together in 30 minutes.
             </p>
+            <div className="mb-12 flex">
+                <Button
+                    href="https://tidycal.com/sethdavis512/meet-and-greet"
+                    size="lg"
+                    iconAfter={<ArrowRight className="size-4" />}
+                >
+                    Book a scope call
+                </Button>
+            </div>
             <div className="grid gap-6 md:grid-cols-2">
                 {serviceOffers.map((offer) => (
                     <Link
                         key={offer.slug}
                         to={`/services/${offer.slug}`}
-                        className="group border border-zinc-200 dark:border-zinc-800 transition-shadow duration-150 hover:border-primary-500/60 p-6 flex flex-col"
+                        className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-colors duration-200 hover:border-primary-500/60 p-6 flex flex-col"
                     >
-                        <div className="flex flex-wrap items-center gap-2 mb-4">
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-500/15 text-primary-800 dark:text-primary-300 px-2.5 py-1 text-xs font-medium">
-                                <Tag className="size-3" />
-                                From {offer.startingPrice}
-                            </span>
-                        </div>
+                        <p className="text-xs font-medium tracking-wide text-primary-700 dark:text-primary-300 mb-4">
+                            {offer.kind === 'retainer'
+                                ? 'Ongoing retainer'
+                                : 'Project engagement'}
+                        </p>
                         <Heading as="h2" size="3" className="mb-3">
                             {offer.shortTitle}
                         </Heading>
@@ -62,7 +71,7 @@ export default function ServicesRoute() {
                             {offer.proofLine}
                         </p>
                         <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-700 dark:text-primary-300">
-                            See offer details
+                            See details
                             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                         </span>
                     </Link>

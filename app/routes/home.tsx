@@ -9,6 +9,7 @@ import { XLogo } from '~/components/logos/XLogo';
 import { ContentStyles } from '~/constants';
 import { cx } from '~/cva.config';
 import { Card } from '~/components/Card';
+import { ServicesCallToAction } from '~/components/ServicesCallToAction';
 import { getAllDecks } from '~/content';
 import type { Route } from './+types/home';
 
@@ -197,6 +198,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         </Card>
                     </div>
                 </div>
+            </HomeSection>
+            <HomeSection>
+                <ServicesCallToAction />
             </HomeSection>
             {decks.length > 0 && (
                 <HomeSection>

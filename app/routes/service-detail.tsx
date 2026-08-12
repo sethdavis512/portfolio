@@ -1,9 +1,12 @@
-import { data } from 'react-router';
+import { data, redirect } from 'react-router';
 import type { Route } from './+types/service-detail';
 
 import { ServiceLanding } from '~/components/ServiceLanding';
 import { getPortfolioBase } from '~/airtable';
-import { getServiceOfferBySlug } from '~/content/data/service-offers';
+import {
+    getServiceOfferBySlug,
+    LEGACY_SERVICE_REDIRECTS
+} from '~/content/data/service-offers';
 import { getWorkBySlug } from '~/content';
 import { generateRouteMeta } from '~/utils/seo';
 import { validateContactForm } from '~/schemas/contact';
@@ -17,14 +20,35 @@ export function meta({ data: loaderData }: Route.MetaArgs) {
         });
     }
 
-    return generateRouteMeta({
-        pageTitle: loaderData.offer.shortTitle,
-        descriptionContent: loaderData.offer.seoDescription,
-        ogUrl: `https://sethdavis.tech/services/${loaderData.offer.slug}`
-    });
+    return [
+        ...generateRouteMeta({
+            pageTitle: loaderData.offer.shortTitle,
+            descriptionContent: loaderData.offer.seoDescription,
+            ogUrl: `https://sethdavis.tech/services/${loaderData.offer.slug}`
+        }),
+        {
+            'script:ld+json': {
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: loaderData.offer.faq.map((item) => ({
+                    '@type': 'Question',
+                    name: item.question,
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: item.answer
+                    }
+                }))
+            }
+        }
+    ];
 }
 
 export function loader({ params }: Route.LoaderArgs) {
+    const legacyTarget = LEGACY_SERVICE_REDIRECTS[params.slug!];
+    if (legacyTarget) {
+        throw redirect(legacyTarget, 301);
+    }
+
     const offer = getServiceOfferBySlug(params.slug!);
 
     if (!offer) {
@@ -55,13 +79,18 @@ export async function action({ request }: Route.ActionArgs) {
         return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
     }
 
-    // The Airtable "Customers" table has no "Offer" field, so the requested
-    // offer is folded into Note instead of written as a separate column.
-    const message = validation.data.note?.trim();
-    const offer = validation.data.offer?.trim();
-    const note = [offer ? `[Service: ${offer}]` : '[Service inquiry]', message]
-        .filter(Boolean)
-        .join(' ');
+    // The Airtable "Customers" table only has First name/Last name/Email/Note,
+    // so the qualifying fields are folded into Note as labeled lines.
+    const { offer, company, budget, timeline, note: message } = validation.data;
+    const noteLines = [
+        offer && `Service: ${offer}`,
+        company && `Company: ${company}`,
+        budget && `Budget: ${budget}`,
+        timeline && `Timeline: ${timeline}`
+    ].filter(Boolean);
+    const note =
+        [noteLines.join('\n'), message?.trim()].filter(Boolean).join('\n\n') ||
+        '[Service inquiry]';
 
     try {
         const response = await getPortfolioBase()('Customers').create([
