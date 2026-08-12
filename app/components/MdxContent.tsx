@@ -50,7 +50,7 @@ const mdxComponents: Record<string, ComponentType<any>> = {
         }
         // Inline code
         return (
-            <code className="bg-zinc-100 dark:bg-zinc-800 px-2 py-1.5 rounded text-zinc-900 dark:text-zinc-50 font-mono text-sm border border-zinc-300 dark:border-zinc-700">
+            <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-900 dark:text-zinc-50 font-mono text-sm">
                 {children}
             </code>
         );
@@ -63,7 +63,7 @@ interface MdxContentProps {
 
 export function MdxContent({ Component }: MdxContentProps) {
     return (
-        <div className="prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:my-4 prose-pre:p-0 prose-pre:bg-none">
+        <div className="prose prose-lg max-w-none dark:prose-invert prose-code:before:content-[''] prose-code:after:content-[''] prose-headings:my-4 prose-headings:font-display prose-headings:font-bold prose-pre:p-0 prose-pre:bg-none prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:not-italic prose-hr:border-zinc-200 dark:prose-hr:border-zinc-800">
             <Component components={mdxComponents} />
         </div>
     );

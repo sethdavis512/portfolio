@@ -106,7 +106,7 @@ export default function ContactRoute() {
                 <Heading as="h1" className="mb-4">
                     Get in touch
                 </Heading>
-                <p className="text-lg text-zinc-300 mb-8">
+                <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-8">
                     Hiring, a project, or just want to compare notes? The fastest
                     way to reach me is email. Prefer a form? There's one below and
                     it lands straight in my inbox.
@@ -114,7 +114,7 @@ export default function ContactRoute() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                     <a
                         href={`mailto:${CONTACT_EMAIL}`}
-                        className="inline-flex items-center gap-2 rounded-lg bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 hover:text-primary-200 transition-colors duration-200 px-4 py-3 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+                        className="inline-flex items-center gap-2 rounded-lg bg-primary-400 hover:bg-primary-300 text-black px-4 py-3 text-sm font-medium shadow-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
                     >
                         <Mail className="size-5" />
                         {CONTACT_EMAIL}
@@ -134,13 +134,13 @@ export default function ContactRoute() {
 
             <section
                 id="message"
-                className="rounded-xl bg-gradient-to-br from-zinc-900 via-zinc-900 to-primary-950/40 border border-zinc-800 p-8 md:p-10"
+                className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-8 md:p-10"
             >
                 <div className="max-w-xl mb-6">
                     <Heading as="h2" size="3" className="mb-3">
                         Send a message
                     </Heading>
-                    <p className="text-zinc-300">
+                    <p className="text-zinc-700 dark:text-zinc-300">
                         Tell me a bit about what you have in mind. I read every
                         message and reply within one business day.
                     </p>

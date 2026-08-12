@@ -61,8 +61,8 @@ export function CodeBlock({
                 const html = await codeToHtml(code, {
                     lang: normalizedLang,
                     themes: {
-                        light: 'github-dark',
-                        dark: 'github-light'
+                        light: 'github-light',
+                        dark: 'github-dark'
                     },
                     transformers: [
                         {
@@ -105,26 +105,19 @@ export function CodeBlock({
                     className
                 )}
             >
-                <div className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-700/40 px-6 py-4">
-                    <div className="flex items-center gap-3">
-                        <div className="flex gap-1.5">
-                            <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
-                        </div>
-                        <span className="text-xs font-mono font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider px-2 py-1 rounded bg-zinc-100/80 dark:bg-zinc-800/60">
-                            {language}
-                        </span>
-                    </div>
+                <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-4 py-2">
+                    <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                        {language}
+                    </span>
                     <button
                         onClick={copyToClipboard}
-                        className="opacity-0 group-hover:opacity-100 transition-all duration-200 text-xs font-mono font-medium text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200 px-3 py-1.5 rounded-md bg-zinc-100/80 hover:bg-zinc-200/80 dark:bg-zinc-800/60 dark:hover:bg-zinc-700/60 border border-zinc-200/60 dark:border-zinc-600/40"
+                        className="text-xs font-medium cursor-pointer px-3 py-1 rounded-md border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:text-primary-700 dark:hover:text-primary-300 hover:border-primary-500/60 transition-colors duration-150"
                         title="Copy to clipboard"
                     >
-                        {copied ? 'COPIED' : 'COPY'}
+                        {copied ? 'Copied' : 'Copy'}
                     </button>
                 </div>
-                <div className="overflow-x-auto bg-gradient-to-br from-zinc-50/30 to-white/50 dark:from-zinc-900/40 dark:to-zinc-800/30">
+                <div className="overflow-x-auto p-4">
                     <pre className="text-[14px] leading-7 text-zinc-800 dark:text-zinc-100 overflow-x-auto font-mono bg-transparent border-0 m-0">
                         <code>{code}</code>
                     </pre>
@@ -137,39 +130,28 @@ export function CodeBlock({
         <div
             className={cx(
                 'not-prose group relative overflow-hidden',
-                'rounded-xl border border-zinc-200/80 dark:border-zinc-700/50',
-                'bg-gradient-to-br from-zinc-50 via-white to-zinc-50/50',
-                'dark:from-zinc-900/90 dark:via-zinc-900 dark:to-zinc-800/90',
-                'shadow-2xl shadow-zinc-900/5 dark:shadow-zinc-900/20',
-                'ring-1 ring-zinc-900/5 dark:ring-white/10',
-                'backdrop-blur-sm',
+                'border border-zinc-200 dark:border-zinc-800',
+                'bg-zinc-50 dark:bg-zinc-900',
                 className
             )}
         >
-            <div className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-700/40 px-6 py-4">
-                <div className="flex items-center gap-3">
-                    <div className="flex gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
-                    </div>
-                    <span className="text-xs font-mono font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider px-2 py-1 rounded bg-zinc-100/80 dark:bg-zinc-800/60">
-                        {language}
-                    </span>
-                </div>
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-4 py-2">
+                <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                    {language}
+                </span>
                 <button
                     onClick={copyToClipboard}
-                    className="opacity-0 group-hover:opacity-100 transition-all duration-200 text-xs font-mono font-medium text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200 px-3 py-1.5 rounded-md bg-zinc-100/80 hover:bg-zinc-200/80 dark:bg-zinc-800/60 dark:hover:bg-zinc-700/60 border border-zinc-200/60 dark:border-zinc-600/40"
+                    className="text-xs font-medium cursor-pointer px-3 py-1 rounded-md border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:text-primary-700 dark:hover:text-primary-300 hover:border-primary-500/60 transition-colors duration-150"
                     title="Copy to clipboard"
                 >
-                    {copied ? 'COPIED' : 'COPY'}
+                    {copied ? 'Copied' : 'Copy'}
                 </button>
             </div>
             <div
                 className={cx(
-                    'overflow-x-auto bg-gradient-to-br from-zinc-50/30 to-white/50 dark:from-zinc-900/40 dark:to-zinc-800/30 p-4',
+                    'overflow-x-auto p-4',
                     '[&>pre]:!m-0 [&>pre]:!border-0 [&>pre]:!bg-transparent',
-                    '[&>pre]:!px-6 [&>pre]:!py-8 [&>pre]:!font-mono [&>pre]:!text-[14px] [&>pre]:!leading-7',
+                    '[&>pre]:!p-0 [&>pre]:!font-mono [&>pre]:!text-[14px] [&>pre]:!leading-7',
                     '[&>pre]:!text-zinc-800 [&>pre]:dark:!text-zinc-100',
                     '[&_code]:!font-mono [&_code]:!text-[14px] [&_code]:!leading-7'
                 )}

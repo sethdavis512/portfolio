@@ -30,29 +30,38 @@ export default function SlidesIndexRoute({
 }: Route.ComponentProps) {
     return (
         <>
-            <Heading as="h1" className="mb-2">
-                Slides
-            </Heading>
-            <p className="text-zinc-400 mb-8">
+            <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-4">
+                <Heading as="h1" className="mb-0">
+                    Slides
+                </Heading>
+                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
+                    Talks & decks
+                </span>
+            </div>
+            <p className="text-zinc-600 dark:text-zinc-400 mb-8">
                 Decks and talk walkthroughs. Use ← and → to navigate once you're
                 inside a deck.
             </p>
             <div className="flex flex-col gap-3">
                 {loaderData.decks.length > 0 ? (
                     loaderData.decks.map((deck) => (
-                        <Linky key={deck.slug} to={`/slides/${deck.slug}`}>
-                            <Card className="w-full group border border-zinc-800 hover:border-zinc-600 dark:hover:border-zinc-500 transition-colors duration-200 hover:bg-zinc-800/60 dark:hover:bg-zinc-800/60">
+                        <Linky
+                            key={deck.slug}
+                            to={`/slides/${deck.slug}`}
+                            className="block no-underline hover:bg-transparent hover:text-current dark:hover:text-current"
+                        >
+                            <Card className="w-full group transition-shadow duration-150 hover:border-primary-500/60">
                                 <div className="flex items-start justify-between gap-4">
                                     <div className="flex-1 min-w-0">
                                         <Heading as="h3" size="4">
                                             {deck.title}
                                         </Heading>
                                         {deck.description && (
-                                            <p className="text-zinc-400 text-sm mt-1 line-clamp-2">
+                                            <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-1 line-clamp-2">
                                                 {deck.description}
                                             </p>
                                         )}
-                                        <p className="text-zinc-500 text-xs mt-3 font-mono">
+                                        <p className="text-zinc-500 text-xs mt-3 font-medium tracking-wide">
                                             {deck.slideCount} slide
                                             {deck.slideCount === 1 ? '' : 's'}
                                         </p>
@@ -76,7 +85,7 @@ export default function SlidesIndexRoute({
                         </Linky>
                     ))
                 ) : (
-                    <p className="text-zinc-400">No decks yet.</p>
+                    <p className="text-zinc-600 dark:text-zinc-400">No decks yet.</p>
                 )}
             </div>
         </>

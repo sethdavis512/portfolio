@@ -5,15 +5,12 @@ import { Card } from './Card';
 import type { VariantProps } from 'cva';
 
 export const bannerVariants = cva({
-    base: 'p-4',
+    base: 'p-4 border border-zinc-200 dark:border-zinc-800',
     variants: {
         variant: {
-            primary:
-                'dark:bg-primary-700/35 dark:border-primary-500 bg-primary-400/35 border-primary-500',
-            secondary:
-                'dark:bg-secondary-700/35 dark:border-secondary-500 bg-secondary-400/35 border-secondary-500',
-            tertiary:
-                'dark:bg-tertiary-700/35 dark:border-tertiary-500 bg-tertiary-400/35 border-tertiary-500'
+            primary: 'bg-primary-400/30 dark:bg-primary-400/15',
+            secondary: 'bg-secondary-400/25 dark:bg-secondary-500/15',
+            tertiary: 'bg-tertiary-400/25 dark:bg-tertiary-500/15'
         }
     },
     defaultVariants: {

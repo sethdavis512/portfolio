@@ -15,11 +15,16 @@ export function FormAlert({
     }
 
     return (
-        <div role="alert" className="rounded-lg border border-red-500 bg-red-500/15 p-4">
+        <div
+            role="alert"
+            className="rounded-xl border border-tertiary-500/50 bg-tertiary-500/10 p-4"
+        >
             <div className="mb-2">
-                <TriangleAlert className="text-red-400" />
+                <TriangleAlert className="text-tertiary-600 dark:text-tertiary-400" />
             </div>
-            <p className="text-red-300">{children}</p>
+            <p className="text-tertiary-700 dark:text-tertiary-300">
+                {children}
+            </p>
         </div>
     );
 }

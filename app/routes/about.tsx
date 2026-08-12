@@ -24,10 +24,12 @@ export function loader() {
 
 function Quote({ quote, author }: { quote: string; author: string }) {
     return (
-        <blockquote>
-            <p className="mb-2">{`"${quote}"`}</p>
+        <blockquote className="border-l-4 border-primary-500 pl-6">
+            <p className="mb-2 font-display text-xl md:text-2xl">{`"${quote}"`}</p>
             <footer>
-                <cite className="text-sm">&mdash; {author}</cite>
+                <cite className="text-xs font-medium tracking-wide not-italic text-zinc-600 dark:text-zinc-400">
+                    &mdash; {author}
+                </cite>
             </footer>
         </blockquote>
     );
@@ -81,7 +83,7 @@ function ValueCard({
             <Heading as="h3" size="4" className="mb-4">
                 {title}
             </Heading>
-            <p className="text-zinc-300">{description}</p>
+            <p className="text-zinc-700 dark:text-zinc-300">{description}</p>
         </Card>
     );
 }
@@ -93,9 +95,14 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <Heading as="h1" className="mb-8">
-                About me
-            </Heading>
+            <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-10">
+                <Heading as="h1" className="mb-0">
+                    About me
+                </Heading>
+                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
+                    The person
+                </span>
+            </div>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <ul className="basis-1/2 space-y-4">
                     {leftFacts.map(function (fact) {
@@ -167,12 +174,12 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                     </div>
                 </>
             )}
-            <hr className="border-zinc-500 my-12" />
+            <hr className="border-t border-zinc-200 dark:border-zinc-800 my-12" />
             <section className="">
                 <Heading as="h2" className="mb-4">
                     Want to see it in action?
                 </Heading>
-                <p className="text-zinc-300 mb-6">
+                <p className="text-zinc-700 dark:text-zinc-300 mb-6">
                     Check out projects where I put these values into practice,
                     or get in touch to discuss working together.
                 </p>
@@ -184,14 +191,14 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                         Get in touch
                     </Button>
                 </div>
-                <p className="mt-6 text-zinc-400">
+                <p className="mt-6 text-zinc-600 dark:text-zinc-400">
                     Or email me directly at{' '}
                     <Linky href={`mailto:${CONTACT_EMAIL}`}>
                         {CONTACT_EMAIL}
                     </Linky>
                 </p>
             </section>
-            <hr className="border-zinc-500 my-12" />
+            <hr className="border-t border-zinc-200 dark:border-zinc-800 my-12" />
             <Heading as="h2" className="mb-8">
                 Motivation
             </Heading>

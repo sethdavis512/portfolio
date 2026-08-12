@@ -1,5 +1,10 @@
 import { cx } from '~/cva.config';
 
+interface FormFieldOption {
+    value: string;
+    label: string;
+}
+
 interface FormFieldProps {
     label: string;
     name: string;
@@ -7,8 +12,10 @@ interface FormFieldProps {
     placeholder?: string;
     required?: boolean;
     error?: string;
-    as?: 'input' | 'textarea';
+    as?: 'input' | 'textarea' | 'select';
     rows?: number;
+    options?: FormFieldOption[];
+    defaultValue?: string;
 }
 
 export function FormField({
@@ -19,22 +26,49 @@ export function FormField({
     required,
     error,
     as = 'input',
-    rows
+    rows,
+    options,
+    defaultValue
 }: FormFieldProps) {
     const errorId = `${name}-error`;
     const inputClasses = cx(
-        'p-2 border rounded w-full',
+        'p-3 rounded-lg border w-full bg-transparent transition-colors duration-150',
+        'focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-white dark:ring-offset-zinc-950',
         error
-            ? 'border-red-500 focus:ring-red-500'
-            : 'border-zinc-500 focus:ring-primary-500'
+            ? 'border-tertiary-500 focus:ring-tertiary-500'
+            : 'border-zinc-300 dark:border-zinc-700 focus:ring-primary-500 dark:focus:ring-primary-400'
     );
 
     return (
         <div>
-            <label htmlFor={name} className="block mb-2 font-medium">
+            <label
+                htmlFor={name}
+                className="block mb-2 text-sm font-medium"
+            >
                 {label}
             </label>
-            {as === 'textarea' ? (
+            {as === 'select' ? (
+                <select
+                    id={name}
+                    name={name}
+                    required={required}
+                    defaultValue={defaultValue ?? ''}
+                    className={cx(inputClasses, 'appearance-none pr-10')}
+                    aria-invalid={error ? true : undefined}
+                    aria-describedby={error ? errorId : undefined}
+                >
+                    {placeholder && (
+                        <option value="" disabled>
+                            {placeholder}
+                        </option>
+                    )}
+                    {options?.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+            ) : as === 'textarea' ? (
                 <textarea
                     id={name}
                     name={name}
@@ -58,7 +92,7 @@ export function FormField({
                 />
             )}
             {error && (
-                <p id={errorId} className="mt-1 text-sm text-red-400">{error}</p>
+                <p id={errorId} className="mt-1 text-sm text-tertiary-600 dark:text-tertiary-400">{error}</p>
             )}
         </div>
     );

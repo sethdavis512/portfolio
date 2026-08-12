@@ -9,6 +9,7 @@ import { XLogo } from '~/components/logos/XLogo';
 import { ContentStyles } from '~/constants';
 import { cx } from '~/cva.config';
 import { Card } from '~/components/Card';
+import { ServicesCallToAction } from '~/components/ServicesCallToAction';
 import { getAllDecks } from '~/content';
 import type { Route } from './+types/home';
 
@@ -54,30 +55,34 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     return (
         <>
             <HomeSection className="md:py-16">
-                <div className="flex items-start gap-6">
-                    <div className="hidden md:block w-1 self-stretch bg-primary-500 rounded-full" />
-                    <div>
-                        <span className="text-sm uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-2 block">
-                            Design Technologist
-                        </span>
-                        <Heading
-                            as="h1"
-                            className="text-7xl md:text-9xl font-black mb-6"
-                        >
-                            Seth Davis
-                        </Heading>
-                        <p className="text-lg md:text-2xl font-medium max-w-2xl mb-4 text-zinc-300">
+                <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
+                    <span>Design Technologist</span>
+                    <span aria-hidden="true">Austin, TX</span>
+                </div>
+                <Heading
+                    as="h1"
+                    className="text-[clamp(3.5rem,10vw,8rem)] md:text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] mb-8 tracking-tight"
+                >
+                    Seth{' '}
+                    <br className="md:hidden lg:inline" />
+                    <span className="italic text-primary-600 dark:text-primary-400">
+                        Davis
+                    </span>
+                </Heading>
+                <div className="grid md:grid-cols-12 gap-8 items-start">
+                    <div className="md:col-span-7 border-t border-zinc-200 dark:border-zinc-800 pt-6">
+                        <p className="text-xl md:text-2xl font-medium max-w-2xl mb-4 text-zinc-800 dark:text-zinc-200">
                             I help product teams ship better interfaces
                             faster, through design systems, AI tooling, and
                             front-end engineering.
                         </p>
-                        <p className="mb-10 text-zinc-400">
+                        <p className="mb-10 text-zinc-600 dark:text-zinc-400">
                             Open to new engagements as a{' '}
                             <Linky to="/design-technologist">
                                 {ContentStyles.CURRENT_JOB_TITLE}
                             </Linky>
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <div className="flex flex-col sm:flex-row gap-4">
                             <Button size="lg" to="/work">
                                 See my work
                             </Button>
@@ -86,21 +91,28 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                             </Button>
                         </div>
                     </div>
+                    <div className="hidden md:block md:col-span-5 border-t border-zinc-200 dark:border-zinc-800 pt-6 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 space-y-2">
+                        <p>Design systems</p>
+                        <p>AI tooling</p>
+                        <p>Front-end engineering</p>
+                    </div>
                 </div>
             </HomeSection>
             <HomeSection>
-                <Heading>Featured projects</Heading>
+                <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8">
+                    <Heading className="mb-0">Featured projects</Heading>
+                </div>
                 <div className="grid grid-cols-1 gap-6">
-                    {/* Hero project: full width */}
-                    <Card className="p-0 grid overflow-hidden border border-primary-800/40 bg-zinc-900">
-                        <div className="col-start-1 row-start-1 p-8 md:p-10 text-white flex flex-col">
-                            <span className="text-xs uppercase tracking-widest text-primary-400 mb-3">
+                    {/* Hero project: full width acid slab */}
+                    <Card className="p-0 grid overflow-hidden bg-primary-500/10 dark:bg-primary-500/10 border-primary-500/40">
+                        <div className="col-start-1 row-start-1 p-8 md:p-10 flex flex-col">
+                            <span className="text-xs font-medium tracking-wide text-primary-700 dark:text-primary-300 mb-3">
                                 Flagship
                             </span>
-                            <Heading className="text-white text-3xl md:text-4xl">
+                            <Heading className="text-4xl md:text-5xl">
                                 Iridium
                             </Heading>
-                            <p className="mb-8 text-zinc-300 max-w-2xl text-lg">
+                            <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
                                 Full-stack AI app starter kit with TypeScript,
                                 React Router, Better Auth, and Anthropic. Ship
                                 faster, not from scratch.
@@ -116,16 +128,14 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         </div>
                     </Card>
                     {/* Secondary projects: 3-column */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
-                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <Card className="p-0 grid overflow-hidden">
+                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                     Open Source
                                 </span>
-                                <Heading className="text-white">
-                                    Lone Star UI
-                                </Heading>
-                                <p className="mb-8 text-zinc-300">
+                                <Heading>Lone Star UI</Heading>
+                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
                                     A React 19 component library built with
                                     TypeScript, Tailwind CSS 4, and CVA.
                                     Publishes ESM-only to npm with full type
@@ -142,15 +152,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Button>
                             </div>
                         </Card>
-                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
-                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                        <Card className="p-0 grid overflow-hidden">
+                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                     Learning
                                 </span>
-                                <Heading className="text-white">
-                                    AI Maniacs
-                                </Heading>
-                                <p className="mb-8 text-zinc-300">
+                                <Heading>AI Maniacs</Heading>
+                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
                                     Free AI education platform. Fundamentals
                                     through agent workflows, built to keep up
                                     with how fast the field moves.
@@ -166,15 +174,13 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Button>
                             </div>
                         </Card>
-                        <Card className="p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900">
-                            <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                        <Card className="p-0 grid overflow-hidden">
+                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                     Product
                                 </span>
-                                <Heading className="text-white">
-                                    Prompt Suite
-                                </Heading>
-                                <p className="mb-8 text-zinc-300">
+                                <Heading>Prompt Suite</Heading>
+                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
                                     Native desktop tray app for instant AI
                                     prompt access. Quick interactions without
                                     disrupting your workflow.
@@ -193,31 +199,38 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </div>
                 </div>
             </HomeSection>
+            <HomeSection>
+                <ServicesCallToAction />
+            </HomeSection>
             {decks.length > 0 && (
                 <HomeSection>
-                    <div className="flex items-baseline justify-between mb-6">
+                    <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8">
                         <Heading className="mb-0">Recent slides</Heading>
                         <Linky to="/slides" className="text-sm">
                             All slides →
                         </Linky>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {decks.map((deck) => (
-                            <Linky key={deck.slug} to={`/slides/${deck.slug}`}>
-                                <Card className="h-full p-0 grid overflow-hidden border border-primary-900/40 bg-zinc-900 group hover:border-primary-700/60 transition-colors">
-                                    <div className="col-start-1 row-start-1 p-8 text-white flex flex-col">
-                                        <span className="text-xs uppercase tracking-widest text-primary-500 mb-3">
+                            <Linky
+                                key={deck.slug}
+                                to={`/slides/${deck.slug}`}
+                                className="block no-underline hover:bg-transparent hover:text-current dark:hover:text-current"
+                            >
+                                <Card className="h-full p-0 grid overflow-hidden group transition-colors duration-200 hover:border-primary-500/60">
+                                    <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                        <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                             Deck
                                         </span>
-                                        <Heading className="text-white">
+                                        <Heading>
                                             {deck.title}
                                         </Heading>
                                         {deck.description && (
-                                            <p className="mb-6 text-zinc-300">
+                                            <p className="mb-6 text-zinc-700 dark:text-zinc-300">
                                                 {deck.description}
                                             </p>
                                         )}
-                                        <span className="mt-auto text-xs font-mono text-zinc-500">
+                                        <span className="mt-auto text-xs text-zinc-500">
                                             {deck.slideCount} slide
                                             {deck.slideCount === 1 ? '' : 's'}
                                         </span>
@@ -229,7 +242,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </HomeSection>
             )}
             <HomeSection>
-                <Heading>Socials</Heading>
+                <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8">
+                    <Heading className="mb-0">Socials</Heading>
+                </div>
                 <div className="flex gap-8">
                     <Linky
                         href="https://github.com/sethdavis512"

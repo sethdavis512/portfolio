@@ -6,9 +6,8 @@ import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { KeyboardShortcut } from '~/components/KeyboardShortcut';
 import { Logo } from '~/components/logos/SethDavisLogo';
-import { BorderStyles } from '~/constants';
 
-const sharedLinkClasses = `text-4xl md:text-lg`;
+const sharedLinkClasses = `text-3xl md:text-sm font-medium`;
 
 interface NavItem {
     type: 'internal' | 'external';
@@ -82,12 +81,12 @@ function AppNavLink({ to, children, ariaLabel, onClick }: AppNavLinkProps) {
             className={({ isActive }) =>
                 cx(
                     sharedLinkClasses,
-                    `transition-colors duration-200 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3 px-4`,
-                    `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950`,
+                    `transition-colors duration-150 py-2 px-3`,
+                    `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950`,
                     isActive &&
-                        `text-zinc-900 dark:text-white font-bold bg-zinc-100 dark:bg-zinc-900`,
+                        `bg-primary-500/15 text-primary-800 dark:text-primary-300 rounded-lg`,
                     !isActive &&
-                        `text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white`
+                        `text-zinc-600 dark:text-zinc-400 rounded-lg hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800/70 dark:hover:text-zinc-100`
                 )
             }
             to={to}
@@ -110,8 +109,8 @@ function StaticNavLink({
         <a
             className={cx(
                 sharedLinkClasses,
-                `transition-colors duration-200 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3 px-4 text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white`,
-                `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950`
+                `transition-colors duration-150 py-2 px-3 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800/70 dark:hover:text-zinc-100`,
+                `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950`
             )}
             href={to}
             {...rest}
@@ -139,7 +138,7 @@ export default function WrapperRoute() {
 
     return (
         <>
-            <header className="py-8">
+            <header className="py-6 border-b border-zinc-200 dark:border-zinc-800">
                 <Container>
                     <nav>
                         <ul className="hidden lg:flex items-center gap-4 md:gap-8">
@@ -147,9 +146,9 @@ export default function WrapperRoute() {
                                 <Link
                                     to="/"
                                     aria-label="Return to home page"
-                                    className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 rounded-lg"
+                                    className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
                                 >
-                                    <Logo className="fill-zinc-700 h-16 dark:fill-white" />
+                                    <Logo className="fill-black h-14 dark:fill-white" />
                                 </Link>
                             </li>
                             {NAV_ITEMS.map((item) => (
@@ -172,7 +171,7 @@ export default function WrapperRoute() {
                         <ul className="lg:hidden flex justify-between">
                             <li>
                                 <Link to="/" aria-label="Return to home page">
-                                    <Logo className="fill-zinc-700 h-12 dark:fill-white" />
+                                    <Logo className="fill-black h-12 dark:fill-white" />
                                 </Link>
                             </li>
                             <li>
@@ -199,7 +198,7 @@ export default function WrapperRoute() {
                                             to="/"
                                             aria-label="Return to home page"
                                         >
-                                            <Logo className="fill-zinc-700 h-12 dark:fill-white" />
+                                            <Logo className="fill-black h-12 dark:fill-white" />
                                         </Link>
                                         <Button
                                             variant="ghost"
@@ -258,27 +257,24 @@ export default function WrapperRoute() {
                     <Outlet />
                 </Container>
             </main>
-            <footer className="py-0 md:py-8">
-                <Container className="flex flex-col items-center gap-4">
-                    <div className="flex w-full items-center justify-between my-12">
-                        <div className={`flex-grow ${BorderStyles.BOTTOM}`} />
-                        <Flex className="px-4 text-center items-center">
-                            <p className="inline-block">
-                                ✌🏻 Made in Austin, TX{' '}
-                            </p>
+            <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-16">
+                <Container className="py-8">
+                    <Flex className="items-center justify-between text-xs text-zinc-500">
+                        <span>Seth Davis</span>
+                        <Flex className="items-center gap-2">
+                            <span>✌🏻 Made in Austin, TX</span>
                             <img
-                                className="h-5 w-5"
+                                className="h-4 w-4"
                                 src="https://res.cloudinary.com/setholito/image/upload/v1/portfolio/flag-of-texas-small.svg"
                                 alt="Texas flag"
                             />
                         </Flex>
-                        <div className={`flex-grow ${BorderStyles.BOTTOM}`} />
-                    </div>
+                    </Flex>
                 </Container>
             </footer>
-            <div className="hidden md:block fixed right-0 bottom-0 p-8">
-                <span className="bg-zinc-300 dark:bg-zinc-800 p-4 border border-zinc-700 text-zinc-700 dark:text-white rounded-lg text-sm">
-                    Navigate via <KeyboardShortcut keys={['Cmd', 'K']} />
+            <div className="hidden md:block fixed right-6 bottom-6">
+                <span className="rounded-lg bg-white dark:bg-zinc-900 py-2.5 px-4 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs shadow-sm inline-flex items-center gap-2">
+                    Navigate <KeyboardShortcut keys={['Cmd', 'K']} />
                 </span>
             </div>
         </>
