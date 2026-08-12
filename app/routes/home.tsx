@@ -63,8 +63,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     as="h1"
                     className="text-[clamp(3.5rem,10vw,8rem)] md:text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] mb-8 tracking-tight"
                 >
-                    Seth
-                    <br />
+                    Seth{' '}
+                    <br className="md:hidden lg:inline" />
                     <span className="italic text-primary-600 dark:text-primary-400">
                         Davis
                     </span>
@@ -128,7 +128,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         </div>
                     </Card>
                     {/* Secondary projects: 3-column */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <Card className="p-0 grid overflow-hidden">
                             <div className="col-start-1 row-start-1 p-8 flex flex-col">
                                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
@@ -210,7 +210,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                             All slides →
                         </Linky>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {decks.map((deck) => (
                             <Linky
                                 key={deck.slug}
