@@ -21,6 +21,7 @@ export default {
             '/thank-you',
             '/truck',
             '/work',
+            '/writing',
             '/til',
             '/sitemap.xml'
         ];

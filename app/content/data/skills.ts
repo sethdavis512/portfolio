@@ -13,7 +13,7 @@ export const skills: Skill[] = [
     },
     {
         "id": "skill-2",
-        "name": "React Router 7",
+        "name": "React Router",
         "sortOrder": 3
     },
     {
@@ -110,5 +110,30 @@ export const skills: Skill[] = [
         "id": "skill-21",
         "name": "Figma",
         "sortOrder": 22
+    },
+    {
+        "id": "skill-22",
+        "name": "LaunchDarkly",
+        "sortOrder": 23
+    },
+    {
+        "id": "skill-23",
+        "name": "MCP",
+        "sortOrder": 24
+    },
+    {
+        "id": "skill-24",
+        "name": "Agent Orchestration",
+        "sortOrder": 25
+    },
+    {
+        "id": "skill-25",
+        "name": "Cloud Agents",
+        "sortOrder": 26
+    },
+    {
+        "id": "skill-26",
+        "name": "Agent Skills",
+        "sortOrder": 27
     }
 ];

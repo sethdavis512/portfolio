@@ -41,6 +41,11 @@ const pagesLinks = [
         label: 'Contact'
     },
     {
+        to: '/writing',
+        icon: LinkIcon,
+        label: 'Talks & Writing'
+    },
+    {
         to: '/til',
         icon: LinkIcon,
         label: 'TIL'

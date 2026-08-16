@@ -1,7 +1,7 @@
 import { cx } from '~/cva.config';
 import { MenuIcon } from 'lucide-react';
 import { useReducer } from 'react';
-import { Link, NavLink, Outlet } from 'react-router';
+import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { KeyboardShortcut } from '~/components/KeyboardShortcut';
@@ -14,6 +14,7 @@ interface NavItem {
     to: string;
     label: string;
     ariaLabel: string;
+    activePaths?: string[];
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -31,39 +32,22 @@ const NAV_ITEMS: NavItem[] = [
     },
     {
         type: 'internal',
+        to: '/writing',
+        label: 'Talks & Writing',
+        ariaLabel: 'Browse my talks and writing',
+        activePaths: ['/til', '/slides']
+    },
+    {
+        type: 'internal',
         to: '/services',
         label: 'Services',
         ariaLabel: 'View my services and offerings'
     },
     {
         type: 'internal',
-        to: '/til',
-        label: 'TIL',
-        ariaLabel: 'TIL – Browse things I have learned'
-    },
-    {
-        type: 'internal',
-        to: '/slides',
-        label: 'Slides',
-        ariaLabel: 'Browse slideshows and talks'
-    },
-    {
-        type: 'internal',
         to: '/about',
         label: 'About',
         ariaLabel: 'Learn more about me'
-    },
-    {
-        type: 'internal',
-        to: '/contact',
-        label: 'Contact',
-        ariaLabel: 'Get in touch with me'
-    },
-    {
-        type: 'external',
-        to: 'https://techwithseth.com/digital-goods',
-        label: 'Digital Goods',
-        ariaLabel: 'Browse digital goods on Tech with Seth'
     }
 ];
 
@@ -72,14 +56,27 @@ interface AppNavLinkProps {
     children: React.ReactNode;
     ariaLabel?: string;
     onClick?: () => void;
+    activePaths?: string[];
 }
 
-function AppNavLink({ to, children, ariaLabel, onClick }: AppNavLinkProps) {
+function AppNavLink({
+    to,
+    children,
+    ariaLabel,
+    onClick,
+    activePaths
+}: AppNavLinkProps) {
+    const { pathname } = useLocation();
+    const matchesRelatedPath = activePaths?.some(
+        (path) => pathname === path || pathname.startsWith(`${path}/`)
+    );
+
     return (
         <NavLink
             aria-label={ariaLabel}
-            className={({ isActive }) =>
-                cx(
+            className={({ isActive: isExactMatch }) => {
+                const isActive = isExactMatch || Boolean(matchesRelatedPath);
+                return cx(
                     sharedLinkClasses,
                     `transition-colors duration-150 py-2 px-3`,
                     `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950`,
@@ -87,8 +84,8 @@ function AppNavLink({ to, children, ariaLabel, onClick }: AppNavLinkProps) {
                         `bg-primary-500/15 text-primary-800 dark:text-primary-300 rounded-lg`,
                     !isActive &&
                         `text-zinc-600 dark:text-zinc-400 rounded-lg hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800/70 dark:hover:text-zinc-100`
-                )
-            }
+                );
+            }}
             to={to}
             onClick={onClick}
         >
@@ -157,6 +154,7 @@ export default function WrapperRoute() {
                                         <AppNavLink
                                             to={item.to}
                                             ariaLabel={item.ariaLabel}
+                                            activePaths={item.activePaths}
                                         >
                                             {item.label}
                                         </AppNavLink>
@@ -167,6 +165,15 @@ export default function WrapperRoute() {
                                     )}
                                 </li>
                             ))}
+                            <li className="ml-auto">
+                                <Button
+                                    to="/contact"
+                                    color="primary"
+                                    aria-label="Get in touch with me"
+                                >
+                                    Contact
+                                </Button>
+                            </li>
                         </ul>
                         <ul className="lg:hidden flex justify-between">
                             <li>
@@ -233,6 +240,7 @@ export default function WrapperRoute() {
                                                 key={item.to}
                                                 to={item.to}
                                                 ariaLabel={item.ariaLabel}
+                                                activePaths={item.activePaths}
                                                 onClick={toggleIsOpen}
                                             >
                                                 {item.label}
@@ -246,6 +254,19 @@ export default function WrapperRoute() {
                                             </StaticNavLink>
                                         )
                                     )}
+                                    <span
+                                        className="self-start"
+                                        onClick={toggleIsOpen}
+                                    >
+                                        <Button
+                                            to="/contact"
+                                            color="primary"
+                                            size="lg"
+                                            aria-label="Get in touch with me"
+                                        >
+                                            Contact
+                                        </Button>
+                                    </span>
                                 </div>
                             </li>
                         </ul>
@@ -260,7 +281,15 @@ export default function WrapperRoute() {
             <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-16">
                 <Container className="py-8">
                     <Flex className="items-center justify-between text-xs text-zinc-500">
-                        <span>Seth Davis</span>
+                        <Flex className="items-center gap-4">
+                            <span>Seth Davis</span>
+                            <a
+                                href="https://techwithseth.com/digital-goods"
+                                className="hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
+                            >
+                                Digital Goods
+                            </a>
+                        </Flex>
                         <Flex className="items-center gap-2">
                             <span>✌🏻 Made in Austin, TX</span>
                             <img

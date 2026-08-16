@@ -12,6 +12,7 @@ export default [
         route('services', 'routes/services.tsx'),
         route('services/:slug', 'routes/service-detail.tsx'),
         route('contact', 'routes/contact.tsx'),
+        route('writing', 'routes/writing.tsx'),
         route('til', 'routes/til.tsx'),
         route('til/:slug', 'routes/til-detail.tsx'),
         route('resume', 'routes/resume.tsx'),

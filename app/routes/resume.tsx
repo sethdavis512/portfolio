@@ -77,11 +77,11 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <Heading as="h2" size="2">
                     Summary
                 </Heading>
-                <p>{`${ContentStyles.CURRENT_JOB_TITLE} with ${yearsAsDeveloper}+ years of experience delivering accessible, user-centric React interfaces for scalable platforms, enabling faster teams and better user outcomes.`}</p>
+                <p>{`Software Engineer with ${yearsAsDeveloper}+ years of experience delivering accessible, user-centric interfaces for scalable platforms, enabling faster teams and better user outcomes.`}</p>
             </ResumeSection>
             <ResumeSection>
                 <Heading as="h2" size="2">
-                    {`${ContentStyles.FRONTEND} Engineer Skills`}
+                    Software Engineer Skills
                 </Heading>
                 <div className="flex flex-wrap items-center gap-2">
                     {loaderData.skills.map(function (skill) {
@@ -98,9 +98,63 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     Experience
                 </Heading>
                 <JobItem
+                    company="Committee for Children"
+                    dates="May 2026–Present"
+                    location="Remote"
+                    title="Software Engineer"
+                >
+                    <JobItemList>
+                        <li>
+                            Building a teaching application that delivers
+                            executive function content to educators and students
+                        </li>
+                        <li>
+                            Developing the in-house component library that keeps
+                            product surfaces visually and behaviorally
+                            consistent
+                        </li>
+                        <li>
+                            Designing APIs and connecting multiple in-house
+                            services so teams can share data instead of
+                            duplicating it
+                        </li>
+                        <li>
+                            Led LaunchDarkly enablement, giving teams feature
+                            flags for safer, incremental releases
+                        </li>
+                        <li>
+                            Orchestrating coding agents to move features from
+                            prototype to working product faster
+                        </li>
+                    </JobItemList>
+                </JobItem>
+                <JobItem
+                    company="Tambo"
+                    dates="Mar 2026–Apr 2026 (2 mos)"
+                    location="Remote"
+                    title="Software Engineer"
+                >
+                    <JobItemList>
+                        <li>
+                            Prototyped StrudelLM, a music application exploring
+                            live-coded audio driven by natural language
+                        </li>
+                        <li>
+                            Implemented skills in the open source Tambo.co app
+                            using the Compound Engineering plugin, expanding what
+                            the product could do without bloating its core
+                        </li>
+                        <li>
+                            Produced demonstration videos for Twitter and
+                            LinkedIn to showcase new capabilities to the
+                            developer audience
+                        </li>
+                    </JobItemList>
+                </JobItem>
+                <JobItem
                     company="Gartner"
                     dates={`Aug 2024–Oct 2025 (1 yr 2 mos)`}
-                    title={`Senior ${ContentStyles.CURRENT_JOB_TITLE}`}
+                    title="Software Engineer"
                 >
                     <JobItemList>
                         <li>
@@ -125,7 +179,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <JobItem
                     company="Indeed, Inc"
                     dates="Jan 2023–May 2024 (1 yr 5 mos)"
-                    title={`Senior ${ContentStyles.CURRENT_JOB_TITLE}`}
+                    title="Senior UX Developer"
                 >
                     <JobItemList>
                         <li>
@@ -159,7 +213,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <JobItem
                     company="Indeed, Inc"
                     dates="Jan 2020–Jan 2023 (3 yrs)"
-                    title={`${ContentStyles.CURRENT_JOB_TITLE}`}
+                    title="UX Developer"
                 >
                     <JobItemList>
                         <li>
@@ -198,6 +252,15 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                             </Linky>
                             , engaging in discussions on modern React
                             architecture and routing patterns
+                        </li>
+                        <li>
+                            Creator of{' '}
+                            <Linky href="https://ai-maniacs.com">
+                                AI Maniacs
+                            </Linky>
+                            , a free AI education platform covering fundamentals
+                            through agent workflows, maintained as models and
+                            tooling change
                         </li>
                         <li>
                             Building Iridium: An AI-powered app starter kit
