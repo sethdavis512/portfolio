@@ -99,6 +99,33 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </div>
             </HomeSection>
             <HomeSection>
+                <Card className="p-8 md:p-10 border-secondary-500/40 dark:border-secondary-500/40 bg-secondary-500/10 dark:bg-secondary-500/10">
+                    <span className="text-xs font-medium tracking-wide text-secondary-700 dark:text-secondary-300 mb-3 block">
+                        Spotlight
+                    </span>
+                    <Heading className="text-4xl md:text-5xl">
+                        AI Maniacs
+                    </Heading>
+                    <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
+                        A free AI education platform taking complete beginners
+                        from fundamentals to production agent workflows.
+                        Curriculum, infrastructure, and maintenance, all mine.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <Button color="secondary" size="lg" to="/work/ai-maniacs">
+                            Read the case study
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="lg"
+                            href="https://ai-maniacs.com"
+                        >
+                            Visit ai-maniacs.com
+                        </Button>
+                    </div>
+                </Card>
+            </HomeSection>
+            <HomeSection>
                 <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8">
                     <Heading className="mb-0">Featured projects</Heading>
                 </div>
@@ -128,7 +155,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         </div>
                     </Card>
                     {/* Secondary projects: 3-column */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <Card className="p-0 grid overflow-hidden">
                             <div className="col-start-1 row-start-1 p-8 flex flex-col">
                                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
@@ -147,28 +174,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                     variant="outline"
                                     size="md"
                                     to="/work/lone-star-ui"
-                                >
-                                    Learn more
-                                </Button>
-                            </div>
-                        </Card>
-                        <Card className="p-0 grid overflow-hidden">
-                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
-                                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
-                                    Learning
-                                </span>
-                                <Heading>AI Maniacs</Heading>
-                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
-                                    Free AI education platform. Fundamentals
-                                    through agent workflows, built to keep up
-                                    with how fast the field moves.
-                                </p>
-                                <Button
-                                    className="mt-auto self-start"
-                                    color="primary"
-                                    variant="outline"
-                                    size="md"
-                                    to="/work/ai-maniacs"
                                 >
                                     Learn more
                                 </Button>
@@ -206,8 +211,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <HomeSection>
                     <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8">
                         <Heading className="mb-0">Recent slides</Heading>
-                        <Linky to="/slides" className="text-sm">
-                            All slides →
+                        <Linky to="/writing" className="text-sm">
+                            Talks &amp; writing →
                         </Linky>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
