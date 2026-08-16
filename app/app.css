@@ -124,6 +124,17 @@ body {
     letter-spacing: -0.02em;
 }
 
+/* Shiki dual themes emit the light color inline and the dark one as a custom
+   property. Without this, dark mode renders github-light colors on a near-black
+   background. */
+.dark .shiki,
+.dark .shiki span {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
 
 /* ============================================================
    SLIDESHOW VIEW TRANSITIONS
