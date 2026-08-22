@@ -2,30 +2,30 @@
 title: "Video Machine"
 slug: "video-machine"
 status: "PUBLISHED"
-description: "Video rendering platform that creates TikTok-style slide videos using Remotion, with credit-based payments and background processing."
+description: "Live video rendering SaaS. Type a few slides or paste a URL, get a finished video in about a minute. Three free videos to start, credits after that."
 cta: "Explore platform"
-sortOrder: 35
-heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/JnEx5euNW6NjSmBTjZGRRuEfFmE.webp"
-thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sTPm-k16XsXd7FsYent5ud4hCIE.webp"
-about: "Video Machine is a comprehensive video rendering platform that transforms content into engaging TikTok-style slide presentations. Built with React Router 7 and Remotion, this application enables users to programmatically generate videos with a credit-based system. The platform integrates Polar for payment processing and authentication, Trigger.dev for reliable background video rendering, and Railway S3 for efficient video storage and delivery. The application demonstrates the power of combining modern web technologies to create a production-ready SaaS solution that handles complex video generation workflows at scale."
-learned: "This project deepened my understanding of distributed systems and asynchronous job processing. Working with Remotion revealed the intricacies of server-side video rendering and the challenges of managing long-running processes in a web application. The integration of Trigger.dev taught me valuable lessons about task orchestration, retry strategies, and building resilient background job systems. I explored payment integration patterns with Polar, implementing credit-based systems with webhooks for real-time balance updates. The Railway S3 integration provided insights into efficient file storage strategies and implementing presigned URLs for secure content delivery. Building this platform required careful consideration of user experience during long-running operations, leading to innovations in progress tracking and real-time status updates."
-impact: "Video Machine showcases my ability to architect and build complete SaaS applications from end to end. It demonstrates technical proficiency across multiple domains: video rendering technology, payment systems integration, distributed task processing, cloud storage, and database management. The project highlights my understanding of production-ready infrastructure patterns, including authentication flows, webhook handling, and error recovery mechanisms. As a portfolio piece, it effectively communicates my capability to build complex, revenue-generating applications that solve real problems while maintaining clean architecture and excellent user experience. The combination of Remotion for rendering, Trigger.dev for reliability, and Polar for monetization represents modern best practices in building scalable web applications."
+sortOrder: 4
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/videomachine-landing.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/videomachine-landing.png"
+about: "Video Machine turns written slides into finished videos. You type a title, pick a theme, shape, and pace, and add slides as headline plus detail lines while a preview rebuilds itself as you type. Point it at a source instead and it drafts the slides for you, either a client-ready SEO audit from a URL or a market recap from a handful of ticker symbols. Renders run in the cloud and land in one to two minutes as either vertical 1080x1920 for social or widescreen 1920x1080, with an email when the file is ready. The platform runs on React Router 7 with Remotion for rendering, Trigger.dev for background jobs, Railway S3 for storage, and Polar as merchant of record for credit purchases."
+learned: "Shipping this to paying customers taught me more than building it did. Remotion made the rendering tractable but the hard part was everything around it: long-running jobs that outlive a request, retries that do not double-charge a credit, and progress states that keep someone informed while a render takes ninety seconds. Trigger.dev handled orchestration and gave me a place to reason about failure instead of scattering try/catch through route handlers. Wiring credits through Polar webhooks meant treating balance as something that must reconcile, not a number to decrement optimistically, since a failed render has to return the credit it took. Drafting free and charging only on render turned out to be both a pricing decision and an architecture one, because the split forced a clean boundary between the editor and the render pipeline."
+impact: "Video Machine is a product with a pricing page, not a demo. It covers the full path from an idea to money in an account: rendering pipeline, background job orchestration, object storage, transactional email, authentication, a free trial that converts, and a checkout flow through a merchant of record. Owning every layer meant making the tradeoffs myself, including where to spend on reliability and where a simpler answer was good enough. For anyone evaluating whether I can take something from empty repository to running service that strangers pay for, this is the clearest example in the portfolio."
 techStack: ["typescript", "react", "react-router", "remotion", "tailwind", "postgres", "prisma", "polar", "trigger"]
 sourceUrl: ""
-demoUrl: ""
-demoUrlText: ""
-tags: []
+demoUrl: "https://videomachine.sethdavis.tech"
+demoUrlText: "Try Video Machine"
+tags: ["SaaS", "Video", "Payments"]
 galleryImages: 
-- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/1WKzQ5aaX3A9w8V_49Wo5AAVHzQ.webp"
-  alt: "Home web page"
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/videomachine-create.png"
+  alt: "Create page with the slide builder and live video preview"
   sortOrder: 0
-- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/fGrfY9tjkXT2R-n-e_VJzLz2i84.webp"
-  alt: "Gallery web page"
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/videomachine-generate.png"
+  alt: "Generate page with the SEO audit and stocks recap generators"
   sortOrder: 1
-- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/TeSFfH6k-mSFQFTkbqxSRvvuG5U.webp"
-  alt: "Credits web page"
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/videomachine-credits.png"
+  alt: "Credit packs and how credits work"
   sortOrder: 2
 hasContent: false
 createdAt: "2026-02-15T21:30:03.001Z"
-updatedAt: "2026-03-07T00:52:30.212Z"
+updatedAt: "2026-08-22T00:00:00.000Z"
 ---
