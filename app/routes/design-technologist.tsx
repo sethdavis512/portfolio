@@ -250,12 +250,13 @@ export default function DesignTechnologistRoute() {
                     </p>
                     <p>
                         <strong className="text-black dark:text-white">
-                            The last 10% of UI quality is disproportionately
-                            valuable.
+                            Polish is where good products separate from
+                            great ones.
                         </strong>{' '}
-                        The difference between good and great is motion, polish,
-                        and interaction detail. A Design Technologist is the
-                        person who ensures it gets done.
+                        Motion, micro-interaction, and visual detail are the
+                        difference, and they are the first things cut when a
+                        deadline tightens. A Design Technologist is the person
+                        who ensures they get done.
                     </p>
                 </div>
             </section>

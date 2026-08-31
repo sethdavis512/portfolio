@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react';
+
 import { Button } from '~/components/Button';
 import { Heading } from '~/components/Heading';
 import { generateRouteMeta } from '~/utils/seo';
@@ -83,13 +85,42 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                             </Linky>
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Button size="lg" to="/work">
+                            <Button
+                                size="lg"
+                                href="https://tidycal.com/sethdavis512/meet-and-greet"
+                                iconAfter={<ArrowRight className="size-4" />}
+                            >
+                                Book a scope call
+                            </Button>
+                            <Button size="lg" to="/work" variant="outline">
                                 See my work
                             </Button>
-                            <Button size="lg" to="/resume" variant="outline">
-                                View resume
-                            </Button>
                         </div>
+                        <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+                            Free, 30 minutes. You leave with a written scope and
+                            a fixed price either way.
+                        </p>
+                        <dl className="mt-8 grid gap-6 sm:grid-cols-2 border-t border-zinc-200 dark:border-zinc-800 pt-6">
+                            <div>
+                                <dt className="text-2xl font-semibold tracking-tight text-primary-600 dark:text-primary-400">
+                                    100+ hours a week
+                                </dt>
+                                <dd className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                                    saved for internal teams at Indeed with
+                                    tooling I designed and built
+                                </dd>
+                            </div>
+                            <div>
+                                <dt className="text-2xl font-semibold tracking-tight text-primary-600 dark:text-primary-400">
+                                    Cray Networks, Virtruv
+                                </dt>
+                                <dd className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                                    recent client work: a 20 year old IT firm
+                                    rebranded, a security company's site and
+                                    identity rebuilt
+                                </dd>
+                            </div>
+                        </dl>
                     </div>
                     <div className="hidden md:block md:col-span-5 border-t border-zinc-200 dark:border-zinc-800 pt-6 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 space-y-2">
                         <p>Design systems</p>
