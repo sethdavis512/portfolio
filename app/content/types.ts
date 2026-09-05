@@ -101,3 +101,12 @@ export interface DeckMeta {
     updatedAt?: string;
     tags?: string[];
 }
+
+export interface Testimonial {
+    id: string;
+    workSlug: string;
+    quote: string;
+    author: string;
+    role: string;
+    sortOrder: number;
+}

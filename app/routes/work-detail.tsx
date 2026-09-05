@@ -7,6 +7,8 @@ import { ImageGalleryModal } from '~/components/ImageGalleryModal';
 import { ImageThumbnails } from '~/components/ImageThumbnails';
 import { Linky } from '~/components/Linky';
 import { TechStackLogos, type LogoName } from '~/components/TechStackLogos';
+import { Testimonial } from '~/components/Testimonial';
+import { getTestimonialsByWorkSlug } from '~/content/data/testimonials';
 import { getWorkBySlug } from '~/content';
 import type { WorkFrontmatter } from '~/content/types';
 import { useImageGallery } from '~/hooks/useImageGallery';
@@ -62,6 +64,7 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
     const workModule = getWorkBySlug(work.slug);
     const hasContent = work.hasContent && workModule;
 
+    const testimonials = getTestimonialsByWorkSlug(work.slug);
     const hasLinks = work.sourceUrl || work.demoUrl;
     const hasTechStack = techStack.length > 0;
 
@@ -129,6 +132,19 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
                             </>
                         )}
                     </>
+                )}
+
+                {testimonials.length > 0 && (
+                    <div className="space-y-4 pt-2">
+                        {testimonials.map(function (testimonial) {
+                            return (
+                                <Testimonial
+                                    key={testimonial.id}
+                                    testimonial={testimonial}
+                                />
+                            );
+                        })}
+                    </div>
                 )}
 
                 {hasLinks && (
