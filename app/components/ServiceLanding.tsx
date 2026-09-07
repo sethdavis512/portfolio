@@ -7,12 +7,13 @@ import { FormAlert } from './FormAlert';
 import { FormField } from './FormField';
 import { Heading } from './Heading';
 import { Linky } from './Linky';
+import { Testimonial } from './Testimonial';
 import type { ContactFieldErrors } from '~/schemas/contact';
+import { serviceOffers } from '~/content/data/service-offers';
 import type { ServiceOffer } from '~/content/data/service-offers';
-import type { WorkFrontmatter } from '~/content/types';
+import type { Testimonial as TestimonialData, WorkFrontmatter } from '~/content/types';
+import { SCOPE_CALL_URL } from '~/constants';
 import { cx } from '~/cva.config';
-
-const SCOPE_CALL_URL = 'https://tidycal.com/sethdavis512/meet-and-greet';
 
 const BUDGET_OPTIONS = [
     { value: 'Under $5k', label: 'Under $5k' },
@@ -32,6 +33,7 @@ const TIMELINE_OPTIONS = [
 interface ServiceLandingProps {
     offer: ServiceOffer;
     caseStudies: Array<Pick<WorkFrontmatter, 'slug' | 'title' | 'description' | 'thumbnailImage'>>;
+    testimonial?: TestimonialData | null;
 }
 
 interface ServiceActionData {
@@ -40,7 +42,11 @@ interface ServiceActionData {
     fieldErrors?: ContactFieldErrors;
 }
 
-export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
+export function ServiceLanding({
+    offer,
+    caseStudies,
+    testimonial
+}: ServiceLandingProps) {
     const fetcher = useFetcher<ServiceActionData>();
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -56,13 +62,15 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
     return (
         <article className="space-y-16">
             <section className="pt-4">
-                <Link
-                    to="/services"
-                    className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 hover:text-primary-700 dark:hover:text-primary-300 px-2 py-1 mb-6"
-                >
-                    <ArrowRight className="size-4 rotate-180" />
-                    All services
-                </Link>
+                {serviceOffers.length > 1 && (
+                    <Link
+                        to="/services"
+                        className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 hover:text-primary-700 dark:hover:text-primary-300 px-2 py-1 mb-6"
+                    >
+                        <ArrowRight className="size-4 rotate-180" />
+                        All services
+                    </Link>
+                )}
                 <p className="text-xs font-medium tracking-wide text-primary-700 dark:text-primary-300 mb-4">
                     {kindLabel}
                 </p>
@@ -180,11 +188,12 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                 </ol>
             </section>
 
-            {caseStudies.length > 0 && (
+            {(caseStudies.length > 0 || testimonial) && (
                 <section>
                     <Heading as="h2" size="3" className="mb-6">
                         Proof
                     </Heading>
+                    {caseStudies.length > 0 && (
                     <div
                         className={cx(
                             'grid gap-5',
@@ -223,6 +232,13 @@ export function ServiceLanding({ offer, caseStudies }: ServiceLandingProps) {
                             </Link>
                         ))}
                     </div>
+                    )}
+                    {testimonial && (
+                        <Testimonial
+                            testimonial={testimonial}
+                            className={caseStudies.length > 0 ? 'mt-5' : ''}
+                        />
+                    )}
                 </section>
             )}
 

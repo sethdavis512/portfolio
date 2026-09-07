@@ -15,7 +15,6 @@ export default {
             '/about',
             '/design-technologist',
             '/resume',
-            '/services',
             '/setup',
             '/slides',
             '/thank-you',

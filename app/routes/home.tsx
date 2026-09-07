@@ -8,7 +8,7 @@ import { CodepenLogo } from '~/components/logos/CodepenLogo';
 import { Linky } from '~/components/Linky';
 import { GitHubLogo } from '~/components/logos/GitHubLogo';
 import { XLogo } from '~/components/logos/XLogo';
-import { ContentStyles } from '~/constants';
+import { ContentStyles, SCOPE_CALL_URL } from '~/constants';
 import { cx } from '~/cva.config';
 import { Card } from '~/components/Card';
 import { ServicesCallToAction } from '~/components/ServicesCallToAction';
@@ -87,7 +87,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Button
                                 size="lg"
-                                href="https://tidycal.com/sethdavis512/meet-and-greet"
+                                href={SCOPE_CALL_URL}
                                 iconAfter={<ArrowRight className="size-4" />}
                             >
                                 Book a scope call

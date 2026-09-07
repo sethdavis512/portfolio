@@ -1,6 +1,7 @@
 import { Button } from '~/components/Button';
 import { Card } from '~/components/Card';
 import { Heading } from '~/components/Heading';
+import { SCOPE_CALL_URL } from '~/constants';
 
 interface ServicesCallToActionProps {
     className?: string;
@@ -16,16 +17,21 @@ export function ServicesCallToAction({
             <div className="flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
                 <div className="space-y-2">
                     <Heading as="h2" size="4">
-                        Need a design engineer on your next project?
+                        Need a frontend for your Contentful or Sanity
+                        build?
                     </Heading>
                     <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                        Marketing sites, design systems, AI prototypes, and
-                        fractional engagements. Every project starts with a
-                        free scope call.
+                        I build typed, server-rendered frontends against the
+                        content model your team already owns. Every project
+                        starts with a free 30-minute scope call.
                     </p>
                 </div>
-                <Button to="/services" color="primary" className="shrink-0">
-                    Reach out
+                <Button
+                    href={SCOPE_CALL_URL}
+                    color="primary"
+                    className="shrink-0"
+                >
+                    Book a scope call
                 </Button>
             </div>
         </Card>

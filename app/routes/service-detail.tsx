@@ -8,6 +8,7 @@ import {
     LEGACY_SERVICE_REDIRECTS
 } from '~/content/data/service-offers';
 import { getWorkBySlug } from '~/content';
+import { getTestimonialsByWorkSlug } from '~/content/data/testimonials';
 import { generateRouteMeta } from '~/utils/seo';
 import { validateContactForm } from '~/schemas/contact';
 
@@ -68,7 +69,11 @@ export function loader({ params }: Route.LoaderArgs) {
         })
         .filter((item): item is NonNullable<typeof item> => item !== null);
 
-    return { offer, caseStudies };
+    const testimonial = offer.testimonialWorkSlug
+        ? (getTestimonialsByWorkSlug(offer.testimonialWorkSlug)[0] ?? null)
+        : null;
+
+    return { offer, caseStudies, testimonial };
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -128,6 +133,7 @@ export default function ServiceDetailRoute({
         <ServiceLanding
             offer={loaderData.offer}
             caseStudies={loaderData.caseStudies}
+            testimonial={loaderData.testimonial}
         />
     );
 }

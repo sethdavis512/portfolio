@@ -10,3 +10,6 @@ export enum ContentStyles {
 }
 
 export const CONTACT_EMAIL = 'sethdavis512@gmail.com';
+
+export const SCOPE_CALL_URL =
+    'https://tidycal.com/sethdavis512/meet-and-greet';

@@ -1,19 +1,33 @@
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, redirect } from 'react-router';
 
 import { Button } from '~/components/Button';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 import { generateRouteMeta } from '~/utils/seo';
+import { SCOPE_CALL_URL } from '~/constants';
 import { serviceOffers } from '~/content/data/service-offers';
 
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'Services',
         descriptionContent:
-            'Design engineering services from Seth Davis: marketing sites, design systems, AI prototypes, and fractional design technologist retainers. Book a free scope call.',
+            'Headless CMS frontend development from Seth Davis: Contentful and Sanity sites with typed queries, live preview, and server rendering. Book a free scope call.',
         ogUrl: 'https://sethdavis.tech/services'
     });
+}
+
+/**
+ * With a single offer, an index listing one card is a dead click. Delete this
+ * loader (and restore '/services' to staticPaths in react-router.config.ts) to
+ * bring the index grid back.
+ */
+export function loader() {
+    const [only] = serviceOffers;
+    if (serviceOffers.length === 1 && only) {
+        throw redirect(`/services/${only.slug}`, 302);
+    }
+    return null;
 }
 
 export default function ServicesRoute() {
@@ -23,26 +37,26 @@ export default function ServicesRoute() {
                 Services
             </p>
             <Heading as="h1" className="text-5xl md:text-7xl mb-6">
-                Design engineering for teams{' '}
+                Frontends for teams on{' '}
                 <span className="italic text-primary-600 dark:text-primary-400">
-                    shipping with AI.
+                    Contentful and Sanity.
                 </span>
             </Heading>
             <p className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300 max-w-3xl mb-4">
-                Sites, design systems, and working AI prototypes, built by one
-                senior design technologist who moves at agent speed and reviews
-                like a human. Every engagement starts with a free scope call.
+                Your editors keep the CMS they chose. I build the typed,
+                server-rendered frontend on top of it. Every engagement starts
+                with a free scope call.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 max-w-3xl mb-8">
-                Not sure which shape fits?{' '}
-                <Linky href="https://tidycal.com/sethdavis512/meet-and-greet">
+                Not sure it is a fit?{' '}
+                <Linky href={SCOPE_CALL_URL}>
                     Book the call
                 </Linky>{' '}
                 and we'll figure it out together in 30 minutes.
             </p>
             <div className="mb-12 flex">
                 <Button
-                    href="https://tidycal.com/sethdavis512/meet-and-greet"
+                    href={SCOPE_CALL_URL}
                     size="lg"
                     iconAfter={<ArrowRight className="size-4" />}
                 >
