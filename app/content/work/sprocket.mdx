@@ -2,24 +2,26 @@
 title: 'Sprocket'
 slug: 'sprocket'
 status: 'PUBLISHED'
-description: 'A personal AI assistant powered by a supervisor and 12 specialized sub-agents covering relationships, journal, notes, tasks, calendar, habits, finance, and weekly reviews, all in one chat.'
+description: 'A personal productivity app where the assistant is the interface. One supervisor agent runs roughly seventy tools across contacts, tasks, calendar, journal, habits, scheduling, pages, and budget, and every domain is reachable from both chat and a normal UI.'
 cta: 'See more'
 sortOrder: 1
 heroImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/sprocket-hero.png'
 thumbnailImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-hero.png'
-about: 'Sprocket is a multi-agent personal assistant bootstrapped from Iridium, my React Router 7 starter kit, and grown into its own product on top of VoltAgent. A supervisor agent routes requests to twelve specialists (RelationshipManager, JournalCoach, NoteTaker, Planner, CalendarAssistant, HabitTracker, FinanceTracker, WeeklyReviewer, EmailDrafter, ResearchAssistant, GitHubAssistant, and CreativeAssistant), each with its own tools backed by a single Postgres database via Prisma. Every domain (contacts, interactions, journal entries, notes, tasks, events, habits, expenses) is exposed both as a normal CRUD UI and as an agent tool, so the chat surface and the manual surface stay in lockstep. Working memory persists across conversations and across agents, hooks inject temporal context into every request, and guardrails enforce input length limits and PII redaction on streamed output. Auth is Better Auth with HTTP-only sessions, and a built-in cron framework runs scheduled jobs (like a daily digest) as standalone Railway services with full run history.'
-learned: "This project was a deep exercise in agent-native architecture. Designing the supervisor/sub-agent topology forced me to think carefully about which decisions belong at the routing layer versus inside specialist prompts, and how to forward tool-call and text-delta streams cleanly to the UI. I worked through the practical realities of long-running AI memory: separating VoltAgent's memory schema from the application schema by giving each its own database, building structured working memory with Zod validation, and using RAG retrievers to pull relevant notes into agent context. The cron framework taught me Railway's cron model the hard way: minimum five-minute frequency, no exact-minute precision, UTC only, and skips rather than double-fires when a previous run is still active. I also got real reps on guardrails, middleware, and hooks as first-class abstractions, and on keeping every agent capability reachable from both human and agent surfaces."
-impact: 'Sprocket is the project I point to when someone wants to see how I think about agent-native software. It is not a wrapper around a single LLM call. It is twelve specialized agents sharing memory, a supervisor that delegates, guardrails on input and output, RAG-backed retrieval, and a UI that makes tool calls legible to the user. For anyone evaluating me for AI engineering, agent design, or full-stack roles where the assistant is the product, this is the clearest end-to-end example. It also exercises the rest of the stack I work in daily: React Router 7 with type-safe loaders and actions, Prisma, Better Auth, Tailwind with DaisyUI, Bun in development, Docker in production, and Railway for deploys and cron. Sprocket and Iridium are intentionally paired in my portfolio. Iridium is the foundation, and Sprocket is the proof that the foundation holds up under a real, opinionated product.'
+about: 'Sprocket is a personal productivity app built on VoltAgent and React Router 7, bootstrapped from Iridium, my starter kit, and grown into its own product. The chat is the primary surface, and the assistant inside it is named Spur. Spur is a Claude Sonnet 5 supervisor holding roughly seventy tools directly, delegating only three narrow jobs to Haiku sub-agents: journaling, weekly reviews, and email drafting. Every domain (contacts, interactions, journal entries, tasks, events and their checklists, habits, shareable pages, generated images) is exposed both as a normal CRUD UI and as an agent tool, so the chat surface and the manual surface stay in lockstep. On top of that sit a full scheduling engine with booking links, weekly hours, date overrides and email confirmations; a Trigger.dev task fleet for background work like image generation and booking reminders; and read/write YNAB access so budget questions get real numbers. Working memory persists across conversations and across agents in its own Postgres database, kept separate from the Prisma application schema. Hooks inject temporal context into every request, and guardrails enforce input length limits and redact PII from streamed output. Auth is Better Auth with HTTP-only sessions, and the whole thing deploys to Railway from Docker.'
+learned: "The most useful lesson was architectural, and it came from being wrong first. Sprocket originally shipped with twelve specialized sub-agents, one per domain. In practice the supervisor routed better when it simply held the tools itself, so I collapsed twelve specialists down to three and kept delegation only where a genuinely different voice or a long synthesis step was needed. Model capability moved, and the right topology moved with it. The same instinct applied to features: I cut four whole domains, including a RAG-backed notes system I had built and liked, because they were not earning their place next to a real budget integration. Beyond that, I got real reps on separating VoltAgent's memory schema from the application schema by giving each its own database, forwarding tool-call and text-delta streams cleanly so the UI can make agent work legible, and treating guardrails, hooks, and middleware as first-class abstractions rather than afterthoughts. I also replaced a hand-rolled cron setup with Trigger.dev once background work outgrew it, and I learned that a scheduling engine is deceptively hard: availability rules, timezones, date overrides, buffers, minimum notice, and slot generation all have to agree before a single booking link works."
+impact: 'Sprocket is the project I point to when someone wants to see how I think about agent-native software. It is not a wrapper around a single LLM call. It is a supervisor holding roughly seventy tools, memory that survives across conversations, guardrails on input and output, and a UI that makes every tool call legible to the user. It is also the project where I can show judgment rather than just capability, because the most important commits were the ones that deleted agents and features I had already built. For anyone evaluating me for AI engineering, agent design, or full-stack roles where the assistant is the product, this is the clearest end-to-end example. It exercises the rest of the stack I work in daily: React Router 7 with type-safe loaders and actions, Base UI components on Tailwind v4, Prisma, Better Auth, Trigger.dev, Cloudinary, Bun in development, Docker in production, and Railway for deploys. Sprocket and Iridium are intentionally paired in my portfolio. Iridium is the foundation, and Sprocket is the proof that the foundation holds up under a real, opinionated product.'
 techStack:
     [
         'typescript',
         'react',
         'react-router',
         'tailwind',
-        'daisy',
+        'baseui',
         'postgres',
         'prisma',
         'better-auth',
+        'trigger',
+        'cloudinary',
         'bun',
         'railway',
         'voltagent',
@@ -29,8 +31,26 @@ sourceUrl: ''
 demoUrl: ''
 demoUrlText: ''
 tags: ['AI', 'Agents', 'Personal Assistant']
-galleryImages: []
+galleryImages:
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-chat.png'
+      alt: 'Spur creating a page, adding text to it, and publishing it, with each tool call rendered inline in the chat and the finished public link at the end'
+      sortOrder: 0
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-tasks.png'
+      alt: 'The task board with To Do, In Progress and Done columns, showing the same tasks the agent can read and write through its tools'
+      sortOrder: 1
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-scheduling.png'
+      alt: 'The availability editor behind the booking links, with a named schedule, timezone, and per-weekday time ranges'
+      sortOrder: 2
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-booking.png'
+      alt: 'The public booking page a guest sees: meeting details, a month calendar, and generated time slots in their own timezone'
+      sortOrder: 3
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-public-page.png'
+      alt: 'A published page shared as a public link, combining a text block, a generated image, and a task with its due date'
+      sortOrder: 4
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-gallery.png'
+      alt: 'The gallery of images generated through the app, filterable by the tag of the Trigger.dev task that produced them'
+      sortOrder: 5
 hasContent: false
 createdAt: '2026-04-27T00:00:00.000Z'
-updatedAt: '2026-04-27T00:00:00.000Z'
+updatedAt: '2026-09-09T00:00:00.000Z'
 ---
