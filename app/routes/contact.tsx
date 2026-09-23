@@ -11,9 +11,15 @@ import { CodepenLogo } from '~/components/logos/CodepenLogo';
 import { GitHubLogo } from '~/components/logos/GitHubLogo';
 import { LinkedInLogo } from '~/components/logos/LinkedInLogo';
 import { XLogo } from '~/components/logos/XLogo';
+import { FormGuardFields } from '~/components/FormGuardFields';
 import { CONTACT_EMAIL } from '~/constants';
 import { getPortfolioBase } from '~/airtable';
 import { validateContactForm } from '~/schemas/contact';
+import {
+    checkSubmission,
+    formatSpamTag,
+    mintFormToken
+} from '~/utils/spam-guard';
 import { generateRouteMeta } from '~/utils/seo';
 import type { ContactFieldErrors } from '~/schemas/contact';
 import type { Route } from './+types/contact';
@@ -27,6 +33,10 @@ export function meta() {
     });
 }
 
+export function loader() {
+    return { formToken: mintFormToken() };
+}
+
 export async function action({ request }: Route.ActionArgs) {
     const formData = await request.formData();
     const validation = validateContactForm(formData);
@@ -35,10 +45,24 @@ export async function action({ request }: Route.ActionArgs) {
         return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
     }
 
-    // The Airtable "Customers" table has no "Offer" field, so the lead source
-    // is folded into Note instead of written as a separate column.
     const message = validation.data.note?.trim();
-    const note = message ? `[Contact form] ${message}` : '[Contact form]';
+    const spam = checkSubmission({ formData, note: message });
+
+    // Bots get the success response without a record, so the form looks
+    // unguarded from the outside.
+    if (spam.verdict === 'bot') {
+        console.warn('Dropped contact submission:', spam.reasons.join(', '));
+        return data({ success: true }, { status: 200 });
+    }
+
+    // The Airtable "Customers" table has no "Offer" or "Status" field, so the
+    // lead source and the spam verdict are both folded into Note.
+    const note = [
+        formatSpamTag(spam),
+        message ? `[Contact form] ${message}` : '[Contact form]'
+    ]
+        .filter(Boolean)
+        .join('\n\n');
 
     try {
         const response = await getPortfolioBase()('Customers').create([
@@ -90,7 +114,7 @@ const socials = [
     }
 ];
 
-export default function ContactRoute() {
+export default function ContactRoute({ loaderData }: Route.ComponentProps) {
     const fetcher = useFetcher<ContactActionData>();
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -147,7 +171,7 @@ export default function ContactRoute() {
                 </div>
                 <fetcher.Form
                     method="POST"
-                    className="space-y-4 max-w-xl"
+                    className="relative space-y-4 max-w-xl"
                     ref={formRef}
                 >
                     <input
@@ -155,6 +179,7 @@ export default function ContactRoute() {
                         name="offer"
                         value="general-contact"
                     />
+                    <FormGuardFields token={loaderData.formToken} />
                     {fetcher.data?.success ? (
                         <FormAlert variant="success">
                             Thanks for reaching out. Your message is in. I'll be

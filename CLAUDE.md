@@ -218,6 +218,7 @@ Create a new route file that calls `getDeck('my-talk')` + `getSlideNavigation(..
 - Use classic `function` syntax over arrow functions
 - MDX files must escape `<` characters outside code blocks (use `&lt;` or `≤`)
 - Airtable is used for services contact and interest forms (separate from content)
+- Contact forms run through `app/utils/spam-guard.ts` (honeypot + signed timestamp + content score). Render `<FormGuardFields token={...} />` inside any new form that posts to Airtable and mint the token in the route loader. Set `FORM_TOKEN_SECRET` in the environment; without it the timestamp is unsigned and timing checks are skipped. Suspect submissions still reach Airtable, prefixed `[Suspect · score N: ...]` in Note
 
 ## Design Context
 

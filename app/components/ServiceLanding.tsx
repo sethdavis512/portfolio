@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { Button } from './Button';
 import { FormAlert } from './FormAlert';
 import { FormField } from './FormField';
+import { FormGuardFields } from './FormGuardFields';
 import { Heading } from './Heading';
 import { Linky } from './Linky';
 import { Testimonial } from './Testimonial';
@@ -34,6 +35,7 @@ interface ServiceLandingProps {
     offer: ServiceOffer;
     caseStudies: Array<Pick<WorkFrontmatter, 'slug' | 'title' | 'description' | 'thumbnailImage'>>;
     testimonial?: TestimonialData | null;
+    formToken: string;
 }
 
 interface ServiceActionData {
@@ -45,7 +47,8 @@ interface ServiceActionData {
 export function ServiceLanding({
     offer,
     caseStudies,
-    testimonial
+    testimonial,
+    formToken
 }: ServiceLandingProps) {
     const fetcher = useFetcher<ServiceActionData>();
     const formRef = useRef<HTMLFormElement>(null);
@@ -285,10 +288,11 @@ export function ServiceLanding({
                 </div>
                 <fetcher.Form
                     method="POST"
-                    className="space-y-4 max-w-xl"
+                    className="relative space-y-4 max-w-xl"
                     ref={formRef}
                 >
                     <input type="hidden" name="offer" value={offer.slug} />
+                    <FormGuardFields token={formToken} />
                     {fetcher.data?.success ? (
                         <FormAlert variant="success">
                             Thanks. Your inquiry is in. I'll be in touch within

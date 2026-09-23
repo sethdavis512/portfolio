@@ -11,6 +11,11 @@ import { getWorkBySlug } from '~/content';
 import { getTestimonialsByWorkSlug } from '~/content/data/testimonials';
 import { generateRouteMeta } from '~/utils/seo';
 import { validateContactForm } from '~/schemas/contact';
+import {
+    checkSubmission,
+    formatSpamTag,
+    mintFormToken
+} from '~/utils/spam-guard';
 
 export function meta({ data: loaderData }: Route.MetaArgs) {
     if (!loaderData) {
@@ -73,7 +78,7 @@ export function loader({ params }: Route.LoaderArgs) {
         ? (getTestimonialsByWorkSlug(offer.testimonialWorkSlug)[0] ?? null)
         : null;
 
-    return { offer, caseStudies, testimonial };
+    return { offer, caseStudies, testimonial, formToken: mintFormToken() };
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -84,9 +89,18 @@ export async function action({ request }: Route.ActionArgs) {
         return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
     }
 
-    // The Airtable "Customers" table only has First name/Last name/Email/Note,
-    // so the qualifying fields are folded into Note as labeled lines.
     const { offer, company, budget, timeline, note: message } = validation.data;
+    const spam = checkSubmission({ formData, note: message });
+
+    // Bots get the success response without a record, so the form looks
+    // unguarded from the outside.
+    if (spam.verdict === 'bot') {
+        console.warn('Dropped service inquiry:', spam.reasons.join(', '));
+        return data({ success: true }, { status: 200 });
+    }
+
+    // The Airtable "Customers" table only has First name/Last name/Email/Note,
+    // so the qualifying fields and the spam verdict are folded into Note.
     const noteLines = [
         offer && `Service: ${offer}`,
         company && `Company: ${company}`,
@@ -94,8 +108,9 @@ export async function action({ request }: Route.ActionArgs) {
         timeline && `Timeline: ${timeline}`
     ].filter(Boolean);
     const note =
-        [noteLines.join('\n'), message?.trim()].filter(Boolean).join('\n\n') ||
-        '[Service inquiry]';
+        [formatSpamTag(spam), noteLines.join('\n'), message?.trim()]
+            .filter(Boolean)
+            .join('\n\n') || '[Service inquiry]';
 
     try {
         const response = await getPortfolioBase()('Customers').create([
@@ -134,6 +149,7 @@ export default function ServiceDetailRoute({
             offer={loaderData.offer}
             caseStudies={loaderData.caseStudies}
             testimonial={loaderData.testimonial}
+            formToken={loaderData.formToken}
         />
     );
 }
