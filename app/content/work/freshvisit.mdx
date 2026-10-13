@@ -1,0 +1,34 @@
+---
+title: "FreshVisit"
+slug: "freshvisit"
+status: "PUBLISHED"
+description: "Name a task and a start page, and FreshVisit clicks through the site like a first-time visitor would, then comes back with a video of the run, every screen and click, and a verdict: Found, Stuck, or Out of steps."
+cta: "See more"
+sortOrder: -2
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/freshvisit-landing.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-landing.png"
+about: "FreshVisit is a SaaS product that shows how a website holds up for a first-time visitor. You give it a public start URL and a goal in plain English, like \"find the return policy,\" and it drives a real Chrome browser through the site on desktop, tablet, and phone. Every screen is captured with the clicked element marked, the run is recorded as a video with an annotated cursor, and the screen that answers the goal has the answer highlighted. Explore mode crawls a site's own links instead, and audits check up to 24 pages for WCAG accessibility failures, inconsistent buttons and form fields, and slow or broken page loads. It is built on React Router 8 with Better Auth, Prisma and PostgreSQL, Trigger.dev for runs, Cloudinary for screenshots and video, Polar for billing, and an MCP endpoint so Claude can start runs and read the results."
+learned: "The core lesson was that a browsing agent works better as a series of narrow, typed questions than as one open-ended prompt. On every screen FreshVisit asks Jev, TypeSafe's System One model, whether the goal is met, whether it can still be reached, and which of up to 200 elements to click next, and gets back probabilities and a confidence instead of free text to parse. I drove the browser through agent-browser's accessibility-tree snapshots rather than CSS selectors, which gave the model compact, meaningful choices like \"button 'Pricing'\" and made clicks one command. Running each journey in its own Trigger.dev container taught me retries, timeouts, and realtime progress feeds for long jobs that need a real browser. I also learned a lot about playing fair with other people's sites: staying on the start domain, stopping cleanly at CAPTCHAs, and never clicking anything that signs out, pays, or sends."
+impact: "FreshVisit is a complete product I designed, built, and shipped on my own, from the landing page and pricing to team workspaces, PDF reports, and transactional email. It shows I can turn an AI capability into something a product manager, designer, or QA lead can use without knowing a model is involved. The work spans browser automation, AI decision-making, accessibility auditing, background jobs, media pipelines, billing, and auth, all in one codebase with unit and end-to-end tests. Persona docs and screen-by-screen walkthroughs shaped what got built, so the product decisions are as deliberate as the engineering."
+techStack: ["typescript", "react", "react-router", "tailwind", "baseui", "postgres", "prisma", "better-auth", "trigger", "cloudinary", "polar", "mcp", "bun", "railway"]
+sourceUrl: ""
+demoUrl: "https://www.freshvisit.app"
+demoUrlText: "Try FreshVisit"
+tags: []
+galleryImages:
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-landing.png"
+  alt: "FreshVisit landing page with a recorded run finding CarMax's return policy"
+  sortOrder: 0
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-goal-run.webp"
+  alt: "A finished goal journey with its run video, chapters per screen, and desktop, tablet, and mobile tabs"
+  sortOrder: 1
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-goal-viewer.webp"
+  alt: "The screen viewer on the final step, with the pricing card that answers the goal outlined"
+  sortOrder: 2
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-audit-overview.webp"
+  alt: "An audit report summarizing accessibility issues, inconsistent buttons and form fields, and page load problems"
+  sortOrder: 3
+hasContent: false
+createdAt: "2026-10-07T00:00:00.000Z"
+updatedAt: "2026-10-07T00:00:00.000Z"
+---
