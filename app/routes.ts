@@ -9,8 +9,6 @@ export default [
     layout('routes/wrapper.tsx', [
         index('routes/home.tsx'),
         route('about', 'routes/about.tsx'),
-        route('services', 'routes/services.tsx'),
-        route('services/:slug', 'routes/service-detail.tsx'),
         route('contact', 'routes/contact.tsx'),
         route('writing', 'routes/writing.tsx'),
         route('til', 'routes/til.tsx'),
