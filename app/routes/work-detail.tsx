@@ -1,6 +1,6 @@
 import { MdxContent } from '~/components/MdxContent';
 import { Card } from '~/components/Card';
-import { ServicesCallToAction } from '~/components/ServicesCallToAction';
+import { HiringCallToAction } from '~/components/HiringCallToAction';
 import { Heading } from '~/components/Heading';
 import { HeroImage } from '~/components/HeroImage';
 import { ImageGalleryModal } from '~/components/ImageGalleryModal';
@@ -173,7 +173,7 @@ function WorkLayout({ work }: { work: WorkFrontmatter }) {
                     </>
                 )}
 
-                <ServicesCallToAction className="mt-10" />
+                <HiringCallToAction className="mt-10" />
             </div>
 
             {hasGallery && (

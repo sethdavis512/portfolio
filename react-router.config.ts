@@ -6,7 +6,7 @@ export default {
     ssr: true,
     async prerender() {
         // NOTE: Do not prerender routes that export an `action` (currently
-        // /contact and /services/:slug). A prerendered route emits a static
+        // /contact). A prerendered route emits a static
         // `<path>.data` file that shadows the server action, so form POSTs
         // never run the action and the client throws a route error. Those
         // routes are server-rendered on demand instead (ssr: true).

@@ -22,7 +22,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Contact',
         descriptionContent:
-            'Get in touch with Seth Davis. Email directly, book a call, or send a message about a role, project, or collaboration.',
+            'Get in touch with Seth Davis. Email directly or send a message about a role or a collaboration.',
         ogUrl: 'https://sethdavis.tech/contact'
     });
 }
@@ -107,11 +107,11 @@ export default function ContactRoute() {
                     Get in touch
                 </Heading>
                 <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-8">
-                    Hiring, a project, or just want to compare notes? The fastest
+                    Hiring, or just want to compare notes? The fastest
                     way to reach me is email. Prefer a form? There's one below and
                     it lands straight in my inbox.
                 </p>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div>
                     <a
                         href={`mailto:${CONTACT_EMAIL}`}
                         className="inline-flex items-center gap-2 rounded-lg bg-primary-400 hover:bg-primary-300 text-black px-4 py-3 text-sm font-medium shadow-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
@@ -119,9 +119,6 @@ export default function ContactRoute() {
                         <Mail className="size-5" />
                         {CONTACT_EMAIL}
                     </a>
-                    <Linky href="https://tidycal.com/sethdavis512/meet-and-greet">
-                        Or book a 30-minute call
-                    </Linky>
                 </div>
                 <div className="mt-8 flex items-center gap-6">
                     {socials.map(({ href, label, Logo }) => (
@@ -197,7 +194,7 @@ export default function ContactRoute() {
                         as="textarea"
                         required
                         rows={5}
-                        placeholder="A role, a project, an idea, a question..."
+                        placeholder="A role, an idea, a question..."
                         error={fetcher.data?.fieldErrors?.note}
                     />
                     <Button

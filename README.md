@@ -21,7 +21,7 @@ Seth Davis's personal portfolio — a server-rendered React Router v7 app with a
 - **Components**: [CVA](https://cva.style/) (Class Variance Authority) + `tailwind-merge`, Radix UI primitives, `lucide-react` icons
 - **Syntax highlighting**: [Shiki](https://shiki.style/)
 - **Command palette**: [cmdk](https://cmdk.paco.me/)
-- **Forms**: [Airtable](https://airtable.com/) (contact + services interest forms)
+- **Forms**: [Airtable](https://airtable.com/) (contact form)
 - **Analytics**: [PostHog](https://posthog.com/)
 - **Build**: Vite
 
@@ -42,7 +42,7 @@ A single React Router v7 application — no monorepo, no backend service.
 
 - **Routing**: config-based in `app/routes.ts`. Most routes are wrapped by the `routes/wrapper.tsx` layout; the full-screen slideshow stage and `sitemap.xml` sit outside it.
 - **Routes**: in `app/routes/`. Loaders return serializable data only; components read it via `loaderData` props (not `useLoaderData`). MDX components are resolved at module/render scope, never returned from loaders.
-- **Pre-rendering**: `react-router.config.ts` walks the content directories at build time to generate static paths for work, TIL, and slide-deck pages. Routes that export an `action` (e.g. `/contact`, `/services/:slug`) are intentionally **not** pre-rendered so their form POSTs hit the server action.
+- **Pre-rendering**: `react-router.config.ts` walks the content directories at build time to generate static paths for work, TIL, and slide-deck pages. Routes that export an `action` (e.g. `/contact`) are intentionally **not** pre-rendered so their form POSTs hit the server action.
 - **Content loaders**: `app/content/work.ts` and `app/content/posts.ts` use `import.meta.glob` to eagerly load MDX modules. Slides load via `app/content/slides.ts`.
 - **Server entry**: `main.ts` boots a Hono server, serves static assets from `build/client`, and hands requests to the React Router build.
 

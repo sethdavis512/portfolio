@@ -1,6 +1,5 @@
 import type { Route } from './+types/sitemap.xml';
 import { getAllWorkSlugs, getAllTilSlugs } from '~/content';
-import { getAllServiceSlugs } from '~/content/data/service-offers';
 
 interface SitemapRoute {
     url: string;
@@ -19,7 +18,8 @@ export function loader({ request }: Route.LoaderArgs) {
         { url: '/design-technologist', changefreq: 'monthly', priority: 0.8 },
         { url: '/truck', changefreq: 'yearly', priority: 0.4 },
         { url: '/setup', changefreq: 'yearly', priority: 0.5 },
-        { url: '/thank-you', changefreq: 'yearly', priority: 0.3 }
+        { url: '/contact', changefreq: 'yearly', priority: 0.6 },
+        { url: '/slides', changefreq: 'monthly', priority: 0.6 }
     ];
 
     const workRoutes: SitemapRoute[] = getAllWorkSlugs().map((slug) => ({
@@ -34,17 +34,10 @@ export function loader({ request }: Route.LoaderArgs) {
         priority: 0.7
     }));
 
-    const serviceRoutes: SitemapRoute[] = getAllServiceSlugs().map((slug) => ({
-        url: `/services/${slug}`,
-        changefreq: 'monthly' as const,
-        priority: 0.9
-    }));
-
     const allRoutes = [
         ...staticRoutes,
         ...workRoutes,
-        ...tilRoutes,
-        ...serviceRoutes
+        ...tilRoutes
     ];
 
     // Generate XML sitemap

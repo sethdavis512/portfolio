@@ -8,18 +8,18 @@ import { CodepenLogo } from '~/components/logos/CodepenLogo';
 import { Linky } from '~/components/Linky';
 import { GitHubLogo } from '~/components/logos/GitHubLogo';
 import { XLogo } from '~/components/logos/XLogo';
-import { ContentStyles, SCOPE_CALL_URL } from '~/constants';
+import { ContentStyles } from '~/constants';
 import { cx } from '~/cva.config';
 import { Card } from '~/components/Card';
-import { ServicesCallToAction } from '~/components/ServicesCallToAction';
+import { HiringCallToAction } from '~/components/HiringCallToAction';
 import { getAllDecks } from '~/content';
 import type { Route } from './+types/home';
 
 export function meta() {
     return generateRouteMeta({
-        pageTitle: 'Seth Davis | Design Technologist',
+        pageTitle: 'Design Technologist',
         descriptionContent:
-            'Seth Davis helps product teams ship better interfaces faster, through design systems, AI tooling, and front-end engineering. Based in Austin, Texas.',
+            'Seth Davis helps product teams ship better interfaces faster, through design systems and AI tooling. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
     });
 }
@@ -32,7 +32,7 @@ function HomeSection({
     className?: string;
 }) {
     return (
-        <section className={cx(`container mx-auto mb-8 md:py-8`, className)}>
+        <section className={cx(`mb-8 md:py-8`, className)}>
             {children}
         </section>
     );
@@ -75,11 +75,10 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <div className="md:col-span-7 border-t border-zinc-200 dark:border-zinc-800 pt-6">
                         <p className="text-xl md:text-2xl font-medium max-w-2xl mb-4 text-zinc-800 dark:text-zinc-200">
                             I help product teams ship better interfaces
-                            faster, through design systems, AI tooling, and
-                            front-end engineering.
+                            faster, through design systems and AI tooling.
                         </p>
                         <p className="mb-10 text-zinc-600 dark:text-zinc-400">
-                            Open to new engagements as a{' '}
+                            Open to new roles as a{' '}
                             <Linky to="/design-technologist">
                                 {ContentStyles.CURRENT_JOB_TITLE}
                             </Linky>
@@ -87,19 +86,15 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Button
                                 size="lg"
-                                href={SCOPE_CALL_URL}
+                                to="/work"
                                 iconAfter={<ArrowRight className="size-4" />}
                             >
-                                Book a scope call
-                            </Button>
-                            <Button size="lg" to="/work" variant="outline">
                                 See my work
                             </Button>
+                            <Button size="lg" to="/resume" variant="outline">
+                                View resume
+                            </Button>
                         </div>
-                        <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-                            Free, 30 minutes. You leave with a written scope and
-                            a fixed price either way.
-                        </p>
                         <dl className="mt-8 grid gap-6 sm:grid-cols-2 border-t border-zinc-200 dark:border-zinc-800 pt-6">
                             <div>
                                 <dt className="text-2xl font-semibold tracking-tight text-primary-600 dark:text-primary-400">
@@ -125,7 +120,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <div className="hidden md:block md:col-span-5 border-t border-zinc-200 dark:border-zinc-800 pt-6 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 space-y-2">
                         <p>Design systems</p>
                         <p>AI tooling</p>
-                        <p>Front-end engineering</p>
                     </div>
                 </div>
             </HomeSection>
@@ -236,7 +230,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </div>
             </HomeSection>
             <HomeSection>
-                <ServicesCallToAction />
+                <HiringCallToAction />
             </HomeSection>
             {decks.length > 0 && (
                 <HomeSection>

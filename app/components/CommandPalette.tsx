@@ -31,11 +31,6 @@ const pagesLinks = [
         label: 'Resume'
     },
     {
-        to: '/services',
-        icon: LinkIcon,
-        label: 'Services'
-    },
-    {
         to: '/contact',
         icon: LinkIcon,
         label: 'Contact'

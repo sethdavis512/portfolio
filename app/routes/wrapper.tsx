@@ -39,13 +39,6 @@ const NAV_ITEMS: NavItem[] = [
     },
     {
         type: 'internal',
-        to: '/services',
-        label: 'Services',
-        ariaLabel: 'View my services and offerings',
-        activePaths: ['/services']
-    },
-    {
-        type: 'internal',
         to: '/about',
         label: 'About',
         ariaLabel: 'Learn more about me'

@@ -217,7 +217,7 @@ Create a new route file that calls `getDeck('my-talk')` + `getSlideNavigation(..
 - Avoid `useEffect` in React Router 7 routes, prefer loaders/actions
 - Use classic `function` syntax over arrow functions
 - MDX files must escape `<` characters outside code blocks (use `&lt;` or `≤`)
-- Airtable is used for services contact and interest forms (separate from content)
+- Airtable stores contact form submissions (separate from content)
 
 ## Design Context
 

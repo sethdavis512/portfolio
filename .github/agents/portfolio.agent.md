@@ -19,7 +19,7 @@ This is a full-stack monorepo:
 **Frontend (`web/`)**: React Router v7 with SSR, TypeScript, TailwindCSS, PostHog analytics
 
 - Pre-rendered pages: `/work`, `/work/*` (generated at build time)
-- Dynamic routes: `/blog`, `/about`, `/services`, `/resume`
+- Dynamic routes: `/blog`, `/about`, `/resume`
 - Server-side data fetching via GraphQL
 
 **Backend (`cms/`)**: KeystoneJS 6 headless CMS with PostgreSQL

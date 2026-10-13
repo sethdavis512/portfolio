@@ -21,7 +21,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Resume',
         descriptionContent:
-            "View Seth Davis's resume. Design Technologist with 9+ years of experience helping product teams ship better interfaces with design systems, AI tooling, and front-end engineering. Available for new engagements.",
+            `View Seth Davis's resume. Design Technologist with ${new Date().getFullYear() - 2016}+ years of experience helping product teams ship better interfaces with design systems and AI tooling. Open to new roles.`,
         ogUrl: 'https://sethdavis.tech/resume'
     });
 }
@@ -69,7 +69,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 </a>
                 <span className="hidden sm:inline text-zinc-400 dark:text-zinc-600">·</span>
                 <span>
-                    Hiring or have a project?{' '}
+                    Hiring?{' '}
                     <Linky to="/contact">Send me a message</Linky>
                 </span>
             </div>
@@ -77,11 +77,11 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <Heading as="h2" size="2">
                     Summary
                 </Heading>
-                <p>{`Software Engineer with ${yearsAsDeveloper}+ years of experience delivering accessible, user-centric interfaces for scalable platforms, enabling faster teams and better user outcomes.`}</p>
+                <p>{`Design Technologist with ${yearsAsDeveloper}+ years of experience delivering accessible, user-centric interfaces for scalable platforms, enabling faster teams and better user outcomes.`}</p>
             </ResumeSection>
             <ResumeSection>
                 <Heading as="h2" size="2">
-                    Software Engineer Skills
+                    Skills
                 </Heading>
                 <div className="flex flex-wrap items-center gap-2">
                     {loaderData.skills.map(function (skill) {
