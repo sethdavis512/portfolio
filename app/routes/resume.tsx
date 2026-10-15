@@ -70,7 +70,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <span className="hidden sm:inline text-zinc-400 dark:text-zinc-600">·</span>
                 <span>
                     Hiring?{' '}
-                    <Linky to="/contact">Send me a message</Linky>
+                    <Linky to="/contact">Get in touch</Linky>
                 </span>
             </div>
             <ResumeSection>

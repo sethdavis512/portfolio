@@ -1,10 +1,5 @@
-import { ArrowRight, LoaderIcon, Mail } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import { data, useFetcher } from 'react-router';
+import { Mail } from 'lucide-react';
 
-import { Button } from '~/components/Button';
-import { FormAlert } from '~/components/FormAlert';
-import { FormField } from '~/components/FormField';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 import { CodepenLogo } from '~/components/logos/CodepenLogo';
@@ -12,67 +7,15 @@ import { GitHubLogo } from '~/components/logos/GitHubLogo';
 import { LinkedInLogo } from '~/components/logos/LinkedInLogo';
 import { XLogo } from '~/components/logos/XLogo';
 import { CONTACT_EMAIL } from '~/constants';
-import { getPortfolioBase } from '~/airtable';
-import { validateContactForm } from '~/schemas/contact';
 import { generateRouteMeta } from '~/utils/seo';
-import type { ContactFieldErrors } from '~/schemas/contact';
-import type { Route } from './+types/contact';
 
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'Contact',
         descriptionContent:
-            'Get in touch with Seth Davis. Email directly or send a message about a role or a collaboration.',
+            'Get in touch with Seth Davis. Email directly about a role or a collaboration.',
         ogUrl: 'https://sethdavis.tech/contact'
     });
-}
-
-export async function action({ request }: Route.ActionArgs) {
-    const formData = await request.formData();
-    const validation = validateContactForm(formData);
-
-    if (!validation.success) {
-        return data({ fieldErrors: validation.fieldErrors }, { status: 400 });
-    }
-
-    // The Airtable "Customers" table has no "Offer" field, so the lead source
-    // is folded into Note instead of written as a separate column.
-    const message = validation.data.note?.trim();
-    const note = message ? `[Contact form] ${message}` : '[Contact form]';
-
-    try {
-        const response = await getPortfolioBase()('Customers').create([
-            {
-                fields: {
-                    'First name': validation.data.firstName,
-                    'Last name': validation.data.lastName,
-                    Email: validation.data.email,
-                    Note: note
-                }
-            }
-        ]);
-
-        if (!response || response.length === 0) {
-            throw new Error('No record created in Airtable');
-        }
-
-        return data({ success: true }, { status: 200 });
-    } catch (error) {
-        console.error('Error saving contact message:', error);
-
-        return data(
-            {
-                error: 'There was an error sending your message. Please try again later.'
-            },
-            { status: 500 }
-        );
-    }
-}
-
-interface ContactActionData {
-    success?: boolean;
-    error?: string;
-    fieldErrors?: ContactFieldErrors;
 }
 
 const socials = [
@@ -91,15 +34,6 @@ const socials = [
 ];
 
 export default function ContactRoute() {
-    const fetcher = useFetcher<ContactActionData>();
-    const formRef = useRef<HTMLFormElement>(null);
-
-    useEffect(() => {
-        if (fetcher.data?.success && formRef.current) {
-            formRef.current.reset();
-        }
-    }, [fetcher.data]);
-
     return (
         <article className="max-w-3xl mx-auto space-y-12">
             <section>
@@ -107,9 +41,9 @@ export default function ContactRoute() {
                     Get in touch
                 </Heading>
                 <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-8">
-                    Hiring, or just want to compare notes? The fastest
-                    way to reach me is email. Prefer a form? There's one below and
-                    it lands straight in my inbox.
+                    Hiring, or just want to compare notes? Email is the
+                    fastest way to reach me, or find me on any of the
+                    socials below.
                 </p>
                 <div>
                     <a
@@ -127,94 +61,6 @@ export default function ContactRoute() {
                         </Linky>
                     ))}
                 </div>
-            </section>
-
-            <section
-                id="message"
-                className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-8 md:p-10"
-            >
-                <div className="max-w-xl mb-6">
-                    <Heading as="h2" size="3" className="mb-3">
-                        Send a message
-                    </Heading>
-                    <p className="text-zinc-700 dark:text-zinc-300">
-                        Tell me a bit about what you have in mind. I read every
-                        message and reply within one business day.
-                    </p>
-                </div>
-                <fetcher.Form
-                    method="POST"
-                    className="space-y-4 max-w-xl"
-                    ref={formRef}
-                >
-                    <input
-                        type="hidden"
-                        name="offer"
-                        value="general-contact"
-                    />
-                    {fetcher.data?.success ? (
-                        <FormAlert variant="success">
-                            Thanks for reaching out. Your message is in. I'll be
-                            in touch within one business day.
-                        </FormAlert>
-                    ) : fetcher.data?.error ? (
-                        <FormAlert variant="error">
-                            There was an error sending your message.
-                            <br />
-                            Please try again later.
-                        </FormAlert>
-                    ) : null}
-                    <div className="grid gap-4 md:grid-cols-2">
-                        <FormField
-                            label="First name"
-                            name="firstName"
-                            required
-                            placeholder="Your first name"
-                            error={fetcher.data?.fieldErrors?.firstName}
-                        />
-                        <FormField
-                            label="Last name"
-                            name="lastName"
-                            required
-                            placeholder="Your last name"
-                            error={fetcher.data?.fieldErrors?.lastName}
-                        />
-                    </div>
-                    <FormField
-                        label="Email address"
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="you@example.com"
-                        error={fetcher.data?.fieldErrors?.email}
-                    />
-                    <FormField
-                        label="What's on your mind?"
-                        name="note"
-                        as="textarea"
-                        required
-                        rows={5}
-                        placeholder="A role, an idea, a question..."
-                        error={fetcher.data?.fieldErrors?.note}
-                    />
-                    <Button
-                        type="submit"
-                        size="lg"
-                        disabled={fetcher.state !== 'idle'}
-                        iconBefore={
-                            fetcher.state !== 'idle' ? (
-                                <LoaderIcon className="animate-spin size-4" />
-                            ) : undefined
-                        }
-                        iconAfter={
-                            fetcher.state === 'idle' ? (
-                                <ArrowRight className="size-4" />
-                            ) : undefined
-                        }
-                    >
-                        {fetcher.state !== 'idle' ? 'Sending...' : 'Send message'}
-                    </Button>
-                </fetcher.Form>
             </section>
         </article>
     );

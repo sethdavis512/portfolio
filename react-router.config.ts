@@ -5,14 +5,14 @@ import type { Config } from '@react-router/dev/config';
 export default {
     ssr: true,
     async prerender() {
-        // NOTE: Do not prerender routes that export an `action` (currently
-        // /contact). A prerendered route emits a static
-        // `<path>.data` file that shadows the server action, so form POSTs
-        // never run the action and the client throws a route error. Those
-        // routes are server-rendered on demand instead (ssr: true).
+        // NOTE: Do not prerender routes that export an `action`. A
+        // prerendered route emits a static `<path>.data` file that shadows
+        // the server action, so form POSTs never run the action and the
+        // client throws a route error. Serve those on demand (ssr: true).
         const staticPaths = [
             '/',
             '/about',
+            '/contact',
             '/design-technologist',
             '/resume',
             '/setup',

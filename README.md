@@ -21,7 +21,6 @@ Seth Davis's personal portfolio — a server-rendered React Router v7 app with a
 - **Components**: [CVA](https://cva.style/) (Class Variance Authority) + `tailwind-merge`, Radix UI primitives, `lucide-react` icons
 - **Syntax highlighting**: [Shiki](https://shiki.style/)
 - **Command palette**: [cmdk](https://cmdk.paco.me/)
-- **Forms**: [Airtable](https://airtable.com/) (contact form)
 - **Analytics**: [PostHog](https://posthog.com/)
 - **Build**: Vite
 
@@ -64,7 +63,6 @@ app/
 │   ├── slides.ts      # Slides loader
 │   └── types.ts       # Content TypeScript interfaces
 ├── hooks/             # React hooks
-├── schemas/           # Zod schemas
 ├── utils/             # Utilities
 ├── cva.config.ts      # CVA + tailwind-merge config
 ├── app.css            # Tailwind + view-transition styles
