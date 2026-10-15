@@ -5,8 +5,8 @@ status: "PUBLISHED"
 description: "A template for building full-featured CLI tools with Bun, Commander, and Inquirer. Clone it, add your commands, ship a standalone binary."
 cta: "View project"
 sortOrder: 43
-heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/placeholder-terminal.png"
-thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/placeholder-terminal.png"
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/buncli-hero.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/buncli-hero.png"
 about: "buncli is a starter template for building interactive command-line tools with Bun. It pairs Commander for command parsing, options, and subcommands with @inquirer/prompts for guided user input, all running on Bun's fast TypeScript-native runtime. The template ships with a working greet command that demonstrates the pattern: define the command with Commander, prompt for missing input with Inquirer, and handle Ctrl+C gracefully. From there you add your own commands, wire up Bun Shell for system operations, and compile to a standalone binary that runs anywhere with zero dependencies."
 learned: "Building this template clarified how much friction Bun removes from CLI development. There is no compile step for TypeScript, no bundler config, and no separate test runner to install. Bun Shell replaces child_process and execa with tagged template literals that feel native. The compile target produces a self-contained binary that embeds the Bun runtime, so distributing internal tools to teammates who do not have a JavaScript runtime installed is a non-issue. Cross-compilation to Linux, macOS, and Windows from a single machine means CI can produce platform binaries in one pass."
 impact: "Most teams have a graveyard of bash scripts and one-off Python utilities that no one maintains because they are painful to extend and impossible to distribute. buncli gives a structured starting point that is easy to hand to any TypeScript developer. The use cases are broad: project scaffolding, deployment workflows, environment status checks, onboarding automation, incident response runbooks, secrets rotation, audit reporting, and internal data lookups. Because Bun compiles to a standalone binary, the resulting tool can be dropped into CI pipelines, handed to non-engineers, or hosted as a GitHub Release asset without requiring any runtime installation."
@@ -15,7 +15,10 @@ sourceUrl: "https://github.com/sethdavis512/buncli"
 demoUrl: ""
 demoUrlText: ""
 tags: []
-galleryImages: []
+galleryImages:
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/buncli-two-readers.png"
+  alt: "One prompt splitting into an interactive menu for people and structured JSON for an AI agent"
+  sortOrder: 0
 hasContent: true
 createdAt: "2026-04-14T00:00:00.000Z"
 updatedAt: "2026-04-14T00:00:00.000Z"
