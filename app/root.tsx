@@ -13,6 +13,7 @@ import { cx } from '~/cva.config';
 import { Heading } from './components/Heading';
 import { CommandPalette } from '~/components/CommandPalette';
 import { getPublishedWorks } from '~/content';
+import { POSTHOG_PROXY_PATH, toBrowserPath } from '../server/posthog-paths';
 
 import type { Route } from './+types/root';
 
@@ -33,9 +34,10 @@ function PosthogInit() {
         if (window.location.hostname === 'localhost') return;
 
         posthog.init('phc_NIVP9tJ3sH5xgM3DFKV4ADJFOJb14DCG6KBMzGiHPeC', {
-            // Proxied through our own server (see server/index.ts) so ad blockers don't drop events
-            api_host: '/lantern',
+            // Proxied through our own server under renamed paths (server/posthog-paths.ts) so ad blockers don't drop events
+            api_host: POSTHOG_PROXY_PATH,
             ui_host: 'https://us.posthog.com',
+            rewriteRequestPath: rewritePostHogPath,
             // Pageviews on client-side navigation, plus scroll depth on $pageleave.
             defaults: '2026-01-30',
             // Crawlers that run JS but aren't on posthog-js's built-in bot list (Sogou).
@@ -48,6 +50,14 @@ function PosthogInit() {
     }, []);
 
     return null;
+}
+
+function rewritePostHogPath(url: URL) {
+    if (url.pathname.startsWith(`${POSTHOG_PROXY_PATH}/`)) {
+        const posthogPath = url.pathname.slice(POSTHOG_PROXY_PATH.length);
+        url.pathname = POSTHOG_PROXY_PATH + toBrowserPath(posthogPath);
+    }
+    return url;
 }
 
 /** `?internal=1` marks this browser as Seth's so PostHog's internal-traffic filter drops it; `?internal=0` clears it. */
