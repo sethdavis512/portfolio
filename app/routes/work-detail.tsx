@@ -318,7 +318,7 @@ function Filmstrip({
             <ul className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:thin]">
                 {images.map(function (image, index) {
                     return (
-                        <li key={image.src} className="shrink-0 snap-start">
+                        <li key={`${index}-${image.src}`} className="shrink-0 snap-start">
                             <button
                                 type="button"
                                 onClick={function () {
