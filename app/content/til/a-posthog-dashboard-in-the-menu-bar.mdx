@@ -1,0 +1,68 @@
+---
+title: "A PostHog Dashboard in the Menu Bar"
+slug: "a-posthog-dashboard-in-the-menu-bar"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["electron", "posthog", "hogql", "desktop"]
+excerpt: "I wanted my PostHog numbers one click away, so I built Hog Watch, an Electron tray app. Along the way I learned how tray windows really work, how much HogQL can do in one query, and what it takes to gate a desktop app behind a license key."
+createdAt: "2026-10-15T00:00:00.000Z"
+updatedAt: "2026-10-15T00:00:00.000Z"
+---
+
+![Hog Watch showing seven-day page views and unique visitors as sparklines](https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1600/v1/portfolio/i3Inua6JCjqF16KGMdRtVU165I4.png)
+
+I check analytics far more often than I need to, and opening a browser tab to the PostHog dashboard every time was just enough friction to be annoying. So I built Hog Watch: a small Electron app that lives in the menu bar and shows seven-day trends for page views and unique visitors as sparklines, plus top events, pages, and referrers. Click the icon, glance, click away.
+
+Here's what I didn't know going in.
+
+## A tray app is a window you position yourself
+
+Electron gives you a `Tray` and a `BrowserWindow`, but nothing that says "show this window under that icon." The pattern is a frameless, hidden window that you move under the tray icon on click and hide when it loses focus:
+
+```ts
+const tray = new Tray(iconPath);
+const win = new BrowserWindow({
+    width: 360,
+    height: 520,
+    show: false,
+    frame: false,
+    resizable: false,
+    skipTaskbar: true
+});
+
+tray.on('click', () => {
+    const { x, y, width, height } = tray.getBounds();
+    const [winWidth] = win.getSize();
+    win.setPosition(Math.round(x + width / 2 - winWidth / 2), y + height);
+    win.isVisible() ? win.hide() : win.show();
+});
+
+win.on('blur', () => win.hide());
+```
+
+The `blur` handler is what makes it feel native. Without it, the panel hangs around after you click somewhere else, and it reads as a bug.
+
+## HogQL does the heavy lifting
+
+PostHog exposes HogQL, its SQL dialect over your events, through the query API. Instead of stitching together several insight endpoints, one query gets a week of daily numbers:
+
+```sql
+SELECT toDate(timestamp) AS day,
+       count() AS views,
+       count(DISTINCT person_id) AS visitors
+FROM events
+WHERE event = '$pageview'
+  AND timestamp > now() - INTERVAL 7 DAY
+GROUP BY day
+ORDER BY day
+```
+
+You POST it to `/api/projects/{project_id}/query/` as `{"query": {"kind": "HogQLQuery", "query": "..."}}` with a personal API key. Top pages and referrers are the same shape with a different `GROUP BY`. Feeding seven rows into Chart.js with the axes, grid, and legend turned off gives you a sparkline that fits in a tray panel.
+
+## License keys are their own little product
+
+Hog Watch is gated with Polar, which issues a license key with each purchase and has an API to validate one. Validating the key is the easy part. What takes thought is everything around it: what someone sees before they enter a key, what happens when they're offline, and how they get back in after reinstalling. Licensing turned out to be mostly UX.
+
+## Was it worth it?
+
+As a product, it was small. As a lesson, it was a good one. Tray apps are a great format for "glance at one number" tools, HogQL is far more capable than I expected, and I now know what a license flow needs before I sell another desktop app.

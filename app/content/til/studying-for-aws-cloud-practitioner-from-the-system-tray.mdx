@@ -1,0 +1,41 @@
+---
+title: "Studying for AWS Cloud Practitioner from the System Tray"
+slug: "studying-for-aws-cloud-practitioner-from-the-system-tray"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["aws", "electron", "learning", "certification"]
+excerpt: "Studying for the AWS Cloud Practitioner exam kept losing to everything else on my calendar, so I put 130 flashcards in my system tray. A study tool you don't have to open turns build times and the minute before a meeting into review."
+createdAt: "2026-10-15T00:00:00.000Z"
+updatedAt: "2026-10-15T00:00:00.000Z"
+---
+
+![An AWS flashcard in the tray app, showing a question before it flips](https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1600/v1/portfolio/ZNvDu0KhiEnPeG1k0Qt594_IKPs.png)
+
+When I started studying for the AWS Certified Cloud Practitioner exam (CLF-C02), the material wasn't the problem. Finding time was. A study session meant opening a course, finding my place, and committing half an hour I rarely had.
+
+What I did have were dozens of dead minutes a day: waiting on a build, the minute before a call, a test suite running. So I built [AWS Flashcards](https://github.com/sethdavis512/aws-flashcards), an Electron app that lives in the system tray with 130+ cards. Click the icon, flip a card or five, close it.
+
+## Weight your cards like the exam does
+
+CLF-C02 splits its questions across four domains, and the split isn't even:
+
+- **Cloud Technology and Services:** 34%
+- **Security and Compliance:** 30%
+- **Cloud Concepts:** 24%
+- **Billing, Pricing, and Support:** 12%
+
+The deck covers all four, and a domain filter lets a short session go straight at whichever one you're weakest on. Security and Compliance plus Technology and Services are almost two-thirds of the exam, so that's where review time pays off most.
+
+## Make it keyboard-first
+
+If a micro-session takes more than a second to start, it doesn't happen. A click or the spacebar flips the card, keyboard shortcuts cover the rest, and each card gets marked **Know it** or **Review**. Shuffle mode keeps you from memorizing the order instead of the answers. Embla Carousel handles the swiping and transitions, so it also works fine with a trackpad.
+
+## Progress has to survive a restart
+
+The whole point is short, interrupted sessions, so the app has to remember where I left off. Progress lives in `localStorage`, so the cards you know and the ones that need review are still sorted the next time you open it. It's not a spaced-repetition algorithm, but sorting cards into "know it" and "review" and re-studying the review pile gets you most of the benefit.
+
+## What I'd tell someone else studying
+
+The tool mattered less than where it lived. Putting the cards one click away, in a place I already look a hundred times a day, turned studying from a scheduled task into something that filled gaps. If you're prepping for a certification while working full time, put your study material where your idle minutes already are.
+
+![The answer side of a flashcard](https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1600/v1/portfolio/cCfVFbugKHJqRW4n1FbczI03hWs.png)
