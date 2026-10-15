@@ -428,7 +428,11 @@ function WorkLayout({
 
             {work.showcaseVideo ? (
                 <figure className="mb-4 motion-safe:opacity-0 motion-safe:animate-fade-slide">
-                    <ShowcaseHeroVideo publicId={work.showcaseVideo} title={work.title} />
+                    <ShowcaseHeroVideo
+                        key={work.showcaseVideo}
+                        publicId={work.showcaseVideo}
+                        title={work.title}
+                    />
                     <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-2">
                         <Kicker>Walkthrough of the live site</Kicker>
                         <span className="text-xs text-zinc-500 dark:text-zinc-400">
