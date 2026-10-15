@@ -34,13 +34,25 @@ function PosthogInit() {
 
         posthog.init('phc_NIVP9tJ3sH5xgM3DFKV4ADJFOJb14DCG6KBMzGiHPeC', {
             api_host: 'https://us.i.posthog.com',
+            // Pageviews on client-side navigation, plus scroll depth on $pageleave.
+            defaults: '2026-01-30',
+            // Crawlers that run JS but aren't on posthog-js's built-in bot list (Sogou).
+            custom_blocked_useragents: ['spider'],
             loaded: () => {
                 window.posthog = posthog;
+                flagInternalTraffic();
             }
         });
     }, []);
 
     return null;
+}
+
+/** `?internal=1` marks this browser as Seth's so PostHog's internal-traffic filter drops it; `?internal=0` clears it. */
+function flagInternalTraffic() {
+    const internal = new URLSearchParams(window.location.search).get('internal');
+    if (internal === '1') posthog.register({ internal_user: true });
+    if (internal === '0') posthog.unregister('internal_user');
 }
 
 function useCommandPalette(): [boolean, (open: boolean) => void] {

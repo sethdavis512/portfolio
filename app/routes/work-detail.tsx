@@ -116,12 +116,24 @@ function FactRow({ term, children }: { term: string; children: ReactNode }) {
     );
 }
 
-function OutLink({ href, children }: { href: string; children: ReactNode }) {
+function OutLink({
+    href,
+    kind,
+    workSlug,
+    children
+}: {
+    href: string;
+    kind: 'demo' | 'source';
+    workSlug: string;
+    children: ReactNode;
+}) {
     return (
         <a
             href={href}
             target="_blank"
             rel="noreferrer"
+            data-ph-capture-attribute-link_kind={kind}
+            data-ph-capture-attribute-work_slug={workSlug}
             className="group inline-flex items-center gap-1.5 font-medium text-zinc-900 underline decoration-primary-500/50 decoration-1 underline-offset-4 transition-colors hover:decoration-primary-500 dark:text-zinc-50 dark:decoration-primary-400/50 dark:hover:decoration-primary-400"
         >
             {children}
@@ -180,12 +192,14 @@ function Masthead({
                         <FactRow term="Links">
                             <span className="flex flex-col items-start gap-2">
                                 {work.demoUrl && (
-                                    <OutLink href={work.demoUrl}>
+                                    <OutLink href={work.demoUrl} kind="demo" workSlug={work.slug}>
                                         {work.demoUrlText || 'Visit site'}
                                     </OutLink>
                                 )}
                                 {work.sourceUrl && (
-                                    <OutLink href={work.sourceUrl}>Source code</OutLink>
+                                    <OutLink href={work.sourceUrl} kind="source" workSlug={work.slug}>
+                                        Source code
+                                    </OutLink>
                                 )}
                             </span>
                         </FactRow>
@@ -279,6 +293,7 @@ function InAction({ examples }: { examples: WorkExample[] }) {
                                 title={example.title}
                                 aspectRatio={example.aspect}
                                 width={1280}
+                                placement="example"
                             />
                             <figcaption className="mt-4 grid grid-cols-[auto_1fr] gap-x-4">
                                 <span
@@ -413,7 +428,11 @@ function WorkLayout({
 
             {work.showcaseVideo ? (
                 <figure className="mb-4 motion-safe:opacity-0 motion-safe:animate-fade-slide">
-                    <ShowcaseHeroVideo publicId={work.showcaseVideo} title={work.title} />
+                    <ShowcaseHeroVideo
+                        key={work.showcaseVideo}
+                        publicId={work.showcaseVideo}
+                        title={work.title}
+                    />
                     <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-2">
                         <Kicker>Walkthrough of the live site</Kicker>
                         <span className="text-xs text-zinc-500 dark:text-zinc-400">
