@@ -54,7 +54,10 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <Flex>
                     <InfoIcon />
                     Looking for a PDF version?{' '}
-                    <Linky href={RESUME_URL}>
+                    <Linky
+                        href={RESUME_URL}
+                        data-ph-capture-attribute-link_kind="resume_download"
+                    >
                         Download it here
                     </Linky>
                 </Flex>
@@ -62,6 +65,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
             <div className="mb-8 flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-2 text-zinc-700 dark:text-zinc-300">
                 <a
                     href={`mailto:${CONTACT_EMAIL}`}
+                    data-ph-capture-attribute-link_kind="email"
                     className="inline-flex items-center gap-2 font-medium text-black dark:text-zinc-100 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
                 >
                     <MailIcon className="size-4" />

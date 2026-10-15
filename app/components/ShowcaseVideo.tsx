@@ -1,6 +1,7 @@
-import { useCallback, useRef, useState, type Ref } from 'react';
+import { useCallback, useRef, useState, type Ref, type SyntheticEvent } from 'react';
 import { Pause, Play } from 'lucide-react';
 import { cx } from '~/cva.config';
+import { track } from '~/utils/analytics';
 
 const CLOUDINARY_VIDEO = 'https://res.cloudinary.com/setholito/video/upload';
 
@@ -23,7 +24,11 @@ type HeroProps = {
     /** The video's shape, e.g. "1280 / 844", so the poster doesn't letterbox. */
     aspectRatio?: string;
     width?: number;
+    /** Where the video sits on the page, sent with its analytics events. */
+    placement?: 'walkthrough' | 'example';
 };
+
+const PROGRESS_MILESTONES = [25, 50, 75, 100];
 
 /**
  * A video that plays muted on a loop while it's on screen, with a pause
@@ -34,12 +39,46 @@ export function ShowcaseHeroVideo({
     title,
     className,
     aspectRatio = '16 / 9',
-    width = 1920
+    width = 1920,
+    placement = 'walkthrough'
 }: HeroProps) {
     const { src, poster } = showcaseVideoUrls(publicId, width);
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const pausedByUser = useRef(false);
     const [playing, setPlaying] = useState(false);
+    const started = useRef(false);
+    const userPlayed = useRef(false);
+    const milestonesSent = useRef(new Set<number>());
+    const lastTime = useRef(0);
+    const eventProps = { video_id: publicId, video_title: title, placement };
+
+    function percentWatched(video: HTMLVideoElement) {
+        return video.duration ? Math.round((video.currentTime / video.duration) * 100) : 0;
+    }
+
+    function handlePlay() {
+        setPlaying(true);
+        if (started.current) return;
+        started.current = true;
+        track('showcase_video_started', {
+            ...eventProps,
+            trigger: userPlayed.current ? 'user' : 'autoplay'
+        });
+    }
+
+    // The video only plays while on screen, so progress means it was actually seen.
+    function handleTimeUpdate(event: SyntheticEvent<HTMLVideoElement>) {
+        const video = event.currentTarget;
+        const looped = video.currentTime < lastTime.current - 1;
+        lastTime.current = video.currentTime;
+        const percent = looped ? 100 : percentWatched(video);
+        for (const milestone of PROGRESS_MILESTONES) {
+            if (percent >= milestone && !milestonesSent.current.has(milestone)) {
+                milestonesSent.current.add(milestone);
+                track('showcase_video_progress', { ...eventProps, percent: milestone });
+            }
+        }
+    }
 
     const attach = useCallback(function (video: HTMLVideoElement | null) {
         videoRef.current = video;
@@ -68,8 +107,15 @@ export function ShowcaseHeroVideo({
     function handleToggle() {
         const video = videoRef.current;
         if (!video) return;
-        if (video.paused) {
+        const action = video.paused ? 'play' : 'pause';
+        track('showcase_video_toggled', {
+            ...eventProps,
+            action,
+            percent: percentWatched(video)
+        });
+        if (action === 'play') {
             pausedByUser.current = false;
+            userPlayed.current = true;
             video.play().catch(function () {});
         } else {
             pausedByUser.current = true;
@@ -95,9 +141,8 @@ export function ShowcaseHeroVideo({
                 playsInline
                 preload="metadata"
                 aria-label={`${title} walkthrough video`}
-                onPlay={function () {
-                    setPlaying(true);
-                }}
+                onPlay={handlePlay}
+                onTimeUpdate={handleTimeUpdate}
                 onPause={function () {
                     setPlaying(false);
                 }}
@@ -128,6 +173,14 @@ type CardProps = {
 /** A card's video: shows its poster and plays only while the card is hovered or focused (see playCardVideo). */
 export function ShowcaseCardVideo({ publicId, title, className, ref }: CardProps) {
     const { src, poster } = showcaseVideoUrls(publicId, 1280);
+    const previewed = useRef(false);
+
+    function handlePlay() {
+        if (previewed.current) return;
+        previewed.current = true;
+        track('work_card_video_previewed', { video_id: publicId, work_title: title });
+    }
+
     return (
         <video
             ref={ref}
@@ -139,6 +192,7 @@ export function ShowcaseCardVideo({ publicId, title, className, ref }: CardProps
             playsInline
             preload="none"
             aria-label={`${title} walkthrough video`}
+            onPlay={handlePlay}
         />
     );
 }

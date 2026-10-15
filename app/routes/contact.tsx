@@ -48,6 +48,7 @@ export default function ContactRoute() {
                 <div>
                     <a
                         href={`mailto:${CONTACT_EMAIL}`}
+                        data-ph-capture-attribute-link_kind="email"
                         className="inline-flex items-center gap-2 rounded-lg bg-primary-400 hover:bg-primary-300 text-black px-4 py-3 text-sm font-medium shadow-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ring-offset-white dark:focus-visible:ring-primary-400 dark:ring-offset-zinc-950"
                     >
                         <Mail className="size-5" />
@@ -56,7 +57,12 @@ export default function ContactRoute() {
                 </div>
                 <div className="mt-8 flex items-center gap-6">
                     {socials.map(({ href, label, Logo }) => (
-                        <Linky key={href} href={href} aria-label={label}>
+                        <Linky
+                            key={href}
+                            href={href}
+                            aria-label={label}
+                            data-ph-capture-attribute-link_kind="social"
+                        >
                             <Logo className="w-7 h-7" />
                         </Linky>
                     ))}

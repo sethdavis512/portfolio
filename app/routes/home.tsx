@@ -278,24 +278,28 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 <div className="flex gap-8">
                     <Linky
                         href="https://github.com/sethdavis512"
+                        data-ph-capture-attribute-link_kind="social"
                         aria-label="GitHub"
                     >
                         <GitHubLogo className={socialLogoClassNames} />
                     </Linky>
                     <Linky
                         href="https://www.linkedin.com/in/sethdavis512/"
+                        data-ph-capture-attribute-link_kind="social"
                         aria-label="LinkedIn"
                     >
                         <LinkedInLogo className={socialLogoClassNames} />
                     </Linky>
                     <Linky
                         href="https://www.x.com/sethdavis512/"
+                        data-ph-capture-attribute-link_kind="social"
                         aria-label="X (Twitter)"
                     >
                         <XLogo className={socialLogoClassNames} />
                     </Linky>
                     <Linky
                         href="https://www.codepen.io/sethdavis512/"
+                        data-ph-capture-attribute-link_kind="social"
                         aria-label="CodePen"
                     >
                         <CodepenLogo className={socialLogoClassNames} />

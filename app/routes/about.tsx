@@ -193,7 +193,10 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                 </div>
                 <p className="mt-6 text-zinc-600 dark:text-zinc-400">
                     Or email me directly at{' '}
-                    <Linky href={`mailto:${CONTACT_EMAIL}`}>
+                    <Linky
+                        href={`mailto:${CONTACT_EMAIL}`}
+                        data-ph-capture-attribute-link_kind="email"
+                    >
                         {CONTACT_EMAIL}
                     </Linky>
                 </p>
