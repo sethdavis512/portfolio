@@ -15,9 +15,10 @@ Work items live as **local MDX files** in `app/content/work/`. The portfolio loa
 2. **Pick a slug** in kebab-case. It becomes both the filename (`<slug>.mdx`) and the URL (`/work/<slug>`).
 3. **Pick a sortOrder.** Lower numbers appear first on `/work`. Check existing values with `grep -h "sortOrder:" app/content/work/*.mdx | sort -un` and slot the new item where it belongs in the lineup. Recent flagship work usually goes 0–3.
 4. **Write `app/content/work/<slug>.mdx`** using the template below.
-5. **Decide on images.** Use a Cloudinary placeholder (see "Images") if a project-specific photo is not ready yet.
-6. **Decide on body content.** If `hasContent: true`, add an MDX body below the frontmatter. Otherwise leave the file frontmatter-only.
-7. **Verify** with `bun run typecheck`. The dev server (`bun run dev`) will surface any MDX parse errors.
+5. **Record a showcase video** when the project has a live `demoUrl`. Load the `record-browser` skill (user-level, `~/.claude/skills/record-browser/`) and follow it with the work item's slug as the shot list `name`: scout the site, write `shots/<slug>.json`, record, review, show Seth, then upload to Cloudinary as `portfolio/showcase/<slug>`. Skip this for CLI tools, libraries without a demo site, and apps whose interesting parts sit behind a login (unless Seth wants a local-dev recording). See "Showcase video" below.
+6. **Decide on images.** Use a frame from the showcase video, a real screenshot, or a Cloudinary placeholder (see "Images") if neither is ready yet.
+7. **Decide on body content.** If `hasContent: true`, add an MDX body below the frontmatter. Otherwise leave the file frontmatter-only.
+8. **Verify** with `bun run typecheck`. The dev server (`bun run dev`) will surface any MDX parse errors.
 
 That's it. Commit the file like any other code change; the normal deploy flow ships it.
 
@@ -69,6 +70,10 @@ updatedAt: "2026-04-27T00:00:00.000Z"
 | `demoUrlText` | string | Custom demo button label | No |
 | `tags` | string[] | Free-form labels | No |
 | `galleryImages` | object[] | See "Gallery images" below | No |
+| `showcaseVideo` | string | Cloudinary public ID (`portfolio/showcase/<slug>`); replaces the hero image on the detail page | No |
+| `role` | string | Fact-sheet line, e.g. `"Solo: product, design, and engineering"` | No |
+| `pullQuote` | string | One sentence from the write-up, set large before the last chapter | No |
+| `examples` | object[] | Extra videos under "In action": `video` (Cloudinary ID), `title`, `caption`, optional `aspect` like `"1280 / 844"` | No |
 | `hasContent` | boolean | `true` if the file has an MDX body | Yes |
 | `createdAt` | ISO string | First publish date | Yes |
 | `updatedAt` | ISO string | Last edit date | Yes |
@@ -97,6 +102,17 @@ Full URL format: `https://res.cloudinary.com/setholito/image/upload/c_scale,f_au
 ### Real images
 
 Upload via the `cloudinary-upload` skill or `cloudinary` CLI; the result is a `https://res.cloudinary.com/setholito/...` URL. Always include the `c_scale,f_auto,q_90,w_<WIDTH>` transform segment so Cloudinary serves the right size.
+
+### Showcase video
+
+Recorded with the `record-browser` skill (1920x1080, about 15s, cursor gliding link to link, "sethdavis.tech" strip along the bottom) and uploaded to `portfolio/showcase/<slug>`. Delivery URLs:
+
+- Video: `https://res.cloudinary.com/setholito/video/upload/f_auto,q_auto/v1/portfolio/showcase/<slug>.mp4`
+- Still from the video (works as `heroImage` / `thumbnailImage` when there's no screenshot): `https://res.cloudinary.com/setholito/video/upload/so_1,c_scale,w_<WIDTH>/v1/portfolio/showcase/<slug>.jpg` (`so_1` is the frame at 1s; pick a later second if that frame isn't the strongest)
+
+If `app/content/types.ts` has a `showcaseVideo` field, set it to the Cloudinary public ID (`portfolio/showcase/<slug>`). If it doesn't yet, the work pages can't show the video: tell Seth the video is uploaded and not displayed rather than adding an unused frontmatter key.
+
+Videos already recorded: `ai-maniacs`, `iridium`, `virtruv` (shot lists in `~/.claude/skills/record-browser/shots/`).
 
 ### Gallery images
 
@@ -140,6 +156,7 @@ Before considering the task done:
 - [ ] `description`, `about`, `learned`, `impact` all filled in
 - [ ] `techStack` uses only known identifiers
 - [ ] `heroImage` and `thumbnailImage` set (placeholder or real)
+- [ ] Showcase video recorded and uploaded to `portfolio/showcase/<slug>` if the project has a live demo site (or a note on why it was skipped)
 - [ ] `sourceUrl` and `demoUrl` are valid URLs or empty strings (not omitted)
 - [ ] `hasContent` matches whether a body exists
 - [ ] `createdAt` and `updatedAt` are ISO timestamps

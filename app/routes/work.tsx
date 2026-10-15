@@ -1,8 +1,14 @@
 import { cx } from '~/cva.config';
+import { useRef } from 'react';
 import { Link } from 'react-router';
 import { buttonVariants } from '~/components/Button';
 import { ContentSection } from '~/components/ContentSection';
 import { Heading } from '~/components/Heading';
+import {
+    ShowcaseCardVideo,
+    pauseCardVideo,
+    playCardVideo
+} from '~/components/ShowcaseVideo';
 import { getPublishedWorks } from '~/content';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/work';
@@ -23,7 +29,8 @@ export function loader() {
         description: w.frontmatter.description,
         cta: w.frontmatter.cta,
         sortOrder: w.frontmatter.sortOrder,
-        thumbnailImage: w.frontmatter.thumbnailImage
+        thumbnailImage: w.frontmatter.thumbnailImage,
+        showcaseVideo: w.frontmatter.showcaseVideo ?? null
     }));
     return { works };
 }
@@ -36,6 +43,7 @@ interface WorkDisplayProps {
     imageAlt: string;
     url: string;
     reverse?: boolean;
+    showcaseVideo?: string | null;
 }
 
 function FeaturedWorkDisplay({
@@ -45,10 +53,28 @@ function FeaturedWorkDisplay({
     url,
     imageSrc,
     imageAlt,
-    reverse
+    reverse,
+    showcaseVideo
 }: WorkDisplayProps) {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    function handleEnter() {
+        playCardVideo(videoRef.current);
+    }
+
+    function handleLeave() {
+        pauseCardVideo(videoRef.current);
+    }
+
     return (
-        <Link to={url} className="group block h-full">
+        <Link
+            to={url}
+            className="group block h-full"
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+            onFocus={handleEnter}
+            onBlur={handleLeave}
+        >
             <div className="border border-zinc-200 dark:border-zinc-800 h-full transition-shadow duration-150 group-hover:border-primary-500/60">
                 <div
                     className={cx(
@@ -56,11 +82,20 @@ function FeaturedWorkDisplay({
                         reverse && 'lg:flex-row-reverse'
                     )}
                 >
-                    <img
-                        className="w-125 border border-zinc-200 dark:border-zinc-800"
-                        src={imageSrc}
-                        alt={imageAlt}
-                    />
+                    {showcaseVideo ? (
+                        <ShowcaseCardVideo
+                            ref={videoRef}
+                            publicId={showcaseVideo}
+                            title={title}
+                            className="w-125 border border-zinc-200 dark:border-zinc-800"
+                        />
+                    ) : (
+                        <img
+                            className="w-125 border border-zinc-200 dark:border-zinc-800"
+                            src={imageSrc}
+                            alt={imageAlt}
+                        />
+                    )}
                     <div className={cx(`text-center lg:text-left flex-1`)}>
                         <Heading as="h2" className="text-3xl md:text-4xl">
                             {title}
@@ -138,6 +173,7 @@ export default function WorkRoute({ loaderData }: Route.ComponentProps) {
                                 imageAlt={item.title || 'Project thumbnail'}
                                 url={`/work/${item.slug}`}
                                 reverse={index % 2 !== 0}
+                                showcaseVideo={item.showcaseVideo}
                             />
                         </ContentSection>
                     );
