@@ -4,6 +4,15 @@ export interface GalleryImage {
     sortOrder: number;
 }
 
+export interface WorkExample {
+    /** Cloudinary public ID of the video */
+    video: string;
+    title: string;
+    caption: string;
+    /** The video's aspect ratio, e.g. "1280 / 844" (default 16 / 9) */
+    aspect?: string;
+}
+
 export interface WorkFrontmatter {
     title: string;
     slug: string;
@@ -13,6 +22,14 @@ export interface WorkFrontmatter {
     sortOrder: number;
     heroImage: string;
     thumbnailImage: string;
+    /** Cloudinary public ID of a record-browser walkthrough, e.g. portfolio/showcase/<slug> */
+    showcaseVideo?: string;
+    /** Extra videos of the product at work, shown under "In action". */
+    examples?: WorkExample[];
+    /** A line from the write-up set large between the chapters. */
+    pullQuote?: string;
+    /** What Seth did on the project, for the fact sheet. */
+    role?: string;
     about: string;
     learned: string;
     impact: string;
