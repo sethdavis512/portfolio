@@ -1,0 +1,73 @@
+---
+title: "Building One CLI for People and AI Agents"
+slug: "building-a-cli-for-people-and-ai-agents"
+status: "PUBLISHED"
+type: "TIL"
+tags: ["bun", "cli", "ai-agents", "typescript"]
+excerpt: "Coding agents are now some of the heaviest users of CLIs, and they can't answer a prompt. I rebuilt my buncli template so the same commands give a person prompts and readable output, and give an agent JSON, a schema, stable error codes, and its own operating guide."
+createdAt: "2026-10-15T00:00:00.000Z"
+updatedAt: "2026-10-15T00:00:00.000Z"
+---
+
+![One buncli command answering two readers: an interactive prompt on the left and JSON output on the right](https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1600/v1/portfolio/buncli-hero.png)
+
+[buncli](https://github.com/sethdavis512/buncli) started as my template for CLI tools: Bun for the runtime and the [single-binary compile](/til/shipping-a-cli-as-a-single-bun-binary), Commander for commands and flags, and `@inquirer/prompts` for asking questions. Then it became obvious who runs CLIs now: coding agents like Claude Code, as often as people do.
+
+An agent calls a command from a shell, reads stdout and stderr, and branches on the exit code. A good `--help` page helps, but it isn't enough. An agent can't answer a prompt, can't tell an error printed to stdout from a result, and burns tokens guessing at flags. So I reworked the template around one idea: **a person at a terminal still gets prompts and readable output, and an agent gets structure.**
+
+## Never hang on a prompt
+
+This was the first thing to fix. Every input can be passed as an argument or flag, and a command only falls back to a prompt when a person can actually answer it. Prompting is off when any of these are true:
+
+- `--non-interactive` is passed
+- `--json` is passed (a prompt would corrupt the JSON)
+- stdin or stdout isn't a terminal, which covers agents, pipes, and cron
+- the `CI` environment variable is set
+
+With prompting off, a missing input fails right away with exit code 2 and a hint naming the argument to pass, instead of sitting there forever.
+
+```bash
+buncli greet              # a person gets: ? What is your name?
+buncli greet Ada --json   # an agent gets: {"name":"Ada","greeting":"Hello, Ada!"}
+```
+
+## Output an agent can parse
+
+- `--json` prints the result as one line of JSON on stdout, before or after the command name.
+- Results go to stdout. Errors, hints, and prompts go to stderr, so a failed command leaves stdout empty.
+- Text output has no color or spinners. If you add color, skip it when `process.stdout.isTTY` is false or `NO_COLOR` is set.
+
+Errors get a stable `code` to branch on, a `message`, and usually a `hint` with the fix:
+
+```json
+{
+    "error": {
+        "code": "missing_input",
+        "message": "Missing required input: name.",
+        "hint": "Pass it as an argument: `buncli greet <name>`."
+    }
+}
+```
+
+(On stderr it's one line; it's spread out here to fit.)
+
+And the exit codes are a contract: 0 means parse stdout, 1 is a runtime error (retry only if the cause was external), 2 is a usage error (fix the command line, don't retry it unchanged). Unknown commands and options fail hard instead of guessing.
+
+## Let the CLI describe itself
+
+Two commands close most of the gap between a CLI and an MCP server.
+
+`buncli schema` prints every command, argument, and option as JSON, plus the exit codes and the error shape. It's generated from Commander's command tree, so it can't drift from the real interface, and it needs no config, auth, or network.
+
+`buncli skills get core` prints an operating guide written for agents: flags, output, exit codes, errors. The guides are markdown files imported as text and inlined by `bun build --compile`, so the instructions always match the installed version. I borrowed this pattern from agent-browser, which is how I learned about it in the first place.
+
+To get an agent to find the tool at all, `buncli skills stub` prints a tiny `SKILL.md` that names the CLI and says "run `buncli skills get core` first." It holds no command reference on purpose, so it never goes stale:
+
+```bash
+mkdir -p ~/.claude/skills/buncli
+buncli skills stub > ~/.claude/skills/buncli/SKILL.md
+```
+
+## What I took away
+
+None of this makes the CLI worse for people. Prompts still show up at a terminal, and readable errors are still readable. The agent-facing parts are mostly discipline: keep stdout for results, make every input passable as a flag, give errors codes, and let the tool explain itself. If you're building internal tooling that a coding agent will touch (and it will), these are cheap to add on day one and painful to retrofit later.

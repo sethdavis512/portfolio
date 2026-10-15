@@ -140,7 +140,7 @@ Body rules:
 - Use relative imports (`~/` aliases do not resolve inside MDX at build time).
 - Escape literal `<` outside code blocks as `&lt;`.
 
-See `app/content/work/buncli.mdx` for a reference body.
+No current work item has a body (buncli was the last, and it is now a TIL post); the posts in `app/content/til/` show the same MDX conventions.
 
 ## Content writing
 

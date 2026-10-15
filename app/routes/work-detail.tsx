@@ -16,9 +16,13 @@ import { useImageGallery } from '~/hooks/useImageGallery';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/work-detail';
 
-/** Slugs that moved, so links already shared keep working. */
-const MOVED_SLUGS: Record<string, string> = {
-    freshvisit: 'fresh-visit'
+/** Work items that moved (renamed, or turned into TIL posts), so shared links keep working. */
+const MOVED: Record<string, string> = {
+    freshvisit: '/work/fresh-visit',
+    buncli: '/til/building-a-cli-for-people-and-ai-agents',
+    'hog-watch': '/til/a-posthog-dashboard-in-the-menu-bar',
+    'aws-flashcards': '/til/studying-for-aws-cloud-practitioner-from-the-system-tray',
+    'tech-with-seth': '/work'
 };
 
 export function meta({ loaderData }: Route.MetaArgs) {
@@ -32,9 +36,9 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export function loader({ params }: Route.LoaderArgs) {
-    const moved = MOVED_SLUGS[params.slug!];
+    const moved = MOVED[params.slug!];
     if (moved) {
-        throw redirect(`/work/${moved}`, 301);
+        throw redirect(moved, 301);
     }
 
     const result = getWorkBySlug(params.slug!);
