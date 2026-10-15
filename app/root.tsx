@@ -33,7 +33,9 @@ function PosthogInit() {
         if (window.location.hostname === 'localhost') return;
 
         posthog.init('phc_NIVP9tJ3sH5xgM3DFKV4ADJFOJb14DCG6KBMzGiHPeC', {
-            api_host: 'https://us.i.posthog.com',
+            // Proxied through our own server (see server/index.ts) so ad blockers don't drop events
+            api_host: '/lantern',
+            ui_host: 'https://us.posthog.com',
             // Pageviews on client-side navigation, plus scroll depth on $pageleave.
             defaults: '2026-01-30',
             // Crawlers that run JS but aren't on posthog-js's built-in bot list (Sogou).
