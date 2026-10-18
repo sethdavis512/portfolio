@@ -2,6 +2,30 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Ecosystem
+
+This repo is one of three that form the Tech with Seth product loop. They are separate GitHub repos (`sethdavis512/<name>`) checked out side by side under `~/repositories/`; a skill in one repo cannot invoke one in another, so each stage runs from its own repo.
+
+| Repo | Role | Public? |
+| --- | --- | --- |
+| `tws-press` | Internal PDF press. Authors guides as MDX, exports Letter PDFs, publishes them to Polar. | **No.** Internal tool only. Never link to it, name it in nav, or present it as a site anywhere public. |
+| `tech-with-seth` | Storefront at techwithseth.com. Lists products under `/digital-goods` with Polar checkout links. | Yes |
+| `portfolio` | Seth's portfolio at sethdavis.tech. Points at techwithseth.com for anything for sale; sells nothing itself. | Yes |
+
+**Flow:** `new-guide` -> `ship-guide` -> `sell-guide` (all in tws-press) -> `showcase-product` (in tech-with-seth) -> the portfolio links to the listing. A re-edition reruns `sell-guide` (same Polar product, same checkout link) and then `showcase-product` in refresh mode; the portfolio needs no change unless a slug it links to is archived.
+
+**Source of truth per product:**
+
+- Slug, Polar product and checkout URL, edition history: tws-press `published/polar/<slug>.json` (committed).
+- Marketing copy, features, cover, and `status`: tech-with-seth `app/content/products/<slug>.mdx`. The product slug equals the guide slug.
+- The portfolio holds no product data. It links to `https://techwithseth.com/digital-goods`, or to `/digital-goods/<slug>` only when that product is `PUBLISHED` there (`ARCHIVED` detail pages 404).
+
+**Rules:**
+
+- Links flow outward from the press and never back. PDFs and both sites may link to techwithseth.com and sethdavis.tech; nothing links to tws-press.
+- Carry the slug, checkout URL, and `-web` cover across repos by hand (or from `published/polar/<slug>.json`); do not retype or invent them.
+- When pushing either public site, fetch and rebase first, never force-push.
+
 ## Commands
 
 ```bash
