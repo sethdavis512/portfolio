@@ -209,18 +209,18 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                     Product
                                 </span>
-                                <Heading>Prompt Suite</Heading>
+                                <Heading>Claude Code Skill Library</Heading>
                                 <p className="mb-8 text-zinc-700 dark:text-zinc-300">
-                                    Native desktop tray app for instant AI
-                                    prompt access. Quick interactions without
-                                    disrupting your workflow.
+                                    A 15-chapter guide to building a Claude
+                                    Code skill library that compounds, with a
+                                    worked example and copy-paste templates.
                                 </p>
                                 <Button
                                     className="mt-auto self-start"
                                     color="primary"
                                     variant="outline"
                                     size="md"
-                                    href="https://techwithseth.com/digital-goods/prompt-suite"
+                                    href="https://techwithseth.com/digital-goods/claude-code-skill-library"
                                 >
                                     Learn more
                                 </Button>
