@@ -12,6 +12,7 @@ import { ContentStyles } from '~/constants';
 import { cx } from '~/cva.config';
 import { Card } from '~/components/Card';
 import { HiringCallToAction } from '~/components/HiringCallToAction';
+import { ShutterPromo } from '~/components/ShutterPromo';
 import { getAllDecks } from '~/content';
 import type { Route } from './+types/home';
 
@@ -122,6 +123,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         <p>AI tooling</p>
                     </div>
                 </div>
+            </HomeSection>
+            <HomeSection>
+                <ShutterPromo />
             </HomeSection>
             <HomeSection>
                 <Card className="p-8 md:p-10 border-secondary-500/40 dark:border-secondary-500/40 bg-secondary-500/10 dark:bg-secondary-500/10">
