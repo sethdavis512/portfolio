@@ -1,5 +1,6 @@
-import { useCallback, useRef, useState, type Ref, type SyntheticEvent } from 'react';
-import { Pause, Play } from 'lucide-react';
+import { useCallback, useRef, useState, type ChangeEvent, type Ref, type SyntheticEvent } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { Maximize2, Pause, Play, X } from 'lucide-react';
 import { cx } from '~/cva.config';
 import { track } from '~/utils/analytics';
 
@@ -25,8 +26,20 @@ type HeroProps = {
     aspectRatio?: string;
     width?: number;
     /** Where the video sits on the page, sent with its analytics events. */
-    placement?: 'walkthrough' | 'example';
+    placement?: 'walkthrough' | 'example' | 'hero';
+    /** Show a draggable progress bar for seeking. */
+    scrubber?: boolean;
+    /** Show a button that opens the video large in a dialog. */
+    expandable?: boolean;
 };
+
+const overlayButtonClassName =
+    'inline-flex size-8 sm:size-10 items-center justify-center rounded-full bg-zinc-950/75 text-white backdrop-blur-sm transition-colors hover:bg-zinc-950/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 dark:bg-zinc-950/75 dark:hover:bg-zinc-950/90';
+
+function formatTime(seconds: number) {
+    const whole = Math.floor(seconds);
+    return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`;
+}
 
 const PROGRESS_MILESTONES = [25, 50, 75, 100];
 
@@ -40,12 +53,19 @@ export function ShowcaseHeroVideo({
     className,
     aspectRatio = '16 / 9',
     width = 1920,
-    placement = 'walkthrough'
+    placement = 'walkthrough',
+    scrubber = false,
+    expandable = false
 }: HeroProps) {
     const { src, poster } = showcaseVideoUrls(publicId, width);
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const pausedByUser = useRef(false);
     const [playing, setPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [expanded, setExpanded] = useState(false);
+    const resumeAfterExpand = useRef(false);
+    const expandButtonRef = useRef<HTMLButtonElement | null>(null);
     const started = useRef(false);
     const userPlayed = useRef(false);
     const milestonesSent = useRef(new Set<number>());
@@ -71,6 +91,9 @@ export function ShowcaseHeroVideo({
         const video = event.currentTarget;
         const looped = video.currentTime < lastTime.current - 1;
         lastTime.current = video.currentTime;
+        setCurrentTime(video.currentTime);
+        // Metadata can load before hydration, so durationchange may never reach React.
+        setDuration(video.duration || 0);
         const percent = looped ? 100 : percentWatched(video);
         for (const milestone of PROGRESS_MILESTONES) {
             if (percent >= milestone && !milestonesSent.current.has(milestone)) {
@@ -123,6 +146,48 @@ export function ShowcaseHeroVideo({
         }
     }
 
+    // Skipping ahead isn't watching, so milestones the seek jumps past are marked sent without an event.
+    function handleSeek(event: ChangeEvent<HTMLInputElement>) {
+        const video = videoRef.current;
+        if (!video) return;
+        const time = Number(event.currentTarget.value);
+        video.currentTime = time;
+        lastTime.current = time;
+        setCurrentTime(time);
+        const percent = percentWatched(video);
+        for (const milestone of PROGRESS_MILESTONES) {
+            if (percent >= milestone) milestonesSent.current.add(milestone);
+        }
+    }
+
+    // The inline video pauses while the large one plays, then picks up where the viewer left off.
+    function handleExpand() {
+        const video = videoRef.current;
+        if (!video) return;
+        resumeAfterExpand.current = !video.paused;
+        pausedByUser.current = true;
+        video.pause();
+        setExpanded(true);
+        track('showcase_video_expanded', { ...eventProps, percent: percentWatched(video) });
+    }
+
+    function handleCollapse(time: number) {
+        setExpanded(false);
+        // The dialog has no Radix trigger to hand focus back to, so return it to the expand button.
+        requestAnimationFrame(function () {
+            expandButtonRef.current?.focus();
+        });
+        const video = videoRef.current;
+        if (!video) return;
+        video.currentTime = time;
+        lastTime.current = time;
+        setCurrentTime(time);
+        if (resumeAfterExpand.current) {
+            pausedByUser.current = false;
+            video.play().catch(function () {});
+        }
+    }
+
     return (
         <div
             className={cx(
@@ -143,23 +208,118 @@ export function ShowcaseHeroVideo({
                 aria-label={`${title} walkthrough video`}
                 onPlay={handlePlay}
                 onTimeUpdate={handleTimeUpdate}
+                onDurationChange={function (event) {
+                    setDuration(event.currentTarget.duration || 0);
+                }}
                 onPause={function () {
                     setPlaying(false);
                 }}
             />
-            <button
-                type="button"
-                onClick={handleToggle}
-                aria-label={playing ? 'Pause video' : 'Play video'}
-                className="absolute top-2 right-2 inline-flex size-8 sm:top-3 sm:right-3 sm:size-10 items-center justify-center rounded-full bg-zinc-950/75 text-white backdrop-blur-sm transition-colors hover:bg-zinc-950/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400 dark:bg-zinc-950/75 dark:hover:bg-zinc-950/90"
-            >
-                {playing ? (
-                    <Pause className="size-4" aria-hidden="true" />
-                ) : (
-                    <Play className="size-4 translate-x-px" aria-hidden="true" />
+            {scrubber && (
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/80 to-transparent px-3 pt-6 pb-2">
+                    <input
+                        type="range"
+                        min={0}
+                        max={duration || 0}
+                        step={0.1}
+                        value={currentTime}
+                        onChange={handleSeek}
+                        aria-label="Seek video"
+                        aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
+                        className="block h-6 w-full cursor-pointer accent-primary-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+                    />
+                </div>
+            )}
+            <div className="absolute top-2 right-2 flex gap-2 sm:top-3 sm:right-3">
+                {expandable && (
+                    <button
+                        ref={expandButtonRef}
+                        type="button"
+                        onClick={handleExpand}
+                        aria-label="Expand video"
+                        className={overlayButtonClassName}
+                    >
+                        <Maximize2 className="size-4" aria-hidden="true" />
+                    </button>
                 )}
-            </button>
+                <button
+                    type="button"
+                    onClick={handleToggle}
+                    aria-label={playing ? 'Pause video' : 'Play video'}
+                    className={overlayButtonClassName}
+                >
+                    {playing ? (
+                        <Pause className="size-4" aria-hidden="true" />
+                    ) : (
+                        <Play className="size-4 translate-x-px" aria-hidden="true" />
+                    )}
+                </button>
+            </div>
+            {expanded && (
+                <ExpandedVideo
+                    src={src}
+                    title={title}
+                    startTime={currentTime}
+                    onClose={handleCollapse}
+                />
+            )}
         </div>
+    );
+}
+
+type ExpandedVideoProps = {
+    src: string;
+    title: string;
+    startTime: number;
+    onClose: (time: number) => void;
+};
+
+/** The video large in a dialog, with the browser's own controls for seeking, volume, and fullscreen. */
+function ExpandedVideo({ src, title, startTime, onClose }: ExpandedVideoProps) {
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+
+    function handleOpenChange(open: boolean) {
+        if (!open) onClose(videoRef.current?.currentTime ?? startTime);
+    }
+
+    return (
+        <Dialog.Root open onOpenChange={handleOpenChange}>
+            <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm" />
+                <Dialog.Content
+                    aria-describedby={undefined}
+                    className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow-2xl"
+                >
+                    <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3 sm:px-6">
+                        <Dialog.Title className="text-sm text-zinc-400">
+                            {title}
+                        </Dialog.Title>
+                        <Dialog.Close asChild>
+                            <button
+                                type="button"
+                                className="rounded-full p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                                aria-label="Close"
+                            >
+                                <X className="size-5" />
+                            </button>
+                        </Dialog.Close>
+                    </div>
+                    <video
+                        ref={videoRef}
+                        className="block aspect-video max-h-[80vh] w-full bg-zinc-950"
+                        src={src}
+                        controls
+                        autoPlay
+                        muted
+                        playsInline
+                        aria-label={`${title} video`}
+                        onLoadedMetadata={function (event) {
+                            event.currentTarget.currentTime = startTime;
+                        }}
+                    />
+                </Dialog.Content>
+            </Dialog.Portal>
+        </Dialog.Root>
     );
 }
 

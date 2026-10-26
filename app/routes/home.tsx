@@ -12,6 +12,7 @@ import { ContentStyles } from '~/constants';
 import { cx } from '~/cva.config';
 import { Card } from '~/components/Card';
 import { HiringCallToAction } from '~/components/HiringCallToAction';
+import { ShowcaseHeroVideo } from '~/components/ShowcaseVideo';
 import { ShutterPromo } from '~/components/ShutterPromo';
 import { getAllDecks } from '~/content';
 import type { Route } from './+types/home';
@@ -33,7 +34,7 @@ function HomeSection({
     className?: string;
 }) {
     return (
-        <section className={cx(`mb-8 md:py-8`, className)}>
+        <section className={cx(`mb-12 last:mb-0 md:mb-8 md:py-8`, className)}>
             {children}
         </section>
     );
@@ -57,70 +58,63 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <HomeSection className="md:py-16">
+            <HomeSection className="md:pt-0 md:pb-16">
                 <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     <span>Design Technologist</span>
                     <span aria-hidden="true">Austin, TX</span>
                 </div>
-                <Heading
-                    as="h1"
-                    className="text-[clamp(3.5rem,10vw,8rem)] md:text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] mb-8 tracking-tight"
-                >
-                    Seth{' '}
-                    <br className="md:hidden lg:inline" />
-                    <span className="italic text-primary-600 dark:text-primary-400">
-                        Davis
-                    </span>
-                </Heading>
-                <div className="grid md:grid-cols-12 gap-8 items-start">
-                    <div className="md:col-span-7 border-t border-zinc-200 dark:border-zinc-800 pt-6">
-                        <p className="text-xl md:text-2xl font-medium max-w-2xl mb-4 text-zinc-800 dark:text-zinc-200">
-                            I help product teams ship better interfaces
-                            faster, through design systems and AI tooling.
-                        </p>
-                        <p className="mb-10 text-zinc-600 dark:text-zinc-400">
-                            Open to new roles as a{' '}
-                            <Linky to="/design-technologist">
-                                {ContentStyles.CURRENT_JOB_TITLE}
-                            </Linky>
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <Button
-                                size="lg"
-                                to="/work"
-                                iconAfter={<ArrowRight className="size-4" />}
-                            >
-                                See my work
-                            </Button>
-                            <Button size="lg" to="/resume" variant="outline">
-                                View resume
-                            </Button>
+                <div className="grid lg:grid-cols-12 gap-8 items-start">
+                    <div className="lg:col-span-7">
+                        <Heading
+                            as="h1"
+                            className="text-[clamp(3.5rem,10vw,8rem)] md:text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] mb-6 tracking-tight"
+                        >
+                            Seth{' '}
+                            <span className="text-primary-600 dark:text-primary-400">
+                                Davis
+                            </span>
+                        </Heading>
+                        <div className="border-t border-zinc-200 dark:border-zinc-800 pt-6">
+                            <p className="text-xl md:text-2xl font-medium max-w-2xl mb-4 text-zinc-800 dark:text-zinc-200">
+                                I help product teams ship better interfaces
+                                faster, through design systems and AI tooling.
+                            </p>
+                            <p className="mb-8 text-zinc-600 dark:text-zinc-400">
+                                Open to new roles as a{' '}
+                                <Linky to="/design-technologist">
+                                    {ContentStyles.CURRENT_JOB_TITLE}
+                                </Linky>
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <Button
+                                    size="lg"
+                                    to="/work"
+                                    iconAfter={
+                                        <ArrowRight className="size-4" />
+                                    }
+                                >
+                                    See my work
+                                </Button>
+                                <Button
+                                    size="lg"
+                                    to="/resume"
+                                    variant="outline"
+                                >
+                                    View resume
+                                </Button>
+                            </div>
                         </div>
-                        <dl className="mt-8 grid gap-6 sm:grid-cols-2 border-t border-zinc-200 dark:border-zinc-800 pt-6">
-                            <div>
-                                <dt className="text-2xl font-semibold tracking-tight text-primary-600 dark:text-primary-400">
-                                    100+ hours a week
-                                </dt>
-                                <dd className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                                    saved for internal teams at Indeed with
-                                    tooling I designed and built
-                                </dd>
-                            </div>
-                            <div>
-                                <dt className="text-2xl font-semibold tracking-tight text-primary-600 dark:text-primary-400">
-                                    Cray Networks, Virtruv
-                                </dt>
-                                <dd className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                                    recent client work: a 20 year old IT firm
-                                    rebranded, a security company's site and
-                                    identity rebuilt
-                                </dd>
-                            </div>
-                        </dl>
                     </div>
-                    <div className="hidden md:block md:col-span-5 border-t border-zinc-200 dark:border-zinc-800 pt-6 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 space-y-2">
-                        <p>Design systems</p>
-                        <p>AI tooling</p>
+                    <div className="lg:col-span-5 lg:self-center border-t border-zinc-200 dark:border-zinc-800 pt-6 lg:border-t-0 lg:pt-0">
+                        <ShowcaseHeroVideo
+                            publicId="portfolio/showcase/resume-video-home"
+                            title="Seth Davis resume"
+                            placement="hero"
+                            scrubber
+                            expandable
+                            width={1280}
+                            className="rounded-lg"
+                        />
                     </div>
                 </div>
             </HomeSection>
