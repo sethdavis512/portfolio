@@ -62,8 +62,8 @@ export function ShutterPromo({ className }: Props) {
             </div>
             <div className="flex items-center p-8 pt-0 md:p-10 md:pl-0">
                 <img
-                    src="https://res.cloudinary.com/setholito/image/upload/f_auto,q_auto/v1/portfolio/shutter-theme-toggle.gif"
-                    alt="A looping capture made by Shutter: the Tech with Seth theme toggle flipping from dark to light"
+                    src="https://res.cloudinary.com/setholito/image/upload/f_auto,q_auto,c_scale,w_960/v1/portfolio/shutter-digital-goods-tour-poster.jpg"
+                    alt="A frame from a Shutter showcase video: the Tech with Seth digital goods page with Shutter's cursor"
                     width={960}
                     height={540}
                     loading="lazy"
