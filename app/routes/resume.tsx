@@ -21,7 +21,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Resume',
         descriptionContent:
-            `View Seth Davis's resume. Design Technologist with ${new Date().getFullYear() - 2016}+ years of experience helping product teams ship better interfaces with design systems and AI tooling. Open to new roles.`,
+            `View Seth Davis's resume. Senior Frontend Engineer with ${new Date().getFullYear() - 2016}+ years of experience helping product teams ship better interfaces with design systems and AI tooling. Open to new roles.`,
         ogUrl: 'https://sethdavis.tech/resume'
     });
 }
@@ -81,7 +81,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <Heading as="h2" size="2">
                     Summary
                 </Heading>
-                <p>{`Design Technologist with ${yearsAsDeveloper}+ years of experience delivering accessible, user-centric interfaces for scalable platforms, enabling faster teams and better user outcomes.`}</p>
+                <p>{`Senior Frontend Engineer with ${yearsAsDeveloper}+ years of experience delivering accessible, user-centric interfaces for scalable platforms, enabling faster teams and better user outcomes.`}</p>
             </ResumeSection>
             <ResumeSection>
                 <Heading as="h2" size="2">
@@ -105,7 +105,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     company="Committee for Children"
                     dates="May 2026–Present"
                     location="Remote"
-                    title="Software Engineer"
+                    title="Software Engineer (Contract)"
                 >
                     <JobItemList>
                         <li>
@@ -158,7 +158,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <JobItem
                     company="Gartner"
                     dates={`Aug 2024–Oct 2025 (1 yr 2 mos)`}
-                    title="Software Engineer"
+                    title="Senior Software Engineer, Frontend"
                 >
                     <JobItemList>
                         <li>

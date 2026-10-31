@@ -13,7 +13,7 @@ export function HiringCallToAction({ className }: Props) {
             <div className="flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
                 <div className="space-y-2">
                     <Heading as="h2" size="4">
-                        Hiring a Design Technologist?
+                        Hiring a senior frontend engineer?
                     </Heading>
                     <p className="text-sm text-zinc-600 dark:text-zinc-300">
                         I'm looking for my next role on a product team, building

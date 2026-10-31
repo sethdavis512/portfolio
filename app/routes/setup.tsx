@@ -7,7 +7,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Setup',
         descriptionContent:
-            'Explore the development setup, tools, and workflow of Seth Davis, a Design Technologist with expertise in React and modern web development.',
+            'Explore the development setup, tools, and workflow of Seth Davis, a senior frontend engineer with expertise in React and modern web development.',
         ogUrl: 'https://sethdavis.tech/setup'
     });
 }

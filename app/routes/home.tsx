@@ -19,7 +19,7 @@ import type { Route } from './+types/home';
 
 export function meta() {
     return generateRouteMeta({
-        pageTitle: 'Design Technologist',
+        pageTitle: ContentStyles.CURRENT_JOB_TITLE,
         descriptionContent:
             'Seth Davis helps product teams ship better interfaces faster, through design systems and AI tooling. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
@@ -60,7 +60,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         <>
             <HomeSection className="md:pt-0 md:pb-16">
                 <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
-                    <span>Design Technologist</span>
+                    <span>{ContentStyles.CURRENT_JOB_TITLE}</span>
                     <span aria-hidden="true">Austin, TX</span>
                 </div>
                 <div className="grid lg:grid-cols-12 gap-8 items-start">
@@ -80,10 +80,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 faster, through design systems and AI tooling.
                             </p>
                             <p className="mb-8 text-zinc-600 dark:text-zinc-400">
-                                Open to new roles as a{' '}
-                                <Linky to="/design-technologist">
-                                    {ContentStyles.CURRENT_JOB_TITLE}
-                                </Linky>
+                                Open to senior frontend and frontend-leaning
+                                full-stack roles. Remote, hybrid, or Austin.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button
@@ -117,9 +115,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         />
                     </div>
                 </div>
-            </HomeSection>
-            <HomeSection>
-                <ShutterPromo />
             </HomeSection>
             <HomeSection>
                 <Card className="p-8 md:p-10 border-secondary-500/40 dark:border-secondary-500/40 bg-secondary-500/10 dark:bg-secondary-500/10">
@@ -229,6 +224,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             </HomeSection>
             <HomeSection>
                 <HiringCallToAction />
+            </HomeSection>
+            <HomeSection>
+                <ShutterPromo />
             </HomeSection>
             {decks.length > 0 && (
                 <HomeSection>

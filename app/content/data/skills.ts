@@ -3,7 +3,7 @@ import type { Skill } from '../types';
 export const skills: Skill[] = [
     {
         "id": "skill-0",
-        "name": "Typescript",
+        "name": "TypeScript",
         "sortOrder": 1
     },
     {
@@ -78,7 +78,7 @@ export const skills: Skill[] = [
     },
     {
         "id": "skill-15",
-        "name": "Open AI API",
+        "name": "Claude API",
         "sortOrder": 16
     },
     {
@@ -103,7 +103,7 @@ export const skills: Skill[] = [
     },
     {
         "id": "skill-20",
-        "name": "VS Code",
+        "name": "Tailwind CSS",
         "sortOrder": 21
     },
     {
