@@ -225,19 +225,25 @@ export const resume: Resume = {
             name: 'FreshVisit',
             href: 'https://sethdavis.tech/work/fresh-visit',
             summary:
-                'Browser agent that walks a site toward a goal like a first-time visitor and returns a video, every screen, and a verdict.'
+                'Browser agent that tests a site as a first-time visitor, returning a video and verdict.'
+        },
+        {
+            name: 'AI Maniacs',
+            href: 'https://sethdavis.tech/work/ai-maniacs',
+            summary:
+                'Free AI education platform, from fundamentals to production agent workflows.'
         },
         {
             name: 'Lone Star UI',
             href: 'https://sethdavis.tech/work/lone-star-ui',
             summary:
-                'React 19 component library on Base UI, Tailwind CSS 4, and CVA, published to npm with full type declarations.'
+                'React 19 component library on Base UI, Tailwind CSS 4, and CVA, published to npm.'
         },
         {
             name: 'Iridium',
             href: 'https://sethdavis.tech/work/iridium',
             summary:
-                'Full-stack AI starter: React Router, Prisma, PostgreSQL, Better Auth, and an agentic chat with tool calling.'
+                'Full-stack AI starter with React Router, Prisma, PostgreSQL, Better Auth, and agentic chat.'
         }
     ],
     education: [
