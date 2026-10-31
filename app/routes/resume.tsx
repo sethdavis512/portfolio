@@ -3,9 +3,9 @@ import { InfoIcon, MailIcon } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
 
 import { Banner } from '~/components/Banner';
-import { CONTACT_EMAIL, ContentStyles } from '~/constants';
+import { CONTACT_EMAIL } from '~/constants';
 import { Flex } from '~/components/Flex';
-import { skills } from '~/content/data/skills';
+import { resume } from '~/content/data/resume';
 import { generateRouteMeta } from '~/utils/seo';
 import { Heading } from '~/components/Heading';
 import { JobItem } from '~/components/JobItem';
@@ -14,20 +14,21 @@ import { Linky } from '~/components/Linky';
 import { SkillTag } from '~/components/SkillTag';
 import type { Route } from './+types/resume';
 
+// The PDF is rendered by tws-press (`bun run resume:export`) into this
+// Dropbox file, so the shared link stays stable across edits.
 const RESUME_URL =
     'https://www.dropbox.com/scl/fi/sl3nav1owzvfhqvphwflh/seth-davis-resume.pdf?rlkey=1gdz3ln2tcdrufv6gyi0zcppl&st=mluwhad0&dl=0';
 
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'Resume',
-        descriptionContent:
-            `View Seth Davis's resume. Senior Frontend Engineer with ${new Date().getFullYear() - 2016}+ years of experience helping product teams ship better interfaces with design systems and AI tooling. Open to new roles.`,
+        descriptionContent: `View Seth Davis's resume. ${resume.summary}`,
         ogUrl: 'https://sethdavis.tech/resume'
     });
 }
 
 export function loader() {
-    return { skills };
+    return { resume };
 }
 
 function ResumeSection({
@@ -38,7 +39,7 @@ function ResumeSection({
 }
 
 export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
-    const yearsAsDeveloper = new Date().getFullYear() - 2016;
+    const { resume } = loaderData;
 
     return (
         <>
@@ -47,7 +48,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     Resume
                 </Heading>
                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
-                    The record
+                    {resume.headline}
                 </span>
             </div>
             <Banner className="mb-4">
@@ -81,170 +82,70 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 <Heading as="h2" size="2">
                     Summary
                 </Heading>
-                <p>{`Senior Frontend Engineer with ${yearsAsDeveloper}+ years of experience delivering accessible, user-centric interfaces for scalable platforms, enabling faster teams and better user outcomes.`}</p>
+                <p>{resume.summary}</p>
             </ResumeSection>
             <ResumeSection>
                 <Heading as="h2" size="2">
                     Skills
                 </Heading>
-                <div className="flex flex-wrap items-center gap-2">
-                    {loaderData.skills.map(function (skill) {
+                <dl className="grid gap-4 sm:grid-cols-[8rem_1fr] sm:gap-x-6">
+                    {resume.skills.map(function (skill) {
                         return (
-                            <SkillTag key={skill.id}>
-                                {skill.name || ''}
-                            </SkillTag>
+                            <div key={skill.group} className="contents">
+                                <dt className="font-semibold text-zinc-900 dark:text-zinc-100">
+                                    {skill.group}
+                                </dt>
+                                <dd className="flex flex-wrap items-center gap-2">
+                                    {skill.items.map(function (item) {
+                                        return (
+                                            <SkillTag key={item}>{item}</SkillTag>
+                                        );
+                                    })}
+                                </dd>
+                            </div>
                         );
                     })}
-                </div>
+                </dl>
             </ResumeSection>
             <ResumeSection>
                 <Heading as="h2" size="2">
                     Experience
                 </Heading>
-                <JobItem
-                    company="Committee for Children"
-                    dates="May 2026–Present"
-                    location="Remote"
-                    title="Software Engineer (Contract)"
-                >
+                {resume.experience.map(function (job) {
+                    return job.roles.map(function (role) {
+                        return (
+                            <JobItem
+                                key={`${job.company}-${role.title}`}
+                                company={job.company}
+                                dates={role.dates}
+                                location={job.location}
+                                title={role.title}
+                            >
+                                <JobItemList>
+                                    {role.bullets.map(function (bullet) {
+                                        return <li key={bullet}>{bullet}</li>;
+                                    })}
+                                </JobItemList>
+                            </JobItem>
+                        );
+                    });
+                })}
+                <JobItem title="Selected projects">
                     <JobItemList>
-                        <li>
-                            Building a teaching application that delivers
-                            executive function content to educators and students
-                        </li>
-                        <li>
-                            Developing the in-house component library that keeps
-                            product surfaces visually and behaviorally
-                            consistent
-                        </li>
-                        <li>
-                            Designing APIs and connecting multiple in-house
-                            services so teams can share data instead of
-                            duplicating it
-                        </li>
-                        <li>
-                            Led LaunchDarkly enablement, giving teams feature
-                            flags for safer, incremental releases
-                        </li>
-                        <li>
-                            Orchestrating coding agents to move features from
-                            prototype to working product faster
-                        </li>
-                    </JobItemList>
-                </JobItem>
-                <JobItem
-                    company="Tambo"
-                    dates="Mar 2026–Apr 2026 (2 mos)"
-                    location="Remote"
-                    title="Software Engineer (Contract)"
-                >
-                    <JobItemList>
-                        <li>
-                            Prototyped StrudelLM, a music application exploring
-                            live-coded audio driven by natural language
-                        </li>
-                        <li>
-                            Implemented skills in the open source Tambo.co app
-                            using the Compound Engineering plugin, expanding what
-                            the product could do without bloating its core
-                        </li>
-                        <li>
-                            Produced demonstration videos for Twitter and
-                            LinkedIn to showcase new capabilities to the
-                            developer audience
-                        </li>
-                    </JobItemList>
-                </JobItem>
-                <JobItem
-                    company="Gartner"
-                    dates={`Aug 2024–Oct 2025 (1 yr 2 mos)`}
-                    title="Senior Software Engineer, Frontend"
-                >
-                    <JobItemList>
-                        <li>
-                            Built and maintained a company-wide Javascript
-                            package using Snowplow Analytics to track key site
-                            metrics—over 90 million events logged across three
-                            sites since December 2024
-                        </li>
-                        <li>
-                            Designed and implemented a custom CLI tool to
-                            streamline the creation, versioning, and
-                            synchronization of Snowplow schemas, enhancing data
-                            consistency and developer efficiency
-                        </li>
-                        <li>
-                            Collaborated with cross-functional teams to
-                            integrate Snowplow data into various applications
-                            and platforms, enabling data-driven decision making
-                        </li>
-                    </JobItemList>
-                </JobItem>
-                <JobItem
-                    company="Indeed, Inc"
-                    dates="Jan 2023–May 2024 (1 yr 5 mos)"
-                    title="Senior UX Developer"
-                >
-                    <JobItemList>
-                        <li>
-                            Created an interface enabling developers to
-                            dynamically add prefabricated tools and customizable
-                            mock data, saving internal users over 100+ hours
-                            weekly. Conducted workshops to onboard developers
-                            and project managers
-                        </li>
-                        <li>
-                            Developed a module discovery app that enabled
-                            internal teams to efficiently identify the purpose,
-                            visual presentation, and functionality of Employer
-                            codebases in order to promote awareness and reuse
-                        </li>
-                        <li>
-                            Improved the interface for a reporting application
-                            that empowered teams to diagnose issues, view coding
-                            infractions and accessibility issues, leading to the
-                            resolution of 30% of accessibility violations
-                        </li>
-                        <li>
-                            Upgraded theming tool to help teams identify
-                            incorrectly applied styles within components as well
-                            as enabling developers to add custom theme values
-                            and iterate towards better site designs saving
-                            developers time
-                        </li>
-                    </JobItemList>
-                </JobItem>
-                <JobItem
-                    company="Indeed, Inc"
-                    dates="Jan 2020–Jan 2023 (3 yrs)"
-                    title="UX Developer"
-                >
-                    <JobItemList>
-                        <li>
-                            Streamlined Employer navigation by incorporating
-                            cross-organization feedback, optimizing link
-                            hierarchy, and adding sub-navigation, which improved
-                            repetitious task efficiency in addition to the
-                            overall customer experience
-                        </li>
-                        <li>
-                            Enhanced customer awareness of job statuses by
-                            incorporating key UI elements to indicate posting
-                            condition, which reduced user confusion and prompted
-                            employers to resolve posting errors
-                        </li>
-                        <li>
-                            Developed a module linking third-party chat to
-                            enhance customer service interactions, resulting in
-                            more efficient communication, faster resolution
-                            times, and improved customer satisfaction
-                        </li>
-                        <li>
-                            {`Established Indeed’s ${ContentStyles.FRONTEND.toLowerCase()} pattern library,
-                                contributed 3 components and helped launch a
-                                volunteer guild that enabled contributions from
-                                teams across the company`}
-                        </li>
+                        {resume.projects.map(function (project) {
+                            return (
+                                <li key={project.name}>
+                                    {project.href ? (
+                                        <Linky href={project.href}>
+                                            {project.name}
+                                        </Linky>
+                                    ) : (
+                                        project.name
+                                    )}
+                                    : {project.summary}
+                                </li>
+                            );
+                        })}
                     </JobItemList>
                 </JobItem>
                 <JobItem title="Community & Ongoing Learning" className="mb-12">
@@ -267,35 +168,20 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                             tooling change
                         </li>
                         <li>
-                            Building Iridium: An AI-powered app starter kit
-                            with batteries included (TypeScript, React Router 7,
-                            Prisma, Postgres, Better Auth, Vercel AI SDK)
-                        </li>
-                        <li>
                             Follows industry podcasts (Syntax, VS Code Insiders)
                             on modern frontend tooling and developer experience
-                        </li>
-                        <li>
-                            Exploring AI-assisted development and LLM code
-                            generation workflows
                         </li>
                     </JobItemList>
                 </JobItem>
                 <JobItem title="Education">
                     <JobItemList>
-                        <li>
-                            Austin Coding Academy - Austin, Texas
-                            <ul className="m-0 ml-4 mt-2 list-outside list-disc space-y-2 pl-4">
-                                <li>
-                                    Intermediate course (Feb 1–Apr 15, 2016)
+                        {resume.education.map(function (item) {
+                            return (
+                                <li key={item.school}>
+                                    {`${item.school}, ${item.detail} (${item.dates})`}
                                 </li>
-                                <li>Advanced course (May 2–Jul 13, 2016)</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Texas State University - Bachelors of Fine Arts,
-                            Communication Design (2012) - San Marcos, Texas
-                        </li>
+                            );
+                        })}
                     </JobItemList>
                 </JobItem>
             </ResumeSection>

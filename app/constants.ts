@@ -5,7 +5,6 @@ export enum BorderStyles {
 }
 
 export enum ContentStyles {
-    FRONTEND = `Design`,
     CURRENT_JOB_TITLE = `Senior Frontend Engineer`
 }
 

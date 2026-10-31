@@ -60,12 +60,21 @@ app/content/
   data/about-facts.ts  # About page facts
   data/quotes.ts       # Motivational quotes
   data/values.ts       # How I Work values
-  data/skills.ts       # Resume skills
+  data/resume.ts       # Resume (verbatim copy from tws-press; see "Resume" below)
   data/packages.ts     # Service packages
   types.ts             # TypeScript interfaces for content
   work.ts              # Work content loader (import.meta.glob)
   posts.ts             # Post/TIL content loader (import.meta.glob)
 ```
+
+## Resume
+
+The resume has one source of truth: `app/content/resume/resume.ts` in tws-press. That repo renders it to the PDF (`bun run resume:export`), which writes `~/Library/CloudStorage/Dropbox/resume/seth-davis-resume.pdf`; Dropbox syncs it to the shared link in `RESUME_URL` (`app/routes/resume.tsx`), so the link never changes.
+
+- `/resume` on this site renders `app/content/data/resume.ts`, a verbatim copy of that file. Never edit the copy here: edit tws-press, export the PDF, then copy the file over (`cp ../tws-press/app/content/resume/resume.ts app/content/data/resume.ts`) so the site and the PDF always match.
+- Past job titles are the official ones. Positioning (the target title) lives only in `headline` and `summary`, and `ContentStyles.CURRENT_JOB_TITLE` in `app/constants.ts` should match `headline`.
+- The "Community & Ongoing Learning" block is site-only and stays in the route.
+- Spell it "frontend" ("Frontend" in titles, as in "Senior Frontend Engineer"), never "front-end" or "front end". This applies to all site copy, not just the resume.
 
 ## Key Patterns
 

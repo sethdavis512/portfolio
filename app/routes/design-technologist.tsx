@@ -7,7 +7,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'What is a Design Technologist?',
         descriptionContent:
-            'A Design Technologist closes the gap between design and engineering, building design systems, AI tooling, and front-end infrastructure that helps product teams ship faster.',
+            'A Design Technologist closes the gap between design and engineering, building design systems, AI tooling, and frontend infrastructure that helps product teams ship faster.',
         ogUrl: 'https://sethdavis.tech/design-technologist'
     });
 }

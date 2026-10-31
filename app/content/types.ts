@@ -90,12 +90,6 @@ export interface Value {
     sortOrder: number;
 }
 
-export interface Skill {
-    id: string;
-    name: string;
-    sortOrder: number;
-}
-
 export type SlideTransition =
     | 'depth'
     | 'fade'
