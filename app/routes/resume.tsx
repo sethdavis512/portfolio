@@ -136,7 +136,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     company="Tambo"
                     dates="Mar 2026–Apr 2026 (2 mos)"
                     location="Remote"
-                    title="Software Engineer"
+                    title="Software Engineer (Contract)"
                 >
                     <JobItemList>
                         <li>
