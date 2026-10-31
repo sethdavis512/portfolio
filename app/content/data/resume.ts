@@ -171,7 +171,7 @@ export const resume: Resume = {
                     dates: 'Jan 2020 – Jan 2023',
                     bullets: [
                         "Established Indeed's frontend pattern library, contributed 3 components, and helped launch a volunteer guild for cross-company contributions",
-                        'Streamlined Employer navigation with a clearer link hierarchy and sub-navigation based on cross-org feedback',
+                        'Streamlined Employer navigation with a clearer link hierarchy and sub-navigation based on cross‑org feedback',
                         'Added job-status UI that reduced employer confusion and prompted them to fix posting errors',
                         'Built a module linking third-party chat into customer service flows'
                     ]
