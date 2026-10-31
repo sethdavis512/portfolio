@@ -1,20 +1,5 @@
-export {
-    getAllWorkSlugs,
-    getPublishedWorks,
-    getWorkBySlug
-} from './work';
-
-export {
-    getAllTilSlugs,
-    getPublishedTils,
-    getTilBySlug
-} from './posts';
-
-export {
-    getAllDecks,
-    getAllDeckSlidePaths,
-    getDeck,
-    getFirstSlideId,
-    getSlideNavigation
-} from './slides';
-export type { Deck, SlideMetadata, SlideNavigation } from './slides';
+export { works, MOVED_WORK, type WorkItem } from './works';
+export { tils, type TilItem } from './tils';
+export { decks, type DeckItem } from './decks';
+export type { Deck, SlideMetadata, SlideNavigation } from './decks';
+export type { CollectionLookup } from './collection';

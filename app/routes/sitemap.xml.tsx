@@ -1,5 +1,5 @@
 import type { Route } from './+types/sitemap.xml';
-import { getAllWorkSlugs, getAllTilSlugs } from '~/content';
+import { decks, tils, works } from '~/content';
 
 interface SitemapRoute {
     url: string;
@@ -22,22 +22,17 @@ export function loader({ request }: Route.LoaderArgs) {
         { url: '/slides', changefreq: 'monthly', priority: 0.6 }
     ];
 
-    const workRoutes: SitemapRoute[] = getAllWorkSlugs().map((slug) => ({
-        url: `/work/${slug}`,
-        changefreq: 'monthly' as const,
-        priority: 0.9
-    }));
-
-    const tilRoutes: SitemapRoute[] = getAllTilSlugs().map((slug) => ({
-        url: `/til/${slug}`,
-        changefreq: 'monthly' as const,
-        priority: 0.7
-    }));
+    function contentRoute(changefreq: SitemapRoute['changefreq'], priority: number) {
+        return function (url: string): SitemapRoute {
+            return { url, changefreq, priority };
+        };
+    }
 
     const allRoutes = [
         ...staticRoutes,
-        ...workRoutes,
-        ...tilRoutes
+        ...works.paths().map(contentRoute('monthly', 0.9)),
+        ...tils.paths().map(contentRoute('monthly', 0.7)),
+        ...decks.paths().map(contentRoute('monthly', 0.5))
     ];
 
     // Generate XML sitemap

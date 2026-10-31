@@ -1,3 +1,5 @@
+import type { ContentStatus } from './collection';
+
 export interface GalleryImage {
     src: string;
     alt: string;
@@ -15,8 +17,7 @@ export interface WorkExample {
 
 export interface WorkFrontmatter {
     title: string;
-    slug: string;
-    status: string;
+    status: ContentStatus;
     description: string;
     cta: string;
     sortOrder: number;
@@ -46,8 +47,7 @@ export interface WorkFrontmatter {
 
 export interface TilFrontmatter {
     title: string;
-    slug: string;
-    status: string;
+    status: ContentStatus;
     type: string;
     tags: string[];
     excerpt: string;
@@ -97,7 +97,7 @@ export interface DeckMeta {
     title: string;
     description?: string;
     order?: number;
-    status?: 'PUBLISHED' | 'DRAFT';
+    status?: ContentStatus;
     updatedAt?: string;
     tags?: string[];
 }

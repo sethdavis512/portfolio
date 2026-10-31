@@ -14,7 +14,7 @@ import { Card } from '~/components/Card';
 import { HiringCallToAction } from '~/components/HiringCallToAction';
 import { ShowcaseHeroVideo } from '~/components/ShowcaseVideo';
 import { ShutterPromo } from '~/components/ShutterPromo';
-import { getAllDecks } from '~/content';
+import { decks as deckCollection } from '~/content';
 import type { Route } from './+types/home';
 
 export function meta() {
@@ -41,13 +41,13 @@ function HomeSection({
 }
 
 export function loader() {
-    const decks = getAllDecks()
+    const decks = deckCollection.published()
         .slice(0, 3)
         .map((d) => ({
             slug: d.slug,
-            title: d.meta.title,
-            description: d.meta.description ?? null,
-            slideCount: d.slides.length
+            title: d.frontmatter.title,
+            description: d.frontmatter.description ?? null,
+            slideCount: d.body.slides.length
         }));
     return { decks };
 }

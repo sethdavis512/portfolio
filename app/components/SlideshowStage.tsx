@@ -1,6 +1,6 @@
 import { useEffect, type ComponentType, type ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router';
-import type { Deck, SlideNavigation } from '~/content/slides';
+import type { Deck, SlideNavigation } from '~/content/decks';
 import { SlideCode } from './SlideCode';
 
 function getCodeProps(

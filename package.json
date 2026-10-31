@@ -6,6 +6,7 @@
         "build": "react-router build",
         "dev": "react-router dev",
         "start": "tsx main.ts",
+        "test": "vitest run",
         "typecheck": "react-router typegen && tsc"
     },
     "dependencies": {
@@ -45,6 +46,8 @@
         "tailwindcss": "^4.3.0",
         "typescript": "^6.0.3",
         "vite": "^8.0.12",
-        "ws": "^8.20.1"
+        "vitest": "^5.0.5",
+        "ws": "^8.20.1",
+        "yaml": "^2.9.1"
     }
 }

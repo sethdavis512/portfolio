@@ -9,7 +9,7 @@ import {
     pauseCardVideo,
     playCardVideo
 } from '~/components/ShowcaseVideo';
-import { getPublishedWorks } from '~/content';
+import { works as workCollection } from '~/content';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/work';
 
@@ -22,10 +22,10 @@ export function meta() {
 }
 
 export function loader() {
-    const works = getPublishedWorks().map((w) => ({
+    const works = workCollection.published().map((w) => ({
         id: w.slug,
         title: w.frontmatter.title,
-        slug: w.frontmatter.slug,
+        slug: w.slug,
         description: w.frontmatter.description,
         cta: w.frontmatter.cta,
         sortOrder: w.frontmatter.sortOrder,

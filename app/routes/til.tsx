@@ -1,5 +1,5 @@
 import { Form, Link, useSearchParams } from 'react-router';
-import { getPublishedTils } from '~/content';
+import { tils as tilCollection } from '~/content';
 import type { Route } from './+types/til';
 import { Linky } from '~/components/Linky';
 import { Card } from '~/components/Card';
@@ -18,10 +18,10 @@ export function meta() {
 }
 
 export function loader() {
-    const tils = getPublishedTils();
+    const tils = tilCollection.published();
     const posts = tils.map((t) => ({
         id: t.slug,
-        slug: t.frontmatter.slug,
+        slug: t.slug,
         title: t.frontmatter.title,
         excerpt: t.frontmatter.excerpt,
         createdAt: t.frontmatter.createdAt,

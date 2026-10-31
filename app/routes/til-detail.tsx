@@ -1,4 +1,4 @@
-import { getTilBySlug } from '~/content';
+import { tils } from '~/content';
 import { MdxContent } from '~/components/MdxContent';
 import type { Route } from './+types/til-detail';
 import { Heading } from '~/components/Heading';
@@ -15,13 +15,14 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export function loader({ params }: Route.LoaderArgs) {
-    const til = getTilBySlug(params.slug!);
-    if (!til) {
+    const lookup = tils.bySlug(params.slug!);
+    if (lookup.kind !== 'found') {
         throw new Response('Not Found', { status: 404 });
     }
+    const til = lookup.item;
     return {
         post: {
-            slug: til.frontmatter.slug,
+            slug: til.slug,
             title: til.frontmatter.title,
             excerpt: til.frontmatter.excerpt,
             tags: til.frontmatter.tags
@@ -30,9 +31,9 @@ export function loader({ params }: Route.LoaderArgs) {
 }
 
 export default function TILDetailRoute({ loaderData }: Route.ComponentProps) {
-    const til = getTilBySlug(loaderData.post.slug);
+    const lookup = tils.bySlug(loaderData.post.slug);
 
-    if (!til) {
+    if (lookup.kind !== 'found') {
         return <p>{'Entry not found :('}</p>;
     }
 
@@ -56,7 +57,7 @@ export default function TILDetailRoute({ loaderData }: Route.ComponentProps) {
                 )}
             </div>
             <div className="mb-8">
-                <MdxContent Component={til.Component} />
+                <MdxContent Component={lookup.item.body} />
             </div>
         </>
     );

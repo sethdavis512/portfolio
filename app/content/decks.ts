@@ -1,4 +1,10 @@
 import type { ComponentType } from 'react';
+import {
+    byDeckOrder,
+    createCollection,
+    deckPaths,
+    type CollectionItem
+} from './collection';
 import type {
     DeckMeta,
     SlideFrontmatter,
@@ -102,40 +108,20 @@ function buildDecks(): Map<string, Deck> {
     return bySlug;
 }
 
-const decksBySlug = buildDecks();
+export type DeckItem = CollectionItem<DeckMeta, Deck>;
 
-function isPublished(deck: Deck): boolean {
-    return (deck.meta.status ?? 'PUBLISHED') === 'PUBLISHED';
-}
+const deckCollection = createCollection(
+    Array.from(buildDecks().values())
+        .filter((deck) => deck.slides.length > 0)
+        .map((deck) => ({ slug: deck.slug, frontmatter: deck.meta, body: deck })),
+    {
+        basePath: '/slides',
+        compare: byDeckOrder,
+        includeDrafts: import.meta.env.DEV
+    }
+);
 
-export function getAllDecks(): Deck[] {
-    return Array.from(decksBySlug.values())
-        .filter((d) => d.slides.length > 0 && isPublished(d))
-        .sort((a, b) => {
-            const ao = a.meta.order ?? Number.POSITIVE_INFINITY;
-            const bo = b.meta.order ?? Number.POSITIVE_INFINITY;
-            if (ao !== bo) return ao - bo;
-            return a.meta.title.localeCompare(b.meta.title);
-        });
-}
-
-export function getDeck(deckSlug: string): Deck | null {
-    const deck = decksBySlug.get(deckSlug);
-    if (!deck || deck.slides.length === 0) return null;
-    return deck;
-}
-
-export function getFirstSlideId(deckSlug: string): string | null {
-    const deck = getDeck(deckSlug);
-    return deck ? deck.slides[0].id : null;
-}
-
-export function getSlideNavigation(
-    deckSlug: string,
-    slideId: string
-): SlideNavigation | null {
-    const deck = getDeck(deckSlug);
-    if (!deck) return null;
+function slideNavigation(deck: Deck, slideId: string): SlideNavigation | null {
     const index = deck.slides.findIndex((s) => s.id === slideId);
     if (index === -1) return null;
 
@@ -158,15 +144,15 @@ export function getSlideNavigation(
     };
 }
 
-export function getAllDeckSlidePaths(): Array<{
-    deckSlug: string;
-    slideId: string;
-}> {
-    const result: Array<{ deckSlug: string; slideId: string }> = [];
-    for (const deck of getAllDecks()) {
-        for (const slide of deck.slides) {
-            result.push({ deckSlug: deck.slug, slideId: slide.id });
-        }
-    }
-    return result;
-}
+export const decks = {
+    ...deckCollection,
+    paths() {
+        return deckPaths(deckCollection, (item) =>
+            item.body.slides.map((s) => s.id)
+        );
+    },
+    firstSlideId(deck: Deck): string {
+        return deck.slides[0].id;
+    },
+    navigation: slideNavigation
+};

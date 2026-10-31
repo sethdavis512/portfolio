@@ -9,21 +9,14 @@ import { ImageGalleryModal } from '~/components/ImageGalleryModal';
 import { TechStackLogos, type LogoName } from '~/components/TechStackLogos';
 import { Testimonial } from '~/components/Testimonial';
 import { getTestimonialsByWorkSlug } from '~/content/data/testimonials';
-import { getPublishedWorks, getWorkBySlug } from '~/content';
+import { works } from '~/content';
 import type { WorkExample, WorkFrontmatter } from '~/content/types';
 import { cx } from '~/cva.config';
 import { useImageGallery } from '~/hooks/useImageGallery';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/work-detail';
 
-/** Work items that moved (renamed, or turned into TIL posts), so shared links keep working. */
-const MOVED: Record<string, string> = {
-    freshvisit: '/work/fresh-visit',
-    buncli: '/til/building-a-cli-for-people-and-ai-agents',
-    'hog-watch': '/til/a-posthog-dashboard-in-the-menu-bar',
-    'aws-flashcards': '/til/studying-for-aws-cloud-practitioner-from-the-system-tray',
-    'tech-with-seth': '/work'
-};
+type WorkView = WorkFrontmatter & { slug: string };
 
 export function meta({ loaderData }: Route.MetaArgs) {
     const work = loaderData?.work;
@@ -36,30 +29,21 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export function loader({ params }: Route.LoaderArgs) {
-    const moved = MOVED[params.slug!];
-    if (moved) {
-        throw redirect(moved, 301);
+    const lookup = works.bySlug(params.slug!);
+    if (lookup.kind === 'moved') {
+        throw redirect(lookup.to, 301);
     }
-
-    const result = getWorkBySlug(params.slug!);
-
-    if (!result) {
+    if (lookup.kind === 'missing') {
         throw new Response('Not Found', { status: 404 });
     }
 
-    const published = getPublishedWorks();
-    const index = published.findIndex(function (w) {
-        return w.frontmatter.slug === result.frontmatter.slug;
-    });
-    const next =
-        index >= 0 && published.length > 1
-            ? published[(index + 1) % published.length].frontmatter
-            : null;
-
+    const { item, next, position } = lookup;
     return {
-        work: result.frontmatter,
-        position: index >= 0 ? { index: index + 1, total: published.length } : null,
-        next: next ? { slug: next.slug, title: next.title, description: next.description } : null
+        work: { ...item.frontmatter, slug: item.slug },
+        position,
+        next: next
+            ? { slug: next.slug, title: next.frontmatter.title, description: next.frontmatter.description }
+            : null
     };
 }
 
@@ -149,7 +133,7 @@ function Masthead({
     work,
     position
 }: {
-    work: WorkFrontmatter;
+    work: WorkView;
     position: { index: number; total: number } | null;
 }) {
     const techStack = work.techStack as LogoName[];
@@ -400,7 +384,7 @@ function WorkLayout({
     position,
     next
 }: {
-    work: WorkFrontmatter;
+    work: WorkView;
     position: { index: number; total: number } | null;
     next: { slug: string; title: string; description: string } | null;
 }) {
@@ -410,7 +394,8 @@ function WorkLayout({
     const filmImages = galleryImages.slice(filmOffset);
     const { isOpen, selectedIndex, openGallery, closeGallery } = useImageGallery();
 
-    const workModule = getWorkBySlug(work.slug);
+    const lookup = works.bySlug(work.slug);
+    const workModule = lookup.kind === 'found' ? lookup.item : null;
     const hasContent = work.hasContent && workModule;
     const testimonials = getTestimonialsByWorkSlug(work.slug);
 
@@ -457,7 +442,7 @@ function WorkLayout({
             <div className="mt-8 md:mt-12">
                 {hasContent && workModule ? (
                     <section className="border-t border-zinc-200 py-12 dark:border-zinc-800">
-                        <MdxContent Component={workModule.Component} />
+                        <MdxContent Component={workModule.body} />
                     </section>
                 ) : (
                     chapters.map(function (chapter, index) {

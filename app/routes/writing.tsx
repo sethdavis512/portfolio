@@ -1,4 +1,4 @@
-import { getAllDecks, getPublishedTils } from '~/content';
+import { decks as deckCollection, tils as tilCollection } from '~/content';
 import { Card } from '~/components/Card';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
@@ -18,16 +18,16 @@ export function meta() {
 }
 
 export function loader() {
-    const decks = getAllDecks().map((d) => ({
+    const decks = deckCollection.published().map((d) => ({
         slug: d.slug,
-        title: d.meta.title,
-        description: d.meta.description ?? null,
-        slideCount: d.slides.length
+        title: d.frontmatter.title,
+        description: d.frontmatter.description ?? null,
+        slideCount: d.body.slides.length
     }));
-    const tils = getPublishedTils();
+    const tils = tilCollection.published();
     const posts = tils.slice(0, TIL_PREVIEW_COUNT).map((t) => ({
         id: t.slug,
-        slug: t.frontmatter.slug,
+        slug: t.slug,
         title: t.frontmatter.title,
         excerpt: t.frontmatter.excerpt,
         tags: t.frontmatter.tags.map((name) => ({ id: name, name }))

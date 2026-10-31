@@ -4,7 +4,7 @@ import { Card } from '~/components/Card';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
 import { Tag } from '~/components/Tag';
-import { getDeck, getFirstSlideId } from '~/content';
+import { decks } from '~/content';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/slides-deck-index';
 
@@ -22,15 +22,12 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export function loader({ params }: Route.LoaderArgs) {
-    const deck = getDeck(params.deckId!);
-    if (!deck) {
+    const lookup = decks.bySlug(params.deckId!);
+    if (lookup.kind !== 'found') {
         throw new Response('Not Found', { status: 404 });
     }
-
-    const firstSlideId = getFirstSlideId(deck.slug);
-    if (!firstSlideId) {
-        throw new Response('Not Found', { status: 404 });
-    }
+    const deck = lookup.item.body;
+    const firstSlideId = decks.firstSlideId(deck);
 
     return {
         slug: deck.slug,

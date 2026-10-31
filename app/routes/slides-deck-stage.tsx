@@ -1,10 +1,6 @@
 import { redirect } from 'react-router';
 import { SlideshowStage } from '~/components/SlideshowStage';
-import {
-    getDeck,
-    getFirstSlideId,
-    getSlideNavigation
-} from '~/content';
+import { decks } from '~/content';
 import { generateRouteMeta } from '~/utils/seo';
 import type { Route } from './+types/slides-deck-stage';
 
@@ -24,15 +20,15 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export function loader({ params }: Route.LoaderArgs) {
-    const deck = getDeck(params.deckId!);
-    if (!deck) {
+    const lookup = decks.bySlug(params.deckId!);
+    if (lookup.kind !== 'found') {
         throw new Response('Not Found', { status: 404 });
     }
+    const deck = lookup.item.body;
 
-    const navigation = getSlideNavigation(deck.slug, params.slideId!);
+    const navigation = decks.navigation(deck, params.slideId!);
     if (!navigation) {
-        const firstId = getFirstSlideId(deck.slug);
-        throw redirect(`/slides/${deck.slug}/${firstId}`);
+        throw redirect(`/slides/${deck.slug}/${decks.firstSlideId(deck)}`);
     }
 
     return {
@@ -48,8 +44,9 @@ export function loader({ params }: Route.LoaderArgs) {
 export default function SlidesDeckStageRoute({
     loaderData
 }: Route.ComponentProps) {
-    const deck = getDeck(loaderData.deckSlug);
-    if (!deck) return null;
+    const lookup = decks.bySlug(loaderData.deckSlug);
+    if (lookup.kind !== 'found') return null;
+    const deck = lookup.item.body;
 
     return (
         <SlideshowStage

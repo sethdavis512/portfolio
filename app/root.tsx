@@ -12,7 +12,7 @@ import { cx } from '~/cva.config';
 
 import { Heading } from './components/Heading';
 import { CommandPalette } from '~/components/CommandPalette';
-import { getPublishedWorks } from '~/content';
+import { works } from '~/content';
 import { POSTHOG_PROXY_PATH, toBrowserPath } from '../server/posthog-paths';
 
 import type { Route } from './+types/root';
@@ -20,11 +20,10 @@ import type { Route } from './+types/root';
 import './app.css';
 
 export function loader() {
-    const allWorks = getPublishedWorks();
     return {
-        workNavItems: allWorks.map((w) => ({
+        workNavItems: works.published().map((w) => ({
             title: w.frontmatter.title,
-            slug: w.frontmatter.slug
+            slug: w.slug
         }))
     };
 }

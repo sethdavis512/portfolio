@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { getAllDecks } from '~/content';
+import { decks as deckCollection } from '~/content';
 import { Card } from '~/components/Card';
 import { Heading } from '~/components/Heading';
 import { Linky } from '~/components/Linky';
@@ -16,11 +16,11 @@ export function meta() {
 }
 
 export function loader() {
-    const decks = getAllDecks().map((d) => ({
+    const decks = deckCollection.published().map((d) => ({
         slug: d.slug,
-        title: d.meta.title,
-        description: d.meta.description ?? null,
-        slideCount: d.slides.length
+        title: d.frontmatter.title,
+        description: d.frontmatter.description ?? null,
+        slideCount: d.body.slides.length
     }));
     return { decks };
 }
