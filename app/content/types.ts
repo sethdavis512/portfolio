@@ -55,17 +55,6 @@ export interface TilFrontmatter {
     updatedAt: string;
 }
 
-export interface PostFrontmatter {
-    title: string;
-    slug: string;
-    status: string;
-    type: string;
-    tags: string[];
-    excerpt: string;
-    createdAt: string;
-    updatedAt: string;
-}
-
 export interface AboutFact {
     id: string;
     emoji: string | null;

@@ -45,7 +45,7 @@ React Router v7 app with SSR, served via Hono adapter. Content lives as local MD
 
 - Config-based routing in `app/routes.ts`
 - Routes in `app/routes/` wrapped by `wrapper.tsx` layout
-- Content as MDX files in `app/content/work/`, `app/content/til/`, `app/content/post/`
+- Content as MDX files in `app/content/work/`, `app/content/til/`, `app/content/slides/`
 - Structured data as TypeScript files in `app/content/data/`
 - Content loaders in `app/content/work.ts` and `app/content/posts.ts` using `import.meta.glob`
 - Components use CVA (Class Variance Authority) with tailwind-merge configured in `cva.config.ts`
@@ -56,7 +56,6 @@ React Router v7 app with SSR, served via Hono adapter. Content lives as local MD
 app/content/
   work/*.mdx          # Work/project items (frontmatter + optional MDX body)
   til/*.mdx            # TIL posts (frontmatter + MDX body)
-  post/*.mdx           # Blog posts (frontmatter + MDX body)
   data/about-facts.ts  # About page facts
   data/quotes.ts       # Motivational quotes
   data/values.ts       # How I Work values
@@ -64,7 +63,7 @@ app/content/
   data/packages.ts     # Service packages
   types.ts             # TypeScript interfaces for content
   work.ts              # Work content loader (import.meta.glob)
-  posts.ts             # Post/TIL content loader (import.meta.glob)
+  posts.ts             # TIL content loader (import.meta.glob)
 ```
 
 ## Resume

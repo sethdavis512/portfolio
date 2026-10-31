@@ -6,8 +6,6 @@ export {
 
 export {
     getAllTilSlugs,
-    getLastThreePosts,
-    getPublishedPosts,
     getPublishedTils,
     getTilBySlug
 } from './posts';

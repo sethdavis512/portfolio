@@ -55,7 +55,6 @@ app/
 ├── content/
 │   ├── work/*.mdx     # Work / project items
 │   ├── til/*.mdx      # Today-I-Learned posts
-│   ├── post/*.mdx     # Blog posts
 │   ├── slides/<deck>/ # Slide decks (one folder per deck, one MDX per slide)
 │   ├── data/*.ts      # Structured data (about facts, quotes, values, skills, offers)
 │   ├── work.ts        # Work loader (import.meta.glob)
