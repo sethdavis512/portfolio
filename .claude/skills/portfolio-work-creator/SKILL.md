@@ -12,7 +12,7 @@ Work items live as **local MDX files** in `app/content/work/`. The portfolio loa
 ## Workflow
 
 1. **Gather** the project's title, one-sentence description, source/demo URLs, and tech stack.
-2. **Pick a slug** in kebab-case. It becomes both the filename (`<slug>.mdx`) and the URL (`/work/<slug>`).
+2. **Pick a slug** in kebab-case. It becomes both the filename (`<slug>.mdx`) and the URL (`/work/<slug>`); there is no `slug` frontmatter field.
 3. **Pick a sortOrder.** Lower numbers appear first on `/work`. Check existing values with `grep -h "sortOrder:" app/content/work/*.mdx | sort -un` and slot the new item where it belongs in the lineup. Recent flagship work usually goes 0–3.
 4. **Write `app/content/work/<slug>.mdx`** using the template below.
 5. **Record a showcase video** when the project has a live `demoUrl`. Load the `record-browser` skill (user-level, `~/.claude/skills/record-browser/`) and follow it with the work item's slug as the shot list `name`: scout the site, write `shots/<slug>.json`, record, review, show Seth, then upload to Cloudinary as `portfolio/showcase/<slug>`. Skip this for CLI tools, libraries without a demo site, and apps whose interesting parts sit behind a login (unless Seth wants a local-dev recording). See "Showcase video" below.
@@ -27,7 +27,6 @@ That's it. Commit the file like any other code change; the normal deploy flow sh
 ```mdx
 ---
 title: "Project Name"
-slug: "project-slug"
 status: "PUBLISHED"
 description: "1-2 sentence card description shown on /work."
 cta: "See more"
@@ -54,8 +53,7 @@ updatedAt: "2026-04-27T00:00:00.000Z"
 | Field | Type | Notes | Required |
 |-------|------|-------|----------|
 | `title` | string | Display name | Yes |
-| `slug` | string | kebab-case, must match filename | Yes |
-| `status` | string | `PUBLISHED`, `DRAFT`, or `ARCHIVED`. Only `PUBLISHED` shows on `/work` | Yes |
+| `status` | string | `PUBLISHED` or `DRAFT`. Only `PUBLISHED` shows on `/work`; a draft 404s in production but renders at its URL in dev | Yes |
 | `description` | string | Card text on `/work` listing | Yes |
 | `cta` | string | Card button label (default: `See more`) | No |
 | `sortOrder` | number | Lower = earlier on `/work` | Yes |

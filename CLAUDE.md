@@ -35,6 +35,9 @@ bun run dev
 # Type checking
 bun run typecheck
 
+# Tests (vitest)
+bun run test
+
 # Build
 bun run build
 ```
@@ -47,7 +50,7 @@ React Router v7 app with SSR, served via Hono adapter. Content lives as local MD
 - Routes in `app/routes/` wrapped by `wrapper.tsx` layout
 - Content as MDX files in `app/content/work/`, `app/content/til/`, `app/content/slides/`
 - Structured data as TypeScript files in `app/content/data/`
-- Content loaders in `app/content/work.ts` and `app/content/posts.ts` using `import.meta.glob`
+- Content loads through collections (`works`, `tils`, `decks` from `~/content`), all built on `createCollection` in `app/content/collection.ts`. See `GLOSSARY.md` for Collection, Draft and Moved slug
 - Components use CVA (Class Variance Authority) with tailwind-merge configured in `cva.config.ts`
 
 ## Content Structure
@@ -62,9 +65,14 @@ app/content/
   data/resume.ts       # Resume (verbatim copy from tws-press; see "Resume" below)
   data/packages.ts     # Service packages
   types.ts             # TypeScript interfaces for content
-  work.ts              # Work content loader (import.meta.glob)
-  posts.ts             # TIL content loader (import.meta.glob)
+  collection.ts        # Collection core: published(), bySlug(), paths(); drafts, sorting, slugs
+  works.ts             # Work collection (MDX glob) + moved work slugs
+  tils.ts              # TIL collection (MDX glob)
+  decks.ts             # Deck collection + slide navigation
+  prerender-paths.ts   # Second adapter: raw MDX + yaml, used by react-router.config.ts
 ```
+
+The slug is always the filename (or deck folder name); frontmatter has no `slug` field. A `status: "DRAFT"` item is left out of listings, the sitemap and prerendering, and 404s in production, but renders at its URL in `bun run dev`. `prerender-paths.test.ts` fails if the prerender adapter and the app collections disagree.
 
 ## Resume
 
@@ -98,18 +106,19 @@ export default function RouteComponent({ loaderData }: Route.ComponentProps) {
 MDX components cannot be returned from loaders (not serializable). Access them at module scope:
 
 ```typescript
-import { getWorkBySlug } from '~/content';
+import { works } from '~/content';
 import { MdxContent } from '~/components/MdxContent';
 
 export function loader({ params }: Route.LoaderArgs) {
-    const work = getWorkBySlug(params.slug!);
-    if (!work) throw new Response('Not Found', { status: 404 });
-    return { work: work.frontmatter }; // serializable only
+    const lookup = works.bySlug(params.slug!);
+    if (lookup.kind === 'moved') throw redirect(lookup.to, 301);
+    if (lookup.kind === 'missing') throw new Response('Not Found', { status: 404 });
+    return { work: { ...lookup.item.frontmatter, slug: lookup.item.slug } }; // serializable only
 }
 
 export default function WorkDetail({ loaderData }: Route.ComponentProps) {
-    const work = getWorkBySlug(loaderData.work.slug); // get component at render time
-    return <MdxContent Component={work!.Component} />;
+    const lookup = works.bySlug(loaderData.work.slug); // get the MDX body at render time
+    return lookup.kind === 'found' ? <MdxContent Component={lookup.item.body} /> : null;
 }
 ```
 
@@ -233,11 +242,11 @@ After adding a slide, run `bun run build` then `grep -c '<p><p\|<p>[[:space:]]*<
 See `app/content/slides/bun-cli/mvc.mdx` for a reference pattern (heading + explicit `<SlideCode>` + short caption).
 
 **Architecture — do not refactor without asking:**
-- Loader: `app/content/slides.ts` — eager glob over `./slides/*/*.mdx` + `./slides/*/deck.json`
+- Loader: `app/content/decks.ts`, eager glob over `./slides/*/*.mdx` + `./slides/*/deck.json`, exposed as the `decks` collection
 - Stage component: `app/components/SlideshowStage.tsx` — reusable, keyboard nav + view transitions
 - Routes: `app/routes/slides-index.tsx` (listing, inside wrapper), `app/routes/slides-deck-index.tsx` (redirect), `app/routes/slides-deck-stage.tsx` (full-screen stage, **outside** wrapper layout in `app/routes.ts`)
 - View transition CSS: `app/app.css` under "SLIDESHOW VIEW TRANSITIONS". Driven by `data-nav` + `data-transition` attributes on `<html>` set by the stage before navigation.
-- Prerender: `react-router.config.ts` reads deck subfolders at build time.
+- Prerender: `react-router.config.ts` gets deck and slide paths from `app/content/prerender-paths.ts`.
 
 **Mounting a deck at a custom path** (e.g. `/talks/my-talk/:slideId`):
 Create a new route file that calls `getDeck('my-talk')` + `getSlideNavigation(...)` and renders `<SlideshowStage deck={deck} slideId={...} navigation={...} basePath="/talks/my-talk" />`. The stage primitives are path-agnostic — no library changes needed. Place the route outside the wrapper layout in `app/routes.ts` for full-screen, and add a matching prerender entry if the deck should be statically generated.
