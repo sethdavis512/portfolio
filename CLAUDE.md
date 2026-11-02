@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## All green lights
+
+This is an all-green-lights project. Deploy: Railway (project "Portfolio") builds and deploys on push to main.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Ecosystem
