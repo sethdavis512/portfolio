@@ -183,7 +183,7 @@ Decks live as **folders** under `app/content/slides/`. A folder is a deck. Each 
    ```
    `order` controls slide sequence within the deck. Pick transitions intentionally — `fade` for title/end slides, `depth` for content progression, `lift`/`zoom` for section breaks, `flip` sparingly.
 4. Write the slide body as a single full-height JSX block. **Slides are designed components, not prose** — use `h-full flex ...` layouts and fluid typography. No `<MdxContent>` wrapper.
-5. That's it. The deck auto-appears at `/slides`, the stage is auto-wired at `/slides/<deck-slug>/<slide-id>`, and the prerender config (`react-router.config.ts`) walks the folder automatically.
+5. That's it. The deck auto-appears at `/slides`, the stage is auto-wired at `/slides/<deck-slug>/<slide-id>`, and prerendering picks it up automatically through `app/content/prerender-paths.ts`.
 
 **Slide content conventions:**
 - Use portfolio tokens only: `bg-zinc-950`, `text-white`, `text-zinc-400`, `text-primary-400`, etc. Never raw hex/rgb.
@@ -253,12 +253,12 @@ See `app/content/slides/bun-cli/mvc.mdx` for a reference pattern (heading + expl
 - Prerender: `react-router.config.ts` gets deck and slide paths from `app/content/prerender-paths.ts`.
 
 **Mounting a deck at a custom path** (e.g. `/talks/my-talk/:slideId`):
-Create a new route file that calls `getDeck('my-talk')` + `getSlideNavigation(...)` and renders `<SlideshowStage deck={deck} slideId={...} navigation={...} basePath="/talks/my-talk" />`. The stage primitives are path-agnostic — no library changes needed. Place the route outside the wrapper layout in `app/routes.ts` for full-screen, and add a matching prerender entry if the deck should be statically generated.
+Create a new route file that looks the deck up with `decks.bySlug('my-talk')` (use `lookup.item.body` when `kind === 'found'`), gets navigation from `decks.navigation(deck, slideId)`, and renders `<SlideshowStage deck={deck} slideId={...} navigation={...} basePath="/talks/my-talk" />`. The stage primitives are path-agnostic — no library changes needed. Place the route outside the wrapper layout in `app/routes.ts` for full-screen, and add a matching prerender entry if the deck should be statically generated.
 
 ## Important Notes
 
 - Use `~/` prefix for absolute imports in app
-- Pre-rendered routes defined in `react-router.config.ts` (reads MDX files from disk)
+- Pre-rendered routes defined in `react-router.config.ts` (static pages listed there; content paths from `app/content/prerender-paths.ts`)
 - Avoid `useEffect` in React Router 7 routes, prefer loaders/actions
 - Use classic `function` syntax over arrow functions
 - MDX files must escape `<` characters outside code blocks (use `&lt;` or `≤`)
