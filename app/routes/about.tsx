@@ -9,6 +9,9 @@ import type { Route } from './+types/about';
 import { Button } from '~/components/Button';
 import { CONTACT_EMAIL } from '~/constants';
 
+const HEADSHOT_URL =
+    'https://res.cloudinary.com/setholito/image/upload/c_fill,f_auto,q_auto,w_400,h_400/v1793725343/portfolio/seth-davis-headshot.jpg';
+
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'About',
@@ -102,6 +105,20 @@ export default function AboutRoute({ loaderData }: Route.ComponentProps) {
                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     The person
                 </span>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 mb-10">
+                <img
+                    src={HEADSHOT_URL}
+                    alt="Seth Davis smiling, wearing a gray shirt and tie"
+                    width={400}
+                    height={400}
+                    className="size-40 sm:size-48 shrink-0 rounded-lg object-cover border border-zinc-200 dark:border-zinc-800"
+                />
+                <p className="text-xl md:text-2xl font-medium max-w-2xl text-zinc-800 dark:text-zinc-200">
+                    I'm a senior frontend engineer in Austin, Texas. I help
+                    product teams ship better interfaces with design systems
+                    and AI tooling.
+                </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <ul className="basis-1/2 space-y-4">
