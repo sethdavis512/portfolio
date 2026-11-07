@@ -1,0 +1,51 @@
+---
+title: "Trellis"
+status: "PUBLISHED"
+description: "A React Flow of my own: a node-and-edge canvas you can pan, zoom, drag, connect, group, and auto-lay out, with any React component inside a node. One library behind four very different apps."
+cta: "See more"
+sortOrder: -1.5
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/trellis-architecture-dark.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/trellis-architecture-dark.png"
+showcaseVideo: "portfolio/showcase/trellis"
+role: "Solo: API design, engineering, and demos"
+pullQuote: "The canvas never changes your nodes itself. It reports what happened, and you decide what to keep."
+examples:
+- video: "portfolio/showcase/trellis-playground"
+  title: "Connect, drop, drag, delete, tidy"
+  caption: "The Playground demo: drop a connection on empty canvas to add a joined node, switch the edge type to smoothstep and connect again, drag a node and watch its edges follow, delete one, then lay the graph out in layers with one click."
+  aspect: "1920 / 1200"
+- video: "portfolio/showcase/trellis-sort-animals"
+  title: "Sort the animals"
+  caption: "A drag-and-drop game for kids built on the same canvas. Right answers join the tree, which lays itself out again; a wrong one bounces back with a hint."
+  aspect: "1920 / 1200"
+about: "Trellis is a React library for node-and-edge canvases, published to npm as @sethdavis512/trellis. It does what React Flow does: pan and zoom, drag and box-select, connect handles with bezier, smoothstep, step, or straight edges, nest nodes in group frames that grow to fit their children, and show a minimap and controls. Every node type is a plain React component, so a node can hold a sparkline, a form, or a game card. Two pure layout functions, a tidy tree and a layered layout that minimizes edge crossings, rearrange any graph on demand. The four demos prove the range: an architecture map that lights up one request's path, live server clusters with per-pod load, an editing playground, and a sorting game for kids. Its only runtime dependencies are d3-zoom, d3-drag, and d3-selection."
+learned: "Building a canvas library taught me where the hard parts of React Flow actually are. Coordinates are the core of it: converting between screen and flow space under any zoom, finding a node's handle points, and fitting the view to a set of bounds all live in one tested geometry module. I kept the canvas controlled in the same way React inputs are: it never mutates nodes or edges, it emits typed changes (moved, selected, removed) that the app applies or refuses, which makes persistence and undo the app's choice. An external store read through useSyncExternalStore lets the viewport and an in-flight connection update at drag speed without re-rendering every node. Writing the layered layout meant learning how layer assignment and crossing reduction work, and keeping it a pure function made it easy to test. Touch support pushed me to let a dropped connection join the nearest handle on whatever node it lands on."
+impact: "Trellis shows I can design and ship a reusable library with a small, deliberate public API, not just apps that consume one. It already runs in production: company-surface renders its canvas windows as Trellis node types. The work covers interaction design (drag, zoom, selection, keyboard delete), graph layout algorithms, rendering performance, theming through CSS custom properties that follow light and dark mode, and 49 Vitest tests across geometry, layout, changes, and the Flow component. The four demos make the claim visible: one canvas, four products that look and behave nothing alike."
+techStack: ["typescript", "react", "bun", "css"]
+sourceUrl: ""
+demoUrl: "https://www.npmjs.com/package/@sethdavis512/trellis"
+demoUrlText: "View on npm"
+tags: ["library", "canvas", "open source"]
+galleryImages:
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/trellis-architecture-dark.png"
+  alt: "Architecture demo: an app's services in group frames with the numbered path of one request lit on the map"
+  sortOrder: 0
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/trellis-clusters-dark.png"
+  alt: "Clusters demo: pods across three regions, each node a component with a live CPU sparkline"
+  sortOrder: 1
+- src: "https://res.cloudinary.com/setholito/image/upload/v1/portfolio/trellis-sort-animals-gif.gif"
+  alt: "Animated: dragging animal cards onto their groups, with a wrong answer bouncing back"
+  sortOrder: 2
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/trellis-architecture-light.png"
+  alt: "The architecture demo in light mode; every color comes from theme variables"
+  sortOrder: 3
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/trellis-learning-dark.png"
+  alt: "Sort the animals: a drag-and-drop game for kids with a category tree and animal cards"
+  sortOrder: 4
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/trellis-playground-dark.png"
+  alt: "Playground demo with layout, snap-to-grid, and edge type controls"
+  sortOrder: 5
+hasContent: false
+createdAt: "2026-11-07T00:00:00.000Z"
+updatedAt: "2026-11-07T00:00:00.000Z"
+---
