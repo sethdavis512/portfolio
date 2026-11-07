@@ -26,6 +26,9 @@ export default defineConfig({
         }
     ],
     test: {
-        include: ['app/**/*.test.ts']
+        include: ['app/**/*.test.ts'],
+        // The cached transform of a module keeps its import.meta.glob expansion,
+        // so a newly added content file stays invisible to works.ts and friends.
+        fsModuleCache: false
     }
 });
