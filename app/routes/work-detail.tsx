@@ -419,7 +419,7 @@ function WorkLayout({
                         title={work.title}
                     />
                     <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-2">
-                        <Kicker>Walkthrough of the live site</Kicker>
+                        <Kicker>{work.showcaseCaption || 'Walkthrough of the live site'}</Kicker>
                         <span className="text-xs text-zinc-500 dark:text-zinc-400">
                             Recorded with an automated browser
                         </span>

@@ -69,6 +69,7 @@ updatedAt: "2026-04-27T00:00:00.000Z"
 | `tags` | string[] | Free-form labels | No |
 | `galleryImages` | object[] | See "Gallery images" below | No |
 | `showcaseVideo` | string | Cloudinary public ID (`portfolio/showcase/<slug>`); replaces the hero image on the detail page | No |
+| `showcaseCaption` | string | Label under the showcase video; defaults to "Walkthrough of the live site". Set it when the video isn't of a live site (local demos, a dev build) | No |
 | `role` | string | Fact-sheet line, e.g. `"Solo: product, design, and engineering"` | No |
 | `pullQuote` | string | One sentence from the write-up, set large before the last chapter | No |
 | `examples` | object[] | Extra videos under "In action": `video` (Cloudinary ID), `title`, `caption`, optional `aspect` like `"1280 / 844"` | No |

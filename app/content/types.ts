@@ -25,6 +25,8 @@ export interface WorkFrontmatter {
     thumbnailImage: string;
     /** Cloudinary public ID of a record-browser walkthrough, e.g. portfolio/showcase/<slug> */
     showcaseVideo?: string;
+    /** Label under the showcase video (default "Walkthrough of the live site"). */
+    showcaseCaption?: string;
     /** Extra videos of the product at work, shown under "In action". */
     examples?: WorkExample[];
     /** A line from the write-up set large between the chapters. */
