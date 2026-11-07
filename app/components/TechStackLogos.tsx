@@ -6,6 +6,7 @@ import { BaseUILogo } from './logos/BaseUILogo';
 import { BetterAuthLogo } from './logos/BetterAuthLogo';
 import { BunLogo } from './logos/BunLogo';
 import { CSSLogo } from './logos/CSSLogo';
+import { D3Logo } from './logos/D3Logo';
 import { DocusaurusLogo } from './logos/DocusaurusLogo';
 import { ElectronLogo } from './logos/ElectronLogo';
 import { GitHubLogo } from './logos/GitHubLogo';
@@ -41,6 +42,7 @@ export type LogoName =
     | 'bun'
     | 'cloudinary'
     | 'css'
+    | 'd3'
     | 'daisy'
     | 'docusaurus'
     | 'electron'
@@ -110,6 +112,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <CSSLogo {...logoProps} {...props} />,
             title: 'CSS',
             url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
+        },
+        d3: {
+            component: (props) => <D3Logo {...logoProps} {...props} />,
+            title: 'D3',
+            url: 'https://d3js.org/'
         },
         'react-router': {
             component: (props) => <ReactRouterLogo {...logoProps} {...props} />,
