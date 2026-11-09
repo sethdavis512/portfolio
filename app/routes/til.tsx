@@ -12,7 +12,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'TIL',
         descriptionContent:
-            'Short things I have learned — snippets, discoveries, and explanations from Seth Davis on web development, React, TypeScript, and more.',
+            'Short things I have learned: snippets, discoveries, and explanations from Seth Davis on web development, React, TypeScript, and more.',
         ogUrl: 'https://sethdavis.tech/til'
     });
 }
@@ -74,7 +74,7 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                 </span>
             </div>
             <p className="text-zinc-600 dark:text-zinc-400 mb-8">
-                Short things I have learned — snippets, discoveries, and quick
+                Short things I have learned: snippets, discoveries, and quick
                 explanations.
             </p>
             {loaderData.allTags.length > 0 && (
@@ -178,7 +178,7 @@ export default function TILRoute({ loaderData }: Route.ComponentProps) {
                     </p>
                 ) : (
                     <p className="text-zinc-600 dark:text-zinc-400">
-                        Nothing here yet — check back soon.
+                        Nothing here yet. Check back soon.
                     </p>
                 )}
             </div>

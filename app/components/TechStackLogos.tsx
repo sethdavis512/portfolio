@@ -96,7 +96,7 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
         'better-auth': {
             component: (props) => <BetterAuthLogo {...logoProps} {...props} />,
             title: 'Better Auth',
-            url: 'https://betterauth.dev/'
+            url: 'https://better-auth.com/'
         },
         bun: {
             component: (props) => <BunLogo {...logoProps} {...props} />,

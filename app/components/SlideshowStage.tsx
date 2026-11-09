@@ -109,7 +109,7 @@ export function SlideshowStage({
 
     return (
         <div className="w-screen h-screen relative bg-zinc-950 text-zinc-100 overflow-hidden font-sans">
-            <title>{`${slide.title} — ${deck.meta.title}`}</title>
+            <title>{`${slide.title} | ${deck.meta.title}`}</title>
 
             <div className="slide-container absolute inset-0 px-5 pt-14 pb-20 sm:px-10 sm:pt-16 sm:pb-24 md:px-16 lg:px-24 lg:py-16 lg:pb-28 flex items-center justify-center overflow-y-auto">
                 <div className="max-w-6xl w-full h-full">

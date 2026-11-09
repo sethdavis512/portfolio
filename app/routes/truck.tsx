@@ -61,7 +61,7 @@ export default function TruckRoute({ loaderData }: Route.ComponentProps) {
             <Heading as="h1" className="mb-4">
                 Truck stuff
             </Heading>
-            <p className="mb-4">{`I like trucks, plain and simple. No drama, no brand wars—just good ol’ horsepower and hauling. Wanna roll in a Chevy? Go for it. Prefer a Dodge? Have at it. Me? I like Ford 😎 I drive a:`}</p>
+            <p className="mb-4">{`I like trucks, plain and simple. No drama, no brand wars, just good ol’ horsepower and hauling. Wanna roll in a Chevy? Go for it. Prefer a Dodge? Have at it. Me? I like Ford 😎 I drive a:`}</p>
             <Heading as="h2" size="4" className="mb-4">
                 2023 Ford F-150 XLT SuperCrew 2.7L V6 EcoBoost Sport (302A)
             </Heading>

@@ -41,7 +41,7 @@ export default function TILDetailRoute({ loaderData }: Route.ComponentProps) {
         <>
             <div className="mb-8 border-b border-zinc-200 dark:border-zinc-800 pb-6">
                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 block mb-3">
-                    TIL — Field note
+                    TIL · Field note
                 </span>
                 <Heading as="h1" size="1" className="mb-2">
                     {loaderData.post.title}

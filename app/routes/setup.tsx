@@ -21,7 +21,7 @@ export default function SetupRoute() {
             name: `Apple Wireless Keyboard`
         },
         {
-            name: `LG 27" UltraFine 5K Display (Layoff gift from Indeed)`,
+            name: `LG 27" UltraFine 5K Display`,
             url: `https://www.lg.com/us/monitors/lg-27md5kl-b-5k-uhd-led-monitor`
         },
         {

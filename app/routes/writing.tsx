@@ -161,7 +161,7 @@ export default function WritingRoute({ loaderData }: Route.ComponentProps) {
                         ))
                     ) : (
                         <p className="text-zinc-600 dark:text-zinc-400">
-                            Nothing here yet — check back soon.
+                            Nothing here yet. Check back soon.
                         </p>
                     )}
                 </div>

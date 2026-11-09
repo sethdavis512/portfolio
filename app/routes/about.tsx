@@ -16,7 +16,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'About',
         descriptionContent:
-            'Learn about Seth Davis, a senior frontend engineer based in Austin, Texas, who helps product teams ship better interfaces with design systems and AI tooling. Austin FC fan, CrossFit member, and React Router enthusiast.',
+            'Learn about Seth Davis, a senior frontend engineer based in Austin, Texas, who helps product teams ship better interfaces with design systems and AI tooling. Austin FC fan and React Router enthusiast.',
         ogUrl: 'https://sethdavis.tech/about'
     });
 }
@@ -31,7 +31,7 @@ function Quote({ quote, author }: { quote: string; author: string }) {
             <p className="mb-2 font-display text-xl md:text-2xl">{`"${quote}"`}</p>
             <footer>
                 <cite className="text-xs font-medium tracking-wide not-italic text-zinc-600 dark:text-zinc-400">
-                    &mdash; {author}
+                    {author}
                 </cite>
             </footer>
         </blockquote>

@@ -10,7 +10,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Slides',
         descriptionContent:
-            'Talks and decks by Seth Davis — MDX slideshows with keyboard navigation.',
+            'Talks and decks by Seth Davis: MDX slideshows with keyboard navigation.',
         ogUrl: 'https://sethdavis.tech/slides'
     });
 }

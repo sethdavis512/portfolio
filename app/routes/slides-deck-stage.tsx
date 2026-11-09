@@ -6,7 +6,7 @@ import type { Route } from './+types/slides-deck-stage';
 
 export function meta({ loaderData }: Route.MetaArgs) {
     const title = loaderData
-        ? `${loaderData.slideTitle} — ${loaderData.deckTitle}`
+        ? `${loaderData.slideTitle} | ${loaderData.deckTitle}`
         : 'Slides';
     return generateRouteMeta({
         pageTitle: title,

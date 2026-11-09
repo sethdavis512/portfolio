@@ -4,7 +4,7 @@ export const values: Value[] = [
     {
         "id": "value-0",
         "title": "Bridge, Don't Buffer",
-        "description": "Design and engineering speak different languages. I translate between them — advocating for user experience while respecting technical constraints, and helping both sides understand the why behind decisions.",
+        "description": "Design and engineering speak different languages. I translate between them, advocating for user experience while respecting technical constraints, and helping both sides understand the why behind decisions.",
         "sortOrder": 0
     },
     {
@@ -22,7 +22,7 @@ export const values: Value[] = [
     {
         "id": "value-3",
         "title": "Build for the Builder",
-        "description": "Developer experience matters. When I create tools, components, or documentation, I am designing for the person who will use it next — making their day a little easier and their work a little faster.",
+        "description": "Developer experience matters. When I create tools, components, or documentation, I am designing for the person who will use it next, making their day a little easier and their work a little faster.",
         "sortOrder": 3
     },
     {
