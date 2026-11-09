@@ -34,7 +34,7 @@ export const values: Value[] = [
     {
         "id": "value-5",
         "title": "Set the Tone",
-        "description": "Attitude shapes everything. I redirect complaints toward solutions, keep my camera on in remote meetings, and show up with energy that lifts the room instead of draining it.",
+        "description": "Attitude shapes everything. I redirect complaints toward solutions and show up with energy that lifts the room instead of draining it.",
         "sortOrder": 6
     }
 ];

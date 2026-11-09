@@ -26,12 +26,6 @@ export const quotes: Quote[] = [
         "sortOrder": 4
     },
     {
-        "id": "quote-4",
-        "text": "A goal without a plan is just a wish.",
-        "author": "Antoine de Saint-Exupery",
-        "sortOrder": 5
-    },
-    {
         "id": "quote-5",
         "text": "You don't wait until you're confident enough to take action. You build your confidence as a result of taking action.",
         "author": "Jill Coleman",
@@ -42,11 +36,5 @@ export const quotes: Quote[] = [
         "text": "Impossible is an opinion",
         "author": "Wilfred Nancy",
         "sortOrder": 7
-    },
-    {
-        "id": "quote-7",
-        "text": "I get knocked down, but I get up again...You are never gonna keep me down...",
-        "author": "Chumbawamba",
-        "sortOrder": 8
     }
 ];

@@ -20,6 +20,7 @@ import type { Route } from './+types/home';
 export function meta() {
     return generateRouteMeta({
         pageTitle: ContentStyles.CURRENT_JOB_TITLE,
+        fullTitle: `Seth Davis, ${ContentStyles.CURRENT_JOB_TITLE}`,
         descriptionContent:
             'Seth Davis helps product teams ship better interfaces faster, through design systems and AI tooling. Based in Austin, Texas.',
         ogUrl: 'https://sethdavis.tech'
@@ -256,7 +257,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8">
                         <Heading className="mb-0">Recent slides</Heading>
                         <Linky to="/writing" className="text-sm">
-                            Talks &amp; writing →
+                            Slides &amp; writing →
                         </Linky>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

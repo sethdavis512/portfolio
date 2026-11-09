@@ -22,7 +22,7 @@ const RESUME_URL =
 export function meta() {
     return generateRouteMeta({
         pageTitle: 'Resume',
-        descriptionContent: `View Seth Davis's resume. ${resume.summary}`,
+        descriptionContent: `View Seth Davis' resume. ${resume.summary}`,
         ogUrl: 'https://sethdavis.tech/resume'
     });
 }
@@ -152,7 +152,7 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                     <JobItemList>
                         <li>
                             Active contributor to{' '}
-                            <Linky href="https://remixaustin.com/">
+                            <Linky href="https://www.meetup.com/remix-austin/">
                                 Remix Austin Meetup
                             </Linky>
                             , engaging in discussions on modern React
@@ -166,10 +166,6 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                             , a free AI education platform covering fundamentals
                             through agent workflows, maintained as models and
                             tooling change
-                        </li>
-                        <li>
-                            Follows industry podcasts (Syntax, VS Code Insiders)
-                            on modern frontend tooling and developer experience
                         </li>
                     </JobItemList>
                 </JobItem>

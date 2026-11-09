@@ -2,20 +2,24 @@ export function generateRouteMeta({
     descriptionContent,
     ogUrl = 'https://sethdavis.tech',
     ogImage = 'https://res.cloudinary.com/setholito/image/upload/v1/portfolio/og-image.png',
-    pageTitle
+    pageTitle,
+    fullTitle
 }: {
     ogUrl?: string;
     ogImage?: string;
     pageTitle: string;
+    /** Replaces the default "<pageTitle> | Seth Davis' Portfolio" title. */
+    fullTitle?: string;
     descriptionContent?: string;
 }) {
+    const title = fullTitle ?? `${pageTitle} | Seth Davis' Portfolio`;
     return [
-        { title: `${pageTitle} | Seth Davis' Portfolio` },
+        { title },
         {
             name: 'description',
             content:
                 descriptionContent ||
-                `Welcome to Seth Davis' portfolio. Explore projects, blog posts, and insights on web development, React, TypeScript, and more.`
+                `Welcome to Seth Davis' portfolio. Explore projects, field notes, and slide decks on frontend engineering, React, TypeScript, and AI tooling.`
         },
         { name: 'author', content: 'Seth Davis' },
         {
@@ -27,13 +31,13 @@ export function generateRouteMeta({
         // Open Graph
         {
             property: 'og:title',
-            content: `${pageTitle} | Seth Davis' Portfolio`
+            content: title
         },
         {
             property: 'og:description',
             content:
                 descriptionContent ||
-                `Welcome to Seth Davis' portfolio. Explore projects, blog posts, and insights on web development, React, TypeScript, and more.`
+                `Welcome to Seth Davis' portfolio. Explore projects, field notes, and slide decks on frontend engineering, React, TypeScript, and AI tooling.`
         },
         { property: 'og:locale', content: 'en_US' },
         { property: 'og:type', content: 'website' },
@@ -46,13 +50,13 @@ export function generateRouteMeta({
         { name: 'twitter:card', content: 'summary_large_image' },
         {
             name: 'twitter:title',
-            content: `${pageTitle} | Seth Davis' Portfolio`
+            content: title
         },
         {
             name: 'twitter:description',
             content:
                 descriptionContent ||
-                `Welcome to Seth Davis' portfolio. Explore projects, blog posts, and insights on web development, React, TypeScript, and more.`
+                `Welcome to Seth Davis' portfolio. Explore projects, field notes, and slide decks on frontend engineering, React, TypeScript, and AI tooling.`
         },
         {
             name: 'twitter:image',
