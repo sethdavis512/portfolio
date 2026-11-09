@@ -3,83 +3,71 @@ title: "Lessons From Building a Multi-Agent Personal Assistant"
 status: "PUBLISHED"
 type: "TIL"
 tags: ["ai", "agents", "architecture"]
-excerpt: "Why a supervisor with twelve specialists beats one giant prompt, what shared memory unlocks, and why the most interesting AI app is the one your old apps could already have been."
+excerpt: "Sprocket started as a supervisor with more than a dozen specialists. I deleted eleven of them and gave their tools to the supervisor. Here is what survived and why."
 createdAt: "2026-04-28T00:00:00.000Z"
-updatedAt: "2026-04-28T00:00:00.000Z"
+updatedAt: "2026-11-09T00:00:00.000Z"
 ---
 
-Sprocket is my personal assistant. It manages contacts, journal entries, notes, tasks, calendar events, habits, and expenses, drafts emails, generates images, runs weekly reviews, and answers cross-domain questions about my own life. Underneath, it is not one big AI. It is a supervisor and twelve specialists sharing one memory. Building it changed how I think about what an AI app even is.
+Sprocket is my personal assistant. It manages contacts, tasks, events, journal entries, habits, shareable pages, polls, and booking links, drafts emails, and runs weekly reviews. I wrote the first version of this post when it was a supervisor delegating to more than a dozen specialists, and I argued that layout was the way to build this kind of app.
 
-## Why split it up
+Then I deleted eleven of those specialists. This is the updated version.
 
-The instinct with a personal assistant is to write one enormous system prompt and hand the model every tool you have. That works for a demo. It collapses the moment the surface area grows past a handful of features.
+## What I got wrong
 
-A supervisor + sub-agent layout fixes the failure modes:
+The original pitch for specialists sounded right: each one loads only the prompts and tools for its domain, so context stays small and a tool call reads like a story ("RelationshipManager logged a call with Alex").
 
-- **Context stays small.** Each specialist only loads the prompts and tools relevant to its domain. The journal coach never sees finance tools. The finance tracker never reads contact prompts.
-- **Decisions stay coherent.** The supervisor decides which specialist owns the request and forwards the conversation. Specialists do not argue with each other; they do their job.
-- **You can change one thing without breaking everything.** Tuning the journaling agent's tone is a one-file change. Adding a new domain is a new specialist, not a new branch in a 4,000-token prompt.
-- **Tool calls become legible.** When a specialist is named after its job, the user sees a clear story: "RelationshipManager logged a call with Alex." That readability matters more than I expected.
+In practice, most of my specialists only wrapped a set of tools. Contacts, tasks, calendar, habits, research, and the rest each sat between the supervisor and a handful of database calls. Logging a call meant the supervisor picking a specialist, the specialist picking a tool, and two models doing work that one could do. It also meant a 19-line list of routing rules in the supervisor's prompt, just to keep it pointed at the right specialist.
 
-## What the structure looks like
+So I flattened it. The eleven wrappers went away and their tools moved onto the supervisor, with a one-line note per domain in its instructions. That commit removed about 600 lines net.
+
+## What the structure looks like now
 
 ```
-Supervisor
-├── hooks (inject current date/time, timestamp messages)
-├── middleware (trim, normalize)
-├── guardrails (length cap, redact PII on output)
-└── delegates to:
-    ├── Relationship    (contacts + interactions)
-    ├── Journal         (entries, mood, tags)
-    ├── Notes           (capture + RAG retrieval)
-    ├── Planner         (tasks, priorities, due dates)
-    ├── Calendar        (events, scheduling)
-    ├── Habits          (streaks, completions)
-    ├── Finance         (expenses, summaries, YNAB)
-    ├── WeeklyReview    (cross-domain digest)
-    ├── EmailDrafter    (context-aware drafts)
-    ├── Research        (cross-domain search)
-    ├── GitHub          (PRs, issues)
-    └── Creative        (image generation)
+Sprocket (supervisor, ~70 tools)
+├── input processor (injects the current date and time)
+└── delegates only to:
+    ├── JournalCoach    (reflective conversations, writing entries)
+    ├── WeeklyReviewer  (gathers a week of data, writes the digest)
+    └── EmailDrafter    (pulls contact context, writes the draft)
 ```
 
-Twelve specialists. One shared memory. One supervisor that knows none of them by their tools, only by their purpose.
+## When a sub-agent earns its place
 
-## What shared memory actually unlocks
+The three that survived have something in common: they gather first, then synthesize. WeeklyReviewer pulls a week of data across domains and turns it into a digest. EmailDrafter looks up the recipient's history before writing a line. JournalCoach reads past entries and holds a reflective conversation.
 
-Each specialist writes to the same Postgres database through a typed model layer. The journal coach can search notes. The weekly reviewer can read interactions, journal entries, tasks, habits, and expenses in a single pull. The email drafter can ask the relationship manager for recent contact context before composing a reply.
+That gives me a simple test, which now lives in the repo's docs as a rule: a single-tool domain doesn't get a sub-agent. If the job is "call the right tool," the supervisor does it. If the job is several steps of reading followed by writing, it can be worth a sub-agent.
 
-Every domain is also exposed as a normal CRUD UI. The chat surface and the manual surface stay in lockstep because they call the same model functions. Anything I can do by hand, the agent can do by tool. Anything the agent does, I can verify and edit by hand.
+## A big tool list needs a capable model
 
-That is the underrated property of agent-native software: every action a human can take, an agent can also take, and vice versa. Once you build that way, the chat is no longer a separate product. It is a parallel control plane on the same data.
+Moving every tool onto one agent changed what the model had to do. Choosing among 70 tools on every turn is a harder job than routing to a short list of specialists. Haiku invented tools and narrated its delegations under that load. Sonnet picks the right one in a single step, so the supervisor and all three sub-agents now run on Sonnet.
 
-## The pieces around the model that earn their keep
+Tool design helped as much as the model did. I merged tools that overlapped: separate list and search tools became one `find_<domain>` with optional filters, publish and unpublish became `set_<thing>_published`, and four `add_*_to_page` tools became one `add_page_blocks`. That took the count from 80 to 67.
 
-Most of the leverage is not in the prompts. It is in the layers wrapped around them.
+## Cut the domains you don't use
 
-**Hooks.** Inject the current date and time into every request as a system message. The model is genuinely bad at temporal reasoning if you don't tell it what "today" is. One small hook, one massive quality jump.
+The assistant used to list money and GitHub among the things it could do, because its instructions named them as domains. I detached those nine tools and dropped both domains from the instructions. What the instructions name is what the assistant offers, so trimming them trims the product.
 
-**Middleware.** Trim whitespace, normalize quotes, strip control characters. Boring. Pays for itself the first time a copy-pasted email kicks an agent off the rails.
+## The model layer is the real product
 
-**Guardrails.** Two flavors. Input guardrails reject messages over a length cap before they reach the model. Output guardrails redact patterns like SSNs and credit card numbers from streamed tokens. Both run as small functions, not separate models.
+Every tool calls into a typed data layer (`app/models/*.server.ts`), the same data the app's screens show. Anything the agent creates shows up at `/tasks` or `/events`, where I can check and edit it by hand.
 
-**Working memory.** Long-running structured state validated by a schema. Name, preferences, current focus, recent decisions. The supervisor reads it on every turn. Specialists update it as they learn things. The result is an assistant that actually remembers you across conversations and across agents.
+That boundary has paid off twice:
 
-**RAG retrievers.** When the notes specialist gets a question, it pulls the most relevant notes by similarity and injects them as context before responding. No vector database needed; Postgres with pgvector is fine.
+- **Swapping the agent framework.** I moved Sprocket from VoltAgent to Mastra, and the change stayed in the agent layer: tools, memory, and stream handling. The data they read and write didn't care. Old conversations came along too, because a thread the new memory has never seen is seeded from my own copy in the database.
+- **Opening it to other clients.** An MCP server at `/api/mcp` exposes the supervisor's tools to Claude Code and other MCP clients. A task I create from a coding session shows up at `/tasks`, the same as one I create in Sprocket's chat.
 
-## What this opens up
+Public surfaces fall out of the same data. A published event at `/public/events/<slug>`, a shareable page at `/public/pages/<slug>`, and a booking link at `/book/<slug>` are all things the agent can set up, and those public routes read the same data.
 
-Once the architecture clicks, a lot of things you thought were separate apps stop being separate apps.
+## The small things around the model
 
-- **Habit tracker, journal, and budget become the same app.** They are all just specialists writing to one memory. The weekly review becomes trivial because the data is already in one place.
-- **Email composition becomes contextual.** The drafter pulls the last three interactions with the recipient before writing a single line. You stop writing cold emails to people you actually know.
-- **Calendar invites become smart.** When you say "schedule something with Sam next week," the calendar specialist asks the relationship manager which Sam, looks at recent interactions, and proposes a time that matches your patterns.
-- **Public surfaces fall out for free.** A published event page at `/e/<slug>`, a sharable note, a printable weekly review. None of those are agent features. They are just data the agent already manages.
+**The current date and time.** An input processor adds them to every request. Models are bad at temporal reasoning if you don't tell them what "today" is, so this is a few lines of code with an outsized payoff.
 
-The point is not the chat interface. The chat interface is a side effect. The product is the shared memory and the typed actions that read and write it. Once that is in place, every new specialist is a small file and every new surface is a small route.
+**Working memory.** A small schema, validated with Zod, holds my name, preferences, and recurring topics. It's scoped to me rather than to a thread, so the assistant remembers across conversations.
 
-## The mindset shift
+**Confirmation in the UI.** Delete tools never delete anything. They return a preview and the interface asks me to confirm, so the model can't talk itself into a destructive action, and it doesn't need to ask permission in prose.
 
-Before this, I built apps where a chat box was bolted on at the end. Now I build apps where every feature is a tool, every tool is callable by a human or an agent, and the chat is just one of several ways in.
+**Cards for results.** The UI renders a card for every tool result, and the instructions tell the model not to repeat that data in text. That keeps responses short.
 
-That is a different way to think about software, and once you see it you cannot unsee it. The most interesting AI app is the one your old app could already have been if you had drawn the boundaries differently.
+## What I'd tell myself at the start
+
+Start with one agent and well-designed tools. Add a sub-agent when a job clearly needs its own gather-then-write loop, and not because a domain feels like it deserves a name. Put the effort into the data layer and the tools, since those outlasted my agent layout and my agent framework.
