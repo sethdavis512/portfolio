@@ -32,7 +32,7 @@ export const aboutFacts: AboutFact[] = [
         "id": "about-fact-3",
         "emoji": "💻",
         "title": "Learner",
-        "content": "MCP / Generative UI / Postgres / Docker / Go / Python",
+        "content": "Generative UI / Docker / Go / Python",
         "linkUrl": null,
         "linkExternal": "true",
         "sortOrder": 4
