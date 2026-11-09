@@ -5,7 +5,7 @@ type: "TIL"
 tags: ["monorepo", "turborepo", "pnpm", "workspaces"]
 excerpt: "Shared packages, one timeline, and a build pipeline that only rebuilds what actually changed. The longer I work in a monorepo, the more I notice the friction it removes."
 createdAt: "2026-05-13T00:00:00.000Z"
-updatedAt: "2026-05-13T00:00:00.000Z"
+updatedAt: "2026-11-09T00:00:00.000Z"
 ---
 
 I've been spending a lot of time inside a monorepo lately — a pnpm workspace with a handful of apps (a marketing site, a docs site, and a playground) and a handful of shared packages (a UI library, a theming layer, shared utilities, a CLI, plus ESLint and TypeScript configs). The longer I sit in it, the more I notice how many problems it quietly solves.
@@ -62,13 +62,13 @@ The piece I find genuinely delightful is how Turborepo decides what to run. Each
 }
 ```
 
-Turbo hashes those inputs. If nothing in `src/**` or `tsconfig.json` changed, the task is a no-op. Edit a README and `check-types` won't run at all. Edit only the playground app and the marketing site's build is skipped entirely. The pipeline understands the dependency graph, so when something in `packages/ui` changes, every consumer rebuilds — but only those consumers.
+Turbo hashes those inputs. If nothing in `src/**` or `tsconfig.json` changed, Turbo replays the cached result instead of running the task. Edit a README and `check-types` comes back from cache in milliseconds. Edit only the playground app and the marketing site's build is a cache hit. The pipeline understands the dependency graph, so when something in `packages/ui` changes, every consumer rebuilds, and only those consumers.
 
 The `dependsOn: ["^build"]` is doing real work here too. It means "build my workspace dependencies before me." You don't manually order anything. The graph orders itself.
 
 ## Caching that pays you back twice
 
-The other half of the speed story is the cache. Turbo stores task outputs keyed by the input hash. Run `build` once, change nothing, run it again — instant. Switch branches, run `build` on the old commit, switch back — still instant. The same cache works in CI: a PR that touches one app skips every task it doesn't affect, and a re-run of the same commit is essentially free.
+The other half of the speed story is the cache. Turbo stores task outputs keyed by the input hash. Run `build` once, change nothing, run it again: instant. Switch branches, run `build` on the old commit, switch back: still instant. With Remote Cache turned on, CI shares that cache too: a PR that touches one app replays every task it doesn't affect, and a re-run of the same commit is essentially free.
 
 This is the part that compounds. A repo with eight packages and three apps could be a slow place to work. With caching turned on, most days you're only paying the cost of the thing you actually changed.
 

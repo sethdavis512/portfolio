@@ -5,7 +5,7 @@ type: "TIL"
 tags: ["stripe", "bun", "cli", "payments"]
 excerpt: "Most of what I used to do in the Stripe dashboard turns out to be three API calls and a prompt. A small CLI over the Stripe SDK kills the dashboard tab for 80% of day-to-day tasks."
 createdAt: "2026-04-21T00:00:00.000Z"
-updatedAt: "2026-04-21T00:00:00.000Z"
+updatedAt: "2026-11-09T00:00:00.000Z"
 ---
 
 The Stripe dashboard is a great piece of software. It's also a great piece of software that I don't want to open fourteen times a day to copy one Payment Link or spin up a test Checkout Session. The click paths are fine. There are just a lot of them.
@@ -26,9 +26,9 @@ A Payment Link is a hosted checkout page tied to a product or a one-off price. P
 That's six steps and a context switch. With a CLI, it collapses into one of two forms: **"link me this existing price"** or **"link me a new one-off price for this dollar amount."**
 
 ```bash
-tws stripe link --price price_1Abc123
-tws stripe link --amount 500 --name "Coffee"
-tws stripe link --amount 1999 --currency eur
+tws stripe link create --price price_1Abc123
+tws stripe link create --amount 500 --name "Coffee"
+tws stripe link create --amount 1999 --currency eur
 ```
 
 The second form is the one I use most. Ninety percent of the Payment Links I make are one-offs for a specific amount, often for a client, often with a descriptive name so it's easy to find later in the dashboard. No product, no recurring billing, no tiers. The CLI version takes about a second.
@@ -42,8 +42,8 @@ Payment Links are great for "send someone a URL." Checkout Sessions are what you
 For development, the friction is the same. I don't want to set up a whole test app just to see what a Checkout page looks like for a new product. So the CLI mirrors the Payment Link commands:
 
 ```bash
-tws stripe checkout --price price_1Abc123
-tws stripe checkout --amount 500 --name "Donation"
+tws stripe checkout create --price price_1Abc123
+tws stripe checkout create --amount 500 --name "Donation"
 ```
 
 Same shape, different surface. The command creates a Session and prints the URL. I click it, I see the Checkout page, I'm done. It's the fastest way I've found to sanity-check a price, a currency, a product name, or a flow idea before writing any code.

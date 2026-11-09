@@ -12,7 +12,7 @@ I'll be honest — Turborepo has been on my radar for years. I'd seen it mention
 
 ## The Project That Changed Things
 
-PitStop is an auto shop management platform I've been building as a "batteries included" monorepo — two separate React Router 7 apps (an admin app and a customer portal) that share a bunch of common packages: auth, database, UI components, validation schemas, and more. It's the kind of setup that screams for a proper monorepo tool.
+PitStop is an auto shop management platform I've been building as a "batteries included" monorepo — two separate React Router apps (an admin app and a customer portal) that share a bunch of common packages: auth, database, UI components, validation schemas, and more. It's the kind of setup that screams for a proper monorepo tool.
 
 ## What the PitStop Structure Looks Like
 
@@ -21,8 +21,8 @@ Here's the folder layout Turborepo helped me organize. Two apps, eight shared pa
 ```
 pit-stop/
 ├── apps/
-│   ├── admin/             # React Router 7 admin app
-│   └── portal/            # React Router 7 customer portal
+│   ├── admin/             # React Router admin app
+│   └── portal/            # React Router customer portal
 ├── packages/
 │   ├── auth/              # Shared authentication (Better Auth)
 │   ├── database/          # Shared Prisma database client
