@@ -4,6 +4,10 @@
  *
  * Every fact here comes from Seth's own records (sethdavis.tech/resume and
  * his LinkedIn profile export). Do not invent metrics, titles, or dates.
+ *
+ * This is a one-page selection. The full record of every role, bullet, and
+ * project lives in career-catalog.md beside this file: add new work there
+ * first, and keep anything cut from here in the catalog.
  * Spell it "frontend" ("Frontend" in titles), never front-end or front end.
  * Job titles are the official ones; positioning belongs in `headline` and
  * `summary`, never in a past title.
@@ -64,7 +68,7 @@ export const resume: Resume = {
         { label: 'github.com/sethdavis512', href: 'https://github.com/sethdavis512' }
     ],
     summary:
-        'Senior frontend engineer with 10+ years building React and TypeScript interfaces for large product teams. I build component libraries, accessibility tooling, and the internal tools other engineers rely on, and I ship daily with AI coding agents while owning the tests, accessibility, and review. Comfortable across the stack with React Router, Prisma, and PostgreSQL.',
+        'Senior frontend engineer with 10+ years in React and TypeScript, building component libraries and internal tools. I ship daily with AI coding agents and own the tests, accessibility, and review.',
     skills: [
         {
             group: 'AI',
@@ -114,11 +118,10 @@ export const resume: Resume = {
                     title: 'Software Engineer (Contract)',
                     dates: 'May 2026 – Present',
                     bullets: [
-                        'Building SparkEd, a learning management system for executive function curriculum, and the Teaching Log API behind it',
-                        'Built its Base UI component library to match Figma; audited core templates for accessibility and added a weekly Lighthouse scan',
-                        "Designed the team's ticket-to-PR agent workflow: isolated worktrees, TDD, standards review, and human approval gates",
-                        'Led LaunchDarkly enablement with a shared flags package for client and server, so teams release behind flags',
-                        'Moved the shared libraries from a broken Yarn setup to pnpm workspaces, with publishing on GitHub Actions'
+                        'Building SparkEd, an executive function learning management system, and its Teaching Log API',
+                        'Built its Base UI component library from Figma, plus accessibility audits and weekly Lighthouse scans',
+                        "Designed the team's ticket-to-PR agent workflow with worktrees, TDD, standards review, and human gates",
+                        'Led LaunchDarkly enablement; moved shared libraries to pnpm workspaces and GitHub Actions publishing'
                     ]
                 }
             ]
@@ -131,9 +134,7 @@ export const resume: Resume = {
                     title: 'Software Engineer (Contract)',
                     dates: 'Mar 2026 – Apr 2026',
                     bullets: [
-                        'Prototyped StrudelLM, an AI music app that turns plain-language requests into live-coded audio',
-                        "Built skills for Tambo's open source generative UI app, adding capabilities without bloating its core",
-                        'Produced demo videos for X and LinkedIn to show new capabilities to the developer audience'
+                        "Prototyped StrudelLM, an AI music app, and built skills for Tambo's open source generative UI app"
                     ]
                 }
             ]
@@ -146,9 +147,7 @@ export const resume: Resume = {
                     title: 'Senior Software Engineer, Frontend',
                     dates: 'Aug 2024 – Oct 2025',
                     bullets: [
-                        'Built and maintained a company-wide JavaScript package on Snowplow Analytics; over 90 million events logged across three sites since December 2024',
-                        'Designed a CLI that creates, versions, and syncs Snowplow schemas, improving data consistency and developer efficiency',
-                        'Worked with cross-functional teams to bring Snowplow data into applications for data-driven decisions'
+                        'Built a company-wide Snowplow Analytics package (90M+ events across three sites) and its schema CLI'
                     ]
                 }
             ]
@@ -158,65 +157,24 @@ export const resume: Resume = {
             location: 'Austin, TX',
             roles: [
                 {
-                    title: 'Senior UX Developer',
-                    dates: 'Jan 2023 – May 2024',
+                    title: 'Associate to Senior UX Developer',
+                    dates: 'Feb 2019 – May 2024',
                     bullets: [
-                        'Built an interface for adding prefabricated tools and customizable mock data, saving internal users 100+ hours weekly; ran onboarding workshops for developers and PMs',
-                        'Improved a reporting app for diagnosing code and accessibility issues, leading to the resolution of 30% of accessibility violations',
-                        'Built a module discovery app so teams could find, preview, and reuse Employer codebase modules',
-                        'Upgraded the theming tool to flag misapplied styles and let developers add custom theme values'
-                    ]
-                },
-                {
-                    title: 'UX Developer',
-                    dates: 'Jan 2020 – Jan 2023',
-                    bullets: [
-                        "Established Indeed's frontend pattern library, contributed 3 components, and helped launch a volunteer guild for cross-company contributions",
-                        'Streamlined Employer navigation with a clearer link hierarchy and sub-navigation based on cross‑org feedback',
-                        'Added job-status UI that reduced employer confusion and prompted them to fix posting errors',
-                        'Built a module linking third-party chat into customer service flows'
-                    ]
-                },
-                {
-                    title: 'Associate UX Developer',
-                    dates: 'Feb 2019 – Jan 2020',
-                    bullets: [
-                        'Rebuilt the employer verification plugin to cut imposter account creation and raise employer quality'
+                        'Built an interface for prefabricated tools and mock data that saved internal users 100+ hours weekly',
+                        'Improved an accessibility reporting app, leading to the resolution of 30% of accessibility violations',
+                        "Established Indeed's frontend pattern library and helped launch a guild for cross-company contributions"
                     ]
                 }
             ]
         },
         {
-            company: 'NIC Inc.',
+            company: 'Earlier roles',
             location: 'Austin, TX',
             roles: [
                 {
-                    title: 'UX Developer',
-                    dates: 'Apr 2017 – Feb 2019',
-                    bullets: [
-                        'Built an enterprise platform government agencies used to create applications for their constituents',
-                        'Produced prototypes and set the code standards and patterns the development team followed'
-                    ]
-                }
-            ]
-        },
-        {
-            company: 'Living Direct',
-            location: 'Austin, TX',
-            roles: [
-                {
-                    title: 'Frontend Developer',
-                    dates: 'Jan 2016 – Mar 2017',
-                    bullets: [
-                        'Built a frontend tool for customers to configure products into kits, plus a CSV-to-HTML builder that removed a manual design step'
-                    ]
-                },
-                {
-                    title: 'Web Designer',
-                    dates: 'Nov 2013 – Jan 2016',
-                    bullets: [
-                        'Designed campaigns, including email campaigns that brought in $108,000 in revenue'
-                    ]
+                    title: 'UX Developer, NIC Inc. · Frontend Developer and Web Designer, Living Direct',
+                    dates: 'Nov 2013 – Feb 2019',
+                    bullets: []
                 }
             ]
         }
@@ -239,24 +197,6 @@ export const resume: Resume = {
             href: 'https://sethdavis.tech/work/trellis',
             summary:
                 'A React node-and-edge canvas library on npm that runs in production in another of my apps'
-        },
-        {
-            name: 'AI Maniacs',
-            href: 'https://sethdavis.tech/work/ai-maniacs',
-            summary:
-                'A free AI education platform covering fundamentals through production agent workflows'
-        },
-        {
-            name: 'Lone Star UI',
-            href: 'https://sethdavis.tech/work/lone-star-ui',
-            summary:
-                'A React 19 component library built on Base UI, Tailwind CSS 4, and CVA and published to npm'
-        },
-        {
-            name: 'Iridium',
-            href: 'https://sethdavis.tech/work/iridium',
-            summary:
-                'A public full-stack AI starter with React Router, Prisma, Better Auth, and my Claude Code skills'
         }
     ],
     education: [
@@ -264,11 +204,6 @@ export const resume: Resume = {
             school: 'Texas State University',
             detail: 'BFA, Communication Design',
             dates: '2012'
-        },
-        {
-            school: 'Austin Coding Academy',
-            detail: 'Frontend Development certificate',
-            dates: '2016'
         }
     ]
 };
