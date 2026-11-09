@@ -8,4 +8,4 @@ Domain terms for this repo. Use these names in code, commits and reviews.
 
 **Draft**: an item with `status: "DRAFT"`. Left out of listings, the sitemap and prerendering; in production its URL 404s. In `bun run dev` it renders at its URL so it can be previewed. _Avoid_: unpublished, hidden.
 
-**Moved slug**: an old slug that 301-redirects to a new URL, so shared links keep working (for example a work item that became a TIL). Listed in `MOVED_WORK` in `app/content/works.ts`; `bySlug()` returns `{ kind: 'moved' }` for it.
+**Moved slug**: an old slug that 301-redirects to a new URL, so shared links keep working (for example a work item that became a TIL). Listed in `MOVED_WORK` in `app/content/works.ts` and `MOVED_TIL` in `app/content/tils.ts`; `bySlug()` returns `{ kind: 'moved' }` for it.

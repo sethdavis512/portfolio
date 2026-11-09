@@ -1,3 +1,4 @@
+import { redirect } from 'react-router';
 import { tils } from '~/content';
 import { MdxContent } from '~/components/MdxContent';
 import type { Route } from './+types/til-detail';
@@ -16,6 +17,9 @@ export function meta({ loaderData }: Route.MetaArgs) {
 
 export function loader({ params }: Route.LoaderArgs) {
     const lookup = tils.bySlug(params.slug!);
+    if (lookup.kind === 'moved') {
+        throw redirect(lookup.to, 301);
+    }
     if (lookup.kind !== 'found') {
         throw new Response('Not Found', { status: 404 });
     }

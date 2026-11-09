@@ -5,10 +5,10 @@ type: "TIL"
 tags: ["ai", "claude-code", "agents"]
 excerpt: "I kept hearing people talk about 'designing loops' for coding agents without ever defining the term. Turns out there are four distinct patterns, and picking the right one comes down to one question: what part of the work am I actually willing to hand off?"
 createdAt: "2026-07-07T00:00:00.000Z"
-updatedAt: "2026-07-07T00:00:00.000Z"
+updatedAt: "2026-11-09T00:00:00.000Z"
 ---
 
-I'd been using `/loop` and `/goal` in Claude Code for a while without really thinking about them as separate categories of the same idea. They were just commands I reached for. What finally organized my thinking was a post from the Claude Code team laying out how they internally classify agent loops. Once I saw the framing, it clicked: every loop type I use is really just a different answer to the same question — **what am I comfortable letting the agent decide on its own?**
+I'd been using `/loop` and `/goal` in Claude Code for a while without really thinking about them as separate categories of the same idea. They were just commands I reached for. What finally organized my thinking was a post from the Claude Code team laying out how they internally classify agent loops. Once I saw the framing, it clicked: every loop type I use is really just a different answer to the same question: **what am I comfortable letting the agent decide on its own?**
 
 ## The default loop nobody names
 
@@ -18,13 +18,13 @@ The lever here is the review step. If I write down my manual checks as a skill (
 
 ## When I want the agent to keep going without me
 
-For anything with a fuzzy finish line, a single pass isn't enough, but I don't want to babysit five iterations either. This is what `/goal` is for — I state the finish line, and the agent keeps working until it hits that bar or runs out of tries:
+For anything with a fuzzy finish line, a single pass isn't enough, but I don't want to babysit five iterations either. This is what `/goal` is for. I state the finish line, and the agent keeps working until it hits that bar or runs out of tries:
 
 ```bash
 /goal get the homepage Lighthouse score to 90 or above, stop after 5 tries.
 ```
 
-The trick is picking a finish line that's actually checkable by a machine, not a vibe. "Tests pass," "score >= 90," "build succeeds" — anything I could script myself works well here. Anything fuzzier and the agent has no better idea of "done" than I do.
+The trick is picking a finish line that's actually checkable by a machine, not a vibe. "Tests pass," "score >= 90," "build succeeds": anything I could script myself works well here. Anything fuzzier and the agent has no better idea of "done" than I do.
 
 ## When the work is waiting on something outside my terminal
 
@@ -34,11 +34,11 @@ Some tasks aren't really about doing more work, they're about noticing when some
 /loop 5m check my PR, address review comments, and fix failing CI
 ```
 
-Worth remembering: `/loop` lives on my machine, so it stops the second I close the laptop. If I actually want this running unattended, that's what `/schedule` is for — same idea, moved to the cloud so it survives me not being around.
+Worth remembering: `/loop` lives on my machine, so it stops the second I close the laptop. If I actually want this running unattended, that's what `/schedule` is for: same idea, moved to the cloud so it survives me not being around.
 
 ## When I want to stop being the trigger entirely
 
-The last category is the one I haven't really used yet, but it's the one I want to build toward: no human kicks it off at all. Something external triggers it, a goal defines success, and a workflow of subagents does the actual work — triage, fix, review — without me writing the prompt each time.
+The last category is the one I haven't really used yet, but it's the one I want to build toward: no human kicks it off at all. Something external triggers it, a goal defines success, and a workflow of subagents does the actual work (triage, fix, review) without me writing the prompt each time.
 
 ## My mental model going forward
 
@@ -51,7 +51,7 @@ The last category is the one I haven't really used yet, but it's the one I want 
 
 ## What I want to carry forward
 
-The quality of any of these loops depends way more on the system around the agent than the loop mechanism itself — a messy codebase produces messy loops no matter how good the stop condition is. And the token cost mostly comes down to boundaries: a real success criteria, a turn cap, and not reaching for a full agent loop when a five-minute manual prompt would've done it.
+The quality of any of these loops depends way more on the system around the agent than the loop mechanism itself. A messy codebase produces messy loops no matter how good the stop condition is. And the token cost mostly comes down to boundaries: a real success criteria, a turn cap, and not reaching for a full agent loop when a five-minute manual prompt would've done it.
 
 Next time I'm the bottleneck on something repetitive, my plan is to actually ask which of these four buckets it falls into before I just fire off another one-off prompt.
 

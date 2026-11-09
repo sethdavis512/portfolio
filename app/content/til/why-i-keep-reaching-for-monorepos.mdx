@@ -8,7 +8,7 @@ createdAt: "2026-05-13T00:00:00.000Z"
 updatedAt: "2026-11-09T00:00:00.000Z"
 ---
 
-I've been spending a lot of time inside a monorepo lately — a pnpm workspace with a handful of apps (a marketing site, a docs site, and a playground) and a handful of shared packages (a UI library, a theming layer, shared utilities, a CLI, plus ESLint and TypeScript configs). The longer I sit in it, the more I notice how many problems it quietly solves.
+I've been spending a lot of time inside a monorepo lately: a pnpm workspace with a handful of apps (a marketing site, a docs site, and a playground) and a handful of shared packages (a UI library, a theming layer, shared utilities, a CLI, plus ESLint and TypeScript configs). The longer I sit in it, the more I notice how many problems it quietly solves.
 
 This is a short list of the benefits I keep coming back to.
 
@@ -25,13 +25,13 @@ Every shared concern lives in its own package and gets pulled into apps with a w
 }
 ```
 
-That `workspace:*` is the unlock. There's no `npm link`, no symlink dance, no publishing a private package to a registry just to consume it. The app imports `@repo/ui` like any other dependency, but the source lives a couple of folders away in the same repo. Change the button in `packages/ui` and every app picks it up on the next build. One source of truth for components, one source of truth for tokens, one source of truth for utilities — used by as many apps as you want.
+That `workspace:*` is the unlock. There's no `npm link`, no symlink dance, no publishing a private package to a registry just to consume it. The app imports `@repo/ui` like any other dependency, but the source lives a couple of folders away in the same repo. Change the button in `packages/ui` and every app picks it up on the next build. One source of truth for components, one source of truth for tokens, one source of truth for utilities, used by as many apps as you want.
 
 The configs work the same way. `@repo/typescript-config` and `@repo/eslint-config` are real packages that every app extends, which means upgrading a TypeScript flag or an ESLint rule happens in one place and propagates to the whole repo.
 
 ## Everyone's progress in one place
 
-This benefit is harder to feel until you've lived without it. When the marketing site, the docs site, the playground, the UI library, and the CLI all live in the same repo, the `git log` becomes the actual story of the product. You can see the design system change land in the UI package, then the marketing site adopt it, then the docs site update its examples — all in the same history, often in the same PR.
+This benefit is harder to feel until you've lived without it. When the marketing site, the docs site, the playground, the UI library, and the CLI all live in the same repo, the `git log` becomes the actual story of the product. You can see the design system change land in the UI package, then the marketing site adopt it, then the docs site update its examples, all in the same history, often in the same PR.
 
 Code review covers the whole change. CI runs against the whole change. You don't have to chase a version bump across four repos to understand what shipped this week.
 
@@ -74,4 +74,4 @@ This is the part that compounds. A repo with eight packages and three apps could
 
 ## The sum of the parts
 
-None of these benefits are dramatic on their own. Shared packages are nice. A single git history is nice. Skipping unchanged builds is nice. Caching is nice. But together they change the shape of the work: less coordination overhead, less waiting, less guessing about which version of which package is deployed where. The monorepo isn't doing anything magical — it's just removing a long list of small frictions, and the absence of all that friction is what makes it feel fast.
+None of these benefits are dramatic on their own. Shared packages are nice. A single git history is nice. Skipping unchanged builds is nice. Caching is nice. But together they change the shape of the work: less coordination overhead, less waiting, less guessing about which version of which package is deployed where. The monorepo isn't doing anything magical. It's just removing a long list of small frictions, and the absence of all that friction is what makes it feel fast.

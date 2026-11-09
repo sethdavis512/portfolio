@@ -71,7 +71,7 @@ app/content/
   types.ts             # TypeScript interfaces for content
   collection.ts        # Collection core: published(), bySlug(), paths(); drafts, sorting, slugs
   works.ts             # Work collection (MDX glob) + moved work slugs
-  tils.ts              # TIL collection (MDX glob)
+  tils.ts              # TIL collection (MDX glob) + moved TIL slugs
   decks.ts             # Deck collection + slide navigation
   prerender-paths.ts   # Second adapter: raw MDX + yaml, used by react-router.config.ts
 ```

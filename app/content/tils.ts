@@ -16,6 +16,12 @@ interface TilModule {
 
 export type TilItem = CollectionItem<TilFrontmatter, MdxComponent>;
 
+/** TIL posts that moved to a new slug, so shared links keep working. */
+export const MOVED_TIL: Record<string, string> = {
+    'prompt-thesaurus-50-action-verbs-for-better-llm-outputs':
+        '/til/prompt-thesaurus-action-verbs-for-better-llm-outputs'
+};
+
 const tilModules = import.meta.glob<TilModule>('./til/*.mdx', {
     eager: true
 });
@@ -28,6 +34,7 @@ export const tils = createCollection(
     {
         basePath: '/til',
         compare: byNewest,
+        moved: MOVED_TIL,
         includeDrafts: import.meta.env.DEV
     }
 );
