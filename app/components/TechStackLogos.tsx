@@ -21,7 +21,6 @@ import { ReactLogo } from './logos/ReactLogo';
 import { ReactRouterLogo } from './logos/ReactRouterLogo';
 import { RemotionLogo } from './logos/RemotionLogo';
 import { StorybookLogo } from './logos/StorybookLogo';
-import { StripeLogo } from './logos/StripeLogo';
 import { TailwindLogo } from './logos/TailwindLogo';
 import { Tooltip } from './Tooltip';
 import { TriggerDevLogo } from './logos/TriggerDevLogo';
@@ -30,9 +29,7 @@ import { TypescriptLogo } from './logos/TypescriptLogo';
 import { VoltAgentLogo } from './logos/VoltAgentLogo';
 import { Linky } from './Linky';
 import { PolarLogo } from './logos/PolarLogo';
-import { KeystoneLogo } from './logos/KeystoneLogo';
 import { CloudinaryLogo } from './logos/CloudinaryLogo';
-import { DaisyUILogo } from './logos/DaisyUILogo';
 import { WordPressLogo } from './logos/WordPressLogo';
 
 export type LogoName =
@@ -43,12 +40,10 @@ export type LogoName =
     | 'cloudinary'
     | 'css'
     | 'd3'
-    | 'daisy'
     | 'docusaurus'
     | 'electron'
     | 'github'
     | 'javascript'
-    | 'keystone'
     | 'mcp'
     | 'obsidian'
     | 'postgres'
@@ -59,7 +54,6 @@ export type LogoName =
     | 'react-router'
     | 'remotion'
     | 'storybook'
-    | 'stripe'
     | 'tailwind'
     | 'trigger'
     | 'turborepo'
@@ -123,11 +117,6 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             title: 'React Router',
             url: 'https://reactrouter.com/'
         },
-        daisy: {
-            component: (props) => <DaisyUILogo {...logoProps} {...props} />,
-            title: 'DaisyUI',
-            url: 'https://daisyui.com/'
-        },
         docusaurus: {
             component: (props) => <DocusaurusLogo {...logoProps} {...props} />,
             title: 'Docusaurus',
@@ -147,11 +136,6 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <JavaScriptLogo {...logoProps} {...props} />,
             title: 'JavaScript',
             url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
-        },
-        keystone: {
-            component: (props) => <KeystoneLogo {...logoProps} {...props} />,
-            title: 'Keystone',
-            url: 'https://keystonejs.com/'
         },
         mcp: {
             component: (props) => <MCPLogo {...logoProps} {...props} />,
@@ -197,11 +181,6 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <StorybookLogo {...logoProps} {...props} />,
             title: 'Storybook',
             url: 'https://storybook.js.org/'
-        },
-        stripe: {
-            component: (props) => <StripeLogo {...logoProps} {...props} />,
-            title: 'Stripe',
-            url: 'https://stripe.com/'
         },
         tailwind: {
             component: (props) => <TailwindLogo {...logoProps} {...props} />,

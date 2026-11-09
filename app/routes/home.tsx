@@ -205,10 +205,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </span>
                                 <Heading>Lone Star UI</Heading>
                                 <p className="mb-8 text-zinc-700 dark:text-zinc-300">
-                                    A React 19 component library built with
-                                    TypeScript, Tailwind CSS 4, and CVA.
-                                    Publishes ESM-only to npm with full type
-                                    declarations.
+                                    A React 19 component library on Base UI,
+                                    Tailwind CSS 4, and CVA, published to npm as
+                                    ESM with full type declarations.
                                 </p>
                                 <Button
                                     className="mt-auto self-start"

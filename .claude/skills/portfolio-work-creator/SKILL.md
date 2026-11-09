@@ -81,7 +81,7 @@ updatedAt: "2026-04-27T00:00:00.000Z"
 
 `techStack` accepts only these strings (mapped in `app/components/TechStackLogos.tsx`):
 
-`anthropic`, `baseui`, `better-auth`, `bun`, `cloudinary`, `css`, `d3`, `daisy`, `docusaurus`, `electron`, `github`, `javascript`, `keystone`, `mcp`, `obsidian`, `polar`, `postgres`, `prisma`, `railway`, `react`, `react-router`, `remotion`, `storybook`, `stripe`, `tailwind`, `trigger`, `turborepo`, `typescript`, `voltagent`, `vuejs`, `wordpress`
+`anthropic`, `baseui`, `better-auth`, `bun`, `cloudinary`, `css`, `d3`, `docusaurus`, `electron`, `github`, `javascript`, `mcp`, `obsidian`, `polar`, `postgres`, `prisma`, `railway`, `react`, `react-router`, `remotion`, `storybook`, `tailwind`, `trigger`, `turborepo`, `typescript`, `voltagent`, `vuejs`, `wordpress`
 
 Unknown identifiers are silently dropped (they render as `null`). If a tech the project uses is missing from this list, add a logo component to `app/components/logos/` and wire it into `TechStackLogos.tsx` (see `VoltAgentLogo.tsx` or `AnthropicLogo.tsx` for the minimal pattern). Don't invent new identifiers without adding the logo.
 

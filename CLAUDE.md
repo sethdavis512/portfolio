@@ -67,7 +67,7 @@ app/content/
   data/quotes.ts       # Motivational quotes
   data/values.ts       # How I Work values
   data/resume.ts       # Resume (verbatim copy from tws-press; see "Resume" below)
-  data/packages.ts     # Service packages
+  data/testimonials.ts # Client testimonials
   types.ts             # TypeScript interfaces for content
   collection.ts        # Collection core: published(), bySlug(), paths(); drafts, sorting, slugs
   works.ts             # Work collection (MDX glob) + moved work slugs
