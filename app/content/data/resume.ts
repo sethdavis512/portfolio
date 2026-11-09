@@ -64,16 +64,17 @@ export const resume: Resume = {
         { label: 'github.com/sethdavis512', href: 'https://github.com/sethdavis512' }
     ],
     summary:
-        'Senior frontend engineer with 10+ years building React and TypeScript interfaces for large product teams. I build component libraries, accessibility tooling, and the internal tools other engineers rely on, and I ship daily with AI coding agents. Comfortable across the stack with React Router, Prisma, and PostgreSQL.',
+        'Senior frontend engineer with 10+ years building React and TypeScript interfaces for large product teams. I build component libraries, accessibility tooling, and the internal tools other engineers rely on, and I ship daily with AI coding agents while owning the tests, accessibility, and review. Comfortable across the stack with React Router, Prisma, and PostgreSQL.',
     skills: [
         {
             group: 'AI',
             items: [
                 'Claude Code',
+                'GitHub Copilot',
                 'Claude API',
                 'Vercel AI SDK',
                 'MCP',
-                'Agent orchestration'
+                'LLM integration'
             ]
         },
         {
@@ -81,10 +82,10 @@ export const resume: Resume = {
             items: [
                 'TypeScript',
                 'React',
+                'Next.js',
                 'React Router',
                 'Tailwind CSS',
-                'Vue.js',
-                'HTML/CSS',
+                'Base UI',
                 'Accessibility (WCAG)'
             ]
         },
@@ -113,11 +114,11 @@ export const resume: Resume = {
                     title: 'Software Engineer (Contract)',
                     dates: 'May 2026 – Present',
                     bullets: [
-                        'Building a teaching application that delivers executive function content to educators and students',
-                        'Developing the in-house component library that keeps product surfaces visually and behaviorally consistent',
-                        'Designing APIs and connecting in-house services so teams share data instead of duplicating it',
-                        'Led LaunchDarkly enablement, giving teams feature flags for safer, incremental releases',
-                        'Orchestrating coding agents to move features from prototype to working product faster'
+                        'Building SparkEd, a learning management system for executive function curriculum, and the Teaching Log API behind it',
+                        'Built its Base UI component library to match Figma; audited core templates for accessibility and added a weekly Lighthouse scan',
+                        "Designed the team's ticket-to-PR agent workflow: isolated worktrees, TDD, standards review, and human approval gates",
+                        'Led LaunchDarkly enablement with a shared flags package for client and server, so teams release behind flags',
+                        'Moved the shared libraries from a broken Yarn setup to pnpm workspaces, with publishing on GitHub Actions'
                     ]
                 }
             ]
@@ -130,8 +131,8 @@ export const resume: Resume = {
                     title: 'Software Engineer (Contract)',
                     dates: 'Mar 2026 – Apr 2026',
                     bullets: [
-                        'Prototyped StrudelLM, a music application exploring live-coded audio driven by natural language',
-                        'Implemented skills in the open source Tambo app, expanding what the product could do without bloating its core',
+                        'Prototyped StrudelLM, an AI music app that turns plain-language requests into live-coded audio',
+                        "Built skills for Tambo's open source generative UI app, adding capabilities without bloating its core",
                         'Produced demo videos for X and LinkedIn to show new capabilities to the developer audience'
                     ]
                 }
@@ -225,25 +226,37 @@ export const resume: Resume = {
             name: 'Fresh Visit',
             href: 'https://sethdavis.tech/work/fresh-visit',
             summary:
-                'Browser agent that tests a site as a first-time visitor, returning a video and verdict.'
+                'A solo-built SaaS whose browser agent tests sites like a first-time visitor and reports a verdict'
+        },
+        {
+            name: 'Sprocket',
+            href: 'https://sethdavis.tech/work/sprocket',
+            summary:
+                'A personal productivity app whose Claude assistant manages tasks, events, contacts, and a journal'
+        },
+        {
+            name: 'Trellis',
+            href: 'https://sethdavis.tech/work/trellis',
+            summary:
+                'A React node-and-edge canvas library on npm that runs in production in another of my apps'
         },
         {
             name: 'AI Maniacs',
             href: 'https://sethdavis.tech/work/ai-maniacs',
             summary:
-                'Free AI education platform, from fundamentals to production agent workflows.'
+                'A free AI education platform covering fundamentals through production agent workflows'
         },
         {
             name: 'Lone Star UI',
             href: 'https://sethdavis.tech/work/lone-star-ui',
             summary:
-                'React 19 component library on Base UI, Tailwind CSS 4, and CVA, published to npm.'
+                'A React 19 component library built on Base UI, Tailwind CSS 4, and CVA and published to npm'
         },
         {
             name: 'Iridium',
             href: 'https://sethdavis.tech/work/iridium',
             summary:
-                'Full-stack AI starter with React Router, Prisma, PostgreSQL, Better Auth, and agentic chat.'
+                'A public full-stack AI starter with React Router, Prisma, Better Auth, and my Claude Code skills'
         }
     ],
     education: [
