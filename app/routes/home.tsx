@@ -123,23 +123,23 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         Spotlight
                     </span>
                     <Heading className="text-4xl md:text-5xl">
-                        AI Maniacs
+                        Fresh Visit
                     </Heading>
                     <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
-                        A free AI education platform for modern AI systems:
-                        agents, automation, and real workflows. Curriculum,
-                        infrastructure, and maintenance, all mine.
+                        A browser agent that tests a site the way a first-time
+                        visitor would, then comes back with a video of the run
+                        and a verdict: Found, Stuck, or Out of steps.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <Button color="secondary" size="lg" to="/work/ai-maniacs">
+                        <Button color="secondary" size="lg" to="/work/fresh-visit">
                             Read the case study
                         </Button>
                         <Button
                             variant="outline"
                             size="lg"
-                            href="https://ai-maniacs.com"
+                            href="https://www.freshvisit.app"
                         >
-                            Visit ai-maniacs.com
+                            Visit freshvisit.app
                         </Button>
                     </div>
                 </Card>
@@ -153,22 +153,22 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <Card className="p-0 grid overflow-hidden bg-primary-500/10 dark:bg-primary-500/10 border-primary-500/40">
                         <div className="col-start-1 row-start-1 p-8 md:p-10 flex flex-col">
                             <span className="text-xs font-medium tracking-wide text-primary-700 dark:text-primary-300 mb-3">
-                                Flagship
+                                Education
                             </span>
                             <Heading className="text-4xl md:text-5xl">
-                                Fresh Visit
+                                AI Maniacs
                             </Heading>
                             <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
-                                A browser agent that tests a site the way a
-                                first-time visitor would, then comes back with a
-                                video of the run and a verdict: Found, Stuck, or
-                                Out of steps.
+                                A free AI education platform for modern AI
+                                systems: agents, automation, and real workflows.
+                                Curriculum, infrastructure, and maintenance, all
+                                mine.
                             </p>
                             <Button
                                 className="self-start"
                                 color="primary"
                                 size="lg"
-                                to="/work/fresh-visit"
+                                to="/work/ai-maniacs"
                             >
                                 Learn more
                             </Button>
