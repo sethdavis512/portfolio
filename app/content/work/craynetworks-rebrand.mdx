@@ -1,19 +1,19 @@
 ---
 title: "Cray Networks Rebrand"
 status: "PUBLISHED"
-description: "A design-engineering rebrand of a 20-year-old Central Texas IT shop, built around a live OKLCH theming engine and a Base UI design system."
+description: "A concept rebrand of a 20-plus-year-old Central Texas IT shop, built around a live OKLCH theming engine and a Base UI design system."
 cta: "See more"
 sortOrder: 2
 heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/craynetworks-rebrand-home.png"
 thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/craynetworks-rebrand-home.png"
-about: "The Cray Networks rebrand modernizes the brand of a real 20-year-old IT support business serving Central Texas while doubling as a senior-level design-system demonstration. The build keeps the company's existing blue-and-white identity but finally systematizes it: a canonical OKLCH token model drives every color, and a live theming engine lets the entire site re-skin in real time without a single React re-render. It is a full React Router framework-mode app with SSR, a Base UI component library, a variable-font typography lab, and a hand-coded SVG logo built from network nodes. An interactive showcase walks through the design rationale, including an honest before-and-after slider against the actual 2003 site. The result argues for design-system competence by proving it in the product itself rather than claiming it."
+about: "The Cray Networks rebrand is a self-initiated concept, not client work: I reimagined the brand of a real IT support business that has served Central Texas since 2003, as a senior-level design-system demonstration. The build keeps the company's existing blue-and-white identity but finally systematizes it: a canonical OKLCH token model drives every color, and a live theming engine lets the entire site re-skin in real time without a single React re-render. It is a full React Router framework-mode app with SSR, a Base UI component library, a variable-font typography lab, and a hand-coded SVG logo built from network nodes. An interactive showcase walks through the design rationale, including an honest before-and-after slider against the company's original site. The result argues for design-system competence by proving it in the product itself rather than claiming it."
 learned: "Building the theming engine pushed me deep into the CSS cascade and the OKLCH color space. Authoring tokens as composable lightness, chroma, and hue channels meant I could override accent color, density, and radius by setting inline CSS variables on the html element, letting them outrank the root scope and re-theme the page instantly with no component re-render. I worked out SSR-safe theme persistence with cookies to avoid a flash of unstyled content, plus Zod-validated shareable theme query parameters. The variable-font work taught me to drive real wght and opsz axes for genuine optical sizing rather than faking type scales. Pairing Base UI primitives with Class Variance Authority and Tailwind v4's @theme inline gave me a clean way to keep utility classes overridable while a single token file stayed the source of truth and prevented drift."
-impact: "The rebrand gives a 20 year old Central Texas IT company a presence that finally matches its reputation, without asking its customers to relearn the brand: the blue and white identity they already recognize, systematized instead of replaced. Every color, radius, and density value resolves from one token file, so new pages and future campaigns stay on brand without a redesign, and the next brand change is a variable edit rather than another ground up rebuild. The before and after slider against the actual 2003 site makes the argument to their own prospects: same company, same trust, a website that no longer costs them the first impression."
+impact: "As a concept, the rebrand shows how I would modernize a long-established company without asking its customers to relearn the brand: the blue and white identity they already recognize, systematized instead of replaced. Every color, radius, and density value resolves from one token file, so new pages would stay on brand without a redesign, and the next brand change would be a variable edit rather than a ground-up rebuild. The before and after slider against the company's original site makes the case visually: same company, same trust, a website that no longer costs it the first impression."
 techStack: ["react-router", "react", "typescript", "tailwind", "baseui", "bun", "railway", "css"]
 sourceUrl: "https://github.com/sethdavis512/craynetworks-rebrand"
 demoUrl: ""
 demoUrlText: ""
-tags: ["design system", "rebrand", "client work"]
+tags: ["design system", "rebrand", "concept"]
 galleryImages:
   - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/craynetworks-rebrand-theme.png"
     alt: "The live theming drawer, with sliders for accent hue, chroma, lightness, radius, and density that rewrite CSS variables instantly"
@@ -29,5 +29,5 @@ galleryImages:
     sortOrder: 3
 hasContent: false
 createdAt: "2026-06-25T00:00:00.000Z"
-updatedAt: "2026-08-22T00:00:00.000Z"
+updatedAt: "2026-11-09T00:00:00.000Z"
 ---

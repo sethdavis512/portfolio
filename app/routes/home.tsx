@@ -125,9 +125,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                         AI Maniacs
                     </Heading>
                     <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
-                        A free AI education platform taking complete beginners
-                        from fundamentals to production agent workflows.
-                        Curriculum, infrastructure, and maintenance, all mine.
+                        A free AI education platform for modern AI systems:
+                        agents, automation, and real workflows. Curriculum,
+                        infrastructure, and maintenance, all mine.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Button color="secondary" size="lg" to="/work/ai-maniacs">
@@ -155,25 +155,48 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 Flagship
                             </span>
                             <Heading className="text-4xl md:text-5xl">
-                                Iridium
+                                Fresh Visit
                             </Heading>
                             <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
-                                Full-stack AI app starter kit with TypeScript,
-                                React Router, Better Auth, and Anthropic. Ship
-                                faster, not from scratch.
+                                A browser agent that tests a site the way a
+                                first-time visitor would, then comes back with a
+                                video of the run and a verdict: Found, Stuck, or
+                                Out of steps.
                             </p>
                             <Button
                                 className="self-start"
                                 color="primary"
                                 size="lg"
-                                to="/work/iridium"
+                                to="/work/fresh-visit"
                             >
                                 Learn more
                             </Button>
                         </div>
                     </Card>
                     {/* Secondary projects: 3-column */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <Card className="p-0 grid overflow-hidden">
+                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                                <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
+                                    Foundation
+                                </span>
+                                <Heading>Iridium</Heading>
+                                <p className="mb-8 text-zinc-700 dark:text-zinc-300">
+                                    The full-stack AI app starter behind my
+                                    newer apps, with TypeScript, React Router,
+                                    Better Auth, and Anthropic.
+                                </p>
+                                <Button
+                                    className="mt-auto self-start"
+                                    color="primary"
+                                    variant="outline"
+                                    size="md"
+                                    to="/work/iridium"
+                                >
+                                    Learn more
+                                </Button>
+                            </div>
+                        </Card>
                         <Card className="p-0 grid overflow-hidden">
                             <div className="col-start-1 row-start-1 p-8 flex flex-col">
                                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">

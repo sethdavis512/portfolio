@@ -222,7 +222,7 @@ export const resume: Resume = {
     ],
     projects: [
         {
-            name: 'FreshVisit',
+            name: 'Fresh Visit',
             href: 'https://sethdavis.tech/work/fresh-visit',
             summary:
                 'Browser agent that tests a site as a first-time visitor, returning a video and verdict.'
