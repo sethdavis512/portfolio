@@ -54,11 +54,6 @@ const pagesLinks = [
         to: '/truck',
         icon: LinkIcon,
         label: 'Truck'
-    },
-    {
-        to: '/design-technologist',
-        icon: LinkIcon,
-        label: 'What is a Design Technologist?'
     }
 ];
 

@@ -8,7 +8,6 @@ export default {
             '/',
             '/about',
             '/contact',
-            '/design-technologist',
             '/resume',
             '/setup',
             '/slides',
