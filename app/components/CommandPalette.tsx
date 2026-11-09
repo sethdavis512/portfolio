@@ -1,3 +1,4 @@
+import * as Dialog from '@radix-ui/react-dialog';
 import { Command } from 'cmdk';
 import { Home, LinkIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
@@ -157,6 +158,10 @@ export function CommandPalette({
                 onClick={() => onOpenChange(false)}
             />
             <div className="relative bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 w-full max-w-2xl mx-4 overflow-hidden shadow-lg shadow-black/10 dark:shadow-black/40">
+                <Dialog.Title className="sr-only">Command palette</Dialog.Title>
+                <Dialog.Description className="sr-only">
+                    Search pages, work, and notes, then press Enter to go there.
+                </Dialog.Description>
                 {/* Navigation Header */}
                 <div className="flex items-center gap-3 px-6 py-4 border-b border-zinc-200 dark:border-zinc-800">
                     <Home className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
