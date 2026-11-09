@@ -94,18 +94,17 @@ export const resume: Resume = {
             ]
         },
         {
-            group: 'Full stack',
-            items: ['Prisma', 'PostgreSQL', 'GraphQL', 'Node.js', 'Bun']
-        },
-        {
-            group: 'Tooling',
+            group: 'Stack',
             items: [
-                'GitHub Actions CI/CD',
+                'Prisma',
+                'PostgreSQL',
+                'Node.js',
+                'Bun',
+                'GitHub Actions',
                 'LaunchDarkly',
                 'PostHog',
                 'Snowplow',
-                'Figma',
-                'Railway'
+                'Figma'
             ]
         }
     ],
@@ -134,7 +133,9 @@ export const resume: Resume = {
                     title: 'Software Engineer (Contract)',
                     dates: 'Mar 2026 – Apr 2026',
                     bullets: [
-                        "Prototyped StrudelLM, an AI music app, and built skills for Tambo's open source generative UI app"
+                        'Prototyped StrudelLM, an AI music app that turns plain-language requests into live-coded audio',
+                        "Built skills for Tambo's open source generative UI app, adding capabilities without bloating its core",
+                        'Produced demo videos for X and LinkedIn to show new capabilities to the developer audience'
                     ]
                 }
             ]
@@ -147,7 +148,9 @@ export const resume: Resume = {
                     title: 'Senior Software Engineer, Frontend',
                     dates: 'Aug 2024 – Oct 2025',
                     bullets: [
-                        'Built a company-wide Snowplow Analytics package (90M+ events across three sites) and its schema CLI'
+                        'Built a company-wide Snowplow Analytics package that has logged 90M+ events across three sites',
+                        'Designed a CLI that creates, versions, and syncs Snowplow schemas, improving data consistency',
+                        'Worked with cross-functional teams to bring Snowplow data into apps for data-driven decisions'
                     ]
                 }
             ]
@@ -174,7 +177,11 @@ export const resume: Resume = {
                 {
                     title: 'UX Developer, NIC Inc. · Frontend Developer and Web Designer, Living Direct',
                     dates: 'Nov 2013 – Feb 2019',
-                    bullets: []
+                    bullets: [
+                        'Built an enterprise platform government agencies used to create applications for their constituents',
+                        'Produced prototypes and set the code standards and patterns the development team followed',
+                        'Built a product kit configurator at Living Direct and designed email campaigns that brought in $108K'
+                    ]
                 }
             ]
         }
