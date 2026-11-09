@@ -4,8 +4,13 @@ status: 'PUBLISHED'
 description: 'A personal productivity app where the assistant is the interface. One supervisor agent runs roughly seventy tools across contacts, tasks, calendar, journal, habits, scheduling, and pages, and every domain is reachable from both chat and a normal UI.'
 cta: 'See more'
 sortOrder: 1
-heroImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/sprocket-hero.png'
-thumbnailImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-hero.png'
+heroImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/sprocket-2026-hero.png'
+thumbnailImage: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-2026-hero.png'
+examples:
+    - video: 'portfolio/showcase/sprocket-chat-run'
+      title: 'Write a poem, publish it as a page'
+      caption: 'One request in chat: the assistant writes a short poem, creates a page, adds the poem, publishes it, and returns the public link. Each tool call renders as a card as it happens.'
+      aspect: '2560 / 1600'
 about: 'Sprocket is a personal productivity app built on Mastra and React Router, bootstrapped from Iridium, my starter kit, and grown into its own product. The chat is the primary surface. The assistant is a Claude Sonnet 5.5 supervisor holding roughly seventy tools directly, delegating only three synthesis jobs to sub-agents: journaling, weekly reviews, and email drafting. Every domain (contacts, interactions, journal entries, tasks, events and their checklists, habits, shareable pages, generated images) is exposed both as a normal CRUD UI and as an agent tool, so the chat surface and the manual surface stay in lockstep. On top of that sit a full scheduling engine with booking links, weekly hours, date overrides and email confirmations; a Trigger.dev task fleet for background work like image generation and booking reminders; and an MCP server that exposes the same tools to Claude Code and other MCP clients. Working memory persists across conversations and across agents in its own Postgres database, kept separate from the Prisma application schema. An input processor injects the current date and time into every request, and the chat route caps message length. Auth is Better Auth with HTTP-only sessions, and the whole thing deploys to Railway from Docker.'
 learned: "The most useful lesson was architectural, and it came from being wrong first. Sprocket originally shipped with fourteen sub-agents, most of them one per domain. In practice the supervisor routed better when it simply held the tools itself, so I deleted the eleven that only wrapped a tool set and kept three that gather data and then synthesize. Model capability moved, and the right topology moved with it. The same instinct applied to features: I cut four whole domains, including a notes system I had built and liked, because they duplicated something else in the app, and later unwired budget and GitHub from the assistant because I wasn't using them there. Beyond that, I moved the whole agent system from VoltAgent to Mastra without touching the data layer, kept agent memory in its own Postgres database separate from the application schema, and streamed tool calls to the UI so every action the agent takes is visible. I also replaced a hand-rolled cron setup with Trigger.dev once background work outgrew it, and I learned that a scheduling engine is deceptively hard: availability rules, timezones, date overrides, buffers, minimum notice, and slot generation all have to agree before a single booking link works."
 impact: 'Sprocket is the project I point to when someone wants to see how I think about agent-native software. It is not a wrapper around a single LLM call. It is a supervisor holding roughly seventy tools, memory that survives across conversations, an MCP server for other clients, and a UI that makes every tool call legible to the user. It is also the project where I can show judgment rather than just capability, because the most important commits were the ones that deleted agents and features I had already built. For anyone evaluating me for AI engineering, agent design, or full-stack roles where the assistant is the product, this is the clearest end-to-end example. It exercises the rest of the stack I work in daily: React Router with type-safe loaders and actions, Base UI components on Tailwind v4, Prisma, Better Auth, Trigger.dev, Cloudinary, Bun in development, Docker in production, and Railway for deploys. Sprocket and Iridium are intentionally paired in my portfolio. Iridium is the foundation, and Sprocket is the proof that the foundation holds up under a real, opinionated product.'
@@ -31,23 +36,23 @@ demoUrl: ''
 demoUrlText: ''
 tags: ['AI', 'Agents', 'Personal Assistant']
 galleryImages:
-    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-chat.png'
-      alt: 'The assistant creating a page, adding text to it, and publishing it, with each tool call rendered inline in the chat and the finished public link at the end'
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-2026-chat.png'
+      alt: 'The assistant creating a page, adding a poem to it, and publishing it, shown as three tool cards ending in a live public link'
       sortOrder: 0
-    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-tasks.png'
-      alt: 'The task board with To Do, In Progress and Done columns, showing the same tasks the agent can read and write through its tools'
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-2026-tasks.png'
+      alt: 'A task board with To Do, In Progress, and Done columns, showing priority badges and due dates'
       sortOrder: 1
-    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-scheduling.png'
-      alt: 'The availability editor behind the booking links, with a named schedule, timezone, and per-weekday time ranges'
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-2026-scheduling.png'
+      alt: 'The availability editor behind booking links, with weekly hours per day, including a split Monday and an evening slot on Wednesday'
       sortOrder: 2
-    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-booking.png'
-      alt: 'The public booking page a guest sees: meeting details, a month calendar, and generated time slots in their own timezone'
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-2026-booking.png'
+      alt: 'A public booking page for a 30 minute portfolio review, with a month calendar and open time slots for the selected day'
       sortOrder: 3
-    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-public-page.png'
-      alt: 'A published page shared as a public link, combining a text block, a generated image, and a task with its due date'
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-2026-public-page.png'
+      alt: 'A published page for an autumn photo walk combining a text block, an image, and a checklist task with a progress bar'
       sortOrder: 4
-    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-gallery.png'
-      alt: 'The gallery of images generated through the app, filterable by the tag of the Trigger.dev task that produced them'
+    - src: 'https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/sprocket-2026-gallery.png'
+      alt: 'The image gallery in large view showing three generated images'
       sortOrder: 5
 hasContent: false
 createdAt: '2026-04-27T00:00:00.000Z'
