@@ -10,9 +10,9 @@ const TIL_PREVIEW_COUNT = 5;
 
 export function meta() {
     return generateRouteMeta({
-        pageTitle: 'Talks & Writing',
+        pageTitle: 'Slides & Writing',
         descriptionContent:
-            'Talks, decks, and short field notes from Seth Davis on web development, React, TypeScript, and AI tooling.',
+            'Slide decks and short field notes from Seth Davis on web development, React, TypeScript, and AI tooling.',
         ogUrl: 'https://sethdavis.tech/writing'
     });
 }
@@ -57,20 +57,20 @@ export default function WritingRoute({ loaderData }: Route.ComponentProps) {
         <>
             <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-4">
                 <Heading as="h1" className="mb-0">
-                    Talks & Writing
+                    Slides & Writing
                 </Heading>
                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     Decks & field notes
                 </span>
             </div>
             <p className="text-zinc-600 dark:text-zinc-400 mb-12">
-                Talks I have given as navigable decks, and short notes on things
-                I have learned while building.
+                Slide decks you can step through, and short notes on things I
+                have learned while building.
             </p>
             <section className="mb-12">
                 <div className="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-6">
                     <Heading as="h2" size="2" className="mb-0">
-                        Talks
+                        Slides
                     </Heading>
                     <Linky to="/slides" className="text-sm">
                         All slides →

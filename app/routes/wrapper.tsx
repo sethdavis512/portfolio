@@ -33,8 +33,8 @@ const NAV_ITEMS: NavItem[] = [
     {
         type: 'internal',
         to: '/writing',
-        label: 'Talks & Writing',
-        ariaLabel: 'Browse my talks and writing',
+        label: 'Slides & Writing',
+        ariaLabel: 'Browse my slides and writing',
         activePaths: ['/til', '/slides']
     },
     {

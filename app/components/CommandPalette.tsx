@@ -38,7 +38,7 @@ const pagesLinks = [
     {
         to: '/writing',
         icon: LinkIcon,
-        label: 'Talks & Writing'
+        label: 'Slides & Writing'
     },
     {
         to: '/til',

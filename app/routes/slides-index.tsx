@@ -10,7 +10,7 @@ export function meta() {
     return generateRouteMeta({
         pageTitle: 'Slides',
         descriptionContent:
-            'Talks and decks by Seth Davis: MDX slideshows with keyboard navigation.',
+            'Slide decks by Seth Davis: MDX slideshows with keyboard navigation.',
         ogUrl: 'https://sethdavis.tech/slides'
     });
 }
@@ -35,12 +35,12 @@ export default function SlidesIndexRoute({
                     Slides
                 </Heading>
                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
-                    Talks & decks
+                    Decks
                 </span>
             </div>
             <p className="text-zinc-600 dark:text-zinc-400 mb-8">
-                Decks and talk walkthroughs. Use ← and → to navigate once you're
-                inside a deck.
+                Slide decks you can step through. Use ← and → to navigate once
+                you're inside a deck.
             </p>
             <div className="flex flex-col gap-3">
                 {loaderData.decks.length > 0 ? (

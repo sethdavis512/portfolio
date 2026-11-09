@@ -4,5 +4,5 @@
     "order": 1,
     "status": "PUBLISHED",
     "updatedAt": "2026-04-22",
-    "tags": ["bun", "cli", "typescript", "talks"]
+    "tags": ["bun", "cli", "typescript"]
 }
