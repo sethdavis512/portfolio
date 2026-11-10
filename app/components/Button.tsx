@@ -16,7 +16,8 @@ export const buttonVariants = cva({
     variants: {
         color: {
             primary: [],
-            secondary: []
+            secondary: [],
+            ink: []
         },
         variant: {
             solid: [],
@@ -93,6 +94,31 @@ export const buttonVariants = cva({
             className: [
                 'border-transparent bg-secondary-500/15 text-secondary-700 dark:text-secondary-300',
                 'hover:bg-secondary-500/25'
+            ]
+        },
+        // Ink: for sitting on a solid color block, in either mode
+        {
+            color: 'ink',
+            variant: 'solid',
+            className: [
+                'bg-zinc-950 hover:bg-zinc-800 text-zinc-50 border-transparent',
+                'shadow-sm'
+            ]
+        },
+        {
+            color: 'ink',
+            variant: 'outline',
+            className: [
+                'bg-transparent text-black border-black/50',
+                'hover:bg-black/10 hover:border-black/60'
+            ]
+        },
+        // A dark outline with a gap, so focus shows on any block color
+        {
+            color: 'ink',
+            className: [
+                'focus-visible:ring-0 focus-visible:ring-offset-0',
+                'focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black'
             ]
         }
     ]

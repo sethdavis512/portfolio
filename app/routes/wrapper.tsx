@@ -129,7 +129,7 @@ export default function WrapperRoute() {
 
     return (
         <>
-            <header className="py-6 border-b border-zinc-200 dark:border-zinc-800">
+            <header className="relative z-10 py-6 border-b border-zinc-200 dark:border-zinc-800">
                 <Container>
                     <nav>
                         <ul className="hidden lg:flex items-center gap-4 md:gap-8">
@@ -267,7 +267,7 @@ export default function WrapperRoute() {
                     </nav>
                 </Container>
             </header>
-            <main className="py-8">
+            <main className="py-8 overflow-x-clip">
                 <Container>
                     <Outlet />
                 </Container>
@@ -300,6 +300,10 @@ export default function WrapperRoute() {
                     Navigate <KeyboardShortcut keys={['Cmd', 'K']} />
                 </span>
             </div>
+            <div
+                aria-hidden="true"
+                className="pointer-events-none fixed inset-0 z-40 bg-grain opacity-10 invert dark:invert-0"
+            />
         </>
     );
 }

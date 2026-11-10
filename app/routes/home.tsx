@@ -59,7 +59,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
     return (
         <>
-            <HomeSection className="md:pt-0 md:pb-16">
+            <HomeSection className="relative isolate md:pt-0 md:pb-16">
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-192 w-screen -translate-x-1/2 bg-hero-light opacity-60 dark:opacity-100"
+                />
                 <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-8 text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400">
                     <span>{ContentStyles.CURRENT_JOB_TITLE}</span>
                     <span aria-hidden="true">Austin, TX</span>
@@ -118,29 +122,47 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </div>
             </HomeSection>
             <HomeSection>
-                <Card className="p-8 md:p-10 border-secondary-500/40 dark:border-secondary-500/40 bg-secondary-500/10 dark:bg-secondary-500/10">
-                    <span className="text-xs font-medium tracking-wide text-secondary-700 dark:text-secondary-300 mb-3 block">
-                        Spotlight
-                    </span>
-                    <Heading className="text-4xl md:text-5xl">
-                        Fresh Visit
-                    </Heading>
-                    <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
-                        A browser agent that tests a site the way a first-time
-                        visitor would, then comes back with a video of the run
-                        and a verdict: Found, Stuck, or Out of steps.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <Button color="secondary" size="lg" to="/work/fresh-visit">
-                            Read the case study
-                        </Button>
-                        <Button
-                            variant="outline"
-                            size="lg"
-                            href="https://www.freshvisit.app"
-                        >
-                            Visit freshvisit.app
-                        </Button>
+                <Card className="p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-br from-secondary-300 to-secondary-500">
+                    <div className="p-8 md:p-10 flex flex-col">
+                        <span className="text-xs font-semibold tracking-wide text-zinc-900 mb-3">
+                            Spotlight
+                        </span>
+                        <Heading className="text-4xl md:text-5xl text-black dark:text-black">
+                            Fresh Visit
+                        </Heading>
+                        <p className="mb-8 text-lg text-zinc-900">
+                            A browser agent that tests a site the way a
+                            first-time visitor would, then comes back with a
+                            video of the run and a verdict: Found, Stuck, or
+                            Out of steps.
+                        </p>
+                        <div className="mt-auto flex flex-col sm:flex-row gap-4">
+                            <Button
+                                color="ink"
+                                size="lg"
+                                to="/work/fresh-visit"
+                            >
+                                Read the case study
+                            </Button>
+                            <Button
+                                color="ink"
+                                variant="outline"
+                                size="lg"
+                                href="https://www.freshvisit.app"
+                            >
+                                Visit freshvisit.app
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="flex items-end pl-8 md:pl-0 md:pt-10">
+                        <img
+                            src="https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-landing.png"
+                            alt="The Fresh Visit landing page: name a task, see whether a first-time visitor can finish it"
+                            width={1280}
+                            height={800}
+                            loading="lazy"
+                            className="w-full h-auto rounded-tl-lg border-t border-l border-black/20 shadow-2xl"
+                        />
                     </div>
                 </Card>
             </HomeSection>
@@ -149,35 +171,53 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <Heading className="mb-0">Featured projects</Heading>
                 </div>
                 <div className="grid grid-cols-1 gap-6">
-                    {/* Hero project: full width acid slab */}
-                    <Card className="p-0 grid overflow-hidden bg-primary-500/10 dark:bg-primary-500/10 border-primary-500/40">
-                        <div className="col-start-1 row-start-1 p-8 md:p-10 flex flex-col">
-                            <span className="text-xs font-medium tracking-wide text-primary-700 dark:text-primary-300 mb-3">
+                    {/* Hero project: full width amber slab, screenshot on the left */}
+                    <Card className="p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-br from-primary-300 via-primary-400 to-tertiary-400">
+                        <div className="p-8 md:p-10 flex flex-col">
+                            <span className="text-xs font-semibold tracking-wide text-zinc-900 mb-3">
                                 Education
                             </span>
-                            <Heading className="text-4xl md:text-5xl">
+                            <Heading className="text-4xl md:text-5xl text-black dark:text-black">
                                 AI Maniacs
                             </Heading>
-                            <p className="mb-8 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
+                            <p className="mb-8 text-lg text-zinc-900">
                                 A free AI education platform for modern AI
                                 systems: agents, automation, and real workflows.
                                 Curriculum, infrastructure, and maintenance, all
                                 mine.
                             </p>
                             <Button
-                                className="self-start"
-                                color="primary"
+                                className="mt-auto self-start"
+                                color="ink"
                                 size="lg"
                                 to="/work/ai-maniacs"
                             >
                                 Learn more
                             </Button>
                         </div>
+                        <div className="flex items-end pr-8 md:order-first md:pr-0 md:pt-10">
+                            <img
+                                src="https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/ai-maniacs-com.png"
+                                alt="The AI Maniacs home page with its mascot and the line: learn modern AI systems"
+                                width={1280}
+                                height={844}
+                                loading="lazy"
+                                className="w-full h-auto rounded-tr-lg border-t border-r border-black/20 shadow-2xl"
+                            />
+                        </div>
                     </Card>
                     {/* Secondary projects: 3-column */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <Card className="p-0 grid overflow-hidden">
-                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                        <Card className="p-0 overflow-hidden flex flex-col">
+                            <img
+                                src="https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/iridium-2026-login.png"
+                                alt="The Iridium sign-in screen beside a particle sphere"
+                                width={1280}
+                                height={800}
+                                loading="lazy"
+                                className="aspect-16/10 w-full object-cover object-top border-b border-zinc-200 dark:border-zinc-800"
+                            />
+                            <div className="p-8 flex flex-1 flex-col">
                                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                     Foundation
                                 </span>
@@ -198,8 +238,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Button>
                             </div>
                         </Card>
-                        <Card className="p-0 grid overflow-hidden">
-                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                        <Card className="p-0 overflow-hidden flex flex-col">
+                            <img
+                                src="https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/t78jfM9bfyWyr1MGnWefJbeUH8A.webp"
+                                alt="Lone Star UI components"
+                                width={1280}
+                                height={831}
+                                loading="lazy"
+                                className="aspect-16/10 w-full object-cover object-top border-b border-zinc-200 dark:border-zinc-800"
+                            />
+                            <div className="p-8 flex flex-1 flex-col">
                                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                     Open Source
                                 </span>
@@ -220,8 +268,18 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                                 </Button>
                             </div>
                         </Card>
-                        <Card className="p-0 grid overflow-hidden">
-                            <div className="col-start-1 row-start-1 p-8 flex flex-col">
+                        <Card className="p-0 overflow-hidden flex flex-col">
+                            <div className="relative aspect-16/10 overflow-hidden bg-primary-400 border-b border-zinc-200 dark:border-zinc-800">
+                                <img
+                                    src="https://techwithseth.com/claude-code-skill-library-cover.png"
+                                    alt="Cover of Building Your Claude Code Skill Library"
+                                    width={816}
+                                    height={1056}
+                                    loading="lazy"
+                                    className="absolute left-1/2 top-6 w-3/5 h-auto -translate-x-1/2 -rotate-3 rounded-sm shadow-2xl"
+                                />
+                            </div>
+                            <div className="p-8 flex flex-1 flex-col">
                                 <span className="text-xs font-medium tracking-wide text-zinc-600 dark:text-zinc-400 mb-3">
                                     Product
                                 </span>
