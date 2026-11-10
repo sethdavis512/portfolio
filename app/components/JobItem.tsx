@@ -16,9 +16,11 @@ export function JobItem({
     className,
     company,
     dates,
-    location = 'Austin, TX',
+    location,
     title
 }: PropsWithChildren<JobItemProps>) {
+    const place = [company, location].filter(Boolean).join(' - ');
+
     return (
         <ul className={cx(`flex flex-col space-y-4 mb-8`, className)}>
             <li
@@ -28,11 +30,13 @@ export function JobItem({
                     <Heading as="h3" size="3" className="m-0">
                         {title}
                     </Heading>
-                    {company && location && (
-                        <span className="inline-block">{`${company} - ${location}`}</span>
-                    )}
+                    {place && <span className="inline-block">{place}</span>}
                 </div>
-                {dates && <strong className="inline-block">{dates}</strong>}
+                {dates && (
+                    <strong className="inline-block whitespace-nowrap">
+                        {dates}
+                    </strong>
+                )}
             </li>
             <li>{children}</li>
         </ul>

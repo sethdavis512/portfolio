@@ -38,6 +38,13 @@ function ResumeSection({
     return <section className={cx('mb-8', className)}>{children}</section>;
 }
 
+/** Splits "UX Developer, NIC Inc." into the title and the company it was held at. */
+function splitRole(role: string) {
+    const at = role.lastIndexOf(', ');
+    if (at === -1) return { title: role, company: '' };
+    return { title: role.slice(0, at), company: role.slice(at + 2) };
+}
+
 export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
     const { resume } = loaderData;
 
@@ -113,14 +120,35 @@ export default function ResumeRoute({ loaderData }: Route.ComponentProps) {
                 </Heading>
                 {resume.experience.map(function (job) {
                     return job.roles.map(function (role) {
+                        // Several past roles folded into one entry: the group
+                        // name is the heading and each role gets its own line.
+                        const pastRoles = role.title.split(' · ');
+                        const isGroup = pastRoles.length > 1;
+
                         return (
                             <JobItem
                                 key={`${job.company}-${role.title}`}
-                                company={job.company}
+                                company={isGroup ? undefined : job.company}
                                 dates={role.dates}
                                 location={job.location}
-                                title={role.title}
+                                title={isGroup ? job.company : role.title}
                             >
+                                {isGroup && (
+                                    <ul className="mb-4 space-y-1 text-zinc-700 dark:text-zinc-300">
+                                        {pastRoles.map(function (pastRole) {
+                                            const { title, company } =
+                                                splitRole(pastRole);
+                                            return (
+                                                <li key={pastRole}>
+                                                    <span className="font-semibold text-zinc-900 dark:text-zinc-100">
+                                                        {title}
+                                                    </span>
+                                                    {company && `, ${company}`}
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
                                 <JobItemList>
                                     {role.bullets.map(function (bullet) {
                                         return <li key={bullet}>{bullet}</li>;
