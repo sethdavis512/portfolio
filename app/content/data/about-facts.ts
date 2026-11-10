@@ -58,8 +58,8 @@ export const aboutFacts: AboutFact[] = [
     {
         "id": "about-fact-6",
         "emoji": "🤖",
-        "title": "A.I. Maniac",
-        "content": "Mentoring AI professionals",
+        "title": "AI Maniac",
+        "content": "I run a free AI education site",
         "linkUrl": "https://ai-maniacs.com",
         "linkExternal": "true",
         "sortOrder": 7
