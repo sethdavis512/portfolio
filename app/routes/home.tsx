@@ -156,8 +156,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </div>
                     <div className="flex items-end pl-8 md:pl-0 md:pt-10">
                         <img
-                            src="https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-landing.png"
-                            alt="The Fresh Visit landing page: name a task, see whether a first-time visitor can finish it"
+                            src="https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/freshvisit-landing-2026-11.png"
+                            alt="The Fresh Visit landing page: find out where visitors give up on your site"
                             width={1280}
                             height={800}
                             loading="lazy"
