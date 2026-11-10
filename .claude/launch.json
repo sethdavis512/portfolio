@@ -7,6 +7,13 @@
       "runtimeArgs": ["run", "dev", "--", "--port", "5199", "--strictPort"],
       "port": 5199,
       "autoPort": false
+    },
+    {
+      "name": "trellis-demos",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["run", "--cwd=/Users/seth/repositories/trellis", "dev", "--", "--port", "5289", "--strictPort"],
+      "port": 5289,
+      "autoPort": false
     }
   ]
 }
