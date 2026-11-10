@@ -110,7 +110,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     </div>
                     <div className="lg:col-span-5 lg:self-center border-t border-zinc-200 dark:border-zinc-800 pt-6 lg:border-t-0 lg:pt-0">
                         <ShowcaseHeroVideo
-                            publicId="portfolio/showcase/resume-video-home"
+                            publicId="portfolio/showcase/resume-video-home-2026-11"
                             title="Seth Davis resume"
                             placement="hero"
                             scrubber
