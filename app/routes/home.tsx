@@ -122,7 +122,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </div>
             </HomeSection>
             <HomeSection>
-                <Card className="p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-br from-secondary-300 to-secondary-500">
+                <Card className="p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-br from-primary-200 to-primary-300 dark:from-primary-100">
                     <div className="p-8 md:p-10 flex flex-col">
                         <span className="text-xs font-semibold tracking-wide text-zinc-900 mb-3">
                             Spotlight
@@ -172,7 +172,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </div>
                 <div className="grid grid-cols-1 gap-6">
                     {/* Hero project: full width amber slab, screenshot on the left */}
-                    <Card className="p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-br from-primary-300 via-primary-400 to-tertiary-400">
+                    <Card className="p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-br from-primary-300 to-primary-500">
                         <div className="p-8 md:p-10 flex flex-col">
                             <span className="text-xs font-semibold tracking-wide text-zinc-900 mb-3">
                                 Education

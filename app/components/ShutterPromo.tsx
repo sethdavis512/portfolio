@@ -17,7 +17,7 @@ export function ShutterPromo({ className }: Props) {
     return (
         <Card
             className={cx(
-                'p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-tr from-tertiary-500 to-tertiary-300',
+                'p-0 overflow-hidden grid md:grid-cols-2 border-transparent dark:border-transparent bg-origin-border bg-linear-to-tr from-tertiary-400 to-primary-400',
                 className
             )}
         >
