@@ -1,0 +1,46 @@
+---
+title: "Atrium"
+status: "PUBLISHED"
+description: "One canvas for everything a company knows: chats, documents, issue boards, pull requests, charts, and web pages sit side by side as cards on a Trellis canvas, linked to each other, with people and AI agents working on the same surface."
+cta: "See more"
+sortOrder: -3
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/atrium-atlas-launch.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-atlas-launch.png"
+showcaseVideo: "portfolio/showcase/atrium"
+showcaseCaption: "Walkthrough of a local demo build"
+role: "Solo: product, design, and engineering"
+pullQuote: "People and agents should read and write the same cards, through the same functions, and see each other's changes as they happen."
+about: "Atrium puts a company's information in one place and shows how the pieces relate. The hierarchy is Workspace, Space, Surface, and Card: each surface is a canvas, and its cards are chats, documents, issue boards, pull requests, charts, videos, web pages, images, sticky notes, sketches, and small live dashboards. Cards link to each other, hang under the chat or document that produced them, and open full size in place, so a document becomes a rich text editor and a board becomes a Linear-style issue view. The canvas is Trellis, my own React Flow-style library, and every card is a Trellis node type. A Claude agent built on Mastra works on the surface alongside people, and an MCP endpoint gives any outside agent the same tools. Pull requests and boards are mocks today, with no repository or Linear behind them, and the workspace lives in an in-memory store designed to be swapped for a real one."
+learned: "Atrium was the first real consumer of Trellis, and building a dense, interactive app on it showed me which parts of a canvas library matter: controlled nodes, a typed change stream, and stable coordinates under zoom. I learned to keep layout pure and testable, so Arrange (grouping linked cards into clusters and packing them into rows) is a plain function the store, the client, and agents all share. Multiplayer taught me Server-Sent Events end to end: one stream per open surface, versions hashed per surface so unrelated changes don't reload anyone, presence, and draining streams cleanly on shutdown. Documents are stored as Portable Text but agents read and write Markdown, which meant writing converters both ways, including tables and references to other cards. Running the same tools through Mastra for the in-app agent and through MCP for outside agents made me design the store's functions as the single API everyone goes through."
+impact: "Atrium shows I can design a product model and the interaction work that makes it feel fast: drag, resize, link, lock, arrange, focus, search with ⌘K, and keyboard paths for each. It is a real test of Trellis, since every card type, link, and layout runs on the library I published. The agent work is practical rather than a chat bolted on: the agent creates documents, boards, charts, and UI cards on the canvas, and every viewer watches them appear. The app is covered by 44 Vitest files and 15 Playwright specs, including one that drives two signed-in people on the same surface."
+techStack: ["typescript", "react", "react-router", "tailwind", "baseui", "anthropic", "mcp", "better-auth", "postgres", "bun"]
+sourceUrl: "https://github.com/sethdavis512/atrium"
+demoUrl: ""
+demoUrlText: ""
+tags: ["canvas", "ai", "agents"]
+galleryImages:
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-atlas-launch.png"
+  alt: "The Atlas launch surface: chats with their pull requests, charts, and images hanging under them, documents, a web page, and an issue board on one canvas"
+  sortOrder: 0
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-launch-retro.png"
+  alt: "Launch retro: three agent chats, each with the pull request it opened and the docs page it read, beside the retro notes"
+  sortOrder: 1
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-document.png"
+  alt: "A focused document in the editor, with a linked pull request chip and an embedded board card"
+  sortOrder: 2
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-board.png"
+  alt: "An issue board opened full size, with issues linked to chats, documents, and pull requests"
+  sortOrder: 3
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-search.png"
+  alt: "The ⌘K search palette finding SSO across documents, pull requests, and board issues"
+  sortOrder: 4
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-brand-refresh.png"
+  alt: "A designer's surface after Arrange: brief, boards, reference images, web pages, sticky notes, and a sketch"
+  sortOrder: 5
+- src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1/portfolio/atrium-workspace.png"
+  alt: "The workspace: spaces for Product, Customers, and Design, each holding its surfaces"
+  sortOrder: 6
+hasContent: false
+createdAt: "2026-11-09T00:00:00.000Z"
+updatedAt: "2026-11-09T00:00:00.000Z"
+---
