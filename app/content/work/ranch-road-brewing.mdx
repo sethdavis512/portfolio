@@ -1,0 +1,33 @@
+---
+title: "Ranch Road Brewing Co."
+status: "PUBLISHED"
+description: "A concept site for a fictional Hill Country taproom where every page is composed in Contentful from a typed, Zod-validated bank of blocks."
+cta: "See more"
+sortOrder: 2.5
+heroImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1794498698/portfolio/ranch-road-brewing-home.png"
+thumbnailImage: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1794498698/portfolio/ranch-road-brewing-home.png"
+about: "Ranch Road Brewing Co. is a self-initiated concept, and the brewery is fictional: a marketing site for a Hill Country taproom that its staff could run without a developer. Every route is a single splat route that looks up a Contentful page by slug and renders its ordered sections from a bank of eleven blocks, including a hero, tap list, events, food menu, FAQ, gallery, and call to action. Data blocks fill themselves: the tap list reads every beer by status and tap number, the event list resolves weekly repeats and drops past dates, and the menu groups itself by category, so editing one beer updates every page that shows it. The brand is built around Texas road signage, with a Ranch Road route marker for route 8 (a quiet nod to React Router 8), a mile marker post, and a double yellow center line, in a day theme and an after-dark theme."
+learned: "The core of the build is a two-sided block registry. On the server, each Contentful content type has a Zod schema and a build function that maps the raw entry to a clean, serializable block, and anything that fails validation is skipped instead of thrown, so a half-finished entry never takes a page down. On the client, the registry is a mapped type over the block union, so a block without a component, or a component whose props drift from its block, fails the typecheck. Shared collections load at most once per request through a small memoized context. Recurring events taught me to keep a wall-clock time steady across daylight saving changes by correcting with the time zone offset. On the styling side, lone-star-ui ships an unlayered dark-mode rule that outranks Tailwind v4's theme layer, so I defined the palette once with light-dark() and pointed the library's tokens back at it. The whole Contentful space, including editor help text, widgets, photos, and seed content, is created by one Bun script against the Management API."
+impact: "The concept shows how I would hand a small business a site it can maintain itself: the staff change the content, and the design stays consistent because they never touch it. Adding a new kind of section is one schema, one component, and one content type, and the type system points out anything missed. It also served as an upgrade of my Contentful starter to React Router 8.5, React 19.3, TypeScript 7, Vite 8, Tailwind 4.3, and Zod 4, with Vitest coverage for the block mappers and event scheduling."
+techStack: ["react-router", "react", "typescript", "tailwind", "baseui", "bun", "railway", "cloudinary"]
+sourceUrl: "https://github.com/sethdavis512/ranch-road-brewing"
+demoUrl: "https://web-production-38b57f9a.up.railway.app"
+demoUrlText: "Visit the taproom"
+tags: ["headless cms", "contentful", "concept"]
+galleryImages:
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1794498701/portfolio/ranch-road-brewing-board.png"
+    alt: "The tap list in the after-dark theme, filled from every beer marked On tap in Contentful, with color-tinted pint glasses and ABV meters"
+    sortOrder: 0
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1794498703/portfolio/ranch-road-brewing-events.png"
+    alt: "The event list, where weekly events roll forward to their next date and past events drop off on their own"
+    sortOrder: 1
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1794498705/portfolio/ranch-road-brewing-visit.png"
+    alt: "Hours from the site settings entry beside a hand-drawn SVG map that redraws in both themes"
+    sortOrder: 2
+  - src: "https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1280/v1794498711/portfolio/ranch-road-brewing-mobile.png"
+    alt: "The home page on a phone, with the route marker logo and the hero headline"
+    sortOrder: 3
+hasContent: false
+createdAt: "2026-11-12T00:00:00.000Z"
+updatedAt: "2026-11-12T00:00:00.000Z"
+---
