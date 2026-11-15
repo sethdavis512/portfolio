@@ -21,7 +21,7 @@ export const MOVED_WORK: Record<string, string> = {
     freshvisit: '/work/fresh-visit',
     buncli: '/til/building-a-cli-for-people-and-ai-agents',
     'hog-watch': '/til/a-posthog-dashboard-in-the-menu-bar',
-    'aws-flashcards': '/til/studying-for-aws-cloud-practitioner-from-the-system-tray',
+    'aws-flashcards': '/til',
     'tech-with-seth': '/work'
 };
 
