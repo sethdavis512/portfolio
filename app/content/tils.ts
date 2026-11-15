@@ -20,7 +20,8 @@ export type TilItem = CollectionItem<TilFrontmatter, MdxComponent>;
 export const MOVED_TIL: Record<string, string> = {
     'prompt-thesaurus-50-action-verbs-for-better-llm-outputs':
         '/til/prompt-thesaurus-action-verbs-for-better-llm-outputs',
-    'studying-for-aws-cloud-practitioner-from-the-system-tray': '/til'
+    'studying-for-aws-cloud-practitioner-from-the-system-tray': '/til',
+    'a-posthog-dashboard-in-the-menu-bar': '/til'
 };
 
 const tilModules = import.meta.glob<TilModule>('./til/*.mdx', {
