@@ -55,7 +55,7 @@ React Router v7 app with SSR, served via Hono adapter. Content lives as local MD
 - Content as MDX files in `app/content/work/`, `app/content/til/`, `app/content/slides/`
 - Structured data as TypeScript files in `app/content/data/`
 - Content loads through collections (`works`, `tils`, `decks` from `~/content`), all built on `createCollection` in `app/content/collection.ts`. See `GLOSSARY.md` for Collection, Draft and Moved slug
-- Components use CVA (Class Variance Authority) with tailwind-merge configured in `cva.config.ts`
+- Components use CVA (Class Variance Authority) with tailwind-merge configured in `app/cva.config.ts`
 
 ## Content Structure
 
@@ -129,7 +129,7 @@ export default function WorkDetail({ loaderData }: Route.ComponentProps) {
 ### Component Variants (CVA)
 
 ```typescript
-import { cva, cx } from 'cva.config';
+import { cva, cx } from '~/cva.config';
 
 export const componentVariants = cva({
     base: 'base-classes',
@@ -155,7 +155,7 @@ When a project photo is not immediately available, use these generic Cloudinary 
 | CLI/terminal projects | `https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/placeholder-terminal.png` |
 | Browser/web projects | `https://res.cloudinary.com/setholito/image/upload/c_scale,f_auto,q_90,w_1920/v1/portfolio/placeholder-browser.png` |
 
-Swap `w_1920` to `w_1280` for thumbnailImage. Dark-inverted alternates exist in `public/` if the 2d2d2d-on-black variants need replacing.
+Swap `w_1920` to `w_1280` for thumbnailImage.
 
 ### Adding a TIL post
 1. Create `app/content/til/<slug>.mdx` with YAML frontmatter
@@ -167,7 +167,7 @@ Swap `w_1920` to `w_1280` for thumbnailImage. Dark-inverted alternates exist in 
 Decks live as **folders** under `app/content/slides/`. A folder is a deck. Each `*.mdx` file inside it is one slide.
 
 **Steps:**
-1. Create `app/content/slides/<deck-slug>/` — the folder name is the URL segment (e.g. `/slides/rr7-deep-dive`)
+1. Create `app/content/slides/<deck-slug>/`. The folder name is the URL segment (e.g. `/slides/rr7-deep-dive`)
 2. Add `deck.json` in that folder for listing metadata:
    ```json
    { "title": "Deck Title", "description": "Short summary.", "order": 1 }
@@ -181,22 +181,22 @@ Decks live as **folders** under `app/content/slides/`. A folder is a deck. Each 
    transition: fade   # depth (default) | fade | lift | zoom | flip | none
    ---
    ```
-   `order` controls slide sequence within the deck. Pick transitions intentionally — `fade` for title/end slides, `depth` for content progression, `lift`/`zoom` for section breaks, `flip` sparingly.
-4. Write the slide body as a single full-height JSX block. **Slides are designed components, not prose** — use `h-full flex ...` layouts and fluid typography. No `<MdxContent>` wrapper.
+   `order` controls slide sequence within the deck. Pick transitions intentionally: `fade` for title/end slides, `depth` for content progression, `lift`/`zoom` for section breaks, `flip` sparingly.
+4. Write the slide body as a single full-height JSX block. **Slides are designed components, not prose**: use `h-full flex ...` layouts and fluid typography. No `<MdxContent>` wrapper.
 5. That's it. The deck auto-appears at `/slides`, the stage is auto-wired at `/slides/<deck-slug>/<slide-id>`, and prerendering picks it up automatically through `app/content/prerender-paths.ts`.
 
 **Slide content conventions:**
 - Use portfolio tokens only: `bg-zinc-950`, `text-white`, `text-zinc-400`, `text-primary-400`, etc. Never raw hex/rgb.
 - Fluid typography via `clamp()`: headings `text-[clamp(2.5rem,5vw+0.5rem,6rem)]`, body `text-[clamp(1rem,1.3vw+0.25rem,1.5rem)]`.
-- Go **big and bold** — `font-black`, tight leading (`leading-[0.9]`–`leading-[1]`), decisive color.
+- Go **big and bold**: `font-black`, tight leading (`leading-[0.9]`–`leading-[1]`), decisive color.
 - Each slide's root element should be `h-full` + a flex layout so content fills the stage.
 - See `app/content/slides/bun-cli/*.mdx` for reference layouts (title/subtitle, two-column, card grid, code, big-statement, thank-you).
 
 **Code in slides:**
 
-Slides use the presentation-tuned `SlideCode` component (`app/components/SlideCode.tsx`) — Shiki-highlighted with `github-dark-default`, fluid font size, minimal chrome (language label only). **Different from TIL** — slides use `SlideCode`, TIL uses `CodeBlock` (which has macOS window chrome + a copy button — too busy for projection).
+Slides use the presentation-tuned `SlideCode` component (`app/components/SlideCode.tsx`): Shiki-highlighted with `github-dark-default`, fluid font size, minimal chrome (language label only). **Different from TIL**: slides use `SlideCode`, TIL uses `CodeBlock` (which has macOS window chrome + a copy button, too busy for projection).
 
-**Recommended pattern — explicit `<SlideCode>` with a string prop:**
+**Recommended pattern: explicit `<SlideCode>` with a string prop:**
 
 ```mdx
 ---
@@ -225,19 +225,19 @@ const slideModules = import.meta.glob<SlideModule>(
 ```
 
 **Why explicit over fenced markdown:**
-- The stage DOES wire `pre`/`code` to `SlideCode` so fenced blocks (<code>\`\`\`ts</code>) technically work at the MDX top level — BUT mixing fenced blocks with JSX that has blank lines triggers MDX 3 "markdown flow" parsing, which wraps bare text in auto-`<p>` and can nest illegally inside explicit `<p>` tags. Hydration error.
+- The stage DOES wire `pre`/`code` to `SlideCode` so fenced blocks (<code>\`\`\`ts</code>) technically work at the MDX top level, BUT mixing fenced blocks with JSX that has blank lines triggers MDX 3 "markdown flow" parsing, which wraps bare text in auto-`<p>` and can nest illegally inside explicit `<p>` tags. Hydration error.
 - Explicit `<SlideCode>` + `<div>` prose containers sidestep all of that.
 
-**MDX gotchas in slides — hard rules:**
-- **Never use `<p>` as a prose container in slides. Use `<div>`.** When MDX sees a JSX opening tag followed by a newline, it enters block-mode for children and wraps the text content in a markdown `<p>` — which nests illegally inside your explicit `<p>` and breaks hydration. `<div>` can legally contain the auto-`<p>`, so it's safe. This rule applies to every slide, every time.
-- Use relative imports (`../../../components/SlideCode`) — the `~/` path alias does not resolve inside MDX files at build time.
+**MDX gotchas in slides (hard rules):**
+- **Never use `<p>` as a prose container in slides. Use `<div>`.** When MDX sees a JSX opening tag followed by a newline, it enters block-mode for children and wraps the text content in a markdown `<p>`, which nests illegally inside your explicit `<p>` and breaks hydration. `<div>` can legally contain the auto-`<p>`, so it's safe. This rule applies to every slide, every time.
+- Use relative imports (`../../../components/SlideCode`); the `~/` path alias does not resolve inside MDX files at build time.
 - Avoid blank lines between JSX siblings inside a JSX block. They flip MDX into markdown-flow mode and can produce bare auto-`<p>` nodes in unexpected places.
-- Fenced code blocks inside a nested JSX block are the highest-risk combination — always use `<SlideCode>` when the snippet lives inside a layout.
+- Fenced code blocks inside a nested JSX block are the highest-risk combination; always use `<SlideCode>` when the snippet lives inside a layout.
 
 **Verifying a new slide is hydration-safe:**
-After adding a slide, run `bun run build` then `grep -c '<p><p\|<p>[[:space:]]*<p' build/client/slides/<deck>/<slide>/index.html` — it should print `0 0`. Any non-zero count means you have nested `<p>` in the rendered HTML and the slide will hydration-error in the browser.
+After adding a slide, run `bun run build` then `grep -c '<p><p\|<p>[[:space:]]*<p' build/client/slides/<deck>/<slide>/index.html`; it should print `0 0`. Any non-zero count means you have nested `<p>` in the rendered HTML and the slide will hydration-error in the browser.
 
-**Inline code** (single backticks) maps to a dark pill with primary-color text — good for keys, filenames, flags. Safe inside `<div>` but avoid inside multi-line `<p>` for the same reasons above. If you need an inline code pill inside prose, either keep the prose on one line or use a `<code className="px-2 py-0.5 rounded bg-zinc-800/80 border border-zinc-700 text-primary-300 font-mono text-[0.9em]">...</code>` span explicitly.
+**Inline code** (single backticks) maps to a dark pill with primary-color text, good for keys, filenames, flags. Safe inside `<div>` but avoid inside multi-line `<p>` for the same reasons above. If you need an inline code pill inside prose, either keep the prose on one line or use a `<code className="px-2 py-0.5 rounded bg-zinc-800/80 border border-zinc-700 text-primary-300 font-mono text-[0.9em]">...</code>` span explicitly.
 
 **Snippet sizing:** keep snippets to 8–12 lines max so they stay legible at projector scale. Trim imports and boilerplate; narrate the shape, don't ship the whole file.
 
@@ -245,15 +245,15 @@ After adding a slide, run `bun run build` then `grep -c '<p><p\|<p>[[:space:]]*<
 
 See `app/content/slides/bun-cli/mvc.mdx` for a reference pattern (heading + explicit `<SlideCode>` + short caption).
 
-**Architecture — do not refactor without asking:**
+**Architecture (do not refactor without asking):**
 - Loader: `app/content/decks.ts`, eager glob over `./slides/*/*.mdx` + `./slides/*/deck.json`, exposed as the `decks` collection
-- Stage component: `app/components/SlideshowStage.tsx` — reusable, keyboard nav + view transitions
+- Stage component: `app/components/SlideshowStage.tsx`: reusable, keyboard nav + view transitions
 - Routes: `app/routes/slides-index.tsx` (listing, inside wrapper), `app/routes/slides-deck-index.tsx` (redirect), `app/routes/slides-deck-stage.tsx` (full-screen stage, **outside** wrapper layout in `app/routes.ts`)
 - View transition CSS: `app/app.css` under "SLIDESHOW VIEW TRANSITIONS". Driven by `data-nav` + `data-transition` attributes on `<html>` set by the stage before navigation.
 - Prerender: `react-router.config.ts` gets deck and slide paths from `app/content/prerender-paths.ts`.
 
 **Mounting a deck at a custom path** (e.g. `/talks/my-talk/:slideId`):
-Create a new route file that looks the deck up with `decks.bySlug('my-talk')` (use `lookup.item.body` when `kind === 'found'`), gets navigation from `decks.navigation(deck, slideId)`, and renders `<SlideshowStage deck={deck} slideId={...} navigation={...} basePath="/talks/my-talk" />`. The stage primitives are path-agnostic — no library changes needed. Place the route outside the wrapper layout in `app/routes.ts` for full-screen, and add a matching prerender entry if the deck should be statically generated.
+Create a new route file that looks the deck up with `decks.bySlug('my-talk')` (use `lookup.item.body` when `kind === 'found'`), gets navigation from `decks.navigation(deck, slideId)`, and renders `<SlideshowStage deck={deck} slideId={...} navigation={...} basePath="/talks/my-talk" />`. The stage primitives are path-agnostic; no library changes needed. Place the route outside the wrapper layout in `app/routes.ts` for full-screen, and add a matching prerender entry if the deck should be statically generated.
 
 ## Important Notes
 
@@ -276,7 +276,8 @@ Mixed audience: hiring managers evaluating credibility, potential clients scopin
 - **Color system**: Primary (teal/cyan), Secondary (blue/purple), Tertiary (magenta) in OKLCH with 100-900 scales. Zinc for neutrals
 - **Typography**: Inter for body, JetBrains Mono for code. Hero text goes big and bold (`font-black`, up to `text-9xl`)
 - **Motion**: Subtle and purposeful. Fade-slide entrances, gentle pulse, smooth hover transitions (200-300ms). No gratuitous animation
-- **Anti-reference**: Must not look like a generic dev portfolio template. No cookie-cutter layouts, stock illustrations, or safe/bland choices
+- **Anti-reference**: Must not look like a generic dev portfolio template. Without direction, new UI drifts toward a few stock defaults; avoid these unless the page already uses them: italic accent words in headlines, numbered "01/02/03" section labels, pill-shaped call-to-action buttons, stock illustrations. When a draft reaches for another default, add it here.
+- **Overrides**: Inter body text, the dark-first canvas, and the teal/cyan primary on zinc-950 are settled choices for this site. They take precedence over the frontend-design skill's font, theme, and palette defaults.
 - **Theme**: Light mode supported via `dark:` variants but dark is the primary design surface
 
 ### Design Principles
@@ -285,3 +286,7 @@ Mixed audience: hiring managers evaluating credibility, potential clients scopin
 3. **Respect the scan.** Mixed audience means varied attention spans. Key information should land in seconds; depth should reward those who stay.
 4. **Dark canvas, vivid accents.** The zinc-950 background is the stage. Primary/secondary/tertiary colors are the performers. Use them with intention, not everywhere.
 5. **WCAG AA minimum.** Contrast ratios, keyboard navigation, screen reader support, and focus indicators are non-negotiable. Test color combinations against AA thresholds.
+
+## Project hub
+
+This project's hub is `Projects/Portfolio.md` in the Second Brain vault (`~/Documents/second-brain`). Record decisions, direction changes, and open questions there, in its `## Decisions` section, not here. Git and Linear hold the changelog. See "Where things live" in `~/repositories/CLAUDE.md`.

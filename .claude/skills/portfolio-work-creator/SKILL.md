@@ -1,11 +1,11 @@
 ---
 name: portfolio-work-creator
-description: Adds a portfolio work item to sethdavis.tech by creating a local MDX file under app/content/work/. Use when the user wants to add a project, product, case study, or work item to their portfolio (phrases like "add to my portfolio", "showcase this project", "create a work page", "new portfolio item"). Do NOT use for TIL entries (app/content/til/) or blog posts (app/content/post/); those are separate content types.
+description: Adds a portfolio work item to sethdavis.tech by creating a local MDX file under app/content/work/. Use when the user wants to add a project, product, case study, or work item to their portfolio (phrases like "add to my portfolio", "showcase this project", "create a work page", "new portfolio item"). Do NOT use for TIL entries (app/content/til/) or slide decks (app/content/slides/); those are separate content types.
 ---
 
 # Portfolio Work Creator
 
-Work items live as **local MDX files** in `app/content/work/`. The portfolio loader (`app/content/work.ts`) globs them at build time, so creating a new file is the entire workflow. There is no CMS, no database, no GraphQL.
+Work items live as **local MDX files** in `app/content/work/`. The `works` collection (`app/content/works.ts`) globs them at build time, so creating a new file is the entire workflow. There is no CMS, no database, no GraphQL.
 
 **Do not edit:** `app/routes.ts`, `app/components/CommandPalette.tsx`, `app/routes/sitemap.xml.tsx`, `react-router.config.ts`. Routing, command palette entries, sitemap, and prerendering all derive from the MDX glob automatically.
 
@@ -13,7 +13,7 @@ Work items live as **local MDX files** in `app/content/work/`. The portfolio loa
 
 1. **Gather** the project's title, one-sentence description, source/demo URLs, and tech stack.
 2. **Pick a slug** in kebab-case. It becomes both the filename (`<slug>.mdx`) and the URL (`/work/<slug>`); there is no `slug` frontmatter field.
-3. **Pick a sortOrder.** Lower numbers appear first on `/work`. Check existing values with `grep -h "sortOrder:" app/content/work/*.mdx | sort -un` and slot the new item where it belongs in the lineup. Recent flagship work usually goes 0–3.
+3. **Pick a sortOrder.** Lower numbers appear first on `/work`. List current values with `grep -H "^sortOrder:" app/content/work/*.mdx | sort -t: -k3 -g` and slot the new item where it belongs. Values can be negative or fractional; the current lead items sit below 0.
 4. **Write `app/content/work/<slug>.mdx`** using the template below.
 5. **Record a showcase video** when the project has a live `demoUrl`. Load the `record-browser` skill (user-level, `~/.claude/skills/record-browser/`) and follow it with the work item's slug as the shot list `name`: scout the site, write `shots/<slug>.json`, record, review, show Seth, then upload to Cloudinary as `portfolio/showcase/<slug>`. Skip this for CLI tools, libraries without a demo site, and apps whose interesting parts sit behind a login (unless Seth wants a local-dev recording). See "Showcase video" below.
 6. **Decide on images.** Use a frame from the showcase video, a real screenshot, or a Cloudinary placeholder (see "Images") if neither is ready yet.
@@ -55,7 +55,7 @@ updatedAt: "2026-04-27T00:00:00.000Z"
 | `title` | string | Display name | Yes |
 | `status` | string | `PUBLISHED` or `DRAFT`. Only `PUBLISHED` shows on `/work`; a draft 404s in production but renders at its URL in dev | Yes |
 | `description` | string | Card text on `/work` listing | Yes |
-| `cta` | string | Card button label (default: `See more`) | No |
+| `cta` | string | Card button label; falls back to `View project` when empty (`See more` is the usual choice) | No |
 | `sortOrder` | number | Lower = earlier on `/work` | Yes |
 | `heroImage` | URL | Top of detail page (1920px Cloudinary URL) | Yes |
 | `thumbnailImage` | URL | Card on `/work` (1280px Cloudinary URL) | Yes |
@@ -109,9 +109,9 @@ Recorded with the `record-browser` skill (1920x1080, about 15s, cursor gliding l
 - Video: `https://res.cloudinary.com/setholito/video/upload/f_auto,q_auto/v1/portfolio/showcase/<slug>.mp4`
 - Still from the video (works as `heroImage` / `thumbnailImage` when there's no screenshot): `https://res.cloudinary.com/setholito/video/upload/so_1,c_scale,w_<WIDTH>/v1/portfolio/showcase/<slug>.jpg` (`so_1` is the frame at 1s; pick a later second if that frame isn't the strongest)
 
-If `app/content/types.ts` has a `showcaseVideo` field, set it to the Cloudinary public ID (`portfolio/showcase/<slug>`). If it doesn't yet, the work pages can't show the video: tell Seth the video is uploaded and not displayed rather than adding an unused frontmatter key.
+Set `showcaseVideo` to the Cloudinary public ID (`portfolio/showcase/<slug>`), and `showcaseCaption` when the video isn't of the live site.
 
-Videos already recorded: `ai-maniacs`, `iridium`, `virtruv` (shot lists in `~/.claude/skills/record-browser/shots/`).
+To see which items already have a video: `grep -l "^showcaseVideo:" app/content/work/*.mdx` (shot lists in `~/.claude/skills/record-browser/shots/`).
 
 ### Gallery images
 
@@ -149,7 +149,7 @@ Read [references/content-guide.md](references/content-guide.md) before writing t
 
 Before considering the task done:
 
-- [ ] File is at `app/content/work/<slug>.mdx` and the slug matches `slug:` in frontmatter
+- [ ] File is at `app/content/work/<slug>.mdx` (the filename is the slug; there is no `slug:` field)
 - [ ] `status: "PUBLISHED"`
 - [ ] `sortOrder` chosen against existing values (no unintended duplicates next to each other unless intentional)
 - [ ] `description`, `about`, `learned`, `impact` all filled in
@@ -165,7 +165,7 @@ Before considering the task done:
 
 **MDX parse error on dev server.** Usually an unescaped `<` in prose, a malformed YAML value, or a missing closing quote in a long paragraph. Check the file with `bun run dev` and read the error.
 
-**Tech stack icon missing on detail page.** The identifier isn't in `TechStackLogos.tsx`'s `LogoName` union. Add a logo component (mirror `VoltAgentLogo.tsx`), import it, extend the union, and add a config entry, all in one file.
+**Tech stack icon missing on detail page.** The identifier isn't in `TechStackLogos.tsx`'s `LogoName` union. Add a logo component in `app/components/logos/` (mirror `VoltAgentLogo.tsx`), then in `TechStackLogos.tsx` import it, extend the union, and add a config entry.
 
 **Item doesn't appear on /work.** Check `status: "PUBLISHED"` (not `"DRAFT"`). Restart the dev server if the file was just created; the glob is evaluated at startup.
 

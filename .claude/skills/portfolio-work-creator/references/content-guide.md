@@ -26,18 +26,7 @@ Every work item has three content fields in frontmatter:
 
 **Length**: 3-5 sentences (one paragraph)
 
-**Example** (Video Machine):
-
-```
-Video Machine is a comprehensive video rendering platform that transforms content 
-into engaging TikTok-style slide presentations. Built with React Router 7 and 
-Remotion, this application enables users to programmatically generate videos 
-with a credit-based system. The platform integrates Polar for payment processing 
-and authentication, Trigger.dev for reliable background video rendering, and 
-Railway S3 for efficient video storage and delivery. The application demonstrates 
-the power of combining modern web technologies to create a production-ready SaaS 
-solution that handles complex video generation workflows at scale.
-```
+**Examples**: read this field in two or three current files (`app/content/work/video-machine.mdx`, `atrium.mdx`, `trellis.mdx`); they set the current voice. Check every claim against the project's repo before writing it.
 
 **Pattern**: [Platform type] + [What it does] + [Key tech] + [How it works] + [Scale/impact]
 
@@ -55,19 +44,7 @@ solution that handles complex video generation workflows at scale.
 
 **Length**: 4-6 sentences (one paragraph)
 
-**Example** (Video Machine):
-
-```
-This project deepened my understanding of distributed systems and asynchronous 
-job processing. Working with Remotion revealed the intricacies of server-side 
-video rendering and the challenges of managing long-running processes in a web 
-application. The integration of Trigger.dev taught me valuable lessons about 
-task orchestration, retry strategies, and building resilient background job 
-systems. I explored payment integration patterns with Polar, implementing 
-credit-based systems with webhooks for real-time balance updates. The Railway 
-S3 integration provided insights into efficient file storage strategies and 
-implementing presigned URLs for secure content delivery.
-```
+**Examples**: read this field in two or three current files (`app/content/work/video-machine.mdx`, `atrium.mdx`, `trellis.mdx`); they set the current voice. Check every claim against the project's repo before writing it.
 
 **Pattern**: [Context] + [Specific technical learnings] + [Integration insights] + [Systems understanding]
 
@@ -85,20 +62,7 @@ implementing presigned URLs for secure content delivery.
 
 **Length**: 4-5 sentences (one paragraph)
 
-**Example** (Video Machine):
-
-```
-Video Machine showcases my ability to architect and build complete SaaS 
-applications from end to end. It demonstrates technical proficiency across 
-multiple domains: video rendering technology, payment systems integration, 
-distributed task processing, cloud storage, and database management. The 
-project highlights my understanding of production-ready infrastructure 
-patterns, including authentication flows, webhook handling, and error 
-recovery mechanisms. As a portfolio piece, it effectively communicates my 
-capability to build complex, revenue-generating applications that solve 
-real problems while maintaining clean architecture and excellent user 
-experience.
-```
+**Examples**: read this field in two or three current files (`app/content/work/video-machine.mdx`, `atrium.mdx`, `trellis.mdx`); they set the current voice. Check every claim against the project's repo before writing it.
 
 **Pattern**: [What it showcases] + [Domains covered] + [Production readiness] + [Professional capability]
 
