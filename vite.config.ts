@@ -1,14 +1,11 @@
-import mdx from '@mdx-js/rollup';
 import { reactRouter } from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkGfm from 'remark-gfm';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import serverAdapter from 'hono-react-router-adapter/vite';
 import { defaultOptions } from '@hono/vite-dev-server';
 import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import { createRequire } from 'node:module';
 import path from 'node:path';
+import { mdxPlugin } from './mdx-plugin';
 
 // In a git worktree, node_modules resolves into the main checkout, which sits
 // outside Vite's default fs sandbox and 403s the client entry (breaking
@@ -30,16 +27,7 @@ export default defineConfig({
     },
     plugins: [
         tailwindcss(),
-        {
-            enforce: 'pre',
-            ...mdx({
-                remarkPlugins: [
-                    remarkFrontmatter,
-                    remarkMdxFrontmatter,
-                    remarkGfm
-                ]
-            })
-        },
+        mdxPlugin(),
         reactRouter(),
         serverAdapter({
             entry: './server/index.ts',
