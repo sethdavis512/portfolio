@@ -30,6 +30,7 @@ import { VoltAgentLogo } from './logos/VoltAgentLogo';
 import { Linky } from './Linky';
 import { PolarLogo } from './logos/PolarLogo';
 import { CloudinaryLogo } from './logos/CloudinaryLogo';
+import { ContentfulLogo } from './logos/ContentfulLogo';
 import { WordPressLogo } from './logos/WordPressLogo';
 
 export type LogoName =
@@ -38,6 +39,7 @@ export type LogoName =
     | 'better-auth'
     | 'bun'
     | 'cloudinary'
+    | 'contentful'
     | 'css'
     | 'd3'
     | 'docusaurus'
@@ -101,6 +103,11 @@ export function TechStackLogos({ logos }: TechStackLogosProps) {
             component: (props) => <CloudinaryLogo {...logoProps} {...props} />,
             title: 'Cloudinary',
             url: 'https://cloudinary.com/'
+        },
+        contentful: {
+            component: (props) => <ContentfulLogo {...logoProps} {...props} />,
+            title: 'Contentful',
+            url: 'https://www.contentful.com/'
         },
         css: {
             component: (props) => <CSSLogo {...logoProps} {...props} />,
